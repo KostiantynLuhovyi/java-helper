@@ -11,11 +11,16 @@ Description of the functionality of packages in the package com.lugowoy.helper :
 + com.lugowoy.helper.generating - Encapsulates a static hierarchy for generating pseudo-random data.
 + com.lugowoy.helper.reading - Encapsulates a class hierarchy that implements the functionality of reading and processing user input.
 + com.lugowoy.helper.util - Encapsulates supporting classes that help in solving problems, but the hierarchy of classes to which they belonged is not yet built.
-
-----
+##  
 Projects (repositories) in which the functionality of this helper micro library is used :
 + solution_tasks-java-core-topics ;
 + solution_tasks-java-arrays_topic ;
 + solution_tasks-java-oop_topic ;
 + solution_tasks-java-algorithms_topic ;
+----
+If you have any questions about this repository or the solution of the tasks in it, you can contact the following contacts:
 
+**email:** _kostya.lugowoy@gmail.com_  
+**skype:** _Lugowoy Konstantin ; kostya_lugowoy@outlook.com_  
+**linkedin:** _[Konstantin Lugowoy](https://www.linkedin.com/in/lugowoy-konstantin/)_  
+**facebook:** _[Konstantin Lugowoy](https://www.facebook.com/lugowoy.konstantin)_  
