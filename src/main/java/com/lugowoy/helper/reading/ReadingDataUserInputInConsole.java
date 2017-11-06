@@ -27,6 +27,7 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultByteInputValue = Byte.parseByte(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
+            System.out.println("Re-enter : ");
             resultByteInputValue = this.getCorrectByteNumberValue(readableCorrect);
         }
         return resultByteInputValue;
@@ -47,6 +48,7 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultShortInputValue = Short.parseShort(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
+            System.out.println("Re-enter : ");
             resultShortInputValue = this.getCorrectByteNumberValue(readableCorrect);
         }
         return resultShortInputValue;
@@ -75,6 +77,7 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             //If during the scan of the entered line it is determined that this is not an integer number,
             // then a corresponding message is displayed about incorrect data entry and by recursion please repeat the input.
             System.out.println("Incorrect data entered.");
+            System.out.println("Re-enter : ");
             resultIntInputValue = this.getCorrectIntNumberValue(readableCorrect);
         }
         return resultIntInputValue;
@@ -95,6 +98,7 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultLongInputValue = Long.parseLong(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
+            System.out.println("Re-enter : ");
             resultLongInputValue = this.getCorrectLongNumberValue(readableCorrect);
         }
         return resultLongInputValue;
@@ -115,6 +119,7 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultFloatInputValue = Float.parseFloat(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
+            System.out.println("Re-enter : ");
             resultFloatInputValue = this.getCorrectFloatNumberValue(readableCorrect);
         }
         return resultFloatInputValue;
@@ -143,6 +148,7 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             //If during the scan of the entered line it is determined that this is not an real double number,
             // then a corresponding message is displayed about incorrect data entry and by recursion please repeat the input.
             System.out.println("Incorrect data entered.");
+            System.out.println("Re-enter : ");
             resultDoubleInputValue = this.getCorrectDoubleNumberValue(readableCorrect);
         }
         return resultDoubleInputValue;

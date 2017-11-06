@@ -31,6 +31,7 @@ public class FillingArrayDoubleUserInputNumbers extends FillingArrayNumbers<Doub
                     break;
                 } else {
                     System.out.println("Incorrect data entered.");
+                    System.out.println("Re-enter : ");
                 }
             }
             return resultValue;
@@ -53,6 +54,7 @@ public class FillingArrayDoubleUserInputNumbers extends FillingArrayNumbers<Doub
                     break;
                 } else {
                     System.out.println("Incorrect data entered.");
+                    System.out.println("Re-enter : ");
                 }
             }
             return resultValue;
