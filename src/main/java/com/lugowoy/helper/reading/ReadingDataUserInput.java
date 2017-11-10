@@ -17,6 +17,9 @@ public abstract class ReadingDataUserInput extends ReadingData {
     public abstract long readLong();
 
     @Override
+    public abstract char readChar();
+
+    @Override
     public abstract float readFloat();
 
     @Override

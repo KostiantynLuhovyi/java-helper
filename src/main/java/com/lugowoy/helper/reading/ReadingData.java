@@ -19,6 +19,9 @@ public abstract class ReadingData implements Readable {
     public abstract long readLong();
 
     @Override
+    public abstract char readChar();
+
+    @Override
     public abstract float readFloat();
 
     @Override

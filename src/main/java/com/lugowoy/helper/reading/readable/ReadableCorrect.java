@@ -2,6 +2,7 @@ package com.lugowoy.helper.reading.readable;
 
 /** Created by Konstantin Lugowoy on 29.07.2017. */
 
+@FunctionalInterface
 public interface ReadableCorrect {
 
     String REGEX_POSITIVE_INTEGER_NUMBER = "\\d+?";
@@ -46,6 +47,16 @@ public interface ReadableCorrect {
         boolean result = false;
         if (numberValue.matches(REGEX_POSITIVE_INTEGER_NUMBER) || numberValue.matches(REGEX_NEGATIVE_INTEGER_NUMBER)) {
             if ((Long.parseLong(numberValue) >= Long.MIN_VALUE) && (Long.parseLong(numberValue) <= Long.MAX_VALUE)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    static boolean isOnlyCharacter(String characterValue) {
+        boolean result = false;
+        if (characterValue.length() == 1) {
+            if (Character.isDefined(characterValue.charAt(0))) {
                 result = true;
             }
         }

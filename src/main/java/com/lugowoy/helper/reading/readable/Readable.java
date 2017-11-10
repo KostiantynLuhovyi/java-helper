@@ -12,6 +12,8 @@ public interface Readable {
 
     long readLong();
 
+    char readChar();
+
     float readFloat();
 
     double readDouble();

@@ -33,6 +33,11 @@ public  class Reader implements Readable {
     }
 
     @Override
+    public char readChar() {
+        return this.readingData.readChar();
+    }
+
+    @Override
     public float readFloat() {
         return this.readingData.readFloat();
     }

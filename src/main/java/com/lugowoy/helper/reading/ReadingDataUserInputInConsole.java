@@ -4,10 +4,7 @@ import com.lugowoy.helper.reading.readable.ReadableCorrect;
 
 import java.util.Scanner;
 
-/**
- * Created by Konstantin Lugowoy on 25.07.2017.
- *
- * */
+/** Created by Konstantin Lugowoy on 25.07.2017 */
 
 public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
 
@@ -31,7 +28,6 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultByteInputValue = this.getCorrectByteNumberValue(readableCorrect);
         }
         return resultByteInputValue;
-
     }
 
     @Override
@@ -52,7 +48,6 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultShortInputValue = this.getCorrectByteNumberValue(readableCorrect);
         }
         return resultShortInputValue;
-
     }
 
     @Override
@@ -81,7 +76,6 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultIntInputValue = this.getCorrectIntNumberValue(readableCorrect);
         }
         return resultIntInputValue;
-
     }
 
     @Override
@@ -102,7 +96,26 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultLongInputValue = this.getCorrectLongNumberValue(readableCorrect);
         }
         return resultLongInputValue;
+    }
 
+    @Override
+    public char readChar() {
+        return this.getCorrectCharacterValue(ReadableCorrect::isOnlyCharacter);
+    }
+
+    private char getCorrectCharacterValue(ReadableCorrect readableCorrect) {
+        char resultCharacterValue;
+
+        String value = SCANNER.nextLine();
+
+        if (readableCorrect.isCorrect(value)) {
+            resultCharacterValue = value.charAt(0);
+        } else {
+            System.out.println("Incorrect data entered.");
+            System.out.println("Re-enter : ");
+            resultCharacterValue = this.getCorrectCharacterValue(readableCorrect);
+        }
+        return resultCharacterValue;
     }
 
     @Override
@@ -123,7 +136,6 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultFloatInputValue = this.getCorrectFloatNumberValue(readableCorrect);
         }
         return resultFloatInputValue;
-
     }
 
     @Override
@@ -152,7 +164,6 @@ public class ReadingDataUserInputInConsole extends ReadingDataUserInput {
             resultDoubleInputValue = this.getCorrectDoubleNumberValue(readableCorrect);
         }
         return resultDoubleInputValue;
-
     }
 
     @Override
