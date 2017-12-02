@@ -9,19 +9,21 @@ package com.lugowoy.helper.calculating;
  * <p>
  * Functional interface declares a contract for calculations using data that encapsulates the object.
  * </p>
- * @param <T> - The type of object that encapsulates data to calculate.
+ * @param <T> - Calculation result type.
+ * @param <K> - Type of variable using for calculations.
  */
+
 @FunctionalInterface
-public interface CalculableOnTheObject<T> {
+public interface CalculationUsingOneVariable<T, K> {
 
     /**
      * <p>
      * The method(function) of performing calculations on data that encapsulates the object passed to argument.
      * </p>
-     * @param t - The object that encapsulates data to calculate.
+     * @param kVar - The object that encapsulates data to calculate.
      * @return The object that encapsulates the result of the calculation.
      * @since 03.02.2017
      */
-    T calculate(T t);
+    T calculate(K kVar);
 
 }
