@@ -4,43 +4,37 @@ package com.lugowoy.helper.converting;
  * Created by Konstantin on 29-Jan-17.
  *
  * @author Konstantin Lugowoy
- *
+ * @version 1.1
+ * @since 08.12.2017
  * <p>
- * Class is a kind of container for the implementation of the function for converting.
- * The implementation uses the analogy of the pattern Command.
+ * A class that is a kind of container that encapsulates a function for performing data conversion in a concrete object.
  * </p>
- * @param <T> - Type of object encapsulating the data used to convert.
+ * @param <T> The type of object whose data will be converted.
  */
+
 public class ConvertingData<T> {
 
-    /**
-     * <p>
-     * The object field encapsulates the implementation of the data conversion function.
-     * </p>
-     * @see com.lugowoy.helper.converting.Converting
-     * */
     private Converting<T> converting;
 
     /**
      * <p>
-     * The constructor initializes the object with a function to perform the conversion.
-     * {@link ConvertingData#converting}
+     * Constructor with parameter.
+     * The parameter {@link ConvertingData#converting} provides the implementation of the function to perform the conversion.
      * </p>
-     * @param converting - Function that performs conversion.
-     *                     The parameter will accept any class that implements the interface com.lugowoy.util.converting.Calculable;
-     * @see com.lugowoy.helper.converting.Convertable
      * @see com.lugowoy.helper.converting.Converting
-     * */
+     * @param converting The parameter provides the implementation of the function to perform the conversion.
+     */
     public ConvertingData(Converting<T> converting) {
         this.converting = converting;
     }
 
     /**
      * <p>
-     * The method of the object performs the conversion using delegation of the conversion duties to the functional interface.
+     * A method that performs the conversion of object data passed by a parameter to a method.
+     * The method delegates the execution of the function which the object was initialized upon creation.
      * </p>
-     * @param t - The data of this object is used for conversion.
      * @see com.lugowoy.helper.converting.Converting
+     * @param t The object passed by the parameter whose data is being converted.
      * */
     public void convert(T t) {
         converting.convert(t);
