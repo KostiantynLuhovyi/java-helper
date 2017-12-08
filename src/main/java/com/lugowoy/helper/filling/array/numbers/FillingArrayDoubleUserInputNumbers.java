@@ -1,11 +1,19 @@
-package com.lugowoy.helper.filling;
+package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.reading.Reader;
 import com.lugowoy.helper.reading.ReadingDataUserInputInConsole;
 
 import java.util.Arrays;
 
-/** Created by Konstantin Lugowoy on 29.07.2017. */
+/**
+ * Created by Konstantin Lugowoy on 29.07.2017.
+ * @author Konstantin Lugowoy
+ * @version 1.1
+ * @since 29.07.2017
+ * <p>
+ *
+ * </p>
+ */
 
 public class FillingArrayDoubleUserInputNumbers extends FillingArrayNumbers<Double> {
 

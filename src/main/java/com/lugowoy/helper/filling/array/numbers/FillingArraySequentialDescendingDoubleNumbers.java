@@ -1,16 +1,18 @@
-package com.lugowoy.helper.filling;
+package com.lugowoy.helper.filling.array.numbers;
 
 import static java.util.Objects.nonNull;
 
 /** Created by Konstantin Lugowoy on 06.11.2017. */
 
-public class FillingArrayConsecutiveAscendingDoubleNumbers extends FillingArrayNumbers<Double> {
+public class FillingArraySequentialDescendingDoubleNumbers extends FillingArrayNumbers<Double> {
 
     @Override
     public Double[] fill(Double[] array) {
         if (nonNull(array)) {
+            double value = array.length - 1;
             for (int i = 0; i < array.length; i++) {
-                array[i] = (double) i;
+                array[i] = value;
+                value--;
             }
         } else {
             throw new IllegalArgumentException("Argument array passed in the method is equal to \"null\".");
@@ -28,7 +30,7 @@ public class FillingArrayConsecutiveAscendingDoubleNumbers extends FillingArrayN
         if (nonNull(array)) {
             for (int i = 0; i < array.length; i++) {
                 array[i] = startNumber;
-                startNumber++;
+                startNumber--;
             }
         } else {
             throw new IllegalArgumentException("Argument array passed in the method is equal to \"null\".");
@@ -48,7 +50,7 @@ public class FillingArrayConsecutiveAscendingDoubleNumbers extends FillingArrayN
             if ((integerNumbersOfElements > 0) && (integerNumbersOfElements <= array.length)) {
                 for (int i = 0; i < integerNumbersOfElements; i++) {
                     array[i] = startNumber;
-                    startNumber++;
+                    startNumber--;
                 }
             } else {
                 throw new IllegalArgumentException("The number of elements to fill an array can not be negative or should not exceed the size of an array.");

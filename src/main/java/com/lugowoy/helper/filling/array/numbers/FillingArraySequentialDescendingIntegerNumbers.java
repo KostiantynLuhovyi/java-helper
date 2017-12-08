@@ -1,10 +1,10 @@
-package com.lugowoy.helper.filling;
+package com.lugowoy.helper.filling.array.numbers;
 
 import static java.util.Objects.nonNull;
 
 /** Created by Konstantin Lugowoy on 03.11.2017. */
 
-public class FillingArrayConsecutiveDescendingIntegerNumbers extends FillingArrayNumbers<Integer> {
+public class FillingArraySequentialDescendingIntegerNumbers extends FillingArrayNumbers<Integer> {
 
     @Override
     public Integer[] fill(Integer[] array) {

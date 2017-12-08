@@ -1,6 +1,8 @@
-package com.lugowoy.helper.filling;
+package com.lugowoy.helper.filling.array;
 
-import com.lugowoy.helper.filling.fillable.FillableArray;
+import com.lugowoy.helper.filling.Filler;
+import com.lugowoy.helper.filling.Filling;
+import com.lugowoy.helper.filling.array.FillableArray;
 
 /** Created by Konstantin Lugowoy on 27.07.2017. */
 

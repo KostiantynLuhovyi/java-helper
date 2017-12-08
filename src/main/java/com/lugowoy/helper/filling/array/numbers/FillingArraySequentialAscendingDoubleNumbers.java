@@ -1,16 +1,16 @@
-package com.lugowoy.helper.filling;
+package com.lugowoy.helper.filling.array.numbers;
 
 import static java.util.Objects.nonNull;
 
 /** Created by Konstantin Lugowoy on 06.11.2017. */
 
-public class FillingArrayConsecutiveAscendingIntegerNumbers extends FillingArrayNumbers<Integer> {
+public class FillingArraySequentialAscendingDoubleNumbers extends FillingArrayNumbers<Double> {
 
     @Override
-    public Integer[] fill(Integer[] array) {
+    public Double[] fill(Double[] array) {
         if (nonNull(array)) {
             for (int i = 0; i < array.length; i++) {
-                array[i] = i;
+                array[i] = (double) i;
             }
         } else {
             throw new IllegalArgumentException("Argument array passed in the method is equal to \"null\".");
@@ -19,12 +19,12 @@ public class FillingArrayConsecutiveAscendingIntegerNumbers extends FillingArray
     }
 
     @Override
-    public Integer[] fill(int lengthArray) {
-        return this.fill(new Integer[lengthArray]);
+    public Double[] fill(int lengthArray) {
+        return this.fill(new Double[lengthArray]);
     }
 
     @Override
-    public Integer[] fill(Integer[] array, Integer startNumber) {
+    public Double[] fill(Double[] array, Double startNumber) {
         if (nonNull(array)) {
             for (int i = 0; i < array.length; i++) {
                 array[i] = startNumber;
@@ -37,16 +37,18 @@ public class FillingArrayConsecutiveAscendingIntegerNumbers extends FillingArray
     }
 
     @Override
-    public Integer[] fill(int lengthArray, Integer startNumber) {
-        return this.fill(new Integer[lengthArray], startNumber);
+    public Double[] fill(int lengthArray, Double startNumber) {
+        return this.fill(new Double[lengthArray], startNumber);
     }
 
     @Override
-    public Integer[] fill(Integer[] array, Integer startNumber, Integer numberOfElements) {
+    public Double[] fill(Double[] array, Double startNumber, Double numberOfElements) {
         if (nonNull(array)) {
-            if ((numberOfElements > 0) && (numberOfElements <= array.length)) {
-                for (int i = 0; i < numberOfElements; startNumber++, i++) {
+            int integerNumbersOfElements = (int)(double)numberOfElements;
+            if ((integerNumbersOfElements > 0) && (integerNumbersOfElements <= array.length)) {
+                for (int i = 0; i < integerNumbersOfElements; i++) {
                     array[i] = startNumber;
+                    startNumber++;
                 }
             } else {
                 throw new IllegalArgumentException("The number of elements to fill an array can not be negative or should not exceed the size of an array.");
@@ -58,8 +60,8 @@ public class FillingArrayConsecutiveAscendingIntegerNumbers extends FillingArray
     }
 
     @Override
-    public Integer[] fill(int lengthArray, Integer startNumber, Integer numberOfElements) {
-        return this.fill(new Integer[lengthArray], startNumber, numberOfElements);
+    public Double[] fill(int lengthArray, Double startNumber, Double numberOfElements) {
+        return this.fill(new Double[lengthArray], startNumber, numberOfElements);
     }
 
 }

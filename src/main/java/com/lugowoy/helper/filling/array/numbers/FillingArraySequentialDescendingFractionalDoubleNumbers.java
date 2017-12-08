@@ -1,4 +1,4 @@
-package com.lugowoy.helper.filling;
+package com.lugowoy.helper.filling.array.numbers;
 
 import java.math.BigDecimal;
 
@@ -6,7 +6,7 @@ import static java.util.Objects.nonNull;
 
 /** Created by Konstantin Lugowoy on 06.11.2017. */
 
-public class FillingArrayConsecutiveDescendingFractionalDoubleNumbers extends FillingArrayNumbers<Double> {
+public class FillingArraySequentialDescendingFractionalDoubleNumbers extends FillingArrayNumbers<Double> {
 
     private static final double DEFAULT_INCREMENT_STEP = 0.1;
     public static final int SCALE = 2;

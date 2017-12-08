@@ -1,7 +1,5 @@
 package com.lugowoy.helper.filling;
 
-import com.lugowoy.helper.filling.fillable.Fillable;
-
 /** Created by Konstantin Lugowoy on 27.07.2017. */
 
 public abstract class Filler<T> implements Fillable<T> {
