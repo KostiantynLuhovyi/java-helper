@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import static java.util.Objects.nonNull;
 
 /** Created by Konstantin Lugowoy on 06.11.2017. */
-
+//todo Написать документацию. Провести полный рефакторинг.
 public class FillingArraySequentialDescendingFractionalDoubleNumbers extends FillingArrayNumbers<Double> {
 
     private static final double DEFAULT_INCREMENT_STEP = 0.1;

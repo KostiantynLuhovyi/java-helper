@@ -7,7 +7,7 @@ import com.lugowoy.helper.reading.ReadingData;
 /**
  * Created by Konstantin Lugowoy on 08-Dec-17.
  */
-
+//todo Написать документацию. Провести полный рефакторинг.
 public abstract class FillingArrayUserInputCoordinatesOfPoints<T extends Number> extends FillingArrayPoints<T> {
 
     private Reader reader;

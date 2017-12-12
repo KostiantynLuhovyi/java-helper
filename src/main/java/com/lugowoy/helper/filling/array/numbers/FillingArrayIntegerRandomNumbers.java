@@ -13,24 +13,24 @@ import java.util.Arrays;
  * @version 1.2
  * @since 29.07.2017
  * <p>
- * The class encapsulates the implementation of array filling with random integer values.
+ * A class encapsulating an implementation of an interface to filling an array the random integer numeric data (values).
  * </p>
  * @see com.lugowoy.helper.filling.Filling
- * @see FillingArray
- * @see FillingArrayNumbers
+ * @see com.lugowoy.helper.filling.array.FillingArray
+ * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  * @see com.lugowoy.helper.filling.Fillable
- * @see FillableArray
- * @see FillableArrayNumbers
+ * @see com.lugowoy.helper.filling.array.FillableArray
+ * @see com.lugowoy.helper.filling.array.numbers.FillableArrayNumbers
  */
-
+//todo Проверить документацию. Изменить реализацию добавив проверки на корректность аргументов. Рефакторинг.
 public class FillingArrayIntegerRandomNumbers extends FillingArrayNumbers<Integer> {
 
     /**
      * <p>
-     * The method fills an array the random integer values.
+     * The method fills the array with random integer numeric data (values).
      * </p>
-     * @param array The array to fill it with random integer values.
-     * @return A reference to the array filled with random integer values.
+     * @param array The array to fill with random integer numeric data (values).
+     * @return A reference to an array filled with random integer numeric data (values).
      */
     @Override
     public Integer[] fill(Integer[] array) {
@@ -42,11 +42,11 @@ public class FillingArrayIntegerRandomNumbers extends FillingArrayNumbers<Intege
 
     /**
      * <p>
-     * A method fills an array the random integer values, which is created based on the variable of the length of the array.
+     * The method fills the array with random integer numeric data (values). The array is created by the dimension "lengthArray".
      * </p>
-     * @param lengthArray The length of the array to create and fill random integer values.
-     *                          The value of the length of the array to fill in the random integer values must be a positive number.
-     * @return A reference to the array created and filled with random integer values.
+     * @param lengthArray Length (size) of the creating array for filling random integer numeric data (values).
+     *                          The value of the parameter "lengthArray" must be a positive number.
+     * @return A reference to the array created and filled with random integer numeric data (values).
      */
     @Override
     public Integer[] fill(int lengthArray) {
@@ -58,12 +58,12 @@ public class FillingArrayIntegerRandomNumbers extends FillingArrayNumbers<Intege
 
     /**
      * <p>
-     * A method fills an array the random integer values in the range from 0 to the "bound" parameter.
+     * The method fills the array with random integer numeric data (values) in the range from 0 to the "bound" parameter.
      * </p>
-     * @param array The array to fill with random integer values.
+     * @param array The array to fill the random integer numeric data (values).
      * @param bound The boundary is the maximum value, when filling the array.
      *                  The value must be a positive number, since the minimum value is 0.
-     * @return A reference to an array filled with random integer values.
+     * @return A reference to an array filled with random integer numeric data (values).
      */
     @Override
     public Integer[] fill(Integer[] array, Integer bound) {
@@ -75,14 +75,14 @@ public class FillingArrayIntegerRandomNumbers extends FillingArrayNumbers<Intege
 
     /**
      * <p>
-     * A method fills an array the random integer values in the range from 0 to the "border",
-     *                                                       which is created based on the variable length of the array.
+     * The method fills array the random integer numeric data (values) in the range from 0 to the "border".
+     *  The array is created by the dimension "lengthArray".
      * </p>
-     * @param lengthArray The length of the array to create and fill random integer values.
-     *                          The value of the length of the array to fill in the random integer values must be a positive number.
+     * @param lengthArray Length (size) of the creating array for filling random integer numeric data (values).
+     *                          The value of the parameter "lengthArray" must be a positive number.
      * @param bound The boundary is the maximum value, when filling the array.
      *                  The value must be a positive number, since the minimum value is 0.
-     * @return A reference to an the array created and filled with random integer values.
+     * @return A reference to an array filled with random integer numeric data (values).
      */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
@@ -94,12 +94,12 @@ public class FillingArrayIntegerRandomNumbers extends FillingArrayNumbers<Intege
 
     /**
      * <p>
-     * A method fills an array the random integer values in the range from "minBound" to the "maxBound" parameter.
+     * The method fills an array the random integer numeric data (values) in the range from "minBound" to the "maxBound" parameter.
      * </p>
-     * @param array The array to fill with random integer values.
+     * @param array The array to fill the random integer numeric data (values).
      * @param minBound The boundary is the minimal value, when filling the array.
      * @param maxBound The boundary is the maximum value, when filling the array.
-     * @return A reference to an the array filled with random integer values.
+     * @return A reference to an array filled with random integer numeric data (values).
      */
     @Override
     public Integer[] fill(Integer[] array, Integer minBound, Integer maxBound) {
@@ -111,14 +111,14 @@ public class FillingArrayIntegerRandomNumbers extends FillingArrayNumbers<Intege
 
     /**
      * <p>
-     * A method fills an array the random integer values in the range from "minBound" to the "maxBound",
-     *                                                       which is created based on the variable length of the array.
+     * The method fills array the random integer numeric data (values) in the range from "minBound" to the "maxBound".
+     *  The array is created by the dimension "lengthArray".
      * </p>
-     * @param lengthArray The length of the array to create and fill values.
-     *                          The value of the length of the array to fill in the random integer values must be a positive number.
+     * @param lengthArray Length (size) of the creating array for filling random integer numeric data (values).
+     *                          The value of the parameter "lengthArray" must be a positive number.
      * @param minBound The boundary is the minimal value, when filling the array.
      * @param maxBound The boundary is the maximum value, when filling the array.
-     * @return A reference to an the array created and filled with random integer values.
+     * @return A reference to an array filled with random integer numeric data (values).
      */
     @Override
     public Integer[] fill(int lengthArray, Integer minBound, Integer maxBound) {

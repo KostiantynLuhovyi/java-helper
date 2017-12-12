@@ -3,7 +3,7 @@ package com.lugowoy.helper.filling.array.numbers;
 import static java.util.Objects.nonNull;
 
 /** Created by Konstantin Lugowoy on 06.11.2017. */
-
+//todo Написать документацию. Провести полный рефакторинг.
 public class FillingArraySequentialDescendingDoubleNumbers extends FillingArrayNumbers<Double> {
 
     @Override

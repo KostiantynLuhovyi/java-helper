@@ -2,8 +2,23 @@ package com.lugowoy.helper.filling.array.numbers;
 
 import static java.util.Objects.nonNull;
 
-/** Created by Konstantin Lugowoy on 06.11.2017. */
-
+/**
+ * Created by Konstantin Lugowoy on 06.11.2017.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.0
+ * @since 06.11.2017
+ * <p>
+ * A class encapsulating an implementation of an interface to filling an array the sequential double numeric data (values) by ascending.
+ * </p>
+ * @see com.lugowoy.helper.filling.Filling
+ * @see com.lugowoy.helper.filling.array.FillingArray
+ * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
+ * @see com.lugowoy.helper.filling.Fillable
+ * @see com.lugowoy.helper.filling.array.FillableArray
+ * @see com.lugowoy.helper.filling.array.numbers.FillableArrayNumbers
+ */
+//todo Написать документацию. Провести полный рефакторинг.
 public class FillingArraySequentialAscendingDoubleNumbers extends FillingArrayNumbers<Double> {
 
     @Override

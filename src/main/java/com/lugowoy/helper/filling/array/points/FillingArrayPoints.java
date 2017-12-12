@@ -8,7 +8,7 @@ import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.points.Point;
 
 /** Created by Konstantin Lugowoy on 08-Dec-17. */
-
+//todo Написать документацию. Провести полный рефакторинг.
 public abstract class FillingArrayPoints<T extends Number> extends FillingArray<Point<T>> {
 
     public static final CreatorOfArrayModels<Point<Double>> CREATOR_OF_ARRAY_DOUBLE_COORDINATES_OF_POINTS =

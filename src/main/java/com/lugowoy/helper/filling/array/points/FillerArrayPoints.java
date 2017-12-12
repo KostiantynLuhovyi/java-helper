@@ -7,7 +7,7 @@ import com.lugowoy.helper.models.points.Point;
 /**
  * Created by Konstantin Lugowoy on 08-Dec-17.
  */
-
+//todo Написать документацию. Провести полный рефакторинг.
 public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
 
     public FillerArrayPoints(Filling<Point<T>[]> filling) {

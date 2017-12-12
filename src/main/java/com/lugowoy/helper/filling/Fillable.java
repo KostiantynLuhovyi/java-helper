@@ -11,7 +11,7 @@ package com.lugowoy.helper.filling;
  * </p>
  * @param <T> Type of object that is filling with data.
  */
-
+//todo Проверить документацию и корректность интерфейса.
 public interface Fillable<T> {
 
      /**

@@ -1,4 +1,4 @@
-package com.lugowoy.helper.generating;
+package com.lugowoy.helper.generator;
 
 import java.util.Random;
 

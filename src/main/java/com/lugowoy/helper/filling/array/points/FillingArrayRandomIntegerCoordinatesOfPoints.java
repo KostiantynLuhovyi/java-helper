@@ -11,7 +11,7 @@ import java.util.Arrays;
 /**
  * Created by Konstantin Lugowoy on 08-Dec-17.
  */
-
+//todo Написать документацию. Провести полный рефакторинг.
 public class FillingArrayRandomIntegerCoordinatesOfPoints extends FillingArrayPoints<Integer> {
 
     private static final int MIN_BOUND = -200;

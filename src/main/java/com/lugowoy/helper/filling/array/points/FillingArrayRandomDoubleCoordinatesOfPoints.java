@@ -11,7 +11,7 @@ import java.util.Arrays;
 /**
  * Created by Konstantin Lugowoy on 08-Dec-17.
  */
-
+//todo Написать документацию. Провести полный рефакторинг.
 public class FillingArrayRandomDoubleCoordinatesOfPoints extends FillingArrayPoints<Double> {
 
     private static final double MIN_BOUND = -200.0;
