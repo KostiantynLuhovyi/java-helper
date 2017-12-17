@@ -11,8 +11,9 @@ package com.lugowoy.helper.filling;
  *  for filling objects with data.
  * </p>
  * @see com.lugowoy.helper.filling.Fillable
- * @param <T> Type of object that is filling with data.
+ * @param <T> Type of objects that is filling with data.
  */
-//todo Проверить документацию класса.
+
 public abstract class Filling<T> implements Fillable<T> {
+
 }

@@ -11,62 +11,60 @@ import com.lugowoy.helper.filling.array.FillerArray;
  * @since 27.07.2017
  * <p>
  * A class that is a certain container that receives and uses an implementation of the functional
- *  that fills the array with numeric data (values).
+ *  that fills the array the numeric data (values).
  * </p>
+ * @param <T> Type of arrays that is filling the numeric data (values).
  */
-//todo Проверить документацию, корректность и при необходимости провести рефакторинг.
-public class FillerArrayNumbers<T extends Number> extends FillerArray<T> implements FillableArrayNumbers<T> {
+
+public class FillerArrayWithNumbers<T extends Number> extends FillerArray<T> implements FillableArrayWithNumbers<T> {
 
     /**
      * <p>
-     * Constructor with parameter.
-     * The parameter accepts an object encapsulating the implementation of the interface
-     *  for filling the array with numeric data (values).
+     * Creates an object initializing its specific implementation of the functionality to filling the array the numeric data (values).
      * </p>
-     * @param filling A reference to the object encapsulating the implementation of the interface
-     *                to fill the array with numeric data (values).
+     * @param filling An object encapsulating the implementation of filling the array the numeric data (values).
      */
-    public FillerArrayNumbers(Filling<T[]> filling) {
+    public FillerArrayWithNumbers(Filling<T[]> filling) {
         super(filling);
     }
 
     /**
      * <p>
-     * The method fills the array with numeric data (values).
+     * The method fills the array the numeric data (values).
      * </p>
-     * @param array The array to fill with numeric data (values).
-     * @return A reference to an array filled with numeric data (values).
+     * @param array The array to fill the numeric data (values).
+     * @return An array filled the numeric data (values).
      */
     @Override
     public T[] fill(T[] array) {
-        return super.getFilling().fill(array);
+        return super.filling.fill(array);
     }
 
     /**
      * <p>
-     * The method fills the array with numeric data (values). The array is created by the dimension "lengthArray".
+     * The method fills the array the numeric data (values). The array is created by the dimension "lengthArray".
      * </p>
      * @param lengthArray Length (size) of the creating array for filling numeric data (values).
      *                          The value of the parameter "lengthArray" must be a positive number.
-     * @return A reference to the array created and filled with numeric data (values).
+     * @return An array created and filled the numeric data (values).
      */
     @Override
     public T[] fill(int lengthArray) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthArray);
+        return ((FillingArrayWithNumbers<T>)super.filling).fill(lengthArray);
     }
 
     /**
      * <p>
-     * The method fills the array with numeric data (values) in the range from 0 to the "bound" parameter.
+     * The method fills the array the numeric data (values) in the range from 0 to the "bound" parameter.
      * </p>
      * @param array The array to fill the numeric data (values).
      * @param bound The boundary is the maximum value, when filling the array.
      *                  The value must be a positive number, since the minimum value is 0.
-     * @return A reference to an array filled with numeric data (values).
+     * @return An array filled the numeric data (values).
      */
     @Override
     public T[] fill(T[] array, T bound) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(array, bound);
+        return ((FillingArrayWithNumbers<T>)super.filling).fill(array, bound);
     }
 
     /**
@@ -78,11 +76,11 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      *                          The value of the parameter "lengthArray" must be a positive number.
      * @param bound The boundary is the maximum value, when filling the array.
      *                  The value must be a positive number, since the minimum value is 0.
-     * @return A reference to an array filled with numeric data (values).
+     * @return An array filled the numeric data (values).
      */
     @Override
     public T[] fill(int lengthArray, T bound) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthArray, bound);
+        return ((FillingArrayWithNumbers<T>)super.filling).fill(lengthArray, bound);
     }
 
     /**
@@ -92,11 +90,11 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * @param array The array to fill the numeric data (values).
      * @param minBound The boundary is the minimal value, when filling the array.
      * @param maxBound The boundary is the maximum value, when filling the array.
-     * @return A reference to an array filled with numeric data (values).
+     * @return An array filled the numeric data (values).
      */
     @Override
     public T[] fill(T[] array, T minBound, T maxBound) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(array, minBound, maxBound);
+        return ((FillingArrayWithNumbers<T>)super.filling).fill(array, minBound, maxBound);
     }
 
     /**
@@ -108,11 +106,11 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      *                          The value of the parameter "lengthArray" must be a positive number.
      * @param minBound The boundary is the minimal value, when filling the array.
      * @param maxBound The boundary is the maximum value, when filling the array.
-     * @return A reference to an array filled with numeric data (values).
+     * @return An array filled the numeric data (values).
      */
     @Override
     public T[] fill(int lengthArray, T minBound, T maxBound) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthArray, minBound, maxBound);
+        return ((FillingArrayWithNumbers<T>)super.filling).fill(lengthArray, minBound, maxBound);
     }
 
 }
