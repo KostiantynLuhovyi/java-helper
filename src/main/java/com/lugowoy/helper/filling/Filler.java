@@ -14,13 +14,7 @@ package com.lugowoy.helper.filling;
 
 public abstract class Filler<T> implements Fillable<T> {
 
-    /**
-     * <p>
-     * An object encapsulating the implementation of the functionality to perform the filling of the objects with data.
-     * </p>
-     * @see com.lugowoy.helper.filling.Filling
-     */
-    protected final Filling<T> filling;
+    private final Filling<T> filling;
 
     /**
      * <p>
@@ -30,6 +24,16 @@ public abstract class Filler<T> implements Fillable<T> {
      */
     public Filler(final Filling<T> filling) {
         this.filling = filling;
+    }
+
+    /**
+     * <p>
+     * Returns an object encapsulating the implementation of the functionality to perform the filling of the objects with data.
+     * </p>
+     * @see com.lugowoy.helper.filling.Filling
+     */
+    protected Filling<T> getFilling() {
+        return filling;
     }
 
 }

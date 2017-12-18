@@ -37,7 +37,7 @@ public class FillerArrayWithNumbers<T extends Number> extends FillerArray<T> imp
      */
     @Override
     public T[] fill(T[] array) {
-        return super.filling.fill(array);
+        return super.getFilling().fill(array);
     }
 
     /**
@@ -50,7 +50,7 @@ public class FillerArrayWithNumbers<T extends Number> extends FillerArray<T> imp
      */
     @Override
     public T[] fill(int lengthArray) {
-        return ((FillingArrayWithNumbers<T>)super.filling).fill(lengthArray);
+        return ((FillingArrayWithNumbers<T>)super.getFilling()).fill(lengthArray);
     }
 
     /**
@@ -64,7 +64,7 @@ public class FillerArrayWithNumbers<T extends Number> extends FillerArray<T> imp
      */
     @Override
     public T[] fill(T[] array, T bound) {
-        return ((FillingArrayWithNumbers<T>)super.filling).fill(array, bound);
+        return ((FillingArrayWithNumbers<T>)super.getFilling()).fill(array, bound);
     }
 
     /**
@@ -80,7 +80,7 @@ public class FillerArrayWithNumbers<T extends Number> extends FillerArray<T> imp
      */
     @Override
     public T[] fill(int lengthArray, T bound) {
-        return ((FillingArrayWithNumbers<T>)super.filling).fill(lengthArray, bound);
+        return ((FillingArrayWithNumbers<T>)super.getFilling()).fill(lengthArray, bound);
     }
 
     /**
@@ -94,7 +94,7 @@ public class FillerArrayWithNumbers<T extends Number> extends FillerArray<T> imp
      */
     @Override
     public T[] fill(T[] array, T minBound, T maxBound) {
-        return ((FillingArrayWithNumbers<T>)super.filling).fill(array, minBound, maxBound);
+        return ((FillingArrayWithNumbers<T>)super.getFilling()).fill(array, minBound, maxBound);
     }
 
     /**
@@ -110,7 +110,7 @@ public class FillerArrayWithNumbers<T extends Number> extends FillerArray<T> imp
      */
     @Override
     public T[] fill(int lengthArray, T minBound, T maxBound) {
-        return ((FillingArrayWithNumbers<T>)super.filling).fill(lengthArray, minBound, maxBound);
+        return ((FillingArrayWithNumbers<T>)super.getFilling()).fill(lengthArray, minBound, maxBound);
     }
 
 }
