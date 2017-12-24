@@ -6,14 +6,15 @@ import java.io.Serializable;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
- * @since 1.1
- *
- * @see Serializable
- * @see Cloneable
+ * @version 1.0
+ * @since 20.12.2017
  * <p>
- * A class that is the root of an inheritance hierarchy for constructing all possible classes needed to solve different tasks
+ *     Marker interface declaring that marked (implements) class is a kind of model to use.
  * </p>
+ * @see java.io.Serializable
+ * @see java.lang.Cloneable
  */
-public abstract class Model implements Cloneable, Serializable {
+
+public interface Model extends Serializable, Cloneable {
+
 }

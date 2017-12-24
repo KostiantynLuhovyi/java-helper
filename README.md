@@ -1,12 +1,12 @@
 # java-helper_for-solution-task
 **In the root package com.lugowoy.helper, there are packet hierarchies encapsulating classes, 
-whose objects implement different functionality that help solved tasks.**
+whose array implement different functionality that help solved tasks.**
 ----------------------------------------
 Description of the functionality of packages in the package com.lugowoy.helper :
 + com.lugowoy.helper.calculating - Encapsulates functions for performing mathematical calculations.
 + com.lugowoy.helper.converting - Encapsulates the minimum hierarchy for performing the conversion of the data of a concrete object.
-+ com.lugowoy.helper.factory - Encapsulates a hierarchy of classes that implement the factory for constructing objects of different types.
-+ com.lugowoy.helper.filling - Encapsulates a hierarchy of classes that implement the filling of different data structures and objects with data.
++ com.lugowoy.helper.factory - Encapsulates a hierarchy of classes that implement the factory for constructing array of different types.
++ com.lugowoy.helper.filling - Encapsulates a hierarchy of classes that implement the filling of different data structures and array with data.
 + com.lugowoy.helper.models - Encapsulates a class hierarchy to provide different object models for solving tasks.
 + com.lugowoy.helper.generator - Encapsulates a static hierarchy for generating pseudo-random data.
 + com.lugowoy.helper.reading - Encapsulates a class hierarchy that implements the functionality of reading and processing user input.
