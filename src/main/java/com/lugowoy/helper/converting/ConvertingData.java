@@ -7,7 +7,7 @@ package com.lugowoy.helper.converting;
  * @version 1.1
  * @since 08.12.2017
  * <p>
- * A class that is a kind of container that encapsulates a function for performing data conversion in a concrete object.
+ *      A class that is a kind of container that encapsulates a function for performing data conversion in a concrete object.
  * </p>
  * @param <T> The type of object whose data will be converted.
  */
@@ -18,8 +18,8 @@ public class ConvertingData<T> {
 
     /**
      * <p>
-     * Constructor with parameter.
-     * The parameter {@link ConvertingData#converting} provides the implementation of the function to perform the conversion.
+     *      Constructor with parameter.
+     *      The parameter {@link ConvertingData#converting} provides the implementation of the function to perform the conversion.
      * </p>
      * @see com.lugowoy.helper.converting.Converting
      * @param converting The parameter provides the implementation of the function to perform the conversion.
