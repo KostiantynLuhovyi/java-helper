@@ -8,7 +8,6 @@ Description of the functionality of packages in the package com.lugowoy.helper :
 + com.lugowoy.helper.factory - Encapsulates a hierarchy of classes that implement the factory for constructing array of different types.
 + com.lugowoy.helper.filling - Encapsulates a hierarchy of classes that implement the filling of different data structures and array with data.
 + com.lugowoy.helper.models - Encapsulates a class hierarchy to provide different object models for solving tasks.
-+ com.lugowoy.helper.generator - Encapsulates a static hierarchy for generating pseudo-random data.
 + com.lugowoy.helper.reading - Encapsulates a class hierarchy that implements the functionality of reading and processing user input.
 + com.lugowoy.helper.other - Encapsulates supporting classes that help in solving problems, but the hierarchy of classes to which they belonged is not yet built.
 ##  
