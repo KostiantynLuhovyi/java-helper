@@ -1,6 +1,6 @@
 package com.lugowoy.helper.other;
 
-import com.lugowoy.helper.reading.IReader;
+import com.lugowoy.helper.reading.Reading;
 
 /**
  * Created by Konstantin Lugowoy on 02.08.2017.
@@ -25,7 +25,7 @@ public class SizeOfArray {
      * </p>
      * @param reader The object to read the size value of the array.
      */
-    public static int getSizeOfArray(IReader reader) throws IllegalArgumentException {
+    public static int getSizeOfArray(Reading reader) {
         int sizeArray;
         if (reader != null) {
             sizeArray = reader.readInt();
@@ -45,7 +45,7 @@ public class SizeOfArray {
      * @param reader The object to read the size value of the array.
      * @param boundSizeOfArray Value to determine the maximum size bound of the array.
      */
-    public static int getSizeOfArray(IReader reader, int boundSizeOfArray) throws IllegalArgumentException {
+    public static int getSizeOfArray(Reading reader, int boundSizeOfArray) throws IllegalArgumentException {
         int sizeArray;
         if ((reader != null) && (boundSizeOfArray >= 0)) {
             sizeArray = reader.readInt();
@@ -66,7 +66,7 @@ public class SizeOfArray {
      * @param minBoundSizeOfArray Value to determine the minimum size bound of the array.
      * @param maxBoundSizeOfArray Value to determine the maximum size bound of the array.
      */
-    public static int getSizeOfArray(IReader reader, int minBoundSizeOfArray, int maxBoundSizeOfArray) throws IllegalArgumentException {
+    public static int getSizeOfArray(Reading reader, int minBoundSizeOfArray, int maxBoundSizeOfArray) throws IllegalArgumentException {
         int sizeArray;
         if ((reader != null) && ((minBoundSizeOfArray >= 0) && (maxBoundSizeOfArray >= 0))) {
             if (minBoundSizeOfArray < maxBoundSizeOfArray) {
