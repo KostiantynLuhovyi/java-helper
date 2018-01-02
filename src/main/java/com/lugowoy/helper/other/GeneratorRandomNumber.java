@@ -1,5 +1,6 @@
 package com.lugowoy.helper.other;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
 /**
@@ -15,6 +16,8 @@ import java.util.Random;
  */
 
 public interface GeneratorRandomNumber {
+
+    int SCALE = 2;
 
     /**
      * <p>
@@ -53,7 +56,7 @@ public interface GeneratorRandomNumber {
      * @return The generated double number.
      */
     static double generateDouble() {
-        return new Random().nextDouble();
+        return new BigDecimal(new Random().nextDouble()).setScale(SCALE, BigDecimal.ROUND_HALF_DOWN).doubleValue();
     }
 
     /**
@@ -63,7 +66,7 @@ public interface GeneratorRandomNumber {
      * @return The generated double number.
      */
     static double generateDouble(double bound) {
-        return (0 + (new Random().nextDouble() * (bound - 0)));
+        return new BigDecimal(getRandomInRangeValue(0, bound)).setScale(SCALE, BigDecimal.ROUND_HALF_DOWN).doubleValue();
     }
 
     /**
@@ -73,7 +76,11 @@ public interface GeneratorRandomNumber {
      * @return The generated double number.
      */
     static double generateDouble(double minBound, double maxBound) {
-        return (minBound + (new Random().nextDouble() * (maxBound - minBound)));
+        return new BigDecimal(getRandomInRangeValue(minBound, maxBound)).setScale(SCALE, BigDecimal.ROUND_HALF_DOWN).doubleValue();
+    }
+
+    static double getRandomInRangeValue(double minBound, double maxBound) {
+        return minBound + (new Random().nextDouble() * (maxBound - minBound));
     }
 
 }
