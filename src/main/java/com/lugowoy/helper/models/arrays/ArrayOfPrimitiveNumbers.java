@@ -4,11 +4,12 @@ package com.lugowoy.helper.models.arrays;
  * Created by Konstantin Lugowoy on 31.07.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
- * @since 20.12.2017
+ * @version 1.1
+ * @since 1.0
+ *
  * <p>
- *      An interface that declares a contract to implement the methods of
- *      getters and setters for arrays containing numeric elementary data types.
+ * An interface that declares a contract to implement getters that convert an array of reference numeric elements into
+ *  an array of primitive types.
  * </p>
  */
 
@@ -16,32 +17,22 @@ public interface ArrayOfPrimitiveNumbers {
 
     /**
      * <p>
-     *     Returns an array of integers.
+     * Returns an array of primitive integers using array elements encapsulated in the object of the class that implements this functional.
      * </p>
+     * @since 1.0
+     *
+     * @return Returns an array of primitive integer numbers.
      */
     int[] getArrayOfIntegerPrimitiveNumbers();
 
     /**
      * <p>
-     *     Initializes an array, by an array passed argument.
+     * Returns an array of primitive real using array elements encapsulated in the object of the class that implements this functional.
      * </p>
-     * @param array Array for initialization.
-     */
-    void setArrayOfIntegerPrimitiveNumbers(int[] array);
-
-    /**
-     * <p>
-     *     Returns an array of doubles.
-     * </p>
+     * @since 1.0
+     *
+     * @return Returns an array of primitive real numbers.
      */
     double[] getArrayOfDoublePrimitiveNumbers();
-
-    /**
-     * <p>
-     *     Initializes an array, by an array passed argument.
-     * </p>
-     * @param array Array for initialization.
-     */
-    void setArrayOfDoublePrimitiveNumbers(double[] array);
 
 }

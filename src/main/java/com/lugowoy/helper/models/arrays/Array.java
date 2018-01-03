@@ -8,15 +8,18 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
- * @since 18.12.2017
+ * @version 1.1
+ * @since 1.0
+ *
  * <p>
- *     A class that is the root of the inheritance hierarchy is a different class
- *     for the implementation and use of the model of an elementary non-expandable array.
+ * A class that is the root of the inheritance hierarchy is a different class
+ *  for the implementation and use of the model of an elementary non-expandable array.
  * </p>
+ *
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
+ *
  * @param <T> The type of elements stored in the array.
  */
 
@@ -24,39 +27,55 @@ public abstract class Array<T> implements Model {
 
     /**
      * <p>
-     *     Default array size.
+     * Default array length.
      * </p>
+     * @since 1.0
      */
-    static final int DEFAULT_SIZE_OF_ARRAY = 5;
+    public static final int DEFAULT_LENGTH_ARRAY = 5;
 
-    private T[] array;
+    private Object[] array;
 
     /**
      * <p>
-     *     The default constructor that initializes the created object with an array of default size.
-     *     Array elements are null.
+     * The default constructor that initializes the created object with an array of default length.
+     * Array elements are null.
      * </p>
+     * @since 1.0
      */
-    @SuppressWarnings("unchecked")
     public Array() {
-        this.array = (T[]) new Object[DEFAULT_SIZE_OF_ARRAY];
+        this.array = new Object[DEFAULT_LENGTH_ARRAY];
     }
 
     /**
      * <p>
-     *     The constructor that initializes the created object with an array of passed by an argument.
-     *
-     *     If the array passed by the argument is null, the created object will initialize the array with the default size.
-     *     In this case, the elements of the array are null.
+     * The constructor that initializes the created object with an array of passed by an parameter.
+     * <p>
+     * If the array passed by the parameter is null, the created object will initialize the array with the default length.
+     * In this case, the elements of the array are null.
      * </p>
+     * @since 1.0
+     *
+     * @param array Array to initialize the object to be created.
      */
-    @SuppressWarnings("unchecked")
     public Array(final T[] array) {
-        if (array != null) {
-            this.array = array;
-        } else {
-            this.array = (T[]) new Object[DEFAULT_SIZE_OF_ARRAY];
-        }
+        this.setCorrectArray(array);
+    }
+
+    /**
+     * <p>
+     * The constructor that initializes the created object with an array whose length is equal to the value passed to the parameter
+     * <p>
+     * If the length of array value passed by the parameter is equal to or less the 0,
+     *  the created object will initialize the array with the default length.
+     * <p>
+     * Array elements are null.
+     * </p>
+     * @since 1.0
+     *
+     * @param lengthArray The length of the array to initialize the object to be created.
+     */
+    public Array(final int lengthArray) {
+        this.setCorrectArray(lengthArray);
     }
 
     @Override
@@ -82,43 +101,72 @@ public abstract class Array<T> implements Model {
 
     /**
      * <p>
-     *     Returns an array that is encapsulated in this object.
+     * Returns an array that is encapsulated in this object.
      * </p>
+     * @since 1.0
+     *
+     * @return The object of the array encapsulated in this object.
      */
+    @SuppressWarnings("unchecked") // Type safety. Unchecked cast Object[] to T[] .
     public T[] getArray() {
-        return this.array;
+        return (T[]) this.array;
     }
 
     /**
      * <p>
-     *     Sets the value for the attribute of the array encapsulated in this object.
-     *
-     *     If the value of the array passed by the argument is null, an array of the default size will be created.
-     *     In this case, the elements of the array are null.
+     * Sets the object of the array encapsulated in this object.
+     * <p>
+     * If the object of the array passed by the parameter is null, an array of the default length will be created.
+     * In this case, the elements of the array are null.
      * </p>
-     * @param array An array whose value will be assigned to the object attribute.
+     * @since 1.0
+     *
+     * @param array An array object to initialize an array encapsulated in this object.
      */
-    @SuppressWarnings("unchecked")
     public void setArray(final T[] array) {
-        if (array != null) {
+        this.setCorrectArray(array);
+    }
+
+    /**
+     * <p>
+     * Sets the value for the object of the array encapsulated in this object,
+     *  creating a new array with the length of passed by the parameter.
+     * <p>
+     * If the length value passed by the parameter is equal to or less than 0,
+     *  then the array is initialized by an array of the default length..
+     * <p>
+     * Array elements are null.
+     * </p>
+     * @since 1.1
+     *
+     * @param lengthArray The length of the array to create and initialize the array that encapsulates of the object.
+     */
+    public void setArray(final int lengthArray) {
+        this.setCorrectArray(lengthArray);
+    }
+
+    private boolean checkLengthLargerZero(final int lengthArray) {
+        return lengthArray > 0;
+    }
+
+    private boolean checkNonNull(final T[] array) {
+        return array != null;
+    }
+
+    private void setCorrectArray(final T[] array) {
+        if (checkNonNull(array)) {
             this.array = array;
         } else {
-            this.array = (T[]) new Object[DEFAULT_SIZE_OF_ARRAY];
+            this.array = new Object[DEFAULT_LENGTH_ARRAY];
         }
     }
 
-    /**
-     * <p>
-     *      Sets the value for the attribute of the array encapsulated in this object,
-     *      creating a new array with the size of the value passed by the argument.
-     *
-     *      If the value passed by the argument is equal to or less than 0,
-     *      then the attribute is initialized by an array of the default size.
-     *
-     *      Array elements are null.
-     * </p>
-     * @param sizeOfArray The size of the array to create and initialize the attribute of the object.
-     */
-    public abstract void setArray(int sizeOfArray);
+    private void setCorrectArray(final int lengthArray) {
+        if (checkLengthLargerZero(lengthArray)) {
+            this.array = new Object[lengthArray];
+        } else {
+            this.array = new Object[DEFAULT_LENGTH_ARRAY];
+        }
+    }
 
 }

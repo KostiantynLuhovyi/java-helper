@@ -7,13 +7,16 @@ import com.lugowoy.helper.models.Model;
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 20.12.2017
+ * @since 1.0
+ *
  * <p>
- *     A class representing an implementation for using a model of point.
+ * A class representing an implementation for using a model of point.
  * </p>
+ *
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
+ *
  * @param <T> The type of objects that initialize the coordinates of a point.
  */
 
@@ -24,20 +27,23 @@ public class Point<T extends Number> implements Model {
 
     /**
      * <p>
-     *      The default constructor creates a point object without initializing the coordinates values.
-     *      Value of coordinates is a null.
+     * The default constructor creates a point object without initializing the coordinates values.
+     * Value of coordinates is a null.
      * </p>
+     * @since 1.0
      */
     public Point() {
+        super();
     }
 
     /**
      * <p>
-     *     The constructor creates a point object that initializes coordinates values.
-     *
-     *     If both passed arguments have non null values, then these values initialize the coordinates of the point,
-     *     otherwise the coordinates are null.
+     * The constructor creates a point object that initializes coordinates values.
+     * <p>
+     * If both passed by parameter have non null values, then these values initialize the coordinates of the point,
+     *  otherwise the coordinates are null.
      * </p>
+     * @since 1.0
      */
     public Point(final T coordinateX, final T coordinateY) {
         if ((coordinateX != null) && (coordinateY != null)) {
@@ -83,7 +89,12 @@ public class Point<T extends Number> implements Model {
     }
 
     /**
-     * <p>Returns the value of the X coordinate.</p>
+     * <p>
+     * Returns the value of the X coordinate of the point.
+     * </p>
+     * @since 1.0
+     *
+     * @return Returns the value of the X coordinate.
      */
     public T getCoordinateX() {
         return coordinateX;
@@ -91,19 +102,28 @@ public class Point<T extends Number> implements Model {
 
     /**
      * <p>
-     *     Set the coordinate value X.
-     *
-     *     If passed arguments have non null value, then these value initialize the coordinate of the point,
-     *     otherwise the coordinate are null.
+     * Set the coordinate value X of the point.
+     * <p>
+     * If passed by parameter have non null value, then these value initialize the coordinate of the point,
+     *  otherwise the coordinate are null.
      * </p>
-     * @param coordinateX The value to initialize the coordinate.
+     * @since 1.0
+     *
+     * @param coordinateX The value to initialize the coordinate X.
      */
     public void setCoordinateX(final T coordinateX) {
-        this.coordinateX = coordinateX;
+        if (coordinateX != null) {
+            this.coordinateX = coordinateX;
+        }
     }
 
     /**
-     * <p>Returns the value of the Y coordinate.</p>
+     * <p>
+     * Returns the value of the Y coordinate of the point.
+     * </p>
+     * @since 1.0
+     *
+     * @return Returns the value of the Y coordinate.
      */
     public T getCoordinateY() {
         return coordinateY;
@@ -111,12 +131,14 @@ public class Point<T extends Number> implements Model {
 
     /**
      * <p>
-     *     Set the coordinate value Y.
-     *
-     *     If passed arguments have non null value, then these value initialize the coordinate of the point,
-     *     otherwise the coordinate are null.
+     * Set the coordinate value X of the point.
+     * <p>
+     * If passed by parameter have non null value, then these value initialize the coordinate of the point,
+     *  otherwise the coordinate are null.
      * </p>
-     * @param coordinateY The value to initialize the coordinate.
+     * @since 1.0
+     *
+     * @param coordinateY The value to initialize the coordinate Y.
      */
     public void setCoordinateY(final T coordinateY) {
         this.coordinateY = coordinateY;

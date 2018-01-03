@@ -6,36 +6,62 @@ package com.lugowoy.helper.models.arrays;
  * @author Konstantin Lugowoy
  * @version 1.0
  * @since 18.12.2017
+ *
  * <p>
- *      A class representing an implementation for using a non-expandable array model whose elements are numbers.
+ * A class representing an implementation for using a non-expandable array model whose elements are numbers.
  * </p>
+ *
  * @see com.lugowoy.helper.models.Model
  * @see com.lugowoy.helper.models.arrays.Array
  * @see java.io.Serializable
  * @see java.lang.Cloneable
+ *
+ * @param <T> The type of number elements stored in the array.
  */
 
 public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayOfPrimitiveNumbers {
 
     /**
      * <p>
-     *     The default constructor that initializes the created object with an array of the numbers of default size.
-     *     Array elements are null.
+     * The default constructor that initializes the created object with an array of default length.
+     * Array elements are null.
      * </p>
+     * @since 1.0
      */
     public ArrayOfNumbers() {
+        super();
     }
 
     /**
      * <p>
-     *     The constructor that initializes the created object with an array of the numbers of passed by an argument.
-     *
-     *     If the array passed by the argument is null, the created object will initialize the array with the default size.
-     *     In this case, the elements of the array are null.
+     * The constructor that initializes the created object with an array of passed by an parameter.
+     * <p>
+     * If the array passed by the parameter is null, the created object will initialize the array with the default length.
+     * In this case, the elements of the array are null.
      * </p>
+     * @since 1.0
+     *
+     * @param array Array to initialize the object to be created.
      */
-    public ArrayOfNumbers(T[] array) {
+    public ArrayOfNumbers(final T[] array) {
         super(array);
+    }
+
+    /**
+     * <p>
+     * The constructor that initializes the created object with an array whose length is equal to the value passed to the parameter.
+     * <p>
+     * If the length of array value passed by the parameter is equal to or less the 0,
+     *  the created object will initialize the array with the default length.
+     * <p>
+     * Array elements are null.
+     * </p>
+     * @since 1.0
+     *
+     * @param lengthArray The length of the array to initialize the object to be created.
+     */
+    public ArrayOfNumbers(final int lengthArray) {
+        super(lengthArray);
     }
 
     @SuppressWarnings("unchecked")
@@ -48,34 +74,21 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
 
     /**
      * <p>
-     *      Sets the value for the attribute of the array encapsulated in this object,
-     *      creating a new array with the size of the value passed by the argument.
-     *
-     *      If the value passed by the argument is equal to or less than 0,
-     *      then the attribute is initialized by an array of the default size.
-     *
-     *      Array elements are null.
-     * </p>
-     * @param sizeOfArray The size of the array to create and initialize the attribute of the object.
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void setArray(int sizeOfArray) {
-        if (sizeOfArray > 0) {
-            super.setArray((T[]) new Object[sizeOfArray]);
-        } else {
-            super.setArray((T[]) new Object[DEFAULT_SIZE_OF_ARRAY]);
-        }
-    }
-
-    /**
+     * Returns an array of primitive integer numbers using array elements encapsulated in the object.
      * <p>
-     *     Returns an array of integers.
+     * If the array encapsulated in the object contains real numbers, then their value after the decimal point will be discarded.
+     * If the element of the original array contains a real number greater than or less
+     *  than the maximum or minimum allowable value of a primitive number of type int,
+     *  then the value assigned to the element of the array of primitive numbers will be equal to -2147483648 or 2147483648,
+     *  respectively.
      * </p>
+     * @since 1.0
+     *
+     * @return Returns an array of primitive integer numbers.
      */
     @Override
     public int[] getArrayOfIntegerPrimitiveNumbers() {
-        int[] ints = new int[super.getArray().length];
+        final int[] ints = new int[super.getArray().length];
         for (int i = 0; i < super.getArray().length; i++) {
             ints[i] = super.getArray()[i].intValue();
         }
@@ -84,31 +97,13 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
 
     /**
      * <p>
-     *     Initializes an array, by an array passed argument.
-     *
-     *     If the value of the array passed by the argument is null, an array of the default size will be created.
-     *     In this case, the elements of the array are null.
-     * </p>
-     * @param array Array for initialization.
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void setArrayOfIntegerPrimitiveNumbers(final int[] array) {
-        if (array != null) {
-            final Integer[] integers = new Integer[array.length];
-            for (int i = 0; i < array.length; i++) {
-                integers[i] = array[i];
-            }
-            super.setArray((T[]) integers);
-        } else {
-            super.setArray((T[]) new Integer[DEFAULT_SIZE_OF_ARRAY]);
-        }
-    }
-
-    /**
+     * Returns an array of primitive double numbers using array elements encapsulated in the object.
      * <p>
-     *     Returns an array of doubles.
+     * If the array encapsulated in the object contains integer numbers, then the value after the decimal point is 0.
      * </p>
+     * @since 1.0
+     *
+     * @return Returns an array of primitive double numbers.
      */
     @Override
     public double[] getArrayOfDoublePrimitiveNumbers() {
@@ -117,29 +112,6 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
             doubles[i] = super.getArray()[i].doubleValue();
         }
         return doubles;
-    }
-
-    /**
-     * <p>
-     *     Initializes an array, by an array passed argument.
-     *
-     *     If the value of the array passed by the argument is null, an array of the default size will be created.
-     *     In this case, the elements of the array are null.
-     * </p>
-     * @param array Array for initialization.
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void setArrayOfDoublePrimitiveNumbers(final double[] array) {
-        if (array != null) {
-            final Double[] doubles = new Double[array.length];
-            for (int i = 0; i < array.length; i++) {
-                doubles[i] = array[i];
-            }
-            super.setArray((T[]) doubles);
-        } else {
-            super.setArray((T[]) new Double[DEFAULT_SIZE_OF_ARRAY]);
-        }
     }
 
 }

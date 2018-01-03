@@ -7,10 +7,12 @@ import java.io.Serializable;
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 20.12.2017
+ * @since 1.0
+ *
  * <p>
- *     Marker interface declaring that marked (implements) class is a kind of model to use.
+ * Marker interface declaring that marked (implements) class is a kind of model to use.
  * </p>
+ *
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  */
