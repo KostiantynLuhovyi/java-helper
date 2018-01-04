@@ -5,7 +5,7 @@ package com.lugowoy.helper.models.arrays;
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 18.12.2017
+ * @since 1.0
  *
  * <p>
  * A class representing an implementation for using a non-expandable array model whose elements are numbers.
