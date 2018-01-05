@@ -1,4 +1,4 @@
-package com.lugowoy.helper.reading;
+package com.lugowoy.helper.io.reading;
 
 import java.util.Scanner;
 
@@ -8,10 +8,12 @@ import java.util.Scanner;
  * @author Konstantin Lugowoy
  * @version 1.0
  * @since 28.12.2017
+ *
  * <p>
- *     The class implements the contract declared in the interface by reading different data from the console.
+ * The class implements the contract declared in the interface by reading different data from the console.
  * </p>
- * @see com.lugowoy.helper.reading.Reading
+ *
+ * @see com.lugowoy.helper.io.reading.Reading
  */
 
 public class ReadingConsole implements Reading {
@@ -20,8 +22,10 @@ public class ReadingConsole implements Reading {
 
     /**
      * <p>
-     *     Reading data by byte type from the console.
+     * Reading data by byte type from the console.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -31,8 +35,10 @@ public class ReadingConsole implements Reading {
 
     /**
      * <p>
-     *     Reading data by short type from the console.
+     * Reading data by short type from the console.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -42,8 +48,10 @@ public class ReadingConsole implements Reading {
 
     /**
      * <p>
-     *     Reading data by int type from the console.
+     * Reading data by int type from the console.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -53,8 +61,10 @@ public class ReadingConsole implements Reading {
 
     /**
      * <p>
-     *     Reading data by long type from the console.
+     * Reading data by long type from the console.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -64,8 +74,10 @@ public class ReadingConsole implements Reading {
 
     /**
      * <p>
-     *     Reading data by char type from the console.
+     * Reading data by char type from the console.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -75,8 +87,10 @@ public class ReadingConsole implements Reading {
 
     /**
      * <p>
-     *     Reading data by float type from the console.
+     * Reading data by float type from the console.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -86,8 +100,10 @@ public class ReadingConsole implements Reading {
 
     /**
      * <p>
-     *     Reading data by double type from the console.
+     * Reading data by double type from the console.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -97,8 +113,10 @@ public class ReadingConsole implements Reading {
 
     /**
      * <p>
-     *     Reading data by String type from the console.
+     * Reading data by String type from the console.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -107,13 +125,13 @@ public class ReadingConsole implements Reading {
         if (SCANNER.hasNextLine()) {
             value = SCANNER.nextLine();
         }
-        return value;
+        return value.trim();
     }
 
-    private byte getCorrectByteNumberValue(ReadingChecker readingChecker) {
+    private byte getCorrectByteNumberValue(final ReadingChecker readingChecker) {
         byte resultByteInputValue;
 
-        String inputValue = SCANNER.nextLine();
+        String inputValue = SCANNER.nextLine().trim();
 
         if (readingChecker.isCorrect(inputValue)) {
             resultByteInputValue = Byte.parseByte(inputValue);
@@ -125,10 +143,10 @@ public class ReadingConsole implements Reading {
         return resultByteInputValue;
     }
 
-    private short getCorrectShortNumberValue(ReadingChecker readingChecker) {
+    private short getCorrectShortNumberValue(final ReadingChecker readingChecker) {
         short resultShortInputValue;
 
-        String inputValue = SCANNER.nextLine();
+        String inputValue = SCANNER.nextLine().trim();
 
         if (readingChecker.isCorrect(inputValue)) {
             resultShortInputValue = Short.parseShort(inputValue);
@@ -140,10 +158,10 @@ public class ReadingConsole implements Reading {
         return resultShortInputValue;
     }
 
-    private int getCorrectIntNumberValue(ReadingChecker readingChecker) {
+    private int getCorrectIntNumberValue(final ReadingChecker readingChecker) {
         int resultIntInputValue;
 
-        String inputValue = SCANNER.nextLine();
+        String inputValue = SCANNER.nextLine().trim();
 
         if (readingChecker.isCorrect(inputValue)) {
             resultIntInputValue = Integer.parseInt(inputValue);
@@ -155,10 +173,10 @@ public class ReadingConsole implements Reading {
         return resultIntInputValue;
     }
 
-    private long getCorrectLongNumberValue(ReadingChecker readingChecker) {
+    private long getCorrectLongNumberValue(final ReadingChecker readingChecker) {
         long resultLongInputValue;
 
-        String inputValue = SCANNER.nextLine();
+        String inputValue = SCANNER.nextLine().trim();
 
         if (readingChecker.isCorrect(inputValue)) {
             resultLongInputValue = Long.parseLong(inputValue);
@@ -170,10 +188,10 @@ public class ReadingConsole implements Reading {
         return resultLongInputValue;
     }
 
-    private char getCorrectCharacterValue(ReadingChecker readingChecker) {
+    private char getCorrectCharacterValue(final ReadingChecker readingChecker) {
         char resultCharacterValue;
 
-        String value = SCANNER.nextLine();
+        String value = SCANNER.nextLine().trim();
 
         if (readingChecker.isCorrect(value)) {
             resultCharacterValue = value.charAt(0);
@@ -185,10 +203,10 @@ public class ReadingConsole implements Reading {
         return resultCharacterValue;
     }
 
-    private float getCorrectFloatNumberValue(ReadingChecker readingChecker) {
+    private float getCorrectFloatNumberValue(final ReadingChecker readingChecker) {
         float resultFloatInputValue;
 
-        String inputValue = SCANNER.nextLine();
+        String inputValue = SCANNER.nextLine().trim();
 
         if (readingChecker.isCorrect(inputValue)) {
             resultFloatInputValue = Float.parseFloat(inputValue);
@@ -200,10 +218,10 @@ public class ReadingConsole implements Reading {
         return resultFloatInputValue;
     }
 
-    private double getCorrectDoubleNumberValue(ReadingChecker readingChecker) {
+    private double getCorrectDoubleNumberValue(final ReadingChecker readingChecker) {
         double resultDoubleInputValue;
 
-        String inputValue = SCANNER.nextLine();
+        String inputValue = SCANNER.nextLine().trim();
 
         if (readingChecker.isCorrect(inputValue)) {
             resultDoubleInputValue = Double.parseDouble(inputValue);

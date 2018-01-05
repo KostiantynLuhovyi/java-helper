@@ -1,13 +1,14 @@
-package com.lugowoy.helper.reading;
+package com.lugowoy.helper.io.reading;
 
 /**
  * Created by Konstantin Lugowoy on 29.07.2017.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 29.07.2017
+ * @since 1.0
+ *
  * <p>
- *     Functional interface that performs the function of checking the read data for correctness.
+ * Functional interface that performs the function of checking the read data for correctness.
  * </p>
  */
 
@@ -16,49 +17,59 @@ public interface ReadingChecker {
 
     /**
      * <p>
-     *     A string constant that defines a regular expression for a positive integer number.
+     * A string constant that defines a regular expression for a positive integer number.
      * </p>
+     * @since 1.0
      */
     String REGEX_POSITIVE_INTEGER_NUMBER = "\\d+?";
 
     /**
      * <p>
-     *     A string constant that defines a regular expression for a negative integer number.
+     * A string constant that defines a regular expression for a negative integer number.
      * </p>
+     * @since 1.0
      */
     String REGEX_NEGATIVE_INTEGER_NUMBER = "-\\d+?";
 
     /**
      * <p>
-     *     A string constant that defines a regular expression for a negative real number.
+     * A string constant that defines a regular expression for a negative real number.
      * </p>
+     * @since 1.0
      */
     String REGEX_POSITIVE_REAL_NUMBER = "\\d+?[.]\\d+?";
 
     /**
      * <p>
-     *     A string constant that defines a regular expression for a negative real number.
+     * A string constant that defines a regular expression for a negative real number.
      * </p>
+     * @since 1.0
      */
     String REGEX_NEGATIVE_REAL_NUMBER = "-\\d+?[.]\\d+?";
 
     /**
      * <p>
-     *     Function that checks the read data for correctness.
+     * Function that checks the read data for correctness.
      * </p>
+     * @since 1.0
+     *
      * @param value Data to check.
+     *
      * @return Result of checking.
      */
-    boolean isCorrect(String value);
+    boolean isCorrect(final String value);
 
     /**
      * <p>
-     *     A static method that check that the read data is indeed an integer number and is included in a range of byte type values.
+     * A static method that check that the read data is indeed an integer number and is included in a range of byte type values.
      * </p>
+     * @since 1.0
+     *
      * @param numberValue Data to check.
+     *
      * @return Result of checking.
      */
-    static boolean isByteNumber(String numberValue) {
+    static boolean isByteNumber(final String numberValue) {
         boolean result = false;
         if ((numberValue != null)) {
             if (numberValue.matches(REGEX_POSITIVE_INTEGER_NUMBER) || numberValue.matches(REGEX_NEGATIVE_INTEGER_NUMBER)) {
@@ -72,12 +83,15 @@ public interface ReadingChecker {
 
     /**
      * <p>
-     *     A static method that check that the read data is indeed an integer number and is included in a range of short type values.
+     * A static method that check that the read data is indeed an integer number and is included in a range of short type values.
      * </p>
+     * @since 1.0
+     *
      * @param numberValue Data to check.
+     *
      * @return Result of checking.
      */
-    static boolean isShortNumber(String numberValue) {
+    static boolean isShortNumber(final String numberValue) {
         boolean result = false;
         if (numberValue != null) {
             if (numberValue.matches(REGEX_POSITIVE_INTEGER_NUMBER) || numberValue.matches(REGEX_NEGATIVE_INTEGER_NUMBER)) {
@@ -91,12 +105,15 @@ public interface ReadingChecker {
 
     /**
      * <p>
-     *     A static method that check that the read data is indeed an integer number and is included in a range of integer type values.
+     * A static method that check that the read data is indeed an integer number and is included in a range of integer type values.
      * </p>
+     * @since 1.0
+     *
      * @param numberValue Data to check.
+     *
      * @return Result of checking.
      */
-    static boolean isIntegerNumber(String numberValue) {
+    static boolean isIntegerNumber(final String numberValue) {
         boolean result = false;
         if (numberValue != null) {
             if (numberValue.matches(REGEX_POSITIVE_INTEGER_NUMBER) || numberValue.matches(REGEX_NEGATIVE_INTEGER_NUMBER)) {
@@ -110,12 +127,14 @@ public interface ReadingChecker {
 
     /**
      * <p>
-     *     A static method that check that the read data is indeed an integer number and is included in a range of long type values.
+     * A static method that check that the read data is indeed an integer number and is included in a range of long type values.
      * </p>
+     *
      * @param numberValue Data to check.
+     *
      * @return Result of checking.
      */
-    static boolean isLongNumber(String numberValue) {
+    static boolean isLongNumber(final String numberValue) {
         boolean result = false;
         if (numberValue != null) {
             if (numberValue.matches(REGEX_POSITIVE_INTEGER_NUMBER) || numberValue.matches(REGEX_NEGATIVE_INTEGER_NUMBER)) {
@@ -129,12 +148,15 @@ public interface ReadingChecker {
 
     /**
      * <p>
-     *     A static method that check that the read data is indeed a real number and is included in a range of float type values.
+     * A static method that check that the read data is indeed a real number and is included in a range of float type values.
      * </p>
+     * @since 1.0
+     *
      * @param numberValue Data to check.
+     *
      * @return Result of checking.
      */
-    static boolean isFloatNumber(String numberValue) {
+    static boolean isFloatNumber(final String numberValue) {
         boolean result = false;
         if (numberValue != null) {
             if (((numberValue.matches(REGEX_POSITIVE_REAL_NUMBER)) || (numberValue.matches(REGEX_NEGATIVE_REAL_NUMBER)))
@@ -149,12 +171,15 @@ public interface ReadingChecker {
 
     /**
      * <p>
-     *     A static method that check that the read data is indeed a real number and is included in a range of double type values.
+     * A static method that check that the read data is indeed a real number and is included in a range of double type values.
      * </p>
+     * @since 1.0
+     *
      * @param numberValue Data to check.
+     *
      * @return Result of checking.
      */
-    static boolean isDoubleNumber(String numberValue) {
+    static boolean isDoubleNumber(final String numberValue) {
         boolean result = false;
         if (numberValue != null) {
             if (((numberValue.matches(REGEX_POSITIVE_REAL_NUMBER)) || (numberValue.matches(REGEX_NEGATIVE_REAL_NUMBER)))
@@ -169,12 +194,15 @@ public interface ReadingChecker {
 
     /**
      * <p>
-     *     A static method that verifies that the read data is indeed a single character.
+     * A static method that verifies that the read data is indeed a single character.
      * </p>
+     * @since 1.0
+     *
      * @param characterValue Data to check.
+     *
      * @return Result of checking.
      */
-    static boolean isOnlyCharacter(String characterValue) {
+    static boolean isOnlyCharacter(final String characterValue) {
         boolean result = false;
         if (characterValue != null) {
             if (characterValue.length() == 1) {

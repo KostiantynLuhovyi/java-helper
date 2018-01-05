@@ -1,4 +1,4 @@
-package com.lugowoy.helper.reading;
+package com.lugowoy.helper.io.reading;
 
 /**
  * Created by Konstantin Lugowoy on 26.07.2017.
@@ -11,14 +11,14 @@ package com.lugowoy.helper.reading;
  * A class is a container that encapsulates a specific implementation of a functional to read different data.
  * </p>
  *
- * @see com.lugowoy.helper.reading.Reading
+ * @see com.lugowoy.helper.io.reading.Reading
  */
 
 public class Reader implements Reading {
 
     private final Reading reading;
 
-    private Reader(Reading reading) {
+    private Reader(final Reading reading) {
         this.reading = reading;
     }
 
@@ -135,6 +135,8 @@ public class Reader implements Reading {
      *
      * @param reading Specific implementation of the functional to read different data.
      *                 The parameter must implement the interface Reading.
+     *
+     * @see com.lugowoy.helper.io.reading.Reading
      *
      * @return A new object of this class encapsulating a specific implementation of the functional to read different data.
      */
