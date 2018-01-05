@@ -4,33 +4,30 @@ package com.lugowoy.helper.reading;
  * Created by Konstantin Lugowoy on 26.07.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
- * @since 28.12.2017
+ * @version 1.1
+ * @since 1.0
+ *
  * <p>
- *     A class is a container that encapsulates a specific implementation of a functional to read different data.
+ * A class is a container that encapsulates a specific implementation of a functional to read different data.
  * </p>
+ *
  * @see com.lugowoy.helper.reading.Reading
  */
 
 public class Reader implements Reading {
 
-    private Reading reading;
+    private final Reading reading;
 
-    /**
-     * <p>
-     *     A constructor that initializes the created object with a specific implementation of the functional to read different data.
-     * </p>
-     * @param reading Specific implementation of the functional to read different data.
-     *                 The parameter must implement the interface Reading.
-     */
-    public Reader(Reading reading) {
+    private Reader(Reading reading) {
         this.reading = reading;
     }
 
     /**
      * <p>
-     *     Read data by byte type by delegating execution to an encapsulated object.
+     * Read data by byte type by delegating execution to an encapsulated object.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -40,8 +37,10 @@ public class Reader implements Reading {
 
     /**
      * <p>
-     *     Read data by short type by delegating execution to an encapsulated object.
+     * Read data by short type by delegating execution to an encapsulated object.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -51,8 +50,10 @@ public class Reader implements Reading {
 
     /**
      * <p>
-     *     Read data by int type by delegating execution to an encapsulated object.
+     * Read data by int type by delegating execution to an encapsulated object.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -62,8 +63,10 @@ public class Reader implements Reading {
 
     /**
      * <p>
-     *     Read data by long type by delegating execution to an encapsulated object.
+     * Read data by long type by delegating execution to an encapsulated object.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -73,8 +76,10 @@ public class Reader implements Reading {
 
     /**
      * <p>
-     *     Read data by char type by delegating execution to an encapsulated object.
+     * Read data by char type by delegating execution to an encapsulated object.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -84,8 +89,10 @@ public class Reader implements Reading {
 
     /**
      * <p>
-     *     Read data by float type by delegating execution to an encapsulated object.
+     * Read data by float type by delegating execution to an encapsulated object.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -95,8 +102,10 @@ public class Reader implements Reading {
 
     /**
      * <p>
-     *     Read data by double type by delegating execution to an encapsulated object.
+     * Read data by double type by delegating execution to an encapsulated object.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
@@ -106,13 +115,31 @@ public class Reader implements Reading {
 
     /**
      * <p>
-     *     Read data by String type by delegating execution to an encapsulated object.
+     * Read data by String type by delegating execution to an encapsulated object.
      * </p>
+     * @since 1.0
+     *
      * @return Returns the result of reading.
      */
     @Override
     public String readString() {
         return this.reading.readString();
+    }
+
+    /**
+     * <p>
+     * A method that initializes the created object with a specific implementation of the functional to read different data
+     *  and return new object of class Reader.
+     * </p>
+     * @since 1.1
+     *
+     * @param reading Specific implementation of the functional to read different data.
+     *                 The parameter must implement the interface Reading.
+     *
+     * @return A new object of this class encapsulating a specific implementation of the functional to read different data.
+     */
+    public Reader getReader(final Reading reading) {
+        return new Reader(reading);
     }
 
 }
