@@ -1,4 +1,4 @@
-package com.lugowoy.helper.factory;
+package com.lugowoy.helper.factory.creator;
 
 /**
  * Created by Konstantin Lugowoy on 04-Jan-18.
@@ -8,10 +8,11 @@ package com.lugowoy.helper.factory;
  * @since 1.0
  *
  * <p>
- * A class that implements a contract for a functional that creates objects for a functional based on the Class<T> class.
+ * The class implements the creation of objects based on the class {@link Class}.
  * </p>
  *
- * @see com.lugowoy.helper.factory.Creator
+ * @see com.lugowoy.helper.factory.creator.Creator
+ * @see com.lugowoy.helper.factory.creator.Creating
  *
  * @param <T> Type of objects to create.
  */
@@ -22,7 +23,7 @@ public class CreatorUnknown<T> extends Creator<T> {
 
     /**
      * <p>
-     * A constructor that takes an object parameter of the class Class<T> to create an object based on it.
+     * A constructor with a parameter is used to create an object based on a type parameter {@link Class}.
      * </p>
      * @since 1.0
      *
@@ -30,15 +31,16 @@ public class CreatorUnknown<T> extends Creator<T> {
      * */
     public CreatorUnknown(Class<T> clazz) {
         this.clazz = clazz;
+        this.create();
     }
 
     /**
      * <p>
-     * The method creates an object using a class Class<T> object encapsulated in this class.
+     * The method creates an object using a class {@link Class} object encapsulated in this class.
      * </p>
      * @since 1.0
      *
-     * @return The created object an object using a class Class<T> .
+     * @return The created object an object using a class {@link Class}.
      */
     @Override
     public T create() {
