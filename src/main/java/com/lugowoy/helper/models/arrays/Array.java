@@ -31,7 +31,7 @@ public abstract class Array<T> implements Model {
      * </p>
      * @since 1.0
      */
-    public static final int DEFAULT_LENGTH_ARRAY = 5;
+    public static final int DEFAULT_LENGTH_ARRAY = 10;
 
     private Object[] array;
 

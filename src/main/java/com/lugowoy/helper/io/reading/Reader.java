@@ -140,7 +140,7 @@ public class Reader implements Reading {
      *
      * @return A new object of this class encapsulating a specific implementation of the functional to read different data.
      */
-    public Reader getReader(final Reading reading) {
+    public static Reader getReader(final Reading reading) {
         return new Reader(reading);
     }
 

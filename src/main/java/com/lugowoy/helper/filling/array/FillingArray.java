@@ -1,23 +1,16 @@
 package com.lugowoy.helper.filling.array;
 
 import com.lugowoy.helper.filling.Filling;
-import com.lugowoy.helper.filling.array.FillableArray;
+import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 29.07.2017.
- *
- * @author Konstantin Lugowoy
- * @version 1.1
- * @since 29.07.2017
- * <p>
- * A class encapsulating an implementation of an interface to filling an array with data (values).
- * </p>
- * @see com.lugowoy.helper.filling.Filling
- * @see com.lugowoy.helper.filling.Fillable
- * @see com.lugowoy.helper.filling.array.FillableArray
- * @param <T> Type of arrays that is filling with data (values).
+ * Created by Konstantin Lugowoy on 08-Jan-18.
  */
 
-public abstract class FillingArray<T> extends Filling<T[]> implements FillableArray<T> {
+public interface FillingArray<T> extends Filling<Array<T>> {
+
+    T[] fill(T[] tArray);
+
+    T[] fill(int lengthArray);
 
 }
