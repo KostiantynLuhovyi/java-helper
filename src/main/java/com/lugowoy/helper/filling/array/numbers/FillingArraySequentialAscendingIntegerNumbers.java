@@ -1,42 +1,22 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
 import com.lugowoy.helper.filling.array.FillingArray;
-import com.lugowoy.helper.io.reading.Reader;
-import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
-
-import java.util.Arrays;
 
 import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
 import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
- * Created by Konstantin Lugowoy on 08-Jan-18.
+ * Created by Konstantin Lugowoy on 13-Jan-18.
  */
 
-public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>, FillingArrayNumbers<Integer> {
-
-    private static final int START_BOUND = 0;
-
-    private Reader reader;
-
-    public FillingArrayEnteredIntegerNumbers(Reader reader) {
-        this.reader = reader;
-    }
-
-    public FillingArrayEnteredIntegerNumbers(Reading reading) {
-        this.reader = Reader.getReader(reading);
-    }
-
+public class FillingArraySequentialAscendingIntegerNumbers implements FillingArray<Integer>, FillingArrayNumbers<Integer> {
 
     @Override
-    public Array<Integer> fill(final Array<Integer> array) {
+    public Array<Integer> fill(final Array<Integer> array) throws IllegalArgumentException {
         if (checkNonNullArrayObj(array)) {
-            array.setArray(Arrays.stream(array.getArray())
-                                 .map(value -> this.reader.readInt())
-                                 .toArray(Integer[]::new));
+            this.initializeArrayIntegerElementsWithSuccessiveAscendingValues(array.getArray());
         } else {
             throw new IllegalArgumentException(
                     new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
@@ -47,9 +27,7 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
     @Override
     public Integer[] fill(Integer[] integers) throws IllegalArgumentException {
         if (checkNonNullArray(integers)) {
-            integers = Arrays.stream(integers)
-                             .map(value -> this.reader.readInt())
-                             .toArray(Integer[]::new);
+            this.initializeArrayIntegerElementsWithSuccessiveAscendingValues(integers);
         } else {
             throw new IllegalArgumentException(
                     new NullPointerException("The array passed by the parameter is null."));
@@ -61,11 +39,11 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
     public Integer[] fill(int lengthArray) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            integers = Arrays.stream(new Integer[lengthArray])
-                             .map(value -> this.reader.readInt())
-                             .toArray(Integer[]::new);
+            integers = new Integer[lengthArray];
+            this.initializeArrayIntegerElementsWithSuccessiveAscendingValues(integers);
         } else {
-            integers = this.fill(DEFAULT_LENGTH_ARRAY);
+            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            this.initializeArrayIntegerElementsWithSuccessiveAscendingValues(integers);
         }
         return integers;
     }
@@ -74,9 +52,9 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
     public Array<Integer> fill(final Array<Integer> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObj(array)) {
             if (checkBoundValue(bound)) {
-                this.enteringIntegerNumbers(array.getArray(), START_BOUND, bound, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesToBoundary(array.getArray(), bound);
             } else {
-                this.enteringIntegerNumbers(array.getArray(), START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesToBoundary(array.getArray(), DEFAULT_INTEGER_BOUND);
             }
         } else {
             throw new IllegalArgumentException(
@@ -89,9 +67,9 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
     public Integer[] fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArray(integers)) {
             if (checkBoundValue(bound)) {
-                this.enteringIntegerNumbers(integers, START_BOUND, bound, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesToBoundary(integers, bound);
             } else {
-                this.enteringIntegerNumbers(integers, START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesToBoundary(integers, DEFAULT_INTEGER_BOUND);
             }
         } else {
             throw new IllegalArgumentException(
@@ -106,14 +84,14 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
         if (checkLengthArray(lengthArray)) {
             if (checkBoundValue(bound)) {
                 integers = new Integer[lengthArray];
-                this.enteringIntegerNumbers(integers, START_BOUND, bound, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesToBoundary(integers, bound);
             } else {
                 integers = new Integer[lengthArray];
-                this.enteringIntegerNumbers(integers, START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesToBoundary(integers, DEFAULT_INTEGER_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
-            this.enteringIntegerNumbers(integers, START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
+            initializeArrayIntegerElementsWithSuccessiveAscendingValuesToBoundary(integers, DEFAULT_INTEGER_BOUND);
         }
         return integers;
     }
@@ -122,12 +100,13 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
     public Array<Integer> fill(final Array<Integer> array, Integer minBound, Integer maxBound) throws IllegalArgumentException {
         if (checkNonNullArrayObj(array)) {
             if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
-                this.enteringIntegerNumbers(array.getArray(), minBound, maxBound, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(array.getArray(), minBound, maxBound);
             } else {
-                this.enteringIntegerNumbers(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
+            throw new IllegalArgumentException(
+                    new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
         }
         return array;
     }
@@ -136,9 +115,9 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
     public Integer[] fill(Integer[] integers, Integer minBound, Integer maxBound) throws IllegalArgumentException {
         if (checkNonNullArray(integers)) {
             if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
-                this.enteringIntegerNumbers(integers, minBound, maxBound, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(integers, minBound, maxBound);
             } else {
-                this.enteringIntegerNumbers(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -152,26 +131,40 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
         if (checkLengthArray(lengthArray)) {
             if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
                 integers = new Integer[lengthArray];
-                this.enteringIntegerNumbers(integers, minBound, maxBound, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(integers, minBound, maxBound);
             } else {
                 integers = new Integer[lengthArray];
-                this.enteringIntegerNumbers(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
+                this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
-            this.enteringIntegerNumbers(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
+            this.initializeArrayIntegerElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
         }
         return integers;
     }
 
-    private void enteringIntegerNumbers(final Integer[] integers, final int minBound, final int maxBound, final Reader reader) {
+    private void initializeArrayIntegerElementsWithSuccessiveAscendingValues(Integer[] integers) {
         for (int i = 0; i < integers.length; i++) {
-            int value = reader.readInt();
-            if ((value >= minBound) && (value <= maxBound)) {
-                integers[i] = value;
+            integers[i] = i;
+        }
+    }
+
+    private void initializeArrayIntegerElementsWithSuccessiveAscendingValuesToBoundary(Integer[] integers, Integer bound) {
+        for (int i = 0; i < integers.length; i++) {
+            if (i <= bound) {
+                integers[i] = i;
             } else {
-                //todo Обдумать, как сообщить вызывающему коду, что было введено не корректное значение и эта итерация будет повторена.
-                i--;
+                integers[i] = DEFAULT_INTEGER_VALUE;
+            }
+        }
+    }
+
+    private void initializeArrayIntegerElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(Integer[] integers, Integer minBound, Integer maxBound) {
+        for (int i = 0; i < integers.length; i++, minBound++) {
+            if (minBound <= maxBound) {
+                integers[i] = minBound;
+            } else {
+                integers[i] = DEFAULT_INTEGER_VALUE;
             }
         }
     }

@@ -76,9 +76,9 @@ public class FillingArrayEnteredDoubleNumbers implements FillingArray<Double>, F
     public Array<Double> fill(final Array<Double> array, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayObj(array)) {
             if (checkBoundValue(bound)) {
-                enteringDoubleNumbers(array.getArray(), START_BOUND, bound, this.reader);
+                this.enteringDoubleNumbers(array.getArray(), START_BOUND, bound, this.reader);
             } else {
-                enteringDoubleNumbers(array.getArray(), START_BOUND, DEFAULT_DOUBLE_BOUND, this.reader);
+                this.enteringDoubleNumbers(array.getArray(), START_BOUND, DEFAULT_DOUBLE_BOUND, this.reader);
             }
         } else {
             throw new IllegalArgumentException(
@@ -91,9 +91,9 @@ public class FillingArrayEnteredDoubleNumbers implements FillingArray<Double>, F
     public Double[] fill(Double[] doubles, Double bound) throws IllegalArgumentException {
         if (checkNonNullArray(doubles)) {
             if (checkBoundValue(bound)) {
-                enteringDoubleNumbers(doubles, START_BOUND, bound, this.reader);
+                this.enteringDoubleNumbers(doubles, START_BOUND, bound, this.reader);
             } else {
-                enteringDoubleNumbers(doubles, START_BOUND, DEFAULT_DOUBLE_BOUND, this.reader);
+                this.enteringDoubleNumbers(doubles, START_BOUND, DEFAULT_DOUBLE_BOUND, this.reader);
             }
         } else {
             throw new IllegalArgumentException(
@@ -108,14 +108,14 @@ public class FillingArrayEnteredDoubleNumbers implements FillingArray<Double>, F
         if (checkLengthArray(lengthArray)) {
             if (checkBoundValue(bound)) {
                 doubles = new Double[lengthArray];
-                enteringDoubleNumbers(doubles, START_BOUND, bound, this.reader);
+                this.enteringDoubleNumbers(doubles, START_BOUND, bound, this.reader);
             } else {
                 doubles = new Double[lengthArray];
-                enteringDoubleNumbers(doubles, START_BOUND, DEFAULT_DOUBLE_BOUND, this.reader);
+                this.enteringDoubleNumbers(doubles, START_BOUND, DEFAULT_DOUBLE_BOUND, this.reader);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            enteringDoubleNumbers(doubles, START_BOUND, DEFAULT_DOUBLE_BOUND, this.reader);
+            this.enteringDoubleNumbers(doubles, START_BOUND, DEFAULT_DOUBLE_BOUND, this.reader);
         }
         return doubles;
     }
@@ -124,9 +124,9 @@ public class FillingArrayEnteredDoubleNumbers implements FillingArray<Double>, F
     public Array<Double> fill(final Array<Double> array, Double minBound, Double maxBound) throws IllegalArgumentException {
         if (checkNonNullArrayObj(array)) {
             if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
-                enteringDoubleNumbers(array.getArray(), minBound, maxBound, this.reader);
+                this.enteringDoubleNumbers(array.getArray(), minBound, maxBound, this.reader);
             } else {
-                enteringDoubleNumbers(array.getArray(), DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND, this.reader);
+                this.enteringDoubleNumbers(array.getArray(), DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND, this.reader);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
@@ -138,9 +138,9 @@ public class FillingArrayEnteredDoubleNumbers implements FillingArray<Double>, F
     public Double[] fill(Double[] doubles, Double minBound, Double maxBound) throws IllegalArgumentException {
         if (checkNonNullArray(doubles)) {
             if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
-                enteringDoubleNumbers(doubles, minBound, maxBound, this.reader);
+                this.enteringDoubleNumbers(doubles, minBound, maxBound, this.reader);
             } else {
-                enteringDoubleNumbers(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND, this.reader);
+                this.enteringDoubleNumbers(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND, this.reader);
             }
         } else {
             throw new IllegalArgumentException(
@@ -155,19 +155,19 @@ public class FillingArrayEnteredDoubleNumbers implements FillingArray<Double>, F
         if (checkLengthArray(lengthArray)) {
             if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
                 doubles = new Double[lengthArray];
-                enteringDoubleNumbers(doubles, minBound, maxBound, this.reader);
+                this.enteringDoubleNumbers(doubles, minBound, maxBound, this.reader);
             } else {
                 doubles = new Double[lengthArray];
-                enteringDoubleNumbers(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND, this.reader);
+                this.enteringDoubleNumbers(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND, this.reader);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            enteringDoubleNumbers(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND, this.reader);
+            this.enteringDoubleNumbers(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND, this.reader);
         }
         return doubles;
     }
 
-    private static void enteringDoubleNumbers(final Double[] doubles, final double minBound, final double maxBound, final Reader reader) {
+    private void enteringDoubleNumbers(final Double[] doubles, final double minBound, final double maxBound, final Reader reader) {
         for (int i = 0; i < doubles.length; i++) {
             double value = reader.readDouble();
             if ((value >= minBound) && (value <= maxBound)) {
