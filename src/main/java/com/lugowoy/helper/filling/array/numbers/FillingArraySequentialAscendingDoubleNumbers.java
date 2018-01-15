@@ -144,8 +144,10 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
     }
 
     private void initializeArrayDoubleElementsWithSuccessiveAscendingValues(Double[] doubles) {
+        double value = 0.0, integerDigit = 1.0;
         for (int i = 0; i < doubles.length; i++) {
-            doubles[i] = (double) i;
+            doubles[i] = value;
+            value += integerDigit;
         }
     }
 
