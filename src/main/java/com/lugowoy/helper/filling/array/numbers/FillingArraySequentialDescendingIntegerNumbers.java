@@ -1,9 +1,8 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.array.FillingArray;
+import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
 import com.lugowoy.helper.models.arrays.Array;
 
-import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
 import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
@@ -11,11 +10,11 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 13-Jan-18.
  */
 
-public class FillingArraySequentialDescendingIntegerNumbers implements FillingArray<Integer>, FillingArrayNumbers<Integer> {
+public class FillingArraySequentialDescendingIntegerNumbers implements FillingArrayNumbers<Integer> {
 
     @Override
     public Array<Integer> fill(final Array<Integer> array) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
+        if (checkNonNullArrayObject(array)) {
             this.initializeArrayIntegerElementsWithSuccessiveDescendingValues(array.getArray());
         } else {
             throw new IllegalArgumentException(
@@ -26,7 +25,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
 
     @Override
     public Integer[] fill(Integer[] integers) throws IllegalArgumentException {
-        if (checkNonNullArray(integers)) {
+        if (checkNonNullArrayNumbers(integers)) {
             this.initializeArrayIntegerElementsWithSuccessiveDescendingValues(integers);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -49,11 +48,11 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
 
     @Override
     public Array<Integer> fill(final Array<Integer> array, Integer startBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
-            if (checkStartBoundIsInCorrectRange(startBound)) {
+        if (checkNonNullArrayObject(array)) {
+            if (checkBoundValueIsInCorrectRange(startBound)) {
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(array.getArray(), startBound);
             } else {
-                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(array.getArray(), DEFAULT_INTEGER_BOUND);
+                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(array.getArray(), DefaultValuesOfArray.DEFAULT_INTEGER_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
@@ -63,11 +62,11 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
 
     @Override
     public Integer[] fill(Integer[] integers, Integer startBound) throws IllegalArgumentException {
-        if (checkNonNullArray(integers)) {
-            if (checkStartBoundIsInCorrectRange(startBound)) {
+        if (checkNonNullArrayNumbers(integers)) {
+            if (checkBoundValueIsInCorrectRange(startBound)) {
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(integers, startBound);
             } else {
-                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(integers, DEFAULT_INTEGER_BOUND);
+                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(integers, DefaultValuesOfArray.DEFAULT_INTEGER_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -79,27 +78,27 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
     public Integer[] fill(int lengthArray, Integer startBound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkStartBoundIsInCorrectRange(startBound)) {
+            if (checkBoundValueIsInCorrectRange(startBound)) {
                 integers = new Integer[lengthArray];
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(integers, startBound);
             } else {
                 integers = new Integer[lengthArray];
-                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(integers, DEFAULT_INTEGER_BOUND);
+                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(integers, DefaultValuesOfArray.DEFAULT_INTEGER_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(integers, DEFAULT_INTEGER_BOUND);
+            this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromBoundary(integers, DefaultValuesOfArray.DEFAULT_INTEGER_BOUND);
         }
         return integers;
     }
 
     @Override
     public Array<Integer> fill(final Array<Integer> array, Integer minBound, Integer maxBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
-            if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
+        if (checkNonNullArrayObject(array)) {
+            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(array.getArray(), minBound, maxBound);
             } else {
-                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(array.getArray(), DefaultValuesOfArray.DEFAULT_INTEGER_MIN_BOUND, DefaultValuesOfArray.DEFAULT_INTEGER_MAX_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
@@ -109,11 +108,11 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
 
     @Override
     public Integer[] fill(Integer[] integers, Integer minBound, Integer maxBound) throws IllegalArgumentException {
-        if (checkNonNullArray(integers)) {
-            if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
+        if (checkNonNullArrayNumbers(integers)) {
+            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, minBound, maxBound);
             } else {
-                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, DefaultValuesOfArray.DEFAULT_INTEGER_MIN_BOUND, DefaultValuesOfArray.DEFAULT_INTEGER_MAX_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -125,16 +124,16 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
     public Integer[] fill(int lengthArray, Integer minBound, Integer maxBound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
+            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
                 integers = new Integer[lengthArray];
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, minBound, maxBound);
             } else {
                 integers = new Integer[lengthArray];
-                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+                this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, DefaultValuesOfArray.DEFAULT_INTEGER_MIN_BOUND, DefaultValuesOfArray.DEFAULT_INTEGER_MAX_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+            this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, DefaultValuesOfArray.DEFAULT_INTEGER_MIN_BOUND, DefaultValuesOfArray.DEFAULT_INTEGER_MAX_BOUND);
         }
         return integers;
     }
@@ -160,10 +159,9 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
                 integers[i] = maxBound;
                 maxBound--;
             } else {
-                integers[i] = DEFAULT_INTEGER_VALUE;
+                integers[i] = DefaultValuesOfArray.DEFAULT_INTEGER_VALUE;
             }
         }
     }
-
 
 }

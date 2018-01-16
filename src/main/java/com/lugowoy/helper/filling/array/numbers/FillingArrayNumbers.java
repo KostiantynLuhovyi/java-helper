@@ -1,12 +1,13 @@
 package com.lugowoy.helper.filling.array.numbers;
 
+import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
  * Created by Konstantin Lugowoy on 08-Jan-18.
  */
 
-public interface FillingArrayNumbers<T extends Number> {
+public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
 
     Array<T> fill(Array<T> array, T bound);
 

@@ -1,8 +1,7 @@
 package com.lugowoy.helper.filling.array;
 
 import com.lugowoy.helper.models.arrays.Array;
-
-import static java.lang.Short.*;
+import com.lugowoy.helper.models.points.Point;
 
 /**
  * Created by Konstantin Lugowoy on 09-Jan-18.
@@ -10,28 +9,36 @@ import static java.lang.Short.*;
 
 public interface FillingArrayChecker {
 
-    static <T> boolean checkNonNullArrayObj(Array<T> array) {
+    static <T> boolean checkNonNullArrayObject(Array<T> array) {
         return array != null;
     }
 
-    static boolean checkNonNullArray(Number[] numbers) {
+    static boolean checkNonNullArrayNumbers(Number[] numbers) {
         return numbers != null;
+    }
+
+    static <T extends Number> boolean checkNonNullArrayPoints(Point<T>[] points) {
+        return points != null;
     }
 
     static boolean checkLengthArray(int lengthArray) {
         return lengthArray > 0;
     }
 
-    static boolean checkBoundValue(Number boundValue) {
+    static boolean checkBoundValueIsPositive(Number boundValue) {
         return (boundValue != null) && (boundValue.doubleValue() > 0);
     }
 
-    static boolean checkStartBoundIsInCorrectRange(Number startBound) {
-        return (startBound != null) && (startBound.doubleValue() >= Short.MIN_VALUE && startBound.doubleValue() <= Short.MAX_VALUE);
+    static boolean checkBoundValueIsNegative(Number boundValue) {
+        return (boundValue != null) && (boundValue.doubleValue() < 0);
     }
 
-    static boolean checkMinBoundLessThanMaxBound(Number minBound, Number maxBound) {
-        return minBound.doubleValue() < maxBound.doubleValue();
+    static boolean checkBoundValueIsInCorrectRange(Number boundValue) {
+        return (boundValue != null) && (boundValue.doubleValue() >= Short.MIN_VALUE && boundValue.doubleValue() <= Short.MAX_VALUE);
+    }
+
+    static boolean checkStartBoundValueLessThanEndBoundValue(Number startBound, Number endBound) {
+        return startBound.doubleValue() < endBound.doubleValue();
     }
 
 }

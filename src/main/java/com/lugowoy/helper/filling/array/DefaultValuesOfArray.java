@@ -10,6 +10,8 @@ public interface DefaultValuesOfArray {
 
     double DEFAULT_DOUBLE_VALUE = 0.0;
 
+    int DEFAULT_START_BOUND = 0;
+
     int DEFAULT_INTEGER_BOUND = 10;
 
     double DEFAULT_DOUBLE_BOUND = 10.0;

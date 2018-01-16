@@ -1,7 +1,5 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
-import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
@@ -16,7 +14,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  */
 
-public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>, FillingArrayNumbers<Integer> {
+public class FillingArrayEnteredIntegerNumbers implements FillingArrayNumbers<Integer> {
 
     private static final int START_BOUND = 0;
 
@@ -33,7 +31,7 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
 
     @Override
     public Array<Integer> fill(final Array<Integer> array) {
-        if (checkNonNullArrayObj(array)) {
+        if (checkNonNullArrayObject(array)) {
             array.setArray(Arrays.stream(array.getArray())
                                  .map(value -> this.reader.readInt())
                                  .toArray(Integer[]::new));
@@ -46,7 +44,7 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
 
     @Override
     public Integer[] fill(Integer[] integers) throws IllegalArgumentException {
-        if (checkNonNullArray(integers)) {
+        if (checkNonNullArrayNumbers(integers)) {
             integers = Arrays.stream(integers)
                              .map(value -> this.reader.readInt())
                              .toArray(Integer[]::new);
@@ -72,8 +70,8 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
 
     @Override
     public Array<Integer> fill(final Array<Integer> array, Integer bound) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
-            if (checkBoundValue(bound)) {
+        if (checkNonNullArrayObject(array)) {
+            if (checkBoundValueIsPositive(bound)) {
                 this.enteringIntegerNumbers(array.getArray(), START_BOUND, bound, this.reader);
             } else {
                 this.enteringIntegerNumbers(array.getArray(), START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
@@ -87,8 +85,8 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
 
     @Override
     public Integer[] fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
-        if (checkNonNullArray(integers)) {
-            if (checkBoundValue(bound)) {
+        if (checkNonNullArrayNumbers(integers)) {
+            if (checkBoundValueIsPositive(bound)) {
                 this.enteringIntegerNumbers(integers, START_BOUND, bound, this.reader);
             } else {
                 this.enteringIntegerNumbers(integers, START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
@@ -104,7 +102,7 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
     public Integer[] fill(int lengthArray, Integer bound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkBoundValue(bound)) {
+            if (checkBoundValueIsPositive(bound)) {
                 integers = new Integer[lengthArray];
                 this.enteringIntegerNumbers(integers, START_BOUND, bound, this.reader);
             } else {
@@ -120,8 +118,8 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
 
     @Override
     public Array<Integer> fill(final Array<Integer> array, Integer minBound, Integer maxBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
-            if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
+        if (checkNonNullArrayObject(array)) {
+            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
                 this.enteringIntegerNumbers(array.getArray(), minBound, maxBound, this.reader);
             } else {
                 this.enteringIntegerNumbers(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
@@ -134,8 +132,8 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
 
     @Override
     public Integer[] fill(Integer[] integers, Integer minBound, Integer maxBound) throws IllegalArgumentException {
-        if (checkNonNullArray(integers)) {
-            if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
+        if (checkNonNullArrayNumbers(integers)) {
+            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
                 this.enteringIntegerNumbers(integers, minBound, maxBound, this.reader);
             } else {
                 this.enteringIntegerNumbers(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
@@ -150,7 +148,7 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArray<Integer>,
     public Integer[] fill(int lengthArray, Integer minBound, Integer maxBound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
+            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
                 integers = new Integer[lengthArray];
                 this.enteringIntegerNumbers(integers, minBound, maxBound, this.reader);
             } else {

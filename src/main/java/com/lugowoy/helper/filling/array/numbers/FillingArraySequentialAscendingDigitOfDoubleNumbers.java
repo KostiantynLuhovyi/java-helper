@@ -1,8 +1,5 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
-import com.lugowoy.helper.filling.array.FillingArray;
-import com.lugowoy.helper.filling.array.FillingArrayChecker;
 import com.lugowoy.helper.models.arrays.Array;
 
 import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
@@ -13,11 +10,11 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 15-Jan-18.
  */
 
-public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements FillingArray<Double>, FillingArrayNumbers<Double> {
+public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements FillingArrayNumbers<Double> {
 
     @Override
     public Array<Double> fill(final Array<Double> array) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
+        if (checkNonNullArrayObject(array)) {
             this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValues(array.getArray());
         } else {
             throw new IllegalArgumentException(
@@ -28,7 +25,7 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
 
     @Override
     public Double[] fill(Double[] doubles) throws IllegalArgumentException {
-        if (checkNonNullArray(doubles)) {
+        if (checkNonNullArrayNumbers(doubles)) {
             this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValues(doubles);
         } else {
             throw new IllegalArgumentException(
@@ -52,8 +49,8 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
 
     @Override
     public Array<Double> fill(final Array<Double> array, Double startBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
-            if (checkStartBoundIsInCorrectRange(startBound)) {
+        if (checkNonNullArrayObject(array)) {
+            if (checkBoundValueIsInCorrectRange(startBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(array.getArray(), startBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(array.getArray(), DEFAULT_DOUBLE_BOUND);
@@ -67,8 +64,8 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
 
     @Override
     public Double[] fill(Double[] doubles, Double startBound) throws IllegalArgumentException {
-        if (checkNonNullArray(doubles)) {
-            if (checkStartBoundIsInCorrectRange(startBound)) {
+        if (checkNonNullArrayNumbers(doubles)) {
+            if (checkBoundValueIsInCorrectRange(startBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, startBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_BOUND);
@@ -84,7 +81,7 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
     public Double[] fill(int lengthArray, Double startBound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkStartBoundIsInCorrectRange(startBound)) {
+            if (checkBoundValueIsInCorrectRange(startBound)) {
                 doubles = new Double[lengthArray];
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, startBound);
             } else {
@@ -100,8 +97,8 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
 
     @Override
     public Array<Double> fill(final Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException{
-        if (checkNonNullArrayObj(array)) {
-            if (checkMinBoundLessThanMaxBound(startBound, endBound)) {
+        if (checkNonNullArrayObject(array)) {
+            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromStartBoundToEndBound(array.getArray(), startBound, endBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromStartBoundToEndBound(array.getArray(), startBound, endBound);
@@ -115,8 +112,8 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
 
     @Override
     public Double[] fill(Double[] doubles, Double startBound, Double endBound) throws IllegalArgumentException {
-        if (checkNonNullArray(doubles)) {
-            if (checkMinBoundLessThanMaxBound(startBound, endBound)) {
+        if (checkNonNullArrayNumbers(doubles)) {
+            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromStartBoundToEndBound(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
@@ -131,7 +128,7 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
     public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundLessThanMaxBound(startBound, endBound)) {
+            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)) {
                 doubles = new Double[lengthArray];
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromStartBoundToEndBound(doubles, startBound, endBound);
             }  else {

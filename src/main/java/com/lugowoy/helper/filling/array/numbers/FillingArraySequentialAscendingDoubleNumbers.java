@@ -1,6 +1,5 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
@@ -11,11 +10,11 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 12-Jan-18.
  */
 
-public class FillingArraySequentialAscendingDoubleNumbers implements FillingArray<Double>, FillingArrayNumbers<Double> {
+public class FillingArraySequentialAscendingDoubleNumbers implements FillingArrayNumbers<Double> {
 
     @Override
     public Array<Double> fill(final Array<Double> array) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
+        if (checkNonNullArrayObject(array)) {
             this.initializeArrayDoubleElementsWithSuccessiveAscendingValues(array.getArray());
         } else {
             throw new IllegalArgumentException(
@@ -26,7 +25,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
 
     @Override
     public Double[] fill(Double[] doubles) throws IllegalArgumentException {
-        if (checkNonNullArray(doubles)) {
+        if (checkNonNullArrayNumbers(doubles)) {
             this.initializeArrayDoubleElementsWithSuccessiveAscendingValues(doubles);
         } else {
             throw new IllegalArgumentException(
@@ -50,8 +49,8 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
 
     @Override
     public Array<Double> fill(final Array<Double> array, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
-            if (checkBoundValue(bound)) {
+        if (checkNonNullArrayObject(array)) {
+            if (checkBoundValueIsPositive(bound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(array.getArray(), bound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(array.getArray(), DEFAULT_DOUBLE_BOUND);
@@ -65,8 +64,8 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
 
     @Override
     public Double[] fill(Double[] doubles, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArray(doubles)) {
-            if (checkBoundValue(bound)) {
+        if (checkNonNullArrayNumbers(doubles)) {
+            if (checkBoundValueIsPositive(bound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(doubles, bound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(doubles, DEFAULT_DOUBLE_BOUND);
@@ -82,7 +81,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
     public Double[] fill(int lengthArray, Double bound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkBoundValue(bound)) {
+            if (checkBoundValueIsPositive(bound)) {
                 doubles = new Double[lengthArray];
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(doubles, bound);
             } else {
@@ -98,8 +97,8 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
 
     @Override
     public Array<Double> fill(final Array<Double> array, Double minBound, Double maxBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObj(array)) {
-            if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
+        if (checkNonNullArrayObject(array)) {
+            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(array.getArray(), minBound, maxBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(array.getArray(), DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
@@ -113,8 +112,8 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
 
     @Override
     public Double[] fill(Double[] doubles, Double minBound, Double maxBound) throws IllegalArgumentException {
-        if (checkNonNullArray(doubles)) {
-            if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
+        if (checkNonNullArrayNumbers(doubles)) {
+            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(doubles, minBound, maxBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
@@ -129,7 +128,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
     public Double[] fill(int lengthArray, Double minBound, Double maxBound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundLessThanMaxBound(minBound, maxBound)) {
+            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
                 doubles = new Double[lengthArray];
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(doubles, minBound, maxBound);
             } else {
