@@ -18,6 +18,8 @@ import java.util.Random;
 
 public interface GeneratorRandomNumber {
 
+    Random RANDOM = new Random();
+
     int SCALE = 2;
 
     double MIN_DOUBLE_BOUND = Short.MIN_VALUE;
@@ -32,7 +34,7 @@ public interface GeneratorRandomNumber {
      * @return The generated integer number.
      */
     static int generateInt() {
-        return new Random().nextInt();
+        return RANDOM.nextInt();
     }
 
     /**
@@ -44,7 +46,7 @@ public interface GeneratorRandomNumber {
      * @return The generated integer number.
      */
     static int generateInt(final int bound) {
-        return new Random().nextInt(bound);
+        return RANDOM.nextInt(bound);
     }
 
     /**
@@ -98,11 +100,11 @@ public interface GeneratorRandomNumber {
     }
 
     static int getRandomInRangeIntValue(int minBound, int maxBound) {
-        return minBound + (new Random().nextInt((maxBound - minBound) + 1));
+        return minBound + (RANDOM.nextInt((maxBound - minBound) + 1));
     }
 
     static double getRandomInRangeDoubleValue(double minBound, double maxBound) {
-        return minBound + (new Random().nextDouble() * (maxBound - minBound));
+        return minBound + (RANDOM.nextDouble() * (maxBound - minBound));
     }
 
 }
