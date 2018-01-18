@@ -31,7 +31,6 @@ public class CreatorUnknown<T> extends Creator<T> {
      * */
     public CreatorUnknown(Class<T> clazz) {
         this.clazz = clazz;
-        this.create();
     }
 
     /**

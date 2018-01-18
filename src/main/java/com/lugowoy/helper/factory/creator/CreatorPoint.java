@@ -23,32 +23,6 @@ public class CreatorPoint<T extends Number> extends Creator<Point<T>> {
 
     /**
      * <p>
-     * A constructor called to create a class object {@link Point} using its constructor without parameters {@link Point}.
-     * </p>
-     * @since 1.0
-     *
-     * @see com.lugowoy.helper.factory.creator.Creator
-     */
-    public CreatorPoint() {
-        this.create();
-    }
-
-    /**
-     * <p>
-     * A constructor with a parameter, the use of which creates a class object {@link Point} invoking its constructor {@link Point#Point(Number, Number)}
-     *  into which an array of objects is transferred which will be encapsulated in the created object.
-     * </p>
-     * @since 1.0
-     *
-     * @param coordinateX The parameter initializing the X coordinate.
-     * @param coordinateY The parameter initializing the Y coordinate.
-     */
-    public CreatorPoint(T coordinateX, T coordinateY) {
-        this.create(coordinateX, coordinateY);
-    }
-
-    /**
-     * <p>
      * The method creates an object of the {@link Point} type that calls the default constructor.
      * </p>
      * @since 1.0

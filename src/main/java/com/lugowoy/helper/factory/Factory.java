@@ -1,12 +1,12 @@
 package com.lugowoy.helper.factory;
 
-import com.lugowoy.helper.factory.creator.Creator;
+import com.lugowoy.helper.factory.creator.Creating;
 
 /**
  * Created by Konstantin Lugowoy on 05-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  *
  * <p>
@@ -15,27 +15,57 @@ import com.lugowoy.helper.factory.creator.Creator;
  * </p>
  *
  * @see com.lugowoy.helper.factory.creator
+ *
+ * @see com.lugowoy.helper.factory.creator.Creating
+ *
+ * @param <T> The type of objects created by the factory.
  */
 
-public class Factory {
+public class Factory<T> implements Creating<T> {
+
+    private Creating<T> creating;
 
     /**
      * <p>
-     * The method that creates the object by delegating the execution of the object creation
-     *  to the object of the class {@link Creator} passed by the parameter, which encapsulates the implementation to create the object.
+     * A constructor with a parameter that takes an object of the class that implements the contract interface {@link Creating}
+     * to create objects of different types for initialization to attribute of factory.
      * </p>
-     * @since 1.0
+     * @since 1.1
      *
-     * @see com.lugowoy.helper.factory.creator.CreatorArray
+     * @see com.lugowoy.helper.factory.creator.Creating
      *
-     * @param <T> Type of objects to create.
-     *
-     * @param creator An encapsulating implementation object for creating a specific type of objects.
+     * @param creating An object of the class that implements the contract interface {@link Creating} to create objects of different types.
+     */
+    Factory(Creating<T> creating) {
+        this.creating = creating;
+    }
+
+    /**
+     * <p>
+     * The method executes the creation of an object by calling the constructor of parameters.
+     * </p>
+     * @since 1.1
      *
      * @return Created object.
-     * */
-    public <T> T create(final Creator<T> creator) {
-        return creator.create();
+     */
+    @Override
+    public T create() {
+        return this.creating.create();
+    }
+
+    /**
+     * <p>
+     * Returns the object that is encapsulated in the factory.
+     * This object implements the interface contract {@link Creating} and performs the functionality to create objects.
+     * </p>
+     * @since 1.1
+     *
+     * @see com.lugowoy.helper.factory.creator.Creating
+     *
+     * @return Returns the object encapsulated in the factory, needed to create objects of different types.
+     */
+    protected Creating<T> getCreating() {
+        return this.creating;
     }
 
     /**
@@ -44,10 +74,10 @@ public class Factory {
      * </p>
      * @since 1.0
      *
-     * @return Object type {@link Factory}
+     * @return Object type {@link FactoryArray}
      */
-    public static Factory getFactory() {
-        return new Factory();
+    public static <T> Factory<T> getFactory(final Creating<T> creating) {
+        return new Factory<>(creating);
     }
 
 }

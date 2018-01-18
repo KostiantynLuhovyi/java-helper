@@ -25,44 +25,6 @@ public class CreatorArrayNumbers<T extends Number> extends CreatorArray<T> {
 
     /**
      * <p>
-     * A constructor called to create a class object {@link ArrayOfNumbers} using its constructor without parameters {@link ArrayOfNumbers#ArrayOfNumbers()}.
-     * </p>
-     * @since 1.0
-     *
-     * @see com.lugowoy.helper.factory.creator.Creator
-     */
-    public CreatorArrayNumbers() {
-        this.create();
-    }
-
-    /**
-     * <p>
-     * A constructor with a parameter, the use of which creates a class object {@link ArrayOfNumbers} invoking its constructor {@link ArrayOfNumbers#ArrayOfNumbers(Number[])}
-     *  into which an array of numeric data is transferred which will be encapsulated in the created object.
-     * </p>
-     * @since 1.0
-     *
-     * @param tArray An array of numeric data that will be encapsulate in the created class object {@link ArrayOfNumbers}.
-     */
-    public CreatorArrayNumbers(final T[] tArray) {
-        super(tArray);
-    }
-
-    /**
-     * <p>
-     * A constructor with a parameter, the use of which creates a class object {@link ArrayOfNumbers} invoking its constructor {@link ArrayOfNumbers#ArrayOfNumbers(int)}
-     *  into which the length of an array of objects is transferred which will be encapsulated in the created object.
-     * </p>
-     * @since 1.0
-     *
-     * @param lengthArray Length of array of objects that will be encapsulate in the created class object {@link ArrayOfNumbers} .
-     */
-    public CreatorArrayNumbers(final int lengthArray) {
-        super(lengthArray);
-    }
-
-    /**
-     * <p>
      * The method creates an object of the {@link ArrayOfNumbers} type that calls the default constructor.
      * </p>
      * @since 1.0

@@ -1,7 +1,6 @@
 package com.lugowoy.helper.factory.creator;
 
 import com.lugowoy.helper.models.arrays.Array;
-import com.lugowoy.helper.models.arrays.ArrayOfNumbers;
 import com.lugowoy.helper.models.arrays.ArrayOfPoints;
 import com.lugowoy.helper.models.points.Point;
 
@@ -25,44 +24,6 @@ import com.lugowoy.helper.models.points.Point;
  */
 
 public class CreatorArrayPoints<T extends Number> extends CreatorArray<Point<T>> {
-
-    /**
-     * <p>
-     * A constructor called to create a class object {@link ArrayOfPoints} using its constructor without parameters {@link ArrayOfPoints#ArrayOfPoints()}.
-     * </p>
-     * @since 1.0
-     *
-     * @see com.lugowoy.helper.factory.creator.Creator
-     */
-    public CreatorArrayPoints() {
-        this.create();
-    }
-
-    /**
-     * <p>
-     * A constructor with a parameter, the use of which creates a class object {@link ArrayOfPoints} invoking its constructor {@link ArrayOfPoints#ArrayOfPoints(Point[])}
-     *  into which an array of objects {@link Point} is transferred which will be encapsulated in the created object.
-     * </p>
-     * @since 1.0
-     *
-     * @param tArray An array of objects {@link Point} that will be encapsulate in the created class object {@link ArrayOfPoints}.
-     */
-    public CreatorArrayPoints(Point<T>[] tArray) {
-        super(tArray);
-    }
-
-    /**
-     * <p>
-     * A constructor with a parameter, the use of which creates a class object {@link ArrayOfPoints} invoking its constructor {@link ArrayOfPoints#ArrayOfPoints(int)}
-     *  into which the length of an array of objects {@link Point} is transferred which will be encapsulated in the created object.
-     * </p>
-     * @since 1.0
-     *
-     * @param lengthArray Length of array of objects {@link Point} that will be encapsulate in the created class object {@link ArrayOfPoints} .
-     */
-    public CreatorArrayPoints(int lengthArray) {
-        super(lengthArray);
-    }
 
     /**
      * <p>
