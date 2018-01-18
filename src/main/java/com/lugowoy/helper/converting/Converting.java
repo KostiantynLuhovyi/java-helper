@@ -5,19 +5,24 @@ package com.lugowoy.helper.converting;
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 29.01.2017
+ * @since 1.0
+ *
  * <p>
- *      A functional interface that declares a contract and provides a function to perform the conversion of object data.
+ * A functional interface that declares a contract and provides a function to perform the conversion of object data.
  * </p>
+ *
  * @param <T> The type of object whose data will be converted by the function.
  */
+
 @FunctionalInterface
 public interface Converting<T> {
 
     /**
      * <p>
-     *      A method (function) that converts the data of an object passed into a parameter.
+     * A method (function) that converts the data of an object passed into a parameter.
      * </p>
+     * @since 1.0
+     *
      * @param t The object whose data will be subject to conversion.
      */
     void convert(T t);
