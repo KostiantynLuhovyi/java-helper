@@ -57,12 +57,12 @@ public class FillingArrayPointsEnteredIntegerNumbers implements FillingArray<Poi
     public Point<Integer>[] fill(int lengthArray) {
         Point<Integer>[] points;
         if (checkLengthArray(lengthArray)) {
-            points = FactoryArray.getFactoryArray().create(new CreatorArrayPoints<Integer>(lengthArray), lengthArray).getArray();
+            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(lengthArray).getArray();
             for (int i = 0; i < points.length; i++) {
                 points[i] = new Point<>(this.reader.readInt(), this.reader.readInt());
             }
         } else {
-            points = FactoryArray.getFactoryArray().create(new CreatorArrayPoints<Integer>(DEFAULT_LENGTH_ARRAY), DEFAULT_LENGTH_ARRAY).getArray();
+            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(DEFAULT_LENGTH_ARRAY).getArray();
             for (int i = 0; i < points.length; i++) {
                 points[i] = new Point<>(this.reader.readInt(), this.reader.readInt());
             }

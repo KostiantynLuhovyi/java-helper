@@ -57,12 +57,12 @@ public class FillingArrayPointsEnteredDoubleNumbers implements FillingArray<Poin
     public Point<Double>[] fill(int lengthArray) {
         Point<Double>[] points;
         if (checkLengthArray(lengthArray)) {
-            points = FactoryArray.getFactoryArray().create(new CreatorArrayPoints<Double>(lengthArray), lengthArray).getArray();
+            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Double>()).create(lengthArray).getArray();
             for (int i = 0; i < points.length; i++) {
                 points[i] = new Point<>(this.reader.readDouble(), this.reader.readDouble());
             }
         } else {
-            points = FactoryArray.getFactoryArray().create(new CreatorArrayPoints<Double>(DEFAULT_LENGTH_ARRAY), DEFAULT_LENGTH_ARRAY).getArray();
+            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Double>()).create(DEFAULT_LENGTH_ARRAY).getArray();
             for (int i = 0; i < points.length; i++) {
                 points[i] = new Point<>(this.reader.readDouble(), this.reader.readDouble());
             }

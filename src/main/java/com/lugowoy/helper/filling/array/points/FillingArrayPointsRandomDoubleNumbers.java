@@ -1,6 +1,7 @@
 package com.lugowoy.helper.filling.array.points;
 
 import com.lugowoy.helper.factory.FactoryArray;
+import com.lugowoy.helper.factory.creator.CreatorArrayNumbers;
 import com.lugowoy.helper.factory.creator.CreatorArrayPoints;
 import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.filling.array.FillingArrayChecker;
@@ -46,12 +47,12 @@ public class FillingArrayPointsRandomDoubleNumbers implements FillingArray<Point
     public Point<Double>[] fill(int lengthArray) {
         Point<Double>[] points;
         if (FillingArrayChecker.checkLengthArray(lengthArray)) {
-            points = FactoryArray.getFactoryArray().create(new CreatorArrayPoints<Double>(lengthArray), lengthArray).getArray();
+            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Double>()).create(lengthArray).getArray();
             for (int i = 0; i < points.length; i++) {
                 points[i] = new Point<>(GeneratorRandomNumber.generateDouble(), GeneratorRandomNumber.generateDouble());
             }
         } else {
-            points = FactoryArray.getFactoryArray().create(new CreatorArrayPoints<Double>(DEFAULT_LENGTH_ARRAY), DEFAULT_LENGTH_ARRAY).getArray();
+            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Double>()).create(DEFAULT_LENGTH_ARRAY).getArray();
             for (int i = 0; i < points.length; i++) {
                 points[i] = new Point<>(GeneratorRandomNumber.generateDouble(), GeneratorRandomNumber.generateDouble());
             }
