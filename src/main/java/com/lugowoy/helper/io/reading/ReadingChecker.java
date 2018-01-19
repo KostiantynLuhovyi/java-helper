@@ -51,11 +51,12 @@ public interface ReadingChecker {
      * <p>
      * Function that checks the read data for correctness.
      * </p>
-     * @since 1.0
      *
      * @param value Data to check.
      *
      * @return Result of checking.
+     *
+     * @since 1.0
      */
     boolean isCorrect(final String value);
 
@@ -63,11 +64,12 @@ public interface ReadingChecker {
      * <p>
      * A static method that check that the read data is indeed an integer number and is included in a range of byte type values.
      * </p>
-     * @since 1.0
      *
      * @param numberValue Data to check.
      *
      * @return Result of checking.
+     *
+     * @since 1.0
      */
     static boolean isByteNumber(final String numberValue) {
         boolean result = false;
@@ -85,11 +87,12 @@ public interface ReadingChecker {
      * <p>
      * A static method that check that the read data is indeed an integer number and is included in a range of short type values.
      * </p>
-     * @since 1.0
      *
      * @param numberValue Data to check.
      *
      * @return Result of checking.
+     *
+     * @since 1.0
      */
     static boolean isShortNumber(final String numberValue) {
         boolean result = false;
@@ -107,11 +110,12 @@ public interface ReadingChecker {
      * <p>
      * A static method that check that the read data is indeed an integer number and is included in a range of integer type values.
      * </p>
-     * @since 1.0
      *
      * @param numberValue Data to check.
      *
      * @return Result of checking.
+     *
+     * @since 1.0
      */
     static boolean isIntegerNumber(final String numberValue) {
         boolean result = false;
@@ -133,6 +137,8 @@ public interface ReadingChecker {
      * @param numberValue Data to check.
      *
      * @return Result of checking.
+     *
+     * @since 1.0
      */
     static boolean isLongNumber(final String numberValue) {
         boolean result = false;
@@ -150,11 +156,12 @@ public interface ReadingChecker {
      * <p>
      * A static method that check that the read data is indeed a real number and is included in a range of float type values.
      * </p>
-     * @since 1.0
      *
      * @param numberValue Data to check.
      *
      * @return Result of checking.
+     *
+     * @since 1.0
      */
     static boolean isFloatNumber(final String numberValue) {
         boolean result = false;
@@ -173,11 +180,12 @@ public interface ReadingChecker {
      * <p>
      * A static method that check that the read data is indeed a real number and is included in a range of double type values.
      * </p>
-     * @since 1.0
      *
      * @param numberValue Data to check.
      *
      * @return Result of checking.
+     *
+     * @since 1.0
      */
     static boolean isDoubleNumber(final String numberValue) {
         boolean result = false;
@@ -196,11 +204,12 @@ public interface ReadingChecker {
      * <p>
      * A static method that verifies that the read data is indeed a single character.
      * </p>
-     * @since 1.0
      *
      * @param characterValue Data to check.
      *
      * @return Result of checking.
+     *
+     * @since 1.0
      */
     static boolean isOnlyCharacter(final String characterValue) {
         boolean result = false;

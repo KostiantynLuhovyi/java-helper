@@ -29,9 +29,10 @@ public interface GeneratorRandomNumber {
      * <p>
      * The method generate a random integer number.
      * </p>
-     * @since 1.0
      *
      * @return The generated integer number.
+     *
+     * @since 1.0
      */
     static int generateInt() {
         return RANDOM.nextInt();
@@ -41,9 +42,10 @@ public interface GeneratorRandomNumber {
      * <p>
      * The method generate a random integer number from 0 to parameter "bound".
      * </p>
-     * @since 1.0
      *
      * @return The generated integer number.
+     *
+     * @since 1.0
      */
     static int generateInt(final int bound) {
         return RANDOM.nextInt(bound);
@@ -53,9 +55,10 @@ public interface GeneratorRandomNumber {
      * <p>
      * The method generate a random integer number from parameter "minBound" to parameter "maxBound" .
      * </p>
-     * @since 1.0
      *
      * @return The generated integer number.
+     *
+     * @since 1.0
      */
     static int generateInt(final int minBound, final int maxBound) {
         return getRandomInRangeIntValue(minBound, maxBound);
@@ -67,9 +70,10 @@ public interface GeneratorRandomNumber {
      * <p>
      * Real numbers are generated in the range from -32768 to 32767.
      * </p>
-     * @since 1.0
      *
      * @return The generated double number.
+     *
+     * @since 1.0
      */
     static double generateDouble() {
         return new BigDecimal(getRandomInRangeDoubleValue(MIN_DOUBLE_BOUND, MAX_DOUBLE_BOUND)).setScale(SCALE, BigDecimal.ROUND_HALF_DOWN).doubleValue();
@@ -79,9 +83,10 @@ public interface GeneratorRandomNumber {
      * <p>
      * The method generate a random double number from 0 to parameter "bound".
      * </p>
-     * @since 1.0
      *
      * @return The generated double number.
+     *
+     * @since 1.0
      */
     static double generateDouble(double bound) {
         return new BigDecimal(getRandomInRangeDoubleValue(0, bound)).setScale(SCALE, BigDecimal.ROUND_HALF_DOWN).doubleValue();
@@ -91,9 +96,10 @@ public interface GeneratorRandomNumber {
      * <p>
      * The method generate a random integer number from parameter "minBound" to parameter "maxBound".
      * </p>
-     * @since 1.0
      *
      * @return The generated double number.
+     *
+     * @since 1.0
      */
     static double generateDouble(double minBound, double maxBound) {
         return new BigDecimal(getRandomInRangeDoubleValue(minBound, maxBound)).setScale(SCALE, BigDecimal.ROUND_HALF_DOWN).doubleValue();

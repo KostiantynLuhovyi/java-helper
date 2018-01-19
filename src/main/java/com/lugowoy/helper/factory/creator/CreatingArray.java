@@ -24,11 +24,12 @@ public interface CreatingArray<T> extends Creating<Array<T>> {
      * <p>
      * The method executes the creation of a class object Array<T> by calling the constructor with a parameter.
      * </p>
-     * @since 1.0
      *
      * @param tArray An array of objects that will be encapsulate in the created class object {@link Array}.
      *
      * @return The created class object {@link Array} the encapsulating array passed by the parameter.
+     *
+     * @since 1.0
      */
     Array<T> create(final T[] tArray);
 
@@ -36,11 +37,12 @@ public interface CreatingArray<T> extends Creating<Array<T>> {
      * <p>
      * The method executes the creation of a class object {@link Array} by calling the constructor with a parameter.
      * </p>
-     * @since 1.0
      *
      * @param lengthArray Length of array of objects that will be encapsulate in the created class object {@link Array}.
      *
      * @return The created object {@link Array} encapsulates an array of the length of the passed parameter.
+     *
+     * @since 1.0
      */
     Array<T> create(final int lengthArray);
 

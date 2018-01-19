@@ -57,9 +57,10 @@ public class ArrayOfPoints<T extends Number> extends Array<Point<T>> {
      * <p>
      * Array elements are null.
      * </p>
-     * @since 1.0
      *
      * @param lengthArray The length of the array to initialize the object to be created.
+     *
+     * @since 1.0
      */
     public ArrayOfPoints(final int lengthArray) {
         super(lengthArray);

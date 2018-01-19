@@ -23,11 +23,12 @@ public class Converter<T> {
      * Constructor with parameter.
      * The parameter {@link Converter#converting} provides the implementation of the function to perform the conversion.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.converting.Converting
      *
      * @param converting The parameter provides the implementation of the function to perform the conversion.
+     *
+     * @since 1.0
      */
     public Converter(Converting<T> converting) {
         this.converting = converting;
@@ -38,11 +39,12 @@ public class Converter<T> {
      * A method that performs the conversion of object data passed by a parameter to a method.
      * The method delegates the execution of the function which the object was initialized upon creation.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.converting.Converting
      *
      * @param t The object passed by the parameter whose data is being converted.
+     *
+     * @since 1.0
      */
     public void convert(T t) {
         converting.convert(t);

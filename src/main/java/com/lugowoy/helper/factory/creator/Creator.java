@@ -23,11 +23,12 @@ public abstract class Creator<T> implements Creating<T> {
      * <p>
      * The method executes the creation of an object by calling the constructor of parameters.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.Creating
      *
      * @return Created object.
+     *
+     * @since 1.0
      */
     public abstract T create();
 

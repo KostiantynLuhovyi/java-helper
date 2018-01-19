@@ -27,7 +27,6 @@ public class CreatorArrayNumbers<T extends Number> extends CreatorArray<T> {
      * <p>
      * The method creates an object of the {@link ArrayOfNumbers} type that calls the default constructor.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.Creator
      * @see com.lugowoy.helper.factory.creator.CreatorArray
@@ -37,6 +36,8 @@ public class CreatorArrayNumbers<T extends Number> extends CreatorArray<T> {
      * @see com.lugowoy.helper.models.arrays.ArrayOfNumbers
      *
      * @return The created object of type {@link ArrayOfNumbers}.
+     *
+     * @since 1.0
      */
     @Override
     public ArrayOfNumbers<T> create() {
@@ -47,7 +48,6 @@ public class CreatorArrayNumbers<T extends Number> extends CreatorArray<T> {
      * <p>
      * The method creates an object of the {@link ArrayOfNumbers} type that calls the constructor with parameter {@link ArrayOfNumbers#ArrayOfNumbers(T[])}.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.CreatorArray
      * @see com.lugowoy.helper.factory.creator.CreatingArray
@@ -58,6 +58,8 @@ public class CreatorArrayNumbers<T extends Number> extends CreatorArray<T> {
      * @param tArray An array of numeric data that will be encapsulate in the created class object {@link ArrayOfNumbers}.
      *
      * @return The created object of type {@link ArrayOfNumbers}.
+     *
+     * @since 1.0
      */
     @Override
     public ArrayOfNumbers<T> create(final T[] tArray) {
@@ -68,7 +70,6 @@ public class CreatorArrayNumbers<T extends Number> extends CreatorArray<T> {
      * <p>
      * The method creates an object of the {@link ArrayOfNumbers} type that calls the constructor with parameter {@link ArrayOfNumbers#ArrayOfNumbers(int)}.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.CreatorArray
      * @see com.lugowoy.helper.factory.creator.CreatingArray
@@ -79,6 +80,8 @@ public class CreatorArrayNumbers<T extends Number> extends CreatorArray<T> {
      * @param lengthArray Length of array of objects that will be encapsulate in the created class object {@link ArrayOfNumbers}.
      *
      * @return The created object {@link ArrayOfNumbers} encapsulates an array of the length of the passed parameter.
+     *
+     * @since 1.0
      */
     @Override
     public ArrayOfNumbers<T> create(final int lengthArray) {

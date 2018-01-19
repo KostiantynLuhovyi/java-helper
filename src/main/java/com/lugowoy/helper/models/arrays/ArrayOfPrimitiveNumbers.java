@@ -19,9 +19,10 @@ public interface ArrayOfPrimitiveNumbers {
      * <p>
      * Returns an array of primitive integers using array elements encapsulated in the object of the class that implements this functional.
      * </p>
-     * @since 1.0
      *
      * @return Returns an array of primitive integer numbers.
+     *
+     * @since 1.0
      */
     int[] getArrayOfIntegerPrimitiveNumbers();
 
@@ -29,9 +30,10 @@ public interface ArrayOfPrimitiveNumbers {
      * <p>
      * Returns an array of primitive real using array elements encapsulated in the object of the class that implements this functional.
      * </p>
-     * @since 1.0
      *
      * @return Returns an array of primitive real numbers.
+     *
+     * @since 1.0
      */
     double[] getArrayOfDoublePrimitiveNumbers();
 

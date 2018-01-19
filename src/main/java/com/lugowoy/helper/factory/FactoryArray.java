@@ -1,5 +1,6 @@
 package com.lugowoy.helper.factory;
 
+import com.lugowoy.helper.factory.creator.Creating;
 import com.lugowoy.helper.factory.creator.CreatingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
@@ -35,11 +36,12 @@ public class FactoryArray<T> extends Factory<Array<T>> implements CreatingArray<
      * <p>
      * The method executes the creation of a class object Array<T> by calling the constructor with a parameter.
      * </p>
-     * @since 1.1
      *
      * @param tArray An array of objects that will be encapsulate in the created class object {@link Array}.
      *
      * @return The created class object {@link Array} the encapsulating array passed by the parameter.
+     *
+     * @since 1.1
      */
     @Override
     public Array<T> create(T[] tArray) {
@@ -50,11 +52,12 @@ public class FactoryArray<T> extends Factory<Array<T>> implements CreatingArray<
      * <p>
      * The method executes the creation of a class object {@link Array} by calling the constructor with a parameter.
      * </p>
-     * @since 1.1
      *
      * @param lengthArray Length of array of objects that will be encapsulate in the created class object {@link Array}.
      *
      * @return The created object {@link Array} encapsulates an array of the length of the passed parameter.
+     *
+     * @since 1.1
      */
     @Override
     public Array<T> create(int lengthArray) {
@@ -65,9 +68,10 @@ public class FactoryArray<T> extends Factory<Array<T>> implements CreatingArray<
      * <p>
      * A class method that creates and returns a new instance of the {@link FactoryArray}.
      * </p>
-     * @since 1.0
      *
      * @return Object type {@link FactoryArray}
+     *
+     * @since 1.1
      */
     public static <T> FactoryArray<T> getFactoryArray(CreatingArray<T> creatingArray) {
         return new FactoryArray<T>(creatingArray);

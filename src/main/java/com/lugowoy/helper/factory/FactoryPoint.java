@@ -28,9 +28,10 @@ public class FactoryPoint<T extends Number> extends Factory<Point<T>> {
      * <p>
      * A class method that creates and returns a new instance of the {@link FactoryPoint}.
      * </p>
-     * @since 1.0
      *
      * @return Object type {@link FactoryPoint}
+     *
+     * @since 1.0
      */
     public static <T extends Number> FactoryPoint<T> getFactoryPoint(CreatorPoint<T> creatorPoint) {
         return new FactoryPoint<>(creatorPoint);

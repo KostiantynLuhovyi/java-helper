@@ -25,10 +25,11 @@ public class CreatorUnknown<T> extends Creator<T> {
      * <p>
      * A constructor with a parameter is used to create an object based on a type parameter {@link Class}.
      * </p>
-     * @since 1.0
      *
      * @param clazz An object of the class Class<T> on the basis of which the object will be created.
-     * */
+     *
+     * @since 1.0
+     */
     public CreatorUnknown(Class<T> clazz) {
         this.clazz = clazz;
     }
@@ -37,9 +38,10 @@ public class CreatorUnknown<T> extends Creator<T> {
      * <p>
      * The method creates an object using a class {@link Class} object encapsulated in this class.
      * </p>
-     * @since 1.0
      *
      * @return The created object an object using a class {@link Class}.
+     *
+     * @since 1.0
      */
     @Override
     public T create() {

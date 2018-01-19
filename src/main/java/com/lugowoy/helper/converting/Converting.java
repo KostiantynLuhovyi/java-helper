@@ -21,9 +21,10 @@ public interface Converting<T> {
      * <p>
      * A method (function) that converts the data of an object passed into a parameter.
      * </p>
-     * @since 1.0
      *
      * @param t The object whose data will be subject to conversion.
+     *
+     * @since 1.0
      */
     void convert(T t);
 

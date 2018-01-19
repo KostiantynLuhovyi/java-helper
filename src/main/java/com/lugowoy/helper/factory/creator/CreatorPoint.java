@@ -25,11 +25,12 @@ public class CreatorPoint<T extends Number> extends Creator<Point<T>> {
      * <p>
      * The method creates an object of the {@link Point} type that calls the default constructor.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.models.points.Point
      *
      * @return The created object of type Point<T> .
+     *
+     * @since 1.0
      */
     public Point<T> create() {
         return new Point<>();
@@ -40,7 +41,6 @@ public class CreatorPoint<T extends Number> extends Creator<Point<T>> {
      * The method creates an object of type {@link Point} calling the constructor with a parameters
      *  and passing it the parameters passed to the method.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.models.points.Point
      *
@@ -48,6 +48,8 @@ public class CreatorPoint<T extends Number> extends Creator<Point<T>> {
      * @param coordinateY The parameter initializing the Y coordinate.
      *
      * @return The created object of type {@link Point}.
+     *
+     * @since 1.0
      */
     public Point<T> create(T coordinateX, T coordinateY) {
         return new Point<>(coordinateX, coordinateY);

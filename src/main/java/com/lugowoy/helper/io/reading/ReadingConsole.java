@@ -24,9 +24,10 @@ public class ReadingConsole implements Reading {
      * <p>
      * Reading data by byte type from the console.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     @Override
     public byte readByte() {
@@ -37,9 +38,10 @@ public class ReadingConsole implements Reading {
      * <p>
      * Reading data by short type from the console.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     @Override
     public short readShort() {
@@ -50,9 +52,10 @@ public class ReadingConsole implements Reading {
      * <p>
      * Reading data by int type from the console.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     @Override
     public int readInt() {
@@ -63,9 +66,10 @@ public class ReadingConsole implements Reading {
      * <p>
      * Reading data by long type from the console.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     @Override
     public long readLong() {
@@ -76,9 +80,10 @@ public class ReadingConsole implements Reading {
      * <p>
      * Reading data by char type from the console.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     @Override
     public char readChar() {
@@ -89,9 +94,10 @@ public class ReadingConsole implements Reading {
      * <p>
      * Reading data by float type from the console.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     @Override
     public float readFloat() {
@@ -102,9 +108,10 @@ public class ReadingConsole implements Reading {
      * <p>
      * Reading data by double type from the console.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     @Override
     public double readDouble() {
@@ -115,9 +122,10 @@ public class ReadingConsole implements Reading {
      * <p>
      * Reading data by String type from the console.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     @Override
     public String readString() {

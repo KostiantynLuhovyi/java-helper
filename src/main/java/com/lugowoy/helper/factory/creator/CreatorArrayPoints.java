@@ -29,7 +29,6 @@ public class CreatorArrayPoints<T extends Number> extends CreatorArray<Point<T>>
      * <p>
      * The method creates an object of the {@link ArrayOfPoints} type that calls the default constructor.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.Creator
      * @see com.lugowoy.helper.factory.creator.CreatorArray
@@ -39,6 +38,8 @@ public class CreatorArrayPoints<T extends Number> extends CreatorArray<Point<T>>
      * @see com.lugowoy.helper.models.arrays.ArrayOfPoints
      *
      * @return The created object of type {@link ArrayOfPoints}.
+     *
+     * @since 1.0
      */
     @Override
     public Array<Point<T>> create() {
@@ -49,7 +50,6 @@ public class CreatorArrayPoints<T extends Number> extends CreatorArray<Point<T>>
      * <p>
      * The method creates an object of the {@link ArrayOfPoints} type that calls the constructor with parameter {@link ArrayOfPoints#ArrayOfPoints(Point[])}.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.CreatorArray
      * @see com.lugowoy.helper.factory.creator.CreatingArray
@@ -60,6 +60,8 @@ public class CreatorArrayPoints<T extends Number> extends CreatorArray<Point<T>>
      * @param tArray An array of objects {@link Point} that will be encapsulate in the created class object {@link ArrayOfPoints}.
      *
      * @return The created object of type {@link ArrayOfPoints}.
+     *
+     * @since 1.0
      */
     @Override
     public Array<Point<T>> create(Point<T>[] tArray) {
@@ -70,7 +72,6 @@ public class CreatorArrayPoints<T extends Number> extends CreatorArray<Point<T>>
      * <p>
      * The method creates an object of the {@link ArrayOfPoints} type that calls the constructor with parameter {@link ArrayOfPoints#ArrayOfPoints(int)}.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.CreatorArray
      * @see com.lugowoy.helper.factory.creator.CreatingArray
@@ -81,6 +82,8 @@ public class CreatorArrayPoints<T extends Number> extends CreatorArray<Point<T>>
      * @param lengthArray Length of array of objects {@link Point} that will be encapsulate in the created class object {@link ArrayOfPoints}.
      *
      * @return The created object {@link ArrayOfPoints} encapsulates an array of the length of the passed parameter.
+     *
+     * @since 1.0
      */
     @Override
     public Array<Point<T>> create(int lengthArray) {

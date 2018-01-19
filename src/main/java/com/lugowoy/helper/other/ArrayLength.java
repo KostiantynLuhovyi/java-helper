@@ -27,9 +27,10 @@ public class ArrayLength {
      * <p>
      * Returns the length of an array.
      * </p>
-     * @since 1.0
      *
      * @param reader The object to read the length value of the array.
+     *
+     * @since 1.0
      */
     public static int getLengthArray(final Reading reader) {
         int lengthArray;
@@ -48,10 +49,11 @@ public class ArrayLength {
      * <p>
      * Returns the length of an array.
      * </p>
-     * @since 1.0
      *
      * @param reader The object to read the length value of the array.
      * @param boundLengthArray Value to determine the maximum length bound of the array.
+     *
+     * @since 1.0
      */
     public static int getLengthArray(final Reading reader, final int boundLengthArray) {
         int lengthArray;
@@ -70,11 +72,12 @@ public class ArrayLength {
      * <p>
      * Returns the length of an array.
      * </p>
-     * @since 1.0
      *
      * @param reader The object to read the length value of the array.
      * @param minBoundLengthArray Value to determine the minimum length bound of the array.
      * @param maxBoundLengthArray Value to determine the maximum length bound of the array.
+     *
+     * @since 1.0
      */
     public static int getLengthArray(final Reading reader, final int minBoundLengthArray, final int maxBoundLengthArray) {
         int lengthArray;

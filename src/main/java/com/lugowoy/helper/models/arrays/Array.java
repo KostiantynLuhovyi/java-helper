@@ -53,9 +53,10 @@ public abstract class Array<T> implements Model {
      * If the array passed by the parameter is null, the created object will initialize the array with the default length.
      * In this case, the elements of the array are null.
      * </p>
-     * @since 1.0
      *
      * @param array Array to initialize the object to be created.
+     *
+     * @since 1.0
      */
     public Array(final T[] array) {
         this.setCorrectArray(array);
@@ -70,9 +71,10 @@ public abstract class Array<T> implements Model {
      * <p>
      * Array elements are null.
      * </p>
-     * @since 1.0
      *
      * @param lengthArray The length of the array to initialize the object to be created.
+     *
+     * @since 1.0
      */
     public Array(final int lengthArray) {
         this.setCorrectArray(lengthArray);
@@ -103,9 +105,10 @@ public abstract class Array<T> implements Model {
      * <p>
      * Returns an array that is encapsulated in this object.
      * </p>
-     * @since 1.0
      *
      * @return The object of the array encapsulated in this object.
+     *
+     * @since 1.0
      */
     @SuppressWarnings("unchecked") // Type safety. Unchecked cast Object[] to T[] .
     public T[] getArray() {
@@ -119,9 +122,10 @@ public abstract class Array<T> implements Model {
      * If the object of the array passed by the parameter is null, an array of the default length will be created.
      * In this case, the elements of the array are null.
      * </p>
-     * @since 1.0
      *
      * @param array An array object to initialize an array encapsulated in this object.
+     *
+     * @since 1.0
      */
     public void setArray(final T[] array) {
         this.setCorrectArray(array);
@@ -137,9 +141,10 @@ public abstract class Array<T> implements Model {
      * <p>
      * Array elements are null.
      * </p>
-     * @since 1.1
      *
      * @param lengthArray The length of the array to create and initialize the array that encapsulates of the object.
+     *
+     * @since 1.1
      */
     public void setArray(final int lengthArray) {
         this.setCorrectArray(lengthArray);

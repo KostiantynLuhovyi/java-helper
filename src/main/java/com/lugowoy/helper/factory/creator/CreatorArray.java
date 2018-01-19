@@ -26,7 +26,6 @@ public abstract class CreatorArray<T> extends Creator<Array<T>> implements Creat
      * <p>
      * The method creates an object of the {@link Array} type that calls the default constructor {@link Array#Array()}.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.Creator
      * @see com.lugowoy.helper.factory.creator.Creating
@@ -34,6 +33,8 @@ public abstract class CreatorArray<T> extends Creator<Array<T>> implements Creat
      * @see com.lugowoy.helper.models.arrays.Array
      *
      * @return The created object of type {@link Array}.
+     *
+     * @since 1.0
      */
     @Override
     public abstract Array<T> create();
@@ -42,7 +43,6 @@ public abstract class CreatorArray<T> extends Creator<Array<T>> implements Creat
      * <p>
      * The method creates an object of the {@link Array} type that calls the constructor with parameter {@link Array#Array(T[])}.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.CreatingArray
      *
@@ -51,6 +51,8 @@ public abstract class CreatorArray<T> extends Creator<Array<T>> implements Creat
      * @param tArray An array of objects that will be encapsulate in the created class object {@link Array}.
      *
      * @return The created object of type {@link Array}.
+     *
+     * @since 1.0
      */
     public abstract Array<T> create(final T[] tArray);
 
@@ -58,7 +60,6 @@ public abstract class CreatorArray<T> extends Creator<Array<T>> implements Creat
      * <p>
      * The method creates an object of the {@link Array} type that calls the constructor with parameter {@link Array#Array(int)}.
      * </p>
-     * @since 1.0
      *
      * @see com.lugowoy.helper.factory.creator.CreatingArray
      *
@@ -67,6 +68,8 @@ public abstract class CreatorArray<T> extends Creator<Array<T>> implements Creat
      * @param lengthArray Length of array of objects that will be encapsulate in the created class object {@link Array}.
      *
      * @return The created object {@link Array} encapsulates an array of the length of the passed parameter.
+     *
+     * @since 1.0
      */
     public abstract Array<T> create(final int lengthArray);
 

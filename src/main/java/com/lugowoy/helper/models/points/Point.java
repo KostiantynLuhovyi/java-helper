@@ -92,9 +92,10 @@ public class Point<T extends Number> implements Model {
      * <p>
      * Returns the value of the X coordinate of the point.
      * </p>
-     * @since 1.0
      *
      * @return Returns the value of the X coordinate.
+     *
+     * @since 1.0
      */
     public T getCoordinateX() {
         return coordinateX;
@@ -107,9 +108,10 @@ public class Point<T extends Number> implements Model {
      * If passed by parameter have non null value, then these value initialize the coordinate of the point,
      *  otherwise the coordinate are null.
      * </p>
-     * @since 1.0
      *
      * @param coordinateX The value to initialize the coordinate X.
+     *
+     * @since 1.0
      */
     public void setCoordinateX(final T coordinateX) {
         if (coordinateX != null) {
@@ -121,9 +123,10 @@ public class Point<T extends Number> implements Model {
      * <p>
      * Returns the value of the Y coordinate of the point.
      * </p>
-     * @since 1.0
      *
      * @return Returns the value of the Y coordinate.
+     *
+     * @since 1.0
      */
     public T getCoordinateY() {
         return coordinateY;
@@ -136,9 +139,10 @@ public class Point<T extends Number> implements Model {
      * If passed by parameter have non null value, then these value initialize the coordinate of the point,
      *  otherwise the coordinate are null.
      * </p>
-     * @since 1.0
      *
      * @param coordinateY The value to initialize the coordinate Y.
+     *
+     * @since 1.0
      */
     public void setCoordinateY(final T coordinateY) {
         this.coordinateY = coordinateY;

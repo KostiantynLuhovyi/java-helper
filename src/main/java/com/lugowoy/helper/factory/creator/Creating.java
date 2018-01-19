@@ -20,9 +20,10 @@ public interface Creating<T> {
      * <p>
      * The method executes the creation of an object by calling the constructor of parameters.
      * </p>
-     * @since 1.0
      *
      * @return Created object.
+     *
+     * @since 1.0
      */
     T create();
 

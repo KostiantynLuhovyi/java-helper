@@ -18,9 +18,10 @@ public interface Reading {
      * <p>
      * Reading data by byte type.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     byte readByte();
 
@@ -28,9 +29,10 @@ public interface Reading {
      * <p>
      * Reading data by short type.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     short readShort();
 
@@ -38,9 +40,10 @@ public interface Reading {
      * <p>
      * Reading data by int type.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     int readInt();
 
@@ -48,9 +51,10 @@ public interface Reading {
      * <p>
      * Reading data by long type.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     long readLong();
 
@@ -58,9 +62,10 @@ public interface Reading {
      * <p>
      * Reading data by char type.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     char readChar();
 
@@ -68,9 +73,10 @@ public interface Reading {
      * <p>
      * Reading data by float type.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     float readFloat();
 
@@ -78,9 +84,10 @@ public interface Reading {
      * <p>
      * Reading data by double type.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     double readDouble();
 
@@ -88,9 +95,10 @@ public interface Reading {
      * <p>
      * Reading strings.
      * </p>
-     * @since 1.0
      *
      * @return Returns the result of reading.
+     *
+     * @since 1.0
      */
     String readString();
 

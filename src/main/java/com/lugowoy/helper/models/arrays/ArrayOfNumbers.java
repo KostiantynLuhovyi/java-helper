@@ -39,9 +39,10 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      * If the array passed by the parameter is null, the created object will initialize the array with the default length.
      * In this case, the elements of the array are null.
      * </p>
-     * @since 1.0
      *
      * @param array Array to initialize the object to be created.
+     *
+     * @since 1.0
      */
     public ArrayOfNumbers(final T[] array) {
         super(array);
@@ -56,9 +57,10 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      * <p>
      * Array elements are null.
      * </p>
-     * @since 1.0
      *
      * @param lengthArray The length of the array to initialize the object to be created.
+     *
+     * @since 1.0
      */
     public ArrayOfNumbers(final int lengthArray) {
         super(lengthArray);
@@ -82,9 +84,10 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      *  then the value assigned to the element of the array of primitive numbers will be equal to -2147483648 or 2147483648,
      *  respectively.
      * </p>
-     * @since 1.0
      *
      * @return Returns an array of primitive integer numbers.
+     *
+     * @since 1.0
      */
     @Override
     public int[] getArrayOfIntegerPrimitiveNumbers() {
@@ -101,9 +104,10 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      * <p>
      * If the array encapsulated in the object contains integer numbers, then the value after the decimal point is 0.
      * </p>
-     * @since 1.0
      *
      * @return Returns an array of primitive double numbers.
+     *
+     * @since 1.0
      */
     @Override
     public double[] getArrayOfDoublePrimitiveNumbers() {
