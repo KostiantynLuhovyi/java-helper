@@ -96,7 +96,7 @@ public class FillingArraySequentialDescendingDigitOfDoubleNumbers implements Fil
     @Override
     public Array<Double> fill(final Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromStartBoundToEndBound(array.getArray(), startBound, endBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromStartBoundToEndBound(array.getArray(), DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
@@ -111,7 +111,7 @@ public class FillingArraySequentialDescendingDigitOfDoubleNumbers implements Fil
     @Override
     public Double[] fill(Double[] doubles, Double startBound, Double endBound) {
         if (checkNonNullArrayNumbers(doubles)) {
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromStartBoundToEndBound(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
@@ -126,7 +126,7 @@ public class FillingArraySequentialDescendingDigitOfDoubleNumbers implements Fil
     public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)) {
                 doubles = new Double[lengthArray];
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {

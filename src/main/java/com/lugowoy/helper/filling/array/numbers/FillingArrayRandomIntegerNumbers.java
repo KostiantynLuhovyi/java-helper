@@ -114,7 +114,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
     @Override
     public Array<Integer> fill(final Array<Integer> array, Integer minBound, Integer maxBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 array.setArray(Arrays.stream(array.getArray())
                                      .mapToInt(value -> GeneratorRandomNumber.generateInt(minBound, maxBound))
                                      .boxed()
@@ -132,7 +132,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
     @Override
     public Integer[] fill(Integer[] integers, Integer minBound, Integer maxBound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 integers = Arrays.stream(integers)
                                  .mapToInt(value -> GeneratorRandomNumber.generateInt(minBound, maxBound))
                                  .boxed()
@@ -151,7 +151,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
     public Integer[] fill(int lengthArray, Integer minBound, Integer maxBound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 integers = Arrays.stream(new Integer[lengthArray])
                                  .mapToInt(value -> GeneratorRandomNumber.generateInt(minBound, maxBound))
                                  .boxed()

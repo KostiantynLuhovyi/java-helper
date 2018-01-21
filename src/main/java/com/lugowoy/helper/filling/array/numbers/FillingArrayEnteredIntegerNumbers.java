@@ -12,131 +12,137 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * Created by Konstantin Lugowoy on 08-Jan-18.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.1
+ *
+ * <p></p>
+ *
+ * @see com.lugowoy.helper.filling.array.numbers.FillingArrayEnteredValues
+ * @see com.lugowoy.helper.filling.Filling
+ * @see com.lugowoy.helper.filling.array.FillingArray
+ * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
 
-public class FillingArrayEnteredIntegerNumbers implements FillingArrayNumbers<Integer> {
+public class FillingArrayEnteredIntegerNumbers extends FillingArrayEnteredValues<Integer> implements FillingArrayNumbers<Integer> {
 
-    private static final int START_BOUND = 0;
-
-    private Reader reader;
-
+    /**
+     * <p></p>
+     *
+     * @param reader
+     */
     public FillingArrayEnteredIntegerNumbers(Reader reader) {
-        this.reader = reader;
+        super(reader);
     }
 
+    /**
+     * <p></p>
+     *
+     * @param reading
+     */
     public FillingArrayEnteredIntegerNumbers(Reading reading) {
-        this.reader = Reader.getReader(reading);
+        super(reading);
     }
 
-
+    /**
+     * <p></p>
+     *
+     * @param array
+     *
+     * @return
+     */
     @Override
     public Array<Integer> fill(final Array<Integer> array) {
         if (checkNonNullArrayObject(array)) {
-            array.setArray(Arrays.stream(array.getArray())
-                                 .map(value -> this.reader.readInt())
-                                 .toArray(Integer[]::new));
+            if (checkNonNullArrayNumbers(array.getArray())) {
+                array.setArray(this.initializeArrayElementsEnteredIntegerNumbers(array.getArray()));
+            } else {
+                throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
+            }
         } else {
             throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
+                    new NullPointerException("The object of the class Array passed by the parameter is null."));
         }
         return array;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param integers
+     *
+     * @return
+     */
     @Override
     public Integer[] fill(Integer[] integers) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
-            integers = Arrays.stream(integers)
-                             .map(value -> this.reader.readInt())
-                             .toArray(Integer[]::new);
+            integers = this.initializeArrayElementsEnteredIntegerNumbers(integers);
         } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
         }
         return integers;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param lengthArray
+     *
+     * @return
+     */
     @Override
     public Integer[] fill(int lengthArray) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            integers = Arrays.stream(new Integer[lengthArray])
-                             .map(value -> this.reader.readInt())
-                             .toArray(Integer[]::new);
+            integers = this.initializeArrayElementsEnteredIntegerNumbers(new Integer[lengthArray]);
         } else {
-            integers = this.fill(DEFAULT_LENGTH_ARRAY);
+            integers = this.initializeArrayElementsEnteredIntegerNumbers(new Integer[DEFAULT_LENGTH_ARRAY]);
         }
         return integers;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param array
+     * @param bound
+     *
+     * @return
+     */
     @Override
     public Array<Integer> fill(final Array<Integer> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkBoundValueIsPositive(bound)) {
-                this.enteringIntegerNumbers(array.getArray(), START_BOUND, bound, this.reader);
+            if (checkNonNullArrayNumbers(array.getArray())) {
+                if (checkBoundValueIsPositive(bound)) {
+                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), bound));
+                } else {
+                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_INTEGER_BOUND));
+                }
             } else {
-                this.enteringIntegerNumbers(array.getArray(), START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
+                throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
             }
         } else {
             throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
+                    new NullPointerException("The object of the class Array passed by the parameter is null."));
         }
         return array;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param integers
+     * @param bound
+     *
+     * @return
+     */
     @Override
     public Integer[] fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
             if (checkBoundValueIsPositive(bound)) {
-                this.enteringIntegerNumbers(integers, START_BOUND, bound, this.reader);
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                this.enteringIntegerNumbers(integers, START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
-            }
-        } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The array passed by the parameter is null."));
-        }
-        return integers;
-    }
-
-    @Override
-    public Integer[] fill(int lengthArray, Integer bound) {
-        Integer[] integers;
-        if (checkLengthArray(lengthArray)) {
-            if (checkBoundValueIsPositive(bound)) {
-                integers = new Integer[lengthArray];
-                this.enteringIntegerNumbers(integers, START_BOUND, bound, this.reader);
-            } else {
-                integers = new Integer[lengthArray];
-                this.enteringIntegerNumbers(integers, START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
-            }
-        } else {
-            integers = new Integer[DEFAULT_LENGTH_ARRAY];
-            this.enteringIntegerNumbers(integers, START_BOUND, DEFAULT_INTEGER_BOUND, this.reader);
-        }
-        return integers;
-    }
-
-    @Override
-    public Array<Integer> fill(final Array<Integer> array, Integer minBound, Integer maxBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
-                this.enteringIntegerNumbers(array.getArray(), minBound, maxBound, this.reader);
-            } else {
-                this.enteringIntegerNumbers(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
-            }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
-        }
-        return array;
-    }
-
-    @Override
-    public Integer[] fill(Integer[] integers, Integer minBound, Integer maxBound) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(integers)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
-                this.enteringIntegerNumbers(integers, minBound, maxBound, this.reader);
-            } else {
-                this.enteringIntegerNumbers(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -144,34 +150,131 @@ public class FillingArrayEnteredIntegerNumbers implements FillingArrayNumbers<In
         return integers;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param lengthArray
+     * @param bound
+     *
+     * @return
+     */
     @Override
-    public Integer[] fill(int lengthArray, Integer minBound, Integer maxBound) {
+    public Integer[] fill(int lengthArray, Integer bound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
-                integers = new Integer[lengthArray];
-                this.enteringIntegerNumbers(integers, minBound, maxBound, this.reader);
+            if (checkBoundValueIsPositive(bound)) {
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[lengthArray], bound);
             } else {
-                integers = new Integer[lengthArray];
-                this.enteringIntegerNumbers(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[lengthArray], DEFAULT_INTEGER_BOUND);
             }
         } else {
-            integers = new Integer[DEFAULT_LENGTH_ARRAY];
-            this.enteringIntegerNumbers(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND, this.reader);
+            integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[DEFAULT_LENGTH_ARRAY], DEFAULT_INTEGER_BOUND);
         }
         return integers;
     }
 
-    private void enteringIntegerNumbers(final Integer[] integers, final int minBound, final int maxBound, final Reader reader) {
-        for (int i = 0; i < integers.length; i++) {
-            int value = reader.readInt();
-            if ((value >= minBound) && (value <= maxBound)) {
-                integers[i] = value;
+    /**
+     * <p></p>
+     *
+     * @param array
+     * @param minBound
+     * @param maxBound
+     *
+     * @return
+     * */
+    @Override
+    public Array<Integer> fill(final Array<Integer> array, Integer minBound, Integer maxBound) throws IllegalArgumentException {
+        if (checkNonNullArrayObject(array)) {
+            if (checkNonNullArrayNumbers(array.getArray())) {
+                if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
+                        && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
+                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(array.getArray(), minBound, maxBound));
+                } else {
+                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND));
+                }
             } else {
-                //todo Обдумать, как сообщить вызывающему коду, что было введено не корректное значение и эта итерация будет повторена.
-                i--;
+                throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
             }
+        } else {
+            throw new IllegalArgumentException(new NullPointerException("The object of the class Array passed by the parameter is null."));
         }
+        return array;
+    }
+
+    /**
+     * <p></p>
+     *
+     * @param integers
+     * @param minBound
+     * @param maxBound
+     *
+     * @return
+     */
+    @Override
+    public Integer[] fill(Integer[] integers, Integer minBound, Integer maxBound) throws IllegalArgumentException {
+        if (checkNonNullArrayNumbers(integers)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
+                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(integers, minBound, maxBound);
+            } else {
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+            }
+        } else {
+            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+        }
+        return integers;
+    }
+
+    /**
+     * <p></p>
+     *
+     * @param lengthArray
+     * @param minBound
+     * @param maxBound
+     *
+     * @return
+     */
+    @Override
+    public Integer[] fill(int lengthArray, Integer minBound, Integer maxBound) {
+        Integer[] integers;
+        if (checkLengthArray(lengthArray)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
+                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], minBound, maxBound);
+            } else {
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+            }
+        } else {
+            integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(new Integer[DEFAULT_LENGTH_ARRAY], DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+        }
+        return integers;
+    }
+
+    private Integer[] initializeArrayElementsEnteredIntegerNumbers(final Integer[] integers) {
+        return Arrays.stream(integers).mapToInt(value -> super.getReader().readInt()).boxed().toArray(Integer[]::new);
+    }
+
+    private Integer[] initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(final Integer[] integers, final int bound) {
+        return Arrays.stream(integers).mapToInt(value -> {
+            value = super.getReader().readInt();
+            if ((value >= DEFAULT_START_BOUND) && (value <= bound)) {
+                return value;
+            } else {
+                return DEFAULT_INTEGER_VALUE;
+            }
+        }).boxed().toArray(Integer[]::new);
+    }
+
+    private Integer[] initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(final Integer[] integers,
+                                                                                                final int minBound, final int maxBound) {
+        return Arrays.stream(integers).mapToInt(value -> {
+            value = super.getReader().readInt();
+            if ((value >= minBound) && (value <= maxBound)) {
+                return value;
+            } else {
+                return DEFAULT_INTEGER_VALUE;
+            }
+        }).boxed().toArray(Integer[]::new);
     }
 
 }

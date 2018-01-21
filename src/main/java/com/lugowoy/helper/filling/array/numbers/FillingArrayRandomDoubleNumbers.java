@@ -114,7 +114,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
     @Override
     public Array<Double> fill(final Array<Double> array, Double minBound, Double maxBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 array.setArray(Arrays.stream(array.getArray())
                                      .mapToDouble(value -> GeneratorRandomNumber.generateDouble(minBound, maxBound))
                                      .boxed()
@@ -132,7 +132,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
     @Override
     public Double[] fill(Double[] doubles, Double minBound, Double maxBound) {
         if (checkNonNullArrayNumbers(doubles)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 doubles = Arrays.stream(doubles)
                                 .mapToDouble(value -> GeneratorRandomNumber.generateDouble(minBound, maxBound))
                                 .boxed()
@@ -151,7 +151,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
     public Double[] fill(int lengthArray, Double minBound, Double maxBound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 doubles = Arrays.stream(new Double[lengthArray])
                                 .mapToDouble(value -> GeneratorRandomNumber.generateDouble(minBound, maxBound))
                                 .boxed()

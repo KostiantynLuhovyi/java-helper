@@ -96,7 +96,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
     @Override
     public Array<Double> fill(final Array<Double> array, Double minBound, Double maxBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(array.getArray(), minBound, maxBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(array.getArray(), DefaultValuesOfArray.DEFAULT_DOUBLE_MIN_BOUND, DefaultValuesOfArray.DEFAULT_DOUBLE_MAX_BOUND);
@@ -111,7 +111,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
     @Override
     public Double[] fill(Double[] doubles, Double minBound, Double maxBound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(doubles)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(doubles, minBound, maxBound);
             } else {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(doubles, DefaultValuesOfArray.DEFAULT_DOUBLE_MIN_BOUND, DefaultValuesOfArray.DEFAULT_DOUBLE_MAX_BOUND);
@@ -126,7 +126,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
     public Double[] fill(int lengthArray, Double minBound, Double maxBound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 doubles = new Double[lengthArray];
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(doubles, minBound, maxBound);
             } else {

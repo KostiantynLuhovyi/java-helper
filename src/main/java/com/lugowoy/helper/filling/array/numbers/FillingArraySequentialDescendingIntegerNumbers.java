@@ -95,7 +95,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
     @Override
     public Array<Integer> fill(final Array<Integer> array, Integer minBound, Integer maxBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(array.getArray(), minBound, maxBound);
             } else {
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(array.getArray(), DefaultValuesOfArray.DEFAULT_INTEGER_MIN_BOUND, DefaultValuesOfArray.DEFAULT_INTEGER_MAX_BOUND);
@@ -109,7 +109,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
     @Override
     public Integer[] fill(Integer[] integers, Integer minBound, Integer maxBound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, minBound, maxBound);
             } else {
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, DefaultValuesOfArray.DEFAULT_INTEGER_MIN_BOUND, DefaultValuesOfArray.DEFAULT_INTEGER_MAX_BOUND);
@@ -124,7 +124,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
     public Integer[] fill(int lengthArray, Integer minBound, Integer maxBound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkStartBoundValueLessThanEndBoundValue(minBound, maxBound)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
                 integers = new Integer[lengthArray];
                 this.initializeArrayIntegerElementsWithSuccessiveDescendingValuesFromMinBoundToMaxBound(integers, minBound, maxBound);
             } else {
