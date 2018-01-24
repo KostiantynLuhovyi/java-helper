@@ -8,7 +8,6 @@ import com.lugowoy.helper.models.arrays.Array;
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 1.0
  *
  * <p></p>
  *
@@ -27,8 +26,6 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * @param bound
      *
      * @return
-     *
-     * @since 1.0
      */
     Array<T> fill(Array<T> array, T bound);
 
@@ -39,8 +36,6 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * @param bound
      *
      * @return
-     *
-     * @since 1.0
      */
     T[] fill(T[] tArray, T bound);
 
@@ -51,8 +46,6 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * @param bound
      *
      * @return
-     *
-     * @since 1.0
      */
     T[] fill(int lengthArray, T bound);
 
@@ -64,8 +57,6 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * @param maxBound
      *
      * @return
-     *
-     * @since 1.0
      */
     Array<T> fill(Array<T> array, T minBound, T maxBound);
 
@@ -77,8 +68,6 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * @param maxBound
      *
      * @return
-     *
-     * @since 1.0
      */
     T[] fill(T[] tArray, T minBound, T maxBound);
 
@@ -90,8 +79,6 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * @param maxBound
      *
      * @return
-     *
-     * @since 1.0
      */
     T[] fill(int lengthArray, T minBound, T maxBound);
 

@@ -8,11 +8,8 @@ import com.lugowoy.helper.models.arrays.Array;
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- * @since 1.0
  *
- * <p>
- *
- * </p>
+ * <p></p>
  *
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
@@ -29,8 +26,6 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * <p></p>
      *
      * @param fillingArrayNumbers
-     *
-     * @since 1.0
      */
     protected FillerArrayNumbers(FillingArrayNumbers<T> fillingArrayNumbers) {
         super(fillingArrayNumbers);
@@ -42,8 +37,6 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * @param array
      *
      * @return
-     *
-     * @since 1.0
      */
     @Override
     public Array<T> fill(Array<T> array) {
@@ -57,8 +50,6 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * @param bound
      *
      * @return
-     *
-     * @since 1.0
      */
     @Override
     public Array<T> fill(Array<T> array, T bound) {
@@ -72,8 +63,6 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * @param bound
      *
      * @return
-     *
-     * @since 1.0
      */
     @Override
     public T[] fill(T[] tArray, T bound) {
@@ -87,8 +76,6 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * @param bound
      *
      * @return
-     *
-     * @since 1.0
      */
     @Override
     public T[] fill(int lengthArray, T bound) {
@@ -103,8 +90,6 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * @param maxBound
      *
      * @return
-     *
-     * @since 1.0
      */
     @Override
     public Array<T> fill(Array<T> array, T minBound, T maxBound) {
@@ -119,8 +104,6 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * @param maxBound
      *
      * @return
-     *
-     * @since 1.0
      */
     @Override
     public T[] fill(T[] tArray, T minBound, T maxBound) {
@@ -135,8 +118,6 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * @param maxBound
      *
      * @return
-     *
-     * @since 1.0
      */
     @Override
     public T[] fill(int lengthArray, T minBound, T maxBound) {
@@ -149,8 +130,6 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> impleme
      * @param fillingArrayNumbers
      *
      * @return
-     *
-     * @since 1.0
      */
     public static <T extends Number> FillerArrayNumbers<T> getFillerArrayNumbers(FillingArrayNumbers<T> fillingArrayNumbers) {
         return new FillerArrayNumbers<T>(fillingArrayNumbers);

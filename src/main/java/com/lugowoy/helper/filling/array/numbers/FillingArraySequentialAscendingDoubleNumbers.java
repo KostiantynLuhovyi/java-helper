@@ -8,115 +8,118 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * Created by Konstantin Lugowoy on 12-Jan-18.
- */
+ *
+ * @author Konsatantin Lugowoy
+ * @version 1.1
+ *
+ * <p></p>
+ *
+ * @see com.lugowoy.helper.filling.Filling
+ * @see com.lugowoy.helper.filling.array.FillingArray
+ * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
+ * */
 
 public class FillingArraySequentialAscendingDoubleNumbers implements FillingArrayNumbers<Double> {
 
+    /**
+     * <p></p>
+     *
+     * @param array
+     *
+     * @return
+     * */
     @Override
     public Array<Double> fill(final Array<Double> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            this.initializeArrayDoubleElementsWithSuccessiveAscendingValues(array.getArray());
+            if (checkNonNullArrayNumbers(array.getArray())) {
+                this.initializeArrayElementsSequentialAscendingDoubleNumbers(array.getArray());
+            } else {
+                throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+            }
         } else {
             throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
+                    new NullPointerException("The object of the class Array passed by the parameter is null."));
         }
         return array;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param doubles
+     *
+     * @return
+     * */
     @Override
     public Double[] fill(Double[] doubles) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(doubles)) {
-            this.initializeArrayDoubleElementsWithSuccessiveAscendingValues(doubles);
+            this.initializeArrayElementsSequentialAscendingDoubleNumbers(doubles);
         } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
         }
         return doubles;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param lengthArray
+     *
+     * @return
+     * */
     @Override
     public Double[] fill(int lengthArray) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            doubles = new Double[lengthArray];
-            this.initializeArrayDoubleElementsWithSuccessiveAscendingValues(doubles);
+            doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbers(new Double[lengthArray]);
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayDoubleElementsWithSuccessiveAscendingValues(doubles);
+            doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbers(new Double[DEFAULT_LENGTH_ARRAY]);
         }
         return doubles;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param array
+     * @param bound
+     *
+     * @return
+     * */
     @Override
     public Array<Double> fill(final Array<Double> array, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(array.getArray(), bound);
+            if (checkNonNullArrayNumbers(array.getArray())) {
+                if (checkBoundValueIsPositive(bound)) {
+                    array.setArray(this.initializeArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(array.getArray(), bound));
+                } else {
+                    array.setArray(this.initializeArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_DOUBLE_BOUND));
+                }
             } else {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(array.getArray(), DEFAULT_DOUBLE_BOUND);
+                throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
             }
         } else {
             throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
+                    new NullPointerException("The object of the class Array passed by the parameter is null."));
         }
         return array;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param doubles
+     * @param bound
+     *
+     * @return
+     * */
     @Override
     public Double[] fill(Double[] doubles, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(doubles)) {
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(doubles, bound);
+                doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(doubles, DEFAULT_DOUBLE_BOUND);
-            }
-        } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The array passed by the parameter is null."));
-        }
-        return doubles;
-    }
-
-    @Override
-    public Double[] fill(int lengthArray, Double bound) {
-        Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
-            if (checkBoundValueIsPositive(bound)) {
-                doubles = new Double[lengthArray];
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(doubles, bound);
-            } else {
-                doubles = new Double[lengthArray];
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(doubles, DEFAULT_DOUBLE_BOUND);
-            }
-        } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(doubles, DEFAULT_DOUBLE_BOUND);
-        }
-        return doubles;
-    }
-
-    @Override
-    public Array<Double> fill(final Array<Double> array, Double minBound, Double maxBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(array.getArray(), minBound, maxBound);
-            } else {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(array.getArray(), DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
-            }
-        } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array<T> passed by the parameter is null."));
-        }
-        return array;
-    }
-
-    @Override
-    public Double[] fill(Double[] doubles, Double minBound, Double maxBound) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(doubles)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(doubles, minBound, maxBound);
-            } else {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
+                doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -124,50 +127,139 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
         return doubles;
     }
 
+    /**
+     * <p></p>
+     *
+     * @param lengthArray
+     * @param bound
+     *
+     * @return
+     * */
     @Override
-    public Double[] fill(int lengthArray, Double minBound, Double maxBound) {
+    public Double[] fill(int lengthArray, Double bound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)) {
-                doubles = new Double[lengthArray];
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(doubles, minBound, maxBound);
+            if (checkBoundValueIsPositive(bound)) {
+                doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(new Double[lengthArray], bound);
             } else {
-                doubles = new Double[lengthArray];
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
+                doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(new Double[lengthArray], DEFAULT_DOUBLE_BOUND);
             }
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
+            doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(new Double[DEFAULT_LENGTH_ARRAY], DEFAULT_DOUBLE_BOUND);
         }
         return doubles;
     }
 
-    private void initializeArrayDoubleElementsWithSuccessiveAscendingValues(Double[] doubles) {
+    /**
+     * <p></p>
+     *
+     * @param array
+     * @param minBound
+     * @param maxBound
+     *
+     * @return
+     * */
+    @Override
+    public Array<Double> fill(final Array<Double> array, Double minBound, Double maxBound) throws IllegalArgumentException {
+        if (checkNonNullArrayObject(array)) {
+            if (checkNonNullArrayNumbers(array.getArray())) {
+                if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
+                        && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
+                    array.setArray(this.initializeArrayElementsSequentialAscendingDoubleNumbersFromMinBoundToMaxBound(array.getArray(), minBound, maxBound));
+                } else {
+                    array.setArray(this.initializeArrayElementsSequentialAscendingDoubleNumbersFromMinBoundToMaxBound(array.getArray(), DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND));
+                }
+            } else {
+                throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+            }
+        } else {
+            throw new IllegalArgumentException(
+                    new NullPointerException("The object of the class Array passed by the parameter is null."));
+        }
+        return array;
+    }
+
+    /**
+     * <p></p>
+     *
+     * @param doubles
+     * @param minBound
+     * @param maxBound
+     *
+     * @return
+     * */
+    @Override
+    public Double[] fill(Double[] doubles, Double minBound, Double maxBound) throws IllegalArgumentException {
+        if (checkNonNullArrayNumbers(doubles)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
+                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
+                doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromMinBoundToMaxBound(doubles, minBound, maxBound);
+            } else {
+                doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromMinBoundToMaxBound(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
+            }
+        } else {
+            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+        }
+        return doubles;
+    }
+
+    /**
+     * <p></p>
+     *
+     * @param lengthArray
+     * @param minBound
+     * @param maxBound
+     *
+     * @return
+     * */
+    @Override
+    public Double[] fill(int lengthArray, Double minBound, Double maxBound) {
+        Double[] doubles;
+        if (checkLengthArray(lengthArray)) {
+            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
+                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
+                doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromMinBoundToMaxBound(new Double[lengthArray], minBound, maxBound);
+            } else {
+                doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromMinBoundToMaxBound(new Double[lengthArray], DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
+            }
+        } else {
+            doubles = this.initializeArrayElementsSequentialAscendingDoubleNumbersFromMinBoundToMaxBound(new Double[DEFAULT_LENGTH_ARRAY], DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
+        }
+        return doubles;
+    }
+
+    private Double[] initializeArrayElementsSequentialAscendingDoubleNumbers(final Double[] doubles) {
         double value = 0.0, integerDigit = 1.0;
         for (int i = 0; i < doubles.length; i++) {
             doubles[i] = value;
             value += integerDigit;
         }
+        return doubles;
     }
 
-    private void initializeArrayDoubleElementsWithSuccessiveAscendingValuesToBoundary(Double[] doubles, Double bound) {
+    private Double[] initializeArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(final Double[] doubles, final double bound) {
+        double value = 0.0, integerDigit = 1.0;
         for (int i = 0; i < doubles.length; i++) {
-            if (i <= bound) {
-                doubles[i] = (double) i;
+            if (value <= bound) {
+                doubles[i] = value;
+                value += integerDigit;
             } else {
                 doubles[i] = DEFAULT_DOUBLE_VALUE;
             }
         }
+        return doubles;
     }
 
-    private void initializeArrayDoubleElementsWithSuccessiveAscendingValuesFromMinBoundToMaxBound(Double[] doubles, Double minBound, Double maxBound) {
-        for (int i = 0; i < doubles.length; i++, minBound++) {
-            if (minBound <= maxBound) {
-                doubles[i] = minBound;
+    private Double[] initializeArrayElementsSequentialAscendingDoubleNumbersFromMinBoundToMaxBound(final Double[] doubles, final double minBound, final double maxBound) {
+        double value = minBound;
+        for (int i = 0; i < doubles.length; i++, value++) {
+            if (value <= maxBound) {
+                doubles[i] = value;
             } else {
                 doubles[i] = DEFAULT_DOUBLE_VALUE;
             }
         }
+        return doubles;
     }
 
 }

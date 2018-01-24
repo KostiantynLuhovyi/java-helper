@@ -30,8 +30,6 @@ public class FillingArrayEnteredDoubleNumbers extends FillingArrayEnteredValues<
      * <p></p>
      *
      * @param reader
-     *
-     * @since 1.0
      */
     public FillingArrayEnteredDoubleNumbers(Reader reader) {
         super(reader);
