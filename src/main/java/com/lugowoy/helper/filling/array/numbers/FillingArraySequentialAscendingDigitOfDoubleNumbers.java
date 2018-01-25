@@ -53,7 +53,7 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
             if (checkBoundValueIsInCorrectRange(startBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(array.getArray(), startBound);
             } else {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(array.getArray(), DEFAULT_DOUBLE_BOUND);
+                this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(array.getArray(), DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(
@@ -68,7 +68,7 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
             if (checkBoundValueIsInCorrectRange(startBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, startBound);
             } else {
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_BOUND);
+                this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(
@@ -86,11 +86,11 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
                 this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, startBound);
             } else {
                 doubles = new Double[lengthArray];
-                this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_BOUND);
+                this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_BOUND);
+            this.initializeArrayDoubleElementsWithSuccessiveAscendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
         }
         return doubles;
     }

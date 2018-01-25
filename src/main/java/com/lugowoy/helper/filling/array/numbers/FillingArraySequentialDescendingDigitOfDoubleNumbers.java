@@ -52,7 +52,7 @@ public class FillingArraySequentialDescendingDigitOfDoubleNumbers implements Fil
             if (checkBoundValueIsInCorrectRange(startBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(array.getArray(), startBound);
             } else {
-                this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(array.getArray(), DEFAULT_DOUBLE_BOUND);
+                this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(array.getArray(), DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(
@@ -67,7 +67,7 @@ public class FillingArraySequentialDescendingDigitOfDoubleNumbers implements Fil
             if (checkBoundValueIsInCorrectRange(startBound)) {
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(doubles, startBound);
             } else {
-                this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_BOUND);
+                this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -84,11 +84,11 @@ public class FillingArraySequentialDescendingDigitOfDoubleNumbers implements Fil
                 this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(doubles, startBound);
             } else {
                 doubles = new Double[lengthArray];
-                this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_BOUND);
+                this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_BOUND);
+            this.initializeArrayDoubleElementsWithSuccessiveDescendingFractionalValuesFromBoundary(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
         }
         return doubles;
     }

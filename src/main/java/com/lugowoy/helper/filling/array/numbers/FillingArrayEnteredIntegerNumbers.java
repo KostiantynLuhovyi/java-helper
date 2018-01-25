@@ -116,7 +116,7 @@ public class FillingArrayEnteredIntegerNumbers extends FillingArrayEnteredValues
                 if (checkBoundValueIsPositive(bound)) {
                     array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), bound));
                 } else {
-                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_INTEGER_BOUND));
+                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_INTEGER_POSITIVE_BOUND));
                 }
             } else {
                 throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
@@ -142,7 +142,7 @@ public class FillingArrayEnteredIntegerNumbers extends FillingArrayEnteredValues
             if (checkBoundValueIsPositive(bound)) {
                 integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_BOUND);
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -165,10 +165,10 @@ public class FillingArrayEnteredIntegerNumbers extends FillingArrayEnteredValues
             if (checkBoundValueIsPositive(bound)) {
                 integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[lengthArray], bound);
             } else {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[lengthArray], DEFAULT_INTEGER_BOUND);
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[lengthArray], DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[DEFAULT_LENGTH_ARRAY], DEFAULT_INTEGER_BOUND);
+            integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[DEFAULT_LENGTH_ARRAY], DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return integers;
     }

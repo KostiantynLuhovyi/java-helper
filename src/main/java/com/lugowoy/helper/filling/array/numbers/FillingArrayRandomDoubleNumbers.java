@@ -96,7 +96,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
                 if (checkBoundValueIsPositive(bound)) {
                     array.setArray(this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(array.getArray(), bound));
                 } else {
-                    array.setArray(this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_DOUBLE_BOUND));
+                    array.setArray(this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_DOUBLE_POSITIVE_BOUND));
                 }
             } else {
                 throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
@@ -122,7 +122,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
             if (checkBoundValueIsPositive(bound )) {
                 doubles = this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
-                doubles = this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_BOUND);
+                doubles = this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -145,10 +145,10 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
             if (checkBoundValueIsPositive(bound)) {
                 doubles = this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(new Double[lengthArray], bound);
             } else {
-                doubles = this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(new Double[lengthArray], DEFAULT_DOUBLE_BOUND);
+                doubles = this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(new Double[lengthArray], DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
-            doubles = this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(new Double[DEFAULT_LENGTH_ARRAY], DEFAULT_DOUBLE_BOUND);
+            doubles = this.initializeArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(new Double[DEFAULT_LENGTH_ARRAY], DEFAULT_DOUBLE_POSITIVE_BOUND);
         }
         return doubles;
     }

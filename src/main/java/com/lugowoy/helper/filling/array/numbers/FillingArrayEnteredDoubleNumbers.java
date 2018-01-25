@@ -116,7 +116,7 @@ public class FillingArrayEnteredDoubleNumbers extends FillingArrayEnteredValues<
                 if (checkBoundValueIsPositive(bound)) {
                     array.setArray(this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(array.getArray(), bound));
                 } else {
-                    array.setArray(this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_DOUBLE_BOUND));
+                    array.setArray(this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_DOUBLE_POSITIVE_BOUND));
                 }
             } else {
                 throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
@@ -142,7 +142,7 @@ public class FillingArrayEnteredDoubleNumbers extends FillingArrayEnteredValues<
             if (checkBoundValueIsPositive(bound)) {
                 doubles = this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
-                doubles = this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_BOUND);
+                doubles = this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
@@ -165,10 +165,10 @@ public class FillingArrayEnteredDoubleNumbers extends FillingArrayEnteredValues<
             if (checkBoundValueIsPositive(bound)) {
                 doubles = this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(new Double[lengthArray], bound);
             } else {
-                doubles = this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(new Double[lengthArray], DEFAULT_DOUBLE_BOUND);
+                doubles = this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(new Double[lengthArray], DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
-            doubles = this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(new Double[DEFAULT_LENGTH_ARRAY], DEFAULT_DOUBLE_BOUND);
+            doubles = this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(new Double[DEFAULT_LENGTH_ARRAY], DEFAULT_DOUBLE_POSITIVE_BOUND);
         }
         return doubles;
     }
