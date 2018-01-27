@@ -112,6 +112,18 @@ public interface FillingArrayChecker {
      *
      * @return
      * */
+    static boolean checkStartBoundValueLessThanEndBoundValue(Number startBound, Number endBound) {
+        return startBound.doubleValue() < endBound.doubleValue();
+    }
+
+    /**
+     * <p></p>
+     *
+     * @param startBound
+     * @param endBound
+     *
+     * @return
+     * */
     static boolean checkStartBoundValueMoreThanEndBoundValue(Number startBound, Number endBound) {
         return startBound.doubleValue() > endBound.doubleValue();
     }
