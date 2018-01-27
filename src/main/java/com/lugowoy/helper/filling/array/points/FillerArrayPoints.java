@@ -9,7 +9,6 @@ import com.lugowoy.helper.models.points.Point;
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- * @since 1.0
  *
  * <p>
  *
@@ -22,7 +21,7 @@ import com.lugowoy.helper.models.points.Point;
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
  *
  * @param <T>
- */
+ * */
 
 public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> implements FillingArray<Point<T>>, FillingArrayPoints<T> {
 
@@ -32,9 +31,7 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> i
      * <p></p>
      *
      * @param fillingArray
-     *
-     * @since 1.0
-     */
+     * */
     private FillerArrayPoints(FillingArray<Point<T>> fillingArray) {
         super(fillingArray);
     }
@@ -43,9 +40,7 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> i
      * <p></p>
      *
      * @param fillingArrayPoints
-     *
-     * @since 1.0
-     */
+     * */
     private FillerArrayPoints(FillingArrayPoints<T> fillingArrayPoints) {
         this.fillingArrayPoints = fillingArrayPoints;
     }
@@ -54,9 +49,7 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> i
      * <p></p>
      *
      * @param array
-     *
-     * @since 1.0
-     */
+     * */
     @Override
     public Point<T>[] fill(T[] array) {
         return this.fillingArrayPoints.fill(array);
@@ -68,9 +61,7 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> i
      * @param fillingArray
      *
      * @return
-     *
-     * @since 1.0
-     */
+     * */
     public static <T extends Number> FillerArrayPoints<T> getFillerArrayPoints(FillingArray<Point<T>> fillingArray) {
         return new FillerArrayPoints<T>(fillingArray);
     }
@@ -81,9 +72,7 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> i
      * @param fillingArrayPoints
      *
      * @return
-     *
-     * @since 1.0
-     */
+     * */
     public static <T extends Number> FillerArrayPoints<T> getFillerArrayPoints(FillingArrayPoints<T> fillingArrayPoints) {
         return new FillerArrayPoints<T>(fillingArrayPoints);
     }
