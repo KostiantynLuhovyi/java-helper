@@ -20,20 +20,19 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  *
  * <p></p>
  *
- * @see com.lugowoy.helper.filling.array.points.FillingArrayPointsEnteredValues
+ * @see FillingArrayOfPointsReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  */
 
-public class FillingArrayPointsEnteredIntegerNumbers extends FillingArrayPointsEnteredValues<Integer>
-                                                                implements FillingArrayPointsWithNumbersCoordinates<Integer> {
+public class FillingArrayOfPointsReadIntegerNumbers extends FillingArrayOfPointsReadValues<Integer> {
 
     /**
      * <p></p>
      *
      * @param reader
      * */
-    public FillingArrayPointsEnteredIntegerNumbers(Reader reader) {
+    public FillingArrayOfPointsReadIntegerNumbers(Reader reader) {
         super(reader);
     }
 
@@ -42,7 +41,7 @@ public class FillingArrayPointsEnteredIntegerNumbers extends FillingArrayPointsE
      *
      * @param reading
      * */
-    public FillingArrayPointsEnteredIntegerNumbers(Reading reading) {
+    public FillingArrayOfPointsReadIntegerNumbers(Reading reading) {
         super(reading);
     }
 
@@ -109,15 +108,15 @@ public class FillingArrayPointsEnteredIntegerNumbers extends FillingArrayPointsE
      * <p></p>
      *
      * @param array
-     * @param endBound
+     * @param bound
      * @return
      */
     @Override
-    public Array<Point<Integer>> fill(final Array<Point<Integer>> array, Integer endBound) throws IllegalArgumentException {
+    public Array<Point<Integer>> fill(final Array<Point<Integer>> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             if (checkNonNullArrayPoints(array.getArray())) {
-                if (checkBoundValueIsPositive(endBound)) {
-                    array.setArray(this.initializeArrayElementsToObjectOfPointsWithFilledEnteredIntegerCoordinatesFromZeroToBound(array.getArray(), endBound));
+                if (checkBoundValueIsPositive(bound)) {
+                    array.setArray(this.initializeArrayElementsToObjectOfPointsWithFilledEnteredIntegerCoordinatesFromZeroToBound(array.getArray(), bound));
                 } else {
                     array.setArray(this.initializeArrayElementsToObjectOfPointsWithFilledEnteredIntegerCoordinatesFromZeroToBound(array.getArray(), DEFAULT_INTEGER_POSITIVE_BOUND));
                 }
@@ -136,14 +135,14 @@ public class FillingArrayPointsEnteredIntegerNumbers extends FillingArrayPointsE
      * <p></p>
      *
      * @param points
-     * @param endBound
+     * @param bound
      * @return
      */
     @Override
-    public Point<Integer>[] fill(Point<Integer>[] points, Integer endBound) throws IllegalArgumentException {
+    public Point<Integer>[] fill(Point<Integer>[] points, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayPoints(points)) {
-            if (checkBoundValueIsPositive(endBound)) {
-                points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredIntegerCoordinatesFromZeroToBound(points, endBound);
+            if (checkBoundValueIsPositive(bound)) {
+                points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredIntegerCoordinatesFromZeroToBound(points, bound);
             } else {
                 points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredIntegerCoordinatesFromZeroToBound(points, DEFAULT_INTEGER_POSITIVE_BOUND);
             }
@@ -157,16 +156,16 @@ public class FillingArrayPointsEnteredIntegerNumbers extends FillingArrayPointsE
      * <p></p>
      *
      * @param lengthArray
-     * @param endBound
+     * @param bound
      * @return
      */
     @Override
-    public Point<Integer>[] fill(int lengthArray, Integer endBound) {
+    public Point<Integer>[] fill(int lengthArray, Integer bound) {
         Point<Integer>[] points;
         if (checkLengthArray(lengthArray)) {
             points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(lengthArray).getArray();
-            if (checkBoundValueIsPositive(endBound)) {
-                points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredIntegerCoordinatesFromZeroToBound(points, endBound);
+            if (checkBoundValueIsPositive(bound)) {
+                points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredIntegerCoordinatesFromZeroToBound(points, bound);
             } else {
                 points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredIntegerCoordinatesFromZeroToBound(points, DEFAULT_INTEGER_POSITIVE_BOUND);
             }

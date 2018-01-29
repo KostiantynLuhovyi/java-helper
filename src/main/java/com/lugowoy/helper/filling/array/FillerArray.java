@@ -1,6 +1,7 @@
 package com.lugowoy.helper.filling.array;
 
 import com.lugowoy.helper.filling.Filler;
+import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
@@ -8,90 +9,88 @@ import com.lugowoy.helper.models.arrays.Array;
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- * @since 1.0
  *
- * <p>
- *
- * </p>
+ * The class is the inheritor of the class {@link Filler}.
+ * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArray} interface
+ *  and delegates to it an obligation to perform functionality to fill an array with data.
+ * <p> All an objects of the classes that implement the contract of the {@link FillingArray} interface can be encapsulated
+ *  and involved in the functionality.
  *
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  *
- * @param <T>
- */
+ * @param <T> The type of data objects stored and filled into an array.
+ * */
 
 public class FillerArray<T> extends Filler<Array<T>> implements FillingArray<T> {
 
     /**
-     * <p></p>
-     * @since 1.0
+     * Default constructor.
+     * The presence of this is absolutely not necessary.
+     * Its presence is caused by the need to add more extended constructor variants to the inheritor of this class.
      */
     protected FillerArray() {
     }
 
     /**
-     * <p></p>
+     * Constructor to create a new {@link FillerArray} and initializes the object encapsulated in parent class to perform the functionality.
      *
-     * @param filling
-     *
-     * @since 1.0
-     */
-    protected FillerArray(FillingArray<T> filling) {
-        super(filling);
+     * @param fillingArray The object that implements the {@link FillingArray} interface contract to fill an array.
+     * */
+    protected FillerArray(FillingArray<T> fillingArray) {
+        super(fillingArray);
     }
 
     /**
-     * <p></p>
+     * Fills an object of class {@link Array} with data.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link Filling} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @param array
-     *
-     * @return
-     *
-     * @since 1.0
-     */
+     * @param array The object of class {@link Array} to be filled with data.
+     * @return The object of class {@link Array} filled with data.
+     * */
     @Override
     public Array<T> fill(Array<T> array) {
         return super.fill(array);
     }
 
     /**
-     * <p></p>
+     * Fills an array with data.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArray} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @param tArray
-     *
-     * @return
-     *
-     * @since 1.0
-     */
+     * @param tArray The array to be filled with data.
+     * @return The array filled with data.
+     * */
     @Override
     public T[] fill(T[] tArray) {
         return ((FillingArray<T>)super.getFilling()).fill(tArray);
     }
 
     /**
-     * <p></p>
+     * Fills an array with data.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter determines the length(size) of the created array.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArray} interface contract
+     *  and is encapsulated in the object of parent class.
+     * </p>
      *
-     * @param lengthArray
-     *
-     * @return
-     *
-     * @since 1.0
-     */
+     * @param lengthArray The length(size) of the array to be filled with data.
+     * @return Created and filled array with data.
+     * */
     @Override
     public T[] fill(int lengthArray) {
         return ((FillingArray<T>)super.getFilling()).fill(lengthArray);
     }
 
     /**
-     * <p></p>
+     * Creates a new object of {@link FillerArray} class by calling a single constructor with a parameter
+     *  for initialization the object encapsulated in this class to perform the functionality.
      *
-     * @param fillingArray
-     *
-     * @return
-     *
-     * @since 1.0
-     */
+     * @param fillingArray The object that implements the {@link FillingArray} interface contract to fill an array with data.
+     * @return The created object of this class.
+     * */
     public static <T> FillerArray<T> getFillerArray(FillingArray<T> fillingArray) {
         return new FillerArray<>(fillingArray);
     }

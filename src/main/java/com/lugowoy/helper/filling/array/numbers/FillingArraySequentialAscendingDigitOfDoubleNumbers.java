@@ -163,7 +163,7 @@ public class FillingArraySequentialAscendingDigitOfDoubleNumbers implements Fill
     public Array<Double> fill(final Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException{
         if (checkNonNullArrayObject(array)) {
             if (checkNonNullArrayNumbers(array.getArray())) {
-                if (checkStartBoundValueLessThanEndBoundValue(startBound,endBound)
+                if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))){
                     array.setArray(this.initializeArrayElementsSequentialAscendingDigitOfDoubleValuesFromStartBoundToEndBound(array.getArray(), startBound, endBound));
                 } else{

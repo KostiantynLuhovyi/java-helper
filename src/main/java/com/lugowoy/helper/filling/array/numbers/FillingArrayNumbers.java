@@ -9,77 +9,114 @@ import com.lugowoy.helper.models.arrays.Array;
  * @author Konstantin Lugowoy
  * @version 1.0
  *
- * <p></p>
+ * The interface that declares a contract to filling an array with numeric data.
+ * <p>Also this interface is the inheritor of the {@link FillingArray} interface
+ *  and thereby redefines its contract for filling with numeric data of an object of the {@link Array} wrapper class
+ *  and an classical arrays.
+ * <p>The numeric data by which the array can be filled are wrapper classes {@link Array} and must be the inheritance of the base class {@link Number}.
  *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  *
- * @param <T>
- */
+ * @param <T> The type of the numerical data stored and filled into an array.
+ * */
 
 public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with numeric data.
      *
-     * @param array
-     * @param bound
+     * @param array The object of the {@link Array} class to be filled with numeric data.
+     * @return The object of the {@link Array} class filled with numeric data.
+     * */
+    @Override
+    Array<T> fill(final Array<T> array);
+
+    /**
+     * Fills an array with numeric data.
      *
-     * @return
-     */
+     * @param tArray The array to be filled with numeric data.
+     * @return The array filled with numeric data.
+     * */
+    @Override
+    T[] fill(T[] tArray);
+
+    /**
+     * Fills an array with numeric data.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter determines the length(size) of the created array.
+     *
+     * @param lengthArray The length(size) of the array to be filled with numeric data.
+     * @return Created and filled an array with numeric data.
+     * */
+    @Override
+    T[] fill(int lengthArray);
+
+    /**
+     * Fills an object of the {@link Array} class with numeric data.
+     * <p>The object of the {@link Array} class is filled with numeric data from "0" to the value of the "bound" parameter.
+     *
+     * @param array The object of the {@link Array} class that must be filled with numeric data.
+     * @param bound The value of the bound for filling an object of the {@link Array} class with numeric data.
+     * @return The object of the {@link Array} class filled with numeric data.
+     * */
     Array<T> fill(Array<T> array, T bound);
 
     /**
-     * <p></p>
+     * Fills an array with numeric data.
+     * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      *
-     * @param tArray
-     * @param bound
-     *
-     * @return
-     */
+     * @param tArray The array to be filled with numeric data.
+     * @param bound The value of the border for filling an array with numeric data.
+     * @return The array filled with numeric data.
+     * */
     T[] fill(T[] tArray, T bound);
 
     /**
-     * <p></p>
+     * Fills an array with numeric data.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter determines the length(size) of the created array.
+     * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      *
-     * @param lengthArray
-     * @param bound
-     *
-     * @return
-     */
+     * @param lengthArray The length(size) of the array to be filled with numeric data.
+     * @param bound The value of the border for filling the array with numeric data.
+     * @return Created and filled an array with numeric data.
+     * */
     T[] fill(int lengthArray, T bound);
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with numeric data.
+     * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      *
-     * @param array
-     * @param minBound
-     * @param maxBound
-     *
-     * @return
-     */
-    Array<T> fill(Array<T> array, T minBound, T maxBound);
+     * @param array The object of the {@link Array} class that must be filled with numeric data.
+     * @param startBound The value of the start bound for filling an object of the {@link Array} class with numeric data.
+     * @param endBound The value of the end bound for filling an object of the {@link Array} class with numeric data.
+     * @return The object of the {@link Array} class filled with numeric data.
+     * */
+    Array<T> fill(Array<T> array, T startBound, T endBound);
 
     /**
-     * <p></p>
+     * Fills an array with numeric data.
+     * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      *
-     * @param tArray
-     * @param minBound
-     * @param maxBound
-     *
-     * @return
-     */
-    T[] fill(T[] tArray, T minBound, T maxBound);
+     * @param tArray The array to be filled with numeric data.
+     * @param startBound The value of the start bound for filling an array with numeric data.
+     * @param endBound The value of the end bound for filling an array with numeric data.
+     * @return The array filled with numeric data.
+     * */
+    T[] fill(T[] tArray, T startBound, T endBound);
 
     /**
-     * <p></p>
+     * Fills an array with numeric data.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter determines the length(size) of the created array.
+     * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      *
-     * @param lengthArray
-     * @param minBound
-     * @param maxBound
-     *
-     * @return
-     */
-    T[] fill(int lengthArray, T minBound, T maxBound);
+     * @param lengthArray The length(size) of the array to be filled with numeric data.
+     * @param startBound The value of the start bound for filling an array with numeric data.
+     * @param endBound The value of the end bound for filling an array with numeric data.
+     * @return Created and filled an array with numeric data.
+     * */
+    T[] fill(int lengthArray, T startBound, T endBound);
 
 }

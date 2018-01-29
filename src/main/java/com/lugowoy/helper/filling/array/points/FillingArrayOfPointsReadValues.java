@@ -1,9 +1,7 @@
 package com.lugowoy.helper.filling.array.points;
 
-import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.points.Point;
 
 /**
  * Created by Konstantin Lugowoy on 27-Jan-18.
@@ -17,7 +15,7 @@ import com.lugowoy.helper.models.points.Point;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * */
 
-public abstract class FillingArrayPointsEnteredValues<T extends Number> implements FillingArray<Point<T>> {
+public abstract class FillingArrayOfPointsReadValues<T extends Number> implements FillingArrayOfPoints<T> {
 
     private Reader reader;
 
@@ -26,7 +24,7 @@ public abstract class FillingArrayPointsEnteredValues<T extends Number> implemen
      *
      * @param reader
      * */
-    public FillingArrayPointsEnteredValues(Reader reader) {
+    public FillingArrayOfPointsReadValues(Reader reader) {
         this.reader = reader;
     }
 
@@ -35,7 +33,7 @@ public abstract class FillingArrayPointsEnteredValues<T extends Number> implemen
      *
      * @param reading
      * */
-    public FillingArrayPointsEnteredValues(Reading reading) {
+    public FillingArrayOfPointsReadValues(Reading reading) {
         this.reader = Reader.getReader(reading);
     }
 

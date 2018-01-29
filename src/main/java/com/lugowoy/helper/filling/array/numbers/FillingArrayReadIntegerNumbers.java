@@ -18,20 +18,20 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  *
  * <p></p>
  *
- * @see com.lugowoy.helper.filling.array.numbers.FillingArrayEnteredValues
+ * @see FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
 
-public class FillingArrayEnteredIntegerNumbers extends FillingArrayEnteredValues<Integer> implements FillingArrayNumbers<Integer> {
+public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integer> implements FillingArrayNumbers<Integer> {
 
     /**
      * <p></p>
      *
      * @param reader
      */
-    public FillingArrayEnteredIntegerNumbers(Reader reader) {
+    public FillingArrayReadIntegerNumbers(Reader reader) {
         super(reader);
     }
 
@@ -40,7 +40,7 @@ public class FillingArrayEnteredIntegerNumbers extends FillingArrayEnteredValues
      *
      * @param reading
      */
-    public FillingArrayEnteredIntegerNumbers(Reading reading) {
+    public FillingArrayReadIntegerNumbers(Reading reading) {
         super(reading);
     }
 
@@ -177,18 +177,18 @@ public class FillingArrayEnteredIntegerNumbers extends FillingArrayEnteredValues
      * <p></p>
      *
      * @param array
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      * */
     @Override
-    public Array<Integer> fill(final Array<Integer> array, Integer minBound, Integer maxBound) throws IllegalArgumentException {
+    public Array<Integer> fill(final Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             if (checkNonNullArrayNumbers(array.getArray())) {
-                if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                        && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(array.getArray(), minBound, maxBound));
+                if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(array.getArray(), startBound, endBound));
                 } else {
                     array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND));
                 }
@@ -205,17 +205,17 @@ public class FillingArrayEnteredIntegerNumbers extends FillingArrayEnteredValues
      * <p></p>
      *
      * @param integers
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      */
     @Override
-    public Integer[] fill(Integer[] integers, Integer minBound, Integer maxBound) throws IllegalArgumentException {
+    public Integer[] fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(integers, minBound, maxBound);
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(integers, startBound, endBound);
             } else {
                 integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
             }
@@ -229,18 +229,18 @@ public class FillingArrayEnteredIntegerNumbers extends FillingArrayEnteredValues
      * <p></p>
      *
      * @param lengthArray
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      */
     @Override
-    public Integer[] fill(int lengthArray, Integer minBound, Integer maxBound) {
+    public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], minBound, maxBound);
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], startBound, endBound);
             } else {
                 integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
             }

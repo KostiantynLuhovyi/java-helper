@@ -18,7 +18,7 @@ import com.lugowoy.helper.io.reading.Reading;
  * @param <T>
  */
 
-public abstract class FillingArrayEnteredValues<T> implements FillingArray<T> {
+public abstract class FillingArrayReadValues<T> implements FillingArray<T> {
 
     private Reader reader;
 
@@ -27,7 +27,7 @@ public abstract class FillingArrayEnteredValues<T> implements FillingArray<T> {
      *
      * @param reader
      */
-    public FillingArrayEnteredValues(Reader reader) {
+    public FillingArrayReadValues(Reader reader) {
         this.reader = reader;
     }
 
@@ -36,7 +36,7 @@ public abstract class FillingArrayEnteredValues<T> implements FillingArray<T> {
      *
      * @param reading
      */
-    public FillingArrayEnteredValues(Reading reading) {
+    public FillingArrayReadValues(Reading reading) {
         this.reader = Reader.getReader(reading);
     }
 

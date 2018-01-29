@@ -2,7 +2,6 @@ package com.lugowoy.helper.filling.array.points;
 
 import com.lugowoy.helper.factory.FactoryArray;
 import com.lugowoy.helper.factory.creator.CreatorArrayPoints;
-import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.models.points.Point;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
@@ -23,7 +22,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.FillingArray
  */
 
-public class FillingArrayPointsRandomIntegerNumbers implements FillingArray<Point<Integer>>, FillingArrayPointsWithNumbersCoordinates<Integer> {
+public class FillingArrayOfPointsRandomIntegerNumbers implements FillingArrayOfPoints<Integer> {
 
     /**
      * <p></p>
@@ -88,15 +87,15 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArray<Poin
      * <p></p>
      *
      * @param array
-     * @param endBound
+     * @param bound
      * @return
      */
     @Override
-    public Array<Point<Integer>> fill(final Array<Point<Integer>> array, Integer endBound) throws IllegalArgumentException {
+    public Array<Point<Integer>> fill(final Array<Point<Integer>> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             if (checkNonNullArrayPoints(array.getArray())) {
-                if (checkBoundValueIsPositive(endBound)) {
-                    array.setArray(this.initializeArrayElementsToObjectOfPointsWithFilledRandomIntegerCoordinatesFromZeroToBound(array.getArray(), endBound));
+                if (checkBoundValueIsPositive(bound)) {
+                    array.setArray(this.initializeArrayElementsToObjectOfPointsWithFilledRandomIntegerCoordinatesFromZeroToBound(array.getArray(), bound));
                 } else {
                     array.setArray(this.initializeArrayElementsToObjectOfPointsWithFilledRandomIntegerCoordinatesFromZeroToBound(array.getArray(), DEFAULT_INTEGER_POSITIVE_BOUND));
                 }
@@ -114,14 +113,14 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArray<Poin
      * <p></p>
      *
      * @param points
-     * @param endBound
+     * @param bound
      * @return
      */
     @Override
-    public Point<Integer>[] fill(Point<Integer>[] points, Integer endBound) throws IllegalArgumentException {
+    public Point<Integer>[] fill(Point<Integer>[] points, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayPoints(points)) {
-            if (checkBoundValueIsPositive(endBound)) {
-                points = this.initializeArrayElementsToObjectOfPointsWithFilledRandomIntegerCoordinatesFromZeroToBound(points, endBound);
+            if (checkBoundValueIsPositive(bound)) {
+                points = this.initializeArrayElementsToObjectOfPointsWithFilledRandomIntegerCoordinatesFromZeroToBound(points, bound);
             } else {
                 points = this.initializeArrayElementsToObjectOfPointsWithFilledRandomIntegerCoordinatesFromZeroToBound(points, DEFAULT_INTEGER_POSITIVE_BOUND);
             }
@@ -135,16 +134,16 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArray<Poin
      * <p></p>
      *
      * @param lengthArray
-     * @param endBound
+     * @param bound
      * @return
      */
     @Override
-    public Point<Integer>[] fill(int lengthArray, Integer endBound) {
+    public Point<Integer>[] fill(int lengthArray, Integer bound) {
         Point<Integer>[] points;
         if (checkLengthArray(lengthArray)) {
             points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(lengthArray).getArray();
-            if (checkBoundValueIsPositive(endBound)) {
-                points = this.initializeArrayElementsToObjectOfPointsWithFilledRandomIntegerCoordinatesFromZeroToBound(points, endBound);
+            if (checkBoundValueIsPositive(bound)) {
+                points = this.initializeArrayElementsToObjectOfPointsWithFilledRandomIntegerCoordinatesFromZeroToBound(points, bound);
             } else {
                 points = this.initializeArrayElementsToObjectOfPointsWithFilledRandomIntegerCoordinatesFromZeroToBound(points, DEFAULT_INTEGER_POSITIVE_BOUND);
             }

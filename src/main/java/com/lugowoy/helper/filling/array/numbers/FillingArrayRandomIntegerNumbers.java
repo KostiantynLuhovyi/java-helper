@@ -157,18 +157,18 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * <p></p>
      *
      * @param array
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      * */
     @Override
-    public Array<Integer> fill(final Array<Integer> array, Integer minBound, Integer maxBound) throws IllegalArgumentException {
+    public Array<Integer> fill(final Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             if (checkNonNullArrayNumbers(array.getArray())) {
-                if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                        && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                    array.setArray(this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(array.getArray(), minBound, maxBound));
+                if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                    array.setArray(this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(array.getArray(), startBound, endBound));
                 } else {
                     array.setArray(this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND));
                 }
@@ -186,17 +186,17 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * <p></p>
      *
      * @param integers
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      * */
     @Override
-    public Integer[] fill(Integer[] integers, Integer minBound, Integer maxBound) throws IllegalArgumentException {
+    public Integer[] fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(integers, minBound, maxBound);
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(integers, startBound, endBound);
             } else {
                 integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
             }
@@ -210,18 +210,18 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * <p></p>
      *
      * @param lengthArray
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      * */
     @Override
-    public Integer[] fill(int lengthArray, Integer minBound, Integer maxBound) {
+    public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], minBound, maxBound);
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], startBound, endBound);
             } else {
                 integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
             }

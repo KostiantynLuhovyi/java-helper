@@ -6,18 +6,19 @@ package com.lugowoy.helper.filling;
  * @author Konstantin Lugowoy
  * @version 1.0
  *
- * <p></p>
- */
+ * The interface that declares a contract to filling an object or data structure with data.
+ *
+ * @param <T> The type of objects that are filled with different data.
+ * */
 
 public interface Filling<T> {
 
     /**
-     * <p></p>
+     * Fills an object or data structure with data.
      *
-     * @param t
-     *
-     * @return
-     */
+     * @param t The object or data structure to be filled with data.
+     * @return The object or data structure filled with data.
+     * */
     T fill(T t);
 
 }

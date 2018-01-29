@@ -2,8 +2,6 @@ package com.lugowoy.helper.filling.array.points;
 
 import com.lugowoy.helper.factory.FactoryArray;
 import com.lugowoy.helper.factory.creator.CreatorArrayPoints;
-import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
-import com.lugowoy.helper.filling.array.FillerArray;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
@@ -21,20 +19,19 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  *
  * <p></p>
  *
- * @see com.lugowoy.helper.filling.array.points.FillingArrayPointsEnteredValues
+ * @see FillingArrayOfPointsReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * */
 
-public class FillingArrayPointsEnteredDoubleNumbers extends FillingArrayPointsEnteredValues<Double>
-                                                                implements FillingArrayPointsWithNumbersCoordinates<Double> {
+public class FillingArrayOfPointsReadDoubleNumbers extends FillingArrayOfPointsReadValues<Double> {
 
     /**
      * <p></p>
      *
      * @param reader
      * */
-    public FillingArrayPointsEnteredDoubleNumbers(Reader reader) {
+    public FillingArrayOfPointsReadDoubleNumbers(Reader reader) {
         super(reader);
     }
 
@@ -43,7 +40,7 @@ public class FillingArrayPointsEnteredDoubleNumbers extends FillingArrayPointsEn
      *
      * @param reading
      * */
-    public FillingArrayPointsEnteredDoubleNumbers(Reading reading) {
+    public FillingArrayOfPointsReadDoubleNumbers(Reading reading) {
         super(reading);
     }
 
@@ -108,15 +105,15 @@ public class FillingArrayPointsEnteredDoubleNumbers extends FillingArrayPointsEn
      * <p></p>
      *
      * @param array
-     * @param endBound
+     * @param bound
      * @return
      */
     @Override
-    public Array<Point<Double>> fill(final Array<Point<Double>> array, Double endBound) throws IllegalArgumentException {
+    public Array<Point<Double>> fill(final Array<Point<Double>> array, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             if (checkNonNullArrayPoints(array.getArray())) {
-                if (checkBoundValueIsPositive(endBound)) {
-                    array.setArray(this.initializeArrayElementsToObjectOfPointsWithFilledEnteredDoubleCoordinatesFromZeroToBound(array.getArray(), endBound));
+                if (checkBoundValueIsPositive(bound)) {
+                    array.setArray(this.initializeArrayElementsToObjectOfPointsWithFilledEnteredDoubleCoordinatesFromZeroToBound(array.getArray(), bound));
                 } else {
                     array.setArray(this.initializeArrayElementsToObjectOfPointsWithFilledEnteredDoubleCoordinatesFromZeroToBound(array.getArray(), DEFAULT_DOUBLE_POSITIVE_BOUND));
                 }
@@ -134,14 +131,14 @@ public class FillingArrayPointsEnteredDoubleNumbers extends FillingArrayPointsEn
      * <p></p>
      *
      * @param points
-     * @param endBound
+     * @param bound
      * @return
      */
     @Override
-    public Point<Double>[] fill(Point<Double>[] points, Double endBound) throws IllegalArgumentException {
+    public Point<Double>[] fill(Point<Double>[] points, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayPoints(points)) {
-            if (checkBoundValueIsPositive(endBound)) {
-                points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredDoubleCoordinatesFromZeroToBound(points, endBound);
+            if (checkBoundValueIsPositive(bound)) {
+                points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredDoubleCoordinatesFromZeroToBound(points, bound);
             } else {
                 points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredDoubleCoordinatesFromZeroToBound(points, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
@@ -155,16 +152,16 @@ public class FillingArrayPointsEnteredDoubleNumbers extends FillingArrayPointsEn
      * <p></p>
      *
      * @param lengthArray
-     * @param endBound
+     * @param bound
      * @return
      */
     @Override
-    public Point<Double>[] fill(int lengthArray, Double endBound) {
+    public Point<Double>[] fill(int lengthArray, Double bound) {
         Point<Double>[] points;
         if (checkLengthArray(lengthArray)) {
             points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Double>()).create(lengthArray).getArray();
-            if (checkBoundValueIsPositive(endBound)) {
-                points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredDoubleCoordinatesFromZeroToBound(points, endBound);
+            if (checkBoundValueIsPositive(bound)) {
+                points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredDoubleCoordinatesFromZeroToBound(points, bound);
             } else {
                 points = this.initializeArrayElementsToObjectOfPointsWithFilledEnteredDoubleCoordinatesFromZeroToBound(points, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }

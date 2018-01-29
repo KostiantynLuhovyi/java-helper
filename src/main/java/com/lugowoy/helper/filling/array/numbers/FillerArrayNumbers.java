@@ -1,6 +1,8 @@
 package com.lugowoy.helper.filling.array.numbers;
 
+import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.filling.array.FillerArray;
+import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
@@ -9,7 +11,12 @@ import com.lugowoy.helper.models.arrays.Array;
  * @author Konstantin Lugowoy
  * @version 1.1
  *
- * <p></p>
+ * The class is the inheritor of the class {@link FillerArray}.
+ * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArrayNumbers} interface
+ *  and delegates to it an obligation to perform functionality to fill a array with numeric data.
+ * <p>This class fills in numeric data objects of class {@link Array}, which is a wrapper over classical arrays.
+ * It is also possible to fill in numerical data with classical arrays.
+ * <p>The numeric data must be the inheritance of the base class {@link Number}.
  *
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
@@ -17,120 +24,167 @@ import com.lugowoy.helper.models.arrays.Array;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  *
- * @param <T>
- */
+ * @param <T> The type of the numerical data stored and filled into an array.
+ * */
 
 public class FillerArrayNumbers<T extends Number> extends FillerArray<T> implements FillingArrayNumbers<T> {
 
     /**
-     * <p></p>
+     * <p>
+     * Constructor to create a new {@link FillerArrayNumbers} and initializes the object encapsulated in parent class to perform the functionality.
+     * </p>
      *
-     * @param fillingArrayNumbers
-     */
-    protected FillerArrayNumbers(FillingArrayNumbers<T> fillingArrayNumbers) {
+     * @param fillingArrayNumbers The object that implements the {@link FillingArrayNumbers} interface contract to fill an array with numeric data.
+     * */
+    private FillerArrayNumbers(FillingArrayNumbers<T> fillingArrayNumbers) {
         super(fillingArrayNumbers);
     }
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with numeric data.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link Filling} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @param array
-     *
-     * @return
-     */
+     * @param array The object of the {@link Array} class to be filled with numeric data.
+     * @return The object of the {@link Array} class filled with numeric data.
+     * */
     @Override
     public Array<T> fill(Array<T> array) {
         return super.fill(array);
     }
 
     /**
-     * <p></p>
+     * Fills an array with data.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArray} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @param array
-     * @param bound
+     * @param tArray The array to be filled with data.
+     * @return The array filled with data.
+     * */
+    @Override
+    public T[] fill(T[] tArray) {
+        return super.fill(tArray);
+    }
+
+    /**
+     * Fills an array with data.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter determines the length(size) of the created array.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArray} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @return
-     */
+     * @param lengthArray The length(size) of the array to be filled with data.
+     * @return Created and filled array with data.
+     * */
+    @Override
+    public T[] fill(int lengthArray) {
+        return super.fill(lengthArray);
+    }
+
+    /**
+     * Fills an object of the {@link Array} class with numeric data.
+     * <p>The object of the {@link Array} class is filled with numeric data in the range from "0" to the value of the "bound" parameter.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArrayNumbers} interface contract
+     *  and is encapsulated in the object of parent class.
+     *
+     * @param array The object of the {@link Array} class to be filled with numeric data.
+     * @param bound The value of the end bound for filling an object of the {@link Array} class with numeric data.
+     * @return The object of the {@link Array} class filled with numeric data.
+     * */
     @Override
     public Array<T> fill(Array<T> array, T bound) {
         return ((FillingArrayNumbers<T>)super.getFilling()).fill(array, bound);
     }
 
     /**
-     * <p></p>
+     * Fills an array with numeric data.
+     * <p>An array is filled with numeric data in the range from "0" to the value of the "bound" parameter.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArrayNumbers} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @param tArray
-     * @param bound
-     *
-     * @return
-     */
+     * @param tArray The array to be filled with numeric data.
+     * @param bound The value of the end bound for filling an array with numeric data.
+     * @return The array filled with numeric data.
+     * */
     @Override
     public T[] fill(T[] tArray, T bound) {
         return ((FillingArrayNumbers<T>)super.getFilling()).fill(tArray, bound);
     }
 
     /**
-     * <p></p>
+     * Fills an array with numeric data.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter determines the length(size) of the created array.
+     * <p>The array is filled with numeric data in the range from "0" to the value of the "bound" parameter.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArrayNumbers} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @param lengthArray
-     * @param bound
-     *
-     * @return
-     */
+     * @param lengthArray The length(size) of the array to be filled with numeric data.
+     * @param bound The value of the end bound for filling the array with numeric data.
+     * @return Created and filled an array with numeric data.
+     * */
     @Override
     public T[] fill(int lengthArray, T bound) {
         return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthArray, bound);
     }
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with numeric data.
+     * <p>The object of the {@link Array} class is filled with numeric data in the range from the value "startBound" to the value of the "endBound" parameters.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArrayNumbers} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @param array
-     * @param minBound
-     * @param maxBound
-     *
-     * @return
-     */
+     * @param array The object of the {@link Array} class to be filled with numeric data.
+     * @param startBound The value of the start bound for filling an object of the {@link Array} class with numeric data.
+     * @param endBound The value of the end bound for filling an object of the {@link Array} class with numeric data.
+     * @return The object of the {@link Array} class filled with numeric data.
+     * */
     @Override
-    public Array<T> fill(Array<T> array, T minBound, T maxBound) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(array, minBound, maxBound);
+    public Array<T> fill(Array<T> array, T startBound, T endBound) {
+        return ((FillingArrayNumbers<T>)super.getFilling()).fill(array, startBound, endBound);
     }
 
     /**
-     * <p></p>
+     * Fills an array with numeric data.
+     * <p>The array is filled with numeric data in the range from the value "startBound" to the value of the "endBound" parameters.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArrayNumbers} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @param tArray
-     * @param minBound
-     * @param maxBound
-     *
-     * @return
-     */
+     * @param tArray The array to be filled with numeric data.
+     * @param startBound The value of the start bound for filling an array with numeric data.
+     * @param endBound The value of the end bound for filling an array with numeric data.
+     * @return The array filled with numeric data.
+     * */
     @Override
-    public T[] fill(T[] tArray, T minBound, T maxBound) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(tArray, minBound, maxBound);
+    public T[] fill(T[] tArray, T startBound, T endBound) {
+        return ((FillingArrayNumbers<T>)super.getFilling()).fill(tArray, startBound, endBound);
     }
 
     /**
-     * <p></p>
+     * Fills an array with numeric data.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter determines the length(size) of the created array.
+     * <p>The array is filled with numeric data in the range from the value "startBound" to the value of the "endBound" parameters.
+     * <p>The execution of this method is delegated to the object that contains the implementation of the {@link FillingArrayNumbers} interface contract
+     *  and is encapsulated in the object of parent class.
      *
-     * @param lengthArray
-     * @param minBound
-     * @param maxBound
-     *
-     * @return
-     */
+     * @param lengthArray The length(size) of the array to be filled with numeric data.
+     * @param startBound The value of the start bound for filling an array with numeric data.
+     * @param endBound The value of the end bound for filling an array with numeric data.
+     * @return Created and filled an array with numeric data.
+     * */
     @Override
-    public T[] fill(int lengthArray, T minBound, T maxBound) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthArray, minBound, maxBound);
+    public T[] fill(int lengthArray, T startBound, T endBound) {
+        return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthArray, startBound, endBound);
     }
 
     /**
-     * <p></p>
+     * Creates a new object of {@link FillerArrayNumbers} class by calling a single constructor with a parameter
+     *  for initialization the object encapsulated in this class to perform the functionality.
      *
-     * @param fillingArrayNumbers
-     *
-     * @return
-     */
+     * @param fillingArrayNumbers The object that implements the {@link FillingArrayNumbers} interface contract to fill an array with data.
+     * @return The created object of this class.
+     * */
     public static <T extends Number> FillerArrayNumbers<T> getFillerArrayNumbers(FillingArrayNumbers<T> fillingArrayNumbers) {
         return new FillerArrayNumbers<T>(fillingArrayNumbers);
     }

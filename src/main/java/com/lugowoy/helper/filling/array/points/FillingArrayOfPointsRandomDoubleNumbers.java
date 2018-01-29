@@ -1,16 +1,10 @@
 package com.lugowoy.helper.filling.array.points;
 
 import com.lugowoy.helper.factory.FactoryArray;
-import com.lugowoy.helper.factory.creator.CreatorArrayNumbers;
 import com.lugowoy.helper.factory.creator.CreatorArrayPoints;
-import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
-import com.lugowoy.helper.filling.array.FillingArray;
-import com.lugowoy.helper.filling.array.FillingArrayChecker;
 import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.models.points.Point;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
-
-import java.util.zip.DataFormatException;
 
 import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
 import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
@@ -30,7 +24,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * */
 
-public class FillingArrayPointsRandomDoubleNumbers implements FillingArray<Point<Double>>, FillingArrayPointsWithNumbersCoordinates<Double> {
+public class FillingArrayOfPointsRandomDoubleNumbers implements FillingArrayOfPoints<Double> {
 
     /**
      * <p></p>

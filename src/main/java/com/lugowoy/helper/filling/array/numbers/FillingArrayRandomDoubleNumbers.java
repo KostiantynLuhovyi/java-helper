@@ -157,18 +157,18 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
      * <p></p>
      *
      * @param array
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      * */
     @Override
-    public Array<Double> fill(final Array<Double> array, Double minBound, Double maxBound) throws IllegalArgumentException {
+    public Array<Double> fill(final Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             if (checkNonNullArrayNumbers(array.getArray())) {
-                if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                        && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                    array.setArray(this.initializeArrayElementsRandomDoubleNumbersFromMinBoundToMaxBound(array.getArray(), minBound, maxBound));
+                if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                    array.setArray(this.initializeArrayElementsRandomDoubleNumbersFromMinBoundToMaxBound(array.getArray(), startBound, endBound));
                 } else {
                     array.setArray(this.initializeArrayElementsRandomDoubleNumbersFromMinBoundToMaxBound(array.getArray(), DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND));
                 }
@@ -186,17 +186,17 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
      * <p></p>
      *
      * @param doubles
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      * */
     @Override
-    public Double[] fill(Double[] doubles, Double minBound, Double maxBound) {
+    public Double[] fill(Double[] doubles, Double startBound, Double endBound) {
         if (checkNonNullArrayNumbers(doubles)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                doubles = this.initializeArrayElementsRandomDoubleNumbersFromMinBoundToMaxBound(doubles, minBound, maxBound);
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                doubles = this.initializeArrayElementsRandomDoubleNumbersFromMinBoundToMaxBound(doubles, startBound, endBound);
             } else {
                 doubles = this.initializeArrayElementsRandomDoubleNumbersFromMinBoundToMaxBound(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
             }
@@ -210,18 +210,18 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
      * <p></p>
      *
      * @param lengthArray
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      * */
     @Override
-    public Double[] fill(int lengthArray, Double minBound, Double maxBound) {
+    public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                doubles = this.initializeArrayElementsRandomDoubleNumbersFromMinBoundToMaxBound(new Double[lengthArray], minBound, maxBound);
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                doubles = this.initializeArrayElementsRandomDoubleNumbersFromMinBoundToMaxBound(new Double[lengthArray], startBound, endBound);
             } else {
                 doubles = this.initializeArrayElementsRandomDoubleNumbersFromMinBoundToMaxBound(new Double[lengthArray], DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
             }

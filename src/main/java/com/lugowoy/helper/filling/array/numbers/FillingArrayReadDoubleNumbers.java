@@ -18,20 +18,20 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  *
  * <p></p>
  *
- * @see com.lugowoy.helper.filling.array.numbers.FillingArrayEnteredValues
+ * @see FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
 
-public class FillingArrayEnteredDoubleNumbers extends FillingArrayEnteredValues<Double> implements FillingArrayNumbers<Double> {
+public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double> implements FillingArrayNumbers<Double> {
 
     /**
      * <p></p>
      *
      * @param reader
      */
-    public FillingArrayEnteredDoubleNumbers(Reader reader) {
+    public FillingArrayReadDoubleNumbers(Reader reader) {
         super(reader);
     }
 
@@ -40,7 +40,7 @@ public class FillingArrayEnteredDoubleNumbers extends FillingArrayEnteredValues<
      *
      * @param reading
      */
-    public FillingArrayEnteredDoubleNumbers(Reading reading) {
+    public FillingArrayReadDoubleNumbers(Reading reading) {
         super(reading);
     }
 
@@ -177,18 +177,18 @@ public class FillingArrayEnteredDoubleNumbers extends FillingArrayEnteredValues<
      * <p></p>
      *
      * @param array
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      */
     @Override
-    public Array<Double> fill(final Array<Double> array, Double minBound, Double maxBound) throws IllegalArgumentException {
+    public Array<Double> fill(final Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             if (checkNonNullArrayNumbers(array.getArray())) {
-                if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                        && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                    array.setArray(this.initializeArrayElementsEnteredDoubleNumbersFromMinBoundToMaxBound(array.getArray(), minBound, maxBound));
+                if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                    array.setArray(this.initializeArrayElementsEnteredDoubleNumbersFromMinBoundToMaxBound(array.getArray(), startBound, endBound));
                 } else {
                     array.setArray(this.initializeArrayElementsEnteredDoubleNumbersFromMinBoundToMaxBound(array.getArray(), DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND));
                 }
@@ -206,17 +206,17 @@ public class FillingArrayEnteredDoubleNumbers extends FillingArrayEnteredValues<
      * <p></p>
      *
      * @param doubles
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      */
     @Override
-    public Double[] fill(Double[] doubles, Double minBound, Double maxBound) throws IllegalArgumentException {
+    public Double[] fill(Double[] doubles, Double startBound, Double endBound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(doubles)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                doubles = this.initializeArrayElementsEnteredDoubleNumbersFromMinBoundToMaxBound(doubles, minBound, maxBound);
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                doubles = this.initializeArrayElementsEnteredDoubleNumbersFromMinBoundToMaxBound(doubles, startBound, endBound);
             } else {
                 doubles = this.initializeArrayElementsEnteredDoubleNumbersFromMinBoundToMaxBound(doubles, DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
             }
@@ -230,18 +230,18 @@ public class FillingArrayEnteredDoubleNumbers extends FillingArrayEnteredValues<
      * <p></p>
      *
      * @param lengthArray
-     * @param minBound
-     * @param maxBound
+     * @param startBound
+     * @param endBound
      *
      * @return
      */
     @Override
-    public Double[] fill(int lengthArray, Double minBound, Double maxBound) {
+    public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(minBound, maxBound)
-                    && (checkBoundValueIsInCorrectRange(minBound) && checkBoundValueIsInCorrectRange(maxBound))) {
-                doubles = this.initializeArrayElementsEnteredDoubleNumbersFromMinBoundToMaxBound(new Double[lengthArray], minBound, maxBound);
+            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                doubles = this.initializeArrayElementsEnteredDoubleNumbersFromMinBoundToMaxBound(new Double[lengthArray], startBound, endBound);
             } else {
                 doubles = this.initializeArrayElementsEnteredDoubleNumbersFromMinBoundToMaxBound(new Double[lengthArray], DEFAULT_DOUBLE_MIN_BOUND, DEFAULT_DOUBLE_MAX_BOUND);
             }
