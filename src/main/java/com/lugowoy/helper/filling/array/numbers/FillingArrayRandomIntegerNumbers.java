@@ -1,9 +1,8 @@
 package com.lugowoy.helper.filling.array.numbers;
 
+import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
 import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
-
-import java.util.Arrays;
 
 import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
 import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
@@ -13,235 +12,265 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  *
- * <p></p>
+ * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
+ * <p>The class fills an object of the {@link Array} class and a classic array with numeric data of type {@link Integer}.
  *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
- * */
+ */
 
 public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Integer> {
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with random numeric data of the type {@link Integer}.
+     * Numerical values are in the range from -128 to 127.
      *
-     * @param array
-     *
-     * @return
-     * */
+     * @param array The object of the {@link Array} class to be filled with numeric data of the type {@link Integer}.
+     * @throws IllegalArgumentException If the object argument is null.
+     */
     @Override
-    public Array<Integer> fill(final Array<Integer> array) throws IllegalArgumentException {
+    public void fill(Array<Integer> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkNonNullArrayNumbers(array.getArray())) {
-                array.setArray(this.initializeArrayElementsRandomIntegerNumbers(array.getArray()));
-            } else {
-                throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
-            }
+            this.initializeArrayElementsRandomIntegerNumbers(array.getArray());
         } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
-        return array;
     }
 
     /**
-     * <p></p>
+     * Fills an array with random numeric data of the type {@link Integer}.
+     * Numerical values are in the range from -128 to 127.
      *
-     * @param integers
-     *
-     * @return
-     * */
+     * @param integers The array to be filled with random numeric data of the type {@link Integer}.
+     * @throws IllegalArgumentException If the array argument is null.
+     */
     @Override
-    public Integer[] fill(Integer[] integers) throws IllegalArgumentException {
+    public void fill(Integer[] integers) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
-            integers = this.initializeArrayElementsRandomIntegerNumbers(integers);
+            this.initializeArrayElementsRandomIntegerNumbers(integers);
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
-        return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an array with random numeric data of the type {@link Integer}.
+     * Numerical values are in the range from -128 to 127.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter "lengthArray" determines the length(size) of the created array.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      *
-     * @param lengthArray
-     *
-     * @return
-     * */
+     * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
+     * @return Created and filled an array with random numeric data of the type {@link Integer}.
+     */
     @Override
     public Integer[] fill(int lengthArray) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            integers = this.initializeArrayElementsRandomIntegerNumbers(new Integer[lengthArray]);
+            integers = new Integer[lengthArray];
+            this.initializeArrayElementsRandomIntegerNumbers(integers);
         } else {
-            integers = this.initializeArrayElementsRandomIntegerNumbers(new Integer[DEFAULT_LENGTH_ARRAY]);
+            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            this.initializeArrayElementsRandomIntegerNumbers(integers);
         }
         return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with random numeric data of the type {@link Integer}.
+     * <p>The object of the {@link Array} class is filled with numeric data from "0" to the value of the "bound" parameter.
+     * If the value of the "bound" argument is a negative number,
+     * then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND}
      *
-     * @param array
-     * @param bound
-     *
-     * @return
-     * */
+     * @param array The object of the {@link Array} class to be filled with random numeric data of the type {@link Integer}.
+     * @param bound The value of the bound for filling an object of the {@link Array} class
+     *              with random numeric data of the type {@link Integer}.
+     * @throws IllegalArgumentException If the object argument is null.
+     */
     @Override
-    public Array<Integer> fill(final Array<Integer> array, Integer bound) throws IllegalArgumentException {
+    public void fill(Array<Integer> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkNonNullArrayNumbers(array.getArray())) {
-                if (checkBoundValueIsPositive(bound)) {
-                    array.setArray(this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(array.getArray(), bound));
-                } else {
-                    array.setArray(this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_INTEGER_POSITIVE_BOUND));
-                }
+            if (checkBoundValueIsPositive(bound)) {
+                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(array.getArray(), bound);
             } else {
-                throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
+                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
-        return array;
     }
 
     /**
-     * <p></p>
+     * Fills an array with random numeric data of the type {@link Integer}.
+     * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
+     * If the value of the "bound" argument is a negative number,
+     *  then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND}.
      *
-     * @param integers
-     * @param bound
-     *
-     * @return
-     * */
+     * @param integers The array to be filled with random numeric data of the type {@link Integer}.
+     * @param bound The value of the end bound for filling an array with random numeric data of the type {@link Integer}.
+     * @throws IllegalArgumentException If the array argument is null.
+     */
     @Override
-    public Integer[] fill(Integer[] integers, Integer bound) {
+    public void fill(Integer[] integers, Integer bound) {
         if (checkNonNullArrayNumbers(integers)) {
             if (checkBoundValueIsPositive(bound)) {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
+                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
-        return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an array with random numeric data of the type {@link Integer}.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter "lengthArray" determines the length(size) of the created array.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767",
+     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
+     * If the value of the "bound" argument is a negative number,
+     *  then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND}.
      *
-     * @param lengthArray
-     * @param bound
-     *
-     * @return
-     * */
+     * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
+     * @param bound The value of the border for filling the array with random numeric data of the type {@link Integer}.
+     * @return Created and filled an array with random numeric data of the type {@link Integer}.
+     */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
+            integers = new Integer[lengthArray];
             if (checkBoundValueIsPositive(bound)) {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(new Integer[lengthArray], bound);
+                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(new Integer[lengthArray], DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            integers = this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(new Integer[DEFAULT_LENGTH_ARRAY], DEFAULT_INTEGER_POSITIVE_BOUND);
+            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with random numeric data of the type {@link Integer}.
+     * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
+     * If the value of the argument "startBound" is greater than the value of "endBound"
+     *  or if one of the arguments is in the range from -32768 to 32768,
+     *  then the values {@link DefaultValuesOfArray#DEFAULT_INTEGER_NEGATIVE_BOUND}
+     *  and {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
      *
-     * @param array
-     * @param startBound
-     * @param endBound
-     *
-     * @return
-     * */
+     * @param array The object of the {@link Array} class that must be filled with random numeric data of the type {@link Integer}.
+     * @param startBound The value of the start bound for filling an object of the {@link Array} class
+     *                   with random numeric data of the type {@link Integer}.
+     * @param endBound The value of the end bound for filling an object of the {@link Array} class
+     *                 with random numeric data of the type {@link Integer}.
+     * @throws IllegalArgumentException If the object argument is null.
+     */
     @Override
-    public Array<Integer> fill(final Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
+    public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkNonNullArrayNumbers(array.getArray())) {
-                if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                    array.setArray(this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(array.getArray(), startBound, endBound));
-                } else {
-                    array.setArray(this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND));
-                }
+                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(array.getArray(), startBound, endBound);
             } else {
-                throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
+                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(array.getArray(),
+                                                                                         DEFAULT_INTEGER_NEGATIVE_BOUND,
+                                                                                         DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
-        return array;
     }
 
     /**
-     * <p></p>
+     * Fills an array with random numeric data of the type {@link Integer}.
+     * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
+     * If the value of the argument "startBound" is greater than the value of "endBound"
+     *  or if one of the arguments is in the range from -32768 to 32768,
+     *  then the values {@link DefaultValuesOfArray#DEFAULT_INTEGER_NEGATIVE_BOUND}
+     *  and {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
      *
-     * @param integers
-     * @param startBound
-     * @param endBound
-     *
-     * @return
-     * */
+     * @param integers The array to be filled with random numeric data of the type {@link Integer}.
+     * @param startBound The value of the start bound for filling an array with random numeric data of the type {@link Integer}.
+     * @param endBound The value of the end bound for filling an array with random numeric data of the type {@link Integer}.
+     * @throws IllegalArgumentException If the array argument is null.
+     */
     @Override
-    public Integer[] fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
+    public void fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(integers, startBound, endBound);
+                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,
+                                                                                         DEFAULT_INTEGER_NEGATIVE_BOUND,
+                                                                                         DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
-        return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an array with random numeric data of the type {@link Integer}.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter "lengthArray" determines the length(size) of the created array.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
+     * If the value of the argument "startBound" is greater than the value of "endBound"
+     *  or if one of the arguments is in the range from -32768 to 32768,
+     *  then the values {@link DefaultValuesOfArray#DEFAULT_INTEGER_NEGATIVE_BOUND}
+     *  and {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
      *
-     * @param lengthArray
-     * @param startBound
-     * @param endBound
-     *
-     * @return
-     * */
+     * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
+     * @param startBound The value of the start bound for filling an array with random numeric data of the type {@link Integer}.
+     * @param endBound The value of the end bound for filling an array with random numeric data of the type {@link Integer}.
+     * @return Created and filled an array with random numeric data of the type {@link Integer}.
+     */
     @Override
     public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+            integers = new Integer[lengthArray];
+            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], startBound, endBound);
+                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
-                integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,
+                                                                                         DEFAULT_INTEGER_NEGATIVE_BOUND,
+                                                                                         DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            integers = this.initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(new Integer[DEFAULT_LENGTH_ARRAY], DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,
+                                                                                     DEFAULT_INTEGER_NEGATIVE_BOUND,
+                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return integers;
     }
 
-    private Integer[] initializeArrayElementsRandomIntegerNumbers(final Integer[] integers) {
-        return Arrays.stream(integers).mapToInt(value -> GeneratorRandomNumber.generateInt()).boxed().toArray(Integer[]::new);
+    private void initializeArrayElementsRandomIntegerNumbers(Integer[] integers) {
+        for (int i = 0; i < integers.length; i++) {
+            integers[i] = GeneratorRandomNumber.generateInt();
+        }
     }
 
-    private Integer[] initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(final Integer[] integers, final int bound) {
-        return Arrays.stream(integers).mapToInt(value -> GeneratorRandomNumber.generateInt(bound)).boxed().toArray(Integer[]::new);
+    private void initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(Integer[] integers, int bound) {
+        for (int i = 0; i < integers.length; i++) {
+            integers[i] = GeneratorRandomNumber.generateInt(bound);
+        }
     }
 
-    private Integer[] initializeArrayElementsRandomIntegerNumbersFromMinBoundToMaxBound(final Integer[] integers,
-                                                                                                        final int minBound, final int maxBound) {
-        return Arrays.stream(integers).mapToInt(value -> GeneratorRandomNumber.generateInt(minBound, maxBound)).boxed().toArray(Integer[]::new);
+    private void initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(Integer[] integers, int startBound, int endBound) {
+        for (int i = 0; i < integers.length; i++) {
+            integers[i] = GeneratorRandomNumber.generateInt(startBound, endBound);
+        }
     }
 
 }

@@ -1,10 +1,9 @@
 package com.lugowoy.helper.filling.array.numbers;
 
+import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
-
-import java.util.Arrays;
 
 import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
 import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
@@ -14,11 +13,15 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  *
- * <p></p>
+ * The class provides functionality to fill an object of the {@link Array} class and classical arrays
+ *  with data of the {@link Integer} type with read by the {@link Reader} class object
+ *  encapsulated in the parent class {@link FillingArrayReadValues}.
+ * The class is the heir of the FillingArrayReadValues class and implements its contract.
+ * Also implements the contract announced by the FillingArrayNumbers interface.
  *
- * @see FillingArrayReadValues
+ * @see com.lugowoy.helper.filling.array.numbers.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
@@ -27,254 +30,303 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integer> implements FillingArrayNumbers<Integer> {
 
     /**
-     * <p></p>
+     * Constructs a new object of {@link FillingArrayReadIntegerNumbers} class,
+     *  initializing an object of {@link Reader} class
+     *  encapsulated in the parent class to read data of the {@link Integer} type to be fill array.
      *
-     * @param reader
+     * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
+     *               encapsulated in the parent class to read data of the {@link Integer} type to fill the array.
      */
     public FillingArrayReadIntegerNumbers(Reader reader) {
         super(reader);
     }
 
     /**
-     * <p></p>
+     * Constructs a new object of {@link FillingArrayReadIntegerNumbers} class,
+     *  initializing an object of {@link Reader} class
+     *  encapsulated in the parent class of the concrete implementation of the contract declared in the interface {@link Reading}
+     *  to read data of the {@link Integer} type to be fill array.
      *
-     * @param reading
+     * @param reading The object of class that implements the {@link Reading} interface
+     *                to initialize an object of the {@link Reader} class encapsulated in the parent class
+     *                to read data of the {@link Integer} type to be fill array.
      */
     public FillingArrayReadIntegerNumbers(Reading reading) {
         super(reading);
     }
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with data of the {@link Integer} type
+     * with read by the {@link Reader} class object.
      *
-     * @param array
-     *
-     * @return
+     * @param array The object of the {@link Array} class to be filled with data of the {@link Integer} type
+     *              with read by the {@link Reader} class object.
+     * @throws IllegalArgumentException If object argument is null.
      */
     @Override
-    public Array<Integer> fill(final Array<Integer> array) {
+    public void fill(Array<Integer> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkNonNullArrayNumbers(array.getArray())) {
-                array.setArray(this.initializeArrayElementsEnteredIntegerNumbers(array.getArray()));
-            } else {
-                throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
-            }
+            this.initializeArrayElementsEnteredIntegerNumbers(array.getArray());
         } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
-        return array;
     }
 
     /**
-     * <p></p>
+     * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      *
-     * @param integers
-     *
-     * @return
+     * @param integers The array to be filled with data of the {@link Integer} type
+     *                 with read by the {@link Reader} class object.
+     * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
-    public Integer[] fill(Integer[] integers) throws IllegalArgumentException {
+    public void fill(Integer[] integers) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
-            integers = this.initializeArrayElementsEnteredIntegerNumbers(integers);
+            this.initializeArrayElementsEnteredIntegerNumbers(integers);
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
-        return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter "lengthArray" determines the length(size) of the created array.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      *
-     * @param lengthArray
-     *
-     * @return
+     * @param lengthArray The length(size) of the array to be filled with data of the {@link Integer} type
+     *                    with read by the {@link Reader} class object.
+     * @return Created and filled array with data of the {@link Integer} type with read by the {@link Reader} class object.
      */
     @Override
     public Integer[] fill(int lengthArray) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            integers = this.initializeArrayElementsEnteredIntegerNumbers(new Integer[lengthArray]);
+            integers = new Integer[lengthArray];
+            this.initializeArrayElementsEnteredIntegerNumbers(integers);
         } else {
-            integers = this.initializeArrayElementsEnteredIntegerNumbers(new Integer[DEFAULT_LENGTH_ARRAY]);
+            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            this.initializeArrayElementsEnteredIntegerNumbers(integers);
         }
         return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * <p>The object of the {@link Array} class is filled with numeric data from "0" to the value of the "bound" parameter.
+     * If the value of the "bound" argument is a negative number,
+     * then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND}
      *
-     * @param array
-     * @param bound
-     *
-     * @return
+     * @param array The object of the {@link Array} class to be filled with data of the {@link Integer} type
+     *              with read by the {@link Reader} class object.
+     * @param bound The value of the bound for filling an object of the {@link Array} class with data of the {@link Integer} type
+     *              with read by the {@link Reader} class object.
+     * @throws IllegalArgumentException If the object argument is null.
      */
     @Override
-    public Array<Integer> fill(final Array<Integer> array, Integer bound) throws IllegalArgumentException {
+    public void fill(Array<Integer> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            if (checkNonNullArrayNumbers(array.getArray())) {
-                if (checkBoundValueIsPositive(bound)) {
-                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), bound));
-                } else {
-                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_INTEGER_POSITIVE_BOUND));
-                }
+            if (checkBoundValueIsPositive(bound)) {
+                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), bound);
             } else {
-                throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
+                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(
-                    new NullPointerException("The object of the class Array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
-        return array;
     }
 
     /**
-     * <p></p>
+     * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
+     * If the value of the "bound" argument is a negative number,
+     *  then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND}.
      *
-     * @param integers
-     * @param bound
-     *
-     * @return
+     * @param integers The array to be filled with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * @param bound The value of the end bound for filling an array with data of the {@link Integer} type
+     *              with read by the {@link Reader} class object.
+     * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
-    public Integer[] fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
+    public void fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
             if (checkBoundValueIsPositive(bound)) {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
+                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
-        return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter "lengthArray" determines the length(size) of the created array.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
+     * If the value of the "bound" argument is a negative number,
+     *  then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND}.
      *
-     * @param lengthArray
-     * @param bound
-     *
-     * @return
+     * @param lengthArray The length(size) of the array to be filled with data of the {@link Integer} type
+     *                    with read by the {@link Reader} class object.
+     * @param bound The value of the border for filling the array with data of the {@link Integer} type
+     *              with read by the {@link Reader} class object.
+     * @return Created and filled an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
+            integers = new Integer[lengthArray];
             if (checkBoundValueIsPositive(bound)) {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[lengthArray], bound);
+                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[lengthArray], DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            integers = this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(new Integer[DEFAULT_LENGTH_ARRAY], DEFAULT_INTEGER_POSITIVE_BOUND);
+            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an object of the {@link Array} class with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
+     * If the value of the argument "startBound" is greater than the value of "endBound"
+     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesOfArray#DEFAULT_INTEGER_NEGATIVE_BOUND}
+     *  and {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
      *
-     * @param array
-     * @param startBound
-     * @param endBound
+     * @param array The object of the {@link Array} class to be filled with data of the {@link Integer} type
+     *              with read by the {@link Reader} class object.
+     * @param startBound The value of the start bound for filling an object of the {@link Array} class with data of the {@link Integer} type
+     *                   with read by the {@link Reader} class object.
+     * @param endBound The value of the end bound for filling an object of the {@link Array} class with
+     *                 data of the {@link Integer} type with read by the {@link Reader} class object.
+     * @throws IllegalArgumentException If the object argument is null.
+     */
+    @Override
+    public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
+        if (checkNonNullArrayObject(array)) {
+            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(array.getArray(), startBound, endBound);
+            } else {
+                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(array.getArray(),
+                                                                                          DEFAULT_INTEGER_NEGATIVE_BOUND,
+                                                                                          DEFAULT_INTEGER_POSITIVE_BOUND);
+            }
+        } else {
+            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+        }
+    }
+
+    /**
+     * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
+     * If the value of the argument "startBound" is greater than the value of "endBound"
+     *  or if one of the arguments is in the range from -32768 to 32768,
+     *  then the values {@link DefaultValuesOfArray#DEFAULT_INTEGER_NEGATIVE_BOUND}
+     *  and {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
      *
-     * @return
+     * @param integers The array to be filled with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * @param startBound The value of the start bound for filling an array with data of the {@link Integer} type
+     *                   with read by the {@link Reader} class object.
+     * @param endBound The value of the end bound for filling an array with data of the {@link Integer} type
+     *                 with read by the {@link Reader} class object.
+     * @throws IllegalArgumentException If the array argument is null.
      * */
     @Override
-    public Array<Integer> fill(final Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
-            if (checkNonNullArrayNumbers(array.getArray())) {
-                if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
-                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(array.getArray(), startBound, endBound));
-                } else {
-                    array.setArray(this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(array.getArray(), DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND));
-                }
-            } else {
-                throw new IllegalArgumentException(new NullPointerException("The array passed by the argument is null."));
-            }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("The object of the class Array passed by the parameter is null."));
-        }
-        return array;
-    }
-
-    /**
-     * <p></p>
-     *
-     * @param integers
-     * @param startBound
-     * @param endBound
-     *
-     * @return
-     */
-    @Override
-    public Integer[] fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
+    public void fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(integers, startBound, endBound);
+                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(integers, DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
+                                                                                          DEFAULT_INTEGER_NEGATIVE_BOUND,
+                                                                                          DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The array passed by the parameter is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
-        return integers;
     }
 
     /**
-     * <p></p>
+     * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter "lengthArray" determines the length(size) of the created array.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767",
+     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
+     * If the value of the argument "startBound" is greater than the value of "endBound"
+     *  or if one of the arguments is in the range from -32768 to 32768,
+     *  then the values {@link DefaultValuesOfArray#DEFAULT_INTEGER_NEGATIVE_BOUND}
+     *  and {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
      *
-     * @param lengthArray
-     * @param startBound
-     * @param endBound
-     *
-     * @return
-     */
+     * @param lengthArray The length(size) of the array to be filled with data of the {@link Integer} type
+     *                    with read by the {@link Reader} class object.
+     * @param startBound The value of the start bound for filling an array with data of the {@link Integer} type
+     *                   with read by the {@link Reader} class object.
+     * @param endBound The value of the end bound for filling an array with data of the {@link Integer} type
+     *                 with read by the {@link Reader} class object.
+     * @return Created and filled an array with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * */
     @Override
     public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
-            if (checkMinBoundValueLessThanMaxBoundValue(startBound, endBound)
+            integers = new Integer[lengthArray];
+            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], startBound, endBound);
+                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
-                integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(new Integer[lengthArray], DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
+                                                                                          DEFAULT_INTEGER_NEGATIVE_BOUND,
+                                                                                          DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            integers = this.initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(new Integer[DEFAULT_LENGTH_ARRAY], DEFAULT_INTEGER_MIN_BOUND, DEFAULT_INTEGER_MAX_BOUND);
+            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
+                                                                                      DEFAULT_INTEGER_NEGATIVE_BOUND,
+                                                                                      DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return integers;
     }
 
-    private Integer[] initializeArrayElementsEnteredIntegerNumbers(final Integer[] integers) {
-        return Arrays.stream(integers).mapToInt(value -> super.getReader().readInt()).boxed().toArray(Integer[]::new);
+    private void initializeArrayElementsEnteredIntegerNumbers(Integer[] integers) {
+        for (int i = 0; i < integers.length; i++) {
+            integers[i] = super.getReader().readInt();
+        }
     }
 
-    private Integer[] initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(final Integer[] integers, final int bound) {
-        return Arrays.stream(integers).mapToInt(value -> {
+    private void initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(Integer[] integers, int bound) {
+        int value;
+        for (int i = 0; i < integers.length; i++) {
             value = super.getReader().readInt();
             if ((value >= DEFAULT_START_BOUND) && (value <= bound)) {
-                return value;
+                integers[i] = value;
             } else {
-                return DEFAULT_INTEGER_VALUE;
+                integers[i] = DEFAULT_INTEGER_VALUE;
             }
-        }).boxed().toArray(Integer[]::new);
+        }
     }
 
-    private Integer[] initializeArrayElementsEnteredIntegerNumbersFromMinBoundToMaxBound(final Integer[] integers,
-                                                                                                final int minBound, final int maxBound) {
-        return Arrays.stream(integers).mapToInt(value -> {
+    private void initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(Integer[] integers, int startBound, int endBound) {
+        int value;
+        for (int i = 0; i < integers.length; i++) {
             value = super.getReader().readInt();
-            if ((value >= minBound) && (value <= maxBound)) {
-                return value;
-            } else {
-                return DEFAULT_INTEGER_VALUE;
+            if ((value >= startBound) && (value <= endBound)) {
+                value = super.getReader().readInt();
+                if ((value >= startBound) && (value <= endBound)) {
+                    integers[i] = value;
+                } else {
+                    integers[i] = DEFAULT_INTEGER_VALUE;
+                }
             }
-        }).boxed().toArray(Integer[]::new);
+        }
     }
 
 }

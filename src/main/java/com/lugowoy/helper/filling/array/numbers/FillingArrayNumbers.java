@@ -7,7 +7,7 @@ import com.lugowoy.helper.models.arrays.Array;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  *
  * The interface that declares a contract to filling an array with numeric data.
  * <p>Also this interface is the inheritor of the {@link FillingArray} interface
@@ -19,7 +19,7 @@ import com.lugowoy.helper.models.arrays.Array;
  * @see com.lugowoy.helper.filling.array.FillingArray
  *
  * @param <T> The type of the numerical data stored and filled into an array.
- * */
+ */
 
 public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
 
@@ -27,19 +27,17 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * Fills an object of the {@link Array} class with numeric data.
      *
      * @param array The object of the {@link Array} class to be filled with numeric data.
-     * @return The object of the {@link Array} class filled with numeric data.
-     * */
+     */
     @Override
-    Array<T> fill(final Array<T> array);
+    void fill(final Array<T> array);
 
     /**
      * Fills an array with numeric data.
      *
      * @param tArray The array to be filled with numeric data.
-     * @return The array filled with numeric data.
-     * */
+     */
     @Override
-    T[] fill(T[] tArray);
+    void fill(T[] tArray);
 
     /**
      * Fills an array with numeric data.
@@ -48,7 +46,7 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      *
      * @param lengthArray The length(size) of the array to be filled with numeric data.
      * @return Created and filled an array with numeric data.
-     * */
+     */
     @Override
     T[] fill(int lengthArray);
 
@@ -56,21 +54,19 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * Fills an object of the {@link Array} class with numeric data.
      * <p>The object of the {@link Array} class is filled with numeric data from "0" to the value of the "bound" parameter.
      *
-     * @param array The object of the {@link Array} class that must be filled with numeric data.
-     * @param bound The value of the bound for filling an object of the {@link Array} class with numeric data.
-     * @return The object of the {@link Array} class filled with numeric data.
-     * */
-    Array<T> fill(Array<T> array, T bound);
+     * @param array The object of the {@link Array} class to be filled with numeric data.
+     * @param bound The value of the end bound for filling an object of the {@link Array} class with numeric data.
+     */
+    void fill(Array<T> array, T bound);
 
     /**
      * Fills an array with numeric data.
      * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      *
      * @param tArray The array to be filled with numeric data.
-     * @param bound The value of the border for filling an array with numeric data.
-     * @return The array filled with numeric data.
-     * */
-    T[] fill(T[] tArray, T bound);
+     * @param bound The value of the end bound for filling an array with numeric data.
+     */
+    void fill(T[] tArray, T bound);
 
     /**
      * Fills an array with numeric data.
@@ -79,21 +75,20 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      *
      * @param lengthArray The length(size) of the array to be filled with numeric data.
-     * @param bound The value of the border for filling the array with numeric data.
+     * @param bound The value of the end bound for filling the array with numeric data.
      * @return Created and filled an array with numeric data.
-     * */
+     */
     T[] fill(int lengthArray, T bound);
 
     /**
      * Fills an object of the {@link Array} class with numeric data.
      * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      *
-     * @param array The object of the {@link Array} class that must be filled with numeric data.
+     * @param array The object of the {@link Array} class to be filled with numeric data.
      * @param startBound The value of the start bound for filling an object of the {@link Array} class with numeric data.
      * @param endBound The value of the end bound for filling an object of the {@link Array} class with numeric data.
-     * @return The object of the {@link Array} class filled with numeric data.
-     * */
-    Array<T> fill(Array<T> array, T startBound, T endBound);
+     */
+    void fill(Array<T> array, T startBound, T endBound);
 
     /**
      * Fills an array with numeric data.
@@ -102,9 +97,8 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * @param tArray The array to be filled with numeric data.
      * @param startBound The value of the start bound for filling an array with numeric data.
      * @param endBound The value of the end bound for filling an array with numeric data.
-     * @return The array filled with numeric data.
-     * */
-    T[] fill(T[] tArray, T startBound, T endBound);
+     */
+    void fill(T[] tArray, T startBound, T endBound);
 
     /**
      * Fills an array with numeric data.
@@ -116,7 +110,7 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * @param startBound The value of the start bound for filling an array with numeric data.
      * @param endBound The value of the end bound for filling an array with numeric data.
      * @return Created and filled an array with numeric data.
-     * */
+     */
     T[] fill(int lengthArray, T startBound, T endBound);
 
 }
