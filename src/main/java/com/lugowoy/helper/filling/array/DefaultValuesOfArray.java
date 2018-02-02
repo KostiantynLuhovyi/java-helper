@@ -4,71 +4,52 @@ package com.lugowoy.helper.filling.array;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
- * <p></p>
- * */
+ * The interface provides a set of constants that are used as default values for various tasks
+ * to filling objects or data structures (arrays).
+ */
 
 public interface DefaultValuesOfArray {
 
     /**
-     * <p></p>
-     * */
+     * The integer value by default.
+     */
     int DEFAULT_INTEGER_VALUE = 0;
 
     /**
-     * <p></p>
-     * */
+     * The double value by default.
+     */
     double DEFAULT_DOUBLE_VALUE = 0.0;
 
     /**
-     * <p></p>
-     * */
+     * The number value by default.
+     */
     double DEFAULT_NUMBER_VALUE = 0.0;
 
     /**
-     * <p></p>
-     * */
+     * The value of the start value of the bound.
+     */
     int DEFAULT_START_BOUND = 0;
 
     /**
-     * <p></p>
-     * */
-    int DEFAULT_INTEGER_POSITIVE_BOUND = 10;
-
-    /**
-     * <p></p>
-     * */
+     * The integer value of the negative boundary.
+     */
     int DEFAULT_INTEGER_NEGATIVE_BOUND = -10;
 
     /**
-     * <p></p>
-     * */
-    double DEFAULT_DOUBLE_POSITIVE_BOUND = 10.0;
+     * The integer value of the positive boundary.
+     */
+    int DEFAULT_INTEGER_POSITIVE_BOUND = 10;
 
     /**
-     * <p></p>
-     * */
+     * The double value of the negative boundary.
+     */
     double DEFAULT_DOUBLE_NEGATIVE_BOUND = -10.0;
 
     /**
-     * <p></p>
-     * */
-    int DEFAULT_INTEGER_MIN_BOUND = -5;
-
-    /**
-     * <p></p>
-     * */
-    int DEFAULT_INTEGER_MAX_BOUND = 5;
-
-    /**
-     * <p></p>
-     * */
-    double DEFAULT_DOUBLE_MIN_BOUND = -5.0;
-
-    /**
-     * <p></p>
-     * */
-    double DEFAULT_DOUBLE_MAX_BOUND = 5.0;
+     * The double value of the positive boundary.
+     */
+    double DEFAULT_DOUBLE_POSITIVE_BOUND = 10.0;
 
 }

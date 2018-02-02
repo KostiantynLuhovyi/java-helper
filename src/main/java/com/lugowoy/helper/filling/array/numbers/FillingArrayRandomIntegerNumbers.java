@@ -15,7 +15,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * @version 1.2
  *
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
- * <p>The class fills an object of the {@link Array} class and a classic array with numeric data of type {@link Integer}.
+ * <p>The class fills an object of the {@link Array} class and a classic array with random numeric data of type {@link Integer}.
  *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
@@ -26,7 +26,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
 
     /**
      * Fills an object of the {@link Array} class with random numeric data of the type {@link Integer}.
-     * Numerical values are in the range from -128 to 127.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_INT_BOUND}
+     * to {@link GeneratorRandomNumber#MAX_INT_BOUND}.
      *
      * @param array The object of the {@link Array} class to be filled with numeric data of the type {@link Integer}.
      * @throws IllegalArgumentException If the object argument is null.
@@ -42,7 +43,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
 
     /**
      * Fills an array with random numeric data of the type {@link Integer}.
-     * Numerical values are in the range from -128 to 127.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_INT_BOUND}
+     * to {@link GeneratorRandomNumber#MAX_INT_BOUND}.
      *
      * @param integers The array to be filled with random numeric data of the type {@link Integer}.
      * @throws IllegalArgumentException If the array argument is null.
@@ -58,7 +60,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
 
     /**
      * Fills an array with random numeric data of the type {@link Integer}.
-     * Numerical values are in the range from -128 to 127.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_INT_BOUND}
+     * to {@link GeneratorRandomNumber#MAX_INT_BOUND}.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.

@@ -1,7 +1,5 @@
 package com.lugowoy.helper.filling.array.points;
 
-import com.lugowoy.helper.filling.array.FillingArray;
-import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.models.points.Point;
 
 /**
@@ -14,7 +12,7 @@ import com.lugowoy.helper.models.points.Point;
  *  by initializing the coordinates of the points with the numeric values of the array.
  *
  * @param <T> Type of numeric data for initializing the coordinates of objects of the class {@link Point}.
- * */
+ */
 
 @FunctionalInterface
 public interface FillingArrayOfPointsCoordinatesWithArrayNumbers<T extends Number> {
@@ -23,9 +21,10 @@ public interface FillingArrayOfPointsCoordinatesWithArrayNumbers<T extends Numbe
      * Fills an array with objects of the {@link Point} class
      *  by initializing the coordinates with values taken from the numeric array passed to the parameter.
      *
-     * @param array The numeric array whose values are used to initialize the coordinates of objects of the {@link Point} class.
+     * @param array The numeric array whose values are used
+     *              to initialize the coordinates of objects of the {@link Point} class.
      * @return The array filled with objects of the {@link Point} class.
-     * */
+     */
     Point<T>[] fill(T[] array);
 
 }

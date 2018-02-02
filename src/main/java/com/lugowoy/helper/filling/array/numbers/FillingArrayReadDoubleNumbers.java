@@ -16,8 +16,8 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * @version 1.2
  *
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
- *  with data of the {@link Double} type with read by the {@link Reader} class object
- *  encapsulated in the parent class {@link FillingArrayReadValues}.
+ * with data of the {@link Double} type with read by the {@link Reader} class object
+ * encapsulated in the parent class {@link FillingArrayReadValues}.
  * The class is the heir of the {@link FillingArrayReadValues} class and implements it's contract.
  * Also implements the contract declared by the {@link FillingArrayNumbers} interface.
  *

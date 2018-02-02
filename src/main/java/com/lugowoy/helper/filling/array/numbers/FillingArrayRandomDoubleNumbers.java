@@ -16,7 +16,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * @version 1.2
  *
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
- * <p>The class fills an object of the {@link Array} class and a classic array with numeric data of type {@link Double}.
+ * <p>The class fills an object of the {@link Array} class and a classic array with random numeric data of type {@link Double}.
  *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
@@ -27,7 +27,8 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
 
     /**
      * Fills an object of the {@link Array} class with random numeric data of the type {@link Double}.
-     * Numerical values are in the range from -128 to 127.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_DOUBLE_BOUND}
+     * to {@link GeneratorRandomNumber#MAX_DOUBLE_BOUND}.
      *
      * @param array The object of the {@link Array} class to be filled with numeric data of the type {@link Double}.
      * @throws IllegalArgumentException If the object argument is null.
@@ -43,7 +44,8 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
 
     /**
      * Fills an array with random numeric data of the type {@link Double}.
-     * Numerical values are in the range from -128 to 127.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_DOUBLE_BOUND}
+     * to {@link GeneratorRandomNumber#MAX_DOUBLE_BOUND}.
      *
      * @param doubles The array to be filled with random numeric data of the type {@link Double}.
      * @throws IllegalArgumentException If the array argument is null.
@@ -59,7 +61,8 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
 
     /**
      * Fills an array with random numeric data of the type {@link Double}.
-     * Numerical values are in the range from -128 to 127.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_DOUBLE_BOUND}
+     * to {@link GeneratorRandomNumber#MAX_DOUBLE_BOUND}.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
@@ -223,10 +226,12 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
      * Fills an array with random numeric data of the type {@link Double}.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
-     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767",
+     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesOfArray#DEFAULT_DOUBLE_NEGATIVE_BOUND}
+     *  or if one of the arguments is in the range from -32768 to 32768,
+     *  then the values {@link DefaultValuesOfArray#DEFAULT_DOUBLE_NEGATIVE_BOUND}
      *  and {@link DefaultValuesOfArray#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Double}.
