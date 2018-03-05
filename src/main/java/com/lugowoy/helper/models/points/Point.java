@@ -1,6 +1,9 @@
 package com.lugowoy.helper.models.points;
 
 import com.lugowoy.helper.models.Model;
+import com.lugowoy.helper.other.DeepCloning;
+
+import java.util.Objects;
 
 /**
  * Created by Konstantin Lugowoy on 02.07.2017.
@@ -9,9 +12,7 @@ import com.lugowoy.helper.models.Model;
  * @version 1.0
  * @since 1.0
  *
- * <p>
  * A class representing an implementation for using a model of point.
- * </p>
  *
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
@@ -26,10 +27,9 @@ public class Point<T extends Number> implements Model {
     private T coordinateY;
 
     /**
-     * <p>
      * The default constructor creates a point object without initializing the coordinates values.
      * Value of coordinates is a null.
-     * </p>
+     *
      * @since 1.0
      */
     public Point() {
@@ -37,12 +37,10 @@ public class Point<T extends Number> implements Model {
     }
 
     /**
-     * <p>
      * The constructor creates a point object that initializes coordinates values.
-     * <p>
-     * If both passed by parameter have non null values, then these values initialize the coordinates of the point,
+     * <p> If both passed by parameter have non null values, then these values initialize the coordinates of the point,
      *  otherwise the coordinates are null.
-     * </p>
+     *
      * @since 1.0
      */
     public Point(final T coordinateX, final T coordinateY) {
@@ -53,31 +51,17 @@ public class Point<T extends Number> implements Model {
     }
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (!(o instanceof Point)) return false;
         Point<?> point = (Point<?>) o;
-
-        if (getCoordinateX() != null ? !getCoordinateX().equals(point.getCoordinateX()) : point.getCoordinateX() != null)
-            return false;
-        return getCoordinateY() != null ? getCoordinateY().equals(point.getCoordinateY()) : point.getCoordinateY() == null;
+        return Objects.equals(getCoordinateX(), point.getCoordinateX()) &&
+                Objects.equals(getCoordinateY(), point.getCoordinateY());
     }
 
     @Override
     public int hashCode() {
-        int result = getCoordinateX() != null ? getCoordinateX().hashCode() : 0;
-        result = 31 * result + (getCoordinateY() != null ? getCoordinateY().hashCode() : 0);
-        return result;
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    protected Point<T> clone() throws CloneNotSupportedException {
-        Point<T> point = (Point<T>) super.clone();
-        point.setCoordinateX(this.getCoordinateY());
-        point.setCoordinateY(this.getCoordinateY());
-        return point;
+        return Objects.hash(getCoordinateX(), getCoordinateY());
     }
 
     @Override
@@ -88,10 +72,22 @@ public class Point<T extends Number> implements Model {
                 ']';
     }
 
+    @SuppressWarnings("unchecked") // Type safety. Unchecked cast Object[] to T[].
+    @Override
+    public Point<T> clone() {
+        Point<T> point = new Point<>();
+        try {
+            point = (Point<T>) super.clone();
+            point.setCoordinateX(DeepCloning.CLONER.deepClone(this.getCoordinateX()));
+            point.setCoordinateY(DeepCloning.CLONER.deepClone(this.getCoordinateY()));
+        } catch (CloneNotSupportedException ex) {
+            new InternalError(ex.getMessage()).printStackTrace();
+        }
+        return point;
+    }
+
     /**
-     * <p>
      * Returns the value of the X coordinate of the point.
-     * </p>
      *
      * @return Returns the value of the X coordinate.
      *
@@ -102,12 +98,9 @@ public class Point<T extends Number> implements Model {
     }
 
     /**
-     * <p>
      * Set the coordinate value X of the point.
-     * <p>
-     * If passed by parameter have non null value, then these value initialize the coordinate of the point,
+     * <p> If passed by parameter have non null value, then these value initialize the coordinate of the point,
      *  otherwise the coordinate are null.
-     * </p>
      *
      * @param coordinateX The value to initialize the coordinate X.
      *
@@ -120,9 +113,7 @@ public class Point<T extends Number> implements Model {
     }
 
     /**
-     * <p>
      * Returns the value of the Y coordinate of the point.
-     * </p>
      *
      * @return Returns the value of the Y coordinate.
      *
@@ -133,12 +124,9 @@ public class Point<T extends Number> implements Model {
     }
 
     /**
-     * <p>
      * Set the coordinate value X of the point.
-     * <p>
-     * If passed by parameter have non null value, then these value initialize the coordinate of the point,
+     * <p> If passed by parameter have non null value, then these value initialize the coordinate of the point,
      *  otherwise the coordinate are null.
-     * </p>
      *
      * @param coordinateY The value to initialize the coordinate Y.
      *
