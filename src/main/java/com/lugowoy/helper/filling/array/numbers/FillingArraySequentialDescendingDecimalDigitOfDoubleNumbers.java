@@ -11,7 +11,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
  * <p>The class fills an object of the {@link Array} class and a classic array with sequential descending decimal digit
@@ -35,7 +35,9 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbers(array.getArray());
+            Double[] doubles = new Double[array.getLength()];
+            this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbers(doubles);
+            array.setArray(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
@@ -94,10 +96,13 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Double[] doubles = new Double[array.getLength()];
             if (checkBoundValueIsNegative(bound)) {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(array.getArray(), bound);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
+                array.setArray(doubles);
             } else {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(array.getArray(), DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                array.setArray(doubles);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
@@ -177,11 +182,16 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Double[] doubles = new Double[array.getLength()];
             if (checkStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(array.getArray(), startBound, endBound);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                array.setArray(doubles);
             } else {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(array.getArray(), DEFAULT_START_BOUND, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
+                                                                                                                    DEFAULT_START_BOUND,
+                                                                                                                    DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                array.setArray(doubles);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));

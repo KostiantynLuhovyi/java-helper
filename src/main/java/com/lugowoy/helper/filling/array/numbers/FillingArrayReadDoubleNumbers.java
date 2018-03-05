@@ -13,7 +13,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
  * with data of the {@link Double} type with read by the {@link Reader} class object
@@ -66,7 +66,9 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            this.initializeArrayElementsEnteredDoubleNumbers(array.getArray());
+            Double[] doubles = new Double[array.getLength()];
+            this.initializeArrayElementsEnteredDoubleNumbers(doubles);
+            array.setArray(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
@@ -127,10 +129,13 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Double[] doubles = new Double[array.getLength()];
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(array.getArray(), bound);
+                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
+                array.setArray(doubles);
             } else {
-                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_DOUBLE_POSITIVE_BOUND);
+                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
+                array.setArray(doubles);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
@@ -213,13 +218,16 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Double[] doubles = new Double[array.getLength()];
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(array.getArray(), startBound, endBound);
+                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                array.setArray(doubles);
             } else {
-                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(array.getArray(),
+                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                          DEFAULT_DOUBLE_NEGATIVE_BOUND,
                                                                                          DEFAULT_DOUBLE_POSITIVE_BOUND);
+                array.setArray(doubles);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));

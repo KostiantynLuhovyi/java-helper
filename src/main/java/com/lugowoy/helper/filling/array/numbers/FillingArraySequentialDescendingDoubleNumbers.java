@@ -11,7 +11,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 13-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
  * <p>The class fills an object of the {@link Array} class and a classic array with sequential descending integer part
@@ -35,7 +35,9 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            this.initializeArrayElementsSequentialDescendingDoubleNumbers(array.getArray());
+            Double[] doubles = new Double[array.getLength()];
+            this.initializeArrayElementsSequentialDescendingDoubleNumbers(doubles);
+            array.setArray(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
@@ -98,12 +100,14 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Double[] doubles = new Double[array.getLength()];
             if (checkBoundValueIsNegative(bound)) {
-                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(array.getArray(), bound);
-                } else {
-                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(array.getArray(),
-                                                                                                     DEFAULT_DOUBLE_NEGATIVE_BOUND);
-                }
+                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles, bound);
+                array.setArray(doubles);
+            } else {
+                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                array.setArray(doubles);
+            }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
@@ -187,13 +191,16 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Double[] doubles = new Double[array.getLength()];
             if (checkStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(array.getArray(), startBound, endBound);
+                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                array.setArray(doubles);
             } else {
-                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(array.getArray(),
+                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                                       DEFAULT_START_BOUND,
                                                                                                       DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                array.setArray(doubles);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));

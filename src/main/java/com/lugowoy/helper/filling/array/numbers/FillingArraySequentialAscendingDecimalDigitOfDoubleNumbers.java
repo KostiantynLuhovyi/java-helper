@@ -11,7 +11,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
  * <p>The class fills an object of the {@link Array} class and a classic array with sequential ascending decimal digit
@@ -35,7 +35,9 @@ public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implemen
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbers(array.getArray());
+            Double[] doubles = new Double[array.getLength()];
+            this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbers(doubles);
+            array.setArray(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
@@ -94,10 +96,13 @@ public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implemen
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Double[] doubles = new Double[array.getLength()];
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(array.getArray(), bound);
+                this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles, bound);
+                array.setArray(doubles);
             } else {
-                this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_DOUBLE_POSITIVE_BOUND);
+                this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
+                array.setArray(doubles);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
@@ -180,13 +185,16 @@ public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implemen
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException{
         if (checkNonNullArrayObject(array)) {
+            Double[] doubles = new Double[array.getLength()];
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))){
-                this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(array.getArray(), startBound, endBound);
+                this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                array.setArray(doubles);
             } else {
-                this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(array.getArray(),
+                this.initializeArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                                                    DEFAULT_START_BOUND,
                                                                                                                    DEFAULT_DOUBLE_POSITIVE_BOUND);
+                array.setArray(doubles);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));

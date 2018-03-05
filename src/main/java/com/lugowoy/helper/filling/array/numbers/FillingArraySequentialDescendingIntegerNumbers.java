@@ -11,7 +11,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 13-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
  * <p>The class fills an object of the {@link Array} class and a classic array with sequential descending
@@ -35,7 +35,9 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
     @Override
     public void fill(Array<Integer> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            this.initializeArrayElementsSequentialDescendingIntegerNumbers(array.getArray());
+            Integer[] integers = new Integer[array.getLength()];
+            this.initializeArrayElementsSequentialDescendingIntegerNumbers(integers);
+            array.setArray(integers);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
@@ -98,11 +100,14 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
     @Override
     public void fill(Array<Integer> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Integer[] integers = new Integer[array.getLength()];
             if (checkBoundValueIsNegative(bound)) {
-                this.initializeArrayElementsSequentialDescendingIntegerNumbersFromZeroToNegativeBound(array.getArray(), bound);
+                this.initializeArrayElementsSequentialDescendingIntegerNumbersFromZeroToNegativeBound(integers, bound);
+                array.setArray(integers);
             } else {
-                this.initializeArrayElementsSequentialDescendingIntegerNumbersFromZeroToNegativeBound(array.getArray(),
+                this.initializeArrayElementsSequentialDescendingIntegerNumbersFromZeroToNegativeBound(integers,
                                                                                                       DEFAULT_INTEGER_NEGATIVE_BOUND);
+                array.setArray(integers);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argumemt object is null."));
@@ -186,14 +191,17 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
     @Override
     public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Integer[] integers = new Integer[array.getLength()];
             if (checkStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsSequentialDescendingIntegerNumbersFromStartBoundToEndBound(array.getArray(),
+                this.initializeArrayElementsSequentialDescendingIntegerNumbersFromStartBoundToEndBound(integers,
                                                                                                        startBound, endBound);
+                array.setArray(integers);
             } else {
-                this.initializeArrayElementsSequentialDescendingIntegerNumbersFromStartBoundToEndBound(array.getArray(),
+                this.initializeArrayElementsSequentialDescendingIntegerNumbersFromStartBoundToEndBound(integers,
                                                                                                        DEFAULT_INTEGER_POSITIVE_BOUND,
                                                                                                        DEFAULT_INTEGER_NEGATIVE_BOUND);
+                array.setArray(integers);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));

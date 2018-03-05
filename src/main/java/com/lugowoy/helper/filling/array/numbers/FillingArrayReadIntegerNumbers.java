@@ -13,7 +13,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
  *  with data of the {@link Integer} type with read by the {@link Reader} class object
@@ -66,7 +66,9 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
     @Override
     public void fill(Array<Integer> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            this.initializeArrayElementsEnteredIntegerNumbers(array.getArray());
+            Integer[] integers = new Integer[array.getLength()];
+            this.initializeArrayElementsEnteredIntegerNumbers(integers);
+            array.setArray(integers);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
@@ -126,10 +128,13 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
     @Override
     public void fill(Array<Integer> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Integer[] integers = new Integer[array.getLength()];
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), bound);
+                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
+                array.setArray(integers);
             } else {
-                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.initializeArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                array.setArray(integers);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
@@ -210,13 +215,16 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
     @Override
     public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Integer[] integers = new Integer[array.getLength()];
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(array.getArray(), startBound, endBound);
+                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
+                array.setArray(integers);
             } else {
-                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(array.getArray(),
+                this.initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
                                                                                           DEFAULT_INTEGER_NEGATIVE_BOUND,
                                                                                           DEFAULT_INTEGER_POSITIVE_BOUND);
+                array.setArray(integers);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));

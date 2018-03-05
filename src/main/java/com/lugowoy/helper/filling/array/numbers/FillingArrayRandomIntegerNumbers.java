@@ -12,7 +12,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
  * <p>The class fills an object of the {@link Array} class and a classic array with random numeric data of type {@link Integer}.
@@ -35,7 +35,9 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
     @Override
     public void fill(Array<Integer> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            this.initializeArrayElementsRandomIntegerNumbers(array.getArray());
+            Integer[] integers = new Integer[array.getLength()];
+            this.initializeArrayElementsRandomIntegerNumbers(integers);
+            array.setArray(integers);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
@@ -96,10 +98,13 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
     @Override
     public void fill(Array<Integer> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Integer[] integers = new Integer[array.getLength()];
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(array.getArray(), bound);
+                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
+                array.setArray(integers);
             } else {
-                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(array.getArray(), DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                array.setArray(integers);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
@@ -178,13 +183,16 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
     @Override
     public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Integer[] integers = new Integer[array.getLength()];
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(array.getArray(), startBound, endBound);
+                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
+                array.setArray(integers);
             } else {
-                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(array.getArray(),
+                this.initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,
                                                                                          DEFAULT_INTEGER_NEGATIVE_BOUND,
                                                                                          DEFAULT_INTEGER_POSITIVE_BOUND);
+                array.setArray(integers);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
