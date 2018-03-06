@@ -42,7 +42,7 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      *
      * @since 1.0
      */
-    public ArrayOfNumbers(final T[] array) {
+    public ArrayOfNumbers(T[] array) {
         super(array);
     }
 
@@ -56,7 +56,7 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      *
      * @since 1.0
      */
-    public ArrayOfNumbers(final int lengthArray) {
+    public ArrayOfNumbers(int lengthArray) {
         super(lengthArray);
     }
 
@@ -87,7 +87,7 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      */
     @Override
     public int[] getArrayOfIntegerPrimitiveNumbers() {
-        final int[] ints = new int[super.getLength()];
+        int[] ints = new int[super.getLength()];
         for (int i = 0; i < super.getLength(); i++) {
             ints[i] = super.get(i).intValue();
         }
@@ -104,7 +104,7 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      */
     @Override
     public double[] getArrayOfDoublePrimitiveNumbers() {
-        final double[] doubles = new double[super.getLength()];
+        double[] doubles = new double[super.getLength()];
         for (int i = 0; i < super.getLength(); i++) {
             doubles[i] = super.get(i).doubleValue();
         }

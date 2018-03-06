@@ -43,7 +43,7 @@ public class Point<T extends Number> implements Model {
      *
      * @since 1.0
      */
-    public Point(final T coordinateX, final T coordinateY) {
+    public Point(T coordinateX, T coordinateY) {
         if ((coordinateX != null) && (coordinateY != null)) {
             this.coordinateX = coordinateX;
             this.coordinateY = coordinateY;
@@ -106,7 +106,7 @@ public class Point<T extends Number> implements Model {
      *
      * @since 1.0
      */
-    public void setCoordinateX(final T coordinateX) {
+    public void setCoordinateX(T coordinateX) {
         if (coordinateX != null) {
             this.coordinateX = coordinateX;
         }
@@ -132,7 +132,7 @@ public class Point<T extends Number> implements Model {
      *
      * @since 1.0
      */
-    public void setCoordinateY(final T coordinateY) {
+    public void setCoordinateY(T coordinateY) {
         this.coordinateY = coordinateY;
     }
 

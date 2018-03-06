@@ -40,7 +40,7 @@ public class ArrayOfPoints<T extends Number> extends Array<Point<T>> {
      *
      * @since 1.0
      */
-    public ArrayOfPoints(final Point<T>[] array) {
+    public ArrayOfPoints(Point<T>[] array) {
         super(array);
     }
 
@@ -54,7 +54,7 @@ public class ArrayOfPoints<T extends Number> extends Array<Point<T>> {
      *
      * @since 1.0
      */
-    public ArrayOfPoints(final int lengthArray) {
+    public ArrayOfPoints(int lengthArray) {
         super(lengthArray);
     }
 

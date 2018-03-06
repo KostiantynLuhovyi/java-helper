@@ -29,7 +29,7 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * @param array The object of the {@link Array} class to be filled with numeric data.
      */
     @Override
-    void fill(final Array<T> array);
+    void fill(Array<T> array);
 
     /**
      * Fills an array with numeric data.

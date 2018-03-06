@@ -238,11 +238,11 @@ public class Array<T> implements Model {
         }
     }
 
-    private boolean checkLengthLargerZero(final int lengthArray) {
+    private boolean checkLengthLargerZero(int lengthArray) {
         return lengthArray > 0;
     }
 
-    private boolean checkNonNull(final T[] array) {
+    private boolean checkNonNull(T[] array) {
         return array != null;
     }
 
