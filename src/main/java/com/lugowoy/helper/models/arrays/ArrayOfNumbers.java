@@ -66,7 +66,7 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
         ArrayOfNumbers<T> arrayOfNumbers = new ArrayOfNumbers<>();
         try {
             arrayOfNumbers = (ArrayOfNumbers<T>) super.clone();
-            arrayOfNumbers.setArray(Arrays.copyOf(super.getArray(), super.getLength()));
+            arrayOfNumbers.setArray(DeepCloning.CLONER.deepClone(this.getArray()));
         } catch (CloneNotSupportedException ex) {
             new InternalError(ex.getMessage()).printStackTrace();
         }
@@ -87,9 +87,9 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      */
     @Override
     public int[] getArrayOfIntegerPrimitiveNumbers() {
-        final int[] ints = new int[super.getArray().length];
-        for (int i = 0; i < super.getArray().length; i++) {
-            ints[i] = super.getArray()[i].intValue();
+        final int[] ints = new int[super.getLength()];
+        for (int i = 0; i < super.getLength(); i++) {
+            ints[i] = super.get(i).intValue();
         }
         return ints;
     }
@@ -104,9 +104,9 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
      */
     @Override
     public double[] getArrayOfDoublePrimitiveNumbers() {
-        final double[] doubles = new double[super.getArray().length];
-        for (int i = 0; i < super.getArray().length; i++) {
-            doubles[i] = super.getArray()[i].doubleValue();
+        final double[] doubles = new double[super.getLength()];
+        for (int i = 0; i < super.getLength(); i++) {
+            doubles[i] = super.get(i).doubleValue();
         }
         return doubles;
     }
