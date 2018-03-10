@@ -239,7 +239,7 @@ public class Array<T> implements Model {
     }
 
     private boolean checkLengthLargerZero(int lengthArray) {
-        return lengthArray > 0;
+        return lengthArray >= 0;
     }
 
     private boolean checkNonNull(T[] array) {
