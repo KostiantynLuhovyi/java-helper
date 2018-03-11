@@ -9,30 +9,22 @@ import com.lugowoy.helper.io.reading.Reading;
  * @version 1.0
  * @since 1.0
  *
- * <p>
- * A class that performs static functionality to implement the selection of the length of the array to create.
- * </p>
+ * An interface that performs static functionality to implement the selection of the length of the array to create.
  */
 
-public class ArrayLength {
+public interface ArrayLength {
 
     /**
-     * <p>
      * Default length of an array.
-     * </p>
      */
-    private static final int DEFAULT_LENGTH_ARRAY = 10;
+    int DEFAULT_LENGTH_ARRAY = 10;
 
     /**
-     * <p>
      * Returns the length of an array.
-     * </p>
      *
      * @param reader The object to read the length value of the array.
-     *
-     * @since 1.0
      */
-    public static int getLengthArray(final Reading reader) {
+    static int getLengthArray(final Reading reader) {
         int lengthArray;
         if (reader != null) {
             lengthArray = reader.readInt();
@@ -46,16 +38,12 @@ public class ArrayLength {
     }
 
     /**
-     * <p>
      * Returns the length of an array.
-     * </p>
      *
      * @param reader The object to read the length value of the array.
      * @param boundLengthArray Value to determine the maximum length bound of the array.
-     *
-     * @since 1.0
      */
-    public static int getLengthArray(final Reading reader, final int boundLengthArray) {
+    static int getLengthArray(final Reading reader, final int boundLengthArray) {
         int lengthArray;
         if ((reader != null) && (boundLengthArray >= 0)) {
             lengthArray = reader.readInt();
@@ -69,17 +57,13 @@ public class ArrayLength {
     }
 
     /**
-     * <p>
      * Returns the length of an array.
-     * </p>
      *
      * @param reader The object to read the length value of the array.
      * @param minBoundLengthArray Value to determine the minimum length bound of the array.
      * @param maxBoundLengthArray Value to determine the maximum length bound of the array.
-     *
-     * @since 1.0
      */
-    public static int getLengthArray(final Reading reader, final int minBoundLengthArray, final int maxBoundLengthArray) {
+    static int getLengthArray(final Reading reader, final int minBoundLengthArray, final int maxBoundLengthArray) {
         int lengthArray;
         if ((reader != null) && ((minBoundLengthArray >= 0) && (maxBoundLengthArray >= 0))) {
             if (minBoundLengthArray < maxBoundLengthArray) {
