@@ -48,7 +48,7 @@ public interface ArrayChecker {
      * @param lengthOfArray The value of the length of the array.
      * @return Result to check.
      */
-    static boolean checkLengthOfArrayIsEqualZeroOrGreater(int lengthOfArray) throws IllegalArgumentException {
+    static boolean checkLengthOfArrayIsEqualToOrGreaterThanZero(int lengthOfArray) throws IllegalArgumentException {
         if (lengthOfArray >= 0) {
             return true;
         } else {
