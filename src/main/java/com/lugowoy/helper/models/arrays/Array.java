@@ -9,7 +9,7 @@ import java.util.stream.Stream;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @since 1.0
  *
  * A class that is the root of the inheritance hierarchy is a different class
@@ -52,7 +52,7 @@ public class Array<T> implements Model {
      * @param array Array to initialize the object to be created.
      * @since 1.0
      */
-    public Array(T[] array) {
+    public Array(Object[] array) {
         this.setCorrectArray(array);
     }
 
@@ -84,7 +84,7 @@ public class Array<T> implements Model {
 
     @Override
     public String toString() {
-        return "Array" + Arrays.toString(array);
+        return Arrays.toString(array);
     }
 
     /**
@@ -106,7 +106,7 @@ public class Array<T> implements Model {
      * @param array An array object to initialize an array encapsulated in this object.
      * @since 1.0
      */
-    public void setArray(T[] array) {
+    public void setArray(Object[] array) {
         this.setCorrectArray(array);
     }
 
@@ -222,7 +222,7 @@ public class Array<T> implements Model {
         }
     }
 
-    private void setCorrectArray(T[] array) {
+    private void setCorrectArray(Object[] array) {
         if (checkNonNull(array)) {
             this.array = array;
         } else {
@@ -242,7 +242,7 @@ public class Array<T> implements Model {
         return lengthArray >= 0;
     }
 
-    private boolean checkNonNull(T[] array) {
+    private boolean checkNonNull(Object[] array) {
         return array != null;
     }
 
