@@ -42,6 +42,7 @@ public class Array<T> implements Model {
      */
     public Array() {
          this.array = new Object[DEFAULT_LENGTH_ARRAY];
+         this.indexToAddElement = 0;
     }
 
     /**
@@ -54,6 +55,7 @@ public class Array<T> implements Model {
      */
     public Array(Object[] array) {
         this.setCorrectArray(array);
+        this.indexToAddElement = this.array.length;
     }
 
     /**
@@ -67,6 +69,7 @@ public class Array<T> implements Model {
      */
     public Array(int lengthArray) {
         this.setCorrectArray(lengthArray);
+        this.indexToAddElement = this.array.length;
     }
 
     @Override
@@ -108,6 +111,7 @@ public class Array<T> implements Model {
      */
     public void setArray(Object[] array) {
         this.setCorrectArray(array);
+        this.indexToAddElement = this.array.length;
     }
 
     /**
@@ -122,6 +126,7 @@ public class Array<T> implements Model {
      */
     public void setArray(int lengthArray) {
         this.setCorrectArray(lengthArray);
+        this.indexToAddElement = this.array.length;
     }
 
     /**
