@@ -102,7 +102,8 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
                 this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, bound);
                 array.setArray(integers);
             } else {
-                this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
+                                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
                 array.setArray(integers);
             }
         } else {
@@ -127,7 +128,8 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
             if (checkBoundValueIsPositive(bound)) {
                 this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
+                                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -156,11 +158,13 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
             if (checkBoundValueIsPositive(bound)) {
                 this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
+                                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+            this.initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
+                                                                                                 DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return integers;
     }
@@ -281,7 +285,8 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
         }
     }
 
-    private void initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(Integer[] integers, int bound) {
+    private void initializeArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(Integer[] integers,
+                                                                                                 int bound) {
         int value = 0, integerDigit = 1;
         for (int i = 0; i < integers.length; i++) {
             if (value <= bound) {
@@ -293,7 +298,9 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
         }
     }
 
-    private void initializeArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(Integer[] integers, int startBound, int endBound) {
+    private void initializeArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(Integer[] integers,
+                                                                                                  int startBound,
+                                                                                                  int endBound) {
         int value = startBound;
         for (int i = 0; i < integers.length; i++, value++) {
             if (value <= endBound) {

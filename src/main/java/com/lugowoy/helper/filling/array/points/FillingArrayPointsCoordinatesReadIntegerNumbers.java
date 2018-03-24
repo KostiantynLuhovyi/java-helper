@@ -17,43 +17,43 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
- * The class is the heir of the {@link FillingArrayOfPointsWithCoordinatesReadValues} class and implements it's contract.
+ * The class is the heir of the {@link FillingArrayPointsCoordinatesReadValues} class and implements it's contract.
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
  * with an object of the {@link Point} class with numeric coordinates of type {@link Integer}
  * using the data read by the object of the class {@link Reader} encapsulated in this class.
- * Also implements the contract declared by the {@link FillingArrayOfPoints} interface.
+ * Also implements the contract declared by the {@link FillingArrayPoints} interface.
  *
- * @see com.lugowoy.helper.filling.array.points.FillingArrayOfPointsWithCoordinatesReadValues
+ * @see com.lugowoy.helper.filling.array.points.FillingArrayPointsCoordinatesReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
- * @see com.lugowoy.helper.filling.array.points.FillingArrayOfPoints
+ * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
  */
 
-public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends FillingArrayOfPointsWithCoordinatesReadValues<Integer>
-                                                                   implements FillingArrayOfPoints<Integer> {
+public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArrayPointsCoordinatesReadValues<Integer>
+                                                                   implements FillingArrayPoints<Integer> {
 
     /**
-     * Constructs a new object {@link FillingArrayOfPointsWithCoordinatesReadIntegerNumbers} class,
+     * Constructs a new object {@link FillingArrayPointsCoordinatesReadIntegerNumbers} class,
      *  initializing an object of {@link Reader} class encapsulated in parent class to read the data to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in parent class to read data to fill array.
      */
-    public FillingArrayOfPointsWithCoordinatesReadIntegerNumbers(Reader reader) {
+    public FillingArrayPointsCoordinatesReadIntegerNumbers(Reader reader) {
         super(reader);
     }
 
     /**
-     * Constructs a new object {@link FillingArrayOfPointsWithCoordinatesReadIntegerNumbers} class,
+     * Constructs a new object {@link FillingArrayPointsCoordinatesReadIntegerNumbers} class,
      * initializing an object of {@link Reader} class encapsulated in parent class
      * of the concrete implementation of the contract declared in the interface {@link Reading} to read the data to be fill array.
      *
      * @param reading The object of class that implements the {@link Reading} interface to initialize an object of the {@link Reader} class
      *                encapsulated in parent class to read the data to be fill array.
      */
-    public FillingArrayOfPointsWithCoordinatesReadIntegerNumbers(Reading reading) {
+    public FillingArrayPointsCoordinatesReadIntegerNumbers(Reading reading) {
         super(reading);
     }
 
@@ -63,11 +63,15 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
      * by the object of the class {@link Reader} encapsulated in parent class.
      *
      * @param array The object of class {@link Array} to be filled.
+     * @throws IllegalArgumentException The argument object is null.
      */
+    @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point<Integer>> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
-            this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(array.getArray());
+            Point<Integer>[] points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
+            this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
+            array.setArray(points);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
@@ -78,6 +82,7 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
      * by the object of the class {@link Reader} encapsulated in parent class.
      *
      * @param points The array to be filled.
+     * @throws IllegalArgumentException If argument array is null.
      */
     @Override
     public void fill(Point<Integer>[] points) throws IllegalArgumentException {
@@ -100,14 +105,15 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
      * @return Created and filled array of the objects of the {@link Point} class
      *         with random numeric coordinates of type {@link Double}.
      */
+    @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public Point<Integer>[] fill(int lengthArray) {
         Point<Integer>[] points;
         if (checkLengthArray(lengthArray)) {
-            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(lengthArray).getArray();
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
         } else {
-            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(DEFAULT_LENGTH_ARRAY).getArray();
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
             this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
         }
         return points;
@@ -123,15 +129,21 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
      * @param array The object of the {@link Array} class to be filled.
      * @param bound The value of the end of the range boundary
      *              of numerical values by which the coordinates of points in the array will be initialized.
+     * @throws IllegalArgumentException If argument object is null.
      */
+    @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point<Integer>> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Point<Integer>[] points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(array.getArray(), bound);
+                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
+                                                                                                                           bound);
+                array.setArray(points);
             } else {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(array.getArray(),
+                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
                                                                                                                            DEFAULT_INTEGER_POSITIVE_BOUND);
+                array.setArray(points);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
@@ -148,6 +160,7 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
      * @param points The array to be filled.
      * @param bound  The value of the end of the range boundary
      *               of numerical values by which the coordinates of points in the array will be initialized.
+     * @throws IllegalArgumentException If argument array is null.
      */
     @Override
     public void fill(Point<Integer>[] points, Integer bound) throws IllegalArgumentException {
@@ -178,11 +191,12 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
      *                    of numerical values by which the coordinates of points in the array will be initialized.
      * @return Created and filled array of objects of the {@link Point} class with random numeric coordinates of type {@link Integer}.
      */
+    @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public Point<Integer>[] fill(int lengthArray, Integer bound) {
         Point<Integer>[] points;
         if (checkLengthArray(lengthArray)) {
-            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(lengthArray).getArray();
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (checkBoundValueIsPositive(bound)) {
                 this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points, bound);
             } else {
@@ -190,9 +204,9 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
                                                                                                                            DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(DEFAULT_LENGTH_ARRAY).getArray();
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
             this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
-                                                                                                                                DEFAULT_INTEGER_POSITIVE_BOUND);
+                                                                                                                       DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return points;
     }
@@ -212,18 +226,23 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
      *                   of numerical values by which the coordinates of points in the array will be initialized.
      * @param endBound The value of the end of the range boundary
      *                 of numerical values by which the coordinates of points in the array will be initialized.
+     * @throws IllegalArgumentException If argument object is null;
      */
+    @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point<Integer>> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
+            Point<Integer>[] points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(array.getArray(),
+                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             startBound, endBound);
+                array.setArray(points);
             } else {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(array.getArray(),
+                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             DEFAULT_INTEGER_NEGATIVE_BOUND,
                                                                                                                             DEFAULT_INTEGER_POSITIVE_BOUND);
+                array.setArray(points);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
@@ -244,6 +263,7 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
      *                   of numerical values by which the coordinates of points in the array will be initialized.
      * @param endBound   The value of the end of the range boundary
      *                   of numerical values by which the coordinates of points in the array will be initialized.
+     * @throws IllegalArgumentException The argument array is null.
      */
     @Override
     public void fill(Point<Integer>[] points, Integer startBound, Integer endBound) throws IllegalArgumentException {
@@ -284,11 +304,12 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
      *                    of numerical values by which the coordinates of points in the array will be initialized.
      * @return Created and filled array of objects of the {@link Point} class with numerical coordinates.
      */
+    @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public Point<Integer>[] fill(int lengthArray, Integer startBound, Integer endBound) {
         Point<Integer>[] points;
         if (checkLengthArray(lengthArray)) {
-            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(lengthArray).getArray();
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
                 this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
@@ -299,10 +320,10 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
                                                                                                                             DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
-            points = FactoryArray.getFactoryArray(new CreatorArrayPoints<Integer>()).create(DEFAULT_LENGTH_ARRAY).getArray();
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
             this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
-                                                                                                                                 DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                                                                 DEFAULT_INTEGER_POSITIVE_BOUND);
+                                                                                                                        DEFAULT_INTEGER_NEGATIVE_BOUND,
+                                                                                                                        DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return points;
     }
@@ -313,19 +334,22 @@ public class FillingArrayOfPointsWithCoordinatesReadIntegerNumbers extends Filli
         }
     }
 
-    private void initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(Point<Integer>[] points, int bound) {
+    private void initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(Point<Integer>[] points,
+                                                                                                                       int bound) {
         for (int i = 0; i < points.length; i++) {
-            int valueCoorX = checkReadValueIsInRange(super.getReader().readInt(), DEFAULT_START_BOUND, bound);
-            int valueCoorY = checkReadValueIsInRange(super.getReader().readInt(), DEFAULT_START_BOUND, bound);
-            points[i] = new Point<>(valueCoorX, valueCoorY);
+            int valueCoordinateX = checkReadValueIsInRange(super.getReader().readInt(), DEFAULT_START_BOUND, bound);
+            int valueCoordinateY = checkReadValueIsInRange(super.getReader().readInt(), DEFAULT_START_BOUND, bound);
+            points[i] = new Point<>(valueCoordinateX, valueCoordinateY);
         }
     }
 
-    private void initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(Point<Integer>[] points, int startBound, int endBound) {
+    private void initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(Point<Integer>[] points,
+                                                                                                                        int startBound,
+                                                                                                                        int endBound) {
         for (int i = 0; i < points.length; i++) {
-            int valueCoorX = checkReadValueIsInRange(super.getReader().readInt(), startBound, endBound);
-            int valueCoorY = checkReadValueIsInRange(super.getReader().readInt(), startBound, endBound);
-            points[i] = new Point<>(valueCoorX, valueCoorY);
+            int valueCoordinateX = checkReadValueIsInRange(super.getReader().readInt(), startBound, endBound);
+            int valueCoordinateY = checkReadValueIsInRange(super.getReader().readInt(), startBound, endBound);
+            points[i] = new Point<>(valueCoordinateX, valueCoordinateY);
         }
     }
 

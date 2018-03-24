@@ -15,7 +15,7 @@ import com.lugowoy.helper.models.points.Point;
  */
 
 @FunctionalInterface
-public interface FillingArrayOfPointsCoordinatesWithArrayNumbers<T extends Number> {
+public interface FillingArrayPointsCoordinatesWithArrayNumbers<T extends Number> {
 
     /**
      * Fills an array with objects of the {@link Point} class

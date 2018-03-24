@@ -26,8 +26,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
 
     /**
      * Fills an object of the {@link Array} class with random numeric data of the type {@link Integer}.
-     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_INT_BOUND}
-     * to {@link GeneratorRandomNumber#MAX_INT_BOUND}.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#START_INT_BOUND}
+     * to {@link GeneratorRandomNumber#END_INT_BOUND}.
      *
      * @param array The object of the {@link Array} class to be filled with numeric data of the type {@link Integer}.
      * @throws IllegalArgumentException If the object argument is null.
@@ -45,8 +45,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
 
     /**
      * Fills an array with random numeric data of the type {@link Integer}.
-     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_INT_BOUND}
-     * to {@link GeneratorRandomNumber#MAX_INT_BOUND}.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#START_INT_BOUND}
+     * to {@link GeneratorRandomNumber#END_INT_BOUND}.
      *
      * @param integers The array to be filled with random numeric data of the type {@link Integer}.
      * @throws IllegalArgumentException If the array argument is null.
@@ -62,8 +62,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
 
     /**
      * Fills an array with random numeric data of the type {@link Integer}.
-     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_INT_BOUND}
-     * to {@link GeneratorRandomNumber#MAX_INT_BOUND}.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#START_INT_BOUND}
+     * to {@link GeneratorRandomNumber#END_INT_BOUND}.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
@@ -122,7 +122,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
-    public void fill(Integer[] integers, Integer bound) {
+    public void fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
             if (checkBoundValueIsPositive(bound)) {
                 this.initializeArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
@@ -278,7 +278,9 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
         }
     }
 
-    private void initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(Integer[] integers, int startBound, int endBound) {
+    private void initializeArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(Integer[] integers,
+                                                                                     int startBound,
+                                                                                     int endBound) {
         for (int i = 0; i < integers.length; i++) {
             integers[i] = GeneratorRandomNumber.generateInt(startBound, endBound);
         }

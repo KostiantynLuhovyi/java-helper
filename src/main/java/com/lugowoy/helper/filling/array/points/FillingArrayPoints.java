@@ -16,7 +16,7 @@ import com.lugowoy.helper.models.points.Point;
  * @param <T> Type of numeric coordinates that are encapsulated in the object of the {@link Point} class.
  */
 
-public interface FillingArrayOfPoints<T extends Number> extends FillingArray<Point<T>> {
+public interface FillingArrayPoints<T extends Number> extends FillingArray<Point<T>> {
 
     /**
      * Fills an object of the {@link Array} class with objects of the {@link Point} class with numerical coordinates.

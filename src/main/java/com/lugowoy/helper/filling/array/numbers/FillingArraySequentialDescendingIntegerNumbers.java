@@ -289,7 +289,8 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
         }
     }
 
-    private void initializeArrayElementsSequentialDescendingIntegerNumbersFromZeroToNegativeBound(Integer[] integers, int bound) {
+    private void initializeArrayElementsSequentialDescendingIntegerNumbersFromZeroToNegativeBound(Integer[] integers,
+                                                                                                  int bound) {
         int value = 0, integerDigit = 1;
         for (int i = 0; i < integers.length; i++) {
             if (value >= bound) {
@@ -301,7 +302,9 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
         }
     }
 
-    private void initializeArrayElementsSequentialDescendingIntegerNumbersFromStartBoundToEndBound(Integer[] integers, int startBound, int endBound) {
+    private void initializeArrayElementsSequentialDescendingIntegerNumbersFromStartBoundToEndBound(Integer[] integers,
+                                                                                                   int startBound,
+                                                                                                   int endBound) {
         int value = startBound, integerDigit = 1;
         for (int i = 0; i < integers.length; i++) {
             if (value >= endBound) {

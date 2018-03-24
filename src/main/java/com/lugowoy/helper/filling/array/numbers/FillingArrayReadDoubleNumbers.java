@@ -323,7 +323,9 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
         }
     }
 
-    private void initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(Double[] doubles, double startBound, double endBound) {
+    private void initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(Double[] doubles,
+                                                                                     double startBound,
+                                                                                     double endBound) {
         double value;
         for (int i = 0; i < doubles.length; i++) {
             value = super.getReader().readDouble();

@@ -105,7 +105,8 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 this.initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles, bound);
                 array.setArray(doubles);
             } else {
-                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                this.initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles,
+                                                                                                     DEFAULT_DOUBLE_NEGATIVE_BOUND);
                 array.setArray(doubles);
             }
         } else {
@@ -167,7 +168,8 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+            this.initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles,
+                                                                                                 DEFAULT_DOUBLE_NEGATIVE_BOUND);
         }
         return doubles;
     }
@@ -288,7 +290,8 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
         }
     }
 
-    private void initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(Double[] doubles, double bound) {
+    private void initializeArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(Double[] doubles,
+                                                                                                 double bound) {
         double value = 0.0, integerDigit = 1.0;
         for (int i = 0; i < doubles.length; i++) {
             if (value >= bound) {
@@ -300,7 +303,9 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
         }
     }
 
-    private void initializeArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(Double[] doubles, double startBound, double endBound) {
+    private void initializeArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(Double[] doubles,
+                                                                                                  double startBound,
+                                                                                                  double endBound) {
         double value = startBound, integerDigit = 1.0;
         for (int i = 0; i < doubles.length; i++) {
             if (value >= endBound) {

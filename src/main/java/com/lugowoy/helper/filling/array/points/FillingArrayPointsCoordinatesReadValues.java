@@ -12,7 +12,7 @@ import com.lugowoy.helper.models.points.Point;
  * @author Konsytantin Lugowoy
  * @version 1.1
  *
- * The class is the root of the class hierarchy that implements the contract declared in the {@link FillingArrayOfPoints} interface
+ * The class is the root of the class hierarchy that implements the contract declared in the {@link FillingArrayPoints} interface
  * of the filling of objects of {@link Array} class and classical arrays with an object of the {@link Point} class
  * with numeric coordinates using the data read by the object of the class {@link Reader} encapsulated in this class.
  *
@@ -20,7 +20,7 @@ import com.lugowoy.helper.models.points.Point;
  * @see com.lugowoy.helper.filling.array.FillingArray
  */
 
-public abstract class FillingArrayOfPointsWithCoordinatesReadValues<T extends Number> implements FillingArray<Point<T>> {
+public abstract class FillingArrayPointsCoordinatesReadValues<T extends Number> implements FillingArray<Point<T>> {
 
     private Reader reader;
 
@@ -31,7 +31,7 @@ public abstract class FillingArrayOfPointsWithCoordinatesReadValues<T extends Nu
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in this class to read data to fill array.
      */
-    public FillingArrayOfPointsWithCoordinatesReadValues(Reader reader) {
+    public FillingArrayPointsCoordinatesReadValues(Reader reader) {
         this.reader = reader;
     }
 
@@ -43,7 +43,7 @@ public abstract class FillingArrayOfPointsWithCoordinatesReadValues<T extends Nu
      * @param reading The object of class that implements the {@link Reading} interface to initialize an object of the {@link Reader} class
      *                encapsulated in this class to read the data to be fill array.
      */
-    public FillingArrayOfPointsWithCoordinatesReadValues(Reading reading) {
+    public FillingArrayPointsCoordinatesReadValues(Reading reading) {
         this.reader = Reader.getReader(reading);
     }
 

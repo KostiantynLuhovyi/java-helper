@@ -126,7 +126,8 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
             if (checkBoundValueIsNegative(bound)) {
                 this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
+                                                                                                                   DEFAULT_DOUBLE_NEGATIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -155,11 +156,13 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
             if (checkBoundValueIsNegative(bound)) {
                 this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
+                                                                                                                   DEFAULT_DOUBLE_NEGATIVE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+            this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
+                                                                                                               DEFAULT_DOUBLE_NEGATIVE_BOUND);
         }
         return doubles;
     }
@@ -185,7 +188,9 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
             Double[] doubles = new Double[array.getLength()];
             if (checkStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
+                                                                                                                    startBound,
+                                                                                                                    endBound);
                 array.setArray(doubles);
             } else {
                 this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
@@ -217,9 +222,13 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
         if (checkNonNullArrayNumbers(doubles)) {
             if (checkStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
+                                                                                                                    startBound,
+                                                                                                                    endBound);
             } else {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles, DEFAULT_START_BOUND, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
+                                                                                                                    DEFAULT_START_BOUND,
+                                                                                                                    DEFAULT_DOUBLE_NEGATIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -251,13 +260,19 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
             doubles = new Double[lengthArray];
             if (checkStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
+                                                                                                                    startBound,
+                                                                                                                    endBound);
             } else {
-                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles, DEFAULT_START_BOUND, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
+                                                                                                                    DEFAULT_START_BOUND,
+                                                                                                                    DEFAULT_DOUBLE_NEGATIVE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles, DEFAULT_START_BOUND, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+            this.initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
+                                                                                                                DEFAULT_START_BOUND,
+                                                                                                                DEFAULT_DOUBLE_NEGATIVE_BOUND);
         }
         return doubles;
     }
@@ -270,7 +285,8 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
         }
     }
 
-    private void initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(Double[] doubles, double bound) {
+    private void initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(Double[] doubles,
+                                                                                                               double bound) {
         double value = 0, fractionalDigit = 0.1;
         for (int i = 0; i < doubles.length; i++) {
             if (value >= bound) {
@@ -282,7 +298,9 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
         }
     }
 
-    private void initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(Double[] doubles, double startBound, double endBound) {
+    private void initializeArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(Double[] doubles,
+                                                                                                                double startBound,
+                                                                                                                double endBound) {
         double value = startBound, fractionalDigit = 0.1;
         for (int i = 0; i < doubles.length; i++) {
             if (value >= endBound) {

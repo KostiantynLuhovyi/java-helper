@@ -322,7 +322,9 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
         }
     }
 
-    private void initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(Integer[] integers, int startBound, int endBound) {
+    private void initializeArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(Integer[] integers,
+                                                                                      int startBound,
+                                                                                      int endBound) {
         int value;
         for (int i = 0; i < integers.length; i++) {
             value = super.getReader().readInt();

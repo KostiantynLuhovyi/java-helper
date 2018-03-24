@@ -27,8 +27,8 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
 
     /**
      * Fills an object of the {@link Array} class with random numeric data of the type {@link Double}.
-     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_DOUBLE_BOUND}
-     * to {@link GeneratorRandomNumber#MAX_DOUBLE_BOUND}.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#START_DOUBLE_BOUND}
+     * to {@link GeneratorRandomNumber#END_DOUBLE_BOUND}.
      *
      * @param array The object of the {@link Array} class to be filled with numeric data of the type {@link Double}.
      * @throws IllegalArgumentException If the object argument is null.
@@ -46,8 +46,8 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
 
     /**
      * Fills an array with random numeric data of the type {@link Double}.
-     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_DOUBLE_BOUND}
-     * to {@link GeneratorRandomNumber#MAX_DOUBLE_BOUND}.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#START_DOUBLE_BOUND}
+     * to {@link GeneratorRandomNumber#END_DOUBLE_BOUND}.
      *
      * @param doubles The array to be filled with random numeric data of the type {@link Double}.
      * @throws IllegalArgumentException If the array argument is null.
@@ -63,8 +63,8 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
 
     /**
      * Fills an array with random numeric data of the type {@link Double}.
-     * Numerical values are in the range from {@link GeneratorRandomNumber#MIN_DOUBLE_BOUND}
-     * to {@link GeneratorRandomNumber#MAX_DOUBLE_BOUND}.
+     * Numerical values are in the range from {@link GeneratorRandomNumber#START_DOUBLE_BOUND}
+     * to {@link GeneratorRandomNumber#END_DOUBLE_BOUND}.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
@@ -280,7 +280,9 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
         }
     }
 
-    private void initializeArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(Double[] doubles, double startBound, double endBound) {
+    private void initializeArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(Double[] doubles,
+                                                                                    double startBound,
+                                                                                    double endBound) {
         for (int i = 0; i < doubles.length; i++) {
             doubles[i] = GeneratorRandomNumber.generateDouble(startBound, endBound);
         }
