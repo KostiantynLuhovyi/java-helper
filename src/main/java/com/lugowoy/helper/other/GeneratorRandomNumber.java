@@ -8,7 +8,7 @@ import java.util.Random;
  * Created by Konstantin Lugowoy on 01.01.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  *
  * The interface provides a functional for generating random integers and double numbers.
  *  Functionality is provided in a static context.
@@ -20,20 +20,20 @@ public interface GeneratorRandomNumber {
 
     int SCALE = 2;
 
-    int MIN_INT_BOUND = -128;
-    int MAX_INT_BOUND = 127;
+    int START_INT_BOUND = -128;
+    int END_INT_BOUND = 127;
 
-    double MIN_DOUBLE_BOUND = -128;
-    double MAX_DOUBLE_BOUND = 127;
+    double START_DOUBLE_BOUND = -128;
+    double END_DOUBLE_BOUND = 127;
 
     /**
-     * The method generate a random integer number in the range from {@link GeneratorRandomNumber#MIN_INT_BOUND}
-     * to {@link GeneratorRandomNumber#MAX_INT_BOUND}.
+     * The method generate a random integer number in the range from {@link GeneratorRandomNumber#START_INT_BOUND}
+     * to {@link GeneratorRandomNumber#END_INT_BOUND}.
      *
      * @return The generated integer number.
      */
     static int generateInt() {
-        return getRandomInRangeIntValue(MIN_INT_BOUND, MAX_INT_BOUND);
+        return getRandomInRangeIntValue(START_INT_BOUND, END_INT_BOUND);
     }
 
     /**
@@ -46,22 +46,22 @@ public interface GeneratorRandomNumber {
     }
 
     /**
-     * The method generate a random integer number in the range from parameter "minBound" to parameter "maxBound" .
+     * The method generate a random integer number in the range from parameter "startBound" to parameter "endBound" .
      *
      * @return The generated integer number.
      */
-    static int generateInt(final int minBound, final int maxBound) {
-        return getRandomInRangeIntValue(minBound, maxBound);
+    static int generateInt(final int startBound, final int endBound) {
+        return getRandomInRangeIntValue(startBound, endBound);
     }
 
     /**
-     * The method generate a random double number in the range from {@link GeneratorRandomNumber#MIN_DOUBLE_BOUND}
-     *  to {@link GeneratorRandomNumber#MAX_DOUBLE_BOUND}.
+     * The method generate a random double number in the range from {@link GeneratorRandomNumber#START_DOUBLE_BOUND}
+     *  to {@link GeneratorRandomNumber#END_DOUBLE_BOUND}.
      *
      * @return The generated double number.
      */
     static double generateDouble() {
-        return new BigDecimal(getRandomInRangeDoubleValue(MIN_DOUBLE_BOUND, MAX_DOUBLE_BOUND)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
+        return new BigDecimal(getRandomInRangeDoubleValue(START_DOUBLE_BOUND, END_DOUBLE_BOUND)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
     }
 
     /**
@@ -74,20 +74,20 @@ public interface GeneratorRandomNumber {
     }
 
     /**
-     * The method generate a random integer number from parameter "minBound" to parameter "maxBound".
+     * The method generate a random integer number from parameter "startBound" to parameter "endBound".
      *
      * @return The generated double number.
      */
-    static double generateDouble(double minBound, double maxBound) {
-        return new BigDecimal(getRandomInRangeDoubleValue(minBound, maxBound)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
+    static double generateDouble(double startBound, double endBound) {
+        return new BigDecimal(getRandomInRangeDoubleValue(startBound, endBound)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
     }
 
-    private static int getRandomInRangeIntValue(int minBound, int maxBound) {
-        return minBound + (RANDOM.nextInt((maxBound - minBound) + 1));
+    private static int getRandomInRangeIntValue(int startBound, int endBound) {
+        return startBound + (RANDOM.nextInt((endBound - startBound) + 1));
     }
 
-    private static double getRandomInRangeDoubleValue(double minBound, double maxBound) {
-        return minBound + (RANDOM.nextDouble() * (maxBound - minBound));
+    private static double getRandomInRangeDoubleValue(double startBound, double endBound) {
+        return startBound + (RANDOM.nextDouble() * (endBound - startBound));
     }
 
 }

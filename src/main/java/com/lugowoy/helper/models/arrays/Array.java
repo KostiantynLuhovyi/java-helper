@@ -53,7 +53,7 @@ public class Array<T> implements Model {
      * @param array Array to initialize the object to be created.
      * @since 1.0
      */
-    public Array(Object[] array) {
+    public Array(T[] array) {
         this.setCorrectArray(array);
         this.indexToAddElement = this.array.length;
     }
@@ -91,14 +91,11 @@ public class Array<T> implements Model {
     }
 
     /**
-     * Returns an array that is encapsulated in this object.
-     *
-     * @return The object of the array encapsulated in this object.
-     * @since 1.0
+     * Returns an array containing all the elements that are encapsulated in this array.
      */
-    @SuppressWarnings("unchecked") // Type safety. Unchecked cast Object[] to T[].
-    public T[] getArray() {
-        return (T[]) this.array;
+    @SuppressWarnings("unchecked")
+    public T[] toArray() {
+        return (T[]) Arrays.copyOf(this.array, this.array.length);
     }
 
     /**
@@ -109,7 +106,7 @@ public class Array<T> implements Model {
      * @param array An array object to initialize an array encapsulated in this object.
      * @since 1.0
      */
-    public void setArray(Object[] array) {
+    public void setArray(T[] array) {
         this.setCorrectArray(array);
         this.indexToAddElement = this.array.length;
     }
@@ -227,7 +224,7 @@ public class Array<T> implements Model {
         }
     }
 
-    private void setCorrectArray(Object[] array) {
+    private void setCorrectArray(T[] array) {
         if (checkNonNull(array)) {
             this.array = array;
         } else {
@@ -247,7 +244,7 @@ public class Array<T> implements Model {
         return lengthArray >= 0;
     }
 
-    private boolean checkNonNull(Object[] array) {
+    private boolean checkNonNull(T[] array) {
         return array != null;
     }
 

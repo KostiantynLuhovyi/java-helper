@@ -58,13 +58,13 @@ public class ArrayOfPoints<T extends Number> extends Array<Point<T>> {
         super(lengthArray);
     }
 
-    @SuppressWarnings("unchecked") // Type safety. Unchecked cast Object[] to T[].
+    @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public ArrayOfPoints<T> clone() {
         ArrayOfPoints<T> arrayOfPoints = new ArrayOfPoints<>();
         try {
             arrayOfPoints = (ArrayOfPoints<T>) super.clone();
-            arrayOfPoints.setArray(DeepCloning.CLONER.deepClone(super.getArray()));
+            arrayOfPoints = DeepCloning.CLONER.deepClone(this);
         } catch (CloneNotSupportedException ex) {
             new InternalError(ex.getMessage()).printStackTrace();
         }

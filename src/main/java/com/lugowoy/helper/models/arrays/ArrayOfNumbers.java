@@ -2,8 +2,6 @@ package com.lugowoy.helper.models.arrays;
 
 import com.lugowoy.helper.other.DeepCloning;
 
-import java.util.Arrays;
-
 /**
  * Created by Konstantin Lugowoy on 31.07.2017.
  *
@@ -60,13 +58,13 @@ public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayO
         super(lengthArray);
     }
 
-    @SuppressWarnings("unchecked") // Type safety. Unchecked cast Object[] to T[].
+    @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public ArrayOfNumbers<T> clone() {
         ArrayOfNumbers<T> arrayOfNumbers = new ArrayOfNumbers<>();
         try {
             arrayOfNumbers = (ArrayOfNumbers<T>) super.clone();
-            arrayOfNumbers.setArray(DeepCloning.CLONER.deepClone(this.getArray()));
+            arrayOfNumbers = DeepCloning.CLONER.deepClone(this);
         } catch (CloneNotSupportedException ex) {
             new InternalError(ex.getMessage()).printStackTrace();
         }
