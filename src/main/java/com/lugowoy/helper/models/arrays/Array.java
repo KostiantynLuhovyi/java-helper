@@ -91,11 +91,36 @@ public class Array<T> implements Model {
     }
 
     /**
-     * Returns an array containing all the elements that are encapsulated in this array.
+     * Returns an array that is passed by an argument to a method
+     * that contains all the elements encapsulated in the array of the object Array class.
+     * <p>If the size of the array passed to the method is less than or equal to the original array,
+     * an array of a suitable size will be created at runtime,
+     * the elements of the original array will be copied to it and it will be returned by the method.
+     *
+     * @param tArray An array in which all the data from the array encapsulated in the class object will be copied.
+     * @return An array containing data from an array encapsulated in the object class.
      */
     @SuppressWarnings("unchecked")
-    public T[] toArray() {
-        return (T[]) Arrays.copyOf(this.array, this.array.length);
+    public T[] toArray(T[] tArray) {
+        if (tArray != null) {
+            if (tArray.length <= this.array.length) {
+                tArray = (T[]) Arrays.copyOf(this.array, this.array.length, tArray.getClass());
+            } else if (tArray.length > this.array.length) {
+                tArray = (T[]) Arrays.copyOf(this.array, tArray.length, tArray.getClass());
+            }
+        } else {
+            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+        }
+            return tArray;
+    }
+
+    /**
+     * Returns an array containing all the elements that are encapsulated in this array.
+     *
+     * @return An array containing data from an array encapsulated in the object class.
+     */
+    public Object[] toArray() {
+        return Arrays.copyOf(this.array, this.array.length);
     }
 
     /**
