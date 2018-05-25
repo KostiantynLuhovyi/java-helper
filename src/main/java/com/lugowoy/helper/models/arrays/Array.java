@@ -69,7 +69,7 @@ public class Array<T> implements Model {
      */
     public Array(int lengthArray) {
         this.setCorrectArray(lengthArray);
-        this.indexToAddElement = this.array.length;
+        this.indexToAddElement = 0;
     }
 
     @Override
