@@ -1,6 +1,7 @@
 package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
+import com.lugowoy.helper.filling.array.FillingArrayReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
@@ -21,7 +22,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * The class is the heir of the {@link FillingArrayReadValues} class and implements it's contract.
  * Also implements the contract declared by the {@link FillingArrayNumbers} interface.
  *
- * @see com.lugowoy.helper.filling.array.numbers.FillingArrayReadValues
+ * @see FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers

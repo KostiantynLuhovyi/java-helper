@@ -5,6 +5,9 @@ import com.lugowoy.helper.models.arrays.Array;
 /**
  * Created by Konstantin Lugowoy on 10.06.2018.
  *
+ * @author Konstantin Lugowoy
+ * @version 1.0
+ *
  * The class implements a contract that creates objects of the {@link Array} type encapsulating an array of object of the type <T>.
  *
  * @see com.lugowoy.helper.factory.creator.Creating
@@ -28,7 +31,7 @@ public class CreatorArrayUnknown<T> extends CreatorArray<T> {
      * @see com.lugowoy.helper.factory.creator.Creating
      * @see com.lugowoy.helper.models.arrays.Array
      * @since 1.0
-     */
+     * */
     @Override
     public Array<T> create() {
         return new Array<>();
@@ -44,7 +47,7 @@ public class CreatorArrayUnknown<T> extends CreatorArray<T> {
      * @see com.lugowoy.helper.factory.creator.CreatingArray
      * @see com.lugowoy.helper.models.arrays.Array
      * @since 1.0
-     */
+     * */
     @Override
     public Array<T> create(T[] tArray) {
         return new Array<>(tArray);
@@ -60,7 +63,7 @@ public class CreatorArrayUnknown<T> extends CreatorArray<T> {
      * @see com.lugowoy.helper.factory.creator.CreatingArray
      * @see com.lugowoy.helper.models.arrays.Array
      * @since 1.0
-     */
+     * */
     @Override
     public Array<T> create(int lengthArray) {
         return new Array<>(lengthArray);
