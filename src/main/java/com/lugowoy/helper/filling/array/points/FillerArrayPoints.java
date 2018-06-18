@@ -28,6 +28,14 @@ import com.lugowoy.helper.models.points.Point;
 public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
 
     /**
+     * Default constructor.
+     * The presence of this is absolutely not necessary.
+     * Its presence is caused by the need to add more extended constructor variants to the inheritor of this class.
+     */
+    public FillerArrayPoints() {
+    }
+
+    /**
      * Constructor to create a new {@link FillerArrayPoints}
      * and initializes the object encapsulated in parent class to perform the functionality.
      *

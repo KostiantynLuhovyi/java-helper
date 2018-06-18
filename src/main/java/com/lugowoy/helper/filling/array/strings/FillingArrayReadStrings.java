@@ -10,6 +10,16 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * Created by Konstantin Lugowoy on 10.06.2018.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.0
+ *
+ * The class provides functionality to fill an object of the {@link Array} class and classical arrays
+ * with object of the {@link String} type.
+ *
+ * @see com.lugowoy.helper.filling.Filling
+ * @see com.lugowoy.helper.filling.array.FillingArray
+ * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  * */
 
 //todo Add doc's;
@@ -17,18 +27,19 @@ public class FillingArrayReadStrings extends FillingArrayStrings {
 
     private Reader reader;
 
-    public FillingArrayReadStrings(Reader reader) {
-        this.reader = reader;
-    }
-
+    /**
+     * Constructs a new object of the {@link FillingArrayReadStrings} class.
+     *
+     * @param reading An object that implements the {@link Reading} interface, which provides a specific implementation for reading data.
+     * */
     public FillingArrayReadStrings(Reading reading) {
         this.reader = Reader.getReader(reading);
     }
 
     /**
-     * Fills an object of the {@link Array} class with data.
+     * Fills an object of the {@link Array} class with object of the {@link String} type.
      *
-     * @param array The object of the {@link Array} class to be filled with data.
+     * @param array The object of the {@link Array} class to be filled with object of the {@link String} type.
      */
     @Override
     public void fill(Array<String> array) throws IllegalArgumentException {
@@ -42,9 +53,9 @@ public class FillingArrayReadStrings extends FillingArrayStrings {
     }
 
     /**
-     * Fills an array with data.
+     * Fills an array with object of the {@link String} type.
      *
-     * @param strings The array to be filled with data.
+     * @param strings The array to be filled with object of the {@link String} type.
      */
     @Override
     public void fill(String[] strings) throws IllegalArgumentException {
@@ -56,12 +67,12 @@ public class FillingArrayReadStrings extends FillingArrayStrings {
     }
 
     /**
-     * Fills an array with data.
+     * Fills an array with object of the {@link String} type.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      *
-     * @param lengthArray The length(size) of the array to be filled with data.
-     * @return Created and filled array with data.
+     * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
+     * @return Created and filled array with object of the {@link String} type.
      */
     @Override
     public String[] fill(int lengthArray) {

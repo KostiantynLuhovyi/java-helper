@@ -46,6 +46,16 @@ public interface FillingArrayChecker {
     }
 
     /**
+     * The method that check an array of objects of the {@link String} class is not equal to null.
+     *
+     * @param strings The array for checking.
+     * @return Result of checking.
+     * */
+    static boolean checkNonNullArrayStrings(String[] strings) {
+        return strings != null;
+    }
+
+    /**
      * The method that checks that the value of "lengthArray" is greater than "0" and less than "32767".
      *
      * @param lengthArray The value for checking.

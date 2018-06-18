@@ -10,35 +10,39 @@ import com.lugowoy.helper.other.ArrayChecker;
  * @author Konstantin Lugowoy
  * @version 1.0
  *
+ * This interface is the inheritor of the {@link FillingArray} interface
+ *  and thereby redefines its contract for filling with object of the {@link String} type of
+ *  an object of the {@link Array} wrapper class and an classical arrays.
  *
- *
+ * @see com.lugowoy.helper.filling.Filling
+ * @see com.lugowoy.helper.filling.array.FillingArray
  * */
-//todo Fix and add doc's;
+
 public abstract class FillingArrayStrings implements FillingArray<String> {
 
     /**
-     * Fills an object of the {@link Array} class with data.
+     * Fills an object of the {@link Array} class with object of the {@link String} type.
      *
-     * @param array The object of the {@link Array} class to be filled with data.
+     * @param array The object of the {@link Array} class to be filled with object of the {@link String} type.
      */
     @Override
     public abstract void fill(Array<String> array);
 
     /**
-     * Fills an array with data.
+     * Fills an array with object of the {@link String} type.
      *
-     * @param tArray The array to be filled with data.
+     * @param tArray The array to be filled with object of the {@link String} type.
      */
     @Override
     public abstract void fill(String[] tArray);
 
     /**
-     * Fills an array with data.
+     * Fills an array with object of the {@link String} type.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      *
-     * @param lengthArray The length(size) of the array to be filled with data.
-     * @return Created and filled array with data.
+     * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
+     * @return Created and filled array with object of the {@link String} type.
      */
     @Override
     public abstract String[] fill(int lengthArray);

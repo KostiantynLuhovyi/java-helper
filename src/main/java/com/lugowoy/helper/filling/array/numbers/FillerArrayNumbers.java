@@ -30,6 +30,14 @@ import com.lugowoy.helper.models.arrays.Array;
 public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
 
     /**
+     * Default constructor.
+     * The presence of this is absolutely not necessary.
+     * Its presence is caused by the need to add more extended constructor variants to the inheritor of this class.
+     */
+    public FillerArrayNumbers() {
+    }
+
+    /**
      * Constructor to create a new {@link FillerArrayNumbers} and initializes the object encapsulated in parent class to perform the functionality.
      *
      * @param fillingArrayNumbers The object that implements the {@link FillingArrayNumbers} interface contract to fill an array with numeric data.

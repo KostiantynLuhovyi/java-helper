@@ -12,22 +12,40 @@ import com.lugowoy.helper.models.arrays.Array;
  * @version 1.0
  *
  * The class is the inheritor of the class {@link FillerArray}.
- * <p>This class fills an object of class {@link Array} with objects of type String, which is a wrapper over classical arrays.
+ * <p>This class fills an object of class {@link Array} with objects of {@link String} type, which is a wrapper over classical arrays.
  *
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
- * */
+ */
 public class FillerArrayStrings extends FillerArray<String> {
 
     /**
-     * Fills an object of class {@link Array} with data.
+     * Default constructor.
+     * The presence of this is absolutely not necessary.
+     * Its presence is caused by the need to add more extended constructor variants to the inheritor of this class.
+     */
+    public FillerArrayStrings() {
+    }
+
+    /**
+     * Constructor to create a new {@link FillerArrayStrings}
+     * and initializes the object encapsulated in parent class to perform the functionality.
+     *
+     * @param fillingArray The object that implements the {@link FillingArray} interface contract to fill an array.
+     */
+    public FillerArrayStrings(FillingArray<String> fillingArray) {
+        super(fillingArray);
+    }
+
+    /**
+     * Fills an object of class {@link Array} with object of the {@link String} type.
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class and
      * contains the implementation of the {@link Filling} interface contract.
      *
-     * @param array The object of class {@link Array} to be filled with data.
+     * @param array The object of class {@link Array} to be filled with object of the {@link String} type.
      * */
     @Override
     public void fill(Array<String> array) {
