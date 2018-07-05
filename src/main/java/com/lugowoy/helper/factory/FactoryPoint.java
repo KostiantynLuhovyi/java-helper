@@ -10,12 +10,10 @@ import com.lugowoy.helper.models.points.Point;
  * @version 1.1
  * @since 1.0
  *
- * <p>
  * The class provides the functionality of the factory to create {@link Point} class objects.
  * The functionality for creating objects is implemented in the package classes com.lugowoy.helper.factory.creating .
- * </p>
  *
- * @see com.lugowoy.helper.factory.creator
+ * @see com.lugowoy.helper.factory.Factory
  */
 
 public class FactoryPoint<T extends Number> extends Factory<Point<T>> {
@@ -25,13 +23,12 @@ public class FactoryPoint<T extends Number> extends Factory<Point<T>> {
     }
 
     /**
-     * <p>
      * The method executes the creation of an object of {@link Point} class by calling the constructor of parameters.
-     * </p>
      *
      * @param coordinateX The value of the coordinate X.
      * @param coordinateY The value of the coordinate Y.
      * @return Created object.
+     *
      * @since 1.1
      */
     public Point<T> create(T coordinateX, T coordinateY) {
@@ -39,13 +36,9 @@ public class FactoryPoint<T extends Number> extends Factory<Point<T>> {
     }
 
     /**
-     * <p>
      * A class method that creates and returns a new instance of the {@link FactoryPoint}.
-     * </p>
      *
      * @return Object type {@link FactoryPoint}
-     *
-     * @since 1.0
      */
     public static <T extends Number> FactoryPoint<T> getFactoryPoint(CreatorPoint<T> creatorPoint) {
         return new FactoryPoint<>(creatorPoint);

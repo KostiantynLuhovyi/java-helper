@@ -11,8 +11,8 @@ import com.rits.cloning.Cloner;
  *
  *  Provides a constant performing deep cloning.
  *  <p> Delegates execution to a class {@link Cloner}.
- *      See : <a href="https://mvnrepository.com/artifact/uk.com.robust-it/cloning/1.9.9">cloning</a>
- *      See on GitHub : <a href="https://github.com/kostaskougios/cloning">cloning on GitHub</a>
+ *      See: <a href="https://mvnrepository.com/artifact/uk.com.robust-it/cloning/1.9.9">cloning</a>
+ *      See on GitHub: <a href="https://github.com/kostaskougios/cloning">cloning on GitHub</a>
  */
 
 public interface DeepCloning {

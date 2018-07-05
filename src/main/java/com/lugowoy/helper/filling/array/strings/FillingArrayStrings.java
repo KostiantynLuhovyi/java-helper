@@ -16,7 +16,7 @@ import com.lugowoy.helper.other.ArrayChecker;
  *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
- * */
+ */
 
 public abstract class FillingArrayStrings implements FillingArray<String> {
 

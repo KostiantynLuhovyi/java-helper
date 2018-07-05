@@ -7,11 +7,9 @@ import java.util.Scanner;
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 28.12.2017
+ * @since 1.0
  *
- * <p>
  * The class implements the contract declared in the interface by reading different data from the console.
- * </p>
  *
  * @see com.lugowoy.helper.io.reading.Reading
  */
@@ -21,9 +19,7 @@ public class ReadingConsole implements Reading {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
-     * <p>
      * Reading data by byte type from the console.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -35,9 +31,7 @@ public class ReadingConsole implements Reading {
     }
 
     /**
-     * <p>
      * Reading data by short type from the console.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -49,9 +43,7 @@ public class ReadingConsole implements Reading {
     }
 
     /**
-     * <p>
      * Reading data by int type from the console.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -63,9 +55,7 @@ public class ReadingConsole implements Reading {
     }
 
     /**
-     * <p>
      * Reading data by long type from the console.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -77,9 +67,7 @@ public class ReadingConsole implements Reading {
     }
 
     /**
-     * <p>
      * Reading data by char type from the console.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -91,9 +79,7 @@ public class ReadingConsole implements Reading {
     }
 
     /**
-     * <p>
      * Reading data by float type from the console.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -105,9 +91,7 @@ public class ReadingConsole implements Reading {
     }
 
     /**
-     * <p>
      * Reading data by double type from the console.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -119,9 +103,7 @@ public class ReadingConsole implements Reading {
     }
 
     /**
-     * <p>
      * Reading data by String type from the console.
-     * </p>
      *
      * @return Returns the result of reading.
      *

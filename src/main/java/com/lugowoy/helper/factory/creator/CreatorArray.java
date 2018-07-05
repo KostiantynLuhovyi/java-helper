@@ -9,9 +9,7 @@ import com.lugowoy.helper.models.arrays.Array;
  * @version 1.0
  * @since 1.0
  *
- * <p>
  * Abstract class declaring a contract for the implementation of the functional that creates objects of type {@link Array}.
- * </p>
  *
  * @see com.lugowoy.helper.factory.creator.Creator
  * @see com.lugowoy.helper.factory.creator.Creating
@@ -23,53 +21,26 @@ import com.lugowoy.helper.models.arrays.Array;
 public abstract class CreatorArray<T> extends Creator<Array<T>> implements CreatingArray<T>{
 
     /**
-     * <p>
      * The method creates an object of the {@link Array} type that calls the default constructor {@link Array#Array()}.
-     * </p>
-     *
-     * @see com.lugowoy.helper.factory.creator.Creator
-     * @see com.lugowoy.helper.factory.creator.Creating
-     *
-     * @see com.lugowoy.helper.models.arrays.Array
      *
      * @return The created object of type {@link Array}.
-     *
-     * @since 1.0
      */
     @Override
     public abstract Array<T> create();
 
     /**
-     * <p>
      * The method creates an object of the {@link Array} type that calls the constructor with parameter {@link Array#Array(T[])}.
-     * </p>
-     *
-     * @see com.lugowoy.helper.factory.creator.CreatingArray
-     *
-     * @see com.lugowoy.helper.models.arrays.Array
      *
      * @param tArray An array of objects that will be encapsulate in the created class object {@link Array}.
-     *
      * @return The created object of type {@link Array}.
-     *
-     * @since 1.0
      */
     public abstract Array<T> create(final T[] tArray);
 
     /**
-     * <p>
      * The method creates an object of the {@link Array} type that calls the constructor with parameter {@link Array#Array(int)}.
-     * </p>
-     *
-     * @see com.lugowoy.helper.factory.creator.CreatingArray
-     *
-     * @see com.lugowoy.helper.models.arrays.Array
      *
      * @param lengthArray Length of array of objects that will be encapsulate in the created class object {@link Array}.
-     *
      * @return The created object {@link Array} encapsulates an array of the length of the passed parameter.
-     *
-     * @since 1.0
      */
     public abstract Array<T> create(final int lengthArray);
 

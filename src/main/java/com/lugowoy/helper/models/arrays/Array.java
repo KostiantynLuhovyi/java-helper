@@ -38,6 +38,7 @@ public class Array<T> implements Model {
     /**
      * The default constructor that initializes the created object with an array of default length.
      * Array elements are null.
+     *
      * @since 1.0
      */
     public Array() {
@@ -51,6 +52,7 @@ public class Array<T> implements Model {
      * In this case, the elements of the array are null.
      *
      * @param array Array to initialize the object to be created.
+     *
      * @since 1.0
      */
     public Array(T[] array) {
@@ -65,6 +67,7 @@ public class Array<T> implements Model {
      * <p> Array elements are null.
      *
      * @param lengthArray The length of the array to initialize the object to be created.
+     *
      * @since 1.0
      */
     public Array(int lengthArray) {
@@ -129,6 +132,7 @@ public class Array<T> implements Model {
      * In this case, the elements of the array are null.
      *
      * @param array An array object to initialize an array encapsulated in this object.
+     *
      * @since 1.0
      */
     public void setArray(T[] array) {
@@ -144,6 +148,7 @@ public class Array<T> implements Model {
      * <p> Array elements are null.
      *
      * @param lengthArray The length of array to create and initialize the array that encapsulates of the object.
+     *
      * @since 1.1
      */
     public void setArray(int lengthArray) {
@@ -155,6 +160,7 @@ public class Array<T> implements Model {
      * Returns value of length of array that is encapsulated in object of this class.
      *
      * @return The value of length of an array.
+     *
      * @since 1.2
      */
     public int getLength() {
@@ -165,7 +171,8 @@ public class Array<T> implements Model {
      * Adds (inserts) an object to the next position, relative to the previous call of this method and adding an object.
      *
      * @param obj The adding (insertion) object.
-     * @since 1.3
+     *
+     * @since 1.2
      */
     public void add(T obj) {
         if (this.indexToAddElement < this.array.length) {
@@ -187,7 +194,8 @@ public class Array<T> implements Model {
      *
      * @param index Index to insert.
      * @param obj The adding (insertion) object.
-     * @see 1.3
+     *
+     * @since 1.2
      */
     public void set(int index, T obj) {
         if ((index >= 0) && (index < this.array.length)) {
@@ -204,7 +212,8 @@ public class Array<T> implements Model {
      * Get an object located at a specific index.
      *
      * @param index Index to get the object.
-     * @since 1.3
+     *
+     * @since 1.2
      */
     public T get(int index) {
         T obj = null;
@@ -220,7 +229,8 @@ public class Array<T> implements Model {
      * the array is collapsed (decreasing in size, where the position of the remote object is).
      *
      * @param index Index of the object to be deleted.
-     * @since 1.3
+     *
+     * @since 1.2
      */
     public void delete(int index) {
         if (checkIndex(index)) {
@@ -236,7 +246,8 @@ public class Array<T> implements Model {
      * Objects are compared using the equals() method.
      *
      * @param obj Object to search for the object to be deleted.
-     * @since 1.3
+     *
+     * @since 1.2
      */
     public void delete(T obj) {
         if (obj != null) {

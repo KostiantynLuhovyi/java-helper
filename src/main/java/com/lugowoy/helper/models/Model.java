@@ -9,9 +9,7 @@ import java.io.Serializable;
  * @version 1.0
  * @since 1.0
  *
- * <p>
  * Marker interface declaring that marked (implements) class is a kind of model to use.
- * </p>
  *
  * @see java.io.Serializable
  * @see java.lang.Cloneable

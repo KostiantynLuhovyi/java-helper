@@ -25,7 +25,7 @@ public abstract class FillingArrayReadValues<T> implements FillingArray<T> {
     private Reader reader;
 
     /**
-     * Constructs a new heir class object,
+     * Constructs a new class object,
      *  initializing an object of {@link Reader} class encapsulated in that class to read the data to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
@@ -36,7 +36,7 @@ public abstract class FillingArrayReadValues<T> implements FillingArray<T> {
     }
 
     /**
-     * Constructs a new heir class object,
+     * Constructs a new class object,
      *  initializing an object of {@link Reader} class
      *  encapsulated in that class of the concrete implementation of the contract declared in the interface {@link Reading}
      *  to read the data to be fill array.

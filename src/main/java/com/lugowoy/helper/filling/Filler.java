@@ -6,7 +6,6 @@ package com.lugowoy.helper.filling;
  * @author Konstantin Lugowoy
  * @version 1.2
  *
- * <p>
  * The class that is a container that encapsulates a specific implementation of a contract declared in the {@link Filling} interface
  * and delegates to it an obligation to perform functionality to fill a particular object or data structure with data.
  * <p>All an objects of the classes that implement the contract of the {@link Filling} interface can be encapsulated

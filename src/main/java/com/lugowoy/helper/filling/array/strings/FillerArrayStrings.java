@@ -1,8 +1,8 @@
 package com.lugowoy.helper.filling.array.strings;
 
 import com.lugowoy.helper.filling.Filling;
-import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.filling.array.FillerArray;
+import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
@@ -10,6 +10,7 @@ import com.lugowoy.helper.models.arrays.Array;
  *
  * @author Konstantin Lugowoy
  * @version 1.0
+ * @since 1.2
  *
  * The class is the inheritor of the class {@link FillerArray}.
  * <p>This class fills an object of class {@link Array} with objects of {@link String} type, which is a wrapper over classical arrays.
@@ -20,6 +21,7 @@ import com.lugowoy.helper.models.arrays.Array;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
+
 public class FillerArrayStrings extends FillerArray<String> {
 
     /**
@@ -46,7 +48,7 @@ public class FillerArrayStrings extends FillerArray<String> {
      * contains the implementation of the {@link Filling} interface contract.
      *
      * @param array The object of class {@link Array} to be filled with object of the {@link String} type.
-     * */
+     */
     @Override
     public void fill(Array<String> array) {
         super.fill(array);
@@ -58,7 +60,7 @@ public class FillerArrayStrings extends FillerArray<String> {
      * contains the implementation of the {@link FillingArray} interface contract.
      *
      * @param tArray The array to be filled with data.
-     * */
+     */
     @Override
     public void fill(String[] tArray) {
         super.fill(tArray);
@@ -73,7 +75,7 @@ public class FillerArrayStrings extends FillerArray<String> {
      *
      * @param lengthArray The length(size) of the array to be filled with data.
      * @return Created and filled array with data.
-     * */
+     */
     @Override
     public String[] fill(int lengthArray) {
         return super.fill(lengthArray);

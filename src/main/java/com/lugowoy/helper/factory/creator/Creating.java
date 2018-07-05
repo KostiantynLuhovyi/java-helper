@@ -7,9 +7,7 @@ package com.lugowoy.helper.factory.creator;
  * @version 1.0
  * @since 1.0
  *
- * <p>
  * The interface declares a contract to create an object using a constructor without parameters.
- * </p>
  *
  * @param <T> Type of object to create.
  */
@@ -17,13 +15,9 @@ package com.lugowoy.helper.factory.creator;
 public interface Creating<T> {
 
     /**
-     * <p>
      * The method executes the creation of an object by calling the constructor of parameters.
-     * </p>
      *
      * @return Created object.
-     *
-     * @since 1.0
      */
     T create();
 

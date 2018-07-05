@@ -1,7 +1,5 @@
 package com.lugowoy.helper.filling.array.points;
 
-import com.lugowoy.helper.factory.FactoryArray;
-import com.lugowoy.helper.factory.creator.CreatorArrayPoints;
 import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
@@ -10,7 +8,6 @@ import com.lugowoy.helper.models.points.Point;
 
 import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
 import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
-import static com.lugowoy.helper.filling.array.FillingArrayChecker.checkNonNullArrayObject;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**

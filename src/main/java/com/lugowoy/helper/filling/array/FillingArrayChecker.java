@@ -50,7 +50,7 @@ public interface FillingArrayChecker {
      *
      * @param strings The array for checking.
      * @return Result of checking.
-     * */
+     */
     static boolean checkNonNullArrayStrings(String[] strings) {
         return strings != null;
     }
@@ -102,7 +102,7 @@ public interface FillingArrayChecker {
      * @param startBound The value for checking.
      * @param endBound The value for checking.
      * @return Result of checking.
-     * */
+     */
     static boolean checkStartBoundValueLessThanEndBoundValue(Number startBound, Number endBound) {
         return startBound.doubleValue() < endBound.doubleValue();
     }
@@ -113,7 +113,7 @@ public interface FillingArrayChecker {
      * @param startBound The value for checking.
      * @param endBound The value for checking.
      * @return Result of checking.
-     * */
+     */
     static boolean checkStartBoundValueGreatestThanEndBoundValue(Number startBound, Number endBound) {
         return startBound.doubleValue() > endBound.doubleValue();
     }

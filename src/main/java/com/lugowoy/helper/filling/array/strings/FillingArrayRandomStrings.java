@@ -12,14 +12,15 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  *
  * @author Konstantin Lugowoy
  * @version 1.0
+ * @since 1.2
  *
  * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type.
  *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
- * */
-//todo Add doc's;
+ */
+
 public class FillingArrayRandomStrings extends FillingArrayStrings {
 
     private static final int DEFAULT_STRING_LENGTH = 10;
@@ -32,7 +33,7 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
      * Constructs a new object of the {@link FillingArrayRandomStrings} class.
      *
      * @param fileName The name of the file from which the random characters are read.
-     * */
+     */
     public FillingArrayRandomStrings(String fileName) {
         this.characterReader = CharacterReader::readCharacters;
         this.fileName = fileName;
@@ -96,7 +97,7 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
      *
      * @param array The object of the {@link Array} class to be filled with objects of the {@link String} class.
      * @param lengthString Length of strings to fills.
-     * */
+     */
     public void fill(Array<String> array, int lengthString) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             if (checkMinLengthStringToLessMaxLengthString(0, lengthString) && checkCorrectEndBoundOfLengthString(lengthString)) {
@@ -118,7 +119,7 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
      *
      * @param strings The array to be filled with object of the {@link String} type.
      * @param lengthString Length of strings to fills.
-     * */
+     */
     public void fill(String[] strings, int lengthString) throws IllegalArgumentException {
         if (checkNonNullArrayStrings(strings)) {
             if (checkMinLengthStringToLessMaxLengthString(0, lengthString) && checkCorrectEndBoundOfLengthString(lengthString)) {
@@ -139,7 +140,7 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
      * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
      * @param lengthString Length of strings to fills.
      * @return Created and filled array with object of the {@link String} type.
-     * */
+     */
     public String[] fill(int lengthArray, int lengthString) {
         String[] strings;
         if (checkLengthArray(lengthArray)) {
@@ -165,7 +166,7 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
      * @param array The object of the {@link Array} class to be filled with objects of the {@link String} class.
      * @param minLengthString The starting (minimum) value of the string length.
      * @param maxLengthString The ending (maximum) value of the string length.
-     * */
+     */
     public void fill(Array<String> array, int minLengthString, int maxLengthString) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             String[] strings = new String[array.getLength()];
@@ -184,7 +185,7 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
      * @param strings The array to be filled with object of the {@link String} type.
      * @param minLengthString The starting (minimum) value of the string length.
      * @param maxLengthString The ending (maximum) value of the string length.
-     * */
+     */
     public void fill(String[] strings, int minLengthString, int maxLengthString) throws IllegalArgumentException {
         if (checkNonNullArrayStrings(strings)) {
             if (checkMinLengthStringToLessMaxLengthString(minLengthString, maxLengthString)
@@ -209,7 +210,7 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
      * @param minLengthString The starting (minimum) value of the string length.
      * @param maxLengthString The ending (maximum) value of the string length.
      * @return Created and filled array with object of the {@link String} type.
-     * */
+     */
     public String[] fill(int lengthArray, int minLengthString, int maxLengthString) {
         String[] strings;
         if (checkLengthArray(lengthArray)) {

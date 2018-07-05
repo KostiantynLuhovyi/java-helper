@@ -7,9 +7,7 @@ package com.lugowoy.helper.io.reading;
  * @version 1.1
  * @since 1.0
  *
- * <p>
  * A class is a container that encapsulates a specific implementation of a functional to read different data.
- * </p>
  *
  * @see com.lugowoy.helper.io.reading.Reading
  */
@@ -23,9 +21,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * <p>
      * Read data by byte type by delegating execution to an encapsulated object.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -37,9 +33,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * <p>
      * Read data by short type by delegating execution to an encapsulated object.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -51,9 +45,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * <p>
      * Read data by int type by delegating execution to an encapsulated object.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -65,9 +57,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * <p>
      * Read data by long type by delegating execution to an encapsulated object.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -79,9 +69,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * <p>
      * Read data by char type by delegating execution to an encapsulated object.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -93,9 +81,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * <p>
      * Read data by float type by delegating execution to an encapsulated object.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -107,9 +93,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * <p>
      * Read data by double type by delegating execution to an encapsulated object.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -121,9 +105,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * <p>
      * Read data by String type by delegating execution to an encapsulated object.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -135,16 +117,11 @@ public class Reader implements Reading {
     }
 
     /**
-     * <p>
      * A method that initializes the created object with a specific implementation of the functional to read different data
      *  and return new object of class Reader.
-     * </p>
      *
      * @param reading Specific implementation of the functional to read different data.
      *                 The parameter must implement the interface Reading.
-     *
-     * @see com.lugowoy.helper.io.reading.Reading
-     *
      * @return A new object of this class encapsulating a specific implementation of the functional to read different data.
      *
      * @since 1.1

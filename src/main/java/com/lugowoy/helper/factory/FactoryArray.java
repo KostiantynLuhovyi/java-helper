@@ -1,6 +1,5 @@
 package com.lugowoy.helper.factory;
 
-import com.lugowoy.helper.factory.creator.Creating;
 import com.lugowoy.helper.factory.creator.CreatingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
@@ -11,14 +10,8 @@ import com.lugowoy.helper.models.arrays.Array;
  * @version 1.0
  * @since 1.0
  *
- * <p>
  * The class provides the functionality of the factory to create {@link Array} class objects.
  * The functionality for creating objects is implemented in the package classes com.lugowoy.helper.factory.creating .
- * </p>
- *
- * @see com.lugowoy.helper.factory.creator
- *
- * @see com.lugowoy.helper.factory.Factory
  *
  * @see com.lugowoy.helper.factory.creator.Creating
  * @see com.lugowoy.helper.factory.creator.CreatingArray
@@ -33,12 +26,9 @@ public class FactoryArray<T> extends Factory<Array<T>> implements CreatingArray<
     }
 
     /**
-     * <p>
      * The method executes the creation of a class object Array<T> by calling the constructor with a parameter.
-     * </p>
      *
      * @param tArray An array of objects that will be encapsulate in the created class object {@link Array}.
-     *
      * @return The created class object {@link Array} the encapsulating array passed by the parameter.
      *
      * @since 1.1
@@ -49,12 +39,9 @@ public class FactoryArray<T> extends Factory<Array<T>> implements CreatingArray<
     }
 
     /**
-     * <p>
      * The method executes the creation of a class object {@link Array} by calling the constructor with a parameter.
-     * </p>
      *
      * @param lengthArray Length of array of objects that will be encapsulate in the created class object {@link Array}.
-     *
      * @return The created object {@link Array} encapsulates an array of the length of the passed parameter.
      *
      * @since 1.1
@@ -65,9 +52,7 @@ public class FactoryArray<T> extends Factory<Array<T>> implements CreatingArray<
     }
 
     /**
-     * <p>
      * A class method that creates and returns a new instance of the {@link FactoryArray}.
-     * </p>
      *
      * @return Object type {@link FactoryArray}
      *

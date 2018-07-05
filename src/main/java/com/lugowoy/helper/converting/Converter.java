@@ -7,9 +7,7 @@ package com.lugowoy.helper.converting;
  * @version 1.1
  * @since 1.0
  *
- * <p>
  * A class that is a kind of container that encapsulates a function for performing data conversion in a concrete object.
- * </p>
  *
  * @param <T> The type of object whose data will be converted.
  */
@@ -19,15 +17,10 @@ public class Converter<T> {
     private Converting<T> converting;
 
     /**
-     * <p>
-     * Constructor with parameter.
+     * Constructors a new object of the {@link Converter} class.
      * The parameter {@link Converter#converting} provides the implementation of the function to perform the conversion.
-     * </p>
-     *
-     * @see com.lugowoy.helper.converting.Converting
      *
      * @param converting The parameter provides the implementation of the function to perform the conversion.
-     *
      * @since 1.0
      */
     public Converter(Converting<T> converting) {
@@ -35,15 +28,10 @@ public class Converter<T> {
     }
 
     /**
-     * <p>
      * A method that performs the conversion of object data passed by a parameter to a method.
      * The method delegates the execution of the function which the object was initialized upon creation.
-     * </p>
-     *
-     * @see com.lugowoy.helper.converting.Converting
      *
      * @param t The object passed by the parameter whose data is being converted.
-     *
      * @since 1.0
      */
     public void convert(T t) {

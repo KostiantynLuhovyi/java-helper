@@ -7,53 +7,44 @@ package com.lugowoy.helper.io.reading;
  * @version 1.0
  * @since 1.0
  *
- * <p>
  * Functional interface that performs the function of checking the read data for correctness.
- * </p>
  */
 
 @FunctionalInterface
 public interface ReadingChecker {
 
     /**
-     * <p>
      * A string constant that defines a regular expression for a positive integer number.
-     * </p>
+     *
      * @since 1.0
      */
     String REGEX_POSITIVE_INTEGER_NUMBER = "\\d+?";
 
     /**
-     * <p>
      * A string constant that defines a regular expression for a negative integer number.
-     * </p>
+     *
      * @since 1.0
      */
     String REGEX_NEGATIVE_INTEGER_NUMBER = "-\\d+?";
 
     /**
-     * <p>
      * A string constant that defines a regular expression for a negative real number.
-     * </p>
+     *
      * @since 1.0
      */
     String REGEX_POSITIVE_REAL_NUMBER = "\\d+?[.]\\d+?";
 
     /**
-     * <p>
      * A string constant that defines a regular expression for a negative real number.
-     * </p>
+     *
      * @since 1.0
      */
     String REGEX_NEGATIVE_REAL_NUMBER = "-\\d+?[.]\\d+?";
 
     /**
-     * <p>
      * Function that checks the read data for correctness.
-     * </p>
      *
      * @param value Data to check.
-     *
      * @return Result of checking.
      *
      * @since 1.0
@@ -61,12 +52,9 @@ public interface ReadingChecker {
     boolean isCorrect(final String value);
 
     /**
-     * <p>
      * A static method that check that the read data is indeed an integer number and is included in a range of byte type values.
-     * </p>
      *
      * @param numberValue Data to check.
-     *
      * @return Result of checking.
      *
      * @since 1.0
@@ -84,12 +72,9 @@ public interface ReadingChecker {
     }
 
     /**
-     * <p>
      * A static method that check that the read data is indeed an integer number and is included in a range of short type values.
-     * </p>
      *
      * @param numberValue Data to check.
-     *
      * @return Result of checking.
      *
      * @since 1.0
@@ -107,12 +92,9 @@ public interface ReadingChecker {
     }
 
     /**
-     * <p>
      * A static method that check that the read data is indeed an integer number and is included in a range of integer type values.
-     * </p>
      *
      * @param numberValue Data to check.
-     *
      * @return Result of checking.
      *
      * @since 1.0
@@ -130,12 +112,9 @@ public interface ReadingChecker {
     }
 
     /**
-     * <p>
      * A static method that check that the read data is indeed an integer number and is included in a range of long type values.
-     * </p>
      *
      * @param numberValue Data to check.
-     *
      * @return Result of checking.
      *
      * @since 1.0
@@ -153,12 +132,9 @@ public interface ReadingChecker {
     }
 
     /**
-     * <p>
      * A static method that check that the read data is indeed a real number and is included in a range of float type values.
-     * </p>
      *
      * @param numberValue Data to check.
-     *
      * @return Result of checking.
      *
      * @since 1.0
@@ -177,12 +153,9 @@ public interface ReadingChecker {
     }
 
     /**
-     * <p>
      * A static method that check that the read data is indeed a real number and is included in a range of double type values.
-     * </p>
      *
      * @param numberValue Data to check.
-     *
      * @return Result of checking.
      *
      * @since 1.0
@@ -201,12 +174,9 @@ public interface ReadingChecker {
     }
 
     /**
-     * <p>
      * A static method that verifies that the read data is indeed a single character.
-     * </p>
      *
      * @param characterValue Data to check.
-     *
      * @return Result of checking.
      *
      * @since 1.0

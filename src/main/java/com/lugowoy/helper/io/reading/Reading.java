@@ -7,17 +7,13 @@ package com.lugowoy.helper.io.reading;
  * @version 1.0
  * @since 1.0
  *
- * <p>
  * The interface declares a contract to implement the reading of different data.
- * </p>
  */
 
 public interface Reading {
 
     /**
-     * <p>
      * Reading data by byte type.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -26,9 +22,7 @@ public interface Reading {
     byte readByte();
 
     /**
-     * <p>
      * Reading data by short type.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -37,9 +31,7 @@ public interface Reading {
     short readShort();
 
     /**
-     * <p>
      * Reading data by int type.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -48,9 +40,7 @@ public interface Reading {
     int readInt();
 
     /**
-     * <p>
      * Reading data by long type.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -59,9 +49,7 @@ public interface Reading {
     long readLong();
 
     /**
-     * <p>
      * Reading data by char type.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -70,9 +58,7 @@ public interface Reading {
     char readChar();
 
     /**
-     * <p>
      * Reading data by float type.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -81,9 +67,7 @@ public interface Reading {
     float readFloat();
 
     /**
-     * <p>
      * Reading data by double type.
-     * </p>
      *
      * @return Returns the result of reading.
      *
@@ -92,9 +76,7 @@ public interface Reading {
     double readDouble();
 
     /**
-     * <p>
      * Reading strings.
-     * </p>
      *
      * @return Returns the result of reading.
      *

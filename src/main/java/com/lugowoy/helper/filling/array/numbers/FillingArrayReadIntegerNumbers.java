@@ -22,7 +22,7 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * The class is the heir of the FillingArrayReadValues class and implements its contract.
  * Also implements the contract announced by the FillingArrayNumbers interface.
  *
- * @see FillingArrayReadValues
+ * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
@@ -305,7 +305,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
         return integers;
     }
 
-        private void initializeArrayElementsEnteredIntegerNumbers(Integer[] integers) {
+    private void initializeArrayElementsEnteredIntegerNumbers(Integer[] integers) {
         for (int i = 0; i < integers.length; i++) {
             integers[i] = super.getReader().readInt();
         }

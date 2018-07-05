@@ -20,9 +20,8 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
- * */
+ */
 
-//todo Add doc's;
 public class FillingArrayReadStrings extends FillingArrayStrings {
 
     private Reader reader;
@@ -31,7 +30,7 @@ public class FillingArrayReadStrings extends FillingArrayStrings {
      * Constructs a new object of the {@link FillingArrayReadStrings} class.
      *
      * @param reading An object that implements the {@link Reading} interface, which provides a specific implementation for reading data.
-     * */
+     */
     public FillingArrayReadStrings(Reading reading) {
         this.reader = Reader.getReader(reading);
     }

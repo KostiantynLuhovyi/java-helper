@@ -123,7 +123,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
      * @param integers The array to be filled with sequential descending of numeric data of type {@link Integer}.
      * @param bound The value of the end bound for filling an array with sequential descending of numeric data of type {@link Integer}.
      * @throws IllegalArgumentException If the array argument is null.
-     * */
+     */
     @Override
     public void fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
@@ -151,7 +151,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
      *                    sequential descending of numeric data of type {@link Integer}.
      * @param bound The value of the border for filling the array with sequential descending of numeric data of type {@link Integer}.
      * @return Created and filled an array with sequential descending of numeric data of type {@link Integer}.
-     * */
+     */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
         Integer[] integers;
@@ -187,7 +187,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
      * @param endBound The value of the end bound for filling an object of the {@link Array} class
      *                 with sequential descending of numeric data of type {@link Integer}.
      * @throws IllegalArgumentException If the object argument is null.
-     * */
+     */
     @Override
     public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
@@ -222,7 +222,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
      * @param endBound The value of the end bound for filling an array
      *                 with sequential descending of numeric data of type {@link Integer}.
      * @throws IllegalArgumentException If the array argument is null.
-     * */
+     */
     @Override
     public void fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(integers)) {
@@ -258,7 +258,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
      * @param endBound The value of the end bound for filling an array
      *                 with sequential descending of numeric data of type {@link Integer}.
      * @return Created and filled an array with sequential descending of numeric data of type {@link Integer}.
-     * */
+     */
     @Override
     public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         Integer[] integers;
