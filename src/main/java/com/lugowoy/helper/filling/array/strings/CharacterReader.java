@@ -2,8 +2,10 @@ package com.lugowoy.helper.filling.array.strings;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import java.io.BufferedInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -36,7 +38,7 @@ public interface CharacterReader {
     static char[] readCharacters(String fileName) {
         ArrayList<Character> charactersList = new ArrayList<>();
         try {
-            FileReader reader = new FileReader(ClassLoader.getSystemResource("characters/" + fileName + ".txt").getFile());
+            InputStream reader = new BufferedInputStream(ClassLoader.getSystemResourceAsStream("characters/" + fileName + ".txt"));
             int character;
             while ((character = reader.read()) != -1) {
                 charactersList.add((char) character);

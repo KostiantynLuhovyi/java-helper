@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.lugowoy</groupId>
-    <artifactId>java-helper</artifactId>
+    <artifactId>java-helper.tasks-solution</artifactId>
     <version>1.2</version>
 
     <properties>
