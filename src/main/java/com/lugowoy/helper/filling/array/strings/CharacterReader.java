@@ -3,7 +3,6 @@ package com.lugowoy.helper.filling.array.strings;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.BufferedInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
  * Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.2
  * @since 1.2
  *
  * A functional interface for reading character data from a file into an array of char type.
