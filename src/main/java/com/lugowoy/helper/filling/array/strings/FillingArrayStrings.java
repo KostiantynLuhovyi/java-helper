@@ -2,7 +2,6 @@ package com.lugowoy.helper.filling.array.strings;
 
 import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
-import com.lugowoy.helper.other.ArrayChecker;
 
 /**
  * Created by Konstantin Lugowoy on 10.06.2018.
@@ -21,6 +20,27 @@ import com.lugowoy.helper.other.ArrayChecker;
 public abstract class FillingArrayStrings implements FillingArray<String> {
 
     /**
+     * A constant that stores the default value of the start string length.
+     *
+     * @since 1.3
+     * */
+    static final int DEFAULT_START_LENGTH_STRING = 0;
+
+    /**
+     * A constant that stores the default value of the minimum string length.
+     *
+     * @since 1.3
+     * */
+    static final int DEFAULT_MIN_LENGTH_STRING = 1;
+
+    /**
+     * A constant that stores the default length of a string.
+     *
+     * @since 1.3
+     * */
+    static final int DEFAULT_STRING_LENGTH = 10;
+
+    /**
      * Fills an object of the {@link Array} class with object of the {@link String} type.
      *
      * @param array The object of the {@link Array} class to be filled with object of the {@link String} type.
@@ -31,10 +51,10 @@ public abstract class FillingArrayStrings implements FillingArray<String> {
     /**
      * Fills an array with object of the {@link String} type.
      *
-     * @param tArray The array to be filled with object of the {@link String} type.
+     * @param strings The array to be filled with object of the {@link String} type.
      */
     @Override
-    public abstract void fill(String[] tArray);
+    public abstract void fill(String[] strings);
 
     /**
      * Fills an array with object of the {@link String} type.

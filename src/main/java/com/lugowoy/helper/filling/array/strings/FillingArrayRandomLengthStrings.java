@@ -7,40 +7,41 @@ import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
- * Created by Konstantin Lugowoy on 10.06.2018.
+ * Created by Konstantin Lugowoy on 18.07.2018.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 1.2
+ * @since 1.3
  *
- * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type.
+ * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type of the random length.
  *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  */
 
-public class FillingArrayRandomStrings extends FillingArrayStrings {
+public class FillingArrayRandomLengthStrings extends FillingArrayStrings {
 
     private CharacterReader characterReader;
     private String fileName;
 
     /**
-     * Constructs a new object of the {@link FillingArrayRandomStrings} class.
+     * Constructs a new object of the {@link FillingArrayRandomLengthStrings} class.
      *
      * @param fileName The name of the file from which the random characters are read.
      */
-    public FillingArrayRandomStrings(String fileName) {
+    public FillingArrayRandomLengthStrings(String fileName) {
         this.characterReader = CharacterReader::readCharacters;
         this.fileName = fileName;
     }
 
     /**
-     * Fills an object of the {@link Array} class with objects of the {@link String} class.
+     * Fills an object of the {@link Array} class with object of the {@link String} type.
      * <p>The strings consist of random alphabetic characters that were taken from the file in the resources.
-     *    The strings size is {@link FillingArrayStrings#DEFAULT_STRING_LENGTH} characters.
+     *    The strings random size from {@link FillingArrayStrings#DEFAULT_MIN_LENGTH_STRING}
+     *                            to {@link FillingArrayStrings#DEFAULT_STRING_LENGTH} characters.
      *
-     * @param array The object of the {@link Array} class to be filled with objects of the {@link String} class.
+     * @param array The object of the {@link Array} class to be filled with object of the {@link String} type.
      */
     @Override
     public void fill(Array<String> array) throws IllegalArgumentException {
@@ -50,23 +51,25 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
     /**
      * Fills an array with object of the {@link String} type.
      * <p>The strings consist of random alphabetic characters that were taken from the file in the resources.
-     *    The strings random size is {@link FillingArrayStrings#DEFAULT_STRING_LENGTH} characters.
+     *    The strings random size from {@link FillingArrayStrings#DEFAULT_MIN_LENGTH_STRING}
+     *                            to {@link FillingArrayStrings#DEFAULT_STRING_LENGTH} characters.
      *
      * @param strings The array to be filled with object of the {@link String} type.
      */
     @Override
     public void fill(String[] strings) throws IllegalArgumentException {
         if (checkNonNullArrayStrings(strings)) {
-            this.initializeArrayElementsRandomStrings(strings, DEFAULT_STRING_LENGTH);
+            this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+           throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
 
     /**
      * Fills an array with object of the {@link String} type.
      * <p>The strings consist of random alphabetic characters that were taken from the file in the resources.
-     *    The strings random size is {@link FillingArrayStrings#DEFAULT_STRING_LENGTH} characters.
+     *    The strings random size from {@link FillingArrayStrings#DEFAULT_MIN_LENGTH_STRING}
+     *                            to {@link FillingArrayStrings#DEFAULT_STRING_LENGTH} characters.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      *
@@ -78,27 +81,28 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
         String[] strings;
         if (checkLengthArray(lengthArray)) {
             strings = new String[lengthArray];
-            this.initializeArrayElementsRandomStrings(strings, DEFAULT_STRING_LENGTH);
+            this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
         } else {
             strings = new String[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayElementsRandomStrings(strings, DEFAULT_STRING_LENGTH);
+            this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
         }
         return strings;
     }
 
     /**
-     * Fills an object of the {@link Array} class with objects of the {@link String} class.
-     * <p>The strings consist of random alphabetic characters that were taken from the file in the properties.
-     *    The strings size is "lengthString" parameter.
+     * Fills an object of the {@link Array} class with object of the {@link String} type.
+     * <p>The strings consist of random alphabetic characters that were taken from the file in the resources.
+     *    The strings random size from {@link FillingArrayStrings#DEFAULT_MIN_LENGTH_STRING}
+     *                            to {@link FillingArrayStrings#DEFAULT_STRING_LENGTH} characters.
      *
-     * @param array The object of the {@link Array} class to be filled with objects of the {@link String} class.
+     * @param array The object of the {@link Array} class to be filled with object of the {@link String} type.
      * @param lengthString The length of strings.
      */
-    public void fill(Array<String> array, int lengthString) throws IllegalArgumentException {
+    public void fill(Array<String> array, int lengthString) {
         if (checkNonNullArrayObject(array)) {
             if (checkCorrectLengthString(lengthString)) {
                 String[] strings = new String[array.getLength()];
-                this.initializeArrayElementsRandomStrings(strings, lengthString);
+                this.initializeArrayElementsRandomLengthStrings(strings, lengthString);
                 array.setArray(strings);
             } else {
                 throw new IllegalArgumentException("The value of the length of the string is not correct.");
@@ -110,8 +114,9 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
 
     /**
      * Fills an array with object of the {@link String} type.
-     * <p>The strings consist of random alphabetic characters that were taken from the file in the properties.
-     *    The strings size is "lengthString" parameter.
+     * <p>The strings consist of random alphabetic characters that were taken from the file in the resources.
+     *    The strings random size from {@link FillingArrayStrings#DEFAULT_MIN_LENGTH_STRING}
+     *                            to {@link FillingArrayStrings#DEFAULT_STRING_LENGTH} characters.
      *
      * @param strings The array to be filled with object of the {@link String} type.
      * @param lengthString The length of strings.
@@ -119,7 +124,9 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
     public void fill(String[] strings, int lengthString) throws IllegalArgumentException {
         if (checkNonNullArrayStrings(strings)) {
             if (checkCorrectLengthString(lengthString)) {
-                this.initializeArrayElementsRandomStrings(strings, lengthString);
+                this.initializeArrayElementsRandomLengthStrings(strings, lengthString);
+            } else {
+                this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -128,8 +135,9 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
 
     /**
      * Fills an array with object of the {@link String} type.
-     * <p>The strings consist of random alphabetic characters that were taken from the file in the properties.
-     *    The strings size is "lengthString" parameter.
+     * <p>The strings consist of random alphabetic characters that were taken from the file in the resources.
+     *    The strings random size from {@link FillingArrayStrings#DEFAULT_MIN_LENGTH_STRING}
+     *                            to {@link FillingArrayStrings#DEFAULT_STRING_LENGTH} characters.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      *
@@ -140,25 +148,25 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
     public String[] fill(int lengthArray, int lengthString) {
         String[] strings;
         if (checkLengthArray(lengthArray)) {
+            strings = new String[lengthArray];
             if (checkCorrectLengthString(lengthString)) {
-                strings = new String[lengthArray];
-                this.initializeArrayElementsRandomStrings(strings, lengthString);
+                this.initializeArrayElementsRandomLengthStrings(strings, lengthString);
             } else {
-                strings = new String[lengthArray];
-                this.initializeArrayElementsRandomStrings(strings, DEFAULT_STRING_LENGTH);
+                this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
             }
         } else {
-            strings = new String[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayElementsRandomStrings(strings, DEFAULT_STRING_LENGTH);
+            strings = new String[Array.DEFAULT_LENGTH_ARRAY];
+            this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
         }
         return strings;
     }
 
-    private void initializeArrayElementsRandomStrings(String[] strings, int lengthString) {
+    private void initializeArrayElementsRandomLengthStrings(String[] strings, int lengthString) {
         char[] chars = this.characterReader.read(this.fileName);
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
-            for (int j = DEFAULT_START_LENGTH_STRING; j < lengthString; j++) {
+            int randomLengthString = GeneratorRandomNumber.generateInt(DEFAULT_MIN_LENGTH_STRING, lengthString);
+            for (int j = 0; j < randomLengthString; j++) {
                 stringBuilder.append(chars[GeneratorRandomNumber.generateInt(chars.length)]);
             }
             strings[i] = stringBuilder.toString();
@@ -168,7 +176,7 @@ public class FillingArrayRandomStrings extends FillingArrayStrings {
 
     private static boolean checkCorrectLengthString(int lengthString) {
         boolean resultOfCheck = false;
-        if ((lengthString >= DEFAULT_MIN_LENGTH_STRING) && (lengthString <= Byte.MAX_VALUE)) {
+        if ((lengthString > DEFAULT_MIN_LENGTH_STRING) && (lengthString < Byte.MAX_VALUE)) {
             resultOfCheck = true;
         }
         return resultOfCheck;
