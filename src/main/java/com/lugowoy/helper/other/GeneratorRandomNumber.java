@@ -8,7 +8,7 @@ import java.util.Random;
  * Created by Konstantin Lugowoy on 01.01.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The interface provides a functional for generating random integers and double numbers.
  *  Functionality is provided in a static context.
@@ -20,20 +20,14 @@ public interface GeneratorRandomNumber {
 
     int SCALE = 2;
 
-    int START_INT_BOUND = -128;
-    int END_INT_BOUND = 127;
-
-    double START_DOUBLE_BOUND = -128;
-    double END_DOUBLE_BOUND = 127;
-
     /**
-     * The method generate a random integer number in the range from {@link GeneratorRandomNumber#START_INT_BOUND}
-     * to {@link GeneratorRandomNumber#END_INT_BOUND}.
+     * The method generate a random integer number in the range from {@link Integer#MIN_VALUE}
+     * to {@link Integer#MAX_VALUE}.
      *
      * @return The generated integer number.
      */
     static int generateInt() {
-        return getRandomInRangeIntValue(START_INT_BOUND, END_INT_BOUND);
+        return getRandomIntegerValueInRange(Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     /**
@@ -41,7 +35,7 @@ public interface GeneratorRandomNumber {
      *
      * @return The generated integer number.
      */
-    static int generateInt(final int bound) {
+    static int generateInt(int bound) {
         return RANDOM.nextInt(bound);
     }
 
@@ -50,18 +44,18 @@ public interface GeneratorRandomNumber {
      *
      * @return The generated integer number.
      */
-    static int generateInt(final int startBound, final int endBound) {
-        return getRandomInRangeIntValue(startBound, endBound);
+    static int generateInt(int startBound, int endBound) {
+        return getRandomIntegerValueInRange(startBound, endBound);
     }
 
     /**
-     * The method generate a random double number in the range from {@link GeneratorRandomNumber#START_DOUBLE_BOUND}
-     *  to {@link GeneratorRandomNumber#END_DOUBLE_BOUND}.
+     * The method generate a random double number in the range from {@link Integer#MIN_VALUE}
+     *  to {@link Integer#MAX_VALUE}.
      *
      * @return The generated double number.
      */
     static double generateDouble() {
-        return new BigDecimal(getRandomInRangeDoubleValue(START_DOUBLE_BOUND, END_DOUBLE_BOUND)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
+        return new BigDecimal(getRandomDoubleValueInRange(Integer.MIN_VALUE, Integer.MAX_VALUE)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
     }
 
     /**
@@ -70,7 +64,7 @@ public interface GeneratorRandomNumber {
      * @return The generated double number.
      */
     static double generateDouble(double bound) {
-        return new BigDecimal(getRandomInRangeDoubleValue(0, bound)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
+        return new BigDecimal(getRandomDoubleValueInRange(0, bound)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
     }
 
     /**
@@ -79,14 +73,14 @@ public interface GeneratorRandomNumber {
      * @return The generated double number.
      */
     static double generateDouble(double startBound, double endBound) {
-        return new BigDecimal(getRandomInRangeDoubleValue(startBound, endBound)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
+        return new BigDecimal(getRandomDoubleValueInRange(startBound, endBound)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
     }
 
-    private static int getRandomInRangeIntValue(int startBound, int endBound) {
+    private static int getRandomIntegerValueInRange(int startBound, int endBound) {
         return startBound + (RANDOM.nextInt((endBound - startBound) + 1));
     }
 
-    private static double getRandomInRangeDoubleValue(double startBound, double endBound) {
+    private static double getRandomDoubleValueInRange(double startBound, double endBound) {
         return startBound + (RANDOM.nextDouble() * (endBound - startBound));
     }
 
