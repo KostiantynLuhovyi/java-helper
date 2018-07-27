@@ -7,7 +7,7 @@ import com.lugowoy.helper.models.points.Point;
  * Created by Konstantin Lugowoy on 09-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The interface provides a static functional for various checks
  * that are used to implement the filling of data objects or data structures (arrays).
@@ -56,44 +56,44 @@ public interface FillingArrayChecker {
     }
 
     /**
-     * The method that checks that the value of "lengthArray" is greater than "0" and less than "32767".
+     * The method that checks that the value of "lengthArray" is greater than "0" and less than {@link Integer#MAX_VALUE}.
      *
      * @param lengthArray The value for checking.
      * @return Result of checking.
      */
     static boolean checkLengthArray(int lengthArray) {
-        return ((lengthArray > 0) && (lengthArray <= Short.MAX_VALUE));
+        return ((lengthArray > 0) && (lengthArray < Integer.MAX_VALUE));
     }
 
 
     /**
-     * The method checks that the value "boundValue" is a positive number and less than "32767".
+     * The method checks that the value "boundValue" is a positive number and less than {@link Integer#MAX_VALUE}.
      *
      * @param boundValue The value for checking.
      * @return Result of checking.
      */
     static boolean checkBoundValueIsPositive(Number boundValue) {
-        return (boundValue != null) && ((boundValue.doubleValue() > 0) && (boundValue.doubleValue() <= Short.MAX_VALUE));
+        return (boundValue != null) && ((boundValue.doubleValue() > 0) && (boundValue.doubleValue() <= Integer.MAX_VALUE));
     }
 
     /**
-     * The method checks that the value "boundValue" is a negative number and greatest than "-32768".
+     * The method checks that the value "boundValue" is a negative number and greatest than {@link Integer#MIN_VALUE}.
      *
      * @param boundValue The value for checking.
      * @return Result of checking.
      */
     static boolean checkBoundValueIsNegative(Number boundValue) {
-        return (boundValue != null) && ((boundValue.doubleValue() < 0) && (boundValue.doubleValue() >= Short.MIN_VALUE));
+        return (boundValue != null) && ((boundValue.doubleValue() < 0) && (boundValue.doubleValue() >= Integer.MIN_VALUE));
     }
 
     /**
-     * The method checks that the value "boundValue" is in the range of values from "-32768" to "32767".
+     * The method checks that the value "boundValue" is in the range of values from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param boundValue The value for checking.
      * @return Result of checking.
      */
     static boolean checkBoundValueIsInCorrectRange(Number boundValue) {
-        return (boundValue != null) && (boundValue.doubleValue() >= Short.MIN_VALUE && boundValue.doubleValue() <= Short.MAX_VALUE);
+        return (boundValue != null) && (boundValue.doubleValue() >= Integer.MIN_VALUE && boundValue.doubleValue() <= Integer.MAX_VALUE);
     }
 
     /**
