@@ -110,7 +110,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
                 array.setArray(integers);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argumemt object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
 

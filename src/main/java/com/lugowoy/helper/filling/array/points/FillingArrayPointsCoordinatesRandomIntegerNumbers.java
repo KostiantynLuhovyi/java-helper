@@ -31,8 +31,7 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
      * Fills an object of class {@link Array} with the objects of the {@link Point} class
      * with random numeric coordinates of type {@link Integer}.
      * Numerical values for coordinates of object of {@link Point} class are
-     * in the range from {@link GeneratorRandomNumber#START_INT_BOUND}
-     * to {@link GeneratorRandomNumber#END_INT_BOUND}.
+     * in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param array The object of class {@link Array} to be filled
      *              with the objects of the {@link Point} class with random numeric coordinates of type {@link Double}.
@@ -52,8 +51,8 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
 
     /**
      * Fills an array of objects of the {@link Point} class with random numeric coordinates of type {@link Integer}.
-     * Numerical values for coordinates of object of {@link Point} class are in the range from {@link GeneratorRandomNumber#START_INT_BOUND}
-     * to {@link GeneratorRandomNumber#END_INT_BOUND}.
+     * Numerical values for coordinates of object of {@link Point} class are
+     * in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param points The array to be filled with the objects of the {@link Point} class
      *               with random numeric coordinates of type {@link Integer}.
@@ -71,7 +70,7 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
     /**
      * Fills an array with an objects of the {@link Point} class with random numeric coordinates of type {@link Integer}.
      * Numerical values for coordinates of object of {@link Point} class
-     * are in the range from {@link GeneratorRandomNumber#START_INT_BOUND} to {@link GeneratorRandomNumber#END_INT_BOUND}.
+     * are in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
