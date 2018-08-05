@@ -59,7 +59,7 @@ public interface FillingArrayChecker {
      * @return Result of checking.
      */
     static boolean checkLengthArray(int lengthArray) {
-        return ((lengthArray > DEFAULT_START_LENGTH_ARRAY) && (lengthArray < Integer.MAX_VALUE));
+        return ((lengthArray > DEFAULT_START_LENGTH_ARRAY) && (lengthArray <= Integer.MAX_VALUE));
     }
 
 
@@ -69,7 +69,7 @@ public interface FillingArrayChecker {
      * @return Result of checking.
      */
     static boolean checkBoundValueIsPositive(Number boundValue) {
-        return (boundValue != null) && ((boundValue.intValue() > 0) && (boundValue.intValue() < Integer.MAX_VALUE));
+        return (boundValue != null) && ((boundValue.intValue() >= 0) && (boundValue.intValue() <= Integer.MAX_VALUE));
     }
 
     /**
@@ -78,7 +78,7 @@ public interface FillingArrayChecker {
      * @return Result of checking.
      */
     static boolean checkBoundValueIsNegative(Number boundValue) {
-        return (boundValue != null) && ((boundValue.intValue() < 0) && (boundValue.intValue() > Integer.MIN_VALUE));
+        return (boundValue != null) && ((boundValue.intValue() < 0));
     }
 
     /**
@@ -87,7 +87,7 @@ public interface FillingArrayChecker {
      * @return Result of checking.
      */
     static boolean checkBoundValueIsInCorrectRange(Number boundValue) {
-        return (boundValue != null) && (boundValue.intValue() > Integer.MIN_VALUE && boundValue.intValue() < Integer.MAX_VALUE);
+        return (boundValue != null) && (boundValue.intValue() >= Integer.MIN_VALUE && boundValue.intValue() <= Integer.MAX_VALUE);
     }
 
     /**
