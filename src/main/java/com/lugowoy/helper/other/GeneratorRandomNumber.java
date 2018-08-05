@@ -1,5 +1,7 @@
 package com.lugowoy.helper.other;
 
+import org.apache.commons.math3.random.RandomDataGenerator;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
@@ -16,13 +18,12 @@ import java.util.Random;
 
 public interface GeneratorRandomNumber {
 
-    Random RANDOM = new Random();
+    RandomDataGenerator GENERATOR = new RandomDataGenerator();
 
     /**
      * Value for determining the number of digits after the decimal point in double numbers.
      */
     int SCALE = 3;
-
     /**
      * The default starting value for generating random numbers of some methods.
      */
@@ -92,7 +93,7 @@ public interface GeneratorRandomNumber {
      * @return The generated integer number.
      */
     static int generateInt() {
-        return RANDOM.nextInt();
+        return getRandomIntegerValueInRange(Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     /**
@@ -194,15 +195,15 @@ public interface GeneratorRandomNumber {
     }
 
     private static int getRandomIntegerValueInRange(int startBound, int endBound) {
-        return RANDOM.nextInt() * (endBound - startBound) + startBound;
+        return GENERATOR.nextInt(startBound, endBound);
     }
 
     private static long getRandomLongValueInRange(long startBound, long endBound) {
-        return RANDOM.nextLong() * (endBound - startBound) + startBound;
+        return GENERATOR.nextLong(startBound, endBound);
     }
 
     private static double getRandomDoubleValueInRange(double startBound, double endBound) {
-        return RANDOM.nextDouble() * (endBound - startBound) + startBound;
+        return Math.random() * ((endBound - startBound) + startBound);
     }
 
 }
