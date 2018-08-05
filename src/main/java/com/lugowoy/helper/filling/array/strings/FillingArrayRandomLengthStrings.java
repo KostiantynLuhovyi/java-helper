@@ -175,7 +175,7 @@ public class FillingArrayRandomLengthStrings extends FillingArrayStrings {
     }
 
     private static boolean checkCorrectLengthString(int lengthString) {
-        return (lengthString > DEFAULT_MIN_LENGTH_STRING) && (lengthString < Integer.MAX_VALUE);
+        return (lengthString > DEFAULT_MIN_LENGTH_STRING) && (lengthString <= Integer.MAX_VALUE);
     }
 
 }
