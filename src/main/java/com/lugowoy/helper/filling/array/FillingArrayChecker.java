@@ -7,7 +7,7 @@ import com.lugowoy.helper.models.points.Point;
  * Created by Konstantin Lugowoy on 09-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  *
  * The interface provides a static functional for various checks
  * that are used to implement the filling of data objects or data structures (arrays).
@@ -69,7 +69,7 @@ public interface FillingArrayChecker {
      * @return Result of checking.
      */
     static boolean checkBoundValueIsPositive(Number boundValue) {
-        return (boundValue != null) && ((boundValue.doubleValue() > 0) && (boundValue.doubleValue() < Integer.MAX_VALUE));
+        return (boundValue != null) && ((boundValue.intValue() > 0) && (boundValue.intValue() < Integer.MAX_VALUE));
     }
 
     /**
@@ -78,7 +78,7 @@ public interface FillingArrayChecker {
      * @return Result of checking.
      */
     static boolean checkBoundValueIsNegative(Number boundValue) {
-        return (boundValue != null) && ((boundValue.doubleValue() < 0) && (boundValue.doubleValue() >= Integer.MIN_VALUE));
+        return (boundValue != null) && ((boundValue.intValue() < 0) && (boundValue.intValue() > Integer.MIN_VALUE));
     }
 
     /**
@@ -87,7 +87,7 @@ public interface FillingArrayChecker {
      * @return Result of checking.
      */
     static boolean checkBoundValueIsInCorrectRange(Number boundValue) {
-        return (boundValue != null) && (boundValue.doubleValue() > Integer.MIN_VALUE && boundValue.doubleValue() < Integer.MAX_VALUE);
+        return (boundValue != null) && (boundValue.intValue() > Integer.MIN_VALUE && boundValue.intValue() < Integer.MAX_VALUE);
     }
 
     /**
@@ -97,7 +97,7 @@ public interface FillingArrayChecker {
      * @return Result of checking.
      */
     static boolean checkStartBoundValueLessThanEndBoundValue(Number startBound, Number endBound) {
-        return startBound.doubleValue() < endBound.doubleValue();
+        return startBound.intValue() < endBound.intValue();
     }
 
     /**
@@ -107,7 +107,7 @@ public interface FillingArrayChecker {
      * @return Result of checking.
      */
     static boolean checkStartBoundValueGreatestThanEndBoundValue(Number startBound, Number endBound) {
-        return startBound.doubleValue() > endBound.doubleValue();
+        return startBound.intValue() > endBound.intValue();
     }
 
 }
