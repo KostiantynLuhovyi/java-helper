@@ -1,3 +1,7 @@
+import com.lugowoy.helper.factory.FactoryArray;
+import com.lugowoy.helper.factory.creator.CreatorArrayUnknown;
+import com.lugowoy.helper.filling.array.strings.FillingArrayRandomLengthStrings;
+import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 /** Created by Konstantin Lugowoy on 02.08.2018 */
@@ -52,6 +56,10 @@ public class Test {
 
         System.out.println();
         System.out.println(GeneratorRandomNumber.generateInt(10));
+
+        Array<String> stringArray = FactoryArray.getFactoryArray(new CreatorArrayUnknown<String>()).create(new FillingArrayRandomLengthStrings("english").fill(10, 30));
+
+        System.out.println(stringArray);
 
     }
 
