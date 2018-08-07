@@ -12,32 +12,30 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  *
- * The class provides functionality to fill an object of the {@link Array} class and classical arrays
- * with object of the {@link String} type.
+ * The class provides functionality to reads data for fills an object of the {@link Array} class
+ *  and classical arrays with object of the {@link String} type.
  *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  */
 
-public class FillingArrayReadStrings extends FillingArrayStrings {
+public class FillingArrayReadValueStrings implements FillingArrayStrings {
 
     private Reader reader;
 
     /**
-     * Constructs a new object of the {@link FillingArrayReadStrings} class.
-     *
+     * Constructs a new object of the {@link FillingArrayReadValueStrings} class.
      * @param reading An object that implements the {@link Reading} interface, which provides a specific implementation for reading data.
      */
-    public FillingArrayReadStrings(Reading reading) {
+    public FillingArrayReadValueStrings(Reading reading) {
         this.reader = Reader.getReader(reading);
     }
 
     /**
      * Fills an object of the {@link Array} class with object of the {@link String} type.
-     *
      * @param array The object of the {@link Array} class to be filled with object of the {@link String} type.
      */
     @Override
@@ -53,7 +51,6 @@ public class FillingArrayReadStrings extends FillingArrayStrings {
 
     /**
      * Fills an array with object of the {@link String} type.
-     *
      * @param strings The array to be filled with object of the {@link String} type.
      */
     @Override
@@ -69,7 +66,6 @@ public class FillingArrayReadStrings extends FillingArrayStrings {
      * Fills an array with object of the {@link String} type.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     *
      * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
      * @return Created and filled array with object of the {@link String} type.
      */
