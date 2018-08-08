@@ -149,7 +149,7 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
             for (int j = DEFAULT_START_STRING_LENGTH; j < lengthString; j++) {
-                stringBuilder.append(chars[GeneratorRandomNumber.generateInt(chars.length)]);
+                stringBuilder.append(chars[GeneratorRandomNumber.generateInt(chars.length - 1)]);
             }
             strings[i] = stringBuilder.toString();
             stringBuilder.delete(0, stringBuilder.length());
