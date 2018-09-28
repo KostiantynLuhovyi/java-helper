@@ -3,13 +3,14 @@ package com.lugowoy.helper.models.arrays;
 import com.lugowoy.helper.models.Model;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.stream.Stream;
 
 /**
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @since 1.0
  *
  * A class that is the root of the inheritance hierarchy is a different class
@@ -22,7 +23,7 @@ import java.util.stream.Stream;
  * @param <T> The type of elements stored in the array.
  */
 
-public class Array<T> implements Model {
+public class Array<T> implements Model, Iterable<T> {
 
     /**
      * Default length of array.
@@ -33,7 +34,7 @@ public class Array<T> implements Model {
 
     private Object[] array;
 
-    private int indexToAddElement;
+    private int indexArrayElement;
 
     /**
      * The default constructor that initializes the created object with an array of default length.
@@ -43,7 +44,7 @@ public class Array<T> implements Model {
      */
     public Array() {
          this.array = new Object[DEFAULT_LENGTH_ARRAY];
-         this.indexToAddElement = 0;
+         this.indexArrayElement = 0;
     }
 
     /**
@@ -57,7 +58,7 @@ public class Array<T> implements Model {
      */
     public Array(T[] array) {
         this.setCorrectArray(array);
-        this.indexToAddElement = this.array.length;
+        this.indexArrayElement = this.array.length;
     }
 
     /**
@@ -72,7 +73,7 @@ public class Array<T> implements Model {
      */
     public Array(int lengthArray) {
         this.setCorrectArray(lengthArray);
-        this.indexToAddElement = 0;
+        this.indexArrayElement = 0;
     }
 
     @Override
@@ -137,7 +138,7 @@ public class Array<T> implements Model {
      */
     public void setArray(T[] array) {
         this.setCorrectArray(array);
-        this.indexToAddElement = this.array.length;
+        this.indexArrayElement = this.array.length;
     }
 
     /**
@@ -153,7 +154,7 @@ public class Array<T> implements Model {
      */
     public void setArray(int lengthArray) {
         this.setCorrectArray(lengthArray);
-        this.indexToAddElement = this.array.length;
+        this.indexArrayElement = this.array.length;
     }
 
     /**
@@ -175,14 +176,14 @@ public class Array<T> implements Model {
      * @since 1.2
      */
     public void add(T obj) {
-        if (this.indexToAddElement < this.array.length) {
-            if (this.array[indexToAddElement] == null) {
-                this.array[indexToAddElement] = obj;
-                this.indexToAddElement += 1;
+        if (this.indexArrayElement < this.array.length) {
+            if (this.array[indexArrayElement] == null) {
+                this.array[indexArrayElement] = obj;
+                this.indexArrayElement += 1;
             }
         } else {
             this.array = Arrays.copyOf(this.array, this.array.length + 1);
-            this.indexToAddElement = this.array.length - 1;
+            this.indexArrayElement = this.array.length - 1;
             this.add(obj);
         }
     }
@@ -200,10 +201,10 @@ public class Array<T> implements Model {
     public void set(int index, T obj) {
         if ((index >= 0) && (index < this.array.length)) {
             this.array[index] = obj;
-            this.indexToAddElement += 1;
+            this.indexArrayElement += 1;
         } else {
             this.array = Arrays.copyOf(this.array, this.array.length + 1);
-            this.indexToAddElement = this.array.length - 1;
+            this.indexArrayElement = this.array.length - 1;
             this.set(index, obj);
         }
     }
@@ -237,7 +238,7 @@ public class Array<T> implements Model {
             this.array = Stream.concat(Arrays.stream(Arrays.copyOfRange(this.array, 0, index - 1)),
                                        Arrays.stream(Arrays.copyOfRange(this.array, index, this.array.length)))
                                .toArray();
-            this.indexToAddElement -= 1;
+            this.indexArrayElement -= 1;
         }
     }
 
@@ -258,6 +259,24 @@ public class Array<T> implements Model {
                 }
             }
         }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<>() {
+
+            private int indexIteratorElement;
+
+            @Override
+            public boolean hasNext() {
+                return indexIteratorElement < getLength() && get(indexIteratorElement) != null;
+            }
+
+            @Override
+            public T next() {
+                return get(indexIteratorElement++);
+            }
+        };
     }
 
     private void setCorrectArray(T[] array) {
@@ -285,12 +304,14 @@ public class Array<T> implements Model {
     }
 
     private boolean checkIndex(int index) {
+        boolean resultOfCheck = false;
         if ((index >= 0) && (index < this.array.length)) {
-            return true;
-        } else {
+            resultOfCheck = true;
+        }/* else {
             throw new ArrayIndexOutOfBoundsException("Index " + index + " out-of-bounds for length from 0 to "
                                                                             + (this.array.length - 1) + " inclusive ;");
-        }
+        }*/
+        return resultOfCheck;
     }
 
 }

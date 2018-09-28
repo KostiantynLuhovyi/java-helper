@@ -11,7 +11,9 @@ public class Test {
 
         Array<String> stringArray = FactoryArray.getFactoryArray(new CreatorArrayUnknown<String>()).create(new FillingArrayRandomValueStrings("russian").fill(10));
 
-        System.out.println(stringArray);
+        for (String aStringArray : stringArray) {
+            System.out.print(aStringArray + " ");
+        }
 
     }
 
