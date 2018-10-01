@@ -10,16 +10,7 @@
         <version>1.4</version>
     </parent>
 
-    <artifactId>java-helper.factory</artifactId>
+    <artifactId>java-helper.io</artifactId>
     <version>1.3</version>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.lugowoy</groupId>
-            <artifactId>java-helper.models</artifactId>
-            <version>1.3</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
 </project>
