@@ -6,12 +6,24 @@
 
     <groupId>com.lugowoy</groupId>
     <artifactId>java-helper</artifactId>
-    <version>1.3</version>
+    <packaging>jar</packaging>
+    <version>1.4</version>
+
+    <!--<modules>
+        <module>java-helper.calculating</module>
+        <module>java-helper.converting</module>
+        <module>java-helper.factory</module>
+        <module>java-helper.filling</module>
+        <module>java-helper.io</module>
+        <module>java-helper.models</module>
+        <module>java-helper.other</module>
+    </modules>-->
 
     <properties>
-        <java.version>1.9</java.version>
+        <java.version>10</java.version>
         <github.global.server>github</github.global.server>
         <github.maven-plugin>0.12</github.maven-plugin>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <distributionManagement>
@@ -57,7 +69,7 @@
                     <includes>
                         <include>**/*</include>
                     </includes>
-                    <repositoryName>java-helper.tasks-solution</repositoryName>
+                    <repositoryName>java-helper</repositoryName>
                     <repositoryOwner>LugowoyKonstantin</repositoryOwner>
                 </configuration>
                 <executions>
@@ -72,23 +84,63 @@
         </plugins>
     </build>
 
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/uk.com.robust-it/cloning -->
-        <dependency>
-            <groupId>uk.com.robust-it</groupId>
-            <artifactId>cloning</artifactId>
-            <version>1.9.9</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-math3</artifactId>
-            <version>3.5</version>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/uk.com.robust-it/cloning -->
+            <dependency>
+                <groupId>uk.com.robust-it</groupId>
+                <artifactId>cloning</artifactId>
+                <version>1.9.9</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-math3</artifactId>
+                <version>3.5</version>
+            </dependency>
+
+            <!-- -->
+
+            <dependency>
+                <groupId>com.lugowoy</groupId>
+                <artifactId>java-helper.calculating</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lugowoy</groupId>
+                <artifactId>java-helper.converting</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lugowoy</groupId>
+                <artifactId>java-helper.factory</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lugowoy</groupId>
+                <artifactId>java-helper.filling</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lugowoy</groupId>
+                <artifactId>java-helper.io</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lugowoy</groupId>
+                <artifactId>java-helper.models</artifactId>
+                <version>1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lugowoy</groupId>
+                <artifactId>java-helper.other</artifactId>
+                <version>1.3</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
