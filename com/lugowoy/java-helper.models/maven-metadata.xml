@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>com.lugowoy</groupId>
-  <artifactId>java-helper.converting</artifactId>
+  <artifactId>java-helper.models</artifactId>
   <versioning>
     <release>1.3</release>
     <versions>
       <version>1.3</version>
     </versions>
-    <lastUpdated>20181001171115</lastUpdated>
+    <lastUpdated>20181001171152</lastUpdated>
   </versioning>
 </metadata>

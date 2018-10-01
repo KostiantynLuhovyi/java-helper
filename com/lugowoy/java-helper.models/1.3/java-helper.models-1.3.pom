@@ -10,7 +10,7 @@
         <version>1.4</version>
     </parent>
 
-    <artifactId>java-helper.converting</artifactId>
+    <artifactId>java-helper.models</artifactId>
     <version>1.3</version>
 
 </project>
