@@ -4,7 +4,6 @@ import org.apache.commons.math3.random.RandomDataGenerator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Random;
 
 /**
  * Created by Konstantin Lugowoy on 01.01.2018.

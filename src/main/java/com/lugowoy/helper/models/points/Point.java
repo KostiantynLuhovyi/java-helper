@@ -2,6 +2,7 @@ package com.lugowoy.helper.models.points;
 
 import com.lugowoy.helper.models.Model;
 import com.lugowoy.helper.other.DeepCloning;
+import com.rits.cloning.Cloner;
 
 import java.util.Objects;
 
