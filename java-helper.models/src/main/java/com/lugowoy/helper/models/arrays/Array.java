@@ -19,6 +19,7 @@ import java.util.stream.Stream;
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
+ * @see java.lang.Iterable
  *
  * @param <T> The type of elements stored in the array.
  */
