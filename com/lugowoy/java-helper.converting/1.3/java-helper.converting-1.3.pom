@@ -10,7 +10,7 @@
         <version>1.4</version>
     </parent>
 
-    <artifactId>java-helper.calculating</artifactId>
+    <artifactId>java-helper.converting</artifactId>
     <version>1.3</version>
 
 </project>
