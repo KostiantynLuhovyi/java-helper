@@ -106,17 +106,16 @@ public class Array<T> implements Model, Iterable<T> {
      * @return An array containing data from an array encapsulated in the object class.
      */
     @SuppressWarnings("unchecked")
-    public T[] toArray(T[] tArray) {
+    public void toArray(T[] tArray) {
         if (tArray != null) {
             if (tArray.length <= this.array.length) {
                 tArray = (T[]) Arrays.copyOf(this.array, this.array.length, tArray.getClass());
-            } else if (tArray.length > this.array.length) {
+            } else {
                 tArray = (T[]) Arrays.copyOf(this.array, tArray.length, tArray.getClass());
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            this.toArray((T[]) new Object[DEFAULT_LENGTH_ARRAY]);
         }
-            return tArray;
     }
 
     /**
@@ -297,7 +296,7 @@ public class Array<T> implements Model, Iterable<T> {
     }
 
     private boolean checkLengthLargerZero(int lengthArray) {
-        return lengthArray >= 0;
+        return lengthArray > 0;
     }
 
     private boolean checkNonNull(T[] array) {
@@ -308,10 +307,7 @@ public class Array<T> implements Model, Iterable<T> {
         boolean resultOfCheck = false;
         if ((index >= 0) && (index < this.array.length)) {
             resultOfCheck = true;
-        }/* else {
-            throw new ArrayIndexOutOfBoundsException("Index " + index + " out-of-bounds for length from 0 to "
-                                                                            + (this.array.length - 1) + " inclusive ;");
-        }*/
+        }
         return resultOfCheck;
     }
 
