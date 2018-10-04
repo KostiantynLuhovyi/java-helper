@@ -119,15 +119,6 @@ public class Array<T> implements Model, Iterable<T> {
     }
 
     /**
-     * Returns an array containing all the elements that are encapsulated in this array.
-     *
-     * @return An array containing data from an array encapsulated in the object class.
-     */
-    public Object[] toArray() {
-        return Arrays.copyOf(this.array, this.array.length);
-    }
-
-    /**
      * Sets the object of the array encapsulated in this object.
      * <p> If the object of the array passed by the parameter is null, an array of the default length will be created.
      * In this case, the elements of the array are null.

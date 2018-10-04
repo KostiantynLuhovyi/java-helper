@@ -1,6 +1,10 @@
 package com.lugowoy.helper.models.matrixes;
 
+import com.lugowoy.helper.factory.Factory;
+import com.lugowoy.helper.factory.FactoryArray;
+import com.lugowoy.helper.factory.creator.CreatorArrayUnknown;
 import com.lugowoy.helper.models.Model;
+import com.lugowoy.helper.models.arrays.Array;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -90,47 +94,53 @@ public class Matrix<T> implements Model {
     }
 
     @SuppressWarnings("unchecked")
-    public void toMatrix(T[][] matrix) throws IllegalArgumentException {
+    public void toMatrix(T[][] matrix) {
         if (matrix != null) {
-            if (matrix.length <= this.matrix.length && matrix[0].length <= this.matrix[0].length) {
-                for (int i = 0; i < matrix.length; i++) {
-                    matrix[i] = (T[]) Arrays.copyOf(this.matrix[i], this.matrix[i].length, this.matrix.getClass());
-                }
-            } else {
-                for (int i = 0; i < matrix.length; i++) {
-                    matrix[i] = (T[]) Arrays.copyOf(this.matrix[i], matrix[i].length, this.matrix.getClass());
+            for (int i = 0; i < this.getRows(); i++) {
+                for (int j = 0; j < this.getColumns(); j++) {
+                    matrix[i][j] = (T) this.matrix[i][j];
                 }
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument matrix is null."));
-        }
-    }
-
-    public Object[][] toMatrix() {
-        Object[][] objects = new Object[this.matrix.length][this.matrix[0].length];
-        for (int i = 0; i < this.matrix.length; i++) {
-            objects[i] = Arrays.copyOf(this.matrix[i], this.matrix[i].length, this.matrix.getClass());
-        }
-        return objects;
-    }
-
-/*    public void add(T obj) {
-    }*/
-
-    public void set(int indexRows, int indexColumn, T obj) {
-        if (indexRows <= this.matrix.length && indexColumn <= this.matrix[0].length) {
-            this.matrix[indexRows][indexColumn] = obj;
-        } else {
-            this.matrix = new Object[DEFAULT_ROWS][DEFAULT_COLUMNS];
+            matrix = (T[][]) new Object[this.getRows()][this.getColumns()];
+            this.toMatrix(matrix);
         }
     }
 
     public int getRows() {
-        return rows;
+        return this.rows;
     }
 
     public int getColumns() {
-        return columns;
+        return this.columns;
+    }
+
+    @SuppressWarnings("unchecked")
+    public T getElementMatrix(int indexRow, int indexColumn) {
+        if ((indexRow >= 0 && indexRow <= this.getRows())
+                && (indexColumn >= 0 && indexColumn <= this.getColumns())) {
+            return (T) this.matrix[indexRow][indexColumn];
+        } else {
+            throw new IllegalArgumentException("Incorrect argument.");
+        }
+    }
+
+    public void setElementMatrix(int indexRow, int indexColumn, T element) {
+        if ((indexRow >= 0 && indexRow <= this.rows) && (indexColumn >= 0 && indexColumn <= this.columns)) {
+            this.matrix[indexRow][indexColumn] = element;
+        } else {
+            throw new IllegalArgumentException("Incorrect argument.");
+        }
+    }
+
+    public Array<T> getColumnObjectArray(int indexRow) {
+        Array<T> array;
+        if (indexRow >= 0 && indexRow <= this.getRows()) {
+            array = FactoryArray.getFactoryArray(new CreatorArrayUnknown<T>()).create((T[]) this.matrix[indexRow]);
+        } else {
+            array = FactoryArray.getFactoryArray(new CreatorArrayUnknown<T>()).create(10);
+        }
+        return array;
     }
 
     public void setMatrix(T[][] matrix) {
