@@ -1,24 +1,25 @@
-package com.lugowoy.helper.factory.creator;
+package com.lugowoy.helper.factory.creator.arrays;
 
+import com.lugowoy.helper.factory.creator.Creator;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 10.06.2018.
+ * Created by Konstantin Lugowoy on 02-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
+ * @since 1.0
  *
- * The class implements a contract that creates objects of the {@link Array} type encapsulating an array of object of the <T> type.
+ * Abstract class declaring a contract for the implementation of the functional that creates objects of type {@link Array}.
  *
- * @see com.lugowoy.helper.factory.creator.Creating
- * @see com.lugowoy.helper.factory.creator.CreatingArray
  * @see com.lugowoy.helper.factory.creator.Creator
- * @see com.lugowoy.helper.factory.creator.CreatorArray
+ * @see com.lugowoy.helper.factory.creator.Creating
+ * @see CreatingArray
  *
- * @param <T> The type an array of object of the <T> type encapsulated in an {@link Array} object.
+ * @param <T> The type of objects that the class object {@link Array} stores.
  */
-
-public class CreatorArrayUnknown<T> extends CreatorArray<T> {
+// todo edit methods doc's
+public class CreatorArray<T> extends Creator<Array<T>> implements CreatingArray<T>{
 
     /**
      * The method creates an object of the {@link Array} type that calls the default constructor {@link Array#Array()}.
@@ -33,12 +34,11 @@ public class CreatorArrayUnknown<T> extends CreatorArray<T> {
     /**
      * The method creates an object of the {@link Array} type that calls the constructor with parameter {@link Array#Array(T[])}.
      *
-     * @param tArray An array of objects that will be encapsulate in the created class object {@link Array}.
+     * @param array An array of objects that will be encapsulate in the created class object {@link Array}.
      * @return The created object of type {@link Array}.
      */
-    @Override
-    public Array<T> create(T[] tArray) {
-        return new Array<>(tArray);
+    public Array<T> create(T[] array) {
+        return new Array<>(array);
     }
 
     /**
@@ -47,7 +47,6 @@ public class CreatorArrayUnknown<T> extends CreatorArray<T> {
      * @param lengthArray Length of array of objects that will be encapsulate in the created class object {@link Array}.
      * @return The created object {@link Array} encapsulates an array of the length of the passed parameter.
      */
-    @Override
     public Array<T> create(int lengthArray) {
         return new Array<>(lengthArray);
     }
