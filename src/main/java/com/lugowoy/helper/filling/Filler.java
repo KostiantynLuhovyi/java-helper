@@ -4,7 +4,7 @@ package com.lugowoy.helper.filling;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class that is a container that encapsulates a specific implementation of a contract declared in the {@link Filling} interface
  * and delegates to it an obligation to perform functionality to fill a particular object or data structure with data.
@@ -19,14 +19,6 @@ package com.lugowoy.helper.filling;
 public class Filler<T> {
 
     private Filling<T> filling;
-
-    /**
-     * Default constructor.
-     * The presence of this is absolutely not necessary.
-     * Its presence is caused by the need to add more extended constructor variants to the inheritor of this class.
-     */
-    protected Filler() {
-    }
 
     /**
      * Constructor to create a new {@link Filler} and initializes the object encapsulated in this class to perform the functionality.

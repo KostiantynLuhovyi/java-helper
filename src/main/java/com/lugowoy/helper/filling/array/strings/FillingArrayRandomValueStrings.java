@@ -3,7 +3,7 @@ package com.lugowoy.helper.filling.array.strings;
 import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
-import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**

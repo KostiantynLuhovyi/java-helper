@@ -1,8 +1,7 @@
 package com.lugowoy.helper.models.matrixes;
 
-import com.lugowoy.helper.factory.Factory;
 import com.lugowoy.helper.factory.FactoryArray;
-import com.lugowoy.helper.factory.creator.CreatorArrayUnknown;
+import com.lugowoy.helper.factory.creator.arrays.CreatorArray;
 import com.lugowoy.helper.models.Model;
 import com.lugowoy.helper.models.arrays.Array;
 
@@ -25,9 +24,9 @@ import java.util.Objects;
 public class Matrix<T> implements Model {
 
     /***/
-    private static final int DEFAULT_ROWS = 10;
+    public static final int DEFAULT_ROWS = 10;
     /***/
-    private static final int DEFAULT_COLUMNS = 10;
+    public static final int DEFAULT_COLUMNS = 10;
 
     private int rows;
     private int columns;
@@ -136,9 +135,9 @@ public class Matrix<T> implements Model {
     public Array<T> getColumnObjectArray(int indexRow) {
         Array<T> array;
         if (indexRow >= 0 && indexRow <= this.getRows()) {
-            array = FactoryArray.getFactoryArray(new CreatorArrayUnknown<T>()).create((T[]) this.matrix[indexRow]);
+            array = FactoryArray.getFactoryArray(new CreatorArray<T>()).create((T[]) this.matrix[indexRow]);
         } else {
-            array = FactoryArray.getFactoryArray(new CreatorArrayUnknown<T>()).create(10);
+            array = FactoryArray.getFactoryArray(new CreatorArray<T>()).create(10);
         }
         return array;
     }

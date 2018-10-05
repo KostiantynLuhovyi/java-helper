@@ -10,7 +10,7 @@ import com.lugowoy.helper.models.points.Point;
  * Created by Konstantin Lugowoy on 16-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class is the inheritor of the class {@link FillerArray}.
  * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArrayPointsCoordinatesWithArrayNumbers} interface
@@ -26,14 +26,6 @@ import com.lugowoy.helper.models.points.Point;
  */
 
 public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
-
-    /**
-     * Default constructor.
-     * The presence of this is absolutely not necessary.
-     * Its presence is caused by the need to add more extended constructor variants to the inheritor of this class.
-     */
-    public FillerArrayPoints() {
-    }
 
     /**
      * Constructor to create a new {@link FillerArrayPoints}

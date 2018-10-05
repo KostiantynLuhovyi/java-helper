@@ -4,8 +4,8 @@ import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
 
-import static com.lugowoy.helper.filling.array.FillingArrayChecker.checkLengthArray;
-import static com.lugowoy.helper.filling.array.FillingArrayChecker.checkNonNullArrayObject;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkLengthArray;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkNonNullArrayObject;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
@@ -22,15 +22,15 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  */
 
-public class FillingArrayReadValueStrings implements FillingArrayStrings {
+public class FillingArrayReadingValueStrings implements FillingArrayStrings {
 
     private Reader reader;
 
     /**
-     * Constructs a new object of the {@link FillingArrayReadValueStrings} class.
+     * Constructs a new object of the {@link FillingArrayReadingValueStrings} class.
      * @param reading An object that implements the {@link Reading} interface, which provides a specific implementation for reading data.
      */
-    public FillingArrayReadValueStrings(Reading reading) {
+    public FillingArrayReadingValueStrings(Reading reading) {
         this.reader = Reader.getReader(reading);
     }
 

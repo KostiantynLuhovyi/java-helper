@@ -7,13 +7,13 @@ import com.lugowoy.helper.models.points.Point;
  * Created by Konstantin Lugowoy on 09-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  *
  * The interface provides a static functional for various checks
  * that are used to implement the filling of data objects or data structures (arrays).
  */
 
-public interface FillingArrayChecker {
+public interface CheckerFillingArray {
 
     int DEFAULT_START_LENGTH_ARRAY = 0;
 

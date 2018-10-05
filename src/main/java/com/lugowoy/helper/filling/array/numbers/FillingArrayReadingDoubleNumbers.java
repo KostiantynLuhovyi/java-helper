@@ -1,49 +1,49 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
-import com.lugowoy.helper.filling.array.FillingArrayReadValues;
+import com.lugowoy.helper.filling.DefaultValuesForFilling;
+import com.lugowoy.helper.filling.array.FillingArrayReadingValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
 
-import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
-import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
+import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  *
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
  * with data of the {@link Double} type with read by the {@link Reader} class object
- * encapsulated in the parent class {@link FillingArrayReadValues}.
- * The class is the heir of the {@link FillingArrayReadValues} class and implements it's contract.
+ * encapsulated in the parent class {@link FillingArrayReadingValues}.
+ * The class is the heir of the {@link FillingArrayReadingValues} class and implements it's contract.
  * Also implements the contract declared by the {@link FillingArrayNumbers} interface.
  *
- * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
+ * @see FillingArrayReadingValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
 
-public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double> implements FillingArrayNumbers<Double> {
+public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<Double> implements FillingArrayNumbers<Double> {
 
     /**
-     * Constructs a new object of {@link FillingArrayReadDoubleNumbers} class,
+     * Constructs a new object of {@link FillingArrayReadingDoubleNumbers} class,
      *  initializing an object of {@link Reader} class
      *  encapsulated in the parent class to read data of the {@link Double} type to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in the parent class to read data of the {@link Double} type to fill the array.
      */
-    public FillingArrayReadDoubleNumbers(Reader reader) {
+    public FillingArrayReadingDoubleNumbers(Reader reader) {
         super(reader);
     }
 
     /**
-     * Constructs a new object of {@link FillingArrayReadDoubleNumbers} class,
+     * Constructs a new object of {@link FillingArrayReadingDoubleNumbers} class,
      *  initializing an object of {@link Reader} class
      *  encapsulated in the parent class of the concrete implementation of the contract declared in the interface {@link Reading}
      *  to read data of the {@link Double} type to be fill array.
@@ -52,7 +52,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      *                to initialize an object of the {@link Reader} class encapsulated in the parent class
      *                to read data of the {@link Double} type to be fill array.
      */
-    public FillingArrayReadDoubleNumbers(Reading reading) {
+    public FillingArrayReadingDoubleNumbers(Reading reading) {
         super(reading);
     }
 
@@ -68,7 +68,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
     public void fill(Array<Double> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             Double[] doubles = new Double[array.getLength()];
-            this.initializeArrayElementsEnteredDoubleNumbers(doubles);
+            this.fillArrayElementsEnteredDoubleNumbers(doubles);
             array.setArray(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
@@ -85,7 +85,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
     @Override
     public void fill(Double[] doubles) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(doubles)) {
-            this.initializeArrayElementsEnteredDoubleNumbers(doubles);
+            this.fillArrayElementsEnteredDoubleNumbers(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
@@ -107,10 +107,10 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            this.initializeArrayElementsEnteredDoubleNumbers(doubles);
+            this.fillArrayElementsEnteredDoubleNumbers(doubles);
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayElementsEnteredDoubleNumbers(doubles);
+            this.fillArrayElementsEnteredDoubleNumbers(doubles);
         }
         return doubles;
     }
@@ -119,7 +119,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      * Fills an object of the {@link Array} class with data of the {@link Double} type with read by the {@link Reader} class object.
      * <p>The object of the {@link Array} class is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_DOUBLE_POSITIVE_BOUND}
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND}
      *
      * @param array The object of the {@link Array} class to be filled with data of the {@link Double} type
      *              with read by the {@link Reader} class object.
@@ -132,10 +132,10 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
         if (checkNonNullArrayObject(array)) {
             Double[] doubles = new Double[array.getLength()];
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
+                this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
                 array.setArray(doubles);
             } else {
-                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
+                this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
                 array.setArray(doubles);
             }
         } else {
@@ -147,7 +147,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      * Fills an array with data of the {@link Double} type with read by the {@link Reader} class object.
      * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_DOUBLE_POSITIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND}.
      *
      * @param doubles The array to be filled with data of the {@link Double} type with read by the {@link Reader} class object.
      * @param bound The value of the end bound for filling an array with data of the {@link Double} type
@@ -158,9 +158,9 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
     public void fill(Double[] doubles, Double bound) throws IllegalArgumentException {
         if (checkNonNullArrayNumbers(doubles)) {
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
+                this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
-                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
+                this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -175,7 +175,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_DOUBLE_POSITIVE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND}.
      *
      * @param lengthArray The length(size) of the array to be filled with data of the {@link Double} type
      *                    with read by the {@link Reader} class object.
@@ -189,13 +189,13 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
+                this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
-                this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
+                this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
+            this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
         }
         return doubles;
     }
@@ -205,8 +205,8 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesOfArray#DEFAULT_DOUBLE_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesOfArray#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}
+     *  and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
      *
      * @param array The object of the {@link Array} class that must be filled with data of the {@link Double} type
      *              with read by the {@link Reader} class object.
@@ -222,10 +222,10 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
             Double[] doubles = new Double[array.getLength()];
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
                 array.setArray(doubles);
             } else {
-                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
+                this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                          DEFAULT_DOUBLE_NEGATIVE_BOUND,
                                                                                          DEFAULT_DOUBLE_POSITIVE_BOUND);
                 array.setArray(doubles);
@@ -240,8 +240,8 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesOfArray#DEFAULT_DOUBLE_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesOfArray#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}
+     *  and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
      *
      * @param doubles The array to be filled with data of the {@link Double} type with read by the {@link Reader} class object.
      * @param startBound The value of the start bound for filling an array with data of the {@link Double} type
@@ -255,9 +255,9 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
         if (checkNonNullArrayNumbers(doubles)) {
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
-                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
+                this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                          DEFAULT_DOUBLE_NEGATIVE_BOUND,
                                                                                          DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
@@ -273,8 +273,8 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesOfArray#DEFAULT_DOUBLE_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesOfArray#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
+     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}
+     *  and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled with data of the {@link Double} type
      *                    with read by the {@link Reader} class object.
@@ -291,28 +291,28 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
             doubles = new Double[lengthArray];
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
+                this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
-                this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
+                this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                          DEFAULT_DOUBLE_NEGATIVE_BOUND,
                                                                                          DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
-            this.initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
+            this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                      DEFAULT_DOUBLE_NEGATIVE_BOUND,
                                                                                      DEFAULT_DOUBLE_POSITIVE_BOUND);
         }
         return doubles;
     }
 
-    private void initializeArrayElementsEnteredDoubleNumbers(Double[] doubles) {
+    private void fillArrayElementsEnteredDoubleNumbers(Double[] doubles) {
         for (int i = 0; i < doubles.length; i++) {
             doubles[i] = super.getReader().readDouble();
         }
     }
 
-    private void initializeArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(Double[] doubles, double bound) {
+    private void fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(Double[] doubles, double bound) {
         double value;
         for (int i = 0; i < doubles.length; i++) {
             value = super.getReader().readDouble();
@@ -324,9 +324,9 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
         }
     }
 
-    private void initializeArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(Double[] doubles,
-                                                                                     double startBound,
-                                                                                     double endBound) {
+    private void fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(Double[] doubles,
+                                                                               double startBound,
+                                                                               double endBound) {
         double value;
         for (int i = 0; i < doubles.length; i++) {
             value = super.getReader().readDouble();

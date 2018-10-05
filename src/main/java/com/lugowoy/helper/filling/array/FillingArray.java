@@ -7,7 +7,7 @@ import com.lugowoy.helper.models.arrays.Array;
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  *
  * The interface that declares a contract to filling an array with data.
  * <p> Also this interface is the inheritor of the {@link Filling} interface
@@ -22,7 +22,6 @@ public interface FillingArray<T> extends Filling<Array<T>> {
 
     /**
      * Fills an object of the {@link Array} class with data.
-     *
      * @param array The object of the {@link Array} class to be filled with data.
      */
     @Override

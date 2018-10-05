@@ -1,16 +1,16 @@
-package com.lugowoy.helper.filling.array;
+package com.lugowoy.helper.filling;
 
 /**
  * Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  *
  * The interface provides a set of constants that are used as default values for various tasks
  * to filling objects or data structures (arrays).
  */
 
-public interface DefaultValuesOfArray {
+public interface DefaultValuesForFilling {
 
     /**
      * The integer value by default.

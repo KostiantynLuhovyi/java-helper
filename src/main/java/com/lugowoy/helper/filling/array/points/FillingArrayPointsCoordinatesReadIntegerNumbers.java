@@ -1,20 +1,20 @@
 package com.lugowoy.helper.filling.array.points;
 
-import com.lugowoy.helper.filling.array.DefaultValuesOfArray;
+import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.models.points.Point;
 
-import static com.lugowoy.helper.filling.array.DefaultValuesOfArray.*;
-import static com.lugowoy.helper.filling.array.FillingArrayChecker.*;
+import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  *
  * The class is the heir of the {@link FillingArrayPointsCoordinatesReadValues} class and implements it's contract.
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
@@ -67,7 +67,7 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
     public void fill(Array<Point<Integer>> array) throws IllegalArgumentException {
         if (checkNonNullArrayObject(array)) {
             Point<Integer>[] points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
-            this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
+            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
             array.setArray(points);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
@@ -84,7 +84,7 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
     @Override
     public void fill(Point<Integer>[] points) throws IllegalArgumentException {
         if (checkNonNullArrayPoints(points)) {
-            this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
+            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
@@ -108,10 +108,10 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
         Point<Integer>[] points;
         if (checkLengthArray(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
-            this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
+            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
         } else {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
-            this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
+            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
         }
         return points;
     }
@@ -121,7 +121,7 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
      * with numeric coordinates of type {@link Integer} in the range from "0" to "bound" parameter,
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND}
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}
      *
      * @param array The object of the {@link Array} class to be filled.
      * @param bound The value of the end of the range boundary
@@ -134,11 +134,11 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
         if (checkNonNullArrayObject(array)) {
             Point<Integer>[] points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
                                                                                                                            bound);
                 array.setArray(points);
             } else {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
                                                                                                                            DEFAULT_INTEGER_POSITIVE_BOUND);
                 array.setArray(points);
             }
@@ -152,7 +152,7 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
      * with numeric coordinates of type {@link Integer} in the range from "0" to "bound" parameter,
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
      *
      * @param points The array to be filled.
      * @param bound  The value of the end of the range boundary
@@ -163,9 +163,9 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
     public void fill(Point<Integer>[] points, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArrayPoints(points)) {
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points, bound);
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points, bound);
             } else {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
                                                                                                                            DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
@@ -180,7 +180,7 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
      *
      *
      * @param lengthArray The length(size) of the array to be filled.
@@ -195,14 +195,14 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
         if (checkLengthArray(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (checkBoundValueIsPositive(bound)) {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points, bound);
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points, bound);
             } else {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
                                                                                                                            DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
-            this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
+            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points,
                                                                                                                        DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return points;
@@ -214,8 +214,8 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesOfArray#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     * and {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
+     * and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
      *
      *
      * @param array The object of the {@link Array} class to be filled.
@@ -232,11 +232,11 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
             Point<Integer>[] points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                         && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             startBound, endBound);
                 array.setArray(points);
             } else {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             DEFAULT_INTEGER_NEGATIVE_BOUND,
                                                                                                                             DEFAULT_INTEGER_POSITIVE_BOUND);
                 array.setArray(points);
@@ -252,8 +252,8 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesOfArray#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     * and {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
+     * and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
      *
      * @param points     The array to be filled.
      * @param startBound The value of the start of the range boundary
@@ -267,10 +267,10 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
         if (checkNonNullArrayPoints(points)) {
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             startBound, endBound);
             } else {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             DEFAULT_INTEGER_NEGATIVE_BOUND,
                                                                                                                             DEFAULT_INTEGER_POSITIVE_BOUND);
             }
@@ -291,8 +291,8 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
      * with numerical coordinates from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesOfArray#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     * and {@link DefaultValuesOfArray#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
+     * and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled.
      * @param startBound  The value of the start of the range boundary
@@ -309,30 +309,30 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             startBound, endBound);
             } else {
-                this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             DEFAULT_INTEGER_NEGATIVE_BOUND,
                                                                                                                             DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
-            this.initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
+            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                         DEFAULT_INTEGER_NEGATIVE_BOUND,
                                                                                                                         DEFAULT_INTEGER_POSITIVE_BOUND);
         }
         return points;
     }
 
-    private void initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(Point<Integer>[] points) {
+    private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(Point<Integer>[] points) {
         for (int i = 0; i < points.length; i++) {
             points[i] = new Point<>(super.getReader().readInt(), super.getReader().readInt());
         }
     }
 
-    private void initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(Point<Integer>[] points,
-                                                                                                                       int bound) {
+    private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(Point<Integer>[] points,
+                                                                                                                 int bound) {
         for (int i = 0; i < points.length; i++) {
             int valueCoordinateX = checkReadValueIsInRange(super.getReader().readInt(), DEFAULT_START_BOUND, bound);
             int valueCoordinateY = checkReadValueIsInRange(super.getReader().readInt(), DEFAULT_START_BOUND, bound);
@@ -340,9 +340,9 @@ public class FillingArrayPointsCoordinatesReadIntegerNumbers extends FillingArra
         }
     }
 
-    private void initializeArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(Point<Integer>[] points,
-                                                                                                                        int startBound,
-                                                                                                                        int endBound) {
+    private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(Point<Integer>[] points,
+                                                                                                                  int startBound,
+                                                                                                                  int endBound) {
         for (int i = 0; i < points.length; i++) {
             int valueCoordinateX = checkReadValueIsInRange(super.getReader().readInt(), startBound, endBound);
             int valueCoordinateY = checkReadValueIsInRange(super.getReader().readInt(), startBound, endBound);

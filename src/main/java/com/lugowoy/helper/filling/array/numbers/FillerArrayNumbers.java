@@ -9,7 +9,7 @@ import com.lugowoy.helper.models.arrays.Array;
  * Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  *
  * The class is the inheritor of the class {@link FillerArray}.
  * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArrayNumbers} interface
@@ -28,14 +28,6 @@ import com.lugowoy.helper.models.arrays.Array;
  */
 
 public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
-
-    /**
-     * Default constructor.
-     * The presence of this is absolutely not necessary.
-     * Its presence is caused by the need to add more extended constructor variants to the inheritor of this class.
-     */
-    public FillerArrayNumbers() {
-    }
 
     /**
      * Constructor to create a new {@link FillerArrayNumbers} and initializes the object encapsulated in parent class to perform the functionality.
