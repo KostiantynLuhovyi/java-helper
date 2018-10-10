@@ -1,6 +1,6 @@
 package com.lugowoy.helper.filling.array;
 
-import com.lugowoy.helper.filling.FillingReadingValues;
+import com.lugowoy.helper.filling.FillingReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
@@ -21,7 +21,7 @@ import com.lugowoy.helper.models.arrays.Array;
  * @param <T> The type of read data to be filling of object of the {@link Array} class or the classic array.
  */
 
-public abstract class FillingArrayReadingValues<T> extends FillingReadingValues implements FillingArray<T> {
+public abstract class FillingArrayReadValues<T> extends FillingReadValues implements FillingArray<T> {
 
     /**
      * Constructs a new class object,
@@ -30,7 +30,7 @@ public abstract class FillingArrayReadingValues<T> extends FillingReadingValues 
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in this class to read data to fill array.
      */
-    public FillingArrayReadingValues(Reader reader) {
+    public FillingArrayReadValues(Reader reader) {
         super(reader);
     }
 
@@ -44,7 +44,7 @@ public abstract class FillingArrayReadingValues<T> extends FillingReadingValues 
      *                to initialize an object of the {@link Reader} class encapsulated in this class
      *                to read the data to be fill array.
      */
-    public FillingArrayReadingValues(Reading reading) {
+    public FillingArrayReadValues(Reading reading) {
         super(reading);
     }
 

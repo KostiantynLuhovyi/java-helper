@@ -1,6 +1,7 @@
 package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
+import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
@@ -33,11 +34,13 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      */
     @Override
     public void fill(Array<Integer> array) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
             this.fillArrayElementsRandomIntegerNumbers(integers);
             array.setArray(integers);
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -51,9 +54,11 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      */
     @Override
     public void fill(Integer[] integers) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(integers)) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(integers)) {
             this.fillArrayElementsRandomIntegerNumbers(integers);
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -70,8 +75,9 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      */
     @Override
     public Integer[] fill(int lengthArray) {
+        //todo check or add relevant checks.
         Integer[] integers;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             integers = new Integer[lengthArray];
             this.fillArrayElementsRandomIntegerNumbers(integers);
         } else {
@@ -94,9 +100,10 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
-            if (checkBoundValueIsPositive(bound)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
                 array.setArray(integers);
             } else {
@@ -104,6 +111,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
                 array.setArray(integers);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -120,13 +128,15 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      */
     @Override
     public void fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(integers)) {
-            if (checkBoundValueIsPositive(bound)) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(integers)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -147,10 +157,11 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
+        //todo check or add relevant checks.
         Integer[] integers;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (checkBoundValueIsPositive(bound)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
@@ -179,10 +190,11 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      */
     @Override
     public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
                 array.setArray(integers);
             } else {
@@ -192,6 +204,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
                 array.setArray(integers);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -211,9 +224,10 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      */
     @Override
     public void fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(integers)) {
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(integers)) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,
@@ -221,6 +235,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
                                                                                          DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -243,11 +258,12 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      */
     @Override
     public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
+        //todo check or add relevant checks.
         Integer[] integers;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,

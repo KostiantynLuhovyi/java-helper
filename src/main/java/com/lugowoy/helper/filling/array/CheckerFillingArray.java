@@ -7,7 +7,7 @@ import com.lugowoy.helper.models.points.Point;
  * Created by Konstantin Lugowoy on 09-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  *
  * The interface provides a static functional for various checks
  * that are used to implement the filling of data objects or data structures (arrays).
@@ -22,7 +22,7 @@ public interface CheckerFillingArray {
      * @param array The object of class Array for checking.
      * @return Result of checking.
      */
-    static <T> boolean checkNonNullArrayObject(Array<T> array) {
+    static <T> boolean checkNonNullArray(Array<T> array) {
         return array != null;
     }
 
@@ -31,7 +31,7 @@ public interface CheckerFillingArray {
      * @param numbers The array for checking.
      * @return Result of checking.
      */
-    static boolean checkNonNullArrayNumbers(Number[] numbers) {
+    static boolean checkNonNullArray(Number[] numbers) {
         return numbers != null;
     }
 
@@ -40,7 +40,7 @@ public interface CheckerFillingArray {
      * @param points The array for checking.
      * @return Result of checking.
      */
-    static <T extends Number> boolean checkNonNullArrayPoints(Point<T>[] points) {
+    static <T extends Number> boolean checkNonNullArray(Point<T>[] points) {
         return points != null;
     }
 
@@ -49,27 +49,26 @@ public interface CheckerFillingArray {
      * @param strings The array for checking.
      * @return Result of checking.
      */
-    static boolean checkNonNullArrayStrings(String[] strings) {
+    static boolean checkNonNullArray(String[] strings) {
         return strings != null;
     }
 
     /**
-     * The method that checks that the value of "lengthArray" is greater than "0" and less than {@link Integer#MAX_VALUE}.
-     * @param lengthArray The value for checking.
+     * The method that checks that the value of "arrayLength" is greater than "0" and less than {@link Integer#MAX_VALUE}.
+     * @param arrayLength The value for checking.
      * @return Result of checking.
      */
-    static boolean checkLengthArray(int lengthArray) {
-        return ((lengthArray > DEFAULT_START_LENGTH_ARRAY) && (lengthArray <= Integer.MAX_VALUE));
+    static boolean checkArrayLength(int arrayLength) {
+        return ((arrayLength >= DEFAULT_START_LENGTH_ARRAY) && (arrayLength < Integer.MAX_VALUE));
     }
-
 
     /**
      * The method checks that the value "boundValue" is a positive number and less than {@link Integer#MAX_VALUE}.
      * @param boundValue The value for checking.
      * @return Result of checking.
      */
-    static boolean checkBoundValueIsPositive(Number boundValue) {
-        return (boundValue != null) && ((boundValue.intValue() >= 0) && (boundValue.intValue() <= Integer.MAX_VALUE));
+    static boolean isPositiveBoundValueAndNonNull(Number boundValue) {
+        return (boundValue != null) && ((boundValue.intValue() >= 0) && (boundValue.intValue() < Integer.MAX_VALUE));
     }
 
     /**
@@ -77,8 +76,8 @@ public interface CheckerFillingArray {
      * @param boundValue The value for checking.
      * @return Result of checking.
      */
-    static boolean checkBoundValueIsNegative(Number boundValue) {
-        return (boundValue != null) && ((boundValue.intValue() < 0));
+    static boolean isNegativeBoundValueAndNonNull(Number boundValue) {
+        return (boundValue != null) && (boundValue.intValue() < 0 && boundValue.intValue() > Integer.MIN_VALUE);
     }
 
     /**
@@ -86,8 +85,8 @@ public interface CheckerFillingArray {
      * @param boundValue The value for checking.
      * @return Result of checking.
      */
-    static boolean checkBoundValueIsInCorrectRange(Number boundValue) {
-        return (boundValue != null) && (boundValue.intValue() >= Integer.MIN_VALUE && boundValue.intValue() <= Integer.MAX_VALUE);
+    static boolean isCorrectRangeBoundValue(Number boundValue) {
+        return boundValue.intValue() > Integer.MIN_VALUE && boundValue.intValue() < Integer.MAX_VALUE;
     }
 
     /**
@@ -96,7 +95,7 @@ public interface CheckerFillingArray {
      * @param endBound The value for checking.
      * @return Result of checking.
      */
-    static boolean checkStartBoundValueLessThanEndBoundValue(Number startBound, Number endBound) {
+    static boolean isStartBoundValueLessThanEndBoundValue(Number startBound, Number endBound) {
         return startBound.intValue() < endBound.intValue();
     }
 
@@ -106,7 +105,7 @@ public interface CheckerFillingArray {
      * @param endBound The value for checking.
      * @return Result of checking.
      */
-    static boolean checkStartBoundValueGreatestThanEndBoundValue(Number startBound, Number endBound) {
+    static boolean isStartBoundValueGreatestThanEndBoundValue(Number startBound, Number endBound) {
         return startBound.intValue() > endBound.intValue();
     }
 

@@ -3,6 +3,8 @@ package com.lugowoy.helper.filling.matrixes.numbers;
 import com.lugowoy.helper.models.matrixes.Matrix;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
+import java.util.Arrays;
+
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
  */
@@ -11,6 +13,8 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
 
     @Override
     public void fill(Matrix<Double> matrix) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null) {
             Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
             this.fillMatrixElementsRandomDoubleNumbers(doubles);
@@ -20,6 +24,8 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
 
     @Override
     public void fill(Double[][] matrix) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null) {
             this.fillMatrixElementsRandomDoubleNumbers(matrix);
         }
@@ -27,6 +33,7 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
 
     @Override
     public Double[][] fill(int rows, int columns) {
+        //todo add relevant checks.
         Double[][] matrix;
         if ((rows >= 0 && rows < Integer.MAX_VALUE) && (columns >= 0 && columns < Integer.MAX_VALUE)) {
             matrix = new Double[rows][columns];
@@ -40,6 +47,8 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
 
     @Override
     public void fill(Matrix<Double> matrix, Double bound) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null && (bound >= 0 && bound < Integer.MAX_VALUE)) {
             Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
             this.fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, bound);
@@ -49,6 +58,8 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
 
     @Override
     public void fill(Double[][] matrix, Double bound) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null && (bound >= 0 && bound < Integer.MAX_VALUE)) {
             this.fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(matrix, bound);
         }
@@ -56,6 +67,7 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
 
     @Override
     public Double[][] fill(int rows, int columns, Double bound) {
+        //todo add relevant checks.
         Double[][] matrix;
         if ((rows >= 0 && rows < Integer.MAX_VALUE) && (columns >= 0 && columns < Integer.MAX_VALUE)) {
             matrix = new Double[rows][columns];
@@ -69,6 +81,8 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
 
     @Override
     public void fill(Matrix<Double> matrix, Double startBound, Double endBound) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null && ((startBound >= 0 && startBound < Integer.MAX_VALUE) && (endBound > 0 && endBound < Integer.MAX_VALUE))) {
             if (startBound < endBound) {
                 Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
@@ -80,6 +94,8 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
 
     @Override
     public void fill(Double[][] matrix, Double startBound, Double endBound) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null && ((startBound >= 0 && startBound < Integer.MAX_VALUE) && (endBound > 0 && endBound < Integer.MAX_VALUE))) {
             if (startBound < endBound) {
                 this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(matrix, startBound, endBound);
@@ -89,6 +105,7 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
 
     @Override
     public Double[][] fill(int rows, int columns, Double startBound, Double endBound) {
+        //todo add relevant checks.
         Double[][] doubles = null;
         if ((rows >= 0 && rows < Integer.MAX_VALUE) && (columns >= 0 && columns < Integer.MAX_VALUE)) {
             if ((startBound >= 0 && startBound < Integer.MAX_VALUE) && (endBound > 0 && endBound < Integer.MAX_VALUE) 

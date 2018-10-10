@@ -1,6 +1,7 @@
 package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
+import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
@@ -34,7 +35,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      */
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
             this.fillArrayElementsSequentialAscendingDoubleNumbers(doubles);
             array.setArray(doubles);
@@ -52,7 +53,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      */
     @Override
     public void fill(Double[] doubles) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(doubles)) {
+        if (CheckerFillingArray.checkNonNullArray(doubles)) {
             this.fillArrayElementsSequentialAscendingDoubleNumbers(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -74,7 +75,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
     @Override
     public Double[] fill(int lengthArray) {
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             doubles = new Double[lengthArray];
             this.fillArrayElementsSequentialAscendingDoubleNumbers(doubles);
         } else {
@@ -98,9 +99,9 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      */
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (checkBoundValueIsPositive(bound)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(doubles, bound);
                 array.setArray(doubles);
             } else {
@@ -126,8 +127,8 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      */
     @Override
     public void fill(Double[] doubles, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(doubles)) {
-            if (checkBoundValueIsPositive(bound)) {
+        if (CheckerFillingArray.checkNonNullArray(doubles)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(doubles,
@@ -155,9 +156,9 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
     @Override
     public Double[] fill(int lengthArray, Double bound) {
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (checkBoundValueIsPositive(bound)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(doubles,
@@ -189,10 +190,10 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      */
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
                 array.setArray(doubles);
             } else {
@@ -224,9 +225,9 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      */
     @Override
     public void fill(Double[] doubles, Double startBound, Double endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(doubles)) {
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+        if (CheckerFillingArray.checkNonNullArray(doubles)) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromStartBoundToEndBound(doubles,
@@ -260,10 +261,10 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
     @Override
     public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromStartBoundToEndBound(doubles,

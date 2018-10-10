@@ -1,7 +1,8 @@
 package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
-import com.lugowoy.helper.filling.array.FillingArrayReadingValues;
+import com.lugowoy.helper.filling.array.CheckerFillingArray;
+import com.lugowoy.helper.filling.array.FillingArrayReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
@@ -18,32 +19,32 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  *
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
  * with data of the {@link Double} type with read by the {@link Reader} class object
- * encapsulated in the parent class {@link FillingArrayReadingValues}.
- * The class is the heir of the {@link FillingArrayReadingValues} class and implements it's contract.
+ * encapsulated in the parent class {@link FillingArrayReadValues}.
+ * The class is the heir of the {@link FillingArrayReadValues} class and implements it's contract.
  * Also implements the contract declared by the {@link FillingArrayNumbers} interface.
  *
- * @see FillingArrayReadingValues
+ * @see FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
 
-public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<Double> implements FillingArrayNumbers<Double> {
+public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double> implements FillingArrayNumbers<Double> {
 
     /**
-     * Constructs a new object of {@link FillingArrayReadingDoubleNumbers} class,
+     * Constructs a new object of {@link FillingArrayReadDoubleNumbers} class,
      *  initializing an object of {@link Reader} class
      *  encapsulated in the parent class to read data of the {@link Double} type to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in the parent class to read data of the {@link Double} type to fill the array.
      */
-    public FillingArrayReadingDoubleNumbers(Reader reader) {
+    public FillingArrayReadDoubleNumbers(Reader reader) {
         super(reader);
     }
 
     /**
-     * Constructs a new object of {@link FillingArrayReadingDoubleNumbers} class,
+     * Constructs a new object of {@link FillingArrayReadDoubleNumbers} class,
      *  initializing an object of {@link Reader} class
      *  encapsulated in the parent class of the concrete implementation of the contract declared in the interface {@link Reading}
      *  to read data of the {@link Double} type to be fill array.
@@ -52,7 +53,7 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      *                to initialize an object of the {@link Reader} class encapsulated in the parent class
      *                to read data of the {@link Double} type to be fill array.
      */
-    public FillingArrayReadingDoubleNumbers(Reading reading) {
+    public FillingArrayReadDoubleNumbers(Reading reading) {
         super(reading);
     }
 
@@ -66,11 +67,13 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      */
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
             this.fillArrayElementsEnteredDoubleNumbers(doubles);
             array.setArray(doubles);
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -84,9 +87,11 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      */
     @Override
     public void fill(Double[] doubles) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(doubles)) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(doubles)) {
             this.fillArrayElementsEnteredDoubleNumbers(doubles);
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -104,8 +109,9 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      */
     @Override
     public Double[] fill(int lengthArray) {
+        //todo check or add relevant checks.
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             doubles = new Double[lengthArray];
             this.fillArrayElementsEnteredDoubleNumbers(doubles);
         } else {
@@ -129,9 +135,10 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      */
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (checkBoundValueIsPositive(bound)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
                 array.setArray(doubles);
             } else {
@@ -139,6 +146,7 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
                 array.setArray(doubles);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -156,13 +164,15 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      */
     @Override
     public void fill(Double[] doubles, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(doubles)) {
-            if (checkBoundValueIsPositive(bound)) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(doubles)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -185,10 +195,11 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      */
     @Override
     public Double[] fill(int lengthArray, Double bound) {
+        //todo check or add relevant checks.
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (checkBoundValueIsPositive(bound)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, DEFAULT_DOUBLE_POSITIVE_BOUND);
@@ -218,10 +229,11 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      */
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
                 array.setArray(doubles);
             } else {
@@ -231,6 +243,7 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
                 array.setArray(doubles);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -252,9 +265,10 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      */
     @Override
     public void fill(Double[] doubles, Double startBound, Double endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(doubles)) {
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(doubles)) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
@@ -262,6 +276,7 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
                                                                                          DEFAULT_DOUBLE_POSITIVE_BOUND);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -286,11 +301,12 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
      * */
     @Override
     public Double[] fill(int lengthArray, Double startBound, Double endBound) {
+        //todo check or add relevant checks.
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
@@ -316,6 +332,7 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
         double value;
         for (int i = 0; i < doubles.length; i++) {
             value = super.getReader().readDouble();
+            //todo fix to re-enter.
             if ((value >= DEFAULT_START_BOUND) && (value <= bound)) {
                 doubles[i] = value;
             } else {
@@ -324,11 +341,10 @@ public class FillingArrayReadingDoubleNumbers extends FillingArrayReadingValues<
         }
     }
 
-    private void fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(Double[] doubles,
-                                                                               double startBound,
-                                                                               double endBound) {
+    private void fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(Double[] doubles, double startBound, double endBound) {
         double value;
         for (int i = 0; i < doubles.length; i++) {
+            //todo fix to re-enter.
             value = super.getReader().readDouble();
             if ((value >= startBound) && (value <= endBound)) {
                 doubles[i] = value;

@@ -1,6 +1,7 @@
 package com.lugowoy.helper.filling.array.points;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
+import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.models.points.Point;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
@@ -25,7 +26,9 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
  */
 
-public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements FillingArrayPoints<Integer> {
+public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoints<Integer> {
+
+    //todo come up with and implement a variant of the methods without using the annotation SupressWarning.
 
     /**
      * Fills an object of class {@link Array} with the objects of the {@link Point} class
@@ -40,11 +43,13 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point<Integer>> array) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             Point<Integer>[] points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbers(points);
             array.setArray(points);
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -60,9 +65,11 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
      */
     @Override
     public void fill(Point<Integer>[] points) throws IllegalArgumentException {
-        if (checkNonNullArrayPoints(points)) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(points)) {
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbers(points);
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -84,8 +91,9 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public Point<Integer>[] fill(int lengthArray) {
+        //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbers(points);
         } else {
@@ -110,9 +118,10 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point<Integer>> array, Integer bound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             Point<Integer>[] points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
-            if (checkBoundValueIsPositive(bound)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points, bound);
                 array.setArray(points);
             } else {
@@ -121,6 +130,7 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
                 array.setArray(points);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -139,14 +149,16 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
      */
     @Override
     public void fill(Point<Integer>[] points, Integer bound) throws IllegalArgumentException {
-        if (checkNonNullArrayPoints(points)) {
-            if (checkBoundValueIsPositive(bound)) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(points)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points, bound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points,
                                                                                                                      DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -169,10 +181,11 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public Point<Integer>[] fill(int lengthArray, Integer bound) {
+        //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
-            if (checkBoundValueIsPositive(bound)) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points,
                                                                                                                      bound);
             } else {
@@ -207,10 +220,11 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point<Integer>> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             Point<Integer>[] points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             startBound,
                                                                                                                             endBound);
@@ -222,6 +236,7 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
                 array.setArray(points);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -244,9 +259,10 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
      */
     @Override
     public void fill(Point<Integer>[] points, Integer startBound, Integer endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayPoints(points)) {
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(points)) {
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             startBound,
                                                                                                                             endBound);
@@ -256,6 +272,7 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
                                                                                                                             DEFAULT_INTEGER_POSITIVE_BOUND);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -285,14 +302,13 @@ public class FillingArrayPointsCoordinatesRandomIntegerNumbers implements Fillin
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public Point<Integer>[] fill(int lengthArray, Integer startBound, Integer endBound) {
+        //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
-            if (checkStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromStartBoundToEndBound(points,
-                                                                                                                            startBound,
-                                                                                                                            endBound);
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromStartBoundToEndBound(points, startBound, endBound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromStartBoundToEndBound(points,
                                                                                                                             DEFAULT_INTEGER_NEGATIVE_BOUND,

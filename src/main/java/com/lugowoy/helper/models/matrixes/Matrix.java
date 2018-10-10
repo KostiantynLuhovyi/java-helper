@@ -146,6 +146,8 @@ public class Matrix<T> implements Model {
         if (matrix != null && (matrix.length > 0 && matrix[0].length > 0)) {
             this.rows = matrix.length;
             this.columns = matrix[0].length;
+            //todo write this to commit.
+            this.matrix = matrix;
         } else {
             this.rows = DEFAULT_ROWS;
             this.columns = DEFAULT_COLUMNS;

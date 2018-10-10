@@ -1,6 +1,7 @@
 package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
+import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
@@ -34,7 +35,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      */
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
             this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbers(doubles);
             array.setArray(doubles);
@@ -52,7 +53,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      */
     @Override
     public void fill(Double[] doubles) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(doubles)) {
+        if (CheckerFillingArray.checkNonNullArray(doubles)) {
             this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbers(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -72,7 +73,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
     @Override
     public Double[] fill(int lengthArray) {
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             doubles = new Double[lengthArray];
             this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbers(doubles);
         } else {
@@ -95,9 +96,9 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      */
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (checkBoundValueIsNegative(bound)) {
+            if (isNegativeBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
                 array.setArray(doubles);
             } else {
@@ -122,8 +123,8 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      */
     @Override
     public void fill(Double[] doubles, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArrayNumbers(doubles)) {
-            if (checkBoundValueIsNegative(bound)) {
+        if (CheckerFillingArray.checkNonNullArray(doubles)) {
+            if (isNegativeBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
@@ -151,9 +152,9 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
     @Override
     public Double[] fill(int lengthArray, Double bound) {
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (checkBoundValueIsNegative(bound)) {
+            if (isNegativeBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
@@ -184,10 +185,10 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      */
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (checkStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
-                        && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+            if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
+                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                                                     startBound,
                                                                                                                     endBound);
@@ -219,9 +220,9 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      */
     @Override
     public void fill(Double[] doubles, Double startBound, Double endBound) {
-        if (checkNonNullArrayNumbers(doubles)) {
-            if (checkStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+        if (CheckerFillingArray.checkNonNullArray(doubles)) {
+            if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                                                     startBound,
                                                                                                                     endBound);
@@ -256,10 +257,10 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
     @Override
     public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (checkStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
-                    && (checkBoundValueIsInCorrectRange(startBound) && checkBoundValueIsInCorrectRange(endBound))) {
+            if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
                                                                                                                     startBound,
                                                                                                                     endBound);

@@ -20,7 +20,7 @@ import com.lugowoy.helper.models.points.Point;
  * @see com.lugowoy.helper.filling.array.FillingArray
  */
 
-public abstract class FillingArrayPointsCoordinatesReadValues<T extends Number> implements FillingArray<Point<T>> {
+public abstract class FillingArrayPointsReadValues<T extends Number> implements FillingArray<Point<T>> {
 
     private Reader reader;
 
@@ -31,7 +31,7 @@ public abstract class FillingArrayPointsCoordinatesReadValues<T extends Number> 
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in this class to read data to fill array.
      */
-    public FillingArrayPointsCoordinatesReadValues(Reader reader) {
+    public FillingArrayPointsReadValues(Reader reader) {
         this.reader = reader;
     }
 
@@ -43,7 +43,7 @@ public abstract class FillingArrayPointsCoordinatesReadValues<T extends Number> 
      * @param reading The object of class that implements the {@link Reading} interface to initialize an object of the {@link Reader} class
      *                encapsulated in this class to read the data to be fill array.
      */
-    public FillingArrayPointsCoordinatesReadValues(Reading reading) {
+    public FillingArrayPointsReadValues(Reading reading) {
         this.reader = Reader.getReader(reading);
     }
 

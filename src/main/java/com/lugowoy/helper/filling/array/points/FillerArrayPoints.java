@@ -13,7 +13,7 @@ import com.lugowoy.helper.models.points.Point;
  * @version 1.3
  *
  * The class is the inheritor of the class {@link FillerArray}.
- * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArrayPointsCoordinatesWithArrayNumbers} interface
+ * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArrayPointsArrayNumbers} interface
  *  and delegates to it an obligation to perform functionality to fills an object of the {@link Array} class
  *  and classical array of object of the {@link Point} class with numeric coordinates.
  *
@@ -24,7 +24,7 @@ import com.lugowoy.helper.models.points.Point;
  *
  * @param <T> The type of coordinates encapsulated in the object of the {@link Point} class.
  */
-
+//todo fix doc's
 public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
 
     /**

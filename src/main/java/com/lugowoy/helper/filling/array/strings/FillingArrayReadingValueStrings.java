@@ -4,8 +4,8 @@ import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
 
-import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkLengthArray;
-import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkNonNullArrayObject;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkArrayLength;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkNonNullArray;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
@@ -40,11 +40,13 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
      */
     @Override
     public void fill(Array<String> array) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             String[] strings = new String[array.getLength()];
             this.initializeArrayElementsEnteredStrings(strings);
             array.setArray(strings);
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -55,9 +57,11 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
      */
     @Override
     public void fill(String[] strings) throws IllegalArgumentException {
+        //todo check or add relevant checks.
         if (strings != null) {
             this.initializeArrayElementsEnteredStrings(strings);
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -71,8 +75,9 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
      */
     @Override
     public String[] fill(int lengthArray) {
+        //todo check or add relevant checks.
         String[] strings;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             strings = new String[lengthArray];
             this.initializeArrayElementsEnteredStrings(strings);
         } else {

@@ -1,5 +1,6 @@
 package com.lugowoy.helper.filling.array.strings;
 
+import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
@@ -39,6 +40,7 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
      */
     @Override
     public void fill(Array<String> array) throws IllegalArgumentException {
+        //todo check or add relevant checks.
         this.fill(array, DEFAULT_STRING_LENGTH);
     }
 
@@ -50,9 +52,11 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
      */
     @Override
     public void fill(String[] strings) throws IllegalArgumentException {
-        if (checkNonNullArrayStrings(strings)) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(strings)) {
             this.initializeArrayElementsRandomStrings(strings, DEFAULT_STRING_LENGTH);
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -68,8 +72,9 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
      */
     @Override
     public String[] fill(int lengthArray) {
+        //todo check or add relevant checks.
         String[] strings;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             strings = new String[lengthArray];
             this.initializeArrayElementsRandomStrings(strings, DEFAULT_STRING_LENGTH);
         } else {
@@ -87,15 +92,18 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
      * @param lengthString The length of strings.
      */
     public void fill(Array<String> array, int lengthString) throws IllegalArgumentException {
-        if (checkNonNullArrayObject(array)) {
+        //todo check or add relevant checks.
+        if (checkNonNullArray(array)) {
             if (checkCorrectLengthString(lengthString)) {
                 String[] strings = new String[array.getLength()];
                 this.initializeArrayElementsRandomStrings(strings, lengthString);
                 array.setArray(strings);
             } else {
+                //todo consider the option of eliminating the use of exceptions in this code.
                 throw new IllegalArgumentException("The value of the length of the string is not correct.");
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
@@ -108,11 +116,13 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
      * @param lengthString The length of strings.
      */
     public void fill(String[] strings, int lengthString) throws IllegalArgumentException {
-        if (checkNonNullArrayStrings(strings)) {
+        //todo check or add relevant checks.
+        if (CheckerFillingArray.checkNonNullArray(strings)) {
             if (checkCorrectLengthString(lengthString)) {
                 this.initializeArrayElementsRandomStrings(strings, lengthString);
             }
         } else {
+            //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
@@ -128,8 +138,9 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
      * @return Created and filled array with object of the {@link String} type.
      */
     public String[] fill(int lengthArray, int lengthString) {
+        //todo check or add relevant checks.
         String[] strings;
-        if (checkLengthArray(lengthArray)) {
+        if (checkArrayLength(lengthArray)) {
             if (checkCorrectLengthString(lengthString)) {
                 strings = new String[lengthArray];
                 this.initializeArrayElementsRandomStrings(strings, lengthString);

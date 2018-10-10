@@ -11,6 +11,8 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
 
     @Override
     public void fill(Matrix<Integer> matrix) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null) {
             Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
             this.fillMatrixElementsRandomIntegerNumbers(integers);
@@ -20,6 +22,8 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
 
     @Override
     public void fill(Integer[][] matrix) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null) {
             this.fillMatrixElementsRandomIntegerNumbers(matrix);
         }
@@ -27,6 +31,7 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
 
     @Override
     public Integer[][] fill(int rows, int columns) {
+        //todo add relevant checks.
         Integer[][] matrix;
         if ((rows >= 0 && rows < Integer.MAX_VALUE) && (columns >= 0 && columns < Integer.MAX_VALUE)) {
             matrix = new Integer[rows][columns];
@@ -40,6 +45,8 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
 
     @Override
     public void fill(Matrix<Integer> matrix, Integer bound) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null && (bound >= 0 && bound < Integer.MAX_VALUE)) {
             Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
             this.fillMatrixElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
@@ -49,6 +56,8 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
 
     @Override
     public void fill(Integer[][] matrix, Integer bound) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null && (bound >= 0 && bound < Integer.MAX_VALUE)) {
             this.fillMatrixElementsRandomIntegerNumbersFromZeroToPositiveBound(matrix, bound);
         }
@@ -56,6 +65,7 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
 
     @Override
     public Integer[][] fill(int rows, int columns, Integer bound) {
+        //todo add relevant checks.
         Integer[][] matrix;
         if ((rows >= 0 && rows < Integer.MAX_VALUE) && (columns >= 0 && columns < Integer.MAX_VALUE)) {
             matrix = new Integer[rows][columns];
@@ -69,6 +79,8 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
 
     @Override
     public void fill(Matrix<Integer> matrix, Integer startBound, Integer endBound) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null && ((startBound >= 0 && startBound < Integer.MAX_VALUE) && (endBound > 0 && endBound < Integer.MAX_VALUE))) {
             if (startBound < endBound) {
                 Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
@@ -80,6 +92,8 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
 
     @Override
     public void fill(Integer[][] matrix, Integer startBound, Integer endBound) {
+        //todo add a "else" code block, use an exception or leave it like this.
+        //todo add relevant checks.
         if (matrix != null && ((startBound >= 0 && startBound < Integer.MAX_VALUE) && (endBound > 0 && endBound < Integer.MAX_VALUE))) {
             if (startBound < endBound) {
                 this.fillMatrixElementsRandomIntegerNumbersFromStartBoundToEndBound(matrix, startBound, endBound);
@@ -89,6 +103,7 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
 
     @Override
     public Integer[][] fill(int rows, int columns, Integer startBound, Integer endBound) {
+        //todo add relevant checks.
         Integer[][] integers = null;
         if ((rows >= 0 && rows < Integer.MAX_VALUE) && (columns >= 0 && columns < Integer.MAX_VALUE)) {
             if ((startBound >= 0 && startBound < Integer.MAX_VALUE) && (endBound > 0 && endBound < Integer.MAX_VALUE)
