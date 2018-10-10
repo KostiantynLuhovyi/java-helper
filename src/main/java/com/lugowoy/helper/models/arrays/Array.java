@@ -1,6 +1,7 @@
 package com.lugowoy.helper.models.arrays;
 
 import com.lugowoy.helper.models.Model;
+import com.lugowoy.helper.other.DeepCloning;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -10,11 +11,10 @@ import java.util.stream.Stream;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 1.0
  *
- * A class that is the root of the inheritance hierarchy is a different class
- *  for the implementation and use of the model of an elementary non-expandable array.
+ * This class is a model of a dynamic array.
  *
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
@@ -28,7 +28,6 @@ public class Array<T> implements Model, Iterable<T> {
 
     /**
      * Default length of array.
-     *
      * @since 1.0
      */
     public static final int DEFAULT_LENGTH_ARRAY = 10;
@@ -40,7 +39,6 @@ public class Array<T> implements Model, Iterable<T> {
     /**
      * The default constructor that initializes the created object with an array of default length.
      * Array elements are null.
-     *
      * @since 1.0
      */
     public Array() {
@@ -52,9 +50,7 @@ public class Array<T> implements Model, Iterable<T> {
      * The constructor that initializes the created object with an array of passed by an parameter.
      * <p> If the array passed by the parameter is null, the created object will initialize the array with the default length.
      * In this case, the elements of the array are null.
-     *
      * @param array Array to initialize the object to be created.
-     *
      * @since 1.0
      */
     public Array(T[] array) {
@@ -67,9 +63,7 @@ public class Array<T> implements Model, Iterable<T> {
      * <p> If the length of array value passed by the parameter is equal to or less the 0,
      *  the created object will initialize the array with the default length.
      * <p> Array elements are null.
-     *
      * @param lengthArray The length of the array to initialize the object to be created.
-     *
      * @since 1.0
      */
     public Array(int lengthArray) {
@@ -77,6 +71,12 @@ public class Array<T> implements Model, Iterable<T> {
         this.indexArrayElement = 0;
     }
 
+    /**
+     * Method overridden from class Object.
+     * Implemented for comparison on equality of objects of this class.
+     * @param o Object reference for comparison.
+     * @return The result of the comparison of objects.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,14 +85,96 @@ public class Array<T> implements Model, Iterable<T> {
         return Arrays.equals(array, array1.array);
     }
 
+    /**
+     * Method overridden from class Object.
+     * Implemented to display hashcode for an object of this class.
+     * @return Object hashcode.
+     */
     @Override
     public int hashCode() {
         return Arrays.hashCode(array);
     }
 
+    /**
+     * Method overridden from class Object.
+     * Implemented to output an object of this class as a string.
+     * @return The state of this object as a string.
+     */
     @Override
     public String toString() {
         return Arrays.toString(array);
+    }
+
+    /**
+     * Creates and returns a copy of this object.  The precise meaning
+     * of "copy" may depend on the class of the object. The general
+     * intent is that, for any object {@code x}, the expression:
+     * <blockquote>
+     * <pre>
+     * x.clone() != x</pre></blockquote>
+     * will be true, and that the expression:
+     * <blockquote>
+     * <pre>
+     * x.clone().getClass() == x.getClass()</pre></blockquote>
+     * will be {@code true}, but these are not absolute requirements.
+     * While it is typically the case that:
+     * <blockquote>
+     * <pre>
+     * x.clone().equals(x)</pre></blockquote>
+     * will be {@code true}, this is not an absolute requirement.
+     * <p>
+     * By convention, the returned object should be obtained by calling
+     * {@code super.clone}.  If a class and all of its superclasses (except
+     * {@code Object}) obey this convention, it will be the case that
+     * {@code x.clone().getClass() == x.getClass()}.
+     * <p>
+     * By convention, the object returned by this method should be independent
+     * of this object (which is being cloned).  To achieve this independence,
+     * it may be necessary to modify one or more fields of the object returned
+     * by {@code super.clone} before returning it.  Typically, this means
+     * copying any mutable objects that comprise the internal "deep structure"
+     * of the object being cloned and replacing the references to these
+     * objects with references to the copies.  If a class contains only
+     * primitive fields or references to immutable objects, then it is usually
+     * the case that no fields in the object returned by {@code super.clone}
+     * need to be modified.
+     * <p>
+     * The method {@code clone} for class {@code Object} performs a
+     * specific cloning operation. First, if the class of this object does
+     * not implement the interface {@code Cloneable}, then a
+     * {@code CloneNotSupportedException} is thrown. Note that all arrays
+     * are considered to implement the interface {@code Cloneable} and that
+     * the return type of the {@code clone} method of an array type {@code T[]}
+     * is {@code T[]} where T is any reference or primitive type.
+     * Otherwise, this method creates a new instance of the class of this
+     * object and initializes all its fields with exactly the contents of
+     * the corresponding fields of this object, as if by assignment; the
+     * contents of the fields are not themselves cloned. Thus, this method
+     * performs a "shallow copy" of this object, not a "deep copy" operation.
+     * <p>
+     * The class {@code Object} does not itself implement the interface
+     * {@code Cloneable}, so calling the {@code clone} method on an object
+     * whose class is {@code Object} will result in throwing an
+     * exception at run time.
+     *
+     * @return a clone of this instance.
+     * @throws CloneNotSupportedException if the object's class does not
+     *                                    support the {@code Cloneable} interface. Subclasses
+     *                                    that override the {@code clone} method can also
+     *                                    throw this exception to indicate that an instance cannot
+     *                                    be cloned.
+     * @see Cloneable
+     */
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Array<T> array = new Array<>();
+        try {
+            array = (Array<T>) super.clone();
+            array = DeepCloning.CLONER.deepClone(this);
+        } catch (CloneNotSupportedException ex) {
+            new InternalError(ex.getMessage()).printStackTrace();
+        }
+        return array;
     }
 
     /**

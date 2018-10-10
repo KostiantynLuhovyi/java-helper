@@ -9,7 +9,7 @@ import com.lugowoy.helper.other.DeepCloning;
  * @version 1.0
  * @since 1.0
  *
- * A class representing an implementation for using a non-expandable array model whose elements are numbers.
+ * This class is a model of a dynamic array for storing numbers.
  *
  * @see com.lugowoy.helper.models.Model
  * @see com.lugowoy.helper.models.arrays.Array
