@@ -3,15 +3,13 @@ package com.lugowoy.helper.other;
 import com.lugowoy.helper.io.reading.Reading;
 
 /**
- * Created by Konstantin Lugowoy on 02.08.2017.
+ * Interface that performs static functionality to implement the selection of the length of the array to create.
+ * <p>Created by Konstantin Lugowoy on 02.08.2017.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
  * @since 1.0
- *
- * An interface that performs static functionality to implement the selection of the length of the array to create.
  */
-
 public interface ArrayLength {
 
     /**

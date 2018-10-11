@@ -3,22 +3,19 @@ package com.lugowoy.helper.models.arrays;
 import com.lugowoy.helper.other.DeepCloning;
 
 /**
- * Created by Konstantin Lugowoy on 31.07.2017.
+ * This class is a model of a dynamic array for storing numbers.
+ * <p>Created by Konstantin Lugowoy on 31.07.2017.
+ *
+ * @param <T> The type of number elements stored in the array.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 1.0
- *
- * This class is a model of a dynamic array for storing numbers.
- *
  * @see com.lugowoy.helper.models.Model
  * @see com.lugowoy.helper.models.arrays.Array
  * @see java.io.Serializable
  * @see java.lang.Cloneable
- *
- * @param <T> The type of number elements stored in the array.
+ * @since 1.0
  */
-
 public class ArrayOfNumbers<T extends Number> extends Array<T> implements ArrayOfPrimitiveNumbers {
 
     /**

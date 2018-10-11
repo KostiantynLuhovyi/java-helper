@@ -6,21 +6,18 @@ import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 21-Jan-18.
- *
- * @author Konstantin Lugowoy
- * @version 1.2
- *
  * The class is the root of the class hierarchy that implements the contract declared in the {@link FillingArray} interface
  * of the filling of objects of {@link Array} class and classical arrays using the data read by the object of the class {@link Reader}
  * encapsulated in this class.
- *
- * @see com.lugowoy.helper.filling.Filling
- * @see com.lugowoy.helper.filling.array.FillingArray
+ * <p>Created by Konstantin Lugowoy on 21-Jan-18.
  *
  * @param <T> The type of read data to be filling of object of the {@link Array} class or the classic array.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.2
+ * @see com.lugowoy.helper.filling.Filling
+ * @see com.lugowoy.helper.filling.array.FillingArray
  */
-
 public abstract class FillingArrayReadValues<T> extends FillingReadValues implements FillingArray<T> {
 
     /**

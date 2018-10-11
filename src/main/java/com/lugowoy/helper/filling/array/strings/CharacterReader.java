@@ -9,15 +9,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
- * Created by Konstantin Lugowoy on 10.06.2018.
+ * Functional interface for reading character data from a file into an array of char type.
+ * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
  * @version 1.2
  * @since 1.2
- *
- * A functional interface for reading character data from a file into an array of char type.
  */
-
 @FunctionalInterface
 public interface CharacterReader {
 

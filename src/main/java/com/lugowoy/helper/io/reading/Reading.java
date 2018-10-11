@@ -1,15 +1,13 @@
 package com.lugowoy.helper.io.reading;
 
 /**
- * Created by Konstantin Lugowoy on 25.07.2017.
+ * The interface declares a contract to implement the reading of different data.
+ * <p>Created by Konstantin Lugowoy on 25.07.2017.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
  * @since 1.0
- *
- * The interface declares a contract to implement the reading of different data.
  */
-
 public interface Reading {
 
     /**

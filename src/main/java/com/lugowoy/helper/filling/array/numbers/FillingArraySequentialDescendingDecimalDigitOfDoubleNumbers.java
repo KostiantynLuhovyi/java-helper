@@ -9,20 +9,17 @@ import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
- * Created by Konstantin Lugowoy on 15-Jan-18.
- *
- * @author Konstantin Lugowoy
- * @version 1.4
- *
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
  * <p>The class fills an object of the {@link Array} class and a classic array with sequential descending decimal digit
  * of numeric data of type {@link Double}.
+ * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
+ * @author Konstantin Lugowoy
+ * @version 1.4
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-
 public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers implements FillingArrayNumbers<Double> {
 
     /**

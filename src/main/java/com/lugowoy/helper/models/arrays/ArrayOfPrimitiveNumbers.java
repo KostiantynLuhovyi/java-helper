@@ -1,16 +1,14 @@
 package com.lugowoy.helper.models.arrays;
 
 /**
- * Created by Konstantin Lugowoy on 31.07.2017.
+ * Interface that declares a contract to implement getters that convert an array of reference numeric elements into
+ *  an array of primitive types.
+ * <p>Created by Konstantin Lugowoy on 31.07.2017.
  *
  * @author Konstantin Lugowoy
  * @version 1.1
  * @since 1.0
- *
- * An interface that declares a contract to implement getters that convert an array of reference numeric elements into
- *  an array of primitive types.
  */
-
 public interface ArrayOfPrimitiveNumbers {
 
     /**

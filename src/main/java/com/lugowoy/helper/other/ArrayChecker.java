@@ -3,13 +3,13 @@ package com.lugowoy.helper.other;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
+ * Interface that performs static functions to perform checks on the correctness of various values associated with arrays.
+ * <p>Created by Konstantin Lugowoy on ... .
+ *
  * @author Konstantin Lugowoy
  * @version 1.1
  * @since 1.2
- *
- * An interface that performs static functions to perform checks on the correctness of various values associated with arrays.
  */
-
 public interface ArrayChecker {
 
     /**

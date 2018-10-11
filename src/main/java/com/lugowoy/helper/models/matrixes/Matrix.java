@@ -9,19 +9,16 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Created by Konstantin Lugowoy on 01.10.2018.
+ * This class is a matrix model.
+ * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 1.5
- *
- * This class is a matrix model.
- *
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
+ * @since 1.5
  */
-
 public class Matrix<T> implements Model {
 
     /**

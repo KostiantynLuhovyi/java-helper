@@ -6,15 +6,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Created by Konstantin Lugowoy on 01.01.2018.
+ * The interface provides a functional for generating random integers and double numbers.
+ *  Functionality is provided in a static context.
+ * <p>Created by Konstantin Lugowoy on 01.01.2018.
  *
  * @author Konstantin Lugowoy
  * @version 1.4
- *
- * The interface provides a functional for generating random integers and double numbers.
- *  Functionality is provided in a static context.
  */
-
 public interface GeneratorRandomNumber {
 
     RandomDataGenerator GENERATOR = new RandomDataGenerator();

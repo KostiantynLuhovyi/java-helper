@@ -3,17 +3,14 @@ package com.lugowoy.helper.io.reading;
 import java.util.Scanner;
 
 /**
- * Created by Konstantin Lugowoy on 25.07.2017
+ * The class implements the contract declared in the interface by reading different data from the console.
+ * <p>Created by Konstantin Lugowoy on 25.07.2017
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 1.0
- *
- * The class implements the contract declared in the interface by reading different data from the console.
- *
  * @see com.lugowoy.helper.io.reading.Reading
+ * @since 1.0
  */
-
 public class ReadingConsole implements Reading {
 
     private static final Scanner SCANNER = new Scanner(System.in);

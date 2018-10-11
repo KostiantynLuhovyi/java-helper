@@ -12,20 +12,17 @@ import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
- * Created by Konstantin Lugowoy on 16-Jan-18.
- *
- * @author Konstantin Lugowoy
- * @version 1.4
- *
  * The class implements the contract declared by the {@link FillingArrayPoints} interface.
  * <p>The class fills an objects of the {@link Array} class
  * and classical arrays of object of the {@link Point} class with random numeric coordinates of type {@link Integer}.
+ * <p>Created by Konstantin Lugowoy on 16-Jan-18.
  *
+ * @author Konstantin Lugowoy
+ * @version 1.4
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
  */
-
 public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoints<Integer> {
 
     //todo come up with and implement a variant of the methods without using the annotation SupressWarning.

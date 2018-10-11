@@ -4,20 +4,17 @@ import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 08-Jan-18.
- *
- * @author Konstantin Lugowoy
- * @version 1.2
- *
  * The interface that declares a contract to filling an array with data.
  * <p> Also this interface is the inheritor of the {@link Filling} interface
  *  and thereby redefines its contract for filling with data of an object of the {@link Array} class and classical arrays.
- *
- * @see com.lugowoy.helper.filling.Filling
+ * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @param <T> The type of data objects stored and filled into an array.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.2
+ * @see com.lugowoy.helper.filling.Filling
  */
-
 public interface FillingArray<T> extends Filling<Array<T>> {
 
     /**

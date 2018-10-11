@@ -5,17 +5,15 @@ import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.models.points.Point;
 
 /**
- * Created by Konstantin Lugowoy on 27-Jan-18.
+ * The interface declares a contract to implement the filling of an objects of {@link Array} and classical array
+ *  objects of the {@link Point} class with coordinates of a numerical type.
+ * <p>Created by Konstantin Lugowoy on 27-Jan-18.
+ *
+ * @param <T> Type of numeric coordinates that are encapsulated in the object of the {@link Point} class.
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- *
- * The interface declares a contract to implement the filling of an objects of {@link Array} and classical array
- *  objects of the {@link Point} class with coordinates of a numerical type.
- *
- * @param <T> Type of numeric coordinates that are encapsulated in the object of the {@link Point} class.
  */
-
 public interface FillingArrayPoints<T extends Number> extends FillingArray<Point<T>> {
 
     /**

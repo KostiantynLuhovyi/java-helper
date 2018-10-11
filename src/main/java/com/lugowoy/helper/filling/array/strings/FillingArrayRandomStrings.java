@@ -3,16 +3,14 @@ package com.lugowoy.helper.filling.array.strings;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 07.08.2018.
+ * This class implements the {@link FillingArrayStrings} interface
+ * by filling with object of the {@link String} type of an object of the {@link Array} wrapper class
+ * and an classical arrays.
+ * <p>Created by Konstantin Lugowoy on 07.08.2018.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
  * @since 1.3
- *
- * This class implements the {@link FillingArrayStrings} interface
- * by filling with object of the {@link String} type of an object of the {@link Array} wrapper class
- * and an classical arrays.
- *
  */
 public abstract class FillingArrayRandomStrings implements FillingArrayStrings {
 

@@ -4,22 +4,19 @@ import com.lugowoy.helper.models.points.Point;
 import com.lugowoy.helper.other.DeepCloning;
 
 /**
- * Created by Konstantin Lugowoy on 01.08.2017.
+ * This class is a model of a dynamic array for storing points.
+ * <p>Created by Konstantin Lugowoy on 01.08.2017.
+ *
+ * @param <T> The type of objects that initialize the coordinates of a point.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 1.0
- *
- * This class is a model of a dynamic array for storing points.
- *
  * @see com.lugowoy.helper.models.Model
  * @see com.lugowoy.helper.models.arrays.Array
  * @see java.io.Serializable
  * @see java.lang.Cloneable
- *
- * @param <T> The type of objects that initialize the coordinates of a point.
+ * @since 1.0
  */
-
 public class ArrayOfPoints<T extends Number> extends Array<Point<T>> {
 
     /**

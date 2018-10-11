@@ -12,23 +12,20 @@ import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
- * Created by Konstantin Lugowoy on 15-Jan-18.
- *
- * @author Konstantin Lugowoy
- * @version 1.4
- *
  * The class is the heir of the {@link FillingArrayPointsReadValues} class and implements it's contract.
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
  * with an object of the {@link Point} class with numeric coordinates of type {@link Integer}
  * using the data read by the object of the class {@link Reader} encapsulated in this class.
  * Also implements the contract declared by the {@link FillingArrayPoints} interface.
+ * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
- * @see FillingArrayPointsReadValues
+ * @author Konstantin Lugowoy
+ * @version 1.4
+ * @see com.lugowoy.helper.filling.array.points.FillingArrayPointsReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
  */
-
 public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsReadValues<Integer> implements FillingArrayPoints<Integer> {
 
     //todo come up with and implement a variant of the methods without using the annotation SupressWarning.

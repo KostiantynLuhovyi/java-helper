@@ -12,23 +12,20 @@ import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
- * Created by Konstantin Lugowoy on 08-Jan-18.
- *
- * @author Konstantin Lugowoy
- * @version 1.4
- *
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
  *  with data of the {@link Integer} type with read by the {@link Reader} class object
  *  encapsulated in the parent class {@link FillingArrayReadValues}.
  * The class is the heir of the FillingArrayReadValues class and implements its contract.
  * Also implements the contract announced by the FillingArrayNumbers interface.
+ * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
- * @see FillingArrayReadValues
+ * @author Konstantin Lugowoy
+ * @version 1.4
+ * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-
 public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integer> implements FillingArrayNumbers<Integer> {
 
     /**

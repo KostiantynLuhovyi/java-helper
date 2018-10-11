@@ -4,19 +4,16 @@ import com.lugowoy.helper.factory.creator.Creating;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 07-Jan-18.
+ * The interface declares a contract to create class objects {@link Array} using constructors with different parameters.
+ * <p>Created by Konstantin Lugowoy on 07-Jan-18.
+ *
+ * @param <T> The type of objects that the class object {@link Array} stores.
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- * @since 1.0
- *
- * The interface declares a contract to create class objects {@link Array} using constructors with different parameters.
- *
  * @see com.lugowoy.helper.factory.creator.Creating
- *
- * @param <T> The type of objects that the class object {@link Array} stores.
+ * @since 1.0
  */
-
 public interface CreatingArray<T> extends Creating<Array<T>> {
 
     /**

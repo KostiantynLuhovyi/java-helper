@@ -6,27 +6,21 @@ import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 15-Jan-18.
- *
- * @author Konstantin Lugowoy
- * @version 1.3
- *
  * The class is the inheritor of the class {@link FillerArray}.
  * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArrayNumbers} interface
  *  and delegates to it an obligation to perform functionality to fill a array with numeric data.
  * <p>This class fills in numeric data objects of class {@link Array}, which is a wrapper over classical arrays.
  * It is also possible to fill in numerical data with classical arrays.
  * <p>The numeric data must be the inheritance of the base class {@link Number}.
- *
- * @see com.lugowoy.helper.filling.Filler
- * @see com.lugowoy.helper.filling.array.FillerArray
- * @see com.lugowoy.helper.filling.Filling
- * @see com.lugowoy.helper.filling.array.FillingArray
- * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
+ * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @param <T> The type of the numerical data stored and filled into an array.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.3
+ * @see com.lugowoy.helper.filling.Filler
+ * @see com.lugowoy.helper.filling.array.FillerArray
  */
-
 public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
 
     /**

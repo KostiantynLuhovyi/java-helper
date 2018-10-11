@@ -4,18 +4,16 @@ import com.lugowoy.helper.factory.creator.arrays.CreatingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 08-Jan-18.
+ * The class provides the functionality of the factory to create {@link Array} class objects.
+ * The functionality for creating objects is implemented in the package classes com.lugowoy.helper.factory.creating .
+ * <p>Created by Konstantin Lugowoy on 08-Jan-18.
+ *
+ * @param <T> The type of objects that are stored in the array created by the factory.
  *
  * @author Konstantin Lugowoy
  * @version 1.1
  * @since 1.0
- *
- * The class provides the functionality of the factory to create {@link Array} class objects.
- * The functionality for creating objects is implemented in the package classes com.lugowoy.helper.factory.creating .
- *
- * @param <T> The type of objects that are stored in the array created by the factory.
  */
-
 public class FactoryArray<T> extends Factory<Array<T>> {
 
     private FactoryArray(CreatingArray<T> creating) {
@@ -27,7 +25,6 @@ public class FactoryArray<T> extends Factory<Array<T>> {
      *
      * @param tArray An array of objects that will be encapsulate in the created class object {@link Array}.
      * @return The created class object {@link Array} the encapsulating array passed by the parameter.
-     *
      * @since 1.1
      */
     public Array<T> create(T[] tArray) {
@@ -39,7 +36,6 @@ public class FactoryArray<T> extends Factory<Array<T>> {
      *
      * @param lengthArray Length of array of objects that will be encapsulate in the created class object {@link Array}.
      * @return The created object {@link Array} encapsulates an array of the length of the passed parameter.
-     *
      * @since 1.1
      */
     public Array<T> create(int lengthArray) {
@@ -47,10 +43,9 @@ public class FactoryArray<T> extends Factory<Array<T>> {
     }
 
     /**
-     * A class method that creates and returns a new instance of the {@link FactoryArray}.
+     * Сlass method that creates and returns a new instance of the {@link FactoryArray}.
      *
-     * @return Object type {@link FactoryArray}
-     *
+     * @return Created object type {@link FactoryArray}
      * @since 1.1
      */
     public static <T> FactoryArray<T> getFactoryArray(CreatingArray<T> creatingArray) {

@@ -1,15 +1,13 @@
 package com.lugowoy.helper.io.reading;
 
 /**
- * Created by Konstantin Lugowoy on 29.07.2017.
+ * Functional interface that performs the function of checking the read data for correctness.
+ * <p>Created by Konstantin Lugowoy on 29.07.2017.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
  * @since 1.0
- *
- * Functional interface that performs the function of checking the read data for correctness.
  */
-
 @FunctionalInterface
 public interface ReadingChecker {
 

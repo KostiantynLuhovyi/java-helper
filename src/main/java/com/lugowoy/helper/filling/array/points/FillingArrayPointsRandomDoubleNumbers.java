@@ -25,7 +25,6 @@ import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
  */
-
 public class FillingArrayPointsRandomDoubleNumbers implements FillingArrayPoints<Double> {
 
     //todo come up with and implement a variant of the methods without using the annotation SupressWarning.

@@ -4,20 +4,17 @@ import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 10.06.2018.
- *
- * @author Konstantin Lugowoy
- * @version 1.1
- * @since 1.2
- *
  * This interface is the inheritor of the {@link FillingArray} interface
  *  and thereby redefines its contract for filling with object of the {@link String} type of
  *  an object of the {@link Array} wrapper class and an classical arrays.
+ * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
+ * @author Konstantin Lugowoy
+ * @version 1.1
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
+ * @since 1.2
  */
-
 public interface FillingArrayStrings extends FillingArray<String> {
 
     /**

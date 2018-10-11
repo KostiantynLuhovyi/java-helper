@@ -1,17 +1,14 @@
 package com.lugowoy.helper.io.reading;
 
 /**
- * Created by Konstantin Lugowoy on 26.07.2017.
+ * The class is a container that encapsulates a specific implementation of a functional to read different data.
+ * <p>Created by Konstantin Lugowoy on 26.07.2017.
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- * @since 1.0
- *
- * A class is a container that encapsulates a specific implementation of a functional to read different data.
- *
  * @see com.lugowoy.helper.io.reading.Reading
+ * @since 1.0
  */
-
 public class Reader implements Reading {
 
     private final Reading reading;

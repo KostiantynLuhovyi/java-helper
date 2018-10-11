@@ -5,24 +5,21 @@ import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 15-Jan-18.
- *
- * @author Konstantin Lugowoy
- * @version 1.3
- *
  * The class is the inheritor of the class {@link Filler}.
  * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArray} interface
  *  and delegates to it an obligation to perform functionality to fill an array with data.
  * <p> All an objects of the classes that implement the contract of the {@link FillingArray} interface can be encapsulated
  *  and involved in the functionality.
+ * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
+ * @param <T> The type of data objects stored and filled into an array.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.3
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
- *
- * @param <T> The type of data objects stored and filled into an array.
  */
-
 public class FillerArray<T> extends Filler<Array<T>> {
 
     /**

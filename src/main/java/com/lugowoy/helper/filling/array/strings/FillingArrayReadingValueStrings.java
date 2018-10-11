@@ -9,19 +9,16 @@ import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkNonNullA
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
- * Created by Konstantin Lugowoy on 10.06.2018.
+ * The class provides functionality to reads data for fills an object of the {@link Array} class
+ *  and classical arrays with object of the {@link String} type.
+ * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- *
- * The class provides functionality to reads data for fills an object of the {@link Array} class
- *  and classical arrays with object of the {@link String} type.
- *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  */
-
 public class FillingArrayReadingValueStrings implements FillingArrayStrings {
 
     private Reader reader;

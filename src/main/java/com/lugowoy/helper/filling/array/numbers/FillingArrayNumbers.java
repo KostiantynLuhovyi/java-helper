@@ -4,23 +4,20 @@ import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 08-Jan-18.
- *
- * @author Konstantin Lugowoy
- * @version 1.1
- *
  * The interface that declares a contract to filling an array with numeric data.
  * <p>Also this interface is the inheritor of the {@link FillingArray} interface
  *  and thereby redefines its contract for filling with numeric data of an object of the {@link Array} wrapper class
  *  and an classical arrays.
  * <p>The numeric data by which the array can be filled are wrapper classes {@link Array} and must be the inheritance of the base class {@link Number}.
- *
- * @see com.lugowoy.helper.filling.Filling
- * @see com.lugowoy.helper.filling.array.FillingArray
+ * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @param <T> The type of the numerical data stored and filled into an array.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.1
+ * @see com.lugowoy.helper.filling.Filling
+ * @see com.lugowoy.helper.filling.array.FillingArray
  */
-
 public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
 
     /**

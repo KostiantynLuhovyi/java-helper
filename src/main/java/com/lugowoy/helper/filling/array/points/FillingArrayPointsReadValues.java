@@ -7,19 +7,16 @@ import com.lugowoy.helper.models.arrays.Array;
 import com.lugowoy.helper.models.points.Point;
 
 /**
- * Created by Konstantin Lugowoy on 27-Jan-18.
- *
- * @author Konsytantin Lugowoy
- * @version 1.1
- *
  * The class is the root of the class hierarchy that implements the contract declared in the {@link FillingArrayPoints} interface
  * of the filling of objects of {@link Array} class and classical arrays with an object of the {@link Point} class
  * with numeric coordinates using the data read by the object of the class {@link Reader} encapsulated in this class.
+ * <p>Created by Konstantin Lugowoy on 27-Jan-18.
  *
+ * @author Konsytantin Lugowoy
+ * @version 1.1
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  */
-
 public abstract class FillingArrayPointsReadValues<T extends Number> implements FillingArray<Point<T>> {
 
     private Reader reader;

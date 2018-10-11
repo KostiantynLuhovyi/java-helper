@@ -2,26 +2,22 @@ package com.lugowoy.helper.models.points;
 
 import com.lugowoy.helper.models.Model;
 import com.lugowoy.helper.other.DeepCloning;
-import com.rits.cloning.Cloner;
 
 import java.util.Objects;
 
 /**
- * Created by Konstantin Lugowoy on 02.07.2017.
+ * The class representing an implementation for using a model of point.
+ * <p>Created by Konstantin Lugowoy on 02.07.2017.
+ *
+ * @param <T> The type of objects that initialize the coordinates of a point.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- * @since 1.0
- *
- * A class representing an implementation for using a model of point.
- *
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
- *
- * @param <T> The type of objects that initialize the coordinates of a point.
+ * @since 1.0
  */
-
 public class Point<T extends Number> implements Model {
 
     private T coordinateX;

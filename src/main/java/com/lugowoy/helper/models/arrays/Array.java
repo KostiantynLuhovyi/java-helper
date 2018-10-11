@@ -8,22 +8,19 @@ import java.util.Iterator;
 import java.util.stream.Stream;
 
 /**
- * Created by Konstantin Lugowoy on 31.05.2017.
+ * This class is a model of a dynamic array.
+ * <p>Created by Konstantin Lugowoy on 31.05.2017.
+ *
+ * @param <T> The type of elements stored in the array.
  *
  * @author Konstantin Lugowoy
  * @version 1.6
- * @since 1.0
- *
- * This class is a model of a dynamic array.
- *
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  * @see java.lang.Iterable
- *
- * @param <T> The type of elements stored in the array.
+ * @since 1.0
  */
-
 public class Array<T> implements Model, Iterable<T> {
 
     /**
@@ -183,12 +180,11 @@ public class Array<T> implements Model, Iterable<T> {
      * <p>If the size of the array passed to the method is less than or equal to the original array,
      * an array of a suitable size will be created at runtime,
      * the elements of the original array will be copied to it and it will be returned by the method.
-     *
      * @param tArray An array in which all the data from the array encapsulated in the class object will be copied.
      * @return An array containing data from an array encapsulated in the object class.
      */
     @SuppressWarnings("unchecked")
-    public void toArray(T[] tArray) {
+    public T[] toArray(T[] tArray) {
         if (tArray != null) {
             if (tArray.length <= this.array.length) {
                 tArray = (T[]) Arrays.copyOf(this.array, this.array.length, tArray.getClass());
@@ -198,6 +194,7 @@ public class Array<T> implements Model, Iterable<T> {
         } else {
             this.toArray((T[]) new Object[DEFAULT_LENGTH_ARRAY]);
         }
+        return tArray;
     }
 
     /**

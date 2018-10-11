@@ -6,21 +6,18 @@ import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.arrays.Array;
 
 /**
- * Created by Konstantin Lugowoy on 10.06.2018.
+ * The class is the inheritor of the class {@link FillerArray}.
+ * <p>This class fills an object of class {@link Array} with objects of {@link String} type, which is a wrapper over classical arrays.
+ * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- * @since 1.2
- *
- * The class is the inheritor of the class {@link FillerArray}.
- * <p>This class fills an object of class {@link Array} with objects of {@link String} type, which is a wrapper over classical arrays.
- *
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
+ * @since 1.2
  */
-
 public class FillerArrayStrings extends FillerArray<String> {
 
     /**

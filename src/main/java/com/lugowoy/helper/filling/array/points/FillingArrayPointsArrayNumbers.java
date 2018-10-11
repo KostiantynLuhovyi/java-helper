@@ -3,17 +3,15 @@ package com.lugowoy.helper.filling.array.points;
 import com.lugowoy.helper.models.points.Point;
 
 /**
- * Created by Konstantin Lugowoy on 15-Jan-18.
+ * The functional interface declares a contract to filling an array of an object of the {@link Point} class
+ *  by initializing the coordinates of the points with the numeric values of the array.
+ * <p>Created by Konstantin Lugowoy on 15-Jan-18.
+ *
+ * @param <T> Type of numeric data for initializing the coordinates of objects of the class {@link Point}.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
- *
- * The functional interface declares a contract to filling an array of an object of the {@link Point} class
- *  by initializing the coordinates of the points with the numeric values of the array.
- *
- * @param <T> Type of numeric data for initializing the coordinates of objects of the class {@link Point}.
  */
-
 @FunctionalInterface
 public interface FillingArrayPointsArrayNumbers<T extends Number> {
 

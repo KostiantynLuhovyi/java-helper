@@ -8,20 +8,17 @@ import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
- * Created by Konstantin Lugowoy on 18.07.2018.
+ * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type of the random length.
+ * <p>Created by Konstantin Lugowoy on 18.07.2018.
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- * @since 1.3
- *
- * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type of the random length.
- *
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayRandomStrings
+ * @since 1.3
  */
-
 public class FillingArrayRandomLengthValueStrings extends FillingArrayRandomStrings {
 
     /**
