@@ -197,6 +197,11 @@ public class Array<T> implements Model, Iterable<T> {
         return tArray;
     }
 
+    //todo add doc's
+    public Object[] toArray() {
+        return this.array;
+    }
+
     /**
      * Sets the object of the array encapsulated in this object.
      * <p> If the object of the array passed by the parameter is null, an array of the default length will be created.
