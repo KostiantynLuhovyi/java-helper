@@ -4,12 +4,12 @@ import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.arrays.Array;
-import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.Point;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class is the heir of the {@link FillingArrayPointsReadValues} class and implements it's contract.
@@ -110,7 +110,7 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
     public Point<Integer>[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
         } else {
@@ -201,7 +201,7 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
     public Point<Integer>[] fill(int lengthArray, Integer bound) {
         //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points, bound);
@@ -319,7 +319,7 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
     public Point<Integer>[] fill(int lengthArray, Integer startBound, Integer endBound) {
         //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {

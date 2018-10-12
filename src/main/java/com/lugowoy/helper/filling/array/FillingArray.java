@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.array;
 
 import com.lugowoy.helper.filling.Filling;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 /**
  * The interface that declares a contract to filling an array with data.

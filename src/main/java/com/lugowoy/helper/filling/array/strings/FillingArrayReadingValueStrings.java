@@ -2,11 +2,11 @@ package com.lugowoy.helper.filling.array.strings;
 
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
-import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkArrayLength;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkLengthArray;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkNonNullArray;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class provides functionality to reads data for fills an object of the {@link Array} class
@@ -74,7 +74,7 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
     public String[] fill(int lengthArray) {
         //todo check or add relevant checks.
         String[] strings;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             strings = new String[lengthArray];
             this.initializeArrayElementsEnteredStrings(strings);
         } else {

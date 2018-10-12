@@ -2,11 +2,11 @@ package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -70,7 +70,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
     @Override
     public Integer[] fill(int lengthArray) {
         Integer[] integers;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             this.fillArrayElementsSequentialAscendingIntegerNumbers(integers);
         } else {
@@ -151,7 +151,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
         Integer[] integers;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, bound);
@@ -256,7 +256,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
     @Override
     public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         Integer[] integers;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {

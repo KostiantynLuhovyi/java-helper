@@ -1,6 +1,5 @@
-package com.lugowoy.helper.models.points;
+package com.lugowoy.helper.models;
 
-import com.lugowoy.helper.models.Model;
 import com.lugowoy.helper.other.DeepCloning;
 
 import java.util.Objects;

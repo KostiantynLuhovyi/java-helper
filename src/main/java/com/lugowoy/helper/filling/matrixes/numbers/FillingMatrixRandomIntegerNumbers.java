@@ -1,6 +1,6 @@
 package com.lugowoy.helper.filling.matrixes.numbers;
 
-import com.lugowoy.helper.models.matrixes.Matrix;
+import com.lugowoy.helper.models.Matrix;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 /**

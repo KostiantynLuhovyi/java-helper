@@ -1,9 +1,4 @@
-package com.lugowoy.helper.models.matrixes;
-
-import com.lugowoy.helper.factory.FactoryArray;
-import com.lugowoy.helper.factory.creator.arrays.CreatorArray;
-import com.lugowoy.helper.models.Model;
-import com.lugowoy.helper.models.arrays.Array;
+package com.lugowoy.helper.models;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -13,7 +8,7 @@ import java.util.Objects;
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -41,32 +36,19 @@ public class Matrix<T> implements Model {
         this.indexElement = 0;
     }
 
-    /**
-     * Constructs a default size matrix.
-     * {@link Matrix#DEFAULT_ROWS} and {@link Matrix#DEFAULT_COLUMNS}.
-     */
-    public Matrix() {
+    private Matrix() {
         this.rows = DEFAULT_ROWS;
         this.columns = DEFAULT_COLUMNS;
         this.matrix = new Object[rows][columns];
     }
 
-    /**
-     * Constructs a matrix of the size passed to the constructor.
-     * @param rows Number of rows in the matrix.
-     * @param columns Number of columns in the matrix row.
-     */
-    public Matrix(int rows, int columns) {
+    private Matrix(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
         this.matrix = new Object[rows][columns];
     }
 
-    /**
-     * Constructs a matrix by initializing it with a two-dimensional array with the argument passed.
-     * @param matrix Two-dimensional array to initialize the matrix.
-     */
-    public Matrix(T[][] matrix) {
+    private Matrix(T[][] matrix) {
         if (matrix != null && (matrix.length > 0 && matrix[0].length > 0)) {
             this.rows = matrix.length;
             this.columns = matrix[0].length;
@@ -158,12 +140,14 @@ public class Matrix<T> implements Model {
      * Returns an array column by row index.
      * @param indexRow Row index.
      */
+    @SuppressWarnings("unchecked")
     public Array<T> getColumnArray(int indexRow) {
         Array<T> array;
         if (indexRow >= 0 && indexRow <= this.getRows()) {
-            array = FactoryArray.getFactoryArray(new CreatorArray<T>()).create((T[]) this.matrix[indexRow]);
+            array = Array.create((T[]) this.matrix[indexRow]);
         } else {
-            array = FactoryArray.getFactoryArray(new CreatorArray<T>()).create(10);
+            //todo not good realize.
+            array = Array.create(Array.DEFAULT_LENGTH_ARRAY);
         }
         return array;
     }
@@ -197,6 +181,19 @@ public class Matrix<T> implements Model {
      */
     public int getColumns() {
         return this.columns;
+    }
+
+    //todo add doc's
+    public static <T> Matrix<T> create() {
+        return new Matrix<>();
+    }
+
+    public static <T> Matrix<T> create(int rows, int columns) {
+        return new Matrix<>(rows, columns);
+    }
+
+    public static <T> Matrix<T> create(T[][] matrix) {
+        return new Matrix<>(matrix);
     }
 
 }

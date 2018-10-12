@@ -5,11 +5,11 @@ import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.filling.array.FillingArrayReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
@@ -107,7 +107,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
     public Integer[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             this.fillArrayElementsEnteredIntegerNumbers(integers);
         } else {
@@ -192,7 +192,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
     public Integer[] fill(int lengthArray, Integer bound) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
@@ -299,7 +299,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
     public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {

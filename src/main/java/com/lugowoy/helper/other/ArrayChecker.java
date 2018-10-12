@@ -1,13 +1,13 @@
 package com.lugowoy.helper.other;
 
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 /**
  * Interface that performs static functions to perform checks on the correctness of various values associated with arrays.
  * <p>Created by Konstantin Lugowoy on ... .
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.3
  * @since 1.2
  */
 public interface ArrayChecker {
@@ -40,12 +40,12 @@ public interface ArrayChecker {
 
     /**
      * Returns the result of the check value of the length of the array passed by argument is equal to or greater than zero.
-     * @param lengthOfArray The value of the length of the array.
+     * @param lengthArray The value of the length of the array.
      * @return Result to check.
      */
-    static boolean checkLengthOfArrayIsEqualToOrGreaterThanZero(int lengthOfArray) {
+    static boolean checkLengthArrayIsEqualToOrGreaterThanZero(int lengthArray) {
         boolean result = false;
-        if (lengthOfArray >= 0) {
+        if (lengthArray >= 0) {
             result = true;
         }
         return result;
@@ -53,12 +53,12 @@ public interface ArrayChecker {
 
     /**
      * Returns the result of the check value of the length of the array passed by argument is greater than zero.
-     * @param lengthOfArray The value of the length of the array.
+     * @param lengthArray The value of the length of the array.
      * @return Result to check.
      */
-    static boolean checkLengthOfArrayIsGreaterZero(int lengthOfArray) {
+    static boolean checkLengthArrayIsGreaterZero(int lengthArray) {
         boolean result = false;
-        if (lengthOfArray > 0) {
+        if (lengthArray > 0) {
             result = true;
         }
         return result;

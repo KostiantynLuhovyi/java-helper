@@ -1,6 +1,5 @@
-package com.lugowoy.helper.models.arrays;
+package com.lugowoy.helper.models;
 
-import com.lugowoy.helper.models.Model;
 import com.lugowoy.helper.other.DeepCloning;
 
 import java.util.Arrays;
@@ -14,7 +13,7 @@ import java.util.stream.Stream;
  * @param <T> The type of elements stored in the array.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 2.0 (1.6)
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -33,37 +32,17 @@ public class Array<T> implements Model, Iterable<T> {
 
     private int indexArrayElement;
 
-    /**
-     * The default constructor that initializes the created object with an array of default length.
-     * Array elements are null.
-     * @since 1.0
-     */
-    public Array() {
+    private Array() {
          this.array = new Object[DEFAULT_LENGTH_ARRAY];
          this.indexArrayElement = 0;
     }
 
-    /**
-     * The constructor that initializes the created object with an array of passed by an parameter.
-     * <p> If the array passed by the parameter is null, the created object will initialize the array with the default length.
-     * In this case, the elements of the array are null.
-     * @param array Array to initialize the object to be created.
-     * @since 1.0
-     */
-    public Array(T[] array) {
+    private Array(T[] array) {
         this.setCorrectArray(array);
         this.indexArrayElement = this.array.length;
     }
 
-    /**
-     * The constructor that initializes the created object with an array whose length is equal to the value passed to the parameter
-     * <p> If the length of array value passed by the parameter is equal to or less the 0,
-     *  the created object will initialize the array with the default length.
-     * <p> Array elements are null.
-     * @param lengthArray The length of the array to initialize the object to be created.
-     * @since 1.0
-     */
-    public Array(int lengthArray) {
+    private Array(int lengthArray) {
         this.setCorrectArray(lengthArray);
         this.indexArrayElement = 0;
     }
@@ -351,6 +330,7 @@ public class Array<T> implements Model, Iterable<T> {
             public T next() {
                 return get(indexIteratorElement++);
             }
+
         };
     }
 
@@ -384,6 +364,19 @@ public class Array<T> implements Model, Iterable<T> {
             resultOfCheck = true;
         }
         return resultOfCheck;
+    }
+
+    //todo add doc's
+    public static <T> Array<T> create() {
+        return new Array<>();
+    }
+
+    public static <T> Array<T> create(int lengthArray) {
+        return new Array<>(lengthArray);
+    }
+
+    public static <T> Array<T> create(T[] array) {
+        return new Array<>(array);
     }
 
 }

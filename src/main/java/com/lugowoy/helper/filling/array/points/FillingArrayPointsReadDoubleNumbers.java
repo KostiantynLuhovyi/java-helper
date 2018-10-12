@@ -4,12 +4,12 @@ import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.arrays.Array;
-import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.Point;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class is the heir of the {@link FillingArrayPointsReadValues} class and implements it's contract.
@@ -110,7 +110,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
     public Point<Double>[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Point<Double>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbers(points);
         } else {
@@ -198,7 +198,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
     public Point<Double>[] fill(int lengthArray, Double bound) {
         //todo check or add relevant checks.
         Point<Double>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points, bound);
@@ -318,7 +318,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
     public Point<Double>[] fill(int lengthArray, Double startBound, Double endBound) {
         //todo check or add relevant checks.
         Point<Double>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {

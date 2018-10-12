@@ -5,11 +5,11 @@ import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.filling.array.FillingArrayReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
@@ -108,7 +108,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
     public Double[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Double[] doubles;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             this.fillArrayElementsEnteredDoubleNumbers(doubles);
         } else {
@@ -194,7 +194,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
     public Double[] fill(int lengthArray, Double bound) {
         //todo check or add relevant checks.
         Double[] doubles;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
@@ -300,7 +300,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
     public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         //todo check or add relevant checks.
         Double[] doubles;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {

@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.matrixes;
 
-import com.lugowoy.helper.models.matrixes.Matrix;
-import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.Matrix;
+import com.lugowoy.helper.models.Point;
 
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.

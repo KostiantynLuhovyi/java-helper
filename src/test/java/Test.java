@@ -2,10 +2,9 @@ import com.lugowoy.helper.factory.FactoryMatrix;
 import com.lugowoy.helper.factory.creator.matrixes.CreatorMatrix;
 import com.lugowoy.helper.filling.matrixes.FillerMatrix;
 import com.lugowoy.helper.filling.matrixes.numbers.FillerMatrixNumbers;
-import com.lugowoy.helper.filling.matrixes.numbers.FillingMatrixRandomDoubleNumbers;
 import com.lugowoy.helper.filling.matrixes.numbers.FillingMatrixReadDoubleNumbers;
 import com.lugowoy.helper.io.reading.ReadingConsole;
-import com.lugowoy.helper.models.matrixes.Matrix;
+import com.lugowoy.helper.models.Matrix;
 
 /** Created by Konstantin Lugowoy on 02.10.2018. */
 

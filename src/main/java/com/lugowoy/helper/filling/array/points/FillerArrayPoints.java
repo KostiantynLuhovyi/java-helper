@@ -3,8 +3,8 @@ package com.lugowoy.helper.filling.array.points;
 import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.filling.array.FillerArray;
 import com.lugowoy.helper.filling.array.FillingArray;
-import com.lugowoy.helper.models.arrays.Array;
-import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.Point;
 
 /**
  * The class is the inheritor of the class {@link FillerArray}.

@@ -2,14 +2,14 @@ package com.lugowoy.helper.filling.array.points;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
-import com.lugowoy.helper.models.arrays.Array;
-import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.Point;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.DEFAULT_INTEGER_NEGATIVE_BOUND;
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.DEFAULT_INTEGER_POSITIVE_BOUND;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayPoints} interface.
@@ -90,7 +90,7 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
     public Point<Integer>[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbers(points);
         } else {
@@ -180,7 +180,7 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
     public Point<Integer>[] fill(int lengthArray, Integer bound) {
         //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points,
@@ -301,7 +301,7 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
     public Point<Integer>[] fill(int lengthArray, Integer startBound, Integer endBound) {
         //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {

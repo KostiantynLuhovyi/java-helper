@@ -2,12 +2,12 @@ package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -74,7 +74,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
     public Integer[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             this.fillArrayElementsRandomIntegerNumbers(integers);
         } else {
@@ -156,7 +156,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
     public Integer[] fill(int lengthArray, Integer bound) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
@@ -257,7 +257,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
     public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {

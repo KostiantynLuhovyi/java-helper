@@ -1,6 +1,6 @@
 package com.lugowoy.helper.filling.array.strings;
 
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 /**
  * This class implements the {@link FillingArrayStrings} interface

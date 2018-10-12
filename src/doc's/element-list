@@ -1,9 +1,5 @@
 com.lugowoy.helper.calculating
 com.lugowoy.helper.converting
-com.lugowoy.helper.factory
-com.lugowoy.helper.factory.creator
-com.lugowoy.helper.factory.creator.arrays
-com.lugowoy.helper.factory.creator.matrixes
 com.lugowoy.helper.filling
 com.lugowoy.helper.filling.array
 com.lugowoy.helper.filling.array.numbers
@@ -14,7 +10,4 @@ com.lugowoy.helper.filling.matrixes.numbers
 com.lugowoy.helper.io.reading
 com.lugowoy.helper.io.writing
 com.lugowoy.helper.models
-com.lugowoy.helper.models.arrays
-com.lugowoy.helper.models.matrixes
-com.lugowoy.helper.models.points
 com.lugowoy.helper.other

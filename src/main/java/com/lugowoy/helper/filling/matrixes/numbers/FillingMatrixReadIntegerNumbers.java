@@ -1,10 +1,9 @@
 package com.lugowoy.helper.filling.matrixes.numbers;
 
-import com.lugowoy.helper.filling.matrixes.CheckerFillingMatrix;
 import com.lugowoy.helper.filling.matrixes.FillingMatrixReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.matrixes.Matrix;
+import com.lugowoy.helper.models.Matrix;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.DEFAULT_START_BOUND;
 import static com.lugowoy.helper.filling.matrixes.CheckerFillingMatrix.*;

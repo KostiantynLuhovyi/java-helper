@@ -3,8 +3,8 @@ package com.lugowoy.helper.filling.array.points;
 import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.arrays.Array;
-import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.Point;
 
 /**
  * The class is the root of the class hierarchy that implements the contract declared in the {@link FillingArrayPoints} interface

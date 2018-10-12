@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.array.strings;
 
 import com.lugowoy.helper.filling.array.FillingArray;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 /**
  * This interface is the inheritor of the {@link FillingArray} interface

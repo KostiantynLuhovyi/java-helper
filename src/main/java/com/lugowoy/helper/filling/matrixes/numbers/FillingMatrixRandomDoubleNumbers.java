@@ -1,9 +1,7 @@
 package com.lugowoy.helper.filling.matrixes.numbers;
 
-import com.lugowoy.helper.models.matrixes.Matrix;
+import com.lugowoy.helper.models.Matrix;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
-
-import java.util.Arrays;
 
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.

@@ -3,7 +3,7 @@ package com.lugowoy.helper.filling.array.strings;
 import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.filling.array.FillerArray;
 import com.lugowoy.helper.filling.array.FillingArray;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 /**
  * The class is the inheritor of the class {@link FillerArray}.

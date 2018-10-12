@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.array;
 
-import com.lugowoy.helper.models.arrays.Array;
-import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.Point;
 
 /**
  * The interface provides a static functional for various checks
@@ -9,7 +9,7 @@ import com.lugowoy.helper.models.points.Point;
  * <p>Created by Konstantin Lugowoy on 09-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  */
 public interface CheckerFillingArray {
 
@@ -52,12 +52,12 @@ public interface CheckerFillingArray {
     }
 
     /**
-     * The method that checks that the value of "arrayLength" is greater than "0" and less than {@link Integer#MAX_VALUE}.
-     * @param arrayLength The value for checking.
+     * The method that checks that the value of "lengthArray" is greater than "0" and less than {@link Integer#MAX_VALUE}.
+     * @param lengthArray The value for checking.
      * @return Result of checking.
      */
-    static boolean checkArrayLength(int arrayLength) {
-        return ((arrayLength >= DEFAULT_START_LENGTH_ARRAY) && (arrayLength < Integer.MAX_VALUE));
+    static boolean checkLengthArray(int lengthArray) {
+        return ((lengthArray >= DEFAULT_START_LENGTH_ARRAY) && (lengthArray < Integer.MAX_VALUE));
     }
 
     /**

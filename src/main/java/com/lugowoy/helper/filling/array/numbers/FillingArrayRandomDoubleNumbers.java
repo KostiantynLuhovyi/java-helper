@@ -2,13 +2,13 @@ package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.DEFAULT_DOUBLE_NEGATIVE_BOUND;
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.DEFAULT_DOUBLE_POSITIVE_BOUND;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -79,7 +79,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
     public Double[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Double[] doubles;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             this.fillArrayElementsRandomDoubleNumbers(doubles);
         } else {
@@ -160,7 +160,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
     public Double[] fill(int lengthArray, Double bound) {
         //todo check or add relevant checks.
         Double[] doubles;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, bound);
@@ -263,7 +263,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
     public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         //todo check or add relevant checks.
         Double[] doubles;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {

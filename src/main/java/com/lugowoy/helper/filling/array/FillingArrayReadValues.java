@@ -3,7 +3,7 @@ package com.lugowoy.helper.filling.array;
 import com.lugowoy.helper.filling.FillingReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 /**
  * The class is the root of the class hierarchy that implements the contract declared in the {@link FillingArray} interface

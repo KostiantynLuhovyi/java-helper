@@ -1,11 +1,11 @@
 package com.lugowoy.helper.filling.array.strings;
 
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type of the random length.
@@ -74,7 +74,7 @@ public class FillingArrayRandomLengthValueStrings extends FillingArrayRandomStri
     public String[] fill(int lengthArray) {
         //todo check or add relevant checks.
         String[] strings;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             strings = new String[lengthArray];
             this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
         } else {
@@ -145,7 +145,7 @@ public class FillingArrayRandomLengthValueStrings extends FillingArrayRandomStri
     public String[] fill(int lengthArray, int lengthString) {
         //todo check or add relevant checks.
         String[] strings;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             strings = new String[lengthArray];
             if (checkCorrectLengthString(lengthString)) {
                 this.initializeArrayElementsRandomLengthStrings(strings, lengthString);
@@ -173,7 +173,7 @@ public class FillingArrayRandomLengthValueStrings extends FillingArrayRandomStri
     }
 
     private static boolean checkCorrectLengthString(int lengthString) {
-        return (lengthString > DEFAULT_MIN_STRING_LENGTH) && (lengthString <= Integer.MAX_VALUE);
+        return (lengthString > DEFAULT_MIN_STRING_LENGTH) && (lengthString < Integer.MAX_VALUE);
     }
 
 }

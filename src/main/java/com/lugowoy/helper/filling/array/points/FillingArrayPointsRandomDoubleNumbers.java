@@ -2,14 +2,14 @@ package com.lugowoy.helper.filling.array.points;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
-import com.lugowoy.helper.models.arrays.Array;
-import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.Point;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.DEFAULT_DOUBLE_NEGATIVE_BOUND;
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.DEFAULT_DOUBLE_POSITIVE_BOUND;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * Created by Konstantin Lugowoy on 15-Jan-18.
@@ -92,7 +92,7 @@ public class FillingArrayPointsRandomDoubleNumbers implements FillingArrayPoints
     public Point<Double>[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Point<Double>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomDoubleNumbers(points);
         } else {
@@ -182,7 +182,7 @@ public class FillingArrayPointsRandomDoubleNumbers implements FillingArrayPoints
     public Point<Double>[] fill(int lengthArray, Double bound) {
         //todo check or add relevant checks.
         Point<Double>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomDoubleNumbersFromZeroToPositiveBound(points, bound);
@@ -302,7 +302,7 @@ public class FillingArrayPointsRandomDoubleNumbers implements FillingArrayPoints
     public Point<Double>[] fill(int lengthArray, Double startBound, Double endBound) {
         //todo check or add relevant checks.
         Point<Double>[] points;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {

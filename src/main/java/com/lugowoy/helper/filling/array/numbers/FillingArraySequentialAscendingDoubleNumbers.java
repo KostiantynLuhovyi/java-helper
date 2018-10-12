@@ -2,11 +2,11 @@ package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
-import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.models.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.arrays.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -72,7 +72,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
     @Override
     public Double[] fill(int lengthArray) {
         Double[] doubles;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             this.fillArrayElementsSequentialAscendingDoubleNumbers(doubles);
         } else {
@@ -153,7 +153,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
     @Override
     public Double[] fill(int lengthArray, Double bound) {
         Double[] doubles;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(doubles, bound);
@@ -258,7 +258,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
     @Override
     public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         Double[] doubles;
-        if (checkArrayLength(lengthArray)) {
+        if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
