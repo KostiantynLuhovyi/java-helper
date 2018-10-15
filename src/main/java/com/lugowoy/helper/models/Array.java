@@ -42,8 +42,8 @@ public class Array<T> implements Model, Iterable<T> {
         this.indexArrayElement = this.array.length;
     }
 
-    private Array(int lengthArray) {
-        this.setCorrectArray(lengthArray);
+    private Array(int lengthOfArray) {
+        this.setCorrectArray(lengthOfArray);
         this.indexArrayElement = 0;
     }
 
@@ -202,12 +202,12 @@ public class Array<T> implements Model, Iterable<T> {
      *  then the array is initialized by an array of the default length..
      * <p> Array elements are null.
      *
-     * @param lengthArray The length of array to create and initialize the array that encapsulates of the object.
+     * @param lengthOfArray The length of array to create and initialize the array that encapsulates of the object.
      *
      * @since 1.1
      */
-    public void setArray(int lengthArray) {
-        this.setCorrectArray(lengthArray);
+    public void setArray(int lengthOfArray) {
+        this.setCorrectArray(lengthOfArray);
         this.indexArrayElement = this.array.length;
     }
 
@@ -342,16 +342,16 @@ public class Array<T> implements Model, Iterable<T> {
         }
     }
 
-    private void setCorrectArray(int lengthArray) {
-        if (checkLengthLargerZero(lengthArray)) {
-            this.array = new Object[lengthArray];
+    private void setCorrectArray(int lengthOfArray) {
+        if (checkLengthLargerZero(lengthOfArray)) {
+            this.array = new Object[lengthOfArray];
         } else {
             this.array = new Object[DEFAULT_LENGTH_ARRAY];
         }
     }
 
-    private boolean checkLengthLargerZero(int lengthArray) {
-        return lengthArray > 0;
+    private boolean checkLengthLargerZero(int lengthOfArray) {
+        return lengthOfArray > 0;
     }
 
     private boolean checkNonNull(T[] array) {
@@ -371,8 +371,8 @@ public class Array<T> implements Model, Iterable<T> {
         return new Array<>();
     }
 
-    public static <T> Array<T> create(int lengthArray) {
-        return new Array<>(lengthArray);
+    public static <T> Array<T> create(int lengthOfArray) {
+        return new Array<>(lengthOfArray);
     }
 
     public static <T> Array<T> create(T[] array) {

@@ -38,14 +38,14 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
 
     /**
      * Fills an array with numeric data.
-     * <p>The array is created based on the "lengthArray" parameter.
+     * <p>The array is created based on the "lengthOfArray" parameter.
      * The parameter determines the length(size) of the created array.
      *
-     * @param lengthArray The length(size) of the array to be filled with numeric data.
+     * @param lengthOfArray The length(size) of the array to be filled with numeric data.
      * @return Created and filled an array with numeric data.
      */
     @Override
-    T[] fill(int lengthArray);
+    T[] fill(int lengthOfArray);
 
     /**
      * Fills an object of the {@link Array} class with numeric data.
@@ -67,15 +67,15 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
 
     /**
      * Fills an array with numeric data.
-     * <p>The array is created based on the "lengthArray" parameter.
+     * <p>The array is created based on the "lengthOfArray" parameter.
      * The parameter determines the length(size) of the created array.
      * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      *
-     * @param lengthArray The length(size) of the array to be filled with numeric data.
+     * @param lengthOfArray The length(size) of the array to be filled with numeric data.
      * @param bound The value of the end bound for filling the array with numeric data.
      * @return Created and filled an array with numeric data.
      */
-    T[] fill(int lengthArray, T bound);
+    T[] fill(int lengthOfArray, T bound);
 
     /**
      * Fills an object of the {@link Array} class with numeric data.
@@ -99,15 +99,15 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
 
     /**
      * Fills an array with numeric data.
-     * <p>The array is created based on the "lengthArray" parameter.
+     * <p>The array is created based on the "lengthOfArray" parameter.
      * The parameter determines the length(size) of the created array.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      *
-     * @param lengthArray The length(size) of the array to be filled with numeric data.
+     * @param lengthOfArray The length(size) of the array to be filled with numeric data.
      * @param startBound The value of the start bound for filling an array with numeric data.
      * @param endBound The value of the end bound for filling an array with numeric data.
      * @return Created and filled an array with numeric data.
      */
-    T[] fill(int lengthArray, T startBound, T endBound);
+    T[] fill(int lengthOfArray, T startBound, T endBound);
 
 }

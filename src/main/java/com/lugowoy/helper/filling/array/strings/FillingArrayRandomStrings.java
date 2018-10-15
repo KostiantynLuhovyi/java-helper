@@ -32,7 +32,7 @@ public abstract class FillingArrayRandomStrings implements FillingArrayStrings {
      * */
     static final int DEFAULT_STRING_LENGTH = 10;
 
-    private CharacterReader characterReader;
+    private ReaderCharacters readerCharacters;
     private String fileName;
 
     /**
@@ -40,7 +40,7 @@ public abstract class FillingArrayRandomStrings implements FillingArrayStrings {
      * @param fileName The name of the file from which the random characters are read.
      */
     FillingArrayRandomStrings(String fileName) {
-        this.characterReader = CharacterReader::readCharacters;
+        this.readerCharacters = ReaderCharacters::readCharacters;
         this.fileName = fileName;
     }
 
@@ -62,18 +62,18 @@ public abstract class FillingArrayRandomStrings implements FillingArrayStrings {
      * Fills an array with object of the {@link String} type.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
+     * @param lengthOfArray The length(size) of the array to be filled with object of the {@link String} type.
      * @return Created and filled array with object of the {@link String} type.
      */
     @Override
-    public abstract String[] fill(int lengthArray);
+    public abstract String[] fill(int lengthOfArray);
 
     /**
      * Returns implementation readout data to create random strings.
      * @since 1.3
      */
-    CharacterReader getCharacterReader() {
-        return characterReader;
+    ReaderCharacters getReaderCharacters() {
+        return readerCharacters;
     }
 
     /**

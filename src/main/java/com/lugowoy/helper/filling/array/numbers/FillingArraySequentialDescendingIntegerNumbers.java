@@ -65,15 +65,15 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
      * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      *
-     * @param lengthArray The length(size) of the array to be filled
+     * @param lengthOfArray The length(size) of the array to be filled
      *                    with sequential descending of numeric data of type {@link Integer}.
      * @return Created and filled an array with sequential descending of numeric data of type {@link Integer}.
      */
     @Override
-    public Integer[] fill(int lengthArray) {
+    public Integer[] fill(int lengthOfArray) {
         Integer[] integers;
-        if (checkLengthArray(lengthArray)) {
-            integers = new Integer[lengthArray];
+        if (checkLengthArray(lengthOfArray)) {
+            integers = new Integer[lengthOfArray];
             this.fillArrayElementsSequentialDescendingIntegerNumbers(integers);
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
@@ -145,16 +145,16 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
      * If the value of the "bound" argument is a positive number,
      *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}.
      *
-     * @param lengthArray The length(size) of the array to be filled with
+     * @param lengthOfArray The length(size) of the array to be filled with
      *                    sequential descending of numeric data of type {@link Integer}.
      * @param bound The value of the border for filling the array with sequential descending of numeric data of type {@link Integer}.
      * @return Created and filled an array with sequential descending of numeric data of type {@link Integer}.
      */
     @Override
-    public Integer[] fill(int lengthArray, Integer bound) {
+    public Integer[] fill(int lengthOfArray, Integer bound) {
         Integer[] integers;
-        if (checkLengthArray(lengthArray)) {
-            integers = new Integer[lengthArray];
+        if (checkLengthArray(lengthOfArray)) {
+            integers = new Integer[lengthOfArray];
             if (isNegativeBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialDescendingIntegerNumbersFromZeroToNegativeBound(integers, bound);
             } else {
@@ -249,7 +249,7 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
      *  then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}
      *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND} respectively.
      *
-     * @param lengthArray The length(size) of the array to be filled
+     * @param lengthOfArray The length(size) of the array to be filled
      *                    with sequential descending of numeric data of type {@link Integer}.
      * @param startBound The value of the start bound for filling an array
      *                   with sequential descending of numeric data of type {@link Integer}.
@@ -258,10 +258,10 @@ public class FillingArraySequentialDescendingIntegerNumbers implements FillingAr
      * @return Created and filled an array with sequential descending of numeric data of type {@link Integer}.
      */
     @Override
-    public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
+    public Integer[] fill(int lengthOfArray, Integer startBound, Integer endBound) {
         Integer[] integers;
-        if (checkLengthArray(lengthArray)) {
-            integers = new Integer[lengthArray];
+        if (checkLengthArray(lengthOfArray)) {
+            integers = new Integer[lengthOfArray];
             if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialDescendingIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);

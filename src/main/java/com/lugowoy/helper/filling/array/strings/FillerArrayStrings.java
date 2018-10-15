@@ -57,12 +57,12 @@ public class FillerArrayStrings extends FillerArray<String> {
      * The parameter determines the length(size) of the created array.
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class and
      * contains the implementation of the {@link FillingArray} interface contract.
-     * @param lengthArray The length(size) of the array to be filled with data.
+     * @param lengthOfArray The length(size) of the array to be filled with data.
      * @return Created and filled array with data.
      */
     @Override
-    public String[] fill(int lengthArray) {
-        return super.fill(lengthArray);
+    public String[] fill(int lengthOfArray) {
+        return super.fill(lengthOfArray);
     }
 
 }

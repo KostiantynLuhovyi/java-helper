@@ -64,14 +64,14 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      * The parameter determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      *
-     * @param lengthArray The length(size) of the array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
+     * @param lengthOfArray The length(size) of the array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
      * @return Created and filled an array with sequential descending decimal digit of numeric data of type {@link Double}.
      */
     @Override
-    public Double[] fill(int lengthArray) {
+    public Double[] fill(int lengthOfArray) {
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
-            doubles = new Double[lengthArray];
+        if (checkLengthArray(lengthOfArray)) {
+            doubles = new Double[lengthOfArray];
             this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbers(doubles);
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
@@ -141,16 +141,16 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      * If the value of the "bound" argument is a positive number,
      *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}.
      *
-     * @param lengthArray The length(size) of the array to be filled with
+     * @param lengthOfArray The length(size) of the array to be filled with
      *                    sequential descending decimal digit of numeric data of type {@link Double}.
      * @param bound The value of the border for filling the array with sequential descending decimal digit of numeric data of type {@link Double}.
      * @return Created and filled an array with sequential descending decimal digit of numeric data of type {@link Double}.
      */
     @Override
-    public Double[] fill(int lengthArray, Double bound) {
+    public Double[] fill(int lengthOfArray, Double bound) {
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
-            doubles = new Double[lengthArray];
+        if (checkLengthArray(lengthOfArray)) {
+            doubles = new Double[lengthOfArray];
             if (isNegativeBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
@@ -243,7 +243,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#DEFAULT_START_BOUND}
      *  and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND} respectively.
      *
-     * @param lengthArray The length(size) of the array to be filled with
+     * @param lengthOfArray The length(size) of the array to be filled with
      *                    sequential descending decimal digit of numeric data of type {@link Double}.
      * @param startBound The value of the start bound for filling an array with
      *                   sequential descending decimal digit of numeric data of type {@link Double}.
@@ -252,10 +252,10 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      * @return Created and filled an array with sequential descending decimal digit of numeric data of type {@link Double}.
      */
     @Override
-    public Double[] fill(int lengthArray, Double startBound, Double endBound) {
+    public Double[] fill(int lengthOfArray, Double startBound, Double endBound) {
         Double[] doubles;
-        if (checkLengthArray(lengthArray)) {
-            doubles = new Double[lengthArray];
+        if (checkLengthArray(lengthOfArray)) {
+            doubles = new Double[lengthOfArray];
             if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,

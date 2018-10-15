@@ -24,7 +24,7 @@ public class ReadingConsole implements Reading {
      */
     @Override
     public byte readByte() {
-        return this.getCorrectByteNumberValue(ReadingChecker::isByteNumber);
+        return this.getCorrectByteNumberValue(CheckerReading::isByteNumber);
     }
 
     /**
@@ -36,7 +36,7 @@ public class ReadingConsole implements Reading {
      */
     @Override
     public short readShort() {
-        return this.getCorrectShortNumberValue(ReadingChecker::isShortNumber);
+        return this.getCorrectShortNumberValue(CheckerReading::isShortNumber);
     }
 
     /**
@@ -48,7 +48,7 @@ public class ReadingConsole implements Reading {
      */
     @Override
     public int readInt() {
-        return this.getCorrectIntNumberValue(ReadingChecker::isIntegerNumber);
+        return this.getCorrectIntNumberValue(CheckerReading::isIntegerNumber);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ReadingConsole implements Reading {
      */
     @Override
     public long readLong() {
-        return this.getCorrectLongNumberValue(ReadingChecker::isLongNumber);
+        return this.getCorrectLongNumberValue(CheckerReading::isLongNumber);
     }
 
     /**
@@ -72,7 +72,7 @@ public class ReadingConsole implements Reading {
      */
     @Override
     public char readChar() {
-        return this.getCorrectCharacterValue(ReadingChecker::isOnlyCharacter);
+        return this.getCorrectCharacterValue(CheckerReading::isOnlyCharacter);
     }
 
     /**
@@ -84,7 +84,7 @@ public class ReadingConsole implements Reading {
      */
     @Override
     public float readFloat() {
-        return this.getCorrectFloatNumberValue(ReadingChecker::isFloatNumber);
+        return this.getCorrectFloatNumberValue(CheckerReading::isFloatNumber);
     }
 
     /**
@@ -96,7 +96,7 @@ public class ReadingConsole implements Reading {
      */
     @Override
     public double readDouble() {
-        return this.getCorrectDoubleNumberValue(ReadingChecker::isDoubleNumber);
+        return this.getCorrectDoubleNumberValue(CheckerReading::isDoubleNumber);
     }
 
     /**
@@ -115,107 +115,107 @@ public class ReadingConsole implements Reading {
         return value.trim();
     }
 
-    private byte getCorrectByteNumberValue(final ReadingChecker readingChecker) {
+    private byte getCorrectByteNumberValue(final CheckerReading checkerReading) {
         byte resultByteInputValue;
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (readingChecker.isCorrect(inputValue)) {
+        if (checkerReading.isCorrect(inputValue)) {
             resultByteInputValue = Byte.parseByte(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
             System.out.println("Re-enter : ");
-            resultByteInputValue = this.getCorrectByteNumberValue(readingChecker);
+            resultByteInputValue = this.getCorrectByteNumberValue(checkerReading);
         }
         return resultByteInputValue;
     }
 
-    private short getCorrectShortNumberValue(final ReadingChecker readingChecker) {
+    private short getCorrectShortNumberValue(final CheckerReading checkerReading) {
         short resultShortInputValue;
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (readingChecker.isCorrect(inputValue)) {
+        if (checkerReading.isCorrect(inputValue)) {
             resultShortInputValue = Short.parseShort(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
             System.out.println("Re-enter : ");
-            resultShortInputValue = this.getCorrectByteNumberValue(readingChecker);
+            resultShortInputValue = this.getCorrectByteNumberValue(checkerReading);
         }
         return resultShortInputValue;
     }
 
-    private int getCorrectIntNumberValue(final ReadingChecker readingChecker) {
+    private int getCorrectIntNumberValue(final CheckerReading checkerReading) {
         int resultIntInputValue;
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (readingChecker.isCorrect(inputValue)) {
+        if (checkerReading.isCorrect(inputValue)) {
             resultIntInputValue = Integer.parseInt(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
             System.out.println("Re-enter : ");
-            resultIntInputValue = this.getCorrectIntNumberValue(readingChecker);
+            resultIntInputValue = this.getCorrectIntNumberValue(checkerReading);
         }
         return resultIntInputValue;
     }
 
-    private long getCorrectLongNumberValue(final ReadingChecker readingChecker) {
+    private long getCorrectLongNumberValue(final CheckerReading checkerReading) {
         long resultLongInputValue;
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (readingChecker.isCorrect(inputValue)) {
+        if (checkerReading.isCorrect(inputValue)) {
             resultLongInputValue = Long.parseLong(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
             System.out.println("Re-enter : ");
-            resultLongInputValue = this.getCorrectLongNumberValue(readingChecker);
+            resultLongInputValue = this.getCorrectLongNumberValue(checkerReading);
         }
         return resultLongInputValue;
     }
 
-    private char getCorrectCharacterValue(final ReadingChecker readingChecker) {
+    private char getCorrectCharacterValue(final CheckerReading checkerReading) {
         char resultCharacterValue;
 
         String value = SCANNER.nextLine().trim();
 
-        if (readingChecker.isCorrect(value)) {
+        if (checkerReading.isCorrect(value)) {
             resultCharacterValue = value.charAt(0);
         } else {
             System.out.println("Incorrect data entered.");
             System.out.println("Re-enter : ");
-            resultCharacterValue = this.getCorrectCharacterValue(readingChecker);
+            resultCharacterValue = this.getCorrectCharacterValue(checkerReading);
         }
         return resultCharacterValue;
     }
 
-    private float getCorrectFloatNumberValue(final ReadingChecker readingChecker) {
+    private float getCorrectFloatNumberValue(final CheckerReading checkerReading) {
         float resultFloatInputValue;
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (readingChecker.isCorrect(inputValue)) {
+        if (checkerReading.isCorrect(inputValue)) {
             resultFloatInputValue = Float.parseFloat(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
             System.out.println("Re-enter : ");
-            resultFloatInputValue = this.getCorrectFloatNumberValue(readingChecker);
+            resultFloatInputValue = this.getCorrectFloatNumberValue(checkerReading);
         }
         return resultFloatInputValue;
     }
 
-    private double getCorrectDoubleNumberValue(final ReadingChecker readingChecker) {
+    private double getCorrectDoubleNumberValue(final CheckerReading checkerReading) {
         double resultDoubleInputValue;
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (readingChecker.isCorrect(inputValue)) {
+        if (checkerReading.isCorrect(inputValue)) {
             resultDoubleInputValue = Double.parseDouble(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
             System.out.println("Re-enter : ");
-            resultDoubleInputValue = this.getCorrectDoubleNumberValue(readingChecker);
+            resultDoubleInputValue = this.getCorrectDoubleNumberValue(checkerReading);
         }
         return resultDoubleInputValue;
     }
