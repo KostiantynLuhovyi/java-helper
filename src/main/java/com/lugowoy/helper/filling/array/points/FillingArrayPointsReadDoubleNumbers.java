@@ -341,8 +341,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
 
     private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbers(Point<Double>[] points) {
         for (int i = 0; i < points.length; i++) {
-            points[i] = new Point<>(super.getReader().readDouble(),
-                                    super.getReader().readDouble());
+            points[i] = Point.create(super.getReader().readDouble(), super.getReader().readDouble());
         }
     }
 
@@ -351,7 +350,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
         for (int i = 0; i < points.length; i++) {
             double valueCoordinateX = checkReadValueIsInRange(super.getReader().readDouble(), DEFAULT_START_BOUND, bound);
             double valueCoordinateY = checkReadValueIsInRange(super.getReader().readDouble(), DEFAULT_START_BOUND, bound);
-            points[i] = new Point<>(valueCoordinateX, valueCoordinateY);
+            points[i] = Point.create(valueCoordinateX, valueCoordinateY);
         }
     }
 
@@ -361,7 +360,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
         for (int i = 0; i < points.length; i++) {
             double valueCoordinateX = checkReadValueIsInRange(super.getReader().readDouble(), startBound, endBound);
             double valueCoordinateY = checkReadValueIsInRange(super.getReader().readDouble(), startBound, endBound);
-            points[i] = new Point<>(valueCoordinateX, valueCoordinateY);
+            points[i] = Point.create(valueCoordinateX, valueCoordinateY);
         }
     }
 

@@ -341,7 +341,7 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
 
     private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(Point<Integer>[] points) {
         for (int i = 0; i < points.length; i++) {
-            points[i] = new Point<>(super.getReader().readInt(), super.getReader().readInt());
+            points[i] = Point.create(super.getReader().readInt(), super.getReader().readInt());
         }
     }
 
@@ -350,7 +350,7 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
         for (int i = 0; i < points.length; i++) {
             int valueCoordinateX = checkReadValueIsInRange(super.getReader().readInt(), DEFAULT_START_BOUND, bound);
             int valueCoordinateY = checkReadValueIsInRange(super.getReader().readInt(), DEFAULT_START_BOUND, bound);
-            points[i] = new Point<>(valueCoordinateX, valueCoordinateY);
+            points[i] = Point.create(valueCoordinateX, valueCoordinateY);
         }
     }
 
@@ -360,7 +360,7 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
         for (int i = 0; i < points.length; i++) {
             int valueCoordinateX = checkReadValueIsInRange(super.getReader().readInt(), startBound, endBound);
             int valueCoordinateY = checkReadValueIsInRange(super.getReader().readInt(), startBound, endBound);
-            points[i] = new Point<>(valueCoordinateX, valueCoordinateY);
+            points[i] = Point.create(valueCoordinateX, valueCoordinateY);
         }
     }
 

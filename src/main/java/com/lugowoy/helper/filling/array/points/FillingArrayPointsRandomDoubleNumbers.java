@@ -325,16 +325,14 @@ public class FillingArrayPointsRandomDoubleNumbers implements FillingArrayPoints
 
     private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomDoubleNumbers(Point<Double>[] points) {
         for (int i = 0; i < points.length; i++) {
-            points[i] = new Point<>(GeneratorRandomNumber.generateDouble(),
-                                    GeneratorRandomNumber.generateDouble());
+            points[i] = Point.create(GeneratorRandomNumber.generateDouble(), GeneratorRandomNumber.generateDouble());
         }
     }
 
     private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomDoubleNumbersFromZeroToPositiveBound(Point<Double>[] points,
                                                                                                                   double bound) {
         for (int i = 0; i < points.length; i++) {
-            points[i] = new Point<>(GeneratorRandomNumber.generateDouble(bound),
-                                    GeneratorRandomNumber.generateDouble(bound));
+            points[i] = Point.create(GeneratorRandomNumber.generateDouble(bound), GeneratorRandomNumber.generateDouble(bound));
         }
     }
 
@@ -342,8 +340,7 @@ public class FillingArrayPointsRandomDoubleNumbers implements FillingArrayPoints
                                                                                                                    double startBound,
                                                                                                                    double endBound) {
         for (int i = 0; i < points.length; i++) {
-            points[i] = new Point<>(GeneratorRandomNumber.generateDouble(startBound, endBound),
-                                    GeneratorRandomNumber.generateDouble(startBound, endBound));
+            points[i] = Point.create(GeneratorRandomNumber.generateDouble(startBound, endBound), GeneratorRandomNumber.generateDouble(startBound, endBound));
         }
     }
 
