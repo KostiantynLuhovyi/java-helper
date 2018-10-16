@@ -22,24 +22,11 @@ public class Point<T extends Number> implements Model {
     private T coordinateX;
     private T coordinateY;
 
-    /**
-     * The default constructor creates a point object without initializing the coordinates values.
-     * Value of coordinates is a null.
-     *
-     * @since 1.0
-     */
-    public Point() {
+    private Point() {
         super();
     }
 
-    /**
-     * The constructor creates a point object that initializes coordinates values.
-     * <p> If both passed by parameter have non null values, then these values initialize the coordinates of the point,
-     *  otherwise the coordinates are null.
-     *
-     * @since 1.0
-     */
-    public Point(T coordinateX, T coordinateY) {
+    private Point(T coordinateX, T coordinateY) {
         if ((coordinateX != null) && (coordinateY != null)) {
             this.coordinateX = coordinateX;
             this.coordinateY = coordinateY;
@@ -130,6 +117,15 @@ public class Point<T extends Number> implements Model {
      */
     public void setCoordinateY(T coordinateY) {
         this.coordinateY = coordinateY;
+    }
+
+    //todo add doc's
+    public static <T extends Number> Point<T> create() {
+        return new Point<>();
+    }
+
+    public static <T extends Number> Point<T> create(T coordinateX, T coordinateY) {
+        return new Point<>(coordinateX, coordinateY);
     }
 
 }
