@@ -8,7 +8,7 @@ import java.util.Objects;
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -30,12 +30,6 @@ public class Matrix<T> implements Model {
 
     private Object[][] matrix;
 
-    private int indexElement;
-
-    {
-        this.indexElement = 0;
-    }
-
     private Matrix() {
         this.rows = DEFAULT_ROWS;
         this.columns = DEFAULT_COLUMNS;
@@ -52,12 +46,12 @@ public class Matrix<T> implements Model {
         if (matrix != null && (matrix.length > 0 && matrix[0].length > 0)) {
             this.rows = matrix.length;
             this.columns = matrix[0].length;
+            this.matrix = matrix;
         } else {
             this.rows = DEFAULT_ROWS;
             this.columns = DEFAULT_COLUMNS;
             this.matrix = new Object[rows][columns];
         }
-        this.indexElement = this.columns;
     }
 
     /**
@@ -166,7 +160,6 @@ public class Matrix<T> implements Model {
             this.columns = DEFAULT_COLUMNS;
             this.matrix = new Object[rows][columns];
         }
-        this.indexElement = this.columns;
     }
 
     /**
@@ -184,6 +177,18 @@ public class Matrix<T> implements Model {
     }
 
     //todo add doc's
+
+    public T[][] getMatrix(T[][] matrix) {
+        if (matrix != null) {
+            if (matrix.length <= this.rows) {
+                for (int i = 0; i < this.matrix.length; i++) {
+                    matrix[i] = (T[]) Arrays.copyOf(this.matrix[i], this.matrix[i].length);
+                }
+            }
+        }
+        return matrix;
+    }
+
     public static <T> Matrix<T> create() {
         return new Matrix<>();
     }
