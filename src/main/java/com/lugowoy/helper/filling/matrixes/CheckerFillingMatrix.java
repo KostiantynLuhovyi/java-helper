@@ -34,19 +34,19 @@ public interface CheckerFillingMatrix {
     }
 
     static boolean isPositiveBoundValueAndNonNull(Number boundValue) {
-        return (boundValue != null) && ((boundValue.intValue() >= 0) && (boundValue.intValue() < Integer.MAX_VALUE));
+        return (boundValue != null) && ((boundValue.doubleValue() >= 0) && (boundValue.doubleValue() < Integer.MAX_VALUE));
     }
 
     static boolean isNegativeBoundValueAndNonNull(Number boundValue) {
-        return (boundValue != null) && (boundValue.intValue() < 0 && boundValue.intValue() > Integer.MIN_VALUE);
+        return (boundValue != null) && (boundValue.doubleValue() < 0 && boundValue.doubleValue() > Integer.MIN_VALUE);
     }
 
     static boolean isCorrectRangeBoundValue(Number boundValue) {
-        return boundValue.intValue() > Integer.MIN_VALUE && boundValue.intValue() < Integer.MAX_VALUE;
+        return boundValue.doubleValue() > Integer.MIN_VALUE && boundValue.doubleValue() < Integer.MAX_VALUE;
     }
 
     static boolean isStartBoundValueLessThanEndBoundValue(Number startBound, Number endBound) {
-        return startBound.intValue() < endBound.intValue();
+        return startBound.doubleValue() < endBound.doubleValue();
     }
 
     static boolean isStartBoundValueGreatestThanEndBoundValue(Number startBound, Number endBound) {

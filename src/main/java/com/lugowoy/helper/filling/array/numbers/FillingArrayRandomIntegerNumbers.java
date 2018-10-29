@@ -88,7 +88,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * Fills an object of the {@link Array} class with random numeric data of the type {@link Integer}.
      * <p>The object of the {@link Array} class is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}
      *
      * @param array The object of the {@link Array} class to be filled with random numeric data of the type {@link Integer}.
      * @param bound The value of the bound for filling an object of the {@link Array} class
@@ -104,7 +104,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
                 array.setArray(integers);
             } else {
-                this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
                 array.setArray(integers);
             }
         } else {
@@ -117,7 +117,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * Fills an array with random numeric data of the type {@link Integer}.
      * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param integers The array to be filled with random numeric data of the type {@link Integer}.
      * @param bound The value of the end bound for filling an array with random numeric data of the type {@link Integer}.
@@ -130,7 +130,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -146,7 +146,7 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param lengthOfArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
      * @param bound The value of the border for filling the array with random numeric data of the type {@link Integer}.
@@ -161,11 +161,11 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
-            this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+            this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
         }
         return integers;
     }
@@ -175,8 +175,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param array The object of the {@link Array} class that must be filled with random numeric data of the type {@link Integer}.
      * @param startBound The value of the start bound for filling an object of the {@link Array} class
@@ -196,8 +196,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
                 array.setArray(integers);
             } else {
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                         DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                         DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
                 array.setArray(integers);
             }
         } else {
@@ -211,8 +211,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param integers The array to be filled with random numeric data of the type {@link Integer}.
      * @param startBound The value of the start bound for filling an array with random numeric data of the type {@link Integer}.
@@ -228,8 +228,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                         DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                         DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -245,8 +245,8 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param lengthOfArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
      * @param startBound The value of the start bound for filling an array with random numeric data of the type {@link Integer}.
@@ -264,14 +264,14 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                         DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                         DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
             this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                     DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
+                    NEGATIVE_INTEGER_BOUND,
+                    POSITIVE_INTEGER_BOUND);
         }
         return integers;
     }

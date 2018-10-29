@@ -121,7 +121,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * Fills an object of the {@link Array} class with data of the {@link Integer} type with read by the {@link Reader} class object.
      * <p>The object of the {@link Array} class is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}
      *
      * @param array The object of the {@link Array} class to be filled with data of the {@link Integer} type
      *              with read by the {@link Reader} class object.
@@ -138,7 +138,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
                 array.setArray(integers);
             } else {
-                this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
                 array.setArray(integers);
             }
         } else {
@@ -151,7 +151,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param integers The array to be filled with data of the {@link Integer} type with read by the {@link Reader} class object.
      * @param bound The value of the end bound for filling an array with data of the {@link Integer} type
@@ -165,7 +165,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -180,7 +180,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param lengthOfArray The length(size) of the array to be filled with data of the {@link Integer} type
      *                    with read by the {@link Reader} class object.
@@ -197,11 +197,11 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
-                this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+                this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
-            this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, DEFAULT_INTEGER_POSITIVE_BOUND);
+            this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
         }
         return integers;
     }
@@ -210,8 +210,8 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * Fills an object of the {@link Array} class with data of the {@link Integer} type with read by the {@link Reader} class object.
      * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param array The object of the {@link Array} class to be filled with data of the {@link Integer} type
      *              with read by the {@link Reader} class object.
@@ -232,8 +232,8 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
                 array.setArray(integers);
             } else {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                          DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                          DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
                 array.setArray(integers);
             }
         } else {
@@ -247,8 +247,8 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param integers The array to be filled with data of the {@link Integer} type with read by the {@link Reader} class object.
      * @param startBound The value of the start bound for filling an array with data of the {@link Integer} type
@@ -266,8 +266,8 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                          DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                          DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -284,8 +284,8 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param lengthOfArray The length(size) of the array to be filled with data of the {@link Integer} type
      *                    with read by the {@link Reader} class object.
@@ -306,14 +306,14 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                          DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                          DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
             this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                      DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                      DEFAULT_INTEGER_POSITIVE_BOUND);
+                    NEGATIVE_INTEGER_BOUND,
+                    POSITIVE_INTEGER_BOUND);
         }
         return integers;
     }
@@ -329,10 +329,10 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
         for (int i = 0; i < integers.length; i++) {
             //todo fix to re-enter.
             value = super.getReader().readInt();
-            if ((value >= DEFAULT_START_BOUND) && (value <= bound)) {
+            if ((value >= START_BOUND) && (value <= bound)) {
                 integers[i] = value;
             } else {
-                integers[i] = DEFAULT_INTEGER_VALUE;
+                integers[i] = INTEGER_VALUE;
             }
         }
     }
@@ -347,7 +347,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
                 if ((value >= startBound) && (value <= endBound)) {
                     integers[i] = value;
                 } else {
-                    integers[i] = DEFAULT_INTEGER_VALUE;
+                    integers[i] = INTEGER_VALUE;
                 }
             }
         }

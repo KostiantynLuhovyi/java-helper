@@ -125,7 +125,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * with numeric coordinates of type {@link Double} in the range from "0" to "bound" parameter,
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND}
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}
      *
      * @param array The object of the {@link Array} class to be filled.
      * @param bound The value of the end of the range boundary
@@ -142,7 +142,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points, bound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points,
-                                                                                                                          DEFAULT_DOUBLE_POSITIVE_BOUND);
+                        POSITIVE_DOUBLE_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -155,7 +155,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * with numeric coordinates of type {@link Double} in the range from "0" to "bound" parameter,
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
      *
      * @param points The array to be filled.
      * @param bound  The value of the end of the range boundary
@@ -170,7 +170,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points, bound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points,
-                                                                                                                          DEFAULT_DOUBLE_POSITIVE_BOUND);
+                        POSITIVE_DOUBLE_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -185,7 +185,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
      *
      *
      * @param lengthOfArray The length(size) of the array to be filled.
@@ -204,12 +204,12 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points, bound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points,
-                                                                                                                          DEFAULT_DOUBLE_POSITIVE_BOUND);
+                        POSITIVE_DOUBLE_BOUND);
             }
         } else {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points,
-                                                                                                                      DEFAULT_DOUBLE_POSITIVE_BOUND);
+                    POSITIVE_DOUBLE_BOUND);
         }
         return points;
     }
@@ -220,8 +220,8 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}
-     * and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
      *
      * @param array The object of the {@link Array} class to be filled.
@@ -245,8 +245,8 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
                 array.setArray(points);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                                                                                                                              DEFAULT_DOUBLE_NEGATIVE_BOUND,
-                                                                                                                              DEFAULT_DOUBLE_POSITIVE_BOUND);
+                        NEGATIVE_DOUBLE_BOUND,
+                        POSITIVE_DOUBLE_BOUND);
                 array.setArray(points);
             }
         } else {
@@ -261,8 +261,8 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}
-     * and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
      * @param points     The array to be filled.
      * @param startBound The value of the start of the range boundary
@@ -282,8 +282,8 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
                                                                                                                               endBound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                                                                                                                              DEFAULT_DOUBLE_NEGATIVE_BOUND,
-                                                                                                                              DEFAULT_DOUBLE_POSITIVE_BOUND);
+                        NEGATIVE_DOUBLE_BOUND,
+                        POSITIVE_DOUBLE_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -303,8 +303,8 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * with numerical coordinates from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}
-     * and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_POSITIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
      * @param lengthOfArray The length(size) of the array to be filled.
      * @param startBound  The value of the start of the range boundary
@@ -327,14 +327,14 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
                                                                                                                               endBound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                                                                                                                              DEFAULT_DOUBLE_NEGATIVE_BOUND,
-                                                                                                                              DEFAULT_DOUBLE_POSITIVE_BOUND);
+                        NEGATIVE_DOUBLE_BOUND,
+                        POSITIVE_DOUBLE_BOUND);
             }
         } else {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                                                                                                                          DEFAULT_DOUBLE_NEGATIVE_BOUND,
-                                                                                                                          DEFAULT_DOUBLE_POSITIVE_BOUND);
+                    NEGATIVE_DOUBLE_BOUND,
+                    POSITIVE_DOUBLE_BOUND);
         }
         return points;
     }
@@ -348,8 +348,8 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
     private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(Point<Double>[] points,
                                                                                                                 double bound) {
         for (int i = 0; i < points.length; i++) {
-            double valueCoordinateX = checkReadValueIsInRange(super.getReader().readDouble(), DEFAULT_START_BOUND, bound);
-            double valueCoordinateY = checkReadValueIsInRange(super.getReader().readDouble(), DEFAULT_START_BOUND, bound);
+            double valueCoordinateX = checkReadValueIsInRange(super.getReader().readDouble(), START_BOUND, bound);
+            double valueCoordinateY = checkReadValueIsInRange(super.getReader().readDouble(), START_BOUND, bound);
             points[i] = Point.create(valueCoordinateX, valueCoordinateY);
         }
     }
@@ -365,7 +365,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
     }
 
     private double checkReadValueIsInRange(double enteredValue, double startBound, double endBound) {
-        return (enteredValue >= startBound) && (enteredValue <= endBound) ? enteredValue : DEFAULT_DOUBLE_VALUE;
+        return (enteredValue >= startBound) && (enteredValue <= endBound) ? enteredValue : DOUBLE_VALUE;
     }
 
 }

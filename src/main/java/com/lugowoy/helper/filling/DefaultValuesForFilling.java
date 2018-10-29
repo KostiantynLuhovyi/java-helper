@@ -13,41 +13,41 @@ public interface DefaultValuesForFilling {
     /**
      * The integer value by default.
      */
-    int DEFAULT_INTEGER_VALUE = 0;
+    int INTEGER_VALUE = 0;
 
     /**
      * The double value by default.
      */
-    double DEFAULT_DOUBLE_VALUE = 0.0;
+    double DOUBLE_VALUE = 0.0;
 
     /**
      * The number value by default.
      */
-    double DEFAULT_NUMBER_VALUE = 0.0;
+    double NUMBER_VALUE = 0.0;
 
     /**
      * The value of the start value of the bound.
      */
-    int DEFAULT_START_BOUND = 0;
+    int START_BOUND = 0;
 
     /**
      * The integer value of the negative boundary.
      */
-    int DEFAULT_INTEGER_NEGATIVE_BOUND = -10;
+    int NEGATIVE_INTEGER_BOUND = -10;
 
     /**
      * The integer value of the positive boundary.
      */
-    int DEFAULT_INTEGER_POSITIVE_BOUND = 10;
+    int POSITIVE_INTEGER_BOUND = 10;
 
     /**
      * The double value of the negative boundary.
      */
-    double DEFAULT_DOUBLE_NEGATIVE_BOUND = -10.0;
+    double NEGATIVE_DOUBLE_BOUND = -10.0;
 
     /**
      * The double value of the positive boundary.
      */
-    double DEFAULT_DOUBLE_POSITIVE_BOUND = 10.0;
+    double POSITIVE_DOUBLE_BOUND = 10.0;
 
 }

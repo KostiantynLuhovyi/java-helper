@@ -6,8 +6,8 @@ import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.Point;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
-import static com.lugowoy.helper.filling.DefaultValuesForFilling.DEFAULT_INTEGER_NEGATIVE_BOUND;
-import static com.lugowoy.helper.filling.DefaultValuesForFilling.DEFAULT_INTEGER_POSITIVE_BOUND;
+import static com.lugowoy.helper.filling.DefaultValuesForFilling.NEGATIVE_INTEGER_BOUND;
+import static com.lugowoy.helper.filling.DefaultValuesForFilling.POSITIVE_INTEGER_BOUND;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
 
@@ -104,7 +104,7 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
      * Fills an object of the {@link Array} class with an object of the {@link Point} class
      * with random numeric coordinates of type {@link Integer} in the range from "0" to "bound".
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}
      *
      * @param array The object of the {@link Array} class to be filled
      *              with an object of the {@link Point} class with random numeric coordinates of type {@link Integer}.
@@ -123,7 +123,7 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
                 array.setArray(points);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points,
-                                                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
+                        POSITIVE_INTEGER_BOUND);
                 array.setArray(points);
             }
         } else {
@@ -136,7 +136,7 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
      * Fills an array with objects of the {@link Point} class
      * with random numeric coordinates of type {@link Integer} in the range from "0" to to "bound".
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param points The array to be filled with objects of the {@link Point} class
      *               with random numeric coordinates of type {@link Integer}.
@@ -152,7 +152,7 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points, bound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points,
-                                                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -166,7 +166,7 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      *
      * @param lengthOfArray The length(size) of the array to be filled with objects of the {@link Point} class
@@ -187,12 +187,12 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
                                                                                                                      bound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points,
-                                                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromZeroToBound(points,
-                                                                                                                 DEFAULT_INTEGER_POSITIVE_BOUND);
+                    POSITIVE_INTEGER_BOUND);
         }
         return points;
     }
@@ -202,8 +202,8 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
      * with random numeric coordinates of type {@link Integer} in the range from "startBound" to "endBound".
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     * and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      *
      * @param array The object of the {@link Array} class to be filled
@@ -228,8 +228,8 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
                 array.setArray(points);
             } else {
                     this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromStartBoundToEndBound(points,
-                                                                                                                                DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                                                                DEFAULT_INTEGER_POSITIVE_BOUND);
+                            NEGATIVE_INTEGER_BOUND,
+                            POSITIVE_INTEGER_BOUND);
                 array.setArray(points);
             }
         } else {
@@ -243,8 +243,8 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
      * with random numeric coordinates of type {@link Integer} in the range from "startBound" to to "endBound".
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     * and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param points     The array to be filled with objects of the {@link Point} class
      *                   with random numeric coordinates of type {@link Integer}.
@@ -265,8 +265,8 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
                                                                                                                             endBound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromStartBoundToEndBound(points,
-                                                                                                                            DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                                                            DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -285,8 +285,8 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
      * with numerical coordinates from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     * and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param lengthOfArray The length(size) of the array to be filled
      *                    with objects of the {@link Point} class with random numeric coordinates of type {@link Integer}.
@@ -308,8 +308,8 @@ public class FillingArrayPointsRandomIntegerNumbers implements FillingArrayPoint
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromStartBoundToEndBound(points, startBound, endBound);
             } else {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesRandomIntegerNumbersFromStartBoundToEndBound(points,
-                                                                                                                            DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                                                            DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);

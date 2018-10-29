@@ -84,7 +84,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
      * Fills an object of the {@link Array} class with sequential ascending of numeric data of type {@link Integer}.
      * <p>The object of the {@link Array} class is filled with numeric data from "0" (increases by "1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param array The object of the {@link Array} class to be filled with
      *              sequential ascending of numeric data of type {@link Integer}.
@@ -101,7 +101,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
                 array.setArray(integers);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
-                                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
+                        POSITIVE_INTEGER_BOUND);
                 array.setArray(integers);
             }
         } else {
@@ -113,7 +113,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
      * Fills an array with sequential ascending of numeric data of type {@link Integer}.
      * <p>The array is filled with numeric data from "0" (increases by "1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param integers The array to be filled with sequential ascending of numeric data of type {@link Integer}.
      * @param bound The value of the end bound for filling an array with
@@ -127,7 +127,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
-                                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -141,7 +141,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      * <p>The array is filled with numeric data from "0" (increases by 1) to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param lengthOfArray The length(size) of the array to be filled with
      *                    sequential ascending of numeric data of type {@link Integer}.
@@ -157,12 +157,12 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
-                                                                                                     DEFAULT_INTEGER_POSITIVE_BOUND);
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
             this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
-                                                                                                 DEFAULT_INTEGER_POSITIVE_BOUND);
+                    POSITIVE_INTEGER_BOUND);
         }
         return integers;
     }
@@ -172,8 +172,8 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
      * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param array The object of the {@link Array} class that must be filled with
      *              sequential ascending of numeric data of type {@link Integer}.
@@ -193,8 +193,8 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
                 array.setArray(integers);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                                      DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                                      DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
                 array.setArray(integers);
             }
         } else {
@@ -207,8 +207,8 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
      * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param integers The array to be filled with
      *                sequential ascending of numeric data of type {@link Integer}.
@@ -226,8 +226,8 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                                      DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                                      DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -242,8 +242,8 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_INTEGER_NEGATIVE_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_INTEGER_POSITIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param lengthOfArray The length(size) of the array to be filled with
      *                    sequential ascending of numeric data of type {@link Integer}.
@@ -263,14 +263,14 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                                      DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                                      DEFAULT_INTEGER_POSITIVE_BOUND);
+                        NEGATIVE_INTEGER_BOUND,
+                        POSITIVE_INTEGER_BOUND);
             }
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
             this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                                  DEFAULT_INTEGER_NEGATIVE_BOUND,
-                                                                                                  DEFAULT_INTEGER_POSITIVE_BOUND);
+                    NEGATIVE_INTEGER_BOUND,
+                    POSITIVE_INTEGER_BOUND);
         }
         return integers;
     }
@@ -291,7 +291,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
                 integers[i] = value;
                 value += integerDigit;
             } else {
-                integers[i] = DEFAULT_INTEGER_VALUE;
+                integers[i] = INTEGER_VALUE;
             }
         }
     }
@@ -304,7 +304,7 @@ public class FillingArraySequentialAscendingIntegerNumbers implements FillingArr
             if (value <= endBound) {
                 integers[i] = value;
             } else {
-                integers[i] = DEFAULT_INTEGER_VALUE;
+                integers[i] = INTEGER_VALUE;
             }
         }
     }

@@ -87,7 +87,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
      * <p>The object of the {@link Array} class is filled
      * with numeric data from "0.0" (decreases by "1.0") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
      *
      * @param array The object of the {@link Array} class to be filled
      *              with sequential descending integer part of numeric data of type {@link Double}.
@@ -104,7 +104,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 array.setArray(doubles);
             } else {
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles,
-                                                                                                     DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        NEGATIVE_DOUBLE_BOUND);
                 array.setArray(doubles);
             }
         } else {
@@ -116,7 +116,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
      * Fills an array with sequential descending integer part of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data from "0.0" (decreases by "1.0") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
      *
      * @param doubles The array to be filled with sequential descending integer part of numeric data of type {@link Double}.
      * @param bound The value of the end bound for filling an array
@@ -130,7 +130,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles,
-                                                                                                     DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        NEGATIVE_DOUBLE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -145,7 +145,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
      * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      * <p>The array is filled with numeric data from "0" (decreases by "1.0") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
      *
      * @param lengthOfArray The length(size) of the array to be filled
      *                    with sequential descending integer part of numeric data of type {@link Double}.
@@ -162,12 +162,12 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles,
-                                                                                                     DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        NEGATIVE_DOUBLE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
             this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles,
-                                                                                                 DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                    NEGATIVE_DOUBLE_BOUND);
         }
         return doubles;
     }
@@ -177,8 +177,8 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
      * <p>The object of the {@link Array} class is filled with numeric data (decreases by "1.0") from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is less than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#DEFAULT_START_BOUND}
-     * and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND} respectively.
+     * then the values {@link DefaultValuesForFilling#START_BOUND}
+     * and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
      * @param array The object of the {@link Array} class that must be filled
      *              with sequential descending integer part of numeric data of type {@link Double}.
@@ -198,8 +198,8 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 array.setArray(doubles);
             } else {
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles,
-                                                                                                      DEFAULT_START_BOUND,
-                                                                                                      DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        START_BOUND,
+                        NEGATIVE_DOUBLE_BOUND);
                 array.setArray(doubles);
             }
         } else {
@@ -212,8 +212,8 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
      * <p>The array is filled with numeric data (decreases by "1.0") from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is less than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_START_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#START_BOUND}
+     *  and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
      * @param doubles The array to be filled with sequential descending integer part of numeric data of type {@link Double}.
      * @param startBound The value of the start bound for filling an array
@@ -230,8 +230,8 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles,
-                                                                                                      DEFAULT_START_BOUND,
-                                                                                                      DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        START_BOUND,
+                        NEGATIVE_DOUBLE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -247,8 +247,8 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
      * <p>The array is filled with numeric data (decreases by "1.0") from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is less than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#DEFAULT_START_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND} respectively.
+     *  then the values {@link DefaultValuesForFilling#START_BOUND}
+     *  and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
      * @param lengthOfArray The length(size) of the array to be filled
      *                    with sequential descending integer part of numeric data of type {@link Double}.
@@ -268,14 +268,14 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles,
-                                                                                                      DEFAULT_START_BOUND,
-                                                                                                      DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        START_BOUND,
+                        NEGATIVE_DOUBLE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
             this.fillArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles,
-                                                                                                  DEFAULT_START_BOUND,
-                                                                                                  DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                    START_BOUND,
+                    NEGATIVE_DOUBLE_BOUND);
         }
         return doubles;
     }
@@ -296,7 +296,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 doubles[i] = value;
                 value -= integerDigit;
             } else {
-                doubles[i] = DEFAULT_DOUBLE_VALUE;
+                doubles[i] = DOUBLE_VALUE;
             }
         }
     }
@@ -310,7 +310,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 doubles[i] = value;
                 value -= integerDigit;
             } else {
-                doubles[i] = DEFAULT_DOUBLE_VALUE;
+                doubles[i] = DOUBLE_VALUE;
             }
         }
     }

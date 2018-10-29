@@ -83,7 +83,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
     /**
      * Fills an object of the {@link Array} class with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The object of the {@link Array} class is filled with numeric data from "0.0" (decreases by "0.1") to the value of the "bound" parameter.
-     * If the value of the "bound" argument is a positive number, then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}.
+     * If the value of the "bound" argument is a positive number, then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
      *
      * @param array The object of the {@link Array} class to be filled with
      *              sequential descending decimal digit of numeric data of type {@link Double}.
@@ -99,7 +99,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
                 array.setArray(doubles);
             } else {
-                this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, NEGATIVE_DOUBLE_BOUND);
                 array.setArray(doubles);
             }
         } else {
@@ -111,7 +111,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      * Fills an array with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data from "0.0" (decreases by "0.1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
      *
      * @param doubles The array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
      * @param bound The value of the end bound for filling an array with
@@ -125,7 +125,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
-                                                                                                                   DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        NEGATIVE_DOUBLE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -139,7 +139,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      * If the value of "lengthArray" is less than "0.0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      * <p>The array is filled with numeric data from "0.0" (decreases by "0.1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND}.
+     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
      *
      * @param lengthOfArray The length(size) of the array to be filled with
      *                    sequential descending decimal digit of numeric data of type {@link Double}.
@@ -155,12 +155,12 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
-                                                                                                                   DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        NEGATIVE_DOUBLE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
             this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
-                                                                                                               DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                    NEGATIVE_DOUBLE_BOUND);
         }
         return doubles;
     }
@@ -169,8 +169,8 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      * Fills an object of the {@link Array} class with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The object of the {@link Array} class is filled with numeric data (decreases by "0.1") from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is less than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#DEFAULT_START_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND} respectively.
+     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#START_BOUND}
+     *  and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
      * @param array The object of the {@link Array} class that must be filled with
      *              sequential descending decimal digit of numeric data of type {@link Double}.
@@ -192,8 +192,8 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
                 array.setArray(doubles);
             } else {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                                                                                                                    DEFAULT_START_BOUND,
-                                                                                                                    DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        START_BOUND,
+                        NEGATIVE_DOUBLE_BOUND);
                 array.setArray(doubles);
             }
         } else {
@@ -205,8 +205,8 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      * Fills an array with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data (decreases by "0.1") from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is less than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#DEFAULT_START_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND} respectively.
+     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#START_BOUND}
+     *  and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
      * @param doubles The array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
      * @param startBound The value of the start bound for filling an array with
@@ -225,8 +225,8 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
                                                                                                                     endBound);
             } else {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                                                                                                                    DEFAULT_START_BOUND,
-                                                                                                                    DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        START_BOUND,
+                        NEGATIVE_DOUBLE_BOUND);
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -240,8 +240,8 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      * <p>The array is filled with numeric data (decreases by "0.1") from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is less than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#DEFAULT_START_BOUND}
-     *  and {@link DefaultValuesForFilling#DEFAULT_DOUBLE_NEGATIVE_BOUND} respectively.
+     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#START_BOUND}
+     *  and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
      * @param lengthOfArray The length(size) of the array to be filled with
      *                    sequential descending decimal digit of numeric data of type {@link Double}.
@@ -263,14 +263,14 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
                                                                                                                     endBound);
             } else {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                                                                                                                    DEFAULT_START_BOUND,
-                                                                                                                    DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                        START_BOUND,
+                        NEGATIVE_DOUBLE_BOUND);
             }
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
             this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                                                                                                                DEFAULT_START_BOUND,
-                                                                                                                DEFAULT_DOUBLE_NEGATIVE_BOUND);
+                    START_BOUND,
+                    NEGATIVE_DOUBLE_BOUND);
         }
         return doubles;
     }
@@ -291,7 +291,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
                 doubles[i] = value;
                 value -= fractionalDigit;
             } else {
-                doubles[i] = DEFAULT_DOUBLE_VALUE;
+                doubles[i] = DOUBLE_VALUE;
             }
         }
     }
@@ -305,7 +305,7 @@ public class FillingArraySequentialDescendingDecimalDigitOfDoubleNumbers impleme
                 doubles[i] = value;
                 value -= fractionalDigit;
             } else {
-                doubles[i] = DEFAULT_DOUBLE_VALUE;
+                doubles[i] = DOUBLE_VALUE;
             }
         }
     }
