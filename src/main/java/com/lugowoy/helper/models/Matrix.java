@@ -8,7 +8,7 @@ import java.util.Objects;
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -105,7 +105,7 @@ public class Matrix<T> implements Model {
      * @param indexColumn Matrix column index.
      */
     @SuppressWarnings("unchecked")
-    public T getElementMatrix(int indexRow, int indexColumn) {
+    public T getElement(int indexRow, int indexColumn) {
         //todo question on exclusion.
         if ((indexRow >= 0 && indexRow <= this.getRows())
                 && (indexColumn >= 0 && indexColumn <= this.getColumns())) {
@@ -121,7 +121,7 @@ public class Matrix<T> implements Model {
      * @param indexColumn Matrix column index.
      * @param element Element to set.
      */
-    public void setElementMatrix(int indexRow, int indexColumn, T element) {
+    public void setElement(int indexRow, int indexColumn, T element) {
         //todo question on exclusion.
         if ((indexRow >= 0 && indexRow <= this.rows) && (indexColumn >= 0 && indexColumn <= this.columns)) {
             this.matrix[indexRow][indexColumn] = element;
@@ -130,20 +130,87 @@ public class Matrix<T> implements Model {
         }
     }
 
+    //todo new method. add doc's.
+    public void deleteElement(int indexRow, int indexColumn) {
+        if ((indexRow >= 0 && indexRow <= this.rows) && (indexColumn >= 0 && indexColumn <= this.columns)) {
+            this.matrix[indexRow][indexColumn] = null;
+        }
+    }
+
+    //todo new method. add doc's.
+    public void deleteRow(int indexRow) {
+        if (indexRow >= 0 && indexRow <= this.rows) {
+            for (int i = 0; i < this.columns; i++) {
+                this.matrix[indexRow][i] = null;
+            }
+        }
+    }
+
+    //todo new method. add doc's.
+    public void deleteColumn(int indexColumn) {
+        if (indexColumn >= 0 && indexColumn <= this.columns) {
+            for (int i = 0; i < this.rows; i++) {
+                this.matrix[i][indexColumn] = null;
+            }
+        }
+    }
+
     /**
      * Returns an array column by row index.
      * @param indexRow Row index.
      */
+    //todo new method. add checks. add doc's.
     @SuppressWarnings("unchecked")
-    public Array<T> getColumnArray(int indexRow) {
-        Array<T> array;
-        if (indexRow >= 0 && indexRow <= this.getRows()) {
-            array = Array.create((T[]) this.matrix[indexRow]);
-        } else {
-            //todo not good realize.
-            array = Array.create(Array.DEFAULT_LENGTH_ARRAY);
+    public Array<T> getColumn(int indexRow) {
+        Array<T> array = Array.create(this.rows);
+        if (indexRow >= 0 && indexRow <= this.rows) {
+            array.setArray((T[]) this.matrix[indexRow]);
         }
         return array;
+    }
+
+    //todo new method. add checks. add doc's.
+    @SuppressWarnings("unchecked")
+    public void getColumn(T[] array, int indexRow) {
+        if (indexRow >= 0 && indexRow <= this.rows) {
+            if (array != null) {
+                for (int i = 0; i < this.columns; i++) {
+                    array[i] = (T) this.matrix[indexRow][i];
+                }
+            }
+        }
+    }
+
+    //todo new method. add checks. add doc's.
+    @SuppressWarnings("unchecked")
+    public void getColumn(Array<T> array, int indexRow) {
+        if (indexRow >= 0 && indexRow <= this.rows) {
+            if (array != null) {
+                array.setArray((T[]) this.matrix[indexRow]);
+            }
+        }
+    }
+
+    //todo new method. add doc's.
+    public void setColumn(T[] array, int indexRow) {
+        if (indexRow >= 0 && indexRow <= this.rows) {
+            if (array != null) {
+                for (int i = 0; i < this.columns; i++) {
+                    this.matrix[indexRow][i] = array[i];
+                }
+            }
+        }
+    }
+
+    //todo new method. add doc's.
+    public void setColumn(Array<T> array, int indexRow) {
+        if (indexRow >= 0 && indexRow <= this.rows) {
+            if (array != null) {
+                for (int i = 0; i < this.columns; i++) {
+                    this.matrix[indexRow][i] = array.get(i);
+                }
+            }
+        }
     }
 
     /**
@@ -155,10 +222,50 @@ public class Matrix<T> implements Model {
             this.rows = matrix.length;
             this.columns = matrix[0].length;
             this.matrix = matrix;
-        } else {
+        } /*else {
             this.rows = DEFAULT_ROWS;
             this.columns = DEFAULT_COLUMNS;
             this.matrix = new Object[rows][columns];
+        }*/
+    }
+
+    //todo new method. add doc's. (not quadratic (4/5))
+    @SuppressWarnings("unchecked")
+    public void compressRow(int indexRow) {
+        if (indexRow >= 0 && indexRow <= this.rows) {
+            Object[][] objects = new Object[this.rows - 1][this.columns];
+            int tmpIndexRow = 0;
+            for (int i = 0; i < this.rows; i++) {
+                for (int j = 0; j < this.columns; j++) {
+                    if (i == indexRow) {
+                        tmpIndexRow = 1;
+                        break;
+                    } else {
+                        objects[i - tmpIndexRow][j] = this.matrix[i][j];
+                    }
+                }
+            }
+            this.setMatrix((T[][]) objects);
+        }
+    }
+
+    //todo new method. add doc's. (not quadratic (4/5))
+    @SuppressWarnings("unchecked")
+    public void compressColumn(int indexColumn) {
+        if (indexColumn >= 0 && indexColumn <= this.columns) {
+            Object[][] objects = new Object[this.rows][this.columns - 1];
+            int tmpIndexColumn = 0;
+            for (int i = 0; i < this.rows; i++) {
+                for (int j = 0; j < this.columns; j++) {
+                    if (j == indexColumn) {
+                        tmpIndexColumn = 1;
+                    } else {
+                        objects[i][j - tmpIndexColumn] = this.matrix[i][j];
+                    }
+                }
+                tmpIndexColumn = 0;
+            }
+            this.setMatrix((T[][]) objects);
         }
     }
 
@@ -178,6 +285,7 @@ public class Matrix<T> implements Model {
 
     //todo add doc's
 
+    @SuppressWarnings("unchecked")
     public T[][] getMatrix(T[][] matrix) {
         if (matrix != null) {
             if (matrix.length <= this.rows) {
