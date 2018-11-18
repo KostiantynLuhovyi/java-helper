@@ -1,8 +1,5 @@
 import com.lugowoy.helper.filling.matrixes.numbers.FillingMatrixRandomIntegerNumbers;
-import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.Matrix;
-
-import java.util.Arrays;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.POSITIVE_INTEGER_BOUND;
 
@@ -40,12 +37,10 @@ public class Test {
 
         System.out.println(matrix);
 
-        matrix.compressColumn(17);
+        matrix.setRow(new Integer[]{3, 3, 3, 3}, 1);
 
-        System.out.println();
-        System.out.println("Result compress : ");
+        System.out.println("Result : ");
         System.out.println(matrix);
-        System.out.println("Rows  : " + matrix.getRows() + "/ Columns : "  + matrix.getColumns());
 
     }
 
