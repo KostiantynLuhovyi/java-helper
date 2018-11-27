@@ -8,7 +8,7 @@ import java.util.Objects;
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -238,34 +238,10 @@ public class Matrix<T> implements Model {
 
     //todo new method. add doc's.
     //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
-    public void setColumn(T[] array, int indexRow) {
+    public void setColumn(T[] array, int indexColumn) {
         if (array != null) {
-            if (indexRow >= 0 && indexRow <= this.rows) {
+            if (indexColumn >= 0 && indexColumn <= this.rows) {
                 for (int i = 0; i < this.columns; i++) {
-                    this.matrix[indexRow][i] = array[i];
-                }
-            }
-        }
-    }
-
-    //todo new method. add doc's.
-    //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
-    public void setColumn(Array<T> array, int indexRow) {
-        if (array != null) {
-            if (indexRow >= 0 && indexRow <= this.rows) {
-                for (int i = 0; i < this.columns; i++) {
-                    this.matrix[indexRow][i] = array.get(i);
-                }
-            }
-        }
-    }
-
-    //todo new method. add doc's.
-    //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
-    public void setRow(T[] array, int indexColumn) {
-        if (array != null) {
-            if (indexColumn >= 0 && indexColumn <= this.columns) {
-                for (int i = 0; i < this.rows; i++) {
                     this.matrix[i][indexColumn] = array[i];
                 }
             }
@@ -274,11 +250,35 @@ public class Matrix<T> implements Model {
 
     //todo new method. add doc's.
     //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
-    public void setRow(Array<T> array, int indexColumn) {
+    public void setColumn(Array<T> array, int indexColumn) {
         if (array != null) {
-            if (indexColumn >= 0 && indexColumn <= this.columns) {
-                for (int i = 0; i < this.rows; i++) {
+            if (indexColumn >= 0 && indexColumn <= this.rows) {
+                for (int i = 0; i < this.columns; i++) {
                     this.matrix[i][indexColumn] = array.get(i);
+                }
+            }
+        }
+    }
+
+    //todo new method. add doc's.
+    //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
+    public void setRow(T[] array, int indexRow) {
+        if (array != null) {
+            if (indexRow >= 0 && indexRow <= this.columns) {
+                for (int i = 0; i < this.rows; i++) {
+                    this.matrix[indexRow][i] = array[i];
+                }
+            }
+        }
+    }
+
+    //todo new method. add doc's.
+    //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
+    public void setRow(Array<T> array, int indexRow) {
+        if (array != null) {
+            if (indexRow >= 0 && indexRow <= this.columns) {
+                for (int i = 0; i < this.rows; i++) {
+                    this.matrix[indexRow][i] = array.get(i);
                 }
             }
         }

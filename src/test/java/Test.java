@@ -54,6 +54,10 @@ public class Test {
         System.out.println("------------");
         System.out.println(matrix.getRow(Array.create(matrix.getRows()), 4));
 
+        Integer[] integers = new Integer[]{-2, -2, -2, -2, -2};
+        matrix.setRow(integers, 0);
+        System.out.println(matrix);
+
     }
 
 }
