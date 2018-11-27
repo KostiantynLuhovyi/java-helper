@@ -1,5 +1,8 @@
 import com.lugowoy.helper.filling.matrixes.numbers.FillingMatrixRandomIntegerNumbers;
+import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.Matrix;
+
+import java.util.Arrays;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.POSITIVE_INTEGER_BOUND;
 
@@ -37,10 +40,19 @@ public class Test {
 
         System.out.println(matrix);
 
-        matrix.setRow(new Integer[]{3, 3, 3, 3}, 1);
+        System.out.println("Columns");
+        System.out.println(matrix.getColumn(4));
+        System.out.println("------------");
+        System.out.println(Arrays.toString(matrix.getColumn(new Integer[matrix.getColumns()], 4)));
+        System.out.println("------------");
+        System.out.println(matrix.getColumn(Array.create(matrix.getColumns()), 4));
 
-        System.out.println("Result : ");
-        System.out.println(matrix);
+        System.out.println("Rows");
+        System.out.println(matrix.getRow(4));
+        System.out.println("------------");
+        System.out.println(Arrays.toString(matrix.getRow(new Integer[matrix.getRows()], 4)));
+        System.out.println("------------");
+        System.out.println(matrix.getRow(Array.create(matrix.getRows()), 4));
 
     }
 
