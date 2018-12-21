@@ -101,17 +101,17 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
      * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      *
-     * @param lengthOfArray The length(size) of the array to be filled.
+     * @param lengthArray The length(size) of the array to be filled.
      * @return Created and filled array of the objects of the {@link Point} class
      *         with random numeric coordinates of type {@link Double}.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
-    public Point<Integer>[] fill(int lengthOfArray) {
+    public Point<Integer>[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkLengthArray(lengthOfArray)) {
-            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthOfArray);
+        if (checkLengthArray(lengthArray)) {
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbers(points);
         } else {
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
@@ -191,18 +191,18 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
      * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      *
-     * @param lengthOfArray The length(size) of the array to be filled.
+     * @param lengthArray The length(size) of the array to be filled.
      * @param bound       The value of the end of the range boundary
      *                    of numerical values by which the coordinates of points in the array will be initialized.
      * @return Created and filled array of objects of the {@link Point} class with random numeric coordinates of type {@link Integer}.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
-    public Point<Integer>[] fill(int lengthOfArray, Integer bound) {
+    public Point<Integer>[] fill(int lengthArray, Integer bound) {
         //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkLengthArray(lengthOfArray)) {
-            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthOfArray);
+        if (checkLengthArray(lengthArray)) {
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromZeroToPositiveBound(points, bound);
             } else {
@@ -307,7 +307,7 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
      * then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
      * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
-     * @param lengthOfArray The length(size) of the array to be filled.
+     * @param lengthArray The length(size) of the array to be filled.
      * @param startBound  The value of the start of the range boundary
      *                    of numerical values by which the coordinates of points in the array will be initialized.
      * @param endBound    The value of the end of the range boundary
@@ -316,11 +316,11 @@ public class FillingArrayPointsReadIntegerNumbers extends FillingArrayPointsRead
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
-    public Point<Integer>[] fill(int lengthOfArray, Integer startBound, Integer endBound) {
+    public Point<Integer>[] fill(int lengthArray, Integer startBound, Integer endBound) {
         //todo check or add relevant checks.
         Point<Integer>[] points;
-        if (checkLengthArray(lengthOfArray)) {
-            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthOfArray);
+        if (checkLengthArray(lengthArray)) {
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadIntegerNumbersFromStartBoundToEndBound(points,

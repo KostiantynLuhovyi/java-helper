@@ -67,15 +67,15 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
+     * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
      * @return Created and filled an array with random numeric data of the type {@link Integer}.
      */
     @Override
-    public Integer[] fill(int lengthOfArray) {
+    public Integer[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkLengthArray(lengthOfArray)) {
-            integers = new Integer[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            integers = new Integer[lengthArray];
             this.fillArrayElementsRandomIntegerNumbers(integers);
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
@@ -148,16 +148,16 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      * If the value of the "bound" argument is a negative number,
      *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
+     * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
      * @param bound The value of the border for filling the array with random numeric data of the type {@link Integer}.
      * @return Created and filled an array with random numeric data of the type {@link Integer}.
      */
     @Override
-    public Integer[] fill(int lengthOfArray, Integer bound) {
+    public Integer[] fill(int lengthArray, Integer bound) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkLengthArray(lengthOfArray)) {
-            integers = new Integer[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            integers = new Integer[lengthArray];
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsRandomIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
@@ -248,17 +248,17 @@ public class FillingArrayRandomIntegerNumbers implements FillingArrayNumbers<Int
      *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
      *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
+     * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Integer}.
      * @param startBound The value of the start bound for filling an array with random numeric data of the type {@link Integer}.
      * @param endBound The value of the end bound for filling an array with random numeric data of the type {@link Integer}.
      * @return Created and filled an array with random numeric data of the type {@link Integer}.
      */
     @Override
-    public Integer[] fill(int lengthOfArray, Integer startBound, Integer endBound) {
+    public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkLengthArray(lengthOfArray)) {
-            integers = new Integer[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            integers = new Integer[lengthArray];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);

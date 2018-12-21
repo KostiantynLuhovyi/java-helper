@@ -52,6 +52,6 @@ public abstract class FillingArrayReadValues<T> extends FillingReadValues implem
     public abstract void fill(T[] tArray);
 
     @Override
-    public abstract T[] fill(int lengthOfArray);
+    public abstract T[] fill(int lengthArray);
 
 }

@@ -33,12 +33,12 @@ public interface FillingArrayStrings extends FillingArray<String> {
 
     /**
      * Fills an array with object of the {@link String} type.
-     * <p>The array is created based on the "lengthOfArray" parameter.
+     * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     * @param lengthOfArray The length(size) of the array to be filled with object of the {@link String} type.
+     * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
      * @return Created and filled array with object of the {@link String} type.
      */
     @Override
-    String[] fill(int lengthOfArray);
+    String[] fill(int lengthArray);
 
 }

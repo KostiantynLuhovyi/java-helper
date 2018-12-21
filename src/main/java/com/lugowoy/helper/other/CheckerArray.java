@@ -40,12 +40,12 @@ public interface CheckerArray {
 
     /**
      * Returns the result of the check value of the length of the array passed by argument is equal to or greater than zero.
-     * @param lengthOfArray The value of the length of the array.
+     * @param lengthArray The value of the length of the array.
      * @return Result to check.
      */
-    static boolean checkLengthOfArrayIsEqualToOrGreaterThanZero(int lengthOfArray) {
+    static boolean checklengthArrayIsEqualToOrGreaterThanZero(int lengthArray) {
         boolean result = false;
-        if (lengthOfArray >= 0) {
+        if (lengthArray >= 0) {
             result = true;
         }
         return result;
@@ -53,12 +53,12 @@ public interface CheckerArray {
 
     /**
      * Returns the result of the check value of the length of the array passed by argument is greater than zero.
-     * @param lengthOfArray The value of the length of the array.
+     * @param lengthArray The value of the length of the array.
      * @return Result to check.
      */
-    static boolean checkLengthOfArrayIsGreaterZero(int lengthOfArray) {
+    static boolean checklengthArrayIsGreaterZero(int lengthArray) {
         boolean result = false;
-        if (lengthOfArray > 0) {
+        if (lengthArray > 0) {
             result = true;
         }
         return result;

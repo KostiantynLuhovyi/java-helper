@@ -101,17 +101,17 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
      * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      *
-     * @param lengthOfArray The length(size) of the array to be filled.
+     * @param lengthArray The length(size) of the array to be filled.
      * @return Created and filled array of the objects of the {@link Point} class
      *         with random numeric coordinates of type {@link Double}.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
-    public Point<Double>[] fill(int lengthOfArray) {
+    public Point<Double>[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Point<Double>[] points;
-        if (checkLengthArray(lengthOfArray)) {
-            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthOfArray);
+        if (checkLengthArray(lengthArray)) {
+            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbers(points);
         } else {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
@@ -188,18 +188,18 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
      *
      *
-     * @param lengthOfArray The length(size) of the array to be filled.
+     * @param lengthArray The length(size) of the array to be filled.
      * @param bound       The value of the end of the range boundary
      *                    of numerical values by which the coordinates of points in the array will be initialized.
      * @return Created and filled array of objects of the {@link Point} class with random numeric coordinates of type {@link Double}.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
-    public Point<Double>[] fill(int lengthOfArray, Double bound) {
+    public Point<Double>[] fill(int lengthArray, Double bound) {
         //todo check or add relevant checks.
         Point<Double>[] points;
-        if (checkLengthArray(lengthOfArray)) {
-            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthOfArray);
+        if (checkLengthArray(lengthArray)) {
+            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points, bound);
             } else {
@@ -306,7 +306,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
      * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
-     * @param lengthOfArray The length(size) of the array to be filled.
+     * @param lengthArray The length(size) of the array to be filled.
      * @param startBound  The value of the start of the range boundary
      *                    of numerical values by which the coordinates of points in the array will be initialized.
      * @param endBound    The value of the end of the range boundary
@@ -315,11 +315,11 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
-    public Point<Double>[] fill(int lengthOfArray, Double startBound, Double endBound) {
+    public Point<Double>[] fill(int lengthArray, Double startBound, Double endBound) {
         //todo check or add relevant checks.
         Point<Double>[] points;
-        if (checkLengthArray(lengthOfArray)) {
-            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthOfArray);
+        if (checkLengthArray(lengthArray)) {
+            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,

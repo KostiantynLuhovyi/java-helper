@@ -52,12 +52,12 @@ public interface CheckerFillingArray {
     }
 
     /**
-     * The method that checks that the value of "lengthOfArray" is greater than "0" and less than {@link Integer#MAX_VALUE}.
-     * @param lengthOfArray The value for checking.
+     * The method that checks that the value of "lengthArray" is greater than "0" and less than {@link Integer#MAX_VALUE}.
+     * @param lengthArray The value for checking.
      * @return Result of checking.
      */
-    static boolean checkLengthArray(int lengthOfArray) {
-        return ((lengthOfArray >= DEFAULT_START_LENGTH_ARRAY) && (lengthOfArray < Integer.MAX_VALUE));
+    static boolean checkLengthArray(int lengthArray) {
+        return ((lengthArray >= DEFAULT_START_LENGTH_ARRAY) && (lengthArray < Integer.MAX_VALUE));
     }
 
     /**

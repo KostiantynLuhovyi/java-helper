@@ -22,7 +22,7 @@ public interface LengthArray {
      *
      * @param reader The object to read the length value of the array.
      */
-    static int getLengthOfArray(final Reading reader) {
+    static int getlengthArray(final Reading reader) {
         int lengthArray;
         if (reader != null) {
             lengthArray = reader.readInt();
@@ -39,13 +39,13 @@ public interface LengthArray {
      * Returns the length of an array.
      *
      * @param reader The object to read the length value of the array.
-     * @param boundLengthOfArray Value to determine the maximum length bound of the array.
+     * @param boundlengthArray Value to determine the maximum length bound of the array.
      */
-    static int getLengthOfArray(final Reading reader, final int boundLengthOfArray) {
+    static int getlengthArray(final Reading reader, final int boundlengthArray) {
         int lengthArray;
-        if ((reader != null) && (boundLengthOfArray >= 0)) {
+        if ((reader != null) && (boundlengthArray >= 0)) {
             lengthArray = reader.readInt();
-            if ((lengthArray <= 0) || (lengthArray > boundLengthOfArray)) {
+            if ((lengthArray <= 0) || (lengthArray > boundlengthArray)) {
                 lengthArray = DEFAULT_LENGTH_OF_ARRAY;
             }
         } else {
@@ -58,24 +58,24 @@ public interface LengthArray {
      * Returns the length of an array.
      *
      * @param reader The object to read the length value of the array.
-     * @param minBoundLengthOfArray Value to determine the minimum length bound of the array.
-     * @param maxBoundLengthOfArray Value to determine the maximum length bound of the array.
+     * @param minBoundlengthArray Value to determine the minimum length bound of the array.
+     * @param maxBoundlengthArray Value to determine the maximum length bound of the array.
      */
-    static int getLengthOfArray(final Reading reader, final int minBoundLengthOfArray, final int maxBoundLengthOfArray) {
-        int lengthOfArray;
-        if ((reader != null) && ((minBoundLengthOfArray >= 0) && (maxBoundLengthOfArray >= 0))) {
-            if (minBoundLengthOfArray < maxBoundLengthOfArray) {
-                lengthOfArray = reader.readInt();
-                if ((lengthOfArray <= minBoundLengthOfArray) || (lengthOfArray >= maxBoundLengthOfArray)) {
-                    lengthOfArray = DEFAULT_LENGTH_OF_ARRAY;
+    static int getlengthArray(final Reading reader, final int minBoundlengthArray, final int maxBoundlengthArray) {
+        int lengthArray;
+        if ((reader != null) && ((minBoundlengthArray >= 0) && (maxBoundlengthArray >= 0))) {
+            if (minBoundlengthArray < maxBoundlengthArray) {
+                lengthArray = reader.readInt();
+                if ((lengthArray <= minBoundlengthArray) || (lengthArray >= maxBoundlengthArray)) {
+                    lengthArray = DEFAULT_LENGTH_OF_ARRAY;
                 }
             } else {
-                lengthOfArray = DEFAULT_LENGTH_OF_ARRAY;
+                lengthArray = DEFAULT_LENGTH_OF_ARRAY;
             }
         } else {
-            lengthOfArray = DEFAULT_LENGTH_OF_ARRAY;
+            lengthArray = DEFAULT_LENGTH_OF_ARRAY;
         }
-        return lengthOfArray;
+        return lengthArray;
     }
 
 }

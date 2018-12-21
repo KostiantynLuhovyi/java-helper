@@ -67,15 +67,15 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
      * Fills an array with object of the {@link String} type.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     * @param lengthOfArray The length(size) of the array to be filled with object of the {@link String} type.
+     * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
      * @return Created and filled array with object of the {@link String} type.
      */
     @Override
-    public String[] fill(int lengthOfArray) {
+    public String[] fill(int lengthArray) {
         //todo check or add relevant checks.
         String[] strings;
-        if (checkLengthArray(lengthOfArray)) {
-            strings = new String[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            strings = new String[lengthArray];
             this.initializeArrayElementsEnteredStrings(strings);
         } else {
             strings = new String[DEFAULT_LENGTH_ARRAY];

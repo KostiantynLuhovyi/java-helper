@@ -65,15 +65,15 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
      * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      *
-     * @param lengthOfArray The length(size) of the array to be filled
+     * @param lengthArray The length(size) of the array to be filled
      *                    with sequential ascending integer part of numeric data of type {@link Double}.
      * @return Created and filled an array with sequential ascending integer part of numeric data of type {@link Double}.
      */
     @Override
-    public Double[] fill(int lengthOfArray) {
+    public Double[] fill(int lengthArray) {
         Double[] doubles;
-        if (checkLengthArray(lengthOfArray)) {
-            doubles = new Double[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            doubles = new Double[lengthArray];
             this.fillArrayElementsSequentialAscendingDoubleNumbers(doubles);
         } else {
             doubles = new Double[DEFAULT_LENGTH_ARRAY];
@@ -145,16 +145,16 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      * If the value of the "bound" argument is a negative number,
      *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with
+     * @param lengthArray The length(size) of the array to be filled with
      *                    sequential ascending integer part of numeric data of type {@link Double}.
      * @param bound The value of the border for filling the array with sequential ascending integer part of numeric data of type {@link Double}.
      * @return Created and filled an array with sequential ascending integer part of numeric data of type {@link Double}.
      */
     @Override
-    public Double[] fill(int lengthOfArray, Double bound) {
+    public Double[] fill(int lengthArray, Double bound) {
         Double[] doubles;
-        if (checkLengthArray(lengthOfArray)) {
-            doubles = new Double[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            doubles = new Double[lengthArray];
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
@@ -247,7 +247,7 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
      * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with
+     * @param lengthArray The length(size) of the array to be filled with
      *                    sequential ascending integer part of numeric data of type {@link Double}.
      * @param startBound The value of the start bound for filling an array with
      *                   sequential ascending integer part of numeric data of type {@link Double}.
@@ -256,10 +256,10 @@ public class FillingArraySequentialAscendingDoubleNumbers implements FillingArra
      * @return Created and filled an array with sequential ascending integer part of numeric data of type {@link Double}.
      */
     @Override
-    public Double[] fill(int lengthOfArray, Double startBound, Double endBound) {
+    public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         Double[] doubles;
-        if (checkLengthArray(lengthOfArray)) {
-            doubles = new Double[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            doubles = new Double[lengthArray];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialAscendingDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);

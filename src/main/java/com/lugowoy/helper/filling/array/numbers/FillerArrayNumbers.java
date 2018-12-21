@@ -58,17 +58,17 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
 
     /**
      * Fills an array with data.
-     * <p>The array is created based on the "lengthOfArray" parameter.
+     * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class and
      * contains the implementation of the {@link FillingArray} interface contract.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with data.
+     * @param lengthArray The length(size) of the array to be filled with data.
      * @return Created and filled array with data.
      */
     @Override
-    public T[] fill(int lengthOfArray) {
-        return super.fill(lengthOfArray);
+    public T[] fill(int lengthArray) {
+        return super.fill(lengthArray);
     }
 
     /**
@@ -99,18 +99,18 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
 
     /**
      * Fills an array with numeric data.
-     * <p>The array is created based on the "lengthOfArray" parameter.
+     * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      * <p>The array is filled with numeric data in the range from "0" to the value of the "bound" parameter.
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class and
      * contains the implementation of the {@link FillingArrayNumbers} interface contract.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with numeric data.
+     * @param lengthArray The length(size) of the array to be filled with numeric data.
      * @param bound The value of the end bound for filling the array with numeric data.
      * @return Created and filled an array with numeric data.
      */
-    public T[] fill(int lengthOfArray, T bound) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthOfArray, bound);
+    public T[] fill(int lengthArray, T bound) {
+        return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthArray, bound);
     }
 
     /**
@@ -143,19 +143,19 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
 
     /**
      * Fills an array with numeric data.
-     * <p>The array is created based on the "lengthOfArray" parameter.
+     * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      * <p>The array is filled with numeric data in the range from the value "startBound" to the value of the "endBound" parameters.
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class and
      * contains the implementation of the {@link FillingArrayNumbers} interface contract.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with numeric data.
+     * @param lengthArray The length(size) of the array to be filled with numeric data.
      * @param startBound The value of the start bound for filling an array with numeric data.
      * @param endBound The value of the end bound for filling an array with numeric data.
      * @return Created and filled an array with numeric data.
      */
-    public T[] fill(int lengthOfArray, T startBound, T endBound) {
-        return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthOfArray, startBound, endBound);
+    public T[] fill(int lengthArray, T startBound, T endBound) {
+        return ((FillingArrayNumbers<T>)super.getFilling()).fill(lengthArray, startBound, endBound);
     }
 
     /**

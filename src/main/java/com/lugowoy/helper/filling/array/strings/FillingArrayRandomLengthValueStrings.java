@@ -67,15 +67,15 @@ public class FillingArrayRandomLengthValueStrings extends FillingArrayRandomStri
      *                            to {@link FillingArrayRandomStrings#DEFAULT_STRING_LENGTH} characters.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     * @param lengthOfArray The length(size) of the array to be filled with object of the {@link String} type.
+     * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
      * @return Created and filled array with object of the {@link String} type.
      */
     @Override
-    public String[] fill(int lengthOfArray) {
+    public String[] fill(int lengthArray) {
         //todo check or add relevant checks.
         String[] strings;
-        if (checkLengthArray(lengthOfArray)) {
-            strings = new String[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            strings = new String[lengthArray];
             this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
         } else {
             strings = new String[DEFAULT_LENGTH_ARRAY];

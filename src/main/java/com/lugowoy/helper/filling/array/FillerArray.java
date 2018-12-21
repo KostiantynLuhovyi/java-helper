@@ -56,16 +56,16 @@ public class FillerArray<T> extends Filler<Array<T>> {
 
     /**
      * Fills an array with data.
-     * <p>The array is created based on the "lengthOfArray" parameter.
+     * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class and
      * contains the implementation of the {@link FillingArray} interface contract.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with data.
+     * @param lengthArray The length(size) of the array to be filled with data.
      * @return Created and filled array with data.
      */
-    public T[] fill(int lengthOfArray) {
-        return ((FillingArray<T>)super.getFilling()).fill(lengthOfArray);
+    public T[] fill(int lengthArray) {
+        return ((FillingArray<T>)super.getFilling()).fill(lengthArray);
     }
 
     /**

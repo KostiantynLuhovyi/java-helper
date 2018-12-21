@@ -33,12 +33,12 @@ public interface FillingArray<T> extends Filling<Array<T>> {
 
     /**
      * Fills an array with data.
-     * <p>The array is created based on the "lengthOfArray" parameter.
+     * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with data.
+     * @param lengthArray The length(size) of the array to be filled with data.
      * @return Created and filled array with data.
      */
-    T[] fill(int lengthOfArray);
+    T[] fill(int lengthArray);
 
 }

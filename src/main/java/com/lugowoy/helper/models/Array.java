@@ -1,7 +1,5 @@
 package com.lugowoy.helper.models;
 
-import com.lugowoy.helper.other.DeepCloning;
-
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.stream.Stream;
@@ -13,14 +11,17 @@ import java.util.stream.Stream;
  * @param <T> The type of elements stored in the array.
  *
  * @author Konstantin Lugowoy
- * @version 2.0 (1.6)
+ * @version 2.1 (1.6)
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  * @see java.lang.Iterable
  * @since 1.0
  */
+//todo Add (where needed) and change documentation of methods.
 public class Array<T> implements Model, Iterable<T> {
+
+    // Constants.
 
     /**
      * Default length of array.
@@ -28,24 +29,51 @@ public class Array<T> implements Model, Iterable<T> {
      */
     public static final int DEFAULT_LENGTH_ARRAY = 10;
 
-    private Object[] array;
+    // Class attributes.
 
-    private int indexArrayElement;
+    private Object[] array;
+    private int indexElement;
+
+    // Constructors.
 
     private Array() {
          this.array = new Object[DEFAULT_LENGTH_ARRAY];
-         this.indexArrayElement = 0;
+         this.indexElement = 0;
     }
 
     private Array(T[] array) {
-        this.setCorrectArray(array);
-        this.indexArrayElement = this.array.length;
+        if (array != null) {
+            this.array = array;
+            this.indexElement = this.array.length;
+        } else {
+            throw new NullPointerException("Argument 'array' is null.");
+        }
     }
 
-    private Array(int lengthOfArray) {
-        this.setCorrectArray(lengthOfArray);
-        this.indexArrayElement = 0;
+    private Array(int lengthArray) {
+        if (lengthArray >= 0 && lengthArray < Integer.MAX_VALUE) {
+            this.array = new Object[lengthArray];
+            this.indexElement = 0;
+        } else {
+            throw new IllegalArgumentException("Argument 'lengthArray': " + lengthArray + " is not valid.");
+        }
     }
+
+    @SuppressWarnings("unchecked")
+    private Array(Array<T> array) {
+        if (array != null) {
+            if (array.getLength() > 0) {
+                this.array = Arrays.copyOfRange(array.toArray((T[]) new Object[array.getLength()]), 0, array.getLength());
+                this.indexElement = array.indexElement;
+            } else {
+                throw new ArrayIndexOutOfBoundsException("Array has incorrect length : " + array.getLength() + ".");
+            }
+        } else {
+            throw new NullPointerException("Argument 'array' is null.");
+        }
+    }
+
+    // Overridden methods of class Object.
 
     /**
      * Method overridden from class Object.
@@ -81,76 +109,17 @@ public class Array<T> implements Model, Iterable<T> {
         return Arrays.toString(array);
     }
 
+    // Class methods.
+
     /**
-     * Creates and returns a copy of this object.  The precise meaning
-     * of "copy" may depend on the class of the object. The general
-     * intent is that, for any object {@code x}, the expression:
-     * <blockquote>
-     * <pre>
-     * x.clone() != x</pre></blockquote>
-     * will be true, and that the expression:
-     * <blockquote>
-     * <pre>
-     * x.clone().getClass() == x.getClass()</pre></blockquote>
-     * will be {@code true}, but these are not absolute requirements.
-     * While it is typically the case that:
-     * <blockquote>
-     * <pre>
-     * x.clone().equals(x)</pre></blockquote>
-     * will be {@code true}, this is not an absolute requirement.
-     * <p>
-     * By convention, the returned object should be obtained by calling
-     * {@code super.clone}.  If a class and all of its superclasses (except
-     * {@code Object}) obey this convention, it will be the case that
-     * {@code x.clone().getClass() == x.getClass()}.
-     * <p>
-     * By convention, the object returned by this method should be independent
-     * of this object (which is being cloned).  To achieve this independence,
-     * it may be necessary to modify one or more fields of the object returned
-     * by {@code super.clone} before returning it.  Typically, this means
-     * copying any mutable objects that comprise the internal "deep structure"
-     * of the object being cloned and replacing the references to these
-     * objects with references to the copies.  If a class contains only
-     * primitive fields or references to immutable objects, then it is usually
-     * the case that no fields in the object returned by {@code super.clone}
-     * need to be modified.
-     * <p>
-     * The method {@code clone} for class {@code Object} performs a
-     * specific cloning operation. First, if the class of this object does
-     * not implement the interface {@code Cloneable}, then a
-     * {@code CloneNotSupportedException} is thrown. Note that all arrays
-     * are considered to implement the interface {@code Cloneable} and that
-     * the return type of the {@code clone} method of an array type {@code T[]}
-     * is {@code T[]} where T is any reference or primitive type.
-     * Otherwise, this method creates a new instance of the class of this
-     * object and initializes all its fields with exactly the contents of
-     * the corresponding fields of this object, as if by assignment; the
-     * contents of the fields are not themselves cloned. Thus, this method
-     * performs a "shallow copy" of this object, not a "deep copy" operation.
-     * <p>
-     * The class {@code Object} does not itself implement the interface
-     * {@code Cloneable}, so calling the {@code clone} method on an object
-     * whose class is {@code Object} will result in throwing an
-     * exception at run time.
+     * Returns value of length of array that is encapsulated in object of this class.
      *
-     * @return a clone of this instance.
-     * @throws CloneNotSupportedException if the object's class does not
-     *                                    support the {@code Cloneable} interface. Subclasses
-     *                                    that override the {@code clone} method can also
-     *                                    throw this exception to indicate that an instance cannot
-     *                                    be cloned.
-     * @see Cloneable
+     * @return The value of length of an array.
+     *
+     * @since 1.2
      */
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        Array<T> array = new Array<>();
-        try {
-            array = (Array<T>) super.clone();
-            array = DeepCloning.CLONER.deepClone(this);
-        } catch (CloneNotSupportedException ex) {
-            new InternalError(ex.getMessage()).printStackTrace();
-        }
-        return array;
+    public int getLength() {
+        return this.array.length;
     }
 
     /**
@@ -164,19 +133,18 @@ public class Array<T> implements Model, Iterable<T> {
      */
     @SuppressWarnings("unchecked")
     public T[] toArray(T[] tArray) {
-        if (tArray != null) {
+        if (isNonNull(tArray)) {
             if (tArray.length <= this.array.length) {
                 tArray = (T[]) Arrays.copyOf(this.array, this.array.length, tArray.getClass());
             } else {
                 tArray = (T[]) Arrays.copyOf(this.array, tArray.length, tArray.getClass());
             }
         } else {
-            this.toArray((T[]) new Object[DEFAULT_LENGTH_ARRAY]);
+            throw new NullPointerException("Argument 'array' is null.");
         }
         return tArray;
     }
 
-    //todo add doc's
     public Object[] toArray() {
         return this.array;
     }
@@ -191,8 +159,16 @@ public class Array<T> implements Model, Iterable<T> {
      * @since 1.0
      */
     public void setArray(T[] array) {
-        this.setCorrectArray(array);
-        this.indexArrayElement = this.array.length;
+        if (isNonNull(array)) {
+            if (isCorrectLength(array.length)) {
+                this.array = Arrays.copyOfRange(array, 0, array.length);
+                this.indexElement = this.array.length;
+            } else {
+                throw new ArrayIndexOutOfBoundsException("Array has incorrect length : " + array.length + ".");
+            }
+        } else {
+            throw new NullPointerException("Argument 'array' is null.");
+        }
     }
 
     /**
@@ -202,44 +178,33 @@ public class Array<T> implements Model, Iterable<T> {
      *  then the array is initialized by an array of the default length..
      * <p> Array elements are null.
      *
-     * @param lengthOfArray The length of array to create and initialize the array that encapsulates of the object.
+     * @param lengthArray The length of array to create and initialize the array that encapsulates of the object.
      *
      * @since 1.1
      */
-    public void setArray(int lengthOfArray) {
-        this.setCorrectArray(lengthOfArray);
-        this.indexArrayElement = this.array.length;
-    }
-
-    /**
-     * Returns value of length of array that is encapsulated in object of this class.
-     *
-     * @return The value of length of an array.
-     *
-     * @since 1.2
-     */
-    public int getLength() {
-        return this.array.length;
-    }
-
-    /**
-     * Adds (inserts) an object to the next position, relative to the previous call of this method and adding an object.
-     *
-     * @param obj The adding (insertion) object.
-     *
-     * @since 1.2
-     */
-    public void add(T obj) {
-        if (this.indexArrayElement < this.array.length) {
-            if (this.array[indexArrayElement] == null) {
-                this.array[indexArrayElement] = obj;
-                this.indexArrayElement += 1;
-            }
+    public void setArray(int lengthArray) {
+        if (isCorrectLength(lengthArray)) {
+            this.array = new Object[lengthArray];
+            this.indexElement = 0;
         } else {
-            this.array = Arrays.copyOf(this.array, this.array.length + 1);
-            this.indexArrayElement = this.array.length - 1;
-            this.add(obj);
+            throw new IllegalArgumentException("Argument 'length' : " + lengthArray + " is not valid.");
         }
+    }
+
+    /**
+     * Get an object located at a specific index.
+     *
+     * @param index Index to get the object.
+     *
+     * @since 1.2
+     */
+    @SuppressWarnings("unchecked")
+    public T get(int index) {
+        T obj = null;
+        if (isCorrectIndex(index)) {
+            obj = (T) this.array[index];
+        }
+        return obj;
     }
 
     /**
@@ -255,27 +220,32 @@ public class Array<T> implements Model, Iterable<T> {
     public void set(int index, T obj) {
         if ((index >= 0) && (index < this.array.length)) {
             this.array[index] = obj;
-            this.indexArrayElement += 1;
+            this.indexElement += 1;
         } else {
             this.array = Arrays.copyOf(this.array, this.array.length + 1);
-            this.indexArrayElement = this.array.length - 1;
+            this.indexElement = this.array.length - 1;
             this.set(index, obj);
         }
     }
 
     /**
-     * Get an object located at a specific index.
+     * Adds (inserts) an object to the next position, relative to the previous call of this method and adding an object.
      *
-     * @param index Index to get the object.
+     * @param obj The adding (insertion) object.
      *
      * @since 1.2
      */
-    public T get(int index) {
-        T obj = null;
-        if (checkIndex(index)) {
-            obj = (T) this.array[index];
+    public void add(T obj) {
+        if (this.indexElement < this.array.length) {
+            if (this.array[indexElement] == null) {
+                this.array[indexElement] = obj;
+                this.indexElement += 1;
+            }
+        } else {
+            this.array = Arrays.copyOf(this.array, this.array.length + 1);
+            this.indexElement = this.array.length - 1;
+            this.add(obj);
         }
-        return obj;
     }
 
     /**
@@ -288,11 +258,13 @@ public class Array<T> implements Model, Iterable<T> {
      * @since 1.2
      */
     public void delete(int index) {
-        if (checkIndex(index)) {
+        if (isCorrectIndex(index)) {
             this.array = Stream.concat(Arrays.stream(Arrays.copyOfRange(this.array, 0, index - 1)),
                                        Arrays.stream(Arrays.copyOfRange(this.array, index, this.array.length)))
                                .toArray();
-            this.indexArrayElement -= 1;
+            this.indexElement -= 1;
+        } else {
+            throw new IllegalArgumentException("Argument 'index' : " + index + " is not valid.");
         }
     }
 
@@ -312,8 +284,12 @@ public class Array<T> implements Model, Iterable<T> {
                     break;
                 }
             }
+        } else {
+            throw new NullPointerException("Argument 'obj' is null.");
         }
     }
+
+    // Implementing an Iterator interface.
 
     @Override
     public Iterator<T> iterator() {
@@ -334,31 +310,17 @@ public class Array<T> implements Model, Iterable<T> {
         };
     }
 
-    private void setCorrectArray(T[] array) {
-        if (checkNonNull(array)) {
-            this.array = array;
-        } else {
-            this.array = new Object[DEFAULT_LENGTH_ARRAY];
-        }
+    // Helper (private) methods.
+
+    private boolean isCorrectLength(int lengthArray) {
+        return lengthArray >= 0;
     }
 
-    private void setCorrectArray(int lengthOfArray) {
-        if (checkLengthLargerZero(lengthOfArray)) {
-            this.array = new Object[lengthOfArray];
-        } else {
-            this.array = new Object[DEFAULT_LENGTH_ARRAY];
-        }
-    }
-
-    private boolean checkLengthLargerZero(int lengthOfArray) {
-        return lengthOfArray > 0;
-    }
-
-    private boolean checkNonNull(T[] array) {
+    private boolean isNonNull(T[] array) {
         return array != null;
     }
 
-    private boolean checkIndex(int index) {
+    private boolean isCorrectIndex(int index) {
         boolean resultOfCheck = false;
         if ((index >= 0) && (index < this.array.length)) {
             resultOfCheck = true;
@@ -366,16 +328,22 @@ public class Array<T> implements Model, Iterable<T> {
         return resultOfCheck;
     }
 
+    // Methods creators.
+
     //todo add doc's
     public static <T> Array<T> create() {
         return new Array<>();
     }
 
-    public static <T> Array<T> create(int lengthOfArray) {
-        return new Array<>(lengthOfArray);
+    public static <T> Array<T> create(int lengthArray) {
+        return new Array<>(lengthArray);
     }
 
     public static <T> Array<T> create(T[] array) {
+        return new Array<>(array);
+    }
+
+    public static <T> Array<T> create(Array<T> array) {
         return new Array<>(array);
     }
 

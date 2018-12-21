@@ -99,16 +99,16 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with data of the {@link Integer} type
+     * @param lengthArray The length(size) of the array to be filled with data of the {@link Integer} type
      *                    with read by the {@link Reader} class object.
      * @return Created and filled array with data of the {@link Integer} type with read by the {@link Reader} class object.
      */
     @Override
-    public Integer[] fill(int lengthOfArray) {
+    public Integer[] fill(int lengthArray) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkLengthArray(lengthOfArray)) {
-            integers = new Integer[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            integers = new Integer[lengthArray];
             this.fillArrayElementsEnteredIntegerNumbers(integers);
         } else {
             integers = new Integer[DEFAULT_LENGTH_ARRAY];
@@ -182,18 +182,18 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * If the value of the "bound" argument is a negative number,
      *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with data of the {@link Integer} type
+     * @param lengthArray The length(size) of the array to be filled with data of the {@link Integer} type
      *                    with read by the {@link Reader} class object.
      * @param bound The value of the border for filling the array with data of the {@link Integer} type
      *              with read by the {@link Reader} class object.
      * @return Created and filled an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      */
     @Override
-    public Integer[] fill(int lengthOfArray, Integer bound) {
+    public Integer[] fill(int lengthArray, Integer bound) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkLengthArray(lengthOfArray)) {
-            integers = new Integer[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            integers = new Integer[lengthArray];
             if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
@@ -287,7 +287,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
      *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
-     * @param lengthOfArray The length(size) of the array to be filled with data of the {@link Integer} type
+     * @param lengthArray The length(size) of the array to be filled with data of the {@link Integer} type
      *                    with read by the {@link Reader} class object.
      * @param startBound The value of the start bound for filling an array with data of the {@link Integer} type
      *                   with read by the {@link Reader} class object.
@@ -296,11 +296,11 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * @return Created and filled an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      * */
     @Override
-    public Integer[] fill(int lengthOfArray, Integer startBound, Integer endBound) {
+    public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         //todo check or add relevant checks.
         Integer[] integers;
-        if (checkLengthArray(lengthOfArray)) {
-            integers = new Integer[lengthOfArray];
+        if (checkLengthArray(lengthArray)) {
+            integers = new Integer[lengthArray];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
