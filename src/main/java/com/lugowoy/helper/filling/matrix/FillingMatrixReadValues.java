@@ -1,4 +1,4 @@
-package com.lugowoy.helper.filling.matrixes;
+package com.lugowoy.helper.filling.matrix;
 
 import com.lugowoy.helper.filling.FillingReadValues;
 import com.lugowoy.helper.io.reading.Reader;

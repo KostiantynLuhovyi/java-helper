@@ -1,6 +1,6 @@
-package com.lugowoy.helper.filling.matrixes.numbers;
+package com.lugowoy.helper.filling.matrix.numbers;
 
-import com.lugowoy.helper.filling.matrixes.FillingMatrix;
+import com.lugowoy.helper.filling.matrix.FillingMatrix;
 import com.lugowoy.helper.models.Matrix;
 
 /**

@@ -1,12 +1,12 @@
-package com.lugowoy.helper.filling.matrixes.numbers;
+package com.lugowoy.helper.filling.matrix.numbers;
 
-import com.lugowoy.helper.filling.matrixes.FillingMatrixReadValues;
+import com.lugowoy.helper.filling.matrix.FillingMatrixReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.Matrix;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.START_BOUND;
-import static com.lugowoy.helper.filling.matrixes.CheckerFillingMatrix.*;
+import static com.lugowoy.helper.filling.matrix.CheckerFillingMatrix.*;
 
 /**
  * Created by Konstantin Lugowoy on 10.10.2018.

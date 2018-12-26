@@ -1,13 +1,11 @@
-package com.lugowoy.helper.filling.matrixes.numbers;
+package com.lugowoy.helper.filling.matrix.numbers;
 
-import com.lugowoy.helper.filling.DefaultValuesForFilling;
-import com.lugowoy.helper.filling.matrixes.CheckerFillingMatrix;
 import com.lugowoy.helper.models.Matrix;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.NEGATIVE_INTEGER_BOUND;
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.POSITIVE_INTEGER_BOUND;
-import static com.lugowoy.helper.filling.matrixes.CheckerFillingMatrix.*;
+import static com.lugowoy.helper.filling.matrix.CheckerFillingMatrix.*;
 
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
