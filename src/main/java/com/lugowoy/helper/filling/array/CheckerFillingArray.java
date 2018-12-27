@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.array;
 
 import com.lugowoy.helper.models.Array;
-import com.lugowoy.helper.models.Point;
+import com.lugowoy.helper.models.points.Point;
 
 /**
  * The interface provides a static functional for various checks

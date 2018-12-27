@@ -1,6 +1,6 @@
 package com.lugowoy.helper.filling.array.points;
 
-import com.lugowoy.helper.models.Point;
+import com.lugowoy.helper.models.points.Point;
 
 /**
  * The functional interface declares a contract to filling an array of an object of the {@link Point} class
@@ -13,7 +13,7 @@ import com.lugowoy.helper.models.Point;
  * @version 1.0
  */
 @FunctionalInterface
-public interface FillingArrayPointsArrayNumbers<T extends Number> {
+public interface FillingArrayPointsNumbers<T extends Number> {
 
     /**
      * Fills an array with objects of the {@link Point} class

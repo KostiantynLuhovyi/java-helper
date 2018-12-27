@@ -1,5 +1,4 @@
-import com.lugowoy.helper.filling.matrixes.numbers.FillingMatrixRandomIntegerNumbers;
-import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomIntegerNumbers;
 import com.lugowoy.helper.models.Matrix;
 
 import java.util.Arrays;
@@ -12,9 +11,9 @@ public class Test {
 
     public static void main(String[] args) {
 
-        Matrix<Integer> matrix = Matrix.create(new FillingMatrixRandomIntegerNumbers().fill(5, 5, POSITIVE_INTEGER_BOUND));
+        /*Matrix<Integer> matrix = Matrix.create(new FillingMatrixRandomIntegerNumbers().fill(5, 5, POSITIVE_INTEGER_BOUND));
 
-        /*System.out.println("Matrix : ");
+        System.out.println("Matrix : ");
         System.out.println(matrix);
 
         Array<Integer> array = matrix.getColumn(9);
@@ -36,7 +35,7 @@ public class Test {
         System.out.println(matrix);
         System.out.println();
 
-        matrix.deleteColumn(3);*/
+        matrix.deleteColumn(3);
 
         System.out.println(matrix);
 
@@ -56,7 +55,7 @@ public class Test {
 
         Integer[] integers = new Integer[]{-2, -2, -2, -2, -2};
         matrix.setRow(integers, 0);
-        System.out.println(matrix);
+        System.out.println(matrix);*/
 
     }
 

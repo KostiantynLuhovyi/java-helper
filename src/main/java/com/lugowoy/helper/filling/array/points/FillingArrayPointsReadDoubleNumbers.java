@@ -5,7 +5,7 @@ import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.Array;
-import com.lugowoy.helper.models.Point;
+import com.lugowoy.helper.models.points.Point;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
@@ -26,10 +26,10 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
  */
-public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadValues<Double> implements FillingArrayPoints<Double> {
+public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadValues<Double> {
 
     //todo come up with and implement a variant of the methods without using the annotation SupressWarning.
-
+    
     /**
      * Constructs a new object {@link FillingArrayPointsReadDoubleNumbers} class,
      *  initializing an object of {@link Reader} class encapsulated in parent class to read the data to be fill array.
@@ -37,8 +37,8 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in parent class to read data to fill array.
      */
-    public FillingArrayPointsReadDoubleNumbers(Reader reader) {
-        super(reader);
+    public FillingArrayPointsReadDoubleNumbers(Reader reader, int dimensionPoint) {
+        super(reader, dimensionPoint);
     }
 
     /**
@@ -49,8 +49,8 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * @param reading The object of class that implements the {@link Reading} interface to initialize an object of the {@link Reader} class
      *                encapsulated in parent class to read the data to be fill array.
      */
-    public FillingArrayPointsReadDoubleNumbers(Reading reading) {
-        super(reading);
+    public FillingArrayPointsReadDoubleNumbers(Reading reading, int dimensionPoint) {
+        super(reading, dimensionPoint);
     }
 
     /**
@@ -67,7 +67,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Point<Double>[] points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
-            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbers(points);
+            this.fillArrayPointsReadDoubleNumbers(points);
             array.setArray(points);
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -86,7 +86,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
     public void fill(Point<Double>[] points) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (CheckerFillingArray.checkNonNullArray(points)) {
-            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbers(points);
+            this.fillArrayPointsReadDoubleNumbers(points);
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
             throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
@@ -112,10 +112,10 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
         Point<Double>[] points;
         if (checkLengthArray(lengthArray)) {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
-            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbers(points);
+            this.fillArrayPointsReadDoubleNumbers(points);
         } else {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
-            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbers(points);
+            this.fillArrayPointsReadDoubleNumbers(points);
         }
         return points;
     }
@@ -139,10 +139,9 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
         if (checkNonNullArray(array)) {
             Point<Double>[] points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
             if (isPositiveBoundValueAndNonNull(bound)) {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points, bound);
+                this.fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(points, bound);
             } else {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points,
-                        POSITIVE_DOUBLE_BOUND);
+                this.fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(points, POSITIVE_DOUBLE_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -167,10 +166,9 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
         //todo check or add relevant checks.
         if (CheckerFillingArray.checkNonNullArray(points)) {
             if (isPositiveBoundValueAndNonNull(bound)) {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points, bound);
+                this.fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(points, bound);
             } else {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points,
-                        POSITIVE_DOUBLE_BOUND);
+                this.fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(points, POSITIVE_DOUBLE_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -201,15 +199,13 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
         if (checkLengthArray(lengthArray)) {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isPositiveBoundValueAndNonNull(bound)) {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points, bound);
+                this.fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(points, bound);
             } else {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points,
-                        POSITIVE_DOUBLE_BOUND);
+                this.fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(points, POSITIVE_DOUBLE_BOUND);
             }
         } else {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
-            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(points,
-                    POSITIVE_DOUBLE_BOUND);
+            this.fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(points, POSITIVE_DOUBLE_BOUND);
         }
         return points;
     }
@@ -237,16 +233,11 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Point<Double>[] points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                                                                                                                              startBound,
-                                                                                                                              endBound);
+            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound) && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+                this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, startBound, endBound);
                 array.setArray(points);
             } else {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                        NEGATIVE_DOUBLE_BOUND,
-                        POSITIVE_DOUBLE_BOUND);
+                this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
                 array.setArray(points);
             }
         } else {
@@ -277,13 +268,9 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
         if (CheckerFillingArray.checkNonNullArray(points)) {
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                                                                                                                              startBound,
-                                                                                                                              endBound);
+                this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, startBound, endBound);
             } else {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                        NEGATIVE_DOUBLE_BOUND,
-                        POSITIVE_DOUBLE_BOUND);
+                this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -322,45 +309,41 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
                     && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                                                                                                                              startBound,
-                                                                                                                              endBound);
+                this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, startBound, endBound);
             } else {
-                this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                        NEGATIVE_DOUBLE_BOUND,
-                        POSITIVE_DOUBLE_BOUND);
+                this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
             }
         } else {
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
-            this.fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(points,
-                    NEGATIVE_DOUBLE_BOUND,
-                    POSITIVE_DOUBLE_BOUND);
+            this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
         }
         return points;
     }
 
-    private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbers(Point<Double>[] points) {
+    private void fillArrayPointsReadDoubleNumbers(Point<Double>[] points) {
         for (int i = 0; i < points.length; i++) {
-            points[i] = Point.create(super.getReader().readDouble(), super.getReader().readDouble());
+            Point<Double> point = new Point<>(super.getDimensionPoint());
+            for (int j = 0; j < point.getDimension(); j++) {
+                point.setCoordinate(super.getReader().readDouble(), j);
+            }
         }
     }
 
-    private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesReadDoubleNumbersFromZeroToPositiveBound(Point<Double>[] points,
-                                                                                                                double bound) {
+    private void fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(Point<Double>[] points, double bound) {
         for (int i = 0; i < points.length; i++) {
-            double valueCoordinateX = checkReadValueIsInRange(super.getReader().readDouble(), START_BOUND, bound);
-            double valueCoordinateY = checkReadValueIsInRange(super.getReader().readDouble(), START_BOUND, bound);
-            points[i] = Point.create(valueCoordinateX, valueCoordinateY);
+            Point<Double> point = new Point<>(super.getDimensionPoint());
+            for (int j = 0; j < point.getDimension(); j++) {
+                point.setCoordinate(checkReadValueIsInRange(super.getReader().readDouble(), START_BOUND, bound), j);
+            }
         }
     }
 
-    private void fillArrayElementsToObjectOfPointsWithFilledCoordinatesEnteredDoubleNumbersFromStartBoundToEndBound(Point<Double>[] points,
-                                                                                                                    double startBound,
-                                                                                                                    double endBound) {
+    private void fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(Point<Double>[] points, double startBound, double endBound) {
         for (int i = 0; i < points.length; i++) {
-            double valueCoordinateX = checkReadValueIsInRange(super.getReader().readDouble(), startBound, endBound);
-            double valueCoordinateY = checkReadValueIsInRange(super.getReader().readDouble(), startBound, endBound);
-            points[i] = Point.create(valueCoordinateX, valueCoordinateY);
+            Point<Double> point = new Point<>(super.getDimensionPoint());
+            for (int j = 0; j < point.getDimension(); j++) {
+                point.setCoordinate(checkReadValueIsInRange(super.getReader().readDouble(), startBound, endBound), j);
+            }
         }
     }
 

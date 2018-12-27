@@ -2,7 +2,7 @@ package com.lugowoy.helper.filling.array.points;
 
 import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.Array;
-import com.lugowoy.helper.models.Point;
+import com.lugowoy.helper.models.points.Point;
 
 /**
  * The interface declares a contract to implement the filling of an objects of {@link Array} and classical array
@@ -14,7 +14,14 @@ import com.lugowoy.helper.models.Point;
  * @author Konstantin Lugowoy
  * @version 1.1
  */
-public interface FillingArrayPoints<T extends Number> extends FillingArray<Point<T>> {
+//todo Edit doc's.
+public abstract class FillingArrayPoints<T extends Number> implements FillingArray<Point<T>> {
+
+    private int dimensionPoint;
+
+    public FillingArrayPoints(int dimensionPoint) {
+        this.dimensionPoint = dimensionPoint;
+    }
 
     /**
      * Fills an object of the {@link Array} class with objects of the {@link Point} class with numerical coordinates.
@@ -23,7 +30,7 @@ public interface FillingArrayPoints<T extends Number> extends FillingArray<Point
      *              with objects of the {@link Point} class with numerical coordinates.
      */
     @Override
-    void fill(Array<Point<T>> array);
+    public abstract void fill(Array<Point<T>> array);
 
     /**
      * Fills an array with objects of the {@link Point} class with numerical coordinates.
@@ -31,7 +38,7 @@ public interface FillingArrayPoints<T extends Number> extends FillingArray<Point
      * @param tArray The array to be filled with objects of the {@link Point} class with numerical coordinates.
      */
     @Override
-    void fill(Point<T>[] tArray);
+    public abstract void fill(Point<T>[] tArray);
 
     /**
      * Fills an array with objects of the {@link Point} class with numerical coordinates.
@@ -43,7 +50,7 @@ public interface FillingArrayPoints<T extends Number> extends FillingArray<Point
      * @return Created and filled array with objects of the {@link Point} class with numerical coordinates.
      */
     @Override
-    Point<T>[] fill(int lengthArray);
+    public abstract Point<T>[] fill(int lengthArray);
 
     /**
      * Fills an object of the {@link Array} class with objects of the {@link Point} class with numerical coordinates
@@ -54,7 +61,7 @@ public interface FillingArrayPoints<T extends Number> extends FillingArray<Point
      * @param bound The value of the end of the range boundary
      *              of numerical values by which the coordinates of points in the array will be initialized.
      */
-    void fill(Array<Point<T>> array, T bound);
+    public abstract void fill(Array<Point<T>> array, T bound);
 
     /**
      * Fills an array with objects of the {@link Point} class with numerical coordinates in the range from "0" to to "bound".
@@ -63,7 +70,7 @@ public interface FillingArrayPoints<T extends Number> extends FillingArray<Point
      * @param bound The value of the end of the range boundary
      *              of numerical values by which the coordinates of points in the array will be initialized.
      */
-    void fill(Point<T>[] points, T bound);
+    public abstract void fill(Point<T>[] points, T bound);
 
     /**
      * Fills an array with objects of the {@link Point} class with numerical coordinates in the range from "0" to "bound" parameter.
@@ -75,7 +82,7 @@ public interface FillingArrayPoints<T extends Number> extends FillingArray<Point
      * @param bound The value of the end of the range boundary
      *              of numerical values by which the coordinates of points in the array will be initialized.
      */
-    Point<T>[] fill(int lengthArray, T bound);
+    public abstract Point<T>[] fill(int lengthArray, T bound);
 
     /**
      * Fills an object of the {@link Array} class with an object of the {@link Point} class with numerical coordinates
@@ -88,7 +95,7 @@ public interface FillingArrayPoints<T extends Number> extends FillingArray<Point
      * @param endBound The value of the end of the range boundary
      *                 of numerical values by which the coordinates of points in the array will be initialized.
      */
-    void fill(Array<Point<T>> array, T startBound, T endBound);
+    public abstract void fill(Array<Point<T>> array, T startBound, T endBound);
 
     /**
      * Fills an array with objects of the {@link Point} class
@@ -100,7 +107,7 @@ public interface FillingArrayPoints<T extends Number> extends FillingArray<Point
      * @param endBound The value of the end of the range boundary
      *                 of numerical values by which the coordinates of points in the array will be initialized.
      */
-    void fill(Point<T>[] points, T startBound, T endBound);
+    public abstract void fill(Point<T>[] points, T startBound, T endBound);
 
     /**
      * Fills an array with objects of the {@link Point} class
@@ -116,6 +123,14 @@ public interface FillingArrayPoints<T extends Number> extends FillingArray<Point
      *                 of numerical values by which the coordinates of points in the array will be initialized.
      * @return Created and filled array with objects of the {@link Point} class with numerical coordinates.
      */
-    Point<T>[] fill(int lengthArray, T startBound, T endBound);
+    public abstract Point<T>[] fill(int lengthArray, T startBound, T endBound);
+
+    public int getDimensionPoint() {
+        return dimensionPoint;
+    }
+
+    public void setDimensionPoint(int dimensionPoint) {
+        this.dimensionPoint = dimensionPoint;
+    }
 
 }

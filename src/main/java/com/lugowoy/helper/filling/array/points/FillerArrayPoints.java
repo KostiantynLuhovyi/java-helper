@@ -4,11 +4,11 @@ import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.filling.array.FillerArray;
 import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.Array;
-import com.lugowoy.helper.models.Point;
+import com.lugowoy.helper.models.points.Point;
 
 /**
  * The class is the inheritor of the class {@link FillerArray}.
- * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArrayPointsArrayNumbers} interface
+ * <p>The class that is a container that encapsulates a specific implementation of a contract declared in the {@link FillingArrayPointsNumbers} interface
  *  and delegates to it an obligation to perform functionality to fills an object of the {@link Array} class
  *  and classical array of object of the {@link Point} class with numeric coordinates.
  * <p>Created by Konstantin Lugowoy on 16-Jan-18.
