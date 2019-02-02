@@ -2,46 +2,52 @@ package com.lugowoy.helper.models;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
- * This class is a model of a dynamic array.
+ * This class is the implementation of the dynamic array model.
+ * (own implementation of java.util.ArrayList)
  * <p>Created by Konstantin Lugowoy on 31.05.2017.
  *
- * @param <T> The type of elements stored in the array.
- *
+ * @param <T> Type of elements (objects) stored in dynamic array (an object of this class).
  * @author Konstantin Lugowoy
- * @version 2.1 (1.6)
+ * @version 2.2
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  * @see java.lang.Iterable
  * @since 1.0
  */
-//todo Add (where needed) and change documentation of methods.
 public class Array<T> implements Model, Iterable<T> {
 
-    // Constants.
-
     /**
-     * Default length of array.
+     * Default length of dynamic array.
+     *
      * @since 1.0
      */
-    public static final int DEFAULT_LENGTH_ARRAY = 10;
-
-    // Class attributes.
+    public static final int DEFAULT_LENGTH = 10;
 
     private Object[] array;
     private int indexElement;
 
-    // Constructors.
-
-    private Array() {
-         this.array = new Object[DEFAULT_LENGTH_ARRAY];
-         this.indexElement = 0;
+    /**
+     * Constructs a new dynamic array object of size {@link Array#DEFAULT_LENGTH}.
+     */
+    public Array() {
+        this.array = new Object[DEFAULT_LENGTH];
+        this.indexElement = 0;
     }
 
-    private Array(T[] array) {
+    /**
+     * Constructs a new dynamic array object initialized by the elements of the array passed in by the argument.
+     * The length of the array is equal to the dimension of the array passed in by the argument.
+     * The control index is equal to the index of the last (length of the array) element of the array.
+     *
+     * @param array Array of elements to initialize.
+     * @throws NullPointerException Argument 'array' is null.
+     */
+    public Array(T[] array) {
         if (array != null) {
             this.array = array;
             this.indexElement = this.array.length;
@@ -50,7 +56,14 @@ public class Array<T> implements Model, Iterable<T> {
         }
     }
 
-    private Array(int lengthArray) {
+    /**
+     * Constructs a new dynamic array object with the length passed in by the argument.
+     * The control index is equal to 0.
+     *
+     * @param lengthArray Length of the array.
+     * @throws IllegalArgumentException Argument 'lengthArray' is less than 0 or greater than {@link Integer#MAX_VALUE};
+     */
+    public Array(int lengthArray) {
         if (lengthArray >= 0 && lengthArray < Integer.MAX_VALUE) {
             this.array = new Object[lengthArray];
             this.indexElement = 0;
@@ -59,25 +72,28 @@ public class Array<T> implements Model, Iterable<T> {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    private Array(Array<T> array) {
+    /**
+     * Constructs a new dynamic array object.
+     * Initialize the elements with elements from the dynamic array object passed in by the argument.
+     * Copy constructor.
+     * The control index is equal to control index of the object passed by argument.
+     *
+     * @param array Object to copy state.
+     * @throws NullPointerException Argument 'array' is null.
+     */
+    public Array(Array<T> array) {
         if (array != null) {
-            if (array.getLength() > 0) {
-                this.array = Arrays.copyOfRange(array.toArray((T[]) new Object[array.getLength()]), 0, array.getLength());
-                this.indexElement = array.indexElement;
-            } else {
-                throw new ArrayIndexOutOfBoundsException("Array has incorrect length : " + array.getLength() + ".");
-            }
+            this.array = Arrays.copyOfRange(array.toArray((T[]) new Object[array.getLength()]), 0, array.getLength());
+            this.indexElement = array.indexElement;
         } else {
             throw new NullPointerException("Argument 'array' is null.");
         }
     }
 
-    // Overridden methods of class Object.
-
     /**
      * Method overridden from class Object.
-     * Implemented for comparison on equality of objects of this class.
+     * Implemented for comparison on equality of dynamic arrays objects of this class.
+     *
      * @param o Object reference for comparison.
      * @return The result of the comparison of objects.
      */
@@ -91,7 +107,8 @@ public class Array<T> implements Model, Iterable<T> {
 
     /**
      * Method overridden from class Object.
-     * Implemented to display hashcode for an object of this class.
+     * Implemented to display hashcode for a dynamic array object of this class.
+     *
      * @return Object hashcode.
      */
     @Override
@@ -101,7 +118,8 @@ public class Array<T> implements Model, Iterable<T> {
 
     /**
      * Method overridden from class Object.
-     * Implemented to output an object of this class as a string.
+     * Implemented to output a dynamic array object of this class as a string.
+     *
      * @return The state of this object as a string.
      */
     @Override
@@ -109,13 +127,10 @@ public class Array<T> implements Model, Iterable<T> {
         return Arrays.toString(array);
     }
 
-    // Class methods.
-
     /**
-     * Returns value of length of array that is encapsulated in object of this class.
+     * Returns the length of a dynamic array object.
      *
-     * @return The value of length of an array.
-     *
+     * @return Length of a dynamic array object.
      * @since 1.2
      */
     public int getLength() {
@@ -123,39 +138,44 @@ public class Array<T> implements Model, Iterable<T> {
     }
 
     /**
-     * Returns an array that is passed by an argument to a method
-     * that contains all the elements encapsulated in the array of the object Array class.
-     * <p>If the size of the array passed to the method is less than or equal to the original array,
-     * an array of a suitable size will be created at runtime,
-     * the elements of the original array will be copied to it and it will be returned by the method.
-     * @param tArray An array in which all the data from the array encapsulated in the class object will be copied.
-     * @return An array containing data from an array encapsulated in the object class.
+     * Returns an array (passed in argument) filled with elements of a dynamic array object.
+     * <p>The size of the array passed to the argument is not important,
+     * so the array with the length as in the dynamic array is returned.
+     *
+     * @param tArray Array to fill.
+     * @return Array filled with elements of a dynamic array object.
+     * @throws IncorrectLengthAvailableException Argument 'tArray' has incorrect length.
+     * @throws NullPointerException              Argument 'tArray' is null.
      */
-    @SuppressWarnings("unchecked")
     public T[] toArray(T[] tArray) {
         if (isNonNull(tArray)) {
-            if (tArray.length <= this.array.length) {
+            if (isCorrectLength(tArray.length)) {
                 tArray = (T[]) Arrays.copyOf(this.array, this.array.length, tArray.getClass());
             } else {
-                tArray = (T[]) Arrays.copyOf(this.array, tArray.length, tArray.getClass());
+                throw new IncorrectLengthAvailableException("Argument 'tArray' has incorrect length : " + tArray.length + ".");
             }
         } else {
-            throw new NullPointerException("Argument 'array' is null.");
+            throw new NullPointerException("Argument 'tArray' is null.");
         }
         return tArray;
     }
 
+    /**
+     * Returns an array containing the elements of the dynamic array object.
+     *
+     * @return Array containing the elements of the dynamic array object.
+     */
     public Object[] toArray() {
         return this.array;
     }
 
     /**
-     * Sets the object of the array encapsulated in this object.
-     * <p> If the object of the array passed by the parameter is null, an array of the default length will be created.
-     * In this case, the elements of the array are null.
+     * Sets (initializes) a dynamic array object with the elements of the array passed in by the argument.
+     * The control index is equal to dynamic array object length.
      *
-     * @param array An array object to initialize an array encapsulated in this object.
-     *
+     * @param array Array with elements to initialize.
+     * @throws IncorrectLengthAvailableException Argument 'array' has incorrect length.
+     * @throws NullPointerException              Argument 'array' is null.
      * @since 1.0
      */
     public void setArray(T[] array) {
@@ -164,7 +184,7 @@ public class Array<T> implements Model, Iterable<T> {
                 this.array = Arrays.copyOfRange(array, 0, array.length);
                 this.indexElement = this.array.length;
             } else {
-                throw new ArrayIndexOutOfBoundsException("Array has incorrect length : " + array.length + ".");
+                throw new IncorrectLengthAvailableException("Array 'array' has incorrect length : " + array.length + ".");
             }
         } else {
             throw new NullPointerException("Argument 'array' is null.");
@@ -172,14 +192,12 @@ public class Array<T> implements Model, Iterable<T> {
     }
 
     /**
-     * Sets the value for the object of the array encapsulated in this object,
-     *  creating a new array with the length of passed by the parameter.
-     * <p> If the length value passed by the parameter is equal to or less than 0,
-     *  then the array is initialized by an array of the default length..
-     * <p> Array elements are null.
+     * Sets the new length of the dynamic array object, thereby resetting all previously data in it.
+     * Array elements are null.
+     * The control index is equal to 0.
      *
-     * @param lengthArray The length of array to create and initialize the array that encapsulates of the object.
-     *
+     * @param lengthArray New length of an dynamic array.
+     * @throws IllegalArgumentException Argument 'lengthArray' has incorrect value.
      * @since 1.1
      */
     public void setArray(int lengthArray) {
@@ -187,52 +205,49 @@ public class Array<T> implements Model, Iterable<T> {
             this.array = new Object[lengthArray];
             this.indexElement = 0;
         } else {
-            throw new IllegalArgumentException("Argument 'length' : " + lengthArray + " is not valid.");
+            throw new IllegalArgumentException("Argument 'length' has incorrect value : " + lengthArray);
         }
     }
 
     /**
-     * Get an object located at a specific index.
+     * Get element by index from dynamic array.
      *
-     * @param index Index to get the object.
-     *
+     * @param index Index to get the element.
+     * @throws IncorrectIndexesAvailableException Argument 'index' has incorrect value.
      * @since 1.2
      */
-    @SuppressWarnings("unchecked")
     public T get(int index) {
-        T obj = null;
+        T obj;
         if (isCorrectIndex(index)) {
             obj = (T) this.array[index];
+        } else {
+            throw new IncorrectIndexesAvailableException("Argument 'index' has incorrect value : " + index + ", size : " + this.array.length);
         }
         return obj;
     }
 
     /**
-     * Sets the object to a position with an index.
-     * <p> If the index is larger than the size of the array,
-     * then the array will be enlarged, as long as the size of the array will fit the size to insert the object into the index.
+     * Sets the element to position by index.
      *
      * @param index Index to insert.
-     * @param obj The adding (insertion) object.
-     *
+     * @param obj Element to insert.
+     * @throws IllegalArgumentException Argument is not valid.
      * @since 1.2
      */
     public void set(int index, T obj) {
-        if ((index >= 0) && (index < this.array.length)) {
+        if (index == Objects.checkIndex(index, this.array.length)) {
             this.array[index] = obj;
             this.indexElement += 1;
         } else {
-            this.array = Arrays.copyOf(this.array, this.array.length + 1);
-            this.indexElement = this.array.length - 1;
-            this.set(index, obj);
+            throw new IllegalArgumentException("Argument 'index' : " + index + "is not valid, size : " + this.array.length);
         }
     }
 
     /**
-     * Adds (inserts) an object to the next position, relative to the previous call of this method and adding an object.
+     * Adds an element to the next position with a null value.
+     * If there is no such position or the size of the dynamic array is not enough, then it expands in length by one element.
      *
-     * @param obj The adding (insertion) object.
-     *
+     * @param obj Element to adding.
      * @since 1.2
      */
     public void add(T obj) {
@@ -249,12 +264,11 @@ public class Array<T> implements Model, Iterable<T> {
     }
 
     /**
-     * Deleted an object at a specific index.
-     * <p> After the object is deleted by the index,
-     * the array is collapsed (decreasing in size, where the position of the remote object is).
+     * Deleted element by index.
+     * After deletion, the dynamic array collapses.
      *
-     * @param index Index of the object to be deleted.
-     *
+     * @param index Index element to deleting.
+     * @throws IllegalArgumentException Argument is not valid.
      * @since 1.2
      */
     public void delete(int index) {
@@ -264,16 +278,16 @@ public class Array<T> implements Model, Iterable<T> {
                                .toArray();
             this.indexElement -= 1;
         } else {
-            throw new IllegalArgumentException("Argument 'index' : " + index + " is not valid.");
+            throw new IllegalArgumentException("Argument 'index' : " + index + " is not valid, size : " + this.array.length);
         }
     }
 
     /**
-     * Deleted first object in the array that is equal to the object passed to the argument.
+     * Deleted first object in the dynamic array object that is equal to the object passed to the argument.
      * Objects are compared using the equals() method.
      *
-     * @param obj Object to search for the object to be deleted.
-     *
+     * @param obj Object to deleting.
+     * @throws NullPointerException Argument 'obj' is null.
      * @since 1.2
      */
     public void delete(T obj) {
@@ -288,8 +302,6 @@ public class Array<T> implements Model, Iterable<T> {
             throw new NullPointerException("Argument 'obj' is null.");
         }
     }
-
-    // Implementing an Iterator interface.
 
     @Override
     public Iterator<T> iterator() {
@@ -310,10 +322,8 @@ public class Array<T> implements Model, Iterable<T> {
         };
     }
 
-    // Helper (private) methods.
-
     private boolean isCorrectLength(int lengthArray) {
-        return lengthArray >= 0;
+        return lengthArray >= 0 && lengthArray < Integer.MAX_VALUE;
     }
 
     private boolean isNonNull(T[] array) {
@@ -328,9 +338,7 @@ public class Array<T> implements Model, Iterable<T> {
         return resultOfCheck;
     }
 
-    // Methods creators.
-
-    //todo add doc's
+/*
     public static <T> Array<T> create() {
         return new Array<>();
     }
@@ -346,5 +354,6 @@ public class Array<T> implements Model, Iterable<T> {
     public static <T> Array<T> create(Array<T> array) {
         return new Array<>(array);
     }
+*/
 
 }

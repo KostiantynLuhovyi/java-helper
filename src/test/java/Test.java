@@ -1,5 +1,9 @@
+import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomIntegerNumbers;
 import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomIntegerNumbers;
+import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.Matrix;
+import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.points.Point2D;
 
 import java.util.Arrays;
 
@@ -56,6 +60,22 @@ public class Test {
         Integer[] integers = new Integer[]{-2, -2, -2, -2, -2};
         matrix.setRow(integers, 0);
         System.out.println(matrix);*/
+
+/*        Point<Integer> point2D = new Point2D<>(3, 5 , 2);
+        System.out.println(point2D);*/
+
+        Array<Integer> array = new Array<>(new FillingArrayRandomIntegerNumbers().fill(10, 20));
+
+        System.out.println(array);
+
+        Integer[] integer = array.toArray(new Integer[20]);
+        System.out.println(Arrays.toString(integer));
+
+        Integer resGetMethod = array.get(0);
+        System.out.println(resGetMethod);
+
+        System.out.println(array);
+
 
     }
 
