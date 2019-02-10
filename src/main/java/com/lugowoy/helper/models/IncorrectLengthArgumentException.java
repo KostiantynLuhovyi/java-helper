@@ -4,14 +4,14 @@ package com.lugowoy.helper.models;
  * Created by Konstantin Lugowoy on 21.12.2018.
  */
 //todo Add doc's (new)
-public class IncorrectIndexesAvailableException extends RuntimeException {
+public class IncorrectLengthArgumentException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public IncorrectIndexesAvailableException() {
+    public IncorrectLengthArgumentException() {
     }
 
     /**
@@ -22,7 +22,7 @@ public class IncorrectIndexesAvailableException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public IncorrectIndexesAvailableException(String message) {
+    public IncorrectLengthArgumentException(String message) {
         super(message);
     }
 
@@ -40,7 +40,7 @@ public class IncorrectIndexesAvailableException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public IncorrectIndexesAvailableException(String message, Throwable cause) {
+    public IncorrectLengthArgumentException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -57,7 +57,7 @@ public class IncorrectIndexesAvailableException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public IncorrectIndexesAvailableException(Throwable cause) {
+    public IncorrectLengthArgumentException(Throwable cause) {
         super(cause);
     }
 
@@ -75,7 +75,7 @@ public class IncorrectIndexesAvailableException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    public IncorrectIndexesAvailableException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public IncorrectLengthArgumentException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

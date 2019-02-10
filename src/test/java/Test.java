@@ -64,7 +64,7 @@ public class Test {
 /*        Point<Integer> point2D = new Point2D<>(3, 5 , 2);
         System.out.println(point2D);*/
 
-        Array<Integer> array = new Array<>(new FillingArrayRandomIntegerNumbers().fill(10, 20));
+        Array<Integer> array = new Array<>(new FillingArrayRandomIntegerNumbers().fill(Integer.MAX_VALUE, 20));
 
         System.out.println(array);
 
@@ -75,6 +75,10 @@ public class Test {
         System.out.println(resGetMethod);
 
         System.out.println(array);
+
+        Matrix<Integer> matrix = new Matrix<>(new Integer[-1][100]);
+
+        System.out.println(matrix);
 
 
     }

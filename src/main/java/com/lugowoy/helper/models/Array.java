@@ -45,14 +45,14 @@ public class Array<T> implements Model, Iterable<T> {
      * The control index is equal to the index of the last (length of the array) element of the array.
      *
      * @param array Array of elements to initialize.
-     * @throws NullPointerException Argument 'array' is null.
+     * @throws NullPointerException Argument array is null.
      */
     public Array(T[] array) {
         if (array != null) {
             this.array = array;
             this.indexElement = this.array.length;
         } else {
-            throw new NullPointerException("Argument 'array' is null.");
+            throw new NullPointerException("Argument array is null.");
         }
     }
 
@@ -61,14 +61,14 @@ public class Array<T> implements Model, Iterable<T> {
      * The control index is equal to 0.
      *
      * @param lengthArray Length of the array.
-     * @throws IllegalArgumentException Argument 'lengthArray' is less than 0 or greater than {@link Integer#MAX_VALUE};
+     * @throws IllegalArgumentException Argument lengthArray is less than 0 or greater than {@link Integer#MAX_VALUE};
      */
     public Array(int lengthArray) {
-        if (lengthArray >= 0 && lengthArray < Integer.MAX_VALUE) {
+        if (isCorrectLength(lengthArray)) {
             this.array = new Object[lengthArray];
             this.indexElement = 0;
         } else {
-            throw new IllegalArgumentException("Argument 'lengthArray': " + lengthArray + " is not valid.");
+            throw new IllegalArgumentException("Argument lengthArray : " + lengthArray + " is not valid.");
         }
     }
 
@@ -78,15 +78,15 @@ public class Array<T> implements Model, Iterable<T> {
      * Copy constructor.
      * The control index is equal to control index of the object passed by argument.
      *
-     * @param array Object to copy state.
-     * @throws NullPointerException Argument 'array' is null.
+     * @param array Dynamic array object to copy state.
+     * @throws NullPointerException Argument array is null.
      */
     public Array(Array<T> array) {
         if (array != null) {
             this.array = Arrays.copyOfRange(array.toArray((T[]) new Object[array.getLength()]), 0, array.getLength());
             this.indexElement = array.indexElement;
         } else {
-            throw new NullPointerException("Argument 'array' is null.");
+            throw new NullPointerException("Argument array is null.");
         }
     }
 
@@ -138,24 +138,24 @@ public class Array<T> implements Model, Iterable<T> {
     }
 
     /**
-     * Returns an array (passed in argument) filled with elements of a dynamic array object.
+     * Gets an array (passed in argument) filled with elements of the encapsulated dynamic array object.
      * <p>The size of the array passed to the argument is not important,
      * so the array with the length as in the dynamic array is returned.
      *
      * @param tArray Array to fill.
      * @return Array filled with elements of a dynamic array object.
-     * @throws IncorrectLengthAvailableException Argument 'tArray' has incorrect length.
-     * @throws NullPointerException              Argument 'tArray' is null.
+     * @throws IncorrectLengthArgumentException Argument tArray has incorrect length.
+     * @throws NullPointerException              Argument tArray is null.
      */
     public T[] toArray(T[] tArray) {
         if (isNonNull(tArray)) {
             if (isCorrectLength(tArray.length)) {
                 tArray = (T[]) Arrays.copyOf(this.array, this.array.length, tArray.getClass());
             } else {
-                throw new IncorrectLengthAvailableException("Argument 'tArray' has incorrect length : " + tArray.length + ".");
+                throw new IncorrectLengthArgumentException("Argument tArray has incorrect length : " + tArray.length + ".");
             }
         } else {
-            throw new NullPointerException("Argument 'tArray' is null.");
+            throw new NullPointerException("Argument tArray is null.");
         }
         return tArray;
     }
@@ -174,8 +174,8 @@ public class Array<T> implements Model, Iterable<T> {
      * The control index is equal to dynamic array object length.
      *
      * @param array Array with elements to initialize.
-     * @throws IncorrectLengthAvailableException Argument 'array' has incorrect length.
-     * @throws NullPointerException              Argument 'array' is null.
+     * @throws IncorrectLengthArgumentException Argument array has incorrect length.
+     * @throws NullPointerException              Argument array is null.
      * @since 1.0
      */
     public void setArray(T[] array) {
@@ -184,10 +184,10 @@ public class Array<T> implements Model, Iterable<T> {
                 this.array = Arrays.copyOfRange(array, 0, array.length);
                 this.indexElement = this.array.length;
             } else {
-                throw new IncorrectLengthAvailableException("Array 'array' has incorrect length : " + array.length + ".");
+                throw new IncorrectLengthArgumentException("Array array has incorrect length : " + array.length + ".");
             }
         } else {
-            throw new NullPointerException("Argument 'array' is null.");
+            throw new NullPointerException("Argument array is null.");
         }
     }
 
@@ -197,7 +197,7 @@ public class Array<T> implements Model, Iterable<T> {
      * The control index is equal to 0.
      *
      * @param lengthArray New length of an dynamic array.
-     * @throws IllegalArgumentException Argument 'lengthArray' has incorrect value.
+     * @throws IllegalArgumentException Argument lengthArray has incorrect value.
      * @since 1.1
      */
     public void setArray(int lengthArray) {
@@ -205,7 +205,7 @@ public class Array<T> implements Model, Iterable<T> {
             this.array = new Object[lengthArray];
             this.indexElement = 0;
         } else {
-            throw new IllegalArgumentException("Argument 'length' has incorrect value : " + lengthArray);
+            throw new IllegalArgumentException("Argument lengthArray has incorrect value : " + lengthArray);
         }
     }
 
@@ -213,15 +213,15 @@ public class Array<T> implements Model, Iterable<T> {
      * Get element by index from dynamic array.
      *
      * @param index Index to get the element.
-     * @throws IncorrectIndexesAvailableException Argument 'index' has incorrect value.
+     * @throws IncorrectIndexArgumentException Argument index has incorrect value.
      * @since 1.2
      */
     public T get(int index) {
         T obj;
-        if (isCorrectIndex(index)) {
+        if (isCorrectIndex(index, this.array)) {
             obj = (T) this.array[index];
         } else {
-            throw new IncorrectIndexesAvailableException("Argument 'index' has incorrect value : " + index + ", size : " + this.array.length);
+            throw new IncorrectIndexArgumentException("Argument index has incorrect value : " + index + ", size : " + this.array.length);
         }
         return obj;
     }
@@ -231,7 +231,7 @@ public class Array<T> implements Model, Iterable<T> {
      *
      * @param index Index to insert.
      * @param obj Element to insert.
-     * @throws IllegalArgumentException Argument is not valid.
+     * @throws IllegalArgumentException Argument index is not valid.
      * @since 1.2
      */
     public void set(int index, T obj) {
@@ -239,7 +239,7 @@ public class Array<T> implements Model, Iterable<T> {
             this.array[index] = obj;
             this.indexElement += 1;
         } else {
-            throw new IllegalArgumentException("Argument 'index' : " + index + "is not valid, size : " + this.array.length);
+            throw new IllegalArgumentException("Argument index : " + index + "is not valid, size : " + this.array.length);
         }
     }
 
@@ -268,17 +268,17 @@ public class Array<T> implements Model, Iterable<T> {
      * After deletion, the dynamic array collapses.
      *
      * @param index Index element to deleting.
-     * @throws IllegalArgumentException Argument is not valid.
+     * @throws IllegalArgumentException Argument index is not valid.
      * @since 1.2
      */
     public void delete(int index) {
-        if (isCorrectIndex(index)) {
+        if (isCorrectIndex(index, this.array)) {
             this.array = Stream.concat(Arrays.stream(Arrays.copyOfRange(this.array, 0, index - 1)),
                                        Arrays.stream(Arrays.copyOfRange(this.array, index, this.array.length)))
                                .toArray();
             this.indexElement -= 1;
         } else {
-            throw new IllegalArgumentException("Argument 'index' : " + index + " is not valid, size : " + this.array.length);
+            throw new IllegalArgumentException("Argument index : " + index + " is not valid, size : " + this.array.length);
         }
     }
 
@@ -287,7 +287,7 @@ public class Array<T> implements Model, Iterable<T> {
      * Objects are compared using the equals() method.
      *
      * @param obj Object to deleting.
-     * @throws NullPointerException Argument 'obj' is null.
+     * @throws NullPointerException Argument obj is null.
      * @since 1.2
      */
     public void delete(T obj) {
@@ -299,7 +299,7 @@ public class Array<T> implements Model, Iterable<T> {
                 }
             }
         } else {
-            throw new NullPointerException("Argument 'obj' is null.");
+            throw new NullPointerException("Argument obj is null.");
         }
     }
 
@@ -322,17 +322,17 @@ public class Array<T> implements Model, Iterable<T> {
         };
     }
 
-    private boolean isCorrectLength(int lengthArray) {
+    private static boolean isCorrectLength(int lengthArray) {
         return lengthArray >= 0 && lengthArray < Integer.MAX_VALUE;
     }
 
-    private boolean isNonNull(T[] array) {
+    private static <T> boolean isNonNull(T[] array) {
         return array != null;
     }
 
-    private boolean isCorrectIndex(int index) {
+    private static <T> boolean isCorrectIndex(int index, T[] array) {
         boolean resultOfCheck = false;
-        if ((index >= 0) && (index < this.array.length)) {
+        if ((index >= 0) && (index < array.length)) {
             resultOfCheck = true;
         }
         return resultOfCheck;

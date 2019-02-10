@@ -1,14 +1,16 @@
 package com.lugowoy.helper.models;
 
+import com.lugowoy.helper.other.DeepCloning;
+
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * This class is a matrix model.
+ * This class implements a dynamic matrix model.
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -17,46 +19,94 @@ import java.util.Objects;
 public class Matrix<T> implements Model {
 
     /**
-     * Constant provides a default value of rows of the matrix.
+     * Default rows of the matrix.
      */
     public static final int DEFAULT_ROWS = 10;
     /**
-     * Constant provides a default value of columns of the matrix.
+     * Default columns of the matrix.
      */
     public static final int DEFAULT_COLUMNS = 10;
 
+    private static final int MAX_MATRIX_LENGTH = 1_000_000;
+
     private int rows;
     private int columns;
-
     private Object[][] matrix;
 
-    private Matrix() {
+    /**
+     * Constructs a new matrix of {@link Matrix#DEFAULT_ROWS} rows and {@link Matrix#DEFAULT_COLUMNS} columns.
+     */
+    public Matrix() {
         this.rows = DEFAULT_ROWS;
         this.columns = DEFAULT_COLUMNS;
         this.matrix = new Object[rows][columns];
     }
 
-    private Matrix(int rows, int columns) {
-        this.rows = rows;
-        this.columns = columns;
-        this.matrix = new Object[rows][columns];
+    /**
+     * Constructs a new matrix of rows and columns argument.
+     *
+     * @param rows Rows of matrix.
+     * @param columns Columns of matrix.
+     * @throws IllegalArgumentException Argument rows is not valid.
+     * @throws IllegalArgumentException Argument columns is not valid.
+     */
+    public Matrix(int rows, int columns) {
+        if (rows < MAX_MATRIX_LENGTH) {
+            if (columns < MAX_MATRIX_LENGTH) {
+                this.rows = rows;
+                this.columns = columns;
+                this.matrix = new Object[rows][columns];
+            } else {
+                throw new IllegalArgumentException("Argument columns : " + columns + " is not valid.");
+            }
+        } else {
+            throw new IllegalArgumentException("Argument rows : " + rows + " is not valid.");
+        }
     }
 
-    private Matrix(T[][] matrix) {
-        if (matrix != null && (matrix.length > 0 && matrix[0].length > 0)) {
-            this.rows = matrix.length;
-            this.columns = matrix[0].length;
-            this.matrix = matrix;
+    /**
+     * Constructs a new matrix by initializing it with the elements of a two-dimensional array passed by the argument.
+     *
+     * @param matrix Two-dimensional array to initialize the matrix.
+     * @throws NullPointerException Argument matrix is null.
+     * @throws IncorrectLengthArgumentException Argument matrix has incorrect rows or columns length value (greater than {@link Matrix#MAX_MATRIX_LENGTH}).
+     */
+    public Matrix(T[][] matrix) {
+        if (matrix != null) {
+            if (matrix.length < MAX_MATRIX_LENGTH && matrix[0].length < MAX_MATRIX_LENGTH) {
+                this.rows = matrix.length;
+                this.columns = matrix[0].length;
+                this.matrix = DeepCloning.CLONER.deepClone(matrix);
+            } else {
+                throw new IncorrectLengthArgumentException("Argument matrix has incorrect rows or columns length value.");
+            }
         } else {
-            this.rows = DEFAULT_ROWS;
-            this.columns = DEFAULT_COLUMNS;
-            this.matrix = new Object[rows][columns];
+            throw new NullPointerException("Argument matrix is null.");
+        }
+    }
+
+    /**
+     * Constructs a new matrix.
+     * Initializes the matrix with elements of the matrix passed by the argument.
+     * Copy constructor.
+     *
+     * @param matrix Matrix to copy state.
+     * @throws NullPointerException Argument matrix is null.
+     */
+    public Matrix(Matrix<T> matrix) {
+        if (matrix != null) {
+            this.rows = matrix.getRows();
+            this.columns = matrix.getColumns();
+            this.matrix = DeepCloning.CLONER.deepClone(matrix.getMatrix((T[][]) new Object[matrix.getRows()][matrix.getColumns()]));
+        } else {
+            throw new NullPointerException("Argument matrix is null.");
         }
     }
 
     /**
      * Method overridden from class Object.
      * Implemented for comparison on equality of objects of this class.
+     *
      * @param o Object reference for comparison.
      * @return The result of the comparison of objects.
      */
@@ -73,6 +123,7 @@ public class Matrix<T> implements Model {
     /**
      * Method overridden from class Object.
      * Implemented to display hashcode for an object of this class.
+     *
      * @return Object hashcode.
      */
     @Override
@@ -85,6 +136,7 @@ public class Matrix<T> implements Model {
     /**
      * Method overridden from class Object.
      * Implemented to output an object of this class as a string.
+     *
      * @return The state of this object as a string.
      */
     @Override
@@ -100,212 +152,306 @@ public class Matrix<T> implements Model {
     }
 
     /**
-     * Returns the matrix element by row index and column index.
-     * @param indexRow Matrix row index.
-     * @param indexColumn Matrix column index.
+     * Sets the elements of the matrix are the same as the two-dimensional array passed to the argument.
+     *
+     * @param matrix Two-dimensional array for matrix initialization.
+     * @throws IncorrectLengthArgumentException Argument matrix has incorrect rows or columns length value (greater than {@link Matrix#MAX_MATRIX_LENGTH}).
+     * @throws NullPointerException Argument two-dimensional array is null.
      */
-    @SuppressWarnings("unchecked")
-    public T getElement(int indexRow, int indexColumn) {
-        //todo question on exclusion.
-        if ((indexRow >= 0 && indexRow <= this.getRows())
-                && (indexColumn >= 0 && indexColumn <= this.getColumns())) {
-            return (T) this.matrix[indexRow][indexColumn];
+    public void setMatrix(T[][] matrix) {
+        if (matrix != null) {
+            if (matrix.length < MAX_MATRIX_LENGTH && matrix.length < MAX_MATRIX_LENGTH) {
+                this.rows = matrix.length;
+                this.columns = matrix[0].length;
+                this.matrix = matrix;
+            } else {
+                throw new IncorrectLengthArgumentException("Argument matrix has incorrect rows or columns length value.");
+            }
         } else {
-            throw new IllegalArgumentException("Incorrect argument.");
+            throw new NullPointerException("Argument matrix is null.");
         }
     }
 
     /**
-     * Sets the matrix element by row index and column index.
-     * @param indexRow Matrix row index.
-     * @param indexColumn Matrix column index.
-     * @param element Element to set.
+     * Gets the matrix (two-dimensional array) filled with the elements of the encapsulated matrix.
+     *
+     * @param matrix Matrix (two-dimensional array) to fill.
+     * @return Matrix (two-dimensional array) filled with elements of a matrix.
+     * @throws NullPointerException Argument matrix is null.
      */
-    public void setElement(int indexRow, int indexColumn, T element) {
-        //todo question on exclusion.
-        if ((indexRow >= 0 && indexRow <= this.rows) && (indexColumn >= 0 && indexColumn <= this.columns)) {
-            this.matrix[indexRow][indexColumn] = element;
+    public T[][] getMatrix(T[][] matrix) {
+        if (matrix != null) {
+            for (int i = 0; i < this.matrix.length; i++) {
+                matrix[i] = (T[]) Arrays.copyOfRange(this.matrix, 0, this.matrix[i].length);
+            }
         } else {
-            throw new IllegalArgumentException("Incorrect argument.");
+            throw new NullPointerException("Argument matrix is null.");
         }
-    }
-
-    //todo new method. add doc's.
-    public void deleteElement(int indexRow, int indexColumn) {
-        if ((indexRow >= 0 && indexRow <= this.rows) && (indexColumn >= 0 && indexColumn <= this.columns)) {
-            this.matrix[indexRow][indexColumn] = null;
-        }
-    }
-
-    //todo new method. add doc's.
-    public void deleteRow(int indexRow) {
-        if (indexRow >= 0 && indexRow <= this.rows) {
-            for (int i = 0; i < this.columns; i++) {
-                this.matrix[indexRow][i] = null;
-            }
-        }
-    }
-
-    //todo new method. add doc's.
-    public void deleteColumn(int indexColumn) {
-        if (indexColumn >= 0 && indexColumn <= this.columns) {
-            for (int i = 0; i < this.rows; i++) {
-                this.matrix[i][indexColumn] = null;
-            }
-        }
+        return matrix;
     }
 
     /**
-     * Returns an array column by row index.
-     * @param indexColumn Row index.
+     * Gets the row of the matrix at the index passed by the argument.
+     *
+     * @param indexRow Index row to get.
+     * @return Object of the {@link Array} class filled with elements from the matrix row.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
      */
-    //todo new method. add checks. add doc's.
-    @SuppressWarnings("unchecked")
-    public Array<T> getColumn(int indexColumn) {
-        Array<T> array = Array.create(this.columns);
-        if (indexColumn >= 0 && indexColumn <= this.rows) {
-            for (int i = 0; i < this.rows; i++) {
-                array.add((T) this.matrix[i][indexColumn]);
-            }
-
-        }
-        return array;
-    }
-
-    //todo new method. add checks. add doc's.
-    @SuppressWarnings("unchecked")
-    public T[] getColumn(T[] array, int indexColumn) {
-        if (indexColumn >= 0 && indexColumn <= this.rows) {
-            if (array != null) {
-                for (int i = 0; i < this.rows; i++) {
-                    array[i] = (T) this.matrix[i][indexColumn];
-                }
-            }
-        }
-        return array;
-    }
-
-    //todo new method. add checks. add doc's.
-    @SuppressWarnings("unchecked")
-    public Array<T> getColumn(Array<T> array, int indexColumn) {
-        if (indexColumn >= 0 && indexColumn <= this.rows) {
-            if (array != null) {
-                for (int i = 0; i < this.rows; i++) {
-                    array.add((T) this.matrix[i][indexColumn]);
-                }
-            }
-        }
-        return array;
-    }
-
-    //todo new method. add checks. add doc's.
-    @SuppressWarnings("unchecked")
     public Array<T> getRow(int indexRow) {
-        Array<T> array = Array.create(this.rows);
-        if (indexRow >= 0 && indexRow <= this.columns) {
-            for (int i = 0; i < this.columns; i++) {
-                array.add((T) this.matrix[indexRow][i]);
-            }
+        Array<T> array = new Array<>(this.rows);
+        if (isCorrectIndexRow(indexRow, this.columns)) {
+            array.setArray((T[]) Arrays.copyOfRange(this.matrix[indexRow], 0, this.columns));
+        } else {
+            throw new IllegalArgumentException("Argument indexRow : " + indexRow + " is not valid.");
         }
         return array;
     }
 
-    //todo new method. add doc's.
-    @SuppressWarnings("unchecked")
+    /**
+     * Gets the row of the matrix at the index passed by the argument.
+     *
+     * @param array One-dimensional array to fill with elements from the matrix row.
+     * @param indexRow Index row to get.
+     * @return One-dimensional array filled with elements from the matrix row.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
+     * @throws NullPointerException Argument array is null.
+     */
     public T[] getRow(T[] array, int indexRow) {
-        if (indexRow >= 0 && indexRow <= this.columns) {
-            if (array != null) {
-                for (int i = 0; i < this.columns; i++) {
-                    array[i] = (T) this.matrix[indexRow][i];
-                }
+        if (array != null) {
+            if (isCorrectIndexRow(indexRow, this.columns)) {
+                array = (T[]) Arrays.copyOfRange(this.matrix[indexRow], 0, this.columns);
+            } else {
+                throw new IllegalArgumentException("Argument indexRow : " + indexRow + " is not valid.");
             }
+        } else {
+            throw new NullPointerException("Argument array is null.");
         }
         return array;
     }
 
-    //todo new method. add doc's.
-    @SuppressWarnings("unchecked")
+    /**
+     * Gets the row of the matrix at the index passed by the argument.
+     *
+     * @param array Object of the {@link Array} class to fill with elements from the matrix row.
+     * @param indexRow Index row to get.
+     * @return Object of the {@link Array} class filled with elements from the matrix row.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
+     * @throws NullPointerException Argument array is null.
+     */
     public Array<T> getRow(Array<T> array, int indexRow) {
-        if (indexRow >= 0 && indexRow <= this.columns) {
-            if (array != null) {
+        if (array != null) {
+            if (isCorrectIndexRow(indexRow, this.columns)) {
                 for (int i = 0; i < this.columns; i++) {
                     array.add((T) this.matrix[indexRow][i]);
                 }
+            } else {
+                throw new IllegalArgumentException("Argument indexRow : " + indexRow + " is not valid.");
             }
+        } else {
+            throw new NullPointerException("Argument array is null.");
         }
         return array;
     }
 
-    //todo new method. add doc's.
-    //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
-    public void setColumn(T[] array, int indexColumn) {
-        if (array != null) {
-            if (indexColumn >= 0 && indexColumn <= this.rows) {
-                for (int i = 0; i < this.columns; i++) {
-                    this.matrix[i][indexColumn] = array[i];
-                }
+    /**
+     * Gets the column of the matrix at the index passed by the argument.
+     *
+     * @param indexColumn Index column to get.
+     * @return Object of the {@link Array} class filled with elements from the matrix column.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     */
+    public Array<T> getColumn(int indexColumn) {
+        Array<T> array = new Array<>(this.columns);
+        if (isCorrectIndexColumn(indexColumn, this.rows)) {
+            for (int i = 0; i < this.rows; i++) {
+                array.add((T) this.matrix[i][indexColumn]);
             }
+        } else {
+            throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
         }
+        return array;
     }
 
-    //todo new method. add doc's.
-    //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
-    public void setColumn(Array<T> array, int indexColumn) {
+    /**
+     * Gets the column of the matrix at the index passed by the argument.
+     *
+     * @param array One-dimensional array to fill with elements from the matrix column.
+     * @param indexColumn Index column to get.
+     * @return One-dimensional array filled with elements from the matrix column.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     * @throws NullPointerException Argument array is null.
+     */
+    public T[] getColumn(T[] array, int indexColumn) {
         if (array != null) {
-            if (indexColumn >= 0 && indexColumn <= this.rows) {
-                for (int i = 0; i < this.columns; i++) {
-                    this.matrix[i][indexColumn] = array.get(i);
+            if (isCorrectIndexColumn(indexColumn, this.rows)) {
+                for (int i = 0; i < this.rows; i++) {
+                    array[i] = (T) this.matrix[i][indexColumn];
                 }
+            } else {
+                throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
             }
+        } else {
+            throw new NullPointerException("Argument array is null.");
         }
+        return array;
     }
 
-    //todo new method. add doc's.
-    //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
+    /**
+     * Gets the column of the matrix at the index passed by the argument.
+     *
+     * @param array Object of the {@link Array} class to fill with elements from the matrix column.
+     * @param indexColumn Index column to get.
+     * @return Object of the {@link Array} class filled with elements from the matrix column.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     * @throws NullPointerException Argument array is null.
+     */
+    public Array<T> getColumn(Array<T> array, int indexColumn) {
+        if (array != null) {
+            if (isCorrectIndexColumn(indexColumn, this.rows)) {
+                for (int i = 0; i < this.rows; i++) {
+                    array.setArray((T[]) this.matrix[i][indexColumn]);
+                }
+            } else {
+                throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
+            }
+        } else {
+            throw new NullPointerException("Argument array is null.");
+        }
+        return array;
+    }
+
+    /**
+     * Set (initialize) the matrix row by index, which is passed by the argument
+     * to the elements that are stored in the one-dimensional array passed by the argument.
+     *
+     * @param array One-dimensional array that are stored elements to set elements of row of the matrix.
+     * @param indexRow Index row to get.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
+     * @throws NullPointerException Argument array is null.
+     */
     public void setRow(T[] array, int indexRow) {
         if (array != null) {
-            if (indexRow >= 0 && indexRow <= this.columns) {
-                for (int i = 0; i < this.rows; i++) {
-                    this.matrix[indexRow][i] = array[i];
-                }
+            if (isCorrectIndexRow(indexRow, this.columns)) {
+                this.matrix[indexRow] = Arrays.copyOfRange(array, 0, array.length);
+            } else {
+                throw new IllegalArgumentException("Argument indexRow : " + indexRow + " is not valid.");
             }
-        }
-    }
-
-    //todo new method. add doc's.
-    //todo check the lengths to avoid ArrayIndexOutOfBoundsException.
-    public void setRow(Array<T> array, int indexRow) {
-        if (array != null) {
-            if (indexRow >= 0 && indexRow <= this.columns) {
-                for (int i = 0; i < this.rows; i++) {
-                    this.matrix[indexRow][i] = array.get(i);
-                }
-            }
+        } else {
+            throw new NullPointerException("Argument array is null.");
         }
     }
 
     /**
-     * Sets the value of the matrix by a two-dimensional array with the argument passed.
-     * @param matrix Two-dimensional array for matrix initialization.
+     * Set (initialize) the matrix row by index, which is passed by the argument
+     * to the elements that are stored in the object of the {@link Array} class passed by the argument.
+     *
+     * @param array Object of the {@link Array} class that are stored elements to set elements of row of the matrix.
+     * @param indexRow Index row to get.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
+     * @throws NullPointerException Argument array is null.
      */
-    public void setMatrix(T[][] matrix) {
-        if (matrix != null && (matrix.length > 0 && matrix[0].length > 0)) {
-            this.rows = matrix.length;
-            this.columns = matrix[0].length;
-            this.matrix = matrix;
-        } /*else {
-            this.rows = DEFAULT_ROWS;
-            this.columns = DEFAULT_COLUMNS;
-            this.matrix = new Object[rows][columns];
-        }*/
+    public void setRow(Array<T> array, int indexRow) {
+        if (array != null) {
+            if (isCorrectIndexRow(indexRow, this.columns)) {
+                for (int i = 0; i < this.rows; i++) {
+                    this.matrix[indexRow][i] = array.get(i);
+                }
+            } else {
+                throw new IllegalArgumentException("Argument indexRow : " + indexRow + " is not valid.");
+            }
+        } else {
+            throw new NullPointerException("Argument array is null.");
+        }
     }
 
-    //todo new method. add doc's. (not quadratic (4/5))
-    /* Write an algorithm that implements this functionality using the so-called bubble sort method (permutation of elements using the third variable)
-     * and compare the execution speed with this implementation. */
-    @SuppressWarnings("unchecked")
+    /**
+     * Set (initialize) the matrix column by index, which is passed by the argument
+     * to the elements that are stored in the one-dimensional array passed by the argument.
+     *
+     * @param array One-dimensional array that are stored elements to set elements of row of the matrix.
+     * @param indexColumn Index column to get.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     * @throws NullPointerException Argument array is null.
+     */
+    public void setColumn(T[] array, int indexColumn) {
+        if (array != null) {
+            if (isCorrectIndexColumn(indexColumn, this.rows)) {
+                for (int i = 0; i < this.columns; i++) {
+                    this.matrix[i][indexColumn] = array[i];
+                }
+            } else {
+                throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
+            }
+        } else {
+            throw new NullPointerException("Argument array is null.");
+        }
+    }
+
+    /**
+     * Set (initialize) the matrix column by index, which is passed by the argument
+     * to the elements that are stored in the object of the {@link Array} class passed by the argument.
+     *
+     * @param array Object of the {@link Array} class that are stored elements to set elements of column of the matrix.
+     * @param indexColumn Index column to get.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     * @throws NullPointerException Argument array is null.
+     */
+    public void setColumn(Array<T> array, int indexColumn) {
+        if (array != null) {
+            if (isCorrectIndexColumn(indexColumn, this.rows)) {
+                for (int i = 0; i < this.columns; i++) {
+                    this.matrix[i][indexColumn] = array.get(i);
+                }
+            } else {
+                throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
+            }
+        } else {
+            throw new NullPointerException("Argument array is null.");
+        }
+    }
+
+    /**
+     * Deletes the matrix row by the index passed by the argument.
+     *
+     * @param indexRow Index to delete the matrix row.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
+     */
+    public void deleteRow(int indexRow) {
+        if (isCorrectIndexRow(indexRow, this.rows)) {
+            for (int i = 0; i < this.columns; i++) {
+                this.matrix[indexRow][i] = null;
+            }
+        } else {
+            throw new IllegalArgumentException("Argument indexRow : " + indexRow + "is not valid.");
+        }
+    }
+
+    /**
+     * Deletes the matrix column by the index passed by the argument.
+     *
+     * @param indexColumn Index to delete the matrix column.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     */
+    public void deleteColumn(int indexColumn) {
+        if (isCorrectIndexColumn(indexColumn, this.columns)) {
+            for (int i = 0; i < this.rows; i++) {
+                this.matrix[i][indexColumn] = null;
+            }
+        } else {
+            throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
+        }
+    }
+
+    //todo Write an algorithm that implements this functionality using the so-called bubble sort method (permutation of elements using the third variable)
+    //     and compare the execution speed with this implementation.
+    /**
+     * Compresses the matrix by removing from it a row at the index passed by the argument.
+     *
+     * @param indexRow Index row to be deleted during compression.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
+     */
     public void compressRow(int indexRow) {
-        if (indexRow >= 0 && indexRow <= this.rows) {
+        if (isCorrectIndexRow(indexRow, this.rows)) {
             Object[][] objects = new Object[this.rows - 1][this.columns];
             int tmpIndexRow = 0;
             for (int i = 0; i < this.rows; i++) {
@@ -319,15 +465,21 @@ public class Matrix<T> implements Model {
                 }
             }
             this.setMatrix((T[][]) objects);
+        } else {
+            throw new IllegalArgumentException("Argument indexRow : " + indexRow + " is not valid.");
         }
     }
 
-    //todo new method. add doc's. (not quadratic (4/5))
-    /* Write an algorithm that implements this functionality using the so-called bubble sort method (permutation of elements using the third variable)
-     * and compare the execution speed with this implementation. */
-    @SuppressWarnings("unchecked")
+    //todo Write an algorithm that implements this functionality using the so-called bubble sort method (permutation of elements using the third variable)
+    //     and compare the execution speed with this implementation. */
+    /**
+     * Compresses the matrix by removing from it a column at the index passed by the argument.
+     *
+     * @param indexColumn Index row to be deleted during compression.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     */
     public void compressColumn(int indexColumn) {
-        if (indexColumn >= 0 && indexColumn <= this.columns) {
+        if (isCorrectIndexColumn(indexColumn, this.columns)) {
             Object[][] objects = new Object[this.rows][this.columns - 1];
             int tmpIndexColumn = 0;
             for (int i = 0; i < this.rows; i++) {
@@ -341,37 +493,101 @@ public class Matrix<T> implements Model {
                 tmpIndexColumn = 0;
             }
             this.setMatrix((T[][]) objects);
+        } else {
+            throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + "is not valid.");
         }
     }
 
     /**
-     * Returns the number of rows in the matrix.
+     * Gets the matrix element by row index and column index.
+     *
+     * @param indexRow Index matrix row.
+     * @param indexColumn Index matrix column.
+     * @return Element of the matrix indexes passed by the argument.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     */
+    public T getElement(int indexRow, int indexColumn) {
+        if (isCorrectIndexRow(indexRow, this.rows)) {
+            if (isCorrectIndexColumn(indexColumn, this.columns)){
+                return (T) this.matrix[indexRow][indexColumn];
+            } else {
+                throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
+            }
+        } else {
+            throw new IllegalArgumentException("Argument indexRow : " + indexRow + " is not valid.");
+        }
+    }
+
+    /**
+     * Sets the matrix element by row index and column index.
+     *
+     * @param indexRow Index matrix row.
+     * @param indexColumn Index matrix column.
+     * @param element Element to set.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     */
+    public void setElement(int indexRow, int indexColumn, T element) {
+        if (isCorrectIndexRow(indexRow, this.rows)) {
+            if (isCorrectIndexColumn(indexColumn, this.columns)) {
+                this.matrix[indexRow][indexColumn] = element;
+            } else {
+                throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
+            }
+        } else {
+            throw new IllegalArgumentException("Argument indexRow : " + indexRow + " is not valid.");
+        }
+    }
+
+    /**
+     * Deletes matrix element by row and column index.
+     * Element stored in the indices is null.
+     *
+     * @param indexRow Index matrix row.
+     * @param indexColumn Index matrix column.
+     * @throws IllegalArgumentException Argument indexRow is not valid.
+     * @throws IllegalArgumentException Argument indexColumn is not valid.
+     */
+    public void deleteElement(int indexRow, int indexColumn) {
+        if (isCorrectIndexRow(indexRow, this.rows)) {
+            if (isCorrectIndexColumn(indexColumn, this.columns)) {
+                this.matrix[indexRow][indexColumn] = null;
+            } else {
+                throw new IllegalArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
+            }
+        } else {
+            throw new IllegalArgumentException("Argument indexRow : " + indexRow + " is not valid.");
+        }
+    }
+
+    /**
+     * Gets the length(number) of rows in the matrix.
+     *
+     * @return Length of rows in the matrix.
      */
     public int getRows() {
         return this.rows;
     }
 
     /**
-     * Returns the number of columns in the matrix.
+     * Gets the length(number) of columns in the matrix.
+     *
+     * @return Length of columns in the matrix.
      */
     public int getColumns() {
         return this.columns;
     }
 
-    //todo add doc's
-
-    @SuppressWarnings("unchecked")
-    public T[][] getMatrix(T[][] matrix) {
-        if (matrix != null) {
-            if (matrix.length <= this.rows) {
-                for (int i = 0; i < this.matrix.length; i++) {
-                    matrix[i] = (T[]) Arrays.copyOf(this.matrix[i], this.matrix[i].length);
-                }
-            }
-        }
-        return matrix;
+    private static boolean isCorrectIndexRow(int indexRow, int rows) {
+        return indexRow >= 0 && indexRow <= rows;
     }
 
+    private static boolean isCorrectIndexColumn(int indexColumn, int columns) {
+        return indexColumn >= 0 && indexColumn <= columns;
+    }
+
+/*
     public static <T> Matrix<T> create() {
         return new Matrix<>();
     }
@@ -383,5 +599,10 @@ public class Matrix<T> implements Model {
     public static <T> Matrix<T> create(T[][] matrix) {
         return new Matrix<>(matrix);
     }
+
+    public static <T> Matrix<T> create(Matrix<T> matrix) {
+        return new Matrix<>(matrix);
+    }
+*/
 
 }

@@ -4,14 +4,14 @@ package com.lugowoy.helper.models;
  * Created by Konstantin Lugowoy on 21.12.2018.
  */
 //todo Add doc's (new)
-public class IncorrectLengthAvailableException extends RuntimeException {
+public class IncorrectIndexArgumentException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public IncorrectLengthAvailableException() {
+    public IncorrectIndexArgumentException() {
     }
 
     /**
@@ -22,7 +22,7 @@ public class IncorrectLengthAvailableException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public IncorrectLengthAvailableException(String message) {
+    public IncorrectIndexArgumentException(String message) {
         super(message);
     }
 
@@ -40,7 +40,7 @@ public class IncorrectLengthAvailableException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public IncorrectLengthAvailableException(String message, Throwable cause) {
+    public IncorrectIndexArgumentException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -57,7 +57,7 @@ public class IncorrectLengthAvailableException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public IncorrectLengthAvailableException(Throwable cause) {
+    public IncorrectIndexArgumentException(Throwable cause) {
         super(cause);
     }
 
@@ -75,7 +75,7 @@ public class IncorrectLengthAvailableException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    public IncorrectLengthAvailableException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public IncorrectIndexArgumentException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
