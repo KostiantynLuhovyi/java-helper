@@ -1,43 +1,73 @@
 package com.lugowoy.helper.models.points;
 
+import java.util.Objects;
+
 /**
- * Created by Konstantin Lugowoy on 23.12.2018.
+ * The class implements the 2D point model.
+ * <p>Created by Konstantin Lugowoy on 23.12.2018.
+ *
+ * @param <T> The type of coordinates that initialize the coordinates of a 2D point.
+ * @author Konstantin Lugowoy
+ * @version 1.1
+ * @see com.lugowoy.helper.models.Model
+ * @see com.lugowoy.helper.models.points.Point
+ * @see java.io.Serializable
+ * @see java.lang.Cloneable
+ * @since 1.6
  */
-//todo Add doc's.
 public class Point2D<T extends Number> extends Point<T> {
 
-    public static final int DIMENSION_2 = 2;
+    private T y;
 
-    public static final int INDEX_COORDINATE_X = 0;
-    public static final int INDEX_COORDINATE_Y = 1;
-
-    public Point2D(int dimension) {
-        super(dimension);
+    /**
+     * Constructs a new 2D point object.
+     *
+     * @param x Value to initialize X coordinate.
+     * @param y Value to initialize Y coordinate.
+     */
+    public Point2D(T x, T y) {
+        super.setX(x);
+        this.y = y;
     }
 
-    @SafeVarargs
-    public Point2D(T... coordinates) {
-        super(coordinates);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point2D)) return false;
+        if (!super.equals(o)) return false;
+        Point2D<?> point2D = (Point2D<?>) o;
+        return Objects.equals(y, point2D.y);
     }
 
-    public Point2D(T coordinateX, T coordinateY) {
-        super((T[]) new Object[]{coordinateX, coordinateY});
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), y);
     }
 
-    public T getX() {
-        return super.getCoordinate(INDEX_COORDINATE_X);
+    @Override
+    public String toString() {
+        return "Point2D[" +
+                "x=" + super.getX() +
+                "y=" + y +
+                ']';
     }
 
-    public void setX(T coordinate) {
-        super.setCoordinate(coordinate, INDEX_COORDINATE_X);
-    }
-
+    /**
+     * Get the Y coordinate value.
+     *
+     * @return Y coordinate value.
+     */
     public T getY() {
-        return super.getCoordinate(INDEX_COORDINATE_Y);
+        return y;
     }
 
-    public void setY(T coordinate) {
-        super.setCoordinate(coordinate, INDEX_COORDINATE_Y);
+    /**
+     * Set the Y coordinate value.
+     *
+     * @param y Value to set the Y coordinate.
+     */
+    public void setY(T y) {
+        this.y = y;
     }
 
 }

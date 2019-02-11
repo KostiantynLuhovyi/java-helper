@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
- * This class is the implementation of the dynamic array model.
+ * The class implements the dynamic array model.
  * (own implementation of java.util.ArrayList)
  * <p>Created by Konstantin Lugowoy on 31.05.2017.
  *
