@@ -5,7 +5,7 @@ import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type of the random length.
@@ -78,7 +78,7 @@ public class FillingArrayRandomLengthValueStrings extends FillingArrayRandomStri
             strings = new String[lengthArray];
             this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
         } else {
-            strings = new String[DEFAULT_LENGTH_ARRAY];
+            strings = new String[DEFAULT_LENGTH];
             this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
         }
         return strings;
@@ -153,7 +153,7 @@ public class FillingArrayRandomLengthValueStrings extends FillingArrayRandomStri
                 this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
             }
         } else {
-            strings = new String[Array.DEFAULT_LENGTH_ARRAY];
+            strings = new String[Array.DEFAULT_LENGTH];
             this.initializeArrayElementsRandomLengthStrings(strings, DEFAULT_STRING_LENGTH);
         }
         return strings;

@@ -1,13 +1,8 @@
-import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomIntegerNumbers;
-import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomIntegerNumbers;
+import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomInteger;
 import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.Matrix;
-import com.lugowoy.helper.models.points.Point;
-import com.lugowoy.helper.models.points.Point2D;
 
 import java.util.Arrays;
-
-import static com.lugowoy.helper.filling.DefaultValuesForFilling.POSITIVE_INTEGER_BOUND;
 
 /** Created by Konstantin Lugowoy on 02.10.2018. */
 
@@ -64,7 +59,7 @@ public class Test {
 /*        Point<Integer> point2D = new Point2D<>(3, 5 , 2);
         System.out.println(point2D);*/
 
-        Array<Integer> array = new Array<>(new FillingArrayRandomIntegerNumbers().fill(Integer.MAX_VALUE, 20));
+        Array<Integer> array = new Array<>(new FillingArrayRandomInteger().fill(Integer.MAX_VALUE, 20));
 
         System.out.println(array);
 

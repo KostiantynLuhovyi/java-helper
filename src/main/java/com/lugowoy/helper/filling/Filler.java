@@ -1,14 +1,14 @@
 package com.lugowoy.helper.filling;
 
 /**
- * The class that is a container that encapsulates a specific implementation of a contract declared in the {@link Filling} interface
- * and delegates to it an obligation to perform functionality to fill a particular object or data structure with data.
- * <p>All an objects of the classes that implement the contract of the {@link Filling} interface can be encapsulated
- * and involved in the functionality.
+ * This class is a container (delegates the execution of functionality) for the implementation of the contract declared
+ * in the {@link Filling} interface.
+ * The class is the root of the hierarchy that represents this functionality.
+ * <p>The methods of this class are delegated to the execution of a specific implementation of the contract declared
+ * in the {@link Filling} interface transferred during the creation of an instance of this class.
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
- * @param <T> The type of objects that are filled with different data.
- *
+ * @param <T> Type of data elements and storage(data structure) or the object to fill.
  * @author Konstantin Lugowoy
  * @version 1.3
  * @see com.lugowoy.helper.filling.Filling
@@ -18,40 +18,38 @@ public class Filler<T> {
     private Filling<T> filling;
 
     /**
-     * Constructor to create a new {@link Filler} and initializes the object encapsulated in this class to perform the functionality.
+     * Constructs a new object by initializing it with a concrete implementation of the contract declared
+     * in the {@link Filling} interface.
      *
-     * @param filling An object that implements the {@link Filling} interface contract to fill an object or data structure.
+     * @param filling Object realizing the contract declared in the {@link Filling} interface.
      */
     protected Filler(Filling<T> filling) {
         this.filling = filling;
     }
 
     /**
-     * Fills an object or data structure with data.
-     * <p>The execution of this method is delegated to the object that encapsulated in the object of this class and
-     * contains the implementation of the {@link Filling} interface contract.
+     * Fills the object or storage(data storage) with data.
      *
-     * @param t The object or data structure to be filled with data.
+     * @param t The object or storage(data structure) to be filled.
      */
     public void fill(T t) {
         this.filling.fill(t);
     }
 
     /**
-     * Returns an object encapsulated in an object of this class and implements the contract declared in the {@link Filling} interface.
+     * Get object provides functionality and contract implementation declared in the {@link Filling} interface.
      *
-     * @return The object is encapsulated in an object of this class and implements the contract declared in the {@link Filling} interface.
+     * @return The object provides functionality and implementation.
      */
     protected Filling<T> getFilling() {
         return filling;
     }
 
     /**
-     * Creates a new object of {@link Filler} class by calling a single constructor with a parameter
-     * for initialization the object encapsulated in this class to perform the functionality.
+     * Creates a new {@link Filler} class object by invoking the sole constructor of this class.
      *
-     * @param filling The object that implements the {@link Filling} interface contract to fill an object or data structure.
-     * @return The created object of this class.
+     * @param filling The object realizing the contract declared in the {@link Filling} interface.
+     * @return Created object of this class.
      */
     public static <T> Filler<T> getFiller(Filling<T> filling) {
         return new Filler<>(filling);

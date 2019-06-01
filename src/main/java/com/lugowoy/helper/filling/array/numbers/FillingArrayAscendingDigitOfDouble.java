@@ -6,7 +6,7 @@ import com.lugowoy.helper.models.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -20,7 +20,7 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implements FillingArrayNumbers<Double> {
+public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<Double> {
 
     /**
      * Fills an object of the {@link Array} class with sequential ascending decimal digit of numeric data of type {@link Double}.
@@ -62,7 +62,7 @@ public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implemen
      * Filling starts at "0.0" and increases by "0.1".
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      *
      * @param lengthArray The length(size) of the array to be filled with sequential ascending decimal digit of numeric data of type {@link Double}.
      * @return Created and filled an array with sequential ascending decimal digit of numeric data of type {@link Double}.
@@ -74,7 +74,7 @@ public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implemen
             doubles = new Double[lengthArray];
             this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbers(doubles);
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbers(doubles);
         }
         return doubles;
@@ -137,7 +137,7 @@ public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implemen
      * Fills an array with sequential ascending decimal digit of numeric data of type {@link Double}.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from "0" (increases by "0.1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
      *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
@@ -159,7 +159,7 @@ public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implemen
                         POSITIVE_DOUBLE_BOUND);
             }
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles,
                     POSITIVE_DOUBLE_BOUND);
         }
@@ -240,7 +240,7 @@ public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implemen
      * Fills an array with sequential ascending decimal digit of numeric data of type {@link Double}.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data (increases by "0.1") from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#START_BOUND}
@@ -268,7 +268,7 @@ public class FillingArraySequentialAscendingDecimalDigitOfDoubleNumbers implemen
                         POSITIVE_DOUBLE_BOUND);
             }
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
                     START_BOUND,
                     POSITIVE_DOUBLE_BOUND);

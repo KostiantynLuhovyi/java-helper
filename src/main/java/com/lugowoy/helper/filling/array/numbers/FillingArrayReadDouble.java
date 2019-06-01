@@ -9,7 +9,7 @@ import com.lugowoy.helper.models.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
@@ -26,22 +26,22 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double> implements FillingArrayNumbers<Double> {
+public class FillingArrayReadDouble extends FillingArrayReadValues<Double> implements FillingArrayNumbers<Double> {
 
     /**
-     * Constructs a new object of {@link FillingArrayReadDoubleNumbers} class,
+     * Constructs a new object of {@link FillingArrayReadDouble} class,
      *  initializing an object of {@link Reader} class
      *  encapsulated in the parent class to read data of the {@link Double} type to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in the parent class to read data of the {@link Double} type to fill the array.
      */
-    public FillingArrayReadDoubleNumbers(Reader reader) {
+    public FillingArrayReadDouble(Reader reader) {
         super(reader);
     }
 
     /**
-     * Constructs a new object of {@link FillingArrayReadDoubleNumbers} class,
+     * Constructs a new object of {@link FillingArrayReadDouble} class,
      *  initializing an object of {@link Reader} class
      *  encapsulated in the parent class of the concrete implementation of the contract declared in the interface {@link Reading}
      *  to read data of the {@link Double} type to be fill array.
@@ -50,7 +50,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      *                to initialize an object of the {@link Reader} class encapsulated in the parent class
      *                to read data of the {@link Double} type to be fill array.
      */
-    public FillingArrayReadDoubleNumbers(Reading reading) {
+    public FillingArrayReadDouble(Reading reading) {
         super(reading);
     }
 
@@ -98,7 +98,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      *
      * @param lengthArray The length(size) of the array to be filled with data of the {@link Double} type
      *                    with read by the {@link Reader} class object.
@@ -112,7 +112,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
             doubles = new Double[lengthArray];
             this.fillArrayElementsEnteredDoubleNumbers(doubles);
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsEnteredDoubleNumbers(doubles);
         }
         return doubles;
@@ -179,7 +179,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
      * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
@@ -202,7 +202,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
             }
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
         }
         return doubles;
@@ -282,7 +282,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
      * Fills an array with data of the {@link Double} type with read by the {@link Reader} class object.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
@@ -311,7 +311,7 @@ public class FillingArrayReadDoubleNumbers extends FillingArrayReadValues<Double
                         POSITIVE_DOUBLE_BOUND);
             }
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
                     NEGATIVE_DOUBLE_BOUND,
                     POSITIVE_DOUBLE_BOUND);

@@ -8,7 +8,7 @@ import com.lugowoy.helper.other.GeneratorRandomNumber;
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.NEGATIVE_DOUBLE_BOUND;
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.POSITIVE_DOUBLE_BOUND;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -21,7 +21,7 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Double> {
+public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
 
     /**
      * Fills an object of the {@link Array} class with random numeric data of the type {@link Double}.
@@ -70,7 +70,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      *
      * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Double}.
      * @return Created and filled an array with random numeric data of the type {@link Double}.
@@ -83,7 +83,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
             doubles = new Double[lengthArray];
             this.fillArrayElementsRandomDoubleNumbers(doubles);
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsRandomDoubleNumbers(doubles);
         }
         return doubles;
@@ -147,7 +147,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
      * Fills an array with random numeric data of the type {@link Double}.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray' determines the length(size) of the created array.
-     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
      *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
@@ -168,7 +168,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
                 this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
             }
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
         }
         return doubles;
@@ -200,9 +200,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
                 this.fillArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
                 array.setArray(doubles);
             } else {
-                this.fillArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles,
-                        NEGATIVE_DOUBLE_BOUND,
-                        POSITIVE_DOUBLE_BOUND);
+                this.fillArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
                 array.setArray(doubles);
             }
         } else {
@@ -247,7 +245,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
@@ -274,7 +272,7 @@ public class FillingArrayRandomDoubleNumbers implements FillingArrayNumbers<Doub
                         POSITIVE_DOUBLE_BOUND);
             }
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, NEGATIVE_DOUBLE_BOUND,
                     POSITIVE_DOUBLE_BOUND);
         }

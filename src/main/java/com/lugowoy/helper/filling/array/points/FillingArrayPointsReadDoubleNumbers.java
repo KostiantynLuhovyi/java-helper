@@ -9,7 +9,7 @@ import com.lugowoy.helper.models.points.Point;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class is the heir of the {@link FillingArrayPointsReadValues} class and implements it's contract.
@@ -99,7 +99,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      *
      * @param lengthArray The length(size) of the array to be filled.
      * @return Created and filled array of the objects of the {@link Point} class
@@ -114,7 +114,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
             points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.fillArrayPointsReadDoubleNumbers(points);
         } else {
-            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
+            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH);
             this.fillArrayPointsReadDoubleNumbers(points);
         }
         return points;
@@ -204,7 +204,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
                 this.fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(points, POSITIVE_DOUBLE_BOUND);
             }
         } else {
-            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
+            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH);
             this.fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(points, POSITIVE_DOUBLE_BOUND);
         }
         return points;
@@ -285,7 +285,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with an objects of the {@link Point} class
      * with numerical coordinates from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
@@ -314,7 +314,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
                 this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
             }
         } else {
-            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
+            points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH);
             this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
         }
         return points;

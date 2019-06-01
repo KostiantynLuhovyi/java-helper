@@ -6,7 +6,7 @@ import com.lugowoy.helper.models.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -20,7 +20,7 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-public class FillingArraySequentialDescendingDoubleNumbers implements FillingArrayNumbers<Double> {
+public class FillingArrayDescendingDouble implements FillingArrayNumbers<Double> {
 
     /**
      * Fills an object of the {@link Array} class with sequential descending integer part of numeric data of type {@link Double}.
@@ -63,7 +63,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      *
      * @param lengthArray The length(size) of the array to be filled
      *                    with sequential descending integer part of numeric data of type {@link Double}.
@@ -76,7 +76,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
             doubles = new Double[lengthArray];
             this.fillArrayElementsSequentialDescendingDoubleNumbers(doubles);
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsSequentialDescendingDoubleNumbers(doubles);
         }
         return doubles;
@@ -103,8 +103,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles, bound);
                 array.setArray(doubles);
             } else {
-                this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles,
-                        NEGATIVE_DOUBLE_BOUND);
+                this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles, NEGATIVE_DOUBLE_BOUND);
                 array.setArray(doubles);
             }
         } else {
@@ -142,7 +141,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from "0" (decreases by "1.0") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
      *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
@@ -165,7 +164,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                         NEGATIVE_DOUBLE_BOUND);
             }
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsSequentialDescendingDoubleNumbersFromZeroToNegativeBound(doubles,
                     NEGATIVE_DOUBLE_BOUND);
         }
@@ -243,7 +242,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data (decreases by "1.0") from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is less than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
@@ -272,7 +271,7 @@ public class FillingArraySequentialDescendingDoubleNumbers implements FillingArr
                         NEGATIVE_DOUBLE_BOUND);
             }
         } else {
-            doubles = new Double[DEFAULT_LENGTH_ARRAY];
+            doubles = new Double[DEFAULT_LENGTH];
             this.fillArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles,
                     START_BOUND,
                     NEGATIVE_DOUBLE_BOUND);

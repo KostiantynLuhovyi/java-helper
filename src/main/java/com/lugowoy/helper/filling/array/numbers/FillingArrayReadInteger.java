@@ -9,7 +9,7 @@ import com.lugowoy.helper.models.Array;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
@@ -26,22 +26,22 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integer> implements FillingArrayNumbers<Integer> {
+public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> implements FillingArrayNumbers<Integer> {
 
     /**
-     * Constructs a new object of {@link FillingArrayReadIntegerNumbers} class,
+     * Constructs a new object of {@link FillingArrayReadInteger} class,
      *  initializing an object of {@link Reader} class
      *  encapsulated in the parent class to read data of the {@link Integer} type to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in the parent class to read data of the {@link Integer} type to fill the array.
      */
-    public FillingArrayReadIntegerNumbers(Reader reader) {
+    public FillingArrayReadInteger(Reader reader) {
         super(reader);
     }
 
     /**
-     * Constructs a new object of {@link FillingArrayReadIntegerNumbers} class,
+     * Constructs a new object of {@link FillingArrayReadInteger} class,
      *  initializing an object of {@link Reader} class
      *  encapsulated in the parent class of the concrete implementation of the contract declared in the interface {@link Reading}
      *  to read data of the {@link Integer} type to be fill array.
@@ -50,7 +50,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      *                to initialize an object of the {@link Reader} class encapsulated in the parent class
      *                to read data of the {@link Integer} type to be fill array.
      */
-    public FillingArrayReadIntegerNumbers(Reading reading) {
+    public FillingArrayReadInteger(Reading reading) {
         super(reading);
     }
 
@@ -97,7 +97,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
-     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      *
      * @param lengthArray The length(size) of the array to be filled with data of the {@link Integer} type
      *                    with read by the {@link Reader} class object.
@@ -111,7 +111,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
             integers = new Integer[lengthArray];
             this.fillArrayElementsEnteredIntegerNumbers(integers);
         } else {
-            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            integers = new Integer[DEFAULT_LENGTH];
             this.fillArrayElementsEnteredIntegerNumbers(integers);
         }
         return integers;
@@ -177,7 +177,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
-     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
      *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
@@ -200,7 +200,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
             }
         } else {
-            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            integers = new Integer[DEFAULT_LENGTH];
             this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
         }
         return integers;
@@ -280,7 +280,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      *  or if one of the arguments is in the range from -32768 to 32768,
@@ -310,7 +310,7 @@ public class FillingArrayReadIntegerNumbers extends FillingArrayReadValues<Integ
                         POSITIVE_INTEGER_BOUND);
             }
         } else {
-            integers = new Integer[DEFAULT_LENGTH_ARRAY];
+            integers = new Integer[DEFAULT_LENGTH];
             this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
                     NEGATIVE_INTEGER_BOUND,
                     POSITIVE_INTEGER_BOUND);

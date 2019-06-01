@@ -6,5 +6,4 @@ package com.lugowoy.helper.io.writing;
 public class Writing {
 
 
-
 }

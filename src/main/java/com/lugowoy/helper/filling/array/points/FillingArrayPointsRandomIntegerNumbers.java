@@ -9,7 +9,7 @@ import com.lugowoy.helper.other.GeneratorRandomNumber;
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.NEGATIVE_INTEGER_BOUND;
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.POSITIVE_INTEGER_BOUND;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayPoints} interface.
@@ -83,7 +83,7 @@ public class FillingArrayPointsRandomIntegerNumbers extends FillingArrayPoints<I
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      *
      * @param lengthArray The length(size) of the array to be filled
      *                    with the objects of the {@link Point} class with random numeric coordinates of type {@link Integer}.
@@ -99,7 +99,7 @@ public class FillingArrayPointsRandomIntegerNumbers extends FillingArrayPoints<I
             points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
             this.fillArrayPointsRandomIntegerNumbers(points);
         } else {
-            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH);
             this.fillArrayPointsRandomIntegerNumbers(points);
         }
         return points;
@@ -191,7 +191,7 @@ public class FillingArrayPointsRandomIntegerNumbers extends FillingArrayPoints<I
                 this.fillArrayPointsRandomIntegerNumbersFromZeroToBound(points, POSITIVE_INTEGER_BOUND);
             }
         } else {
-            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH);
             this.fillArrayPointsRandomIntegerNumbersFromZeroToBound(points, POSITIVE_INTEGER_BOUND);
         }
         return points;
@@ -272,7 +272,7 @@ public class FillingArrayPointsRandomIntegerNumbers extends FillingArrayPoints<I
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767",
-     * created array of length {@link Array#DEFAULT_LENGTH_ARRAY}.
+     * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with an objects of the {@link Point} class
      * with numerical coordinates from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
@@ -302,7 +302,7 @@ public class FillingArrayPointsRandomIntegerNumbers extends FillingArrayPoints<I
                 this.fillArrayPointsRandomIntegerNumbersFromStartBoundToEndBound(points, NEGATIVE_INTEGER_BOUND, POSITIVE_INTEGER_BOUND);
             }
         } else {
-            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH_ARRAY);
+            points = (Point<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, DEFAULT_LENGTH);
             this.fillArrayPointsRandomIntegerNumbersFromStartBoundToEndBound(points, startBound, endBound);
         }
         return points;

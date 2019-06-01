@@ -6,7 +6,7 @@ import com.lugowoy.helper.models.Array;
 
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkLengthArray;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkNonNullArray;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH_ARRAY;
+import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class provides functionality to reads data for fills an object of the {@link Array} class
@@ -78,7 +78,7 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
             strings = new String[lengthArray];
             this.initializeArrayElementsEnteredStrings(strings);
         } else {
-            strings = new String[DEFAULT_LENGTH_ARRAY];
+            strings = new String[DEFAULT_LENGTH];
             this.initializeArrayElementsEnteredStrings(strings);
         }
         return strings;
