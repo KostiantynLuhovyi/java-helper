@@ -125,7 +125,7 @@ public interface LengthArray {
          * detail message.  The cause is not initialized, and may subsequently be
          * initialized by a call to {@link #initCause}.
          */
-        public IncorrectLengthValueException() {
+        private IncorrectLengthValueException() {
         }
 
         /**
@@ -136,7 +136,7 @@ public interface LengthArray {
          * @param message the detail message. The detail message is saved for
          *                later retrieval by the {@link #getMessage()} method.
          */
-        public IncorrectLengthValueException(String message) {
+        private IncorrectLengthValueException(String message) {
             super(message);
         }
 
@@ -154,7 +154,7 @@ public interface LengthArray {
          *                unknown.)
          * @since 1.4
          */
-        public IncorrectLengthValueException(String message, Throwable cause) {
+        private IncorrectLengthValueException(String message, Throwable cause) {
             super(message, cause);
         }
 
@@ -171,7 +171,7 @@ public interface LengthArray {
          *              unknown.)
          * @since 1.4
          */
-        public IncorrectLengthValueException(Throwable cause) {
+        private IncorrectLengthValueException(Throwable cause) {
             super(cause);
         }
 
@@ -189,7 +189,7 @@ public interface LengthArray {
          *                           be writable
          * @since 1.7
          */
-        public IncorrectLengthValueException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        private IncorrectLengthValueException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
             super(message, cause, enableSuppression, writableStackTrace);
         }
     }
@@ -201,7 +201,7 @@ public interface LengthArray {
          * detail message.  The cause is not initialized, and may subsequently be
          * initialized by a call to {@link #initCause}.
          */
-        public IncorrectBoundValueException() {
+        private IncorrectBoundValueException() {
         }
 
         /**
@@ -212,7 +212,7 @@ public interface LengthArray {
          * @param message the detail message. The detail message is saved for
          *                later retrieval by the {@link #getMessage()} method.
          */
-        public IncorrectBoundValueException(String message) {
+        private IncorrectBoundValueException(String message) {
             super(message);
         }
 
@@ -230,7 +230,7 @@ public interface LengthArray {
          *                unknown.)
          * @since 1.4
          */
-        public IncorrectBoundValueException(String message, Throwable cause) {
+        private IncorrectBoundValueException(String message, Throwable cause) {
             super(message, cause);
         }
 
@@ -247,7 +247,7 @@ public interface LengthArray {
          *              unknown.)
          * @since 1.4
          */
-        public IncorrectBoundValueException(Throwable cause) {
+        private IncorrectBoundValueException(Throwable cause) {
             super(cause);
         }
 
@@ -265,7 +265,7 @@ public interface LengthArray {
          *                           be writable
          * @since 1.7
          */
-        public IncorrectBoundValueException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        private IncorrectBoundValueException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
             super(message, cause, enableSuppression, writableStackTrace);
         }
 
