@@ -1,6 +1,6 @@
 package com.lugowoy.helper.models;
 
-import com.lugowoy.helper.other.DeepCloning;
+import com.rits.cloning.Cloner;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -76,7 +76,7 @@ public class Matrix<T> implements Model {
             if (matrix.length < MAX_MATRIX_LENGTH && matrix[0].length < MAX_MATRIX_LENGTH) {
                 this.rows = matrix.length;
                 this.columns = matrix[0].length;
-                this.matrix = DeepCloning.CLONER.deepClone(matrix);
+                this.matrix = new Cloner().deepClone(matrix);
             } else {
                 throw new IncorrectLengthArgumentException("Argument matrix has incorrect rows or columns length value.");
             }
@@ -97,7 +97,8 @@ public class Matrix<T> implements Model {
         if (matrix != null) {
             this.rows = matrix.getRows();
             this.columns = matrix.getColumns();
-            this.matrix = DeepCloning.CLONER.deepClone(matrix.getMatrix((T[][]) new Object[matrix.getRows()][matrix.getColumns()]));
+            T[][] tmpMatrix = matrix.getMatrix((T[][]) new Object[matrix.getRows()][matrix.getColumns()]);
+            this.matrix = new Cloner().deepClone(tmpMatrix);
         } else {
             throw new NullPointerException("Argument matrix is null.");
         }

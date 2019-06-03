@@ -10,17 +10,17 @@ import java.math.RoundingMode;
  * <p>Created by Konstantin Lugowoy on 01.01.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  */
 public interface GeneratorRandomNumber {
 
     /**
-     * Value for determining the number of digits after the decimal point in double numbers.
+     * Value of digits after the decimal point in double numbers.
      */
     int SCALE = 3;
 
     /**
-     * The default starting value for generating random numbers of some methods.
+     * The default zero value for some methods.
      */
     int DEFAULT_ZERO_VALUE = 0;
 
@@ -43,7 +43,7 @@ public interface GeneratorRandomNumber {
      * @throws IncorrectBoundValueException If the bound is incorrect.
      */
     static byte generateByte(byte bound) {
-        if (bound > 0 && bound < Byte.MAX_VALUE) {
+        if (bound > 0 && bound <= Byte.MAX_VALUE) {
             return (byte) RandomUtils.nextInt(DEFAULT_ZERO_VALUE, Byte.MAX_VALUE);
         } else {
             throw new IncorrectBoundValueException("Incorrect bound value.");
@@ -162,7 +162,7 @@ public interface GeneratorRandomNumber {
     }
 
     /**
-     * Generate a random posititve long number in the range (inclusive)
+     * Generate a random positive long number in the range (inclusive)
      * from {@link GeneratorRandomNumber#DEFAULT_ZERO_VALUE} to parameter bound.
      *
      * @param bound The bound to generate.

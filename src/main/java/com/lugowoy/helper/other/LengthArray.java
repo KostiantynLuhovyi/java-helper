@@ -76,6 +76,14 @@ public interface LengthArray {
         return resultLengthArray;
     }
 
+    static boolean checkLengthArray(int lengthArray) {
+        if (lengthArray > 0 && lengthArray <= Integer.MAX_VALUE) {
+            return true;
+        } else {
+            throw new IncorrectLengthValueException("Incorrect length array value.");
+        }
+    }
+
     private static void isReaderNull(Reading reader) {
         if (reader == null) {
             throw new NullPointerException("Input is not possible. Reader is : " + null);
