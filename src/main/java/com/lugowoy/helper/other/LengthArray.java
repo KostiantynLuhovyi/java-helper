@@ -59,6 +59,7 @@ public interface LengthArray {
      * @param reader The object to read the length value.
      * @param minBoundLengthArray An argument whose value indicates the minimum allowable length of the array.
      * @param maxBoundLengthArray An argument whose value indicates the maximum allowable length of the array.
+     * @return The result of the length of an array.
      * @throws NullPointerException If reader is null.
      * @throws IncorrectBoundValueException If bound value is incorrect.
      * @throws IncorrectLengthValueException If result length array value is incorrect.
@@ -76,8 +77,31 @@ public interface LengthArray {
         return resultLengthArray;
     }
 
+    /**
+     * Checking the value (argument) of the array length for compliance with the condition.
+     * The condition is that the value passed by the argument
+     *  is greater than zero and less than the value of {@link Integer#MAX_VALUE}.
+     *
+     * @param lengthArray Length array value.
+     * @return Result of check.
+     * @throws IncorrectLengthValueException If length array value is incorrect.
+     */
     static boolean checkLengthArray(int lengthArray) {
-        if (lengthArray > 0 && lengthArray <= Integer.MAX_VALUE) {
+        return checkLengthArray(lengthArray, Integer.MAX_VALUE);
+    }
+
+    /**
+     * Checking the value (argument) of the array length for compliance with the condition.
+     * The condition is that the value passed by the argument
+     *  is greater than zero and less than the value of argument maxLengthArrayValue.
+     *
+     * @param lengthArray Length array value.
+     * @param maxLengthArrayValue Maximum allowed length value of array.
+     * @return Result of check.
+     * @throws IncorrectLengthValueException If length array value is incorrect.
+     */
+    static boolean checkLengthArray(int lengthArray, long maxLengthArrayValue) {
+        if (lengthArray > 0 && lengthArray <= maxLengthArrayValue) {
             return true;
         } else {
             throw new IncorrectLengthValueException("Incorrect length array value.");

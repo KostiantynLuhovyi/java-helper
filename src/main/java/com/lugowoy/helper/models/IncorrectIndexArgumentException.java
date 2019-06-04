@@ -1,9 +1,14 @@
 package com.lugowoy.helper.models;
 
 /**
+ * The class whose exception is thrown when an incorrect index is passed to the method (to access the item)
+ * to work with any data structure. Be it an array, a matrix, and so on.
  * Created by Konstantin Lugowoy on 21.12.2018.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.0
+ * @since 1.6
  */
-//todo Add doc's (new)
 public class IncorrectIndexArgumentException extends RuntimeException {
 
     /**
