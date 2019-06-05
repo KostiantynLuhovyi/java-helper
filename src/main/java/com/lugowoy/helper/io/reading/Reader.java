@@ -2,9 +2,9 @@ package com.lugowoy.helper.io.reading;
 
 /**
  * The class is a container that encapsulates a specific implementation of a functional to read different data.
- * <p>Created by Konstantin Lugowoy on 26.07.2017.
+ * <p>Created by LugowoyKonstantin on 26.07.2017.
  *
- * @author Konstantin Lugowoy
+ * @author LugowoyKonstantin
  * @version 1.1
  * @see com.lugowoy.helper.io.reading.Reading
  * @since 1.0

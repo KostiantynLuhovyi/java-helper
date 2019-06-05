@@ -1,10 +1,12 @@
 package com.lugowoy.helper.io.reading;
 
+import java.util.Objects;
+
 /**
  * Functional interface that performs the function of checking the read data for correctness.
- * <p>Created by Konstantin Lugowoy on 29.07.2017.
+ * <p>Created by LugowoyKonstantin on 29.07.2017.
  *
- * @author Konstantin Lugowoy
+ * @author LugowoyKonstantin
  * @version 1.0
  * @since 1.0
  */
@@ -26,7 +28,7 @@ public interface CheckerReading {
     String REGEX_NEGATIVE_INTEGER_NUMBER = "-\\d+?";
 
     /**
-     * A string constant that defines a regular expression for a negative real number.
+     * A string constant that defines a regular expression for a positive real number.
      *
      * @since 1.0
      */
@@ -40,31 +42,35 @@ public interface CheckerReading {
     String REGEX_NEGATIVE_REAL_NUMBER = "-\\d+?[.]\\d+?";
 
     /**
-     * Function that checks the read data for correctness.
+     * Checking the read data (string) for correctness.
      *
      * @param value Data to check.
      * @return Result of checking.
-     *
      * @since 1.0
      */
-    boolean isCorrect(final String value);
+    boolean isCorrectData(String value);
 
     /**
-     * A static method that check that the read data is indeed an integer number and is included in a range of byte type values.
+     * Checking the read data is indeed an integer number and is included in a range of byte type values.
      *
-     * @param numberValue Data to check.
+     * @param numberValue Data to checking.
      * @return Result of checking.
-     *
+     * @throws NullPointerException If argument numberValue is null.
      * @since 1.0
      */
-    static boolean isByteNumber(final String numberValue) {
+    static boolean isByteNumber(String numberValue) {
         boolean result = false;
-        if ((numberValue != null)) {
-            if (numberValue.matches(REGEX_POSITIVE_INTEGER_NUMBER) || numberValue.matches(REGEX_NEGATIVE_INTEGER_NUMBER)) {
-                if ((Byte.parseByte(numberValue) >= (Byte.MIN_VALUE + 1)) && (Byte.parseByte(numberValue) <= (Byte.MAX_VALUE - 1))) {
+        if (Objects.nonNull(numberValue)) {
+            if (isCorrectNumber(numberValue, REGEX_POSITIVE_INTEGER_NUMBER, REGEX_NEGATIVE_INTEGER_NUMBER)) {
+                byte value = Byte.parseByte(numberValue);
+                if (value > Byte.MIN_VALUE && value < Byte.MAX_VALUE) {
                     result = true;
+                } else {
+                    throw new IncorrectValueRangeException("Incorrect value in range.");
                 }
             }
+        } else {
+            throw new NullPointerException("Argument numberValue is null.");
         }
         return result;
     }
@@ -189,6 +195,99 @@ public interface CheckerReading {
             }
         }
         return result;
+    }
+
+    private static boolean isCorrectNumber(String numberValue, String regexPositiveNumber, String regexNegativeNumber) {
+        if (numberValue.matches(regexPositiveNumber) || numberValue.matches(regexNegativeNumber)) {
+            return true;
+        } else {
+            throw new NumberFormatException("Incorrect number value.");
+        }
+    }
+
+    /**
+     * The class exception that notifies that a value is not within the range of values.
+     * <p>Created by LugowoyKonstantin on 05.06.2019.
+     *
+     * @author LugowoyKonstantin
+     * @version 1.0
+     * @since 1.6.6
+     */
+    //todo It may be worth putting this exception class in the .../helper/other package for general use in a project.
+    final class IncorrectValueRangeException extends RuntimeException {
+
+        /**
+         * Constructs a new runtime exception with {@code null} as its
+         * detail message.  The cause is not initialized, and may subsequently be
+         * initialized by a call to {@link #initCause}.
+         */
+        public IncorrectValueRangeException() {
+        }
+
+        /**
+         * Constructs a new runtime exception with the specified detail message.
+         * The cause is not initialized, and may subsequently be initialized by a
+         * call to {@link #initCause}.
+         *
+         * @param message the detail message. The detail message is saved for
+         *                later retrieval by the {@link #getMessage()} method.
+         */
+        public IncorrectValueRangeException(String message) {
+            super(message);
+        }
+
+        /**
+         * Constructs a new runtime exception with the specified detail message and
+         * cause.  <p>Note that the detail message associated with
+         * {@code cause} is <i>not</i> automatically incorporated in
+         * this runtime exception's detail message.
+         *
+         * @param message the detail message (which is saved for later retrieval
+         *                by the {@link #getMessage()} method).
+         * @param cause   the cause (which is saved for later retrieval by the
+         *                {@link #getCause()} method).  (A {@code null} value is
+         *                permitted, and indicates that the cause is nonexistent or
+         *                unknown.)
+         * @since 1.4
+         */
+        public IncorrectValueRangeException(String message, Throwable cause) {
+            super(message, cause);
+        }
+
+        /**
+         * Constructs a new runtime exception with the specified cause and a
+         * detail message of {@code (cause==null ? null : cause.toString())}
+         * (which typically contains the class and detail message of
+         * {@code cause}).  This constructor is useful for runtime exceptions
+         * that are little more than wrappers for other throwables.
+         *
+         * @param cause the cause (which is saved for later retrieval by the
+         *              {@link #getCause()} method).  (A {@code null} value is
+         *              permitted, and indicates that the cause is nonexistent or
+         *              unknown.)
+         * @since 1.4
+         */
+        public IncorrectValueRangeException(Throwable cause) {
+            super(cause);
+        }
+
+        /**
+         * Constructs a new runtime exception with the specified detail
+         * message, cause, suppression enabled or disabled, and writable
+         * stack trace enabled or disabled.
+         *
+         * @param message            the detail message.
+         * @param cause              the cause.  (A {@code null} value is permitted,
+         *                           and indicates that the cause is nonexistent or unknown.)
+         * @param enableSuppression  whether or not suppression is enabled
+         *                           or disabled
+         * @param writableStackTrace whether or not the stack trace should
+         *                           be writable
+         * @since 1.7
+         */
+        public IncorrectValueRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+            super(message, cause, enableSuppression, writableStackTrace);
+        }
     }
 
 }

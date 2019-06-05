@@ -120,7 +120,7 @@ public class ReadingConsole implements Reading {
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (checkerReading.isCorrect(inputValue)) {
+        if (checkerReading.isCorrectData(inputValue)) {
             resultByteInputValue = Byte.parseByte(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
@@ -135,7 +135,7 @@ public class ReadingConsole implements Reading {
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (checkerReading.isCorrect(inputValue)) {
+        if (checkerReading.isCorrectData(inputValue)) {
             resultShortInputValue = Short.parseShort(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
@@ -150,7 +150,7 @@ public class ReadingConsole implements Reading {
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (checkerReading.isCorrect(inputValue)) {
+        if (checkerReading.isCorrectData(inputValue)) {
             resultIntInputValue = Integer.parseInt(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
@@ -165,7 +165,7 @@ public class ReadingConsole implements Reading {
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (checkerReading.isCorrect(inputValue)) {
+        if (checkerReading.isCorrectData(inputValue)) {
             resultLongInputValue = Long.parseLong(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
@@ -180,7 +180,7 @@ public class ReadingConsole implements Reading {
 
         String value = SCANNER.nextLine().trim();
 
-        if (checkerReading.isCorrect(value)) {
+        if (checkerReading.isCorrectData(value)) {
             resultCharacterValue = value.charAt(0);
         } else {
             System.out.println("Incorrect data entered.");
@@ -195,7 +195,7 @@ public class ReadingConsole implements Reading {
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (checkerReading.isCorrect(inputValue)) {
+        if (checkerReading.isCorrectData(inputValue)) {
             resultFloatInputValue = Float.parseFloat(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
@@ -210,7 +210,7 @@ public class ReadingConsole implements Reading {
 
         String inputValue = SCANNER.nextLine().trim();
 
-        if (checkerReading.isCorrect(inputValue)) {
+        if (checkerReading.isCorrectData(inputValue)) {
             resultDoubleInputValue = Double.parseDouble(inputValue);
         } else {
             System.out.println("Incorrect data entered.");
