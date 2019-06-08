@@ -1,12 +1,12 @@
-package com.lugowoy.helper.models;
+package com.lugowoy.helper.other;
 
 /**
- * The class whose exception is thrown when an incorrect index is passed to the method (to access the item)
- * to work with any data structure. Be it an array, a matrix, and so on.
- * Created by Konstantin Lugowoy on 21.12.2018.
+ * Thrown when an index to access a data structure item is outside the size of the structure or simply incorrect.
+ * Be it an array, a matrix, and so on.
+ * <p>Created by Konstantin Lugowoy on 21.12.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 1.6
  */
 public class IncorrectIndexArgumentException extends RuntimeException {

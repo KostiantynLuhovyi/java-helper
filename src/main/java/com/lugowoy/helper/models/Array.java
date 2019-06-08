@@ -1,7 +1,8 @@
 package com.lugowoy.helper.models;
 
-import com.lugowoy.helper.other.LengthArray;
-import com.lugowoy.helper.other.LengthArray.IncorrectLengthValueException;
+import com.lugowoy.helper.other.CheckerLengthArray;
+import com.lugowoy.helper.other.IncorrectIndexArgumentException;
+import com.lugowoy.helper.other.IncorrectLengthArgumentException;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -29,7 +30,10 @@ public class Array<T> implements Model, Iterable<T> {
      *
      * @since 1.0
      */
-    private static final int DEFAULT_LENGTH = 10;
+    public static final int DEFAULT_LENGTH = 10;
+
+    private static final int MIN_LENGTH = 0;
+    private static final int MAX_LENGTH = Integer.MAX_VALUE;
 
     private Object[] array;
     private int indexElement;
@@ -49,11 +53,16 @@ public class Array<T> implements Model, Iterable<T> {
      *
      * @param array Array of elements to initialize.
      * @throws NullPointerException Argument array is null.
+     * @throws IncorrectLengthArrayException If the size of the array passed by the argument has an incorrect length.
      */
     public Array(T[] array) {
         if (Objects.nonNull(array)) {
-            this.array = array;
-            this.indexElement = this.array.length;
+            if (array.length > MIN_LENGTH && array.length < MAX_LENGTH) {
+                this.array = array;
+                this.indexElement = this.array.length;
+            } else {
+                throw new IncorrectLengthArrayException("The size of the array passed by the argument has an incorrect length.");
+            }
         } else {
             throw new IllegalArgumentException(new NullPointerException("Argument array is null."));
         }
@@ -61,13 +70,15 @@ public class Array<T> implements Model, Iterable<T> {
 
     /**
      * Constructs a new array object with the length passed in by the argument.
+     * The value of the argument must be in the range of values from {@link Array#MIN_LENGTH} to {@link Array#MAX_LENGTH}.
+     *
      * The control index is equal to 0.
      *
-     * @param lengthArray Length of an array.
-     * @throws IncorrectLengthValueException If argument lengthArray is less than 0 or greater than {@link Integer#MAX_VALUE};
+     * @param lengthArray Length value of an array.
+     * @throws IncorrectLengthArgumentException If the argument length value out in range.
      */
     public Array(int lengthArray) {
-        if (LengthArray.checkLengthArray(lengthArray)) {
+        if (CheckerLengthArray.checkLengthValueInRange(lengthArray, MAX_LENGTH)) {
             this.array = new Object[lengthArray];
             this.indexElement = 0;
         }
@@ -81,11 +92,18 @@ public class Array<T> implements Model, Iterable<T> {
      *
      * @param array The object of the {@link Array} class to copy state.
      * @throws NullPointerException Argument array is null.
+     * @throws IncorrectLengthArrayException If the array passed to the argument has an incorrect length.
      */
     public Array(Array<T> array) {
         if (array != null) {
-            this.array = Arrays.copyOfRange(array.toArray((T[]) new Object[array.getLength()]), 0, array.getLength());
-            this.indexElement = array.indexElement;
+            if (array.getLength() > 0 && array.getLength() < MAX_LENGTH) {
+                T[] tmpArray = array.toArray((T[]) new Object[array.getLength()]);
+                int from = 0;
+                this.array = Arrays.copyOfRange(tmpArray, from, array.getLength());
+                this.indexElement = array.indexElement;
+            } else {
+                throw new IncorrectLengthArrayException("The array passed to the argument has an incorrect length.");
+            }
         } else {
             throw new IllegalArgumentException(new NullPointerException("Argument array is null."));
         }
@@ -128,18 +146,20 @@ public class Array<T> implements Model, Iterable<T> {
     /**
      * Gets an array (passed in argument) filled with elements of the encapsulated array object.
      * <p>The size of the array passed to the argument is not important
-     * (but only more than zero and less than {@link Integer#MAX_VALUE}),
+     * (but only more than {@link Array#MIN_LENGTH} and less than {@link Integer#MAX_VALUE}),
      * so the array with the length as in an array is returned.
      *
      * @param array Array to fill.
      * @return Array filled with elements of an array object.
      * @throws NullPointerException If argument array is null.
-     * @throws IncorrectLengthValueException If argument array has incorrect length value.
+     * @throws IncorrectLengthArrayException If the array passed to the argument has an incorrect length.
      */
     public T[] toArray(T[] array) {
         if (Objects.nonNull(array)) {
-            if (LengthArray.checkLengthArray(array.length)) {
+            if (array.length > MIN_LENGTH && array.length < MAX_LENGTH) {
                 array = (T[]) Arrays.copyOf(this.array, this.array.length, array.getClass());
+            } else {
+                throw new IncorrectLengthArrayException("The array passed to the argument has an incorrect length.");
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("Argument array is null."));
@@ -161,15 +181,17 @@ public class Array<T> implements Model, Iterable<T> {
      * The control index is equal to an array object length.
      *
      * @param array Array with elements to initialize.
-     * @throws IncorrectLengthValueException If argument array has incorrect length.
      * @throws NullPointerException If argument array is null.
+     * @throws IncorrectLengthArgumentException If the size of the array passed by the argument has an incorrect length.
      * @since 1.0
      */
     public void setArray(T[] array) {
         if (Objects.nonNull(array)) {
-            if (LengthArray.checkLengthArray(array.length)) {
+            if (array.length > MIN_LENGTH && array.length < MAX_LENGTH) {
                 this.array = Arrays.copyOfRange(array, 0, array.length);
                 this.indexElement = this.array.length;
+            } else {
+                throw new IncorrectLengthArrayException("The size of the array passed by the argument has an incorrect length.");
             }
         } else {
             throw new IllegalArgumentException(new NullPointerException("Argument array is null."));
@@ -182,11 +204,11 @@ public class Array<T> implements Model, Iterable<T> {
      * The control index is equal to 0.
      *
      * @param lengthArray New length of an array.
-     * @throws IncorrectLengthValueException If argument lengthArray has incorrect value.
+     * @throws IncorrectLengthArgumentException If argument lengthArray has incorrect value.
      * @since 1.1
      */
     public void setArray(int lengthArray) {
-        if (LengthArray.checkLengthArray(lengthArray)) {
+        if (CheckerLengthArray.checkLengthValueInRange(lengthArray)) {
             this.array = new Object[lengthArray];
             this.indexElement = 0;
         }
@@ -212,7 +234,7 @@ public class Array<T> implements Model, Iterable<T> {
      *
      * @param index Index to insert.
      * @param obj Element to insert.
-     * @throws IncorrectIndexArgumentException If argument index is not valid.
+     * @throws IncorrectIndexArgumentException If argument index is incorrect.
      * @since 1.2
      */
     public void set(int index, T obj) {
@@ -247,7 +269,7 @@ public class Array<T> implements Model, Iterable<T> {
      * After deletion an array collapses.
      *
      * @param index Index element to deleting.
-     * @throws IncorrectIndexArgumentException If argument index is not valid.
+     * @throws IncorrectIndexArgumentException If argument index is incorrect.
      * @since 1.2
      */
     public void delete(int index) {
@@ -303,7 +325,7 @@ public class Array<T> implements Model, Iterable<T> {
         if ((index >= 0) && (index < array.length)) {
             return true;
         } else {
-            throw new IncorrectIndexArgumentException("Argument index : " + index + " is not valid, size : " + array.length);
+            throw new IncorrectIndexArgumentException("Argument index array is incorrect.");
         }
     }
 

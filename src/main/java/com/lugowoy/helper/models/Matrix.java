@@ -1,7 +1,9 @@
 package com.lugowoy.helper.models;
 
-import com.lugowoy.helper.other.LengthArray;
-import com.lugowoy.helper.other.LengthArray.IncorrectLengthValueException;
+import com.lugowoy.helper.other.CheckerLengthArray;
+import com.lugowoy.helper.other.IncorrectIndexArgumentException;
+import com.lugowoy.helper.other.IncorrectLengthArgumentException;
+import com.lugowoy.helper.other.ReaderLengthArray;
 import com.rits.cloning.Cloner;
 
 import java.util.Arrays;
@@ -49,20 +51,22 @@ public class Matrix<T> implements Model {
      *
      * @param rows Rows of matrix.
      * @param columns Columns of matrix.
-     * @throws IllegalArgumentException If argument rows is not valid.
-     * @throws IllegalArgumentException If argument columns is not valid.
+     * @throws IncorrectMatrixRowValueException If the argument value of the rows is incorrect.
+     * @throws IncorrectMatrixColumnValueException If the argument value of the columns is incorrect.
      */
     public Matrix(int rows, int columns) {
-        if (rows < MAX_MATRIX_LENGTH) {
-            if (columns < MAX_MATRIX_LENGTH) {
+        if (rows > 0 && rows < MAX_MATRIX_LENGTH) {
+            if (columns > 0 && columns < MAX_MATRIX_LENGTH) {
                 this.rows = rows;
                 this.columns = columns;
                 this.matrix = new Object[rows][columns];
             } else {
-                throw new IllegalArgumentException("Argument columns : " + columns + " is not valid.");
+                throw new IncorrectMatrixColumnValueException("If the argument value of the columns of the matrix " +
+                                                                     "is not included in the correct range of values.");
             }
         } else {
-            throw new IllegalArgumentException("Argument rows : " + rows + " is not valid.");
+            throw new IncorrectMatrixRowValueException("If the argument value of the rows of the matrix " +
+                                                                     "is not included in the correct range of values.");
         }
     }
 
@@ -71,19 +75,18 @@ public class Matrix<T> implements Model {
      *
      * @param matrix Two-dimensional array to initialize the matrix.
      * @throws NullPointerException If argument matrix is null.
-     * @throws IncorrectLengthValueException If argument matrix has incorrect rows
-     *                                        or columns length value (greater than {@link Matrix#MAX_MATRIX_LENGTH}).
+     * @throws IncorrectLengthArgumentException If argument matrix has incorrect rows or columns length value (greater than {@link Matrix#MAX_MATRIX_LENGTH}).
      */
     public Matrix(T[][] matrix) {
         if (matrix != null) {
-            if (LengthArray.checkLengthArray(matrix.length, MAX_MATRIX_LENGTH)
-                    && LengthArray.checkLengthArray(matrix[0].length, MAX_MATRIX_LENGTH)) {
+            if (CheckerLengthArray.checkLengthValueInRange(matrix.length, MAX_MATRIX_LENGTH)
+                    && CheckerLengthArray.checkLengthValueInRange(matrix[0].length, MAX_MATRIX_LENGTH)) {
                 this.rows = matrix.length;
                 this.columns = matrix[0].length;
                 this.matrix = new Cloner().deepClone(matrix);
             }
         } else {
-            throw new NullPointerException("Argument matrix is null.");
+            throw new IllegalArgumentException(new NullPointerException("Argument matrix is null."));
         }
     }
 
@@ -145,8 +148,8 @@ public class Matrix<T> implements Model {
      */
     public void setMatrix(T[][] matrix) {
         if (matrix != null) {
-            if (LengthArray.checkLengthArray(matrix.length, MAX_MATRIX_LENGTH)
-                    && LengthArray.checkLengthArray(matrix[0].length, MAX_MATRIX_LENGTH)) {
+            if (CheckerLengthArray.checkLengthValueInRange(matrix.length, MAX_MATRIX_LENGTH)
+                    && CheckerLengthArray.checkLengthValueInRange(matrix[0].length, MAX_MATRIX_LENGTH)) {
                 this.rows = matrix.length;
                 this.columns = matrix[0].length;
                 this.matrix = matrix;

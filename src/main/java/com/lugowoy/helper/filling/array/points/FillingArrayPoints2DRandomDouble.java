@@ -4,6 +4,7 @@ import com.lugowoy.helper.filling.DefaultValuesForFilling;
 import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.NEGATIVE_DOUBLE_BOUND;
@@ -26,11 +27,11 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
  */
 //todo Edit doc's.
-public class FillingArrayPointsRandomDoubleNumbers extends FillingArrayPoints<Double> {
+public class FillingArrayPoints2DRandomDouble extends FillingArrayPoints<Double> {
 
     //todo come up with and implement a variant of the methods without using the annotation SupressWarning.
 
-    public FillingArrayPointsRandomDoubleNumbers(int dimensionPoint) {
+    public FillingArrayPoints2DRandomDouble(int dimensionPoint) {
         super(dimensionPoint);
     }
 
@@ -312,8 +313,8 @@ public class FillingArrayPointsRandomDoubleNumbers extends FillingArrayPoints<Do
 
     private void fillArrayPointsRandomDoubleNumbers(Point<Double>[] points) {
         for (int i = 0; i < points.length; i++) {
-            Point<Double> point = new ;
-            for (int j = 0; j < point.getDimension(); j++) {
+            Point2D<Double> point = new Point2D<>(20, 20);
+            for (int j = 0; j < point.; j++) {
                 point.setCoordinate(GeneratorRandomNumber.generateDouble(), j);
             }
         }
