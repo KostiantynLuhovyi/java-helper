@@ -10,7 +10,7 @@ import com.lugowoy.helper.io.reading.Reading;
  * @version 1.3
  * @since 1.0
  */
-public interface ReaderLengthArray {
+public interface LengthReader {
 
     /**
      * Read and returns the length of an array.
@@ -18,7 +18,7 @@ public interface ReaderLengthArray {
      * @param reader The object to read the length value.
      * @return The result of the length of an array.
      * @throws NullPointerException If reader is null.
-     * @throws IncorrectLengthArgumentException If result length array value is incorrect.
+     * @throws LengthValueOutOfRangeException If result length array value is incorrect.
      */
     static int readLength(Reading reader) {
         int resultLengthArray;
@@ -35,10 +35,10 @@ public interface ReaderLengthArray {
      * @param boundLengthValue An argument whose value indicates the maximum allowable length of the array.
      * @return The result of the length of an array.
      * @throws NullPointerException If reader is null.
-     * @throws IncorrectBoundArgumentException If bound value is incorrect.
-     * @throws IncorrectLengthArgumentException If result length array value is incorrect.
+     * @throws BoundOutOfRangeException If bound value is incorrect.
+     * @throws LengthValueOutOfRangeException If result length array value is incorrect.
      */
-    static int readLength(Reading reader, int boundLengthValue) throws IncorrectLengthArgumentException {
+    static int readLength(Reading reader, int boundLengthValue) {
         int resultLengthArray;
         isReaderNull(reader);
         isBoundValueGreaterZero(boundLengthValue);
@@ -56,8 +56,8 @@ public interface ReaderLengthArray {
      * @param upperBoundLengthValue An argument whose value indicates the upper allowable length of the array.
      * @return The result of the length of an array.
      * @throws NullPointerException If reader is null.
-     * @throws IncorrectBoundArgumentException If bound value is incorrect.
-     * @throws IncorrectLengthArgumentException If result length array value is incorrect.
+     * @throws BoundOutOfRangeException If bound value is incorrect.
+     * @throws LengthValueOutOfRangeException If result length array value is incorrect.
      */
     static int readLength(Reading reader, int lowerBoundLengthValue, int upperBoundLengthValue) {
         int resultLengthArray;
@@ -80,37 +80,37 @@ public interface ReaderLengthArray {
 
     private static void isLengthValueGreaterZero(int lengthValue) {
         if (lengthValue < 0) {
-            throw new IncorrectLengthArgumentException("Incorrect length array : " + lengthValue + ". Value less than 0.");
+            throw new LengthValueOutOfRangeException("Incorrect length array : " + lengthValue + ". Value less than 0.");
         }
     }
 
     private static void isBoundValueGreaterZero(int boundValue) {
         if (boundValue < 0) {
-            throw new IncorrectBoundArgumentException("Incorrect bound value : " + boundValue + ". Bound value less than 0.");
+            throw new BoundOutOfRangeException("Incorrect bound value : " + boundValue + ". Bound value less than 0.");
         }
     }
 
     private static void isLengthValueLessBoundValue(int lengthValue, int boundValue) {
         if (lengthValue > boundValue) {
-            throw new IncorrectLengthArgumentException("Incorrect value of length array. Length array value greater than bound value.");
+            throw new LengthValueOutOfRangeException("Incorrect value of length array. Length array value greater than bound value.");
         }
     }
 
     private static void isMaxBoundValueGreaterMinBoundValue(int minBoundValue, int maxBoundValue) {
         if (minBoundValue >= maxBoundValue) {
-            throw new IncorrectBoundArgumentException("Incorrect bound values. Min bound value greater or equal than max bound value.");
+            throw new BoundOutOfRangeException("Incorrect bound values. Min bound value greater or equal than max bound value.");
         }
     }
 
     private static void isLengthValueLessOrEqualMaxBoundValue(int lengthValue, int maxBoundValue) {
         if (lengthValue > maxBoundValue) {
-            throw new IncorrectLengthArgumentException("Incorrect length array. Length array value greater than max bound value.");
+            throw new LengthValueOutOfRangeException("Incorrect length array. Length array value greater than max bound value.");
         }
     }
 
     private static void isLengthValueGreaterOrEqualMinBoundValue(int lengthValue, int minBoundValue) {
         if (lengthValue < minBoundValue) {
-            throw new IncorrectLengthArgumentException("Incorrect length array. Length array value less than min bound value.");
+            throw new LengthValueOutOfRangeException("Incorrect length array. Length array value less than min bound value.");
         }
     }
 

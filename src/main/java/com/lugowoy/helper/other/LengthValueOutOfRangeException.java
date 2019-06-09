@@ -1,21 +1,21 @@
 package com.lugowoy.helper.other;
 
 /**
- * Thrown when the length (size) for any data structure is not correct.
- * <p>Created by LugowoyKonstantin on 06.06.2019.
+ * <p> Created by LugowoyKonstantin on 08.06.2019
  *
  * @author LugowoyKonstantin
- * @version 1.1
+ * @version 1.0
  * @since 1.6.6
  */
-public class IncorrectLengthArgumentException extends RuntimeException {
+//todo add doc's
+public class LengthValueOutOfRangeException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public IncorrectLengthArgumentException() {
+    public LengthValueOutOfRangeException() {
     }
 
     /**
@@ -26,7 +26,7 @@ public class IncorrectLengthArgumentException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public IncorrectLengthArgumentException(String message) {
+    public LengthValueOutOfRangeException(String message) {
         super(message);
     }
 
@@ -44,7 +44,7 @@ public class IncorrectLengthArgumentException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public IncorrectLengthArgumentException(String message, Throwable cause) {
+    public LengthValueOutOfRangeException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -61,7 +61,7 @@ public class IncorrectLengthArgumentException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public IncorrectLengthArgumentException(Throwable cause) {
+    public LengthValueOutOfRangeException(Throwable cause) {
         super(cause);
     }
 
@@ -79,7 +79,7 @@ public class IncorrectLengthArgumentException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    public IncorrectLengthArgumentException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public LengthValueOutOfRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

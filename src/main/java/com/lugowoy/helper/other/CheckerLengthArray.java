@@ -1,44 +1,41 @@
 package com.lugowoy.helper.other;
 
+import com.lugowoy.helper.models.Array;
+
 /**
- * Checks the length of the array.
- * <p>Created by LugowoyKonstantin on 07.06.2019
+ * <p> Created by LugowoyKonstantin on 08.06.2019
  *
  * @author LugowoyKonstantin
  * @version 1.0
  * @since 1.6.6
  */
-public interface CheckerLengthArray {
+//todo add doc's
+public class CheckerLengthArray {
 
-    /**
-     * Checking the value (argument) of the array length for compliance with the condition.
-     * The condition is that the value passed by the argument
-     *  is greater than 0 and less than the value of argument maxLengthValue.
-     *
-     * @param lengthValue Length array value.
-     * @param maxLengthValue Maximum allowed length value of array.
-     * @return Result of check.
-     * @throws IncorrectLengthArgumentException If the length of the array is not in the range.
-     */
-    static boolean checkLengthValueInRange(int lengthValue, long maxLengthValue) {
-        if (lengthValue > 0 && lengthValue <= maxLengthValue) {
-            return true;
+    //todo add doc's
+    static <T> boolean checkLengthArray(Array<T> array) {
+        if (array.getLength() > 0) {
+            if (array.getLength() <= Integer.MAX_VALUE) {
+                return true;
+            } else {
+                throw new LengthArrayOutOfRangeException("The array argument has a length value greatest than upper bound value.");
+            }
         } else {
-            throw new IncorrectLengthArgumentException("Array length is out of range");
+            throw new LengthArrayOutOfRangeException(new NegativeArraySizeException("The array argument has a negative length value."));
         }
     }
 
-    /**
-     * Checking the value (argument) of the array length for compliance with the condition.
-     * The condition is that the value passed by the argument
-     *  is greater than zero and less than the value of {@link Integer#MAX_VALUE}.
-     *
-     * @param lengthValue Length array value.
-     * @return Result of check.
-     * @throws IncorrectLengthArgumentException If the length of the array is not in the range.
-     */
-    static boolean checkLengthValueInRange(int lengthValue) {
-        return checkLengthValueInRange(lengthValue, Integer.MAX_VALUE);
+    //todo add doc's
+    static <T> boolean checkLengthArray(T[] tArray) {
+        if (tArray.length > 0) {
+            if (tArray.length <= Integer.MAX_VALUE) {
+                return true;
+            } else {
+                throw new LengthArrayOutOfRangeException("The array argument has a length value greatest than upper bound value.");
+            }
+        } else {
+            throw new LengthArrayOutOfRangeException(new NegativeArraySizeException("The array argument has a negative length value."));
+        }
     }
 
 }

@@ -12,14 +12,14 @@ package com.lugowoy.helper.other;
  * @version 1.0
  * @since 1.6.6
  */
-public class IncorrectBoundArgumentException extends RuntimeException {
+public class BoundOutOfRangeException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public IncorrectBoundArgumentException() {
+    public BoundOutOfRangeException() {
     }
 
     /**
@@ -30,7 +30,7 @@ public class IncorrectBoundArgumentException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public IncorrectBoundArgumentException(String message) {
+    public BoundOutOfRangeException(String message) {
         super(message);
     }
 
@@ -48,7 +48,7 @@ public class IncorrectBoundArgumentException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public IncorrectBoundArgumentException(String message, Throwable cause) {
+    public BoundOutOfRangeException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -65,7 +65,7 @@ public class IncorrectBoundArgumentException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public IncorrectBoundArgumentException(Throwable cause) {
+    public BoundOutOfRangeException(Throwable cause) {
         super(cause);
     }
 
@@ -83,7 +83,7 @@ public class IncorrectBoundArgumentException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    public IncorrectBoundArgumentException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public BoundOutOfRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

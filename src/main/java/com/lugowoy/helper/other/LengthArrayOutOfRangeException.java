@@ -1,22 +1,21 @@
 package com.lugowoy.helper.other;
 
 /**
- * Thrown when an index to access a data structure item is outside the size of the structure or simply incorrect.
- * Be it an array, a matrix, and so on.
- * <p>Created by Konstantin Lugowoy on 21.12.2018.
+ * <p> Created by LugowoyKonstantin on 08.06.2019.
  *
- * @author Konstantin Lugowoy
- * @version 1.1
- * @since 1.6
+ * @author LugowoyKonstantin
+ * @version 1.0
+ * @since 1.6.6
  */
-public class IncorrectIndexArgumentException extends RuntimeException {
+//todo add doc's
+public class LengthArrayOutOfRangeException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public IncorrectIndexArgumentException() {
+    public LengthArrayOutOfRangeException() {
     }
 
     /**
@@ -27,7 +26,7 @@ public class IncorrectIndexArgumentException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public IncorrectIndexArgumentException(String message) {
+    public LengthArrayOutOfRangeException(String message) {
         super(message);
     }
 
@@ -45,7 +44,7 @@ public class IncorrectIndexArgumentException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public IncorrectIndexArgumentException(String message, Throwable cause) {
+    public LengthArrayOutOfRangeException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -62,7 +61,7 @@ public class IncorrectIndexArgumentException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public IncorrectIndexArgumentException(Throwable cause) {
+    public LengthArrayOutOfRangeException(Throwable cause) {
         super(cause);
     }
 
@@ -80,7 +79,7 @@ public class IncorrectIndexArgumentException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    public IncorrectIndexArgumentException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public LengthArrayOutOfRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
