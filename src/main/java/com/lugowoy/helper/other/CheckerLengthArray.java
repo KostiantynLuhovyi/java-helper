@@ -13,7 +13,7 @@ import com.lugowoy.helper.models.Array;
 public class CheckerLengthArray {
 
     //todo add doc's
-    static <T> boolean checkLengthArray(Array<T> array) {
+    public static <T> boolean checkLengthArray(Array<T> array) {
         if (array.getLength() > 0) {
             if (array.getLength() <= Integer.MAX_VALUE) {
                 return true;
@@ -26,7 +26,7 @@ public class CheckerLengthArray {
     }
 
     //todo add doc's
-    static <T> boolean checkLengthArray(T[] tArray) {
+    public static <T> boolean checkLengthArray(T[] tArray) {
         if (tArray.length > 0) {
             if (tArray.length <= Integer.MAX_VALUE) {
                 return true;

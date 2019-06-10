@@ -1,21 +1,13 @@
 package com.lugowoy.helper.models;
 
-/**
- * Thrown when the value of the matrix row is incorrect.
- * <p>Created by LugowoyKonstantin on 07.06.2019.
- *
- * @author LugowoyKonstantin
- * @version 1.0
- * @since 1.6.6
- */
-public class IncorrectMatrixRowValueException extends RuntimeException {
+class ColumnMatrixOutOfRangeException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public IncorrectMatrixRowValueException() {
+    public ColumnMatrixOutOfRangeException() {
     }
 
     /**
@@ -26,7 +18,7 @@ public class IncorrectMatrixRowValueException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public IncorrectMatrixRowValueException(String message) {
+    public ColumnMatrixOutOfRangeException(String message) {
         super(message);
     }
 
@@ -44,7 +36,7 @@ public class IncorrectMatrixRowValueException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public IncorrectMatrixRowValueException(String message, Throwable cause) {
+    public ColumnMatrixOutOfRangeException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -61,7 +53,7 @@ public class IncorrectMatrixRowValueException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public IncorrectMatrixRowValueException(Throwable cause) {
+    public ColumnMatrixOutOfRangeException(Throwable cause) {
         super(cause);
     }
 
@@ -79,7 +71,7 @@ public class IncorrectMatrixRowValueException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    public IncorrectMatrixRowValueException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public ColumnMatrixOutOfRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

@@ -1,21 +1,15 @@
 package com.lugowoy.helper.models;
 
-/**
- * Thrown when the data structure (array, matrix, and others) have an incorrect length (size).
- * <p>Created by LugowoyKonstantin on 08.06.2019.
- *
- * @author LugowoyKonstantin
- * @version 1.0
- * @since 1.6.6
- */
-public class IncorrectLengthArrayException extends RuntimeException {
+/**10.06.2019*/
+//todo add doc's
+class RowMatrixOutOfRangeException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public IncorrectLengthArrayException() {
+    public RowMatrixOutOfRangeException() {
     }
 
     /**
@@ -26,7 +20,7 @@ public class IncorrectLengthArrayException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public IncorrectLengthArrayException(String message) {
+    public RowMatrixOutOfRangeException(String message) {
         super(message);
     }
 
@@ -44,7 +38,7 @@ public class IncorrectLengthArrayException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public IncorrectLengthArrayException(String message, Throwable cause) {
+    public RowMatrixOutOfRangeException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -61,7 +55,7 @@ public class IncorrectLengthArrayException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public IncorrectLengthArrayException(Throwable cause) {
+    public RowMatrixOutOfRangeException(Throwable cause) {
         super(cause);
     }
 
@@ -79,7 +73,7 @@ public class IncorrectLengthArrayException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    public IncorrectLengthArrayException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public RowMatrixOutOfRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

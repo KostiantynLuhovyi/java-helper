@@ -1,9 +1,9 @@
 package com.lugowoy.helper.models;
 
+import com.lugowoy.helper.other.CheckerIndex;
 import com.lugowoy.helper.other.CheckerLengthArray;
-import com.lugowoy.helper.other.IncorrectIndexArgumentException;
-import com.lugowoy.helper.other.IncorrectLengthArgumentException;
-import com.lugowoy.helper.other.ReaderLengthArray;
+import com.lugowoy.helper.other.LengthArrayOutOfRangeException;
+import com.lugowoy.helper.other.LengthValueOutOfRangeException;
 import com.rits.cloning.Cloner;
 
 import java.util.Arrays;
@@ -51,22 +51,19 @@ public class Matrix<T> implements Model {
      *
      * @param rows Rows of matrix.
      * @param columns Columns of matrix.
-     * @throws IncorrectMatrixRowValueException If the argument value of the rows is incorrect.
-     * @throws IncorrectMatrixColumnValueException If the argument value of the columns is incorrect.
+     * @throws LengthValueOutOfRangeException If the argument value of the rows or columns is out of range.
      */
     public Matrix(int rows, int columns) {
-        if (rows > 0 && rows < MAX_MATRIX_LENGTH) {
+        if () {
             if (columns > 0 && columns < MAX_MATRIX_LENGTH) {
                 this.rows = rows;
                 this.columns = columns;
                 this.matrix = new Object[rows][columns];
             } else {
-                throw new IncorrectMatrixColumnValueException("If the argument value of the columns of the matrix " +
-                                                                     "is not included in the correct range of values.");
+                throw new IncorrectMatrixColumnValueException("The argument value of the columns is out of range.");
             }
         } else {
-            throw new IncorrectMatrixRowValueException("If the argument value of the rows of the matrix " +
-                                                                     "is not included in the correct range of values.");
+            throw new IncorrectMatrixRowValueException("The argument value of the row is out of range.");
         }
     }
 
@@ -75,12 +72,11 @@ public class Matrix<T> implements Model {
      *
      * @param matrix Two-dimensional array to initialize the matrix.
      * @throws NullPointerException If argument matrix is null.
-     * @throws IncorrectLengthArgumentException If argument matrix has incorrect rows or columns length value (greater than {@link Matrix#MAX_MATRIX_LENGTH}).
+     * @throws LengthArrayOutOfRangeException If argument matrix has incorrect rows or columns length value.
      */
     public Matrix(T[][] matrix) {
         if (matrix != null) {
-            if (CheckerLengthArray.checkLengthValueInRange(matrix.length, MAX_MATRIX_LENGTH)
-                    && CheckerLengthArray.checkLengthValueInRange(matrix[0].length, MAX_MATRIX_LENGTH)) {
+            if (CheckerLengthArray.checkLengthArray(matrix) && CheckerLengthArray.checkLengthArray(matrix[0])) {
                 this.rows = matrix.length;
                 this.columns = matrix[0].length;
                 this.matrix = new Cloner().deepClone(matrix);
@@ -142,14 +138,12 @@ public class Matrix<T> implements Model {
      * Sets the elements of the matrix are the same as the two-dimensional array passed to the argument.
      *
      * @param matrix Two-dimensional array for matrix initialization.
-     * @throws IncorrectLengthArgumentException If argument matrix has incorrect rows
-     *                                           or columns length value (greater than {@link Matrix#MAX_MATRIX_LENGTH}).
+     * @throws LengthArrayOutOfRangeException If argument matrix has incorrect rows or columns length value.
      * @throws NullPointerException If argument two-dimensional array is null.
      */
     public void setMatrix(T[][] matrix) {
         if (matrix != null) {
-            if (CheckerLengthArray.checkLengthValueInRange(matrix.length, MAX_MATRIX_LENGTH)
-                    && CheckerLengthArray.checkLengthValueInRange(matrix[0].length, MAX_MATRIX_LENGTH)) {
+            if (CheckerLengthArray.checkLengthArray(matrix) && CheckerLengthArray.checkLengthArray(matrix)) {
                 this.rows = matrix.length;
                 this.columns = matrix[0].length;
                 this.matrix = matrix;
@@ -182,14 +176,12 @@ public class Matrix<T> implements Model {
      *
      * @param indexRow Index row to get.
      * @return Object of the {@link Array} class filled with elements from the matrix row.
-     * @throws IncorrectIndexArgumentException If argument indexRow is not valid.
+     * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      */
     public Array<T> getRow(int indexRow) {
         Array<T> array = new Array<>(this.rows);
-        if (isCorrectIndexRow(indexRow, this.columns)) {
+        if (CheckerIndex.checkIndex(indexRow, this.columns)) {
             array.setArray((T[]) Arrays.copyOfRange(this.matrix[indexRow], 0, this.columns));
-        } else {
-            throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + " is not valid.");
         }
         return array;
     }
@@ -200,15 +192,13 @@ public class Matrix<T> implements Model {
      * @param array One-dimensional array to fill with elements from the matrix row.
      * @param indexRow Index row to get.
      * @return One-dimensional array filled with elements from the matrix row.
-     * @throws IncorrectIndexArgumentException If argument indexRow is not valid.
+     * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      * @throws NullPointerException If argument array is null.
      */
     public T[] getRow(T[] array, int indexRow) {
         if (array != null) {
-            if (isCorrectIndexRow(indexRow, this.columns)) {
+            if (CheckerIndex.checkIndex(indexRow, this.columns)) {
                 array = (T[]) Arrays.copyOfRange(this.matrix[indexRow], 0, this.columns);
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + " is not valid.");
             }
         } else {
             throw new NullPointerException("Argument array is null.");
@@ -222,17 +212,15 @@ public class Matrix<T> implements Model {
      * @param array Object of the {@link Array} class to fill with elements from the matrix row.
      * @param indexRow Index row to get.
      * @return Object of the {@link Array} class filled with elements from the matrix row.
-     * @throws IncorrectIndexArgumentException If argument indexRow is not valid.
+     * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      * @throws NullPointerException If argument array is null.
      */
     public Array<T> getRow(Array<T> array, int indexRow) {
         if (array != null) {
-            if (isCorrectIndexRow(indexRow, this.columns)) {
+            if (CheckerIndex.checkIndex(indexRow, this.columns)) {
                 for (int i = 0; i < this.columns; i++) {
                     array.add((T) this.matrix[indexRow][i]);
                 }
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + " is not valid.");
             }
         } else {
             throw new NullPointerException("Argument array is null.");
@@ -245,16 +233,14 @@ public class Matrix<T> implements Model {
      *
      * @param indexColumn Index column to get.
      * @return Object of the {@link Array} class filled with elements from the matrix column.
-     * @throws IncorrectIndexArgumentException If argument indexColumn is not valid.
+     * @throws IndexOutOfBoundsException If the argument indexColumn is out of range.
      */
     public Array<T> getColumn(int indexColumn) {
         Array<T> array = new Array<>(this.columns);
-        if (isCorrectIndexColumn(indexColumn, this.rows)) {
+        if (CheckerIndex.checkIndex(indexColumn, this.rows)) {
             for (int i = 0; i < this.rows; i++) {
                 array.add((T) this.matrix[i][indexColumn]);
             }
-        } else {
-            throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
         }
         return array;
     }
@@ -265,17 +251,15 @@ public class Matrix<T> implements Model {
      * @param array One-dimensional array to fill with elements from the matrix column.
      * @param indexColumn Index column to get.
      * @return One-dimensional array filled with elements from the matrix column.
-     * @throws IncorrectIndexArgumentException If argument indexColumn is not valid.
+     * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
      * @throws NullPointerException If argument array is null.
      */
     public T[] getColumn(T[] array, int indexColumn) {
         if (array != null) {
-            if (isCorrectIndexColumn(indexColumn, this.rows)) {
+            if (CheckerIndex.checkIndex(indexColumn, this.rows)) {
                 for (int i = 0; i < this.rows; i++) {
                     array[i] = (T) this.matrix[i][indexColumn];
                 }
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
             }
         } else {
             throw new NullPointerException("Argument array is null.");
@@ -289,17 +273,15 @@ public class Matrix<T> implements Model {
      * @param array Object of the {@link Array} class to fill with elements from the matrix column.
      * @param indexColumn Index column to get.
      * @return Object of the {@link Array} class filled with elements from the matrix column.
-     * @throws IncorrectIndexArgumentException If argument indexColumn is not valid.
+     * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
      * @throws NullPointerException If argument array is null.
      */
     public Array<T> getColumn(Array<T> array, int indexColumn) {
         if (array != null) {
-            if (isCorrectIndexColumn(indexColumn, this.rows)) {
+            if (CheckerIndex.checkIndex(indexColumn, this.rows)) {
                 for (int i = 0; i < this.rows; i++) {
                     array.setArray((T[]) this.matrix[i][indexColumn]);
                 }
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
             }
         } else {
             throw new NullPointerException("Argument array is null.");
@@ -313,15 +295,13 @@ public class Matrix<T> implements Model {
      *
      * @param array One-dimensional array that are stored elements to set elements of row of the matrix.
      * @param indexRow Index row to get.
-     * @throws IncorrectIndexArgumentException If argument indexRow is not valid.
+     * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      * @throws NullPointerException If argument array is null.
      */
     public void setRow(T[] array, int indexRow) {
         if (array != null) {
-            if (isCorrectIndexRow(indexRow, this.columns)) {
+            if (CheckerIndex.checkIndex(indexRow, this.columns)) {
                 this.matrix[indexRow] = Arrays.copyOfRange(array, 0, array.length);
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + " is not valid.");
             }
         } else {
             throw new NullPointerException("Argument array is null.");
@@ -334,17 +314,15 @@ public class Matrix<T> implements Model {
      *
      * @param array Object of the {@link Array} class that are stored elements to set elements of row of the matrix.
      * @param indexRow Index row to get.
-     * @throws IncorrectIndexArgumentException If argument indexRow is not valid.
+     * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      * @throws NullPointerException If argument array is null.
      */
     public void setRow(Array<T> array, int indexRow) {
         if (array != null) {
-            if (isCorrectIndexRow(indexRow, this.columns)) {
+            if (CheckerIndex.checkIndex(indexRow, this.columns)) {
                 for (int i = 0; i < this.rows; i++) {
                     this.matrix[indexRow][i] = array.get(i);
                 }
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + " is not valid.");
             }
         } else {
             throw new NullPointerException("Argument array is null.");
@@ -357,17 +335,15 @@ public class Matrix<T> implements Model {
      *
      * @param array One-dimensional array that are stored elements to set elements of row of the matrix.
      * @param indexColumn Index column to get.
-     * @throws IncorrectIndexArgumentException If argument indexColumn is not valid.
+     * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
      * @throws NullPointerException If argument array is null.
      */
     public void setColumn(T[] array, int indexColumn) {
         if (array != null) {
-            if (isCorrectIndexColumn(indexColumn, this.rows)) {
+            if (CheckerIndex.checkIndex(indexColumn, this.rows)) {
                 for (int i = 0; i < this.columns; i++) {
                     this.matrix[i][indexColumn] = array[i];
                 }
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
             }
         } else {
             throw new NullPointerException("Argument array is null.");
@@ -380,17 +356,15 @@ public class Matrix<T> implements Model {
      *
      * @param array Object of the {@link Array} class that are stored elements to set elements of column of the matrix.
      * @param indexColumn Index column to get.
-     * @throws IncorrectIndexArgumentException If argument indexColumn is not valid.
+     * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
      * @throws NullPointerException If argument array is null.
      */
     public void setColumn(Array<T> array, int indexColumn) {
         if (array != null) {
-            if (isCorrectIndexColumn(indexColumn, this.rows)) {
+            if (CheckerIndex.checkIndex(indexColumn, this.rows)) {
                 for (int i = 0; i < this.columns; i++) {
                     this.matrix[i][indexColumn] = array.get(i);
                 }
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
             }
         } else {
             throw new NullPointerException("Argument array is null.");
@@ -401,15 +375,13 @@ public class Matrix<T> implements Model {
      * Deletes the matrix row by the index passed by the argument.
      *
      * @param indexRow Index to delete the matrix row.
-     * @throws IncorrectIndexArgumentException If argument indexRow is not valid.
+     * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      */
     public void deleteRow(int indexRow) {
-        if (isCorrectIndexRow(indexRow, this.rows)) {
+        if (CheckerIndex.checkIndex(indexRow, this.rows)) {
             for (int i = 0; i < this.columns; i++) {
                 this.matrix[indexRow][i] = null;
             }
-        } else {
-            throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + "is not valid.");
         }
     }
 
@@ -417,15 +389,13 @@ public class Matrix<T> implements Model {
      * Deletes the matrix column by the index passed by the argument.
      *
      * @param indexColumn Index to delete the matrix column.
-     * @throws IncorrectIndexArgumentException If argument indexColumn is not valid.
+     * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
      */
     public void deleteColumn(int indexColumn) {
-        if (isCorrectIndexColumn(indexColumn, this.columns)) {
+        if (CheckerIndex.checkIndex(indexColumn, this.columns)) {
             for (int i = 0; i < this.rows; i++) {
                 this.matrix[i][indexColumn] = null;
             }
-        } else {
-            throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
         }
     }
 
@@ -435,10 +405,10 @@ public class Matrix<T> implements Model {
      * Compresses the matrix by removing from it a row at the index passed by the argument.
      *
      * @param indexRow Index row to be deleted during compression.
-     * @throws IncorrectIndexArgumentException If argument indexRow is not valid.
+     * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      */
     public void compressRow(int indexRow) {
-        if (isCorrectIndexRow(indexRow, this.rows)) {
+        if (CheckerIndex.checkIndex(indexRow, this.rows)) {
             Object[][] objects = new Object[this.rows - 1][this.columns];
             int tmpIndexRow = 0;
             for (int i = 0; i < this.rows; i++) {
@@ -452,8 +422,6 @@ public class Matrix<T> implements Model {
                 }
             }
             this.setMatrix((T[][]) objects);
-        } else {
-            throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + " is not valid.");
         }
     }
 
@@ -463,10 +431,10 @@ public class Matrix<T> implements Model {
      * Compresses the matrix by removing from it a column at the index passed by the argument.
      *
      * @param indexColumn Index row to be deleted during compression.
-     * @throws IncorrectIndexArgumentException If argument indexColumn is not valid.
+     * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
      */
     public void compressColumn(int indexColumn) {
-        if (isCorrectIndexColumn(indexColumn, this.columns)) {
+        if (CheckerIndex.checkIndex(indexColumn, this.columns)) {
             Object[][] objects = new Object[this.rows][this.columns - 1];
             int tmpIndexColumn = 0;
             for (int i = 0; i < this.rows; i++) {
@@ -480,8 +448,6 @@ public class Matrix<T> implements Model {
                 tmpIndexColumn = 0;
             }
             this.setMatrix((T[][]) objects);
-        } else {
-            throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + "is not valid.");
         }
     }
 
@@ -491,18 +457,13 @@ public class Matrix<T> implements Model {
      * @param indexRow Index matrix row.
      * @param indexColumn Index matrix column.
      * @return Element of the matrix indexes passed by the argument.
-     * @throws IncorrectIndexArgumentException Argument indexRow or indexColumn is not valid.
+     * @throws IndexOutOfBoundsException Argument indexRow or indexColumn is out of range.
      */
     public T getElement(int indexRow, int indexColumn) {
-        if (isCorrectIndexRow(indexRow, this.rows)) {
-            if (isCorrectIndexColumn(indexColumn, this.columns)){
+        if (CheckerIndex.checkIndex(indexRow, this.rows)) {
+            if (CheckerIndex.checkIndex(indexColumn, this.columns)){
                 return (T) this.matrix[indexRow][indexColumn];
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
             }
-        } else {
-            throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + " is not valid.");
-        }
     }
 
     /**
@@ -511,18 +472,13 @@ public class Matrix<T> implements Model {
      * @param indexRow Index matrix row.
      * @param indexColumn Index matrix column.
      * @param element Element to set.
-     * @throws IncorrectIndexArgumentException Argument indexRow or indexColumn is not valid.
+     * @throws IndexOutOfBoundsException Argument indexRow or indexColumn is out of range.
      */
     public void setElement(int indexRow, int indexColumn, T element) {
-        if (isCorrectIndexRow(indexRow, this.rows)) {
-            if (isCorrectIndexColumn(indexColumn, this.columns)) {
+        if (CheckerIndex.checkIndex(indexRow, this.rows)) {
+            if (CheckerIndex.checkIndex(indexColumn, this.columns)) {
                 this.matrix[indexRow][indexColumn] = element;
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
             }
-        } else {
-            throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + " is not valid.");
-        }
     }
 
     /**
@@ -531,18 +487,13 @@ public class Matrix<T> implements Model {
      *
      * @param indexRow Index matrix row.
      * @param indexColumn Index matrix column.
-     * @throws IncorrectIndexArgumentException Argument indexRow or indexColumn is not valid.
+     * @throws IndexOutOfBoundsException Argument indexRow or indexColumn is out of range.
      */
     public void deleteElement(int indexRow, int indexColumn) {
-        if (isCorrectIndexRow(indexRow, this.rows)) {
-            if (isCorrectIndexColumn(indexColumn, this.columns)) {
+        if (CheckerIndex.checkIndex(indexRow, this.rows)) {
+            if (CheckerIndex.checkIndex(indexColumn, this.columns)) {
                 this.matrix[indexRow][indexColumn] = null;
-            } else {
-                throw new IncorrectIndexArgumentException("Argument indexColumn : " + indexColumn + " is not valid.");
             }
-        } else {
-            throw new IncorrectIndexArgumentException("Argument indexRow : " + indexRow + " is not valid.");
-        }
     }
 
     /**
