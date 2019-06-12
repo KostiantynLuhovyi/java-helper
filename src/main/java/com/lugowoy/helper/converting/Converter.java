@@ -5,7 +5,6 @@ package com.lugowoy.helper.converting;
  * <p>Created by Konstantin on 29-Jan-17.
  *
  * @param <T> The type of object whose data will be converted.
- *
  * @author Konstantin Lugowoy
  * @version 1.1
  * @since 1.0

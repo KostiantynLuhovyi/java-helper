@@ -17,7 +17,7 @@ public interface LengthReader {
      *
      * @param reader The object to read the length value.
      * @return The result of the length of an array.
-     * @throws NullPointerException If reader is null.
+     * @throws NullPointerException           If reader is null.
      * @throws LengthValueOutOfRangeException If result length array value is incorrect.
      */
     static int readLength(Reading reader) {
@@ -31,11 +31,11 @@ public interface LengthReader {
     /**
      * Read and returns the length of an array.
      *
-     * @param reader The object to read the length value.
+     * @param reader           The object to read the length value.
      * @param boundLengthValue An argument whose value indicates the maximum allowable length of the array.
      * @return The result of the length of an array.
-     * @throws NullPointerException If reader is null.
-     * @throws BoundOutOfRangeException If bound value is incorrect.
+     * @throws NullPointerException           If reader is null.
+     * @throws BoundOutOfRangeException       If bound value is incorrect.
      * @throws LengthValueOutOfRangeException If result length array value is incorrect.
      */
     static int readLength(Reading reader, int boundLengthValue) {
@@ -51,12 +51,12 @@ public interface LengthReader {
     /**
      * Read and returns the length of an array.
      *
-     * @param reader The object to read the length value.
+     * @param reader                The object to read the length value.
      * @param lowerBoundLengthValue An argument whose value indicates the lower allowable length of the array.
      * @param upperBoundLengthValue An argument whose value indicates the upper allowable length of the array.
      * @return The result of the length of an array.
-     * @throws NullPointerException If reader is null.
-     * @throws BoundOutOfRangeException If bound value is incorrect.
+     * @throws NullPointerException           If reader is null.
+     * @throws BoundOutOfRangeException       If bound value is incorrect.
      * @throws LengthValueOutOfRangeException If result length array value is incorrect.
      */
     static int readLength(Reading reader, int lowerBoundLengthValue, int upperBoundLengthValue) {

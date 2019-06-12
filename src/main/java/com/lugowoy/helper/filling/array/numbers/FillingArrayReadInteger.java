@@ -13,8 +13,8 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
- *  with data of the {@link Integer} type with read by the {@link Reader} class object
- *  encapsulated in the parent class {@link FillingArrayReadValues}.
+ * with data of the {@link Integer} type with read by the {@link Reader} class object
+ * encapsulated in the parent class {@link FillingArrayReadValues}.
  * The class is the heir of the FillingArrayReadValues class and implements its contract.
  * Also implements the contract announced by the FillingArrayNumbers interface.
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
@@ -30,8 +30,8 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
 
     /**
      * Constructs a new object of {@link FillingArrayReadInteger} class,
-     *  initializing an object of {@link Reader} class
-     *  encapsulated in the parent class to read data of the {@link Integer} type to be fill array.
+     * initializing an object of {@link Reader} class
+     * encapsulated in the parent class to read data of the {@link Integer} type to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in the parent class to read data of the {@link Integer} type to fill the array.
@@ -42,9 +42,9 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
 
     /**
      * Constructs a new object of {@link FillingArrayReadInteger} class,
-     *  initializing an object of {@link Reader} class
-     *  encapsulated in the parent class of the concrete implementation of the contract declared in the interface {@link Reading}
-     *  to read data of the {@link Integer} type to be fill array.
+     * initializing an object of {@link Reader} class
+     * encapsulated in the parent class of the concrete implementation of the contract declared in the interface {@link Reading}
+     * to read data of the {@link Integer} type to be fill array.
      *
      * @param reading The object of class that implements the {@link Reading} interface
      *                to initialize an object of the {@link Reader} class encapsulated in the parent class
@@ -151,11 +151,11 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param integers The array to be filled with data of the {@link Integer} type with read by the {@link Reader} class object.
-     * @param bound The value of the end bound for filling an array with data of the {@link Integer} type
-     *              with read by the {@link Reader} class object.
+     * @param bound    The value of the end bound for filling an array with data of the {@link Integer} type
+     *                 with read by the {@link Reader} class object.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -180,12 +180,12 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param lengthArray The length(size) of the array to be filled with data of the {@link Integer} type
      *                    with read by the {@link Reader} class object.
-     * @param bound The value of the border for filling the array with data of the {@link Integer} type
-     *              with read by the {@link Reader} class object.
+     * @param bound       The value of the border for filling the array with data of the {@link Integer} type
+     *                    with read by the {@link Reader} class object.
      * @return Created and filled an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      */
     @Override
@@ -210,15 +210,15 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      * Fills an object of the {@link Array} class with data of the {@link Integer} type with read by the {@link Reader} class object.
      * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
-     * @param array The object of the {@link Array} class to be filled with data of the {@link Integer} type
-     *              with read by the {@link Reader} class object.
+     * @param array      The object of the {@link Array} class to be filled with data of the {@link Integer} type
+     *                   with read by the {@link Reader} class object.
      * @param startBound The value of the start bound for filling an object of the {@link Array} class with data of the {@link Integer} type
      *                   with read by the {@link Reader} class object.
-     * @param endBound The value of the end bound for filling an object of the {@link Array} class with
-     *                 data of the {@link Integer} type with read by the {@link Reader} class object.
+     * @param endBound   The value of the end bound for filling an object of the {@link Array} class with
+     *                   data of the {@link Integer} type with read by the {@link Reader} class object.
      * @throws IllegalArgumentException If the object argument is null.
      */
     @Override
@@ -227,7 +227,7 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
         if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
                 array.setArray(integers);
             } else {
@@ -246,17 +246,17 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      * Fills an array with data of the {@link Integer} type with read by the {@link Reader} class object.
      * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
-     * @param integers The array to be filled with data of the {@link Integer} type with read by the {@link Reader} class object.
+     * @param integers   The array to be filled with data of the {@link Integer} type with read by the {@link Reader} class object.
      * @param startBound The value of the start bound for filling an array with data of the {@link Integer} type
      *                   with read by the {@link Reader} class object.
-     * @param endBound The value of the end bound for filling an array with data of the {@link Integer} type
-     *                 with read by the {@link Reader} class object.
+     * @param endBound   The value of the end bound for filling an array with data of the {@link Integer} type
+     *                   with read by the {@link Reader} class object.
      * @throws IllegalArgumentException If the array argument is null.
-     * */
+     */
     @Override
     public void fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
         //todo check or add relevant checks.
@@ -283,18 +283,18 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled with data of the {@link Integer} type
      *                    with read by the {@link Reader} class object.
-     * @param startBound The value of the start bound for filling an array with data of the {@link Integer} type
-     *                   with read by the {@link Reader} class object.
-     * @param endBound The value of the end bound for filling an array with data of the {@link Integer} type
-     *                 with read by the {@link Reader} class object.
+     * @param startBound  The value of the start bound for filling an array with data of the {@link Integer} type
+     *                    with read by the {@link Reader} class object.
+     * @param endBound    The value of the end bound for filling an array with data of the {@link Integer} type
+     *                    with read by the {@link Reader} class object.
      * @return Created and filled an array with data of the {@link Integer} type with read by the {@link Reader} class object.
-     * */
+     */
     @Override
     public Integer[] fill(int lengthArray, Integer startBound, Integer endBound) {
         //todo check or add relevant checks.

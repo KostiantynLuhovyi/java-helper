@@ -4,7 +4,8 @@ import com.lugowoy.helper.filling.array.CheckerFillingArray;
 import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
-import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkLengthArray;
+import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkNonNullArray;
 import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
@@ -23,6 +24,7 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
 
     /**
      * Constructs a new object of the {@link FillingArrayRandomValueStrings} class.
+     *
      * @param fileName The name of the file from which the random characters are read.
      */
     public FillingArrayRandomValueStrings(String fileName) {
@@ -32,7 +34,8 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
     /**
      * Fills an object of the {@link Array} class with objects of the {@link String} class.
      * <p>The strings consist of random alphabetic characters that were taken from the file in the resources.
-     *    The strings size is {@link FillingArrayRandomStrings#DEFAULT_STRING_LENGTH} characters.
+     * The strings size is {@link FillingArrayRandomStrings#DEFAULT_STRING_LENGTH} characters.
+     *
      * @param array The object of the {@link Array} class to be filled with objects of the {@link String} class.
      */
     @Override
@@ -44,7 +47,8 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
     /**
      * Fills an array with object of the {@link String} type.
      * <p>The strings consist of random alphabetic characters that were taken from the file in the resources.
-     *    The strings random size is {@link FillingArrayRandomStrings#DEFAULT_STRING_LENGTH} characters.
+     * The strings random size is {@link FillingArrayRandomStrings#DEFAULT_STRING_LENGTH} characters.
+     *
      * @param strings The array to be filled with object of the {@link String} type.
      */
     @Override
@@ -61,9 +65,10 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
     /**
      * Fills an array with object of the {@link String} type.
      * <p>The strings consist of random alphabetic characters that were taken from the file in the resources.
-     *    The strings random size is {@link FillingArrayRandomStrings#DEFAULT_STRING_LENGTH} characters.
+     * The strings random size is {@link FillingArrayRandomStrings#DEFAULT_STRING_LENGTH} characters.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
+     *
      * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
      * @return Created and filled array with object of the {@link String} type.
      */
@@ -84,8 +89,9 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
     /**
      * Fills an object of the {@link Array} class with objects of the {@link String} class.
      * <p>The strings consist of random alphabetic characters that were taken from the file in the properties.
-     *    The strings size is "lengthString" parameter.
-     * @param array The object of the {@link Array} class to be filled with objects of the {@link String} class.
+     * The strings size is "lengthString" parameter.
+     *
+     * @param array        The object of the {@link Array} class to be filled with objects of the {@link String} class.
      * @param lengthString The length of strings.
      */
     public void fill(Array<String> array, int lengthString) throws IllegalArgumentException {
@@ -108,8 +114,9 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
     /**
      * Fills an array with object of the {@link String} type.
      * <p>The strings consist of random alphabetic characters that were taken from the file in the properties.
-     *    The strings size is "lengthString" parameter.
-     * @param strings The array to be filled with object of the {@link String} type.
+     * The strings size is "lengthString" parameter.
+     *
+     * @param strings      The array to be filled with object of the {@link String} type.
      * @param lengthString The length of strings.
      */
     public void fill(String[] strings, int lengthString) throws IllegalArgumentException {
@@ -127,10 +134,11 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
     /**
      * Fills an array with object of the {@link String} type.
      * <p>The strings consist of random alphabetic characters that were taken from the file in the properties.
-     *    The strings size is "lengthString" parameter.
+     * The strings size is "lengthString" parameter.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
-     * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
+     *
+     * @param lengthArray  The length(size) of the array to be filled with object of the {@link String} type.
      * @param lengthString The length of strings.
      * @return Created and filled array with object of the {@link String} type.
      */

@@ -37,8 +37,8 @@ public interface ReaderCharacters {
         ArrayList<Character> charactersList = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(
-                                        new InputStreamReader(ClassLoader.getSystemResourceAsStream("characters/" + fileName + ".txt"),
-                                                              StandardCharsets.UTF_8));
+                    new InputStreamReader(ClassLoader.getSystemResourceAsStream("characters/" + fileName + ".txt"),
+                            StandardCharsets.UTF_8));
             int character;
             while ((character = reader.read()) != -1) {
                 charactersList.add((char) character);

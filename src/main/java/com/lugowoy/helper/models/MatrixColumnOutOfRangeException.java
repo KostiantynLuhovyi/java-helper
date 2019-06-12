@@ -1,13 +1,13 @@
 package com.lugowoy.helper.models;
 
-class ColumnMatrixOutOfRangeException extends RuntimeException {
+class MatrixColumnOutOfRangeException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public ColumnMatrixOutOfRangeException() {
+    public MatrixColumnOutOfRangeException() {
     }
 
     /**
@@ -18,7 +18,7 @@ class ColumnMatrixOutOfRangeException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public ColumnMatrixOutOfRangeException(String message) {
+    public MatrixColumnOutOfRangeException(String message) {
         super(message);
     }
 
@@ -36,7 +36,7 @@ class ColumnMatrixOutOfRangeException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public ColumnMatrixOutOfRangeException(String message, Throwable cause) {
+    public MatrixColumnOutOfRangeException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -53,7 +53,7 @@ class ColumnMatrixOutOfRangeException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public ColumnMatrixOutOfRangeException(Throwable cause) {
+    public MatrixColumnOutOfRangeException(Throwable cause) {
         super(cause);
     }
 
@@ -71,7 +71,7 @@ class ColumnMatrixOutOfRangeException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    public ColumnMatrixOutOfRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public MatrixColumnOutOfRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

@@ -116,10 +116,10 @@ public class FillingArrayDescendingInteger implements FillingArrayNumbers<Intege
      * Fills an array with sequential descending of numeric data of type {@link Integer}.
      * <p>The array is filled with numeric data from "0" (decreases by "1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}.
      *
      * @param integers The array to be filled with sequential descending of numeric data of type {@link Integer}.
-     * @param bound The value of the end bound for filling an array with sequential descending of numeric data of type {@link Integer}.
+     * @param bound    The value of the end bound for filling an array with sequential descending of numeric data of type {@link Integer}.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -143,11 +143,11 @@ public class FillingArrayDescendingInteger implements FillingArrayNumbers<Intege
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from "0" (decreases by "1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}.
      *
      * @param lengthArray The length(size) of the array to be filled with
      *                    sequential descending of numeric data of type {@link Integer}.
-     * @param bound The value of the border for filling the array with sequential descending of numeric data of type {@link Integer}.
+     * @param bound       The value of the border for filling the array with sequential descending of numeric data of type {@link Integer}.
      * @return Created and filled an array with sequential descending of numeric data of type {@link Integer}.
      */
     @Override
@@ -174,16 +174,16 @@ public class FillingArrayDescendingInteger implements FillingArrayNumbers<Intege
      * <p>The object of the {@link Array} class is filled
      * with numeric data (decreases by "1") from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is less than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#START_BOUND}
-     *  and {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#START_BOUND}
+     * and {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND} respectively.
      *
-     * @param array The object of the {@link Array} class that must be filled
-     *              with sequential descending of numeric data of type {@link Integer}.
+     * @param array      The object of the {@link Array} class that must be filled
+     *                   with sequential descending of numeric data of type {@link Integer}.
      * @param startBound The value of the start bound for filling an object of the {@link Array} class
      *                   with sequential descending of numeric data of type {@link Integer}.
-     * @param endBound The value of the end bound for filling an object of the {@link Array} class
-     *                 with sequential descending of numeric data of type {@link Integer}.
+     * @param endBound   The value of the end bound for filling an object of the {@link Array} class
+     *                   with sequential descending of numeric data of type {@link Integer}.
      * @throws IllegalArgumentException If the object argument is null.
      */
     @Override
@@ -191,9 +191,9 @@ public class FillingArrayDescendingInteger implements FillingArrayNumbers<Intege
         if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
             if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
-                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialDescendingIntegerNumbersFromStartBoundToEndBound(integers,
-                                                                                                       startBound, endBound);
+                        startBound, endBound);
                 array.setArray(integers);
             } else {
                 this.fillArrayElementsSequentialDescendingIntegerNumbersFromStartBoundToEndBound(integers,
@@ -210,15 +210,15 @@ public class FillingArrayDescendingInteger implements FillingArrayNumbers<Intege
      * Fills an array with sequential descending of numeric data of type {@link Integer}.
      * <p>The array is filled with numeric data (decreases by "1") from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is less than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}
-     *  and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
-     * @param integers The array to be filled with sequential descending of numeric data of type {@link Integer}.
+     * @param integers   The array to be filled with sequential descending of numeric data of type {@link Integer}.
      * @param startBound The value of the start bound for filling an array
      *                   with sequential descending of numeric data of type {@link Integer}.
-     * @param endBound The value of the end bound for filling an array
-     *                 with sequential descending of numeric data of type {@link Integer}.
+     * @param endBound   The value of the end bound for filling an array
+     *                   with sequential descending of numeric data of type {@link Integer}.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -245,16 +245,16 @@ public class FillingArrayDescendingInteger implements FillingArrayNumbers<Intege
      * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data (decreases by "1") from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is less than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}
-     *  and {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled
      *                    with sequential descending of numeric data of type {@link Integer}.
-     * @param startBound The value of the start bound for filling an array
-     *                   with sequential descending of numeric data of type {@link Integer}.
-     * @param endBound The value of the end bound for filling an array
-     *                 with sequential descending of numeric data of type {@link Integer}.
+     * @param startBound  The value of the start bound for filling an array
+     *                    with sequential descending of numeric data of type {@link Integer}.
+     * @param endBound    The value of the end bound for filling an array
+     *                    with sequential descending of numeric data of type {@link Integer}.
      * @return Created and filled an array with sequential descending of numeric data of type {@link Integer}.
      */
     @Override

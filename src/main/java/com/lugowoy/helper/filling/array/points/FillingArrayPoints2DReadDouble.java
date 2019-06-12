@@ -6,6 +6,7 @@ import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.points.Point2D;
 
 import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
 import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
@@ -16,7 +17,7 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * The class provides functionality to fill an object of the {@link Array} class and classical arrays
  * with an object of the {@link Point} class with numeric coordinates of type {@link Double}
  * using the data read by the object of the class {@link Reader} encapsulated in this class.
- * Also implements the contract declared by the {@link FillingArrayPoints} interface.
+ * Also implements the contract declared by the {@link FillingArrayPointsNumbers} interface.
  * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
@@ -24,32 +25,32 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPointsReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
- * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
+ * @see FillingArrayPointsNumbers
  */
-public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadValues<Double> {
+public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues<Double> {
 
     //todo come up with and implement a variant of the methods without using the annotation SupressWarning.
-    
+
     /**
-     * Constructs a new object {@link FillingArrayPointsReadDoubleNumbers} class,
-     *  initializing an object of {@link Reader} class encapsulated in parent class to read the data to be fill array.
+     * Constructs a new object {@link FillingArrayPoints2DReadDouble} class,
+     * initializing an object of {@link Reader} class encapsulated in parent class to read the data to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in parent class to read data to fill array.
      */
-    public FillingArrayPointsReadDoubleNumbers(Reader reader, int dimensionPoint) {
+    public FillingArrayPoints2DReadDouble(Reader reader, int dimensionPoint) {
         super(reader, dimensionPoint);
     }
 
     /**
-     * Constructs a new object {@link FillingArrayPointsReadDoubleNumbers} class,
+     * Constructs a new object {@link FillingArrayPoints2DReadDouble} class,
      * initializing an object of {@link Reader} class encapsulated in parent class
      * of the concrete implementation of the contract declared in the interface {@link Reading} to read the data to be fill array.
      *
      * @param reading The object of class that implements the {@link Reading} interface to initialize an object of the {@link Reader} class
      *                encapsulated in parent class to read the data to be fill array.
      */
-    public FillingArrayPointsReadDoubleNumbers(Reading reading, int dimensionPoint) {
+    public FillingArrayPoints2DReadDouble(Reading reading, int dimensionPoint) {
         super(reading, dimensionPoint);
     }
 
@@ -103,7 +104,7 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      *
      * @param lengthArray The length(size) of the array to be filled.
      * @return Created and filled array of the objects of the {@link Point} class
-     *         with random numeric coordinates of type {@link Double}.
+     * with random numeric coordinates of type {@link Double}.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
@@ -185,7 +186,6 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * If the value of the "bound" argument is a negative number,
      * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
      *
-     *
      * @param lengthArray The length(size) of the array to be filled.
      * @param bound       The value of the end of the range boundary
      *                    of numerical values by which the coordinates of points in the array will be initialized.
@@ -219,12 +219,11 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
      * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
      * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
-     *
-     * @param array The object of the {@link Array} class to be filled.
+     * @param array      The object of the {@link Array} class to be filled.
      * @param startBound The value of the start of the range boundary
      *                   of numerical values by which the coordinates of points in the array will be initialized.
-     * @param endBound The value of the end of the range boundary
-     *                 of numerical values by which the coordinates of points in the array will be initialized.
+     * @param endBound   The value of the end of the range boundary
+     *                   of numerical values by which the coordinates of points in the array will be initialized.
      * @throws IllegalArgumentException If argument object is null.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
@@ -321,34 +320,33 @@ public class FillingArrayPointsReadDoubleNumbers extends FillingArrayPointsReadV
     }
 
     private void fillArrayPointsReadDoubleNumbers(Point<Double>[] points) {
+        double xCoor, yCoor;
         for (int i = 0; i < points.length; i++) {
-            Point<Double> point = new Point<>(super.getDimensionPoint());
-            for (int j = 0; j < point.getDimension(); j++) {
-                point.setCoordinate(super.getReader().readDouble(), j);
-            }
+            xCoor = super.getReader().readDouble();
+            yCoor = super.getReader().readDouble();
+            Point<Double> point = new Point2D<>(xCoor, yCoor);
+            points[i] = point;
         }
     }
 
     private void fillArrayPointsReadDoubleNumbersFromZeroToPositiveBound(Point<Double>[] points, double bound) {
-        for (int i = 0; i < points.length; i++) {
-            Point<Double> point = new Point<>(super.getDimensionPoint());
-            for (int j = 0; j < point.getDimension(); j++) {
-                point.setCoordinate(checkReadValueIsInRange(super.getReader().readDouble(), START_BOUND, bound), j);
-            }
-        }
+        this.fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(points, START_BOUND, bound);
     }
 
     private void fillArrayPointsReadDoubleNumbersFromStartBoundToEndBound(Point<Double>[] points, double startBound, double endBound) {
+        double xCoor, yCoor;
         for (int i = 0; i < points.length; i++) {
-            Point<Double> point = new Point<>(super.getDimensionPoint());
-            for (int j = 0; j < point.getDimension(); j++) {
-                point.setCoordinate(checkReadValueIsInRange(super.getReader().readDouble(), startBound, endBound), j);
-            }
+            double xCoorReadValue = super.getReader().readDouble();
+            xCoor = isReadValueIsInRange(xCoorReadValue, startBound, endBound) ? xCoorReadValue : DOUBLE_VALUE;
+            double yCoorReadValue = super.getReader().readDouble();
+            yCoor = isReadValueIsInRange(yCoorReadValue, startBound, endBound) ? yCoorReadValue : DOUBLE_VALUE;
+            Point<Double> point = new Point2D<>(xCoor, yCoor);
+            points[i] = point;
         }
     }
 
-    private double checkReadValueIsInRange(double enteredValue, double startBound, double endBound) {
-        return (enteredValue >= startBound) && (enteredValue <= endBound) ? enteredValue : DOUBLE_VALUE;
+    private boolean isReadValueIsInRange(double value, double startBound, double endBound) {
+        return (value >= startBound) && (value <= endBound);
     }
 
 }

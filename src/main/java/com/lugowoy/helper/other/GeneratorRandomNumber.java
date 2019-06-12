@@ -271,7 +271,7 @@ public interface GeneratorRandomNumber {
      * from argument lowerBound to upperBound.
      *
      * @param lowerBound The start bound to generate.
-     * @param upperBound  The end bound to generate.
+     * @param upperBound The end bound to generate.
      * @return The generated float type number.
      * @throws BoundOutOfRangeException If the bound value is out in range.
      */
@@ -284,7 +284,7 @@ public interface GeneratorRandomNumber {
     }
 
     private static boolean isBoundValueInRange(long lowerBound, long upperBound,
-                                               long minLowerBound, long maxLowerBound ) {
+                                               long minLowerBound, long maxLowerBound) {
         if (lowerBound >= minLowerBound && upperBound <= maxLowerBound) {
             return true;
         } else {
@@ -293,7 +293,7 @@ public interface GeneratorRandomNumber {
     }
 
     private static boolean isBoundValueInRange(double lowerBound, double upperBound,
-                                               double minLowerBound, double maxLowerBound ) {
+                                               double minLowerBound, double maxLowerBound) {
         if (lowerBound >= minLowerBound && upperBound <= maxLowerBound) {
             return true;
         } else {

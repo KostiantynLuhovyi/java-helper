@@ -15,19 +15,19 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 /**
  * Created by Konstantin Lugowoy on 15-Jan-18.
  *
- * @author Konstantin Lugowoy
- * @version 1.4
- *
- * The class implements the contract declared by the {@link FillingArrayPoints} interface.
+ * <p>
+ * The class implements the contract declared by the {@link FillingArrayPointsNumbers} interface.
  * <p>The class fills an objects of the {@link Array} class
  * and classical arrays of object of the {@link Point} class with random numeric coordinates of type {@link Double}.
  *
+ * @author Konstantin Lugowoy
+ * @version 1.4
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
- * @see com.lugowoy.helper.filling.array.points.FillingArrayPoints
+ * @see FillingArrayPointsNumbers
  */
 //todo Edit doc's.
-public class FillingArrayPoints2DRandomDouble extends FillingArrayPoints<Double> {
+public class FillingArrayPoints2DRandomDouble extends FillingArrayPointsNumbers<Double> {
 
     //todo come up with and implement a variant of the methods without using the annotation SupressWarning.
 
@@ -91,7 +91,7 @@ public class FillingArrayPoints2DRandomDouble extends FillingArrayPoints<Double>
      * @param lengthArray The length(size) of the array to be filled
      *                    with the objects of the {@link Point} class with random numeric coordinates of type {@link Double}.
      * @return Created and filled array of the objects of the {@link Point} class
-     *         with random numeric coordinates of type {@link Double}.
+     * with random numeric coordinates of type {@link Double}.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
@@ -174,7 +174,6 @@ public class FillingArrayPoints2DRandomDouble extends FillingArrayPoints<Double>
      * If the value of the "bound" argument is a negative number,
      * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
      *
-     *
      * @param lengthArray The length(size) of the array to be filled with objects of the {@link Point} class
      *                    with random numeric coordinates of type {@link Double}.
      * @param bound       The value of the end of the range boundary
@@ -208,14 +207,13 @@ public class FillingArrayPoints2DRandomDouble extends FillingArrayPoints<Double>
      * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
      * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
-     *
-     * @param array The object of the {@link Array} class to be filled
-     *              with an object of the {@link Point} class random numeric coordinates of type {@link Double}.
+     * @param array      The object of the {@link Array} class to be filled
+     *                   with an object of the {@link Point} class random numeric coordinates of type {@link Double}.
      * @param startBound The value of the start of the range boundary
      *                   of numerical values by which the coordinates of points in the array will be initialized.
-     * @param endBound The value of the end of the range boundary
-     *                 of numerical values by which the coordinates of points in the array will be initialized.
-     * @throws  IllegalArgumentException If argument object is null.
+     * @param endBound   The value of the end of the range boundary
+     *                   of numerical values by which the coordinates of points in the array will be initialized.
+     * @throws IllegalArgumentException If argument object is null.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
@@ -224,7 +222,7 @@ public class FillingArrayPoints2DRandomDouble extends FillingArrayPoints<Double>
         if (checkNonNullArray(array)) {
             Point<Double>[] points = (Point<Double>[]) java.lang.reflect.Array.newInstance(Point.class, array.getLength());
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayPointsRandomDoubleNumbersFromStartBoundToEndBound(points, startBound, endBound);
                 array.setArray(points);
             } else {
@@ -312,29 +310,32 @@ public class FillingArrayPoints2DRandomDouble extends FillingArrayPoints<Double>
     }
 
     private void fillArrayPointsRandomDoubleNumbers(Point<Double>[] points) {
+        double xCoor, yCoor;
         for (int i = 0; i < points.length; i++) {
-            Point2D<Double> point = new Point2D<>(20, 20);
-            for (int j = 0; j < point.; j++) {
-                point.setCoordinate(GeneratorRandomNumber.generateDouble(), j);
-            }
+            xCoor = GeneratorRandomNumber.generateDouble();
+            yCoor = GeneratorRandomNumber.generateDouble();
+            Point<Double> point = new Point2D<>(xCoor, yCoor);
+            points[i] = point;
         }
     }
 
     private void fillArrayPointsRandomDoubleNumbersFromZeroToPositiveBound(Point<Double>[] points, double bound) {
+        double xCoor, yCoor;
         for (int i = 0; i < points.length; i++) {
-            Point<Double> point = new Point<>(super.getDimensionPoint());
-            for (int j = 0; j < point.getDimension(); j++) {
-                point.setCoordinate(GeneratorRandomNumber.generateDouble(bound), j);
-            }
+            xCoor = GeneratorRandomNumber.generateDouble(bound);
+            yCoor = GeneratorRandomNumber.generateDouble(bound);
+            Point<Double> point = new Point2D<>(xCoor, yCoor);
+            points[i] = point;
         }
     }
 
     private void fillArrayPointsRandomDoubleNumbersFromStartBoundToEndBound(Point<Double>[] points, double startBound, double endBound) {
+        double xCoor, yCoor;
         for (int i = 0; i < points.length; i++) {
-            Point<Double> point = new Point<>(super.getDimensionPoint());
-            for (int j = 0; j < point.getDimension(); j++) {
-                point.setCoordinate(GeneratorRandomNumber.generateDouble(startBound, endBound), j);
-            }
+            xCoor = GeneratorRandomNumber.generateDouble(startBound, endBound);
+            yCoor = GeneratorRandomNumber.generateDouble(startBound, endBound);
+            Point<Double> point = new Point2D<>(xCoor, yCoor);
+            points[i] = point;
         }
     }
 

@@ -115,11 +115,11 @@ public class FillingArrayDescendingDouble implements FillingArrayNumbers<Double>
      * Fills an array with sequential descending integer part of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data from "0.0" (decreases by "1.0") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
      *
      * @param doubles The array to be filled with sequential descending integer part of numeric data of type {@link Double}.
-     * @param bound The value of the end bound for filling an array
-     *              with sequential descending integer part of numeric data of type {@link Double}.
+     * @param bound   The value of the end bound for filling an array
+     *                with sequential descending integer part of numeric data of type {@link Double}.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -144,12 +144,12 @@ public class FillingArrayDescendingDouble implements FillingArrayNumbers<Double>
      * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from "0" (decreases by "1.0") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
      *
      * @param lengthArray The length(size) of the array to be filled
      *                    with sequential descending integer part of numeric data of type {@link Double}.
-     * @param bound The value of the border for filling the array
-     *              with sequential descending integer part of numeric data of type {@link Double}.
+     * @param bound       The value of the border for filling the array
+     *                    with sequential descending integer part of numeric data of type {@link Double}.
      * @return Created and filled an array with sequential descending integer part of numeric data of type {@link Double}.
      */
     @Override
@@ -179,12 +179,12 @@ public class FillingArrayDescendingDouble implements FillingArrayNumbers<Double>
      * then the values {@link DefaultValuesForFilling#START_BOUND}
      * and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
-     * @param array The object of the {@link Array} class that must be filled
-     *              with sequential descending integer part of numeric data of type {@link Double}.
+     * @param array      The object of the {@link Array} class that must be filled
+     *                   with sequential descending integer part of numeric data of type {@link Double}.
      * @param startBound The value of the start bound for filling an object of the {@link Array} class
      *                   with sequential descending integer part of numeric data of type {@link Double}.
-     * @param endBound The value of the end bound for filling an object of the {@link Array} class
-     *                 with sequential descending integer part of numeric data of type {@link Double}.
+     * @param endBound   The value of the end bound for filling an object of the {@link Array} class
+     *                   with sequential descending integer part of numeric data of type {@link Double}.
      * @throws IllegalArgumentException If the object argument is null.
      */
     @Override
@@ -192,7 +192,7 @@ public class FillingArrayDescendingDouble implements FillingArrayNumbers<Double>
         if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
             if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
-                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialDescendingDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
                 array.setArray(doubles);
             } else {
@@ -210,15 +210,15 @@ public class FillingArrayDescendingDouble implements FillingArrayNumbers<Double>
      * Fills an array with sequential descending integer part of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data (decreases by "1.0") from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is less than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#START_BOUND}
-     *  and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#START_BOUND}
+     * and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
-     * @param doubles The array to be filled with sequential descending integer part of numeric data of type {@link Double}.
+     * @param doubles    The array to be filled with sequential descending integer part of numeric data of type {@link Double}.
      * @param startBound The value of the start bound for filling an array
      *                   with sequential descending integer part of numeric data of type {@link Double}.
-     * @param endBound The value of the end bound for filling an array
-     *                 with sequential descending integer part of numeric data of type {@link Double}.
+     * @param endBound   The value of the end bound for filling an array
+     *                   with sequential descending integer part of numeric data of type {@link Double}.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -245,16 +245,16 @@ public class FillingArrayDescendingDouble implements FillingArrayNumbers<Double>
      * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data (decreases by "1.0") from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is less than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#START_BOUND}
-     *  and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#START_BOUND}
+     * and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled
      *                    with sequential descending integer part of numeric data of type {@link Double}.
-     * @param startBound The value of the start bound for filling an array
-     *                   with sequential descending integer part of numeric data of type {@link Double}.
-     * @param endBound The value of the end bound for filling an array
-     *                 with sequential descending integer part of numeric data of type {@link Double}.
+     * @param startBound  The value of the start bound for filling an array
+     *                    with sequential descending integer part of numeric data of type {@link Double}.
+     * @param endBound    The value of the end bound for filling an array
+     *                    with sequential descending integer part of numeric data of type {@link Double}.
      * @return Created and filled an array with sequential descending integer part of numeric data of type {@link Double}.
      */
     @Override

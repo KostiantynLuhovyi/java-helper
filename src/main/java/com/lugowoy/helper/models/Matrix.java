@@ -49,21 +49,21 @@ public class Matrix<T> implements Model {
     /**
      * Constructs a new matrix of rows and columns argument.
      *
-     * @param rows Rows of matrix.
+     * @param rows    Rows of matrix.
      * @param columns Columns of matrix.
-     * @throws LengthValueOutOfRangeException If the argument value of the rows or columns is out of range.
+     * @throws LengthValueOutOfRangeException If the argument rows or columns value is out of range.
      */
     public Matrix(int rows, int columns) {
-        if () {
+        if (rows > 0 && rows < MAX_MATRIX_LENGTH) {
             if (columns > 0 && columns < MAX_MATRIX_LENGTH) {
                 this.rows = rows;
                 this.columns = columns;
                 this.matrix = new Object[rows][columns];
             } else {
-                throw new IncorrectMatrixColumnValueException("The argument value of the columns is out of range.");
+                throw new LengthValueOutOfRangeException("The argument columns value is out of range.");
             }
         } else {
-            throw new IncorrectMatrixRowValueException("The argument value of the row is out of range.");
+            throw new LengthValueOutOfRangeException("The argument row value is out of range.");
         }
     }
 
@@ -71,7 +71,7 @@ public class Matrix<T> implements Model {
      * Constructs a new matrix by initializing it with the elements of a two-dimensional array passed by the argument.
      *
      * @param matrix Two-dimensional array to initialize the matrix.
-     * @throws NullPointerException If argument matrix is null.
+     * @throws NullPointerException           If argument matrix is null.
      * @throws LengthArrayOutOfRangeException If argument matrix has incorrect rows or columns length value.
      */
     public Matrix(T[][] matrix) {
@@ -95,7 +95,7 @@ public class Matrix<T> implements Model {
      * @throws NullPointerException If argument matrix is null.
      */
     public Matrix(Matrix<T> matrix) {
-        if (matrix != null) {
+        if (Objects.nonNull(matrix)) {
             this.rows = matrix.getRows();
             this.columns = matrix.getColumns();
             T[][] tmpMatrix = matrix.getMatrix((T[][]) new Object[matrix.getRows()][matrix.getColumns()]);
@@ -138,8 +138,8 @@ public class Matrix<T> implements Model {
      * Sets the elements of the matrix are the same as the two-dimensional array passed to the argument.
      *
      * @param matrix Two-dimensional array for matrix initialization.
+     * @throws NullPointerException           If argument two-dimensional array is null.
      * @throws LengthArrayOutOfRangeException If argument matrix has incorrect rows or columns length value.
-     * @throws NullPointerException If argument two-dimensional array is null.
      */
     public void setMatrix(T[][] matrix) {
         if (matrix != null) {
@@ -171,11 +171,21 @@ public class Matrix<T> implements Model {
         return matrix;
     }
 
+    //todo add doc's
+    public int getRows() {
+        return this.rows;
+    }
+
+    //todo add doc's
+    public int getColumns() {
+        return this.columns;
+    }
+
     /**
      * Gets the row of the matrix at the index passed by the argument.
      *
      * @param indexRow Index row to get.
-     * @return Object of the {@link Array} class filled with elements from the matrix row.
+     * @return The object of the {@link Array} class filled with elements from the matrix row.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      */
     public Array<T> getRow(int indexRow) {
@@ -189,11 +199,11 @@ public class Matrix<T> implements Model {
     /**
      * Gets the row of the matrix at the index passed by the argument.
      *
-     * @param array One-dimensional array to fill with elements from the matrix row.
+     * @param array    One-dimensional array to fill with elements from the matrix row.
      * @param indexRow Index row to get.
      * @return One-dimensional array filled with elements from the matrix row.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException      If argument array is null.
      */
     public T[] getRow(T[] array, int indexRow) {
         if (array != null) {
@@ -209,11 +219,11 @@ public class Matrix<T> implements Model {
     /**
      * Gets the row of the matrix at the index passed by the argument.
      *
-     * @param array Object of the {@link Array} class to fill with elements from the matrix row.
+     * @param array    Object of the {@link Array} class to fill with elements from the matrix row.
      * @param indexRow Index row to get.
      * @return Object of the {@link Array} class filled with elements from the matrix row.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException      If argument array is null.
      */
     public Array<T> getRow(Array<T> array, int indexRow) {
         if (array != null) {
@@ -248,11 +258,11 @@ public class Matrix<T> implements Model {
     /**
      * Gets the column of the matrix at the index passed by the argument.
      *
-     * @param array One-dimensional array to fill with elements from the matrix column.
+     * @param array       One-dimensional array to fill with elements from the matrix column.
      * @param indexColumn Index column to get.
      * @return One-dimensional array filled with elements from the matrix column.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException      If argument array is null.
      */
     public T[] getColumn(T[] array, int indexColumn) {
         if (array != null) {
@@ -270,11 +280,11 @@ public class Matrix<T> implements Model {
     /**
      * Gets the column of the matrix at the index passed by the argument.
      *
-     * @param array Object of the {@link Array} class to fill with elements from the matrix column.
+     * @param array       Object of the {@link Array} class to fill with elements from the matrix column.
      * @param indexColumn Index column to get.
      * @return Object of the {@link Array} class filled with elements from the matrix column.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException      If argument array is null.
      */
     public Array<T> getColumn(Array<T> array, int indexColumn) {
         if (array != null) {
@@ -293,10 +303,10 @@ public class Matrix<T> implements Model {
      * Set (initialize) the matrix row by index, which is passed by the argument
      * to the elements that are stored in the one-dimensional array passed by the argument.
      *
-     * @param array One-dimensional array that are stored elements to set elements of row of the matrix.
+     * @param array    One-dimensional array that are stored elements to set elements of row of the matrix.
      * @param indexRow Index row to get.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException      If argument array is null.
      */
     public void setRow(T[] array, int indexRow) {
         if (array != null) {
@@ -312,10 +322,10 @@ public class Matrix<T> implements Model {
      * Set (initialize) the matrix row by index, which is passed by the argument
      * to the elements that are stored in the object of the {@link Array} class passed by the argument.
      *
-     * @param array Object of the {@link Array} class that are stored elements to set elements of row of the matrix.
+     * @param array    Object of the {@link Array} class that are stored elements to set elements of row of the matrix.
      * @param indexRow Index row to get.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException      If argument array is null.
      */
     public void setRow(Array<T> array, int indexRow) {
         if (array != null) {
@@ -333,10 +343,10 @@ public class Matrix<T> implements Model {
      * Set (initialize) the matrix column by index, which is passed by the argument
      * to the elements that are stored in the one-dimensional array passed by the argument.
      *
-     * @param array One-dimensional array that are stored elements to set elements of row of the matrix.
+     * @param array       One-dimensional array that are stored elements to set elements of row of the matrix.
      * @param indexColumn Index column to get.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException      If argument array is null.
      */
     public void setColumn(T[] array, int indexColumn) {
         if (array != null) {
@@ -354,10 +364,10 @@ public class Matrix<T> implements Model {
      * Set (initialize) the matrix column by index, which is passed by the argument
      * to the elements that are stored in the object of the {@link Array} class passed by the argument.
      *
-     * @param array Object of the {@link Array} class that are stored elements to set elements of column of the matrix.
+     * @param array       Object of the {@link Array} class that are stored elements to set elements of column of the matrix.
      * @param indexColumn Index column to get.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException      If argument array is null.
      */
     public void setColumn(Array<T> array, int indexColumn) {
         if (array != null) {
@@ -401,6 +411,7 @@ public class Matrix<T> implements Model {
 
     //todo Write an algorithm that implements this functionality using the so-called bubble sort method (permutation of elements using the third variable)
     //     and compare the execution speed with this implementation.
+
     /**
      * Compresses the matrix by removing from it a row at the index passed by the argument.
      *
@@ -427,6 +438,7 @@ public class Matrix<T> implements Model {
 
     //todo Write an algorithm that implements this functionality using the so-called bubble sort method (permutation of elements using the third variable)
     //     and compare the execution speed with this implementation. */
+
     /**
      * Compresses the matrix by removing from it a column at the index passed by the argument.
      *
@@ -454,24 +466,27 @@ public class Matrix<T> implements Model {
     /**
      * Gets the matrix element by row index and column index.
      *
-     * @param indexRow Index matrix row.
+     * @param indexRow    Index matrix row.
      * @param indexColumn Index matrix column.
      * @return Element of the matrix indexes passed by the argument.
      * @throws IndexOutOfBoundsException Argument indexRow or indexColumn is out of range.
      */
     public T getElement(int indexRow, int indexColumn) {
+        T obj = null;
         if (CheckerIndex.checkIndex(indexRow, this.rows)) {
-            if (CheckerIndex.checkIndex(indexColumn, this.columns)){
-                return (T) this.matrix[indexRow][indexColumn];
+            if (CheckerIndex.checkIndex(indexColumn, this.columns)) {
+                obj = (T) this.matrix[indexRow][indexColumn];
             }
+        }
+        return obj;
     }
 
     /**
      * Sets the matrix element by row index and column index.
      *
-     * @param indexRow Index matrix row.
+     * @param indexRow    Index matrix row.
      * @param indexColumn Index matrix column.
-     * @param element Element to set.
+     * @param element     Element to set.
      * @throws IndexOutOfBoundsException Argument indexRow or indexColumn is out of range.
      */
     public void setElement(int indexRow, int indexColumn, T element) {
@@ -479,13 +494,14 @@ public class Matrix<T> implements Model {
             if (CheckerIndex.checkIndex(indexColumn, this.columns)) {
                 this.matrix[indexRow][indexColumn] = element;
             }
+        }
     }
 
     /**
      * Deletes matrix element by row and column index.
      * Element stored in the indices is null.
      *
-     * @param indexRow Index matrix row.
+     * @param indexRow    Index matrix row.
      * @param indexColumn Index matrix column.
      * @throws IndexOutOfBoundsException Argument indexRow or indexColumn is out of range.
      */
@@ -494,32 +510,7 @@ public class Matrix<T> implements Model {
             if (CheckerIndex.checkIndex(indexColumn, this.columns)) {
                 this.matrix[indexRow][indexColumn] = null;
             }
-    }
-
-    /**
-     * Gets the length(number) of rows in the matrix.
-     *
-     * @return Length of rows in the matrix.
-     */
-    public int getRows() {
-        return this.rows;
-    }
-
-    /**
-     * Gets the length(number) of columns in the matrix.
-     *
-     * @return Length of columns in the matrix.
-     */
-    public int getColumns() {
-        return this.columns;
-    }
-
-    private static boolean isCorrectIndexRow(int indexRow, int rows) {
-        return indexRow >= 0 && indexRow <= rows;
-    }
-
-    private static boolean isCorrectIndexColumn(int indexColumn, int columns) {
-        return indexColumn >= 0 && indexColumn <= columns;
+        }
     }
 
 /*
@@ -539,5 +530,6 @@ public class Matrix<T> implements Model {
         return new Matrix<>(matrix);
     }
 */
+
 
 }

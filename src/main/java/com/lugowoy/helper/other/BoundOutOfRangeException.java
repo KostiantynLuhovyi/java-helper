@@ -2,10 +2,10 @@ package com.lugowoy.helper.other;
 
 /**
  * Thrown when the bound value does not fall within the range of acceptable values bounders.
- *  That is, the checking bound value is less than the lower bound or greater than the upper bound.
+ * That is, the checking bound value is less than the lower bound or greater than the upper bound.
  * <p>It should be noted that this exception is also thrown if the lower bound is greater than or equal to the upper bound.
- *  It means comparing the boundaries between themselves.
- *  The lower limit of the range of values ​​must necessarily be less than the upper limit of the range.
+ * It means comparing the boundaries between themselves.
+ * The lower limit of the range of values ​​must necessarily be less than the upper limit of the range.
  * <p>Created by LugowoyKonstantin on 06.06.2019.
  *
  * @author LugowoyKonstantin

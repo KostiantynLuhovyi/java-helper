@@ -25,8 +25,7 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
 
     /**
      * Fills an object of the {@link Array} class with random numeric data of the type {@link Double}.
-     * Numerical values are in the range from {@link Integer#MIN_VALUE}
-     * to {@link Integer#MAX_VALUE}.
+     * Numerical values are in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param array The object of the {@link Array} class to be filled with numeric data of the type {@link Double}.
      * @throws IllegalArgumentException If the object argument is null.
@@ -122,17 +121,17 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      * Fills an array with random numeric data of the type {@link Double}.
      * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
      *
      * @param doubles The array to be filled with random numeric data of the type {@link Double}.
-     * @param bound The value of the end bound for filling an array with random numeric data of the type {@link Double}.
+     * @param bound   The value of the end bound for filling an array with random numeric data of the type {@link Double}.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles, Double bound) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (CheckerFillingArray.checkNonNullArray(doubles)) {
-            if (isPositiveBoundValueAndNonNull(bound )) {
+            if (isPositiveBoundValueAndNonNull(bound)) {
                 this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
                 this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
@@ -150,10 +149,10 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from 0 to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
      *
      * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Double}.
-     * @param bound The value of the border for filling the array with random numeric data of the type {@link Double}.
+     * @param bound       The value of the border for filling the array with random numeric data of the type {@link Double}.
      * @return Created and filled an array with random numeric data of the type {@link Double}.
      */
     @Override
@@ -179,15 +178,15 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      * <p>The object of the {@link Array} class is filled
      * with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
-     * @param array The object of the {@link Array} class to be filled with random numeric data of the type {@link Double}.
+     * @param array      The object of the {@link Array} class to be filled with random numeric data of the type {@link Double}.
      * @param startBound The value of the start bound for filling an object of the {@link Array} class
      *                   with random numeric data of the type {@link Double}.
-     * @param endBound The value of the end bound for filling an object of the {@link Array} class
-     *                 with random numeric data of the type {@link Double}.
+     * @param endBound   The value of the end bound for filling an object of the {@link Array} class
+     *                   with random numeric data of the type {@link Double}.
      * @throws IllegalArgumentException If the object argument is null.
      */
     @Override
@@ -213,13 +212,13 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      * Fills an array with random numeric data of the type {@link Double}.
      * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
-     * @param doubles The array to be filled with random numeric data of the type {@link Double}.
+     * @param doubles    The array to be filled with random numeric data of the type {@link Double}.
      * @param startBound The value of the start bound for filling an array with random numeric data of the type {@link Double}.
-     * @param endBound The value of the end bound for filling an array with random numeric data of the type {@link Double}.
+     * @param endBound   The value of the end bound for filling an array with random numeric data of the type {@link Double}.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -248,13 +247,13 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      * created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled with random numeric data of the type {@link Double}.
-     * @param startBound The value of the start bound for filling an array with random numeric data of the type {@link Double}.
-     * @param endBound The value of the end bound for filling an array with random numeric data of the type {@link Double}.
+     * @param startBound  The value of the start bound for filling an array with random numeric data of the type {@link Double}.
+     * @param endBound    The value of the end bound for filling an array with random numeric data of the type {@link Double}.
      * @return Created and filled an array with random numeric data of the type {@link Double}.
      */
     @Override

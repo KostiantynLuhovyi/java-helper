@@ -113,11 +113,11 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      * Fills an array with sequential ascending of numeric data of type {@link Integer}.
      * <p>The array is filled with numeric data from "0" (increases by "1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param integers The array to be filled with sequential ascending of numeric data of type {@link Integer}.
-     * @param bound The value of the end bound for filling an array with
-     *              sequential ascending of numeric data of type {@link Integer}.
+     * @param bound    The value of the end bound for filling an array with
+     *                 sequential ascending of numeric data of type {@link Integer}.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -141,11 +141,11 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from "0" (increases by 1) to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND}.
      *
      * @param lengthArray The length(size) of the array to be filled with
      *                    sequential ascending of numeric data of type {@link Integer}.
-     * @param bound The value of the border for filling the array with sequential ascending of numeric data of type {@link Integer}.
+     * @param bound       The value of the border for filling the array with sequential ascending of numeric data of type {@link Integer}.
      * @return Created and filled an array with sequential ascending of numeric data of type {@link Integer}.
      */
     @Override
@@ -171,16 +171,16 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      * Fills an object of the {@link Array} class with sequential ascending of numeric data of type {@link Integer}.
      * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
-     * @param array The object of the {@link Array} class that must be filled with
-     *              sequential ascending of numeric data of type {@link Integer}.
+     * @param array      The object of the {@link Array} class that must be filled with
+     *                   sequential ascending of numeric data of type {@link Integer}.
      * @param startBound The value of the start bound for filling an object of the {@link Array} class with
      *                   sequential ascending of numeric data of type {@link Integer}.
-     * @param endBound The value of the end bound for filling an object of the {@link Array} class with
-     *                 sequential ascending of numeric data of type {@link Integer}.
+     * @param endBound   The value of the end bound for filling an object of the {@link Array} class with
+     *                   sequential ascending of numeric data of type {@link Integer}.
      * @throws IllegalArgumentException If the object argument is null.
      */
     @Override
@@ -188,7 +188,7 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
         if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
                 array.setArray(integers);
             } else {
@@ -206,16 +206,16 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      * Fills an array with sequential ascending of numeric data of type {@link Integer}.
      * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
-     * @param integers The array to be filled with
-     *                sequential ascending of numeric data of type {@link Integer}.
+     * @param integers   The array to be filled with
+     *                   sequential ascending of numeric data of type {@link Integer}.
      * @param startBound The value of the start bound for filling an array with
      *                   sequential ascending of numeric data of type {@link Integer}.
-     * @param endBound The value of the end bound for filling an array with
-     *                 sequential ascending of numeric data of type {@link Integer}.
+     * @param endBound   The value of the end bound for filling an array with
+     *                   sequential ascending of numeric data of type {@link Integer}.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -241,16 +241,16 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_INTEGER_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_INTEGER_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled with
      *                    sequential ascending of numeric data of type {@link Integer}.
-     * @param startBound The value of the start bound for filling an array with
-     *                   sequential ascending of numeric data of type {@link Integer}.
-     * @param endBound The value of the end bound for filling an array with
-     *                 sequential ascending of numeric data of type {@link Integer}.
+     * @param startBound  The value of the start bound for filling an array with
+     *                    sequential ascending of numeric data of type {@link Integer}.
+     * @param endBound    The value of the end bound for filling an array with
+     *                    sequential ascending of numeric data of type {@link Integer}.
      * @return Created and filled an array with sequential ascending of numeric data of type {@link Integer}.
      */
     @Override

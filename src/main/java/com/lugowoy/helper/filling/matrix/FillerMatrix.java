@@ -19,11 +19,11 @@ public class FillerMatrix<T> extends Filler<Matrix<T>> {
     }
 
     public void fill(T[][] matrix) {
-        ((FillingMatrix<T>)super.getFilling()).fill(matrix);
+        ((FillingMatrix<T>) super.getFilling()).fill(matrix);
     }
 
     public T[][] fill(int rows, int columns) {
-        return ((FillingMatrix<T>)super.getFilling()).fill(rows, columns);
+        return ((FillingMatrix<T>) super.getFilling()).fill(rows, columns);
     }
 
     public static <T> FillerMatrix<T> getFillerMatrix(FillingMatrix<T> fillingMatrix) {

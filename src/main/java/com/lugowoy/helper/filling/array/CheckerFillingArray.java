@@ -3,8 +3,6 @@ package com.lugowoy.helper.filling.array;
 import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.points.Point;
 
-import java.util.ArrayList;
-
 /**
  * The interface provides static functionality (behavior) for various checks when filling arrays with data.
  * <p>Created by Konstantin Lugowoy on 09-Jan-18.

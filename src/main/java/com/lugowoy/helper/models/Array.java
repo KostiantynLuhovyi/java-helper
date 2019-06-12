@@ -51,7 +51,7 @@ public class Array<T> implements Model, Iterable<T> {
      * <p>The control index is equal to the index of the last (length of the array) element of the array.
      *
      * @param array Array of elements to initialize.
-     * @throws NullPointerException Argument array is null.
+     * @throws NullPointerException           Argument array is null.
      * @throws LengthArrayOutOfRangeException If the argument array has a length outside the range.
      */
     public Array(T[] array) {
@@ -87,8 +87,8 @@ public class Array<T> implements Model, Iterable<T> {
      * <p>The control index is equal to control index of the object passed by argument.
      *
      * @param array The object of the {@link Array} class to copy state.
-     * @throws NullPointerException Argument array is null.
-     * @throws IncorrectLengthArrayException If the array passed to the argument has an incorrect length.
+     * @throws NullPointerException          Argument array is null.
+     * @throws LengthArrayOutOfRangeException If the array passed to the argument is out of range.
      */
     public Array(Array<T> array) {
         if (Objects.nonNull(array)) {
@@ -145,7 +145,7 @@ public class Array<T> implements Model, Iterable<T> {
      *
      * @param array Array to fill.
      * @return Array filled with elements of an array object.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException           If argument array is null.
      * @throws LengthArrayOutOfRangeException If the array passed to the argument has an incorrect length.
      */
     public T[] toArray(T[] array) {
@@ -173,7 +173,7 @@ public class Array<T> implements Model, Iterable<T> {
      * The control index is equal to an array object length.
      *
      * @param array Array with elements to initialize.
-     * @throws NullPointerException If argument array is null.
+     * @throws NullPointerException           If argument array is null.
      * @throws LengthArrayOutOfRangeException If the argument array has a length outside the range.
      * @since 1.0
      */
@@ -223,7 +223,7 @@ public class Array<T> implements Model, Iterable<T> {
      * Set the element to position by index.
      *
      * @param index Index to insert.
-     * @param obj Element to insert.
+     * @param obj   Element to insert.
      * @throws IndexOutOfBoundsException If the index argument is out of range.
      * @since 1.2
      */
@@ -265,8 +265,8 @@ public class Array<T> implements Model, Iterable<T> {
     public void delete(int index) {
         if (CheckerIndex.checkIndex(index)) {
             this.array = Stream.concat(Arrays.stream(Arrays.copyOfRange(this.array, 0, index - 1)),
-                                       Arrays.stream(Arrays.copyOfRange(this.array, index, this.array.length)))
-                               .toArray();
+                    Arrays.stream(Arrays.copyOfRange(this.array, index, this.array.length)))
+                    .toArray();
             this.indexElement -= 1;
         }
     }

@@ -71,9 +71,9 @@ public class Test {
 
         System.out.println(array);
 
-        Matrix<Integer> matrix = new Matrix<>(new Integer[-1][100]);
+/*        Matrix<Integer> matrix = new Matrix<>(new Integer[-1][100]);
 
-        System.out.println(matrix);
+        System.out.println(matrix);*/
 
     }
 

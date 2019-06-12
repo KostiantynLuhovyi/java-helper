@@ -29,27 +29,27 @@ public class FillerMatrixNumbers<T extends Number> extends FillerMatrix<T> {
     }
 
     public void fill(Matrix<T> matrix, T bound) {
-        ((FillingMatrixNumbers<T>)super.getFilling()).fill(matrix, bound);
+        ((FillingMatrixNumbers<T>) super.getFilling()).fill(matrix, bound);
     }
 
     public void fill(T[][] matrix, T bound) {
-        ((FillingMatrixNumbers<T>)super.getFilling()).fill(matrix, bound);
+        ((FillingMatrixNumbers<T>) super.getFilling()).fill(matrix, bound);
     }
 
     public T[][] fill(int rows, int columns, T bound) {
-        return ((FillingMatrixNumbers<T>)super.getFilling()).fill(rows, columns, bound);
+        return ((FillingMatrixNumbers<T>) super.getFilling()).fill(rows, columns, bound);
     }
 
     public void fill(Matrix<T> matrix, T startBound, T endBound) {
-        ((FillingMatrixNumbers<T>)super.getFilling()).fill(matrix, startBound, endBound);
+        ((FillingMatrixNumbers<T>) super.getFilling()).fill(matrix, startBound, endBound);
     }
 
     public void fill(T[][] matrix, T startBound, T endBound) {
-        ((FillingMatrixNumbers<T>)super.getFilling()).fill(matrix, startBound, endBound);
+        ((FillingMatrixNumbers<T>) super.getFilling()).fill(matrix, startBound, endBound);
     }
 
     public T[][] fill(int rows, int columns, T startBound, T endBound) {
-        return ((FillingMatrixNumbers<T>)super.getFilling()).fill(rows, columns, startBound, endBound);
+        return ((FillingMatrixNumbers<T>) super.getFilling()).fill(rows, columns, startBound, endBound);
     }
 
 }

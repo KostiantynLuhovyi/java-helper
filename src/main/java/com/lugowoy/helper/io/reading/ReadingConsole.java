@@ -19,7 +19,6 @@ public class ReadingConsole implements Reading {
      * Reading data by byte type from the console.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -31,7 +30,6 @@ public class ReadingConsole implements Reading {
      * Reading data by short type from the console.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -43,7 +41,6 @@ public class ReadingConsole implements Reading {
      * Reading data by int type from the console.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -55,7 +52,6 @@ public class ReadingConsole implements Reading {
      * Reading data by long type from the console.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -67,7 +63,6 @@ public class ReadingConsole implements Reading {
      * Reading data by char type from the console.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -79,7 +74,6 @@ public class ReadingConsole implements Reading {
      * Reading data by float type from the console.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -91,7 +85,6 @@ public class ReadingConsole implements Reading {
      * Reading data by double type from the console.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -103,7 +96,6 @@ public class ReadingConsole implements Reading {
      * Reading data by String type from the console.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override

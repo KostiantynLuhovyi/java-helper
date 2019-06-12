@@ -30,8 +30,8 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
 
     /**
      * Constructs a new object of {@link FillingArrayReadDouble} class,
-     *  initializing an object of {@link Reader} class
-     *  encapsulated in the parent class to read data of the {@link Double} type to be fill array.
+     * initializing an object of {@link Reader} class
+     * encapsulated in the parent class to read data of the {@link Double} type to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
      *               encapsulated in the parent class to read data of the {@link Double} type to fill the array.
@@ -42,9 +42,9 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
 
     /**
      * Constructs a new object of {@link FillingArrayReadDouble} class,
-     *  initializing an object of {@link Reader} class
-     *  encapsulated in the parent class of the concrete implementation of the contract declared in the interface {@link Reading}
-     *  to read data of the {@link Double} type to be fill array.
+     * initializing an object of {@link Reader} class
+     * encapsulated in the parent class of the concrete implementation of the contract declared in the interface {@link Reading}
+     * to read data of the {@link Double} type to be fill array.
      *
      * @param reading The object of class that implements the {@link Reading} interface
      *                to initialize an object of the {@link Reader} class encapsulated in the parent class
@@ -152,11 +152,11 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      * Fills an array with data of the {@link Double} type with read by the {@link Reader} class object.
      * <p>The array is filled with numeric data from "0" to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     *  then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
      *
      * @param doubles The array to be filled with data of the {@link Double} type with read by the {@link Reader} class object.
-     * @param bound The value of the end bound for filling an array with data of the {@link Double} type
-     *              with read by the {@link Reader} class object.
+     * @param bound   The value of the end bound for filling an array with data of the {@link Double} type
+     *                with read by the {@link Reader} class object.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -186,8 +186,8 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      *
      * @param lengthArray The length(size) of the array to be filled with data of the {@link Double} type
      *                    with read by the {@link Reader} class object.
-     * @param bound The value of the border for filling the array with data of the {@link Double} type
-     *              with read by the {@link Reader} class object.
+     * @param bound       The value of the border for filling the array with data of the {@link Double} type
+     *                    with read by the {@link Reader} class object.
      * @return Created and filled an array with data of the {@link Double} type with read by the {@link Reader} class object.
      */
     @Override
@@ -212,16 +212,16 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      * Fills an object of the {@link Array} class with data of the {@link Double} type with read by the {@link Reader} class object.
      * <p>The object of the {@link Array} class is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
-     * @param array The object of the {@link Array} class that must be filled with data of the {@link Double} type
-     *              with read by the {@link Reader} class object.
+     * @param array      The object of the {@link Array} class that must be filled with data of the {@link Double} type
+     *                   with read by the {@link Reader} class object.
      * @param startBound The value of the start bound for filling an object of the {@link Array} class
      *                   with data of the {@link Double} type with read by the {@link Reader} class object.
-     * @param endBound The value of the end bound for filling an object of the {@link Array} class with
-     *                 data of the {@link Double} type with read by the {@link Reader} class object.
+     * @param endBound   The value of the end bound for filling an object of the {@link Array} class with
+     *                   data of the {@link Double} type with read by the {@link Reader} class object.
      * @throws IllegalArgumentException If the object argument is null.
      */
     @Override
@@ -230,7 +230,7 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
         if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
             if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                        && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
                 array.setArray(doubles);
             } else {
@@ -249,15 +249,15 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      * Fills an array with data of the {@link Double} type with read by the {@link Reader} class object.
      * <p>The array is filled with numeric data from "startBound" to the value of the "endBound" parameter.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768,
-     *  then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768,
+     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
-     * @param doubles The array to be filled with data of the {@link Double} type with read by the {@link Reader} class object.
+     * @param doubles    The array to be filled with data of the {@link Double} type with read by the {@link Reader} class object.
      * @param startBound The value of the start bound for filling an array with data of the {@link Double} type
      *                   with read by the {@link Reader} class object.
-     * @param endBound The value of the end bound for filling an array with data of the {@link Double} type
-     *                 with read by the {@link Reader} class object.
+     * @param endBound   The value of the end bound for filling an array with data of the {@link Double} type
+     *                   with read by the {@link Reader} class object.
      * @throws IllegalArgumentException If the array argument is null.
      */
     @Override
@@ -285,17 +285,17 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
-     *  or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
-     *  and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
+     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled with data of the {@link Double} type
      *                    with read by the {@link Reader} class object.
-     * @param startBound The value of the start bound for filling an array with data of the {@link Double} type
-     *                   with read by the {@link Reader} class object.
-     * @param endBound The value of the end bound for filling an array with data of the {@link Double} type
-     *                 with read by the {@link Reader} class object.
+     * @param startBound  The value of the start bound for filling an array with data of the {@link Double} type
+     *                    with read by the {@link Reader} class object.
+     * @param endBound    The value of the end bound for filling an array with data of the {@link Double} type
+     *                    with read by the {@link Reader} class object.
      * @return Created and filled an array with data of the {@link Double} type with read by the {@link Reader} class object.
-     * */
+     */
     @Override
     public Double[] fill(int lengthArray, Double startBound, Double endBound) {
         //todo check or add relevant checks.

@@ -1,15 +1,17 @@
 package com.lugowoy.helper.models;
 
-/**10.06.2019*/
+/**
+ * 10.06.2019
+ */
 //todo add doc's
-class RowMatrixOutOfRangeException extends RuntimeException {
+class MatrixRowOutOfRangeException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with {@code null} as its
      * detail message.  The cause is not initialized, and may subsequently be
      * initialized by a call to {@link #initCause}.
      */
-    public RowMatrixOutOfRangeException() {
+    public MatrixRowOutOfRangeException() {
     }
 
     /**
@@ -20,7 +22,7 @@ class RowMatrixOutOfRangeException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public RowMatrixOutOfRangeException(String message) {
+    public MatrixRowOutOfRangeException(String message) {
         super(message);
     }
 
@@ -38,7 +40,7 @@ class RowMatrixOutOfRangeException extends RuntimeException {
      *                unknown.)
      * @since 1.4
      */
-    public RowMatrixOutOfRangeException(String message, Throwable cause) {
+    public MatrixRowOutOfRangeException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -55,7 +57,7 @@ class RowMatrixOutOfRangeException extends RuntimeException {
      *              unknown.)
      * @since 1.4
      */
-    public RowMatrixOutOfRangeException(Throwable cause) {
+    public MatrixRowOutOfRangeException(Throwable cause) {
         super(cause);
     }
 
@@ -73,7 +75,7 @@ class RowMatrixOutOfRangeException extends RuntimeException {
      *                           be writable
      * @since 1.7
      */
-    public RowMatrixOutOfRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public MatrixRowOutOfRangeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

@@ -93,7 +93,7 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
         if (checkNonNullMatrix(matrix)) {
             Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
             if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                                && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
+                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
                 this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
@@ -107,7 +107,7 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
         //todo add a "else" code block, use an exception or leave it like this.
         if (checkNonNullMatrix(matrix)) {
             if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                                && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
+                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
                 this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(matrix, startBound, endBound);
             } else {
                 this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(matrix, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
@@ -121,7 +121,7 @@ public class FillingMatrixRandomDoubleNumbers implements FillingMatrixNumbers<Do
         if (checkMatrixRows(rows) && checkMatrixColumns(columns)) {
             doubles = new Double[rows][columns];
             if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                                && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
+                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
                 this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);

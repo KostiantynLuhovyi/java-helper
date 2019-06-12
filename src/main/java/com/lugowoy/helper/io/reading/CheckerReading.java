@@ -80,7 +80,6 @@ public interface CheckerReading {
      *
      * @param numberValue Data to check.
      * @return Result of checking.
-     *
      * @since 1.0
      */
     static boolean isShortNumber(final String numberValue) {
@@ -100,7 +99,6 @@ public interface CheckerReading {
      *
      * @param numberValue Data to check.
      * @return Result of checking.
-     *
      * @since 1.0
      */
     static boolean isIntegerNumber(final String numberValue) {
@@ -120,7 +118,6 @@ public interface CheckerReading {
      *
      * @param numberValue Data to check.
      * @return Result of checking.
-     *
      * @since 1.0
      */
     static boolean isLongNumber(final String numberValue) {
@@ -140,7 +137,6 @@ public interface CheckerReading {
      *
      * @param numberValue Data to check.
      * @return Result of checking.
-     *
      * @since 1.0
      */
     static boolean isFloatNumber(final String numberValue) {
@@ -161,7 +157,6 @@ public interface CheckerReading {
      *
      * @param numberValue Data to check.
      * @return Result of checking.
-     *
      * @since 1.0
      */
     static boolean isDoubleNumber(final String numberValue) {
@@ -182,7 +177,6 @@ public interface CheckerReading {
      *
      * @param characterValue Data to check.
      * @return Result of checking.
-     *
      * @since 1.0
      */
     static boolean isOnlyCharacter(final String characterValue) {

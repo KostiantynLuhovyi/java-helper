@@ -93,7 +93,7 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
         if (checkNonNullMatrix(matrix)) {
             Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
             if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                                && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
+                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
                 this.fillMatrixElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillMatrixElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, NEGATIVE_INTEGER_BOUND, POSITIVE_INTEGER_BOUND);
@@ -107,7 +107,7 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
         //todo add a "else" code block, use an exception or leave it like this.
         if (checkNonNullMatrix(matrix)) {
             if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                                && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
+                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
                 this.fillMatrixElementsRandomIntegerNumbersFromStartBoundToEndBound(matrix, startBound, endBound);
             } else {
                 this.fillMatrixElementsRandomIntegerNumbersFromStartBoundToEndBound(matrix, NEGATIVE_INTEGER_BOUND, POSITIVE_INTEGER_BOUND);
@@ -122,7 +122,7 @@ public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<I
         if (checkMatrixRows(rows) && checkMatrixColumns(columns)) {
             integers = new Integer[rows][columns];
             if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(columns))
-                                && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
+                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
                 this.fillMatrixElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillMatrixElementsRandomIntegerNumbersFromStartBoundToEndBound(integers, NEGATIVE_INTEGER_BOUND, POSITIVE_INTEGER_BOUND);

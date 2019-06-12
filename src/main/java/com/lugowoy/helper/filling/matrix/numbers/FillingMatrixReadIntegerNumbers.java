@@ -102,7 +102,7 @@ public class FillingMatrixReadIntegerNumbers extends FillingMatrixReadValues<Int
         if (checkNonNullMatrix(matrix)) {
             Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
             if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                                && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
+                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
                 this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -116,7 +116,7 @@ public class FillingMatrixReadIntegerNumbers extends FillingMatrixReadValues<Int
         //todo add a "else" code block, use an exception or leave it like this.
         if (checkNonNullMatrix(matrix)) {
             if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                                && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
+                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
                 this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(matrix, startBound, endBound);
             } else {
                 this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(matrix, Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -130,7 +130,7 @@ public class FillingMatrixReadIntegerNumbers extends FillingMatrixReadValues<Int
         if (checkMatrixRows(rows) && checkMatrixColumns(columns)) {
             integers = new Integer[rows][columns];
             if ((isCorrectRangeBoundValue(startBound) & isCorrectRangeBoundValue(endBound))
-                                && isStartBoundValueLessThanEndBoundValue(startBound, endBound)) {
+                    && isStartBoundValueLessThanEndBoundValue(startBound, endBound)) {
                 this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, Integer.MIN_VALUE, Integer.MAX_VALUE);

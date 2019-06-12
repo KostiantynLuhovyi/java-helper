@@ -10,7 +10,7 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
 
 /**
  * The class provides functionality to reads data for fills an object of the {@link Array} class
- *  and classical arrays with object of the {@link String} type.
+ * and classical arrays with object of the {@link String} type.
  * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
@@ -25,6 +25,7 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
 
     /**
      * Constructs a new object of the {@link FillingArrayReadingValueStrings} class.
+     *
      * @param reading An object that implements the {@link Reading} interface, which provides a specific implementation for reading data.
      */
     public FillingArrayReadingValueStrings(Reading reading) {
@@ -33,6 +34,7 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
 
     /**
      * Fills an object of the {@link Array} class with object of the {@link String} type.
+     *
      * @param array The object of the {@link Array} class to be filled with object of the {@link String} type.
      */
     @Override
@@ -50,6 +52,7 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
 
     /**
      * Fills an array with object of the {@link String} type.
+     *
      * @param strings The array to be filled with object of the {@link String} type.
      */
     @Override
@@ -67,6 +70,7 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
      * Fills an array with object of the {@link String} type.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
+     *
      * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
      * @return Created and filled array with object of the {@link String} type.
      */

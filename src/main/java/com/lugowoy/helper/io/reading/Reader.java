@@ -21,7 +21,6 @@ public class Reader implements Reading {
      * Read data by byte type by delegating execution to an encapsulated object.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -33,7 +32,6 @@ public class Reader implements Reading {
      * Read data by short type by delegating execution to an encapsulated object.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -45,7 +43,6 @@ public class Reader implements Reading {
      * Read data by int type by delegating execution to an encapsulated object.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -57,7 +54,6 @@ public class Reader implements Reading {
      * Read data by long type by delegating execution to an encapsulated object.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -69,7 +65,6 @@ public class Reader implements Reading {
      * Read data by char type by delegating execution to an encapsulated object.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -81,7 +76,6 @@ public class Reader implements Reading {
      * Read data by float type by delegating execution to an encapsulated object.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -93,7 +87,6 @@ public class Reader implements Reading {
      * Read data by double type by delegating execution to an encapsulated object.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -105,7 +98,6 @@ public class Reader implements Reading {
      * Read data by String type by delegating execution to an encapsulated object.
      *
      * @return Returns the result of reading.
-     *
      * @since 1.0
      */
     @Override
@@ -115,12 +107,11 @@ public class Reader implements Reading {
 
     /**
      * A method that initializes the created object with a specific implementation of the functional to read different data
-     *  and return new object of class Reader.
+     * and return new object of class Reader.
      *
      * @param reading Specific implementation of the functional to read different data.
-     *                 The parameter must implement the interface Reading.
+     *                The parameter must implement the interface Reading.
      * @return A new object of this class encapsulating a specific implementation of the functional to read different data.
-     *
      * @since 1.1
      */
     public static Reader getReader(final Reading reading) {
