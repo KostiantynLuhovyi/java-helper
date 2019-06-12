@@ -7,7 +7,7 @@
     <groupId>com.lugowoy</groupId>
     <artifactId>java-helper</artifactId>
     <name>java-helper</name>
-    <version>1.6.5</version>
+    <version>1.7</version>
 
     <properties>
         <java.version>1.9</java.version>
@@ -82,6 +82,7 @@
             <artifactId>cloning</artifactId>
             <version>1.9.9</version>
         </dependency>
+        <!-- Apache commons dependency -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -90,7 +91,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
-            <version>3.5</version>
+            <version>3.6.1</version>
         </dependency>
     </dependencies>
 
