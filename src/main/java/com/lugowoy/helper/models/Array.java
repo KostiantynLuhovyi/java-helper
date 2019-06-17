@@ -87,7 +87,7 @@ public class Array<T> implements Model, Iterable<T> {
      * <p>The control index is equal to control index of the object passed by argument.
      *
      * @param array The object of the {@link Array} class to copy state.
-     * @throws NullPointerException          Argument array is null.
+     * @throws NullPointerException           Argument array is null.
      * @throws LengthArrayOutOfRangeException If the array passed to the argument is out of range.
      */
     public Array(Array<T> array) {

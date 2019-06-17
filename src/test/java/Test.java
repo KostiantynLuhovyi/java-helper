@@ -1,8 +1,12 @@
 import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomInteger;
+import com.lugowoy.helper.io.reading.Reader;
+import com.lugowoy.helper.io.reading.ReadingConsole;
 import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.Matrix;
+import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 /** Created by Konstantin Lugowoy on 02.10.2018. */
 
@@ -59,7 +63,7 @@ public class Test {
 /*        Point<Integer> point2D = new Point2D<>(3, 5 , 2);
         System.out.println(point2D);*/
 
-        Array<Integer> array = new Array<>(new FillingArrayRandomInteger().fill(Integer.MAX_VALUE, 20));
+        /*Array<Integer> array = new Array<>(new FillingArrayRandomInteger().fill(10, 10, 20));
 
         System.out.println(array);
 
@@ -69,11 +73,30 @@ public class Test {
         Integer resGetMethod = array.get(0);
         System.out.println(resGetMethod);
 
-        System.out.println(array);
+        System.out.println(array);*/
 
 /*        Matrix<Integer> matrix = new Matrix<>(new Integer[-1][100]);
 
         System.out.println(matrix);*/
+
+
+        for (int i = 0; i < 50; i++) {
+            System.out.print(GeneratorRandomNumber.generateLong() + " ");
+        }
+
+        /*
+        String stop;
+        while (true) {
+            stop = Reader.getReader(new ReadingConsole()).readString();
+            if (stop.equals("stop")) {
+                break;
+            } else {
+                for (int i = 0; i < 2000; i++) {
+                    System.out.print(GeneratorRandomNumber.generateDouble() + " ");
+                }
+            }
+        }*/
+
 
     }
 

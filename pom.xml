@@ -82,6 +82,11 @@
             <artifactId>cloning</artifactId>
             <version>1.9.9</version>
         </dependency>
+        <dependency>
+            <groupId>me.xdrop</groupId>
+            <artifactId>jrand</artifactId>
+            <version>0.2.7-alpha</version>
+        </dependency>
         <!-- Apache commons dependency -->
         <dependency>
             <groupId>org.apache.commons</groupId>
