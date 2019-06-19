@@ -6,6 +6,7 @@ import com.lugowoy.helper.models.Matrix;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /** Created by Konstantin Lugowoy on 02.10.2018. */
@@ -80,8 +81,8 @@ public class Test {
         System.out.println(matrix);*/
 
 
-        for (int i = 0; i < 50; i++) {
-            System.out.print(GeneratorRandomNumber.generateLong() + " ");
+        for (int i = 0; i < 70; i++) {
+            System.out.print(GeneratorRandomNumber.generateFloat() + " ");
         }
 
         /*

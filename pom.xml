@@ -10,7 +10,7 @@
     <version>1.7</version>
 
     <properties>
-        <java.version>1.9</java.version>
+        <java.version>12</java.version>
         <github.global.server>github</github.global.server>
         <github.maven-plugin>0.12</github.maven-plugin>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -81,11 +81,6 @@
             <groupId>uk.com.robust-it</groupId>
             <artifactId>cloning</artifactId>
             <version>1.9.9</version>
-        </dependency>
-        <dependency>
-            <groupId>me.xdrop</groupId>
-            <artifactId>jrand</artifactId>
-            <version>0.2.7-alpha</version>
         </dependency>
         <!-- Apache commons dependency -->
         <dependency>
