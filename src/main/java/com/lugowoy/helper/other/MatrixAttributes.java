@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  * Created by LugowoyKonstantin on 25.06.2019.
- * @version 1.0
+ * @version 1.1
  * @since 1.7.2
  */
 // add doc's
@@ -34,7 +34,7 @@ public class MatrixAttributes {
         this.columns = columns;
     }
 
-    static MatrixAttributes getInstanceMatrixAttributes(Reading reader) {
+    public static MatrixAttributes getInstanceMatrixAttributes(Reading reader) {
         if (Objects.nonNull(reader)) {
             MatrixAttributes matrixAttributes = new MatrixAttributes();
             matrixAttributes.setRows(readMatrixRow(reader));
@@ -45,7 +45,7 @@ public class MatrixAttributes {
         }
     }
 
-    static MatrixAttributes getInstanceMatrixAttributes(int rows, int columns) {
+    public static MatrixAttributes getInstanceMatrixAttributes(int rows, int columns) {
         if ((rows > 0 && rows < Integer.MAX_VALUE) && (columns > 0 && columns < Integer.MAX_VALUE)) {
             MatrixAttributes matrixAttributes = new MatrixAttributes();
             matrixAttributes.setRows(rows);
