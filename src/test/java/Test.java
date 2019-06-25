@@ -15,7 +15,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-        /*Matrix<Integer> matrix = Matrix.create(new FillingMatrixRandomIntegerNumbers().fill(5, 5, POSITIVE_INTEGER_BOUND));
+        /*Matrix<Integer> matrix = Matrix.create(new FillingMatrixRandomInteger().fill(5, 5, POSITIVE_INTEGER_BOUND));
 
         System.out.println("Matrix : ");
         System.out.println(matrix);

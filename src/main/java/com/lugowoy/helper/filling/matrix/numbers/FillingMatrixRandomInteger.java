@@ -9,9 +9,10 @@ import static com.lugowoy.helper.filling.matrix.CheckerFillingMatrix.*;
 
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
+ * @version 1.2
  */
 //todo add doc's
-public class FillingMatrixRandomIntegerNumbers implements FillingMatrixNumbers<Integer> {
+public class FillingMatrixRandomInteger implements FillingMatrixNumbers<Integer> {
 
     @Override
     public void fill(Matrix<Integer> matrix) {

@@ -13,21 +13,21 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * <p>Created by Konstantin Lugowoy on 18.07.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayRandomStrings
  * @since 1.3
  */
-public class FillingArrayRandomLengthValueStrings extends FillingArrayRandomStrings {
+public class FillingArrayRandomLengthStrings extends FillingArrayRandomStrings {
 
     /**
-     * Constructs a new object of the {@link FillingArrayRandomLengthValueStrings} class.
+     * Constructs a new object of the {@link FillingArrayRandomLengthStrings} class.
      *
      * @param fileName The name of the file from which the random characters are read.
      */
-    public FillingArrayRandomLengthValueStrings(String fileName) {
+    public FillingArrayRandomLengthStrings(String fileName) {
         super(fileName);
     }
 

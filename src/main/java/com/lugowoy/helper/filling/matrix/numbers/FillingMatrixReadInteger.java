@@ -10,15 +10,16 @@ import static com.lugowoy.helper.filling.matrix.CheckerFillingMatrix.*;
 
 /**
  * Created by Konstantin Lugowoy on 10.10.2018.
+ * @version 1.2
  */
 //todo add doc's
-public class FillingMatrixReadIntegerNumbers extends FillingMatrixReadValues<Integer> implements FillingMatrixNumbers<Integer> {
+public class FillingMatrixReadInteger extends FillingMatrixReadValues<Integer> implements FillingMatrixNumbers<Integer> {
 
-    public FillingMatrixReadIntegerNumbers(Reader reader) {
+    public FillingMatrixReadInteger(Reader reader) {
         super(reader);
     }
 
-    public FillingMatrixReadIntegerNumbers(Reading reading) {
+    public FillingMatrixReadInteger(Reading reading) {
         super(reading);
     }
 
