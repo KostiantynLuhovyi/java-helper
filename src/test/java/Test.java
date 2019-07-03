@@ -4,6 +4,7 @@ import com.lugowoy.helper.io.reading.ReadingConsole;
 import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.Matrix;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
+import com.lugowoy.helper.other.MatrixAttributes;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -81,9 +82,9 @@ public class Test {
         System.out.println(matrix);*/
 
 
-        for (int i = 0; i < 70; i++) {
+        /*for (int i = 0; i < 70; i++) {
             System.out.print(GeneratorRandomNumber.generateFloat() + " ");
-        }
+        }*/
 
         /*
         String stop;
@@ -97,6 +98,8 @@ public class Test {
                 }
             }
         }*/
+
+        MatrixAttributes matrixAttributes = MatrixAttributes.getInstanceMatrixAttributes(new ReadingConsole(), System.out, MatrixAttributes.MSG_ENTER_CONSOLE_ROW, MatrixAttributes.MSG_ENTER_CONSOLE_COLUMN);
 
 
     }
