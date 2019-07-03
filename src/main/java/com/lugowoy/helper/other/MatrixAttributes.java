@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * Created by LugowoyKonstantin on 25.06.2019.
- * @version 1.2
+ * @version 1.3
  * @since 1.7.2
  */
 //todo add doc's
@@ -20,7 +20,7 @@ public class MatrixAttributes {
     private int rows;
     private int columns;
 
-    private MatrixAttributes() {
+    public MatrixAttributes() {
         this.rows = 1;
         this.columns = 2;
     }
@@ -41,41 +41,35 @@ public class MatrixAttributes {
         this.columns = columns;
     }
 
-    public static MatrixAttributes getInstanceMatrixAttributes(Reading reader) {
+    public void setMatrixAttributes(Reading reader) {
         if (Objects.nonNull(reader)) {
-            MatrixAttributes matrixAttributes = new MatrixAttributes();
-            matrixAttributes.setRows(reader.readInt());
-            matrixAttributes.setColumns(reader.readInt());
-            return matrixAttributes;
+            this.rows = reader.readInt();
+            this.columns = reader.readInt();
         } else {
             throw new NullPointerException("The reader is equal null.");
         }
     }
 
-    public static MatrixAttributes getInstanceMatrixAttributes(Reading reader, OutputStream outputMsg,
-                                                               String msgRow, String msgColumn) {
-        MatrixAttributes matrixAttributes = new MatrixAttributes();
+    public void setMatrixAttributes(Reading reader, OutputStream outputMsg,
+                                    String msgRow, String msgColumn) {
         if (Objects.nonNull(reader)) {
             try {
                 outputMsg.write(msgRow.getBytes());
-                matrixAttributes.setRows(reader.readInt());
+                this.rows = reader.readInt();
                 outputMsg.write(msgColumn.getBytes());
-                matrixAttributes.setColumns(reader.readInt());
+                this.columns = reader.readInt();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         } else {
             throw new NullPointerException("The reader is equal null.");
         }
-        return matrixAttributes;
     }
 
-    public static MatrixAttributes getInstanceMatrixAttributes(int rows, int columns) {
+    public void setMatrixAttributes(int rows, int columns) {
         if ((rows > 0 && rows < Integer.MAX_VALUE) && (columns > 0 && columns < Integer.MAX_VALUE)) {
-            MatrixAttributes matrixAttributes = new MatrixAttributes();
-            matrixAttributes.setRows(rows);
-            matrixAttributes.setColumns(columns);
-            return matrixAttributes;
+            this.rows = rows;
+            this.columns = columns;
         } else {
             throw new IllegalArgumentException("The arguments rows or columns is incorrect.");
         }
