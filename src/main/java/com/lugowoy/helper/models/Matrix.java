@@ -14,7 +14,7 @@ import java.util.Objects;
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -33,16 +33,14 @@ public class Matrix<T> implements Model {
 
     private static final int MAX_MATRIX_LENGTH = Integer.MAX_VALUE;
 
-    private int rows;
-    private int columns;
+    private int rows = 0;
+    private int columns = 0;
     private Object[][] matrix;
 
     /**
-     * Constructs a new matrix of {@link Matrix#DEFAULT_ROWS} rows and {@link Matrix#DEFAULT_COLUMNS} columns.
+     * Constructs a new matrix of the rows and columns.
      */
     public Matrix() {
-        this.rows = DEFAULT_ROWS;
-        this.columns = DEFAULT_COLUMNS;
         this.matrix = new Object[rows][columns];
     }
 
@@ -171,9 +169,25 @@ public class Matrix<T> implements Model {
         return matrix;
     }
 
+    public void setRows(int rows) {
+        if (rows >= 0 && rows < Integer.MAX_VALUE) {
+            this.rows = rows;
+        } else {
+            throw new IllegalArgumentException(new MatrixRowOutOfRangeException("The rows argument is out of range."));
+        }
+    }
+
     //todo add doc's
     public int getRows() {
         return this.rows;
+    }
+
+    public void setColumns(int columns) {
+        if (columns >= 0 && columns < Integer.MAX_VALUE) {
+            this.columns = columns;
+        } else {
+            throw new IllegalArgumentException(new MatrixColumnOutOfRangeException("The columns argument is out of range"));
+        }
     }
 
     //todo add doc's

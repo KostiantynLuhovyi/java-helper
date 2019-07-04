@@ -1,14 +1,8 @@
-import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomInteger;
-import com.lugowoy.helper.io.reading.Reader;
+import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomInteger;
 import com.lugowoy.helper.io.reading.ReadingConsole;
-import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.Matrix;
-import com.lugowoy.helper.other.GeneratorRandomNumber;
-import com.lugowoy.helper.other.MatrixAttributes;
 
-import java.util.Arrays;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+import static com.lugowoy.helper.other.SetterMatrixAttributes.*;
 
 /** Created by Konstantin Lugowoy on 02.10.2018. */
 
@@ -99,8 +93,17 @@ public class Test {
             }
         }*/
 
-        MatrixAttributes matrixAttributes = MatrixAttributes.getInstanceMatrixAttributes(new ReadingConsole(), System.out, MatrixAttributes.MSG_ENTER_CONSOLE_ROW, MatrixAttributes.MSG_ENTER_CONSOLE_COLUMN);
+        /*Matrix<Integer> matrix = new Matrix<>(new FillingMatrixRandomInteger().fill(10, 10, 20));
 
+        System.out.println(matrix);
+
+        System.out.println(matrix.getElement(3, 7));*/
+
+        Matrix<Integer> matrix = new Matrix<>();
+
+        setMatrixAttributes(matrix, new ReadingConsole(), System.out, MSG_ENTER_CONSOLE_ROW, MSG_ENTER_CONSOLE_COLUMN);
+
+        matrix.setMatrix(new FillingMatrixRandomInteger().fill(matrix.getRows(), matrix.getColumns()));
 
     }
 
