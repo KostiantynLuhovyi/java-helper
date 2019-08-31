@@ -9,6 +9,7 @@ package com.lugowoy.helper.io.reading;
  * @see com.lugowoy.helper.io.reading.Reading
  * @since 1.0
  */
+//todo is it worth implementing the Reading interface to this class?
 public class Reader implements Reading {
 
     private final Reading reading;

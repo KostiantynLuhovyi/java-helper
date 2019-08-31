@@ -1,8 +1,5 @@
-import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomInteger;
-import com.lugowoy.helper.io.reading.ReadingConsole;
 import com.lugowoy.helper.models.Matrix;
-
-import static com.lugowoy.helper.other.SetterMatrixAttributes.*;
+import com.lugowoy.helper.other.setters.attributes.SetterAttributes;
 
 /** Created by Konstantin Lugowoy on 02.10.2018. */
 
@@ -99,11 +96,16 @@ public class Test {
 
         System.out.println(matrix.getElement(3, 7));*/
 
-        Matrix<Integer> matrix = new Matrix<>();
+/*        Matrix<Integer> matrix = new Matrix<>();
 
         setMatrixAttributes(matrix, new ReadingConsole(), System.out, MSG_ENTER_CONSOLE_ROW, MSG_ENTER_CONSOLE_COLUMN);
 
-        matrix.setMatrix(new FillingMatrixRandomInteger().fill(matrix.getRows(), matrix.getColumns()));
+        matrix.setMatrix(new FillingMatrixRandomInteger().fill(matrix.getRows(), matrix.getColumns()));*/
+
+        Matrix<Integer> matrix = new Matrix<>();
+        SetterAttributes<Matrix<Integer>> matrixAttributes = SetterMatrixAttributes::setAttributes;
+        matrixAttributes.setAttributes(matrix);
+        System.out.println(matrix.getRows() + " + " + matrix.getColumns());
 
     }
 
