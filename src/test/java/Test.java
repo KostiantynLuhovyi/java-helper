@@ -102,10 +102,7 @@ public class Test {
 
         matrix.setMatrix(new FillingMatrixRandomInteger().fill(matrix.getRows(), matrix.getColumns()));*/
 
-        Matrix<Integer> matrix = new Matrix<>();
-        SetterAttributes<Matrix<Integer>> matrixAttributes = SetterMatrixAttributes::setAttributes;
-        matrixAttributes.setAttributes(matrix);
-        System.out.println(matrix.getRows() + " + " + matrix.getColumns());
+
 
     }
 
