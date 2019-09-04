@@ -3,11 +3,15 @@ import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.other.setters.attributes.SetterAttributes;
 import com.lugowoy.helper.other.setters.attributes.SetterPoint2DAttributes;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+
 /** Created by Konstantin Lugowoy on 02.10.2018. */
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         /*Matrix<Integer> matrix = Matrix.create(new FillingMatrixRandomInteger().fill(5, 5, POSITIVE_INTEGER_BOUND));
 
@@ -104,11 +108,15 @@ public class Test {
 
         matrix.setMatrix(new FillingMatrixRandomInteger().fill(matrix.getRows(), matrix.getColumns()));*/
 
-        Point2D<Double> point2D = new Point2D<>(7.0, 7.0);
+/*        Point2D<Double> point2D = new Point2D<>(7.0, 7.0);
         System.out.println(point2D);
         SetterAttributes<Point2D<Double>> setterAttributes = new SetterPoint2DAttributes<>();
         setterAttributes.setAttributes(point2D);
-        System.out.println(point2D);
+        System.out.println(point2D);*/
+
+        long test = 5555555555555555L;
+
+
 
     }
 
