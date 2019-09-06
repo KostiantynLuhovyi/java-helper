@@ -15,11 +15,12 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * <p>Created by Konstantin Lugowoy on 13-Jan-18.
  *
  * @author Konsatantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
+//todo edit doc's
 public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer> {
 
     /**
@@ -28,7 +29,7 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      *
      * @param array The object of the {@link Array} class to be filled with
      *              sequential ascending of numeric data of type {@link Integer}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Integer> array) throws IllegalArgumentException {
@@ -37,7 +38,7 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
             this.fillArrayElementsSequentialAscendingIntegerNumbers(integers);
             array.setArray(integers);
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -46,14 +47,14 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      * Filling starts at "0" and increases by "1".
      *
      * @param integers The array to be filled with sequential ascending of numeric data of type {@link Integer}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Integer[] integers) throws IllegalArgumentException {
         if (CheckerFillingArray.checkNonNullArray(integers)) {
             this.fillArrayElementsSequentialAscendingIntegerNumbers(integers);
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -90,13 +91,13 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      *              sequential ascending of numeric data of type {@link Integer}.
      * @param bound The value of the bound for filling an object of the {@link Array} class with
      *              sequential ascending of numeric data of type {@link Integer}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) throws IllegalArgumentException {
         if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, bound);
                 array.setArray(integers);
             } else {
@@ -105,7 +106,7 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
                 array.setArray(integers);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -118,19 +119,19 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      * @param integers The array to be filled with sequential ascending of numeric data of type {@link Integer}.
      * @param bound    The value of the end bound for filling an array with
      *                 sequential ascending of numeric data of type {@link Integer}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
         if (CheckerFillingArray.checkNonNullArray(integers)) {
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
                         POSITIVE_INTEGER_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -153,7 +154,7 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromZeroToPositiveBound(integers,
@@ -181,14 +182,13 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      *                   sequential ascending of numeric data of type {@link Integer}.
      * @param endBound   The value of the end bound for filling an object of the {@link Array} class with
      *                   sequential ascending of numeric data of type {@link Integer}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
                 array.setArray(integers);
             } else {
@@ -198,7 +198,7 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
                 array.setArray(integers);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -216,13 +216,12 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
      *                   sequential ascending of numeric data of type {@link Integer}.
      * @param endBound   The value of the end bound for filling an array with
      *                   sequential ascending of numeric data of type {@link Integer}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
         if (CheckerFillingArray.checkNonNullArray(integers)) {
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers,
@@ -230,7 +229,7 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
                         POSITIVE_INTEGER_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -258,8 +257,7 @@ public class FillingArrayAscendingInteger implements FillingArrayNumbers<Integer
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsSequentialAscendingIntegerNumbersFromStartBoundToEndBound(integers,

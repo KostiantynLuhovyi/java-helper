@@ -16,11 +16,12 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
+//todo edit doc's
 public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
 
     /**
@@ -28,7 +29,7 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      * Numerical values are in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param array The object of the {@link Array} class to be filled with numeric data of the type {@link Double}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
@@ -49,12 +50,12 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      * to {@link Integer#MAX_VALUE}.
      *
      * @param doubles The array to be filled with random numeric data of the type {@link Double}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(doubles)) {
+        if (checkNonNullArray(doubles)) {
             this.fillArrayElementsRandomDoubleNumbers(doubles);
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -97,14 +98,14 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      * @param array The object of the {@link Array} class to be filled with random numeric data of the type {@link Double}.
      * @param bound The value of the bound for filling an object of the {@link Array} class
      *              with random numeric data of the type {@link Double}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, bound);
                 array.setArray(doubles);
             } else {
@@ -113,7 +114,7 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -125,20 +126,20 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      *
      * @param doubles The array to be filled with random numeric data of the type {@link Double}.
      * @param bound   The value of the end bound for filling an array with random numeric data of the type {@link Double}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles, Double bound) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(doubles)) {
-            if (isPositiveBoundValueAndNonNull(bound)) {
+        if (checkNonNullArray(doubles)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
                 this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -161,7 +162,7 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
                 this.fillArrayElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
@@ -187,15 +188,14 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      *                   with random numeric data of the type {@link Double}.
      * @param endBound   The value of the end bound for filling an object of the {@link Array} class
      *                   with random numeric data of the type {@link Double}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
                 array.setArray(doubles);
             } else {
@@ -204,7 +204,7 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -219,14 +219,13 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
      * @param doubles    The array to be filled with random numeric data of the type {@link Double}.
      * @param startBound The value of the start bound for filling an array with random numeric data of the type {@link Double}.
      * @param endBound   The value of the end bound for filling an array with random numeric data of the type {@link Double}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles, Double startBound, Double endBound) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(doubles)) {
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+        if (checkNonNullArray(doubles)) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles,
@@ -235,7 +234,7 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -262,8 +261,7 @@ public class FillingArrayRandomDouble implements FillingArrayNumbers<Double> {
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles,

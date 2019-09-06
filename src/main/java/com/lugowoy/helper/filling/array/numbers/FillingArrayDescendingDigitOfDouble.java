@@ -15,11 +15,12 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
+//todo edit doc's
 public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<Double> {
 
     /**
@@ -28,7 +29,7 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
      *
      * @param array The object of the {@link Array} class to be filled with
      *              sequential descending decimal digit of numeric data of type {@link Double}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
@@ -37,7 +38,7 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
             this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbers(doubles);
             array.setArray(doubles);
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -46,14 +47,14 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
      * Filling starts at "0.0" and decreases by "0.1".
      *
      * @param doubles The array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles) throws IllegalArgumentException {
         if (CheckerFillingArray.checkNonNullArray(doubles)) {
             this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbers(doubles);
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -89,13 +90,13 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
      *              sequential descending decimal digit of numeric data of type {@link Double}.
      * @param bound The value of the bound for filling an object of the {@link Array} class with
      *              sequential descending decimal digit of numeric data of type {@link Double}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
         if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (isNegativeBoundValueAndNonNull(bound)) {
+            if (isNegativeBound(bound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
                 array.setArray(doubles);
             } else {
@@ -103,7 +104,7 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
                 array.setArray(doubles);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -116,19 +117,19 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
      * @param doubles The array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
      * @param bound   The value of the end bound for filling an array with
      *                sequential descending decimal digit of numeric data of type {@link Double}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles, Double bound) throws IllegalArgumentException {
         if (CheckerFillingArray.checkNonNullArray(doubles)) {
-            if (isNegativeBoundValueAndNonNull(bound)) {
+            if (isNegativeBound(bound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
                         NEGATIVE_DOUBLE_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -151,7 +152,7 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isNegativeBoundValueAndNonNull(bound)) {
+            if (isNegativeBound(bound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles, bound);
             } else {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromZeroToNegativeBound(doubles,
@@ -178,14 +179,13 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
      *                   sequential descending decimal digit of numeric data of type {@link Double}.
      * @param endBound   The value of the end bound for filling an object of the {@link Array} class with
      *                   sequential descending decimal digit of numeric data of type {@link Double}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
         if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundGreaterOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
                         startBound,
                         endBound);
@@ -197,7 +197,7 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
                 array.setArray(doubles);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -213,13 +213,12 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
      *                   sequential descending decimal digit of numeric data of type {@link Double}.
      * @param endBound   The value of the end bound for filling an array with
      *                   sequential descending decimal digit of numeric data of type {@link Double}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles, Double startBound, Double endBound) {
         if (CheckerFillingArray.checkNonNullArray(doubles)) {
-            if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundGreaterOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
                         startBound,
                         endBound);
@@ -229,7 +228,7 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
                         NEGATIVE_DOUBLE_BOUND);
             }
         } else {
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -256,8 +255,7 @@ public class FillingArrayDescendingDigitOfDouble implements FillingArrayNumbers<
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundGreaterOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsSequentialDescendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
                         startBound,
                         endBound);

@@ -20,12 +20,13 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @see FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
+//todo edit doc's
 public class FillingArrayReadDouble extends FillingArrayReadValues<Double> implements FillingArrayNumbers<Double> {
 
     /**
@@ -60,7 +61,7 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      *
      * @param array The object of the {@link Array} class to be filled with data of the {@link Double} type
      *              with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If object argument is null.
+     * @throws NullPointerException If object argument is null.
      */
     @Override
     public void fill(Array<Double> array) throws IllegalArgumentException {
@@ -71,7 +72,7 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
             array.setArray(doubles);
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -80,16 +81,16 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      *
      * @param doubles The array to be filled with data of the {@link Double} type
      *                with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(doubles)) {
+        if (checkNonNullArray(doubles)) {
             this.fillArrayElementsEnteredDoubleNumbers(doubles);
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -128,14 +129,14 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      *              with read by the {@link Reader} class object.
      * @param bound The value of the bound for filling an object of the {@link Array} class with data of the {@link Double} type
      *              with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
                 array.setArray(doubles);
             } else {
@@ -144,7 +145,7 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -157,20 +158,20 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      * @param doubles The array to be filled with data of the {@link Double} type with read by the {@link Reader} class object.
      * @param bound   The value of the end bound for filling an array with data of the {@link Double} type
      *                with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles, Double bound) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(doubles)) {
-            if (isPositiveBoundValueAndNonNull(bound)) {
+        if (checkNonNullArray(doubles)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -196,7 +197,7 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, bound);
             } else {
                 this.fillArrayElementsEnteredDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
@@ -222,15 +223,14 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      *                   with data of the {@link Double} type with read by the {@link Reader} class object.
      * @param endBound   The value of the end bound for filling an object of the {@link Array} class with
      *                   data of the {@link Double} type with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
                 array.setArray(doubles);
             } else {
@@ -241,7 +241,7 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -258,14 +258,13 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
      *                   with read by the {@link Reader} class object.
      * @param endBound   The value of the end bound for filling an array with data of the {@link Double} type
      *                   with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Double[] doubles, Double startBound, Double endBound) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(doubles)) {
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+        if (checkNonNullArray(doubles)) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,
@@ -274,7 +273,7 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -302,8 +301,7 @@ public class FillingArrayReadDouble extends FillingArrayReadValues<Double> imple
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
             } else {
                 this.fillArrayElementsEnteredDoubleNumbersFromStartBoundToEndBound(doubles,

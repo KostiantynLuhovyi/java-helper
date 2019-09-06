@@ -17,11 +17,12 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
+//todo edit doc's
 public class FillingArrayRandomInteger implements FillingArrayNumbers<Integer> {
 
     /**
@@ -29,7 +30,7 @@ public class FillingArrayRandomInteger implements FillingArrayNumbers<Integer> {
      * Numerical values are in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param array The object of the {@link Array} class to fill with numeric data of the type {@link Integer}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Array<Integer> array) throws IllegalArgumentException {
@@ -49,13 +50,13 @@ public class FillingArrayRandomInteger implements FillingArrayNumbers<Integer> {
      * Numerical values are in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param integers The array to fill with random numeric data of the type {@link Integer}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Integer[] integers) throws IllegalArgumentException {
         //todo check or add relevant checks.
 
-        if (CheckerFillingArray.checkNonNullArray(integers)) {
+        if (checkNonNullArray(integers)) {
             this.fillArrayRandomInteger(integers);
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
@@ -96,14 +97,14 @@ public class FillingArrayRandomInteger implements FillingArrayNumbers<Integer> {
      * @param array The object of the {@link Array} class to fill with random numeric data of the type {@link Integer}.
      * @param bound The value of the bound for filling an object of the {@link Array} class
      *              with random numeric data of the type {@link Integer}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayRandomIntegerFromZeroToPositiveBound(integers, bound);
                 array.setArray(integers);
             } else {
@@ -124,13 +125,13 @@ public class FillingArrayRandomInteger implements FillingArrayNumbers<Integer> {
      *
      * @param integers The array to fill with random numeric data of the type {@link Integer}.
      * @param bound    The value of the end bound for filling an array with random numeric data of the type {@link Integer}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(integers)) {
-            if (isPositiveBoundValueAndNonNull(bound)) {
+        if (checkNonNullArray(integers)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayRandomIntegerFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayRandomIntegerFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
@@ -161,7 +162,7 @@ public class FillingArrayRandomInteger implements FillingArrayNumbers<Integer> {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayRandomIntegerFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayRandomIntegerFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
@@ -186,15 +187,14 @@ public class FillingArrayRandomInteger implements FillingArrayNumbers<Integer> {
      *                   with random numeric data of the type {@link Integer}.
      * @param endBound   The value of the end bound for filling an object of the {@link Array} class
      *                   with random numeric data of the type {@link Integer}.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayRandomIntegerFromStartBoundToEndBound(integers, startBound, endBound);
                 array.setArray(integers);
             } else {
@@ -218,14 +218,13 @@ public class FillingArrayRandomInteger implements FillingArrayNumbers<Integer> {
      * @param integers   The array to be filled with random numeric data of the type {@link Integer}.
      * @param startBound The value of the start bound for filling an array with random numeric data of the type {@link Integer}.
      * @param endBound   The value of the end bound for filling an array with random numeric data of the type {@link Integer}.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(integers)) {
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+        if (checkNonNullArray(integers)) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayRandomIntegerFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayRandomIntegerFromStartBoundToEndBound(integers, NEGATIVE_INTEGER_BOUND, POSITIVE_INTEGER_BOUND);
@@ -258,8 +257,7 @@ public class FillingArrayRandomInteger implements FillingArrayNumbers<Integer> {
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayRandomIntegerFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayRandomIntegerFromStartBoundToEndBound(integers, NEGATIVE_INTEGER_BOUND, POSITIVE_INTEGER_BOUND);

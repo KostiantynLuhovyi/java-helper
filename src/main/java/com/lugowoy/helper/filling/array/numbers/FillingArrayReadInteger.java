@@ -20,12 +20,13 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
+//todo edit doc's
 public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> implements FillingArrayNumbers<Integer> {
 
     /**
@@ -60,7 +61,7 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      *
      * @param array The object of the {@link Array} class to be filled with data of the {@link Integer} type
      *              with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If object argument is null.
+     * @throws NullPointerException If object argument is null.
      */
     @Override
     public void fill(Array<Integer> array) throws IllegalArgumentException {
@@ -71,7 +72,7 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
             array.setArray(integers);
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -80,16 +81,16 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      *
      * @param integers The array to be filled with data of the {@link Integer} type
      *                 with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Integer[] integers) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(integers)) {
+        if (checkNonNullArray(integers)) {
             this.fillArrayElementsEnteredIntegerNumbers(integers);
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -127,14 +128,14 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      *              with read by the {@link Reader} class object.
      * @param bound The value of the bound for filling an object of the {@link Array} class with data of the {@link Integer} type
      *              with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
                 array.setArray(integers);
             } else {
@@ -143,7 +144,7 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -156,20 +157,20 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      * @param integers The array to be filled with data of the {@link Integer} type with read by the {@link Reader} class object.
      * @param bound    The value of the end bound for filling an array with data of the {@link Integer} type
      *                 with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Integer[] integers, Integer bound) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(integers)) {
-            if (isPositiveBoundValueAndNonNull(bound)) {
+        if (checkNonNullArray(integers)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -194,7 +195,7 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (isPositiveBoundValueAndNonNull(bound)) {
+            if (isPositiveBound(bound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
             } else {
                 this.fillArrayElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, POSITIVE_INTEGER_BOUND);
@@ -219,15 +220,14 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      *                   with read by the {@link Reader} class object.
      * @param endBound   The value of the end bound for filling an object of the {@link Array} class with
      *                   data of the {@link Integer} type with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the object argument is null.
+     * @throws NullPointerException If the object argument is null.
      */
     @Override
     public void fill(Array<Integer> array, Integer startBound, Integer endBound) throws IllegalArgumentException {
         //todo check or add relevant checks.
         if (checkNonNullArray(array)) {
             Integer[] integers = new Integer[array.getLength()];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
                 array.setArray(integers);
             } else {
@@ -238,7 +238,7 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
+            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -255,14 +255,13 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
      *                   with read by the {@link Reader} class object.
      * @param endBound   The value of the end bound for filling an array with data of the {@link Integer} type
      *                   with read by the {@link Reader} class object.
-     * @throws IllegalArgumentException If the array argument is null.
+     * @throws NullPointerException If the array argument is null.
      */
     @Override
     public void fill(Integer[] integers, Integer startBound, Integer endBound) throws IllegalArgumentException {
         //todo check or add relevant checks.
-        if (CheckerFillingArray.checkNonNullArray(integers)) {
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+        if (checkNonNullArray(integers)) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
@@ -271,7 +270,7 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
             }
         } else {
             //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
+            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -301,8 +300,7 @@ public class FillingArrayReadInteger extends FillingArrayReadValues<Integer> imp
         Integer[] integers;
         if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (isStartBoundValueLessThanEndBoundValue(startBound, endBound)
-                    && (isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))) {
+            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
             } else {
                 this.fillArrayElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers,
