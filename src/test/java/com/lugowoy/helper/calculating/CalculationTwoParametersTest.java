@@ -8,17 +8,18 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-public class CalculationOneParameterTest {
+public class CalculationTwoParametersTest {
 
     private static final int NUMBER_OBJECTS_TO_TEST = 100;
     private static final int UPPER_BOUND_TO_LENGTH_ARRAY = 20;
 
     @Test
-    public void calculateSumArrayElementsWithExpectedResultGreaterThanZero() {
+    public void calculateOfArrayElementsWithExpectedResultGreaterThanZero() {
         for (int i = 0; i < NUMBER_OBJECTS_TO_TEST; i++) {
             int lengthArray = GeneratorRandomNumber.generateInt(UPPER_BOUND_TO_LENGTH_ARRAY);
             Array<Integer> array = new Array<>(new FillingArrayRandomInteger().fill(lengthArray, 0, 100));
-            int resultCalculationSumToTest = calculateSumArrayElementsOperation(array);
+            int value = GeneratorRandomNumber.generateInt(100);
+            int resultCalculationSumToTest = calculateOfArrayElementsOperation(value, array);
             if (array.getLength() == 0 || resultCalculationSumToTest == 0) {
                 break;
             }
@@ -27,11 +28,12 @@ public class CalculationOneParameterTest {
     }
 
     @Test
-    public void calculateSumArrayElementsWithExpectedResultLessThanZero() {
+    public void calculateOfArrayElementsWithExpectedResultLessThanZero() {
         for (int i = 0; i < NUMBER_OBJECTS_TO_TEST; i++) {
             int lengthArray = GeneratorRandomNumber.generateInt(UPPER_BOUND_TO_LENGTH_ARRAY);
             Array<Integer> array = new Array<>(new Array<>(new FillingArrayRandomInteger().fill(lengthArray, -100, 0)));
-            int resultCalculationSumToTest = calculateSumArrayElementsOperation(array);
+            int value = GeneratorRandomNumber.generateInt(-200, -100);
+            int resultCalculationSumToTest = calculateOfArrayElementsOperation(value, array);
             if (array.getLength() == 0 || resultCalculationSumToTest == 0) {
                 break;
             }
@@ -41,35 +43,36 @@ public class CalculationOneParameterTest {
     }
 
     @Test
-    public void calculateSumArrayElementsWithExpectedResultEqualZero() {
+    public void calculateOfArrayElementsWithExpectedResultEqualZero() {
         for (int i = 0; i < NUMBER_OBJECTS_TO_TEST; i++) {
             int lengthArray = GeneratorRandomNumber.generateInt(UPPER_BOUND_TO_LENGTH_ARRAY);
             Array<Integer> array = new Array<>(new FillingArrayRandomInteger().fill(lengthArray, 0, 0));
-            int resultCalculationSumToTest = calculateSumArrayElementsOperation(array);
+            int resultCalculationSumToTest = calculateOfArrayElementsOperation(0, array);
             Assert.assertEquals(0, resultCalculationSumToTest);
         }
     }
 
     @Test
-    public void calculateSumArrayElementsWithExpectedResultEqualFive() {
+    public void calculateOfArrayElementsWithExpectedResultEqualFive() {
         for (int i = 0; i < NUMBER_OBJECTS_TO_TEST; i++) {
-            Array<Integer> array = new Array<>(new FillingArrayRandomInteger().fill(5, 1, 1));
-            int resultCalculationSumToTest = calculateSumArrayElementsOperation(array);
+            Array<Integer> array = new Array<>(new FillingArrayRandomInteger().fill(5, 0, 0));
+            int value = 1;
+            int resultCalculationSumToTest = calculateOfArrayElementsOperation(value, array);
             Assert.assertEquals(5, resultCalculationSumToTest);
         }
     }
 
-    private static Integer calculateSumArrayElementsOperation(Array<Integer> array) {
+    private static Integer calculateOfArrayElementsOperation(int value, Array<Integer> array) {
         final int[] result = new int[1];
-        CalculationOneParameter<Integer, Array<Integer>> calculationOneParameter = kVar -> {
+        CalculationTwoParameters<Integer, Integer, Array<Integer>> calculationTwoParameters = (kVar, vVar) -> {
             BigDecimal tmpRes = new BigDecimal(0);
-            for (Integer i : kVar) {
-                tmpRes = new BigDecimal(new BigDecimal(i).add(new BigDecimal(tmpRes.intValue())).intValue());
+            for (Integer i : vVar) {
+                tmpRes = new BigDecimal(new BigDecimal(i).add(new BigDecimal(tmpRes.intValue()).add(new BigDecimal(kVar))).intValue());
             }
             result[0] = tmpRes.intValue();
             return result[0];
         };
-        return calculationOneParameter.calculate(array);
+        return calculationTwoParameters.calculate(value, array);
     }
 
 }
