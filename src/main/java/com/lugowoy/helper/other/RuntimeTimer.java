@@ -4,7 +4,7 @@ package com.lugowoy.helper.other;
  * Created by LugowoyKonstantin on 03.09.2019.
  *
  * @author LugowoyKonstantin
- * @version 1.0
+ * @version 1.1
  * @since 1.7.4
  */
 //todo add doc's (class, methods)
@@ -29,7 +29,7 @@ public class RuntimeTimer {
         this.end = endMillis;
     }
 
-    public void timeMillis() {
+    public void timeMillisToConsole() {
         System.out.printf("Start time : %d millis", this.start);
         System.out.printf("End time : %d millis", this.end);
         System.out.printf("Result time : %d millis", this.end - this.start);
