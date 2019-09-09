@@ -7,6 +7,9 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import static com.lugowoy.helper.other.CheckerIndex.checkIndex;
+import static com.lugowoy.helper.other.CheckerLength.checkLength;
+
 /**
  * The class implements the array model.
  * (own implementation of java.util.ArrayList)
@@ -14,7 +17,7 @@ import java.util.stream.Stream;
  *
  * @param <T> Type of elements (objects) stored in an array (an object of this class).
  * @author Konstantin Lugowoy
- * @version 2.3
+ * @version 2.4
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -74,7 +77,7 @@ public class Array<T> implements Model, Iterable<T> {
      * @throws LengthValueOutOfRangeException If the array length argument is out of range.
      */
     public Array(int lengthArray) {
-        if (CheckerLength.checkLength(lengthArray)) {
+        if (checkLength(lengthArray)) {
             this.array = new Object[lengthArray];
             this.indexElement = 0;
         }
@@ -198,7 +201,7 @@ public class Array<T> implements Model, Iterable<T> {
      * @since 1.1
      */
     public void setArray(int lengthArray) {
-        if (CheckerLength.checkLength(lengthArray)) {
+        if (checkLength(lengthArray)) {
             this.array = new Object[lengthArray];
             this.indexElement = 0;
         }
@@ -213,7 +216,7 @@ public class Array<T> implements Model, Iterable<T> {
      */
     public T get(int index) {
         T obj = null;
-        if (CheckerIndex.checkIndex(index)) {
+        if (checkIndex(index)) {
             obj = (T) this.array[index];
         }
         return obj;
@@ -228,9 +231,14 @@ public class Array<T> implements Model, Iterable<T> {
      * @since 1.2
      */
     public void set(int index, T obj) {
-        if (CheckerIndex.checkIndex(index)) {
+        if (checkIndex(index) && index <= this.array.length) {
             this.array[index] = obj;
-            this.indexElement += 1;
+        } else {
+            int newLengthToResize = (this.array.length + (index - this.array.length) + 1);
+            int newIndexElementVar = newLengthToResize;
+            this.array = Arrays.copyOf(this.array, newLengthToResize);
+            this.indexElement = newIndexElementVar;
+            this.array[index] = obj;
         }
     }
 
@@ -263,7 +271,7 @@ public class Array<T> implements Model, Iterable<T> {
      * @since 1.2
      */
     public void delete(int index) {
-        if (CheckerIndex.checkIndex(index)) {
+        if (checkIndex(index)) {
             this.array = Stream.concat(Arrays.stream(Arrays.copyOfRange(this.array, 0, index - 1)),
                     Arrays.stream(Arrays.copyOfRange(this.array, index, this.array.length)))
                     .toArray();
@@ -290,6 +298,11 @@ public class Array<T> implements Model, Iterable<T> {
         } else {
             throw new NullPointerException("Argument obj is null.");
         }
+    }
+
+    //todo add doc
+    public int getIndexElement() {
+        return this.indexElement;
     }
 
     @Override
