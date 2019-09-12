@@ -4,7 +4,7 @@ package com.lugowoy.helper.other.execution;
  * Created by LugowoyKonstantin on 11.09.2019.
  *
  * @author LugowoyKonstantin
- * @version 1.1
+ * @version 1.2
  * @since 1.7.6
  */
 //todo add doc's
