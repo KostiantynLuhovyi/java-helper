@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
  * Created by LugowoyKonstantin on 01.09.2019.
  *
  * @author LugowoyKonstantin
- * @version 1.3
+ * @version 1.4
  * @since 1.7.4
  */
 //todo add doc's (class, methods)
@@ -29,20 +29,20 @@ public interface Executor {
         OutputExecutorTime.outputExecutionTimeMillisOnConsole(runtimeMillis, OutputExecutorTime.MSG_MILLISECONDS);
     }
 
-    static <T> void execute(Callable<T> callable, String msg,
-                         OutputExecutorTime outputExecutorTime, OutputExecutorResult<T> outputExecutorResult) {
+    static <T> void execute(Callable<T> callable, String msgExecutorResult, String msgExecutorTime,
+                            OutputExecutorTime outputExecutorTime, OutputExecutorResult<T> outputExecutorResult) {
         long startMillis = System.currentTimeMillis();
         try {
             T result = callable.call();
             //todo check non null result
-            outputExecutorResult.outputResult(result, msg);
+            outputExecutorResult.outputResult(result, msgExecutorResult);
         } catch (Exception e) {
             //todo to refactoring
             e.printStackTrace();
         }
         long endMillis = System.currentTimeMillis();
         long runtimeMillis = (endMillis - startMillis);
-        outputExecutorTime.outputTimer(runtimeMillis, msg);
+        outputExecutorTime.outputTimer(runtimeMillis, msgExecutorTime);
     }
 
 }
