@@ -9,7 +9,7 @@ package com.lugowoy.helper.other.execution;
  */
 //todo add doc's
 @FunctionalInterface
-interface OutputExecutorTime {
+public interface OutputExecutorTime {
 
     String MSG_MINUTES_AND_SECONDS = "\nRuntime : %d minutes, %d seconds\n";
     String MSG_MILLISECONDS = "\nRuntime : %d milliseconds\n";
