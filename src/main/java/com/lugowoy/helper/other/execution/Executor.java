@@ -29,20 +29,20 @@ public interface Executor {
         OutputExecutorTime.outputExecutionTimeMillisOnConsole(runtimeMillis, OutputExecutorTime.MSG_MILLISECONDS);
     }
 
-    static <T> void execute(Callable<T> callable, String msgExecutorResult, String msgExecutorTime,
+    static <T> void execute(Callable<T> callable, String msgOutputExecutorResult, String msgOutputExecutorTime,
                             OutputExecutorTime outputExecutorTime, OutputExecutorResult<T> outputExecutorResult) {
         long startMillis = System.currentTimeMillis();
         try {
             T result = callable.call();
             //todo check non null result
-            outputExecutorResult.outputResult(result, msgExecutorResult);
+            outputExecutorResult.outputResult(result, msgOutputExecutorResult);
         } catch (Exception e) {
             //todo to refactoring
             e.printStackTrace();
         }
         long endMillis = System.currentTimeMillis();
         long runtimeMillis = (endMillis - startMillis);
-        outputExecutorTime.outputTimer(runtimeMillis, msgExecutorTime);
+        outputExecutorTime.outputTimer(runtimeMillis, msgOutputExecutorTime);
     }
 
 }

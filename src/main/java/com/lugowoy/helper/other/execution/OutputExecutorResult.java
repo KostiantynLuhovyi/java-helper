@@ -11,6 +11,10 @@ package com.lugowoy.helper.other.execution;
 @FunctionalInterface
 public interface OutputExecutorResult<T> {
 
-    void outputResult(T t, String msg);
+    void outputResult(T t, String msgOutputResult);
+
+    static <T> void outputExecutionResultOnConsole(T t, String msgOutputResult) {
+        System.out.printf(msgOutputResult, t);
+    }
 
 }

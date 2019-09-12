@@ -16,15 +16,15 @@ public interface OutputExecutorTime {
 
     void outputTimer(long milliseconds, String msg);
 
-    static void outputExecutionTimeMillisOnConsole(long milliseconds, String msg) {
-        System.out.printf(msg, milliseconds);
+    static void outputExecutionTimeMillisOnConsole(long milliseconds, String msgOutputTime) {
+        System.out.printf(msgOutputTime, milliseconds);
     }
 
-    static void outputExecutionTimeOnConsole(long milliseconds, String msg) {
+    static void outputExecutionTimeOnConsole(long milliseconds, String msgOutputTime) {
         if (milliseconds >= 1000) {
             long minutes = (milliseconds / 1000) / 60;
             long seconds = (milliseconds / 1000);
-            System.out.printf(msg, minutes, seconds);
+            System.out.printf(msgOutputTime, minutes, seconds);
         } else {
             System.out.printf(MSG_MILLISECONDS, milliseconds);
         }
