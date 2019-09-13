@@ -2,47 +2,51 @@ package com.lugowoy.helper.other.execution;
 
 import java.util.concurrent.Callable;
 
+import static com.lugowoy.helper.other.execution.OutputExecutorTime.MSG_MILLISECONDS;
+
 /**
  * Created by LugowoyKonstantin on 01.09.2019.
  *
  * @author LugowoyKonstantin
- * @version 1.4
+ * @version 1.5
  * @since 1.7.4
  */
 //todo add doc's (class, methods)
-//todo refactoring this class
 public interface Executor {
 
     static <T> void execute(Callable<T> callable) {
-        long startMillis = System.currentTimeMillis();
-        try {
-            T result = callable.call();
-            //todo check non null result
-            OutputExecutorResult<T> outputExecutorResult = (t, msg) -> System.out.println(msg + t);
-            outputExecutorResult.outputResult(result, "Result : ");
-        } catch (Exception e) {
-            //todo to refactoring if throw exception
-            e.printStackTrace();
-        }
-        long endMillis = System.currentTimeMillis();
-        long runtimeMillis = (endMillis - startMillis);
-        OutputExecutorTime.outputExecutionTimeMillisOnConsole(runtimeMillis, OutputExecutorTime.MSG_MILLISECONDS);
+        ExecutionTimer executionTimer = ExecutionTimer.getExecutionTimer();
+        executionTimer.startExecutionTimer();
+        T result = callExecution(callable);
+        OutputExecutorResult.outputExecutionResultOnConsole(result, "Result : ");
+        OutputExecutorTime.outputExecutionTimeMillisOnConsole(executionTimer.endExecutionTimer(), MSG_MILLISECONDS);
     }
 
-    static <T> void execute(Callable<T> callable, String msgOutputExecutorResult, String msgOutputExecutorTime,
-                            OutputExecutorTime outputExecutorTime, OutputExecutorResult<T> outputExecutorResult) {
-        long startMillis = System.currentTimeMillis();
+    static <T> void execute(Callable<T> callable, String msgOutputTime, String msgOutputResult) {
+        ExecutionTimer executionTimer = ExecutionTimer.getExecutionTimer();
+        executionTimer.startExecutionTimer();
+        T result = callExecution(callable);
+        OutputExecutorResult.outputExecutionResultOnConsole(result, msgOutputResult);
+        OutputExecutorTime.outputExecutionTimeOnConsole(executionTimer.endExecutionTimer(), msgOutputTime);
+    }
+
+    static <T> void execute(Callable<T> callable, String msgOutputResult, String msgOutputTime,
+                            OutputExecutorResult<T> outputExecutorResult, OutputExecutorTime outputExecutorTime) {
+        ExecutionTimer executionTimer = ExecutionTimer.getExecutionTimer();
+        executionTimer.startExecutionTimer();
+        T result = callExecution(callable);
+        outputExecutorResult.outputResult(result, msgOutputResult);
+        outputExecutorTime.outputTimer(executionTimer.endExecutionTimer(), msgOutputTime);
+    }
+
+    private static <T> T callExecution(Callable<T> callable) {
+        T resultExecution = null;
         try {
-            T result = callable.call();
-            //todo check non null result
-            outputExecutorResult.outputResult(result, msgOutputExecutorResult);
-        } catch (Exception e) {
-            //todo to refactoring
-            e.printStackTrace();
+            resultExecution = callable.call();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        long endMillis = System.currentTimeMillis();
-        long runtimeMillis = (endMillis - startMillis);
-        outputExecutorTime.outputTimer(runtimeMillis, msgOutputExecutorTime);
+        return resultExecution;
     }
 
 }
