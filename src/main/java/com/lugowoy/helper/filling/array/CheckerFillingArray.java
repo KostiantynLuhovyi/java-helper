@@ -8,7 +8,7 @@ import com.lugowoy.helper.models.points.Point;
  * <p>Created by Konstantin Lugowoy on 09-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  */
 public interface CheckerFillingArray {
 
@@ -23,7 +23,7 @@ public interface CheckerFillingArray {
      * @param array The object of the {@link Array} class for checking.
      * @return Result of checking.
      */
-    static <T> boolean checkNonNullArray(Array<T> array) {
+    static <T> boolean isNonNullArray(Array<T> array) {
         return (array != null);
     }
 
@@ -33,7 +33,7 @@ public interface CheckerFillingArray {
      * @param numbers The array for checking.
      * @return Result of checking.
      */
-    static boolean checkNonNullArray(Number[] numbers) {
+    static boolean isNonNullArray(Number[] numbers) {
         return (numbers != null);
     }
 
@@ -43,7 +43,7 @@ public interface CheckerFillingArray {
      * @param points The array for checking.
      * @return Result of checking.
      */
-    static <T extends Number> boolean checkNonNullArray(Point<T>[] points) {
+    static <T extends Number> boolean isNonNullArray(Point<T>[] points) {
         return (points != null);
     }
 
@@ -53,7 +53,7 @@ public interface CheckerFillingArray {
      * @param strings The array for checking.
      * @return Result of checking.
      */
-    static boolean checkNonNullArray(String[] strings) {
+    static boolean isNonNullArray(String[] strings) {
         return (strings != null);
     }
 

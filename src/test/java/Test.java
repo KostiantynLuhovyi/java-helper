@@ -1,3 +1,4 @@
+import com.lugowoy.helper.filling.Filler;
 import com.lugowoy.helper.models.Matrix;
 import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.other.setters.attributes.SetterAttributes;
@@ -13,7 +14,7 @@ public class Test {
 
     public static void main(String[] args) throws InterruptedException {
 
-        /*Matrix<Integer> matrix = Matrix.create(new FillingMatrixRandomInteger().fill(5, 5, POSITIVE_INTEGER_BOUND));
+        /*Matrix<Integer> matrix = Matrix.create(new FillingMatrixRandomInteger().fill(5, 5, INT_UPPER_BOUND));
 
         System.out.println("Matrix : ");
         System.out.println(matrix);
@@ -113,9 +114,6 @@ public class Test {
         SetterAttributes<Point2D<Double>> setterAttributes = new SetterPoint2DAttributes<>();
         setterAttributes.setAttributes(point2D);
         System.out.println(point2D);*/
-
-        long test = 5555555555555555L;
-
 
 
     }

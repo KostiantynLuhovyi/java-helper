@@ -6,7 +6,6 @@ import org.apache.commons.math3.random.RandomGenerator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -26,8 +25,10 @@ public class GeneratorRandomNumber {
 
     private static final int VALUE_ZERO = 0;
 
-    private static final int REAL_LOWER_BOUND = -1000000;
-    private static final int REAL_UPPER_BOUND = 1000000;
+    public static final int INT_LOWER_BOUND = Integer.MIN_VALUE;
+    public static final int INT_UPPER_BOUND = Integer.MAX_VALUE;
+    public static final int DOUBLE_LOWER_BOUND = -1000000;
+    public static final int DOUBLE_UPPER_BOUND = 1000000;
 
     private static final int SCALE = 3;
 
@@ -119,26 +120,26 @@ public class GeneratorRandomNumber {
 
     /**
      * Generate a random integer number in the range
-     * from {@link Integer#MIN_VALUE} (inclusive) to {@link Integer#MAX_VALUE} (inclusive).
+     * from {@link #INT_LOWER_BOUND} (inclusive) to {@link #INT_UPPER_BOUND} (inclusive).
      *
      * @return The generated integer number.
      */
     public static int generateInt() {
-        return GENERATOR.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return GENERATOR.nextInt(INT_LOWER_BOUND, INT_UPPER_BOUND);
     }
 
     /**
      * Generate a random positive integer number in the range
-     * from {@link GeneratorRandomNumber#VALUE_ZERO} (inclusive) to argument bound (inclusive).
+     * from {@link GeneratorRandomNumber#VALUE_ZERO} (inclusive) to argument upper bound (inclusive).
      *
-     * @param bound The upper bound to generate.
+     * @param upperBound The upper bound to generate.
      * @return The generated integer type number.
      * @throws BoundOutOfRangeException If the boundary values is out in range.
      */
-    public static int generateInt(int bound) {
+    public static int generateInt(int upperBound) {
         int result = 0;
-        if (isBoundValueInRange(bound, bound, VALUE_ZERO, Integer.MAX_VALUE)) {
-            result = GENERATOR.nextInt(VALUE_ZERO, bound);
+        if (isBoundValueInRange(upperBound, upperBound, VALUE_ZERO, INT_UPPER_BOUND)) {
+            result = GENERATOR.nextInt(VALUE_ZERO, upperBound);
         }
         return result;
     }
@@ -154,7 +155,7 @@ public class GeneratorRandomNumber {
      */
     public static int generateInt(int lowerBound, int upperBound) {
         int result = 0;
-        if (isBoundValueInRange(lowerBound, upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE) && (lowerBound <= upperBound)) {
+        if (isBoundValueInRange(lowerBound, upperBound, INT_LOWER_BOUND, INT_UPPER_BOUND) && (lowerBound <= upperBound)) {
             result = GENERATOR.nextInt(lowerBound, upperBound);
         }
         return result;
@@ -204,14 +205,14 @@ public class GeneratorRandomNumber {
     }
 
     /**
-     * Generate a random double number in the range from {@link GeneratorRandomNumber#REAL_LOWER_BOUND} (inclusive)
-     * to {@link GeneratorRandomNumber#REAL_UPPER_BOUND} (inclusive).
+     * Generate a random double number in the range from {@link GeneratorRandomNumber#DOUBLE_LOWER_BOUND} (inclusive)
+     * to {@link GeneratorRandomNumber#DOUBLE_UPPER_BOUND} (inclusive).
      *
      * @return The generated double type number.
      */
     public static double generateDouble() {
         RandomGenerator randomGenerator = GENERATOR.getRandomGenerator();
-        double resultDouble = randomGenerator.nextDouble() * (REAL_UPPER_BOUND + 1 - REAL_LOWER_BOUND) + REAL_UPPER_BOUND;
+        double resultDouble = randomGenerator.nextDouble() * (DOUBLE_UPPER_BOUND + 1 - DOUBLE_LOWER_BOUND) + DOUBLE_UPPER_BOUND;
         return new BigDecimal(new DecimalFormat("0.000").format(resultDouble)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
     }
 
@@ -230,7 +231,7 @@ public class GeneratorRandomNumber {
      */
     public static double generateDouble(double bound) {
         double result = 0;
-        if (isBoundValueInRange(bound, bound, VALUE_ZERO, REAL_UPPER_BOUND)) {
+        if (isBoundValueInRange(bound, bound, VALUE_ZERO, DOUBLE_UPPER_BOUND)) {
             result = Math.random() * (bound + 1 - VALUE_ZERO) + VALUE_ZERO;
         }
         return new BigDecimal(new DecimalFormat("0.000").format(result)).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
@@ -252,7 +253,7 @@ public class GeneratorRandomNumber {
      */
     public static double generateDouble(double lowerBound, double upperBound) {
         double result = 0;
-        if (isBoundValueInRange(lowerBound, upperBound, REAL_LOWER_BOUND, REAL_UPPER_BOUND) && (lowerBound < upperBound)) {
+        if (isBoundValueInRange(lowerBound, upperBound, DOUBLE_LOWER_BOUND, DOUBLE_UPPER_BOUND) && (lowerBound < upperBound)) {
             result = Math.random() * (upperBound + 1 - lowerBound) + lowerBound;
         }
         return new BigDecimal(result).setScale(SCALE, RoundingMode.HALF_DOWN).doubleValue();
@@ -265,14 +266,14 @@ public class GeneratorRandomNumber {
 
 
     /**
-     * Generate a random float number in the range from {@link GeneratorRandomNumber#REAL_LOWER_BOUND} (inclusive)
-     * to {@link GeneratorRandomNumber#REAL_UPPER_BOUND} (inclusive).
+     * Generate a random float number in the range from {@link GeneratorRandomNumber#DOUBLE_LOWER_BOUND} (inclusive)
+     * to {@link GeneratorRandomNumber#DOUBLE_UPPER_BOUND} (inclusive).
      *
      * @return The generated float type number.
      */
     public static float generateFloat() {
         RandomGenerator randomGenerator = GENERATOR.getRandomGenerator();
-        return randomGenerator.nextFloat() * (REAL_UPPER_BOUND + 1 - REAL_LOWER_BOUND) + REAL_UPPER_BOUND;
+        return randomGenerator.nextFloat() * (DOUBLE_UPPER_BOUND + 1 - DOUBLE_LOWER_BOUND) + DOUBLE_UPPER_BOUND;
         /*new BigDecimal(new DecimalFormat("0.000").format(resultDouble)).setScale(SCALE, RoundingMode.HALF_DOWN).floatValue();*/
     }
 

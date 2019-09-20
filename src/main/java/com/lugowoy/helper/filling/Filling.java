@@ -1,8 +1,7 @@
 package com.lugowoy.helper.filling;
 
 /**
- * The interface declares a contract to implement the functionality for filling storage(data structure) with data.
- * This interface is a root of the hierarchy that represent this functionality.
+ * The interface is the root of the hierarchy of declaring a contract for filling object or storage (data structures) data.
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @param <T> Type of data elements and storage(data structure) or the object to fill.
