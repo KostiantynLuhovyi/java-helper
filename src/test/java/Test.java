@@ -1,6 +1,7 @@
 import com.lugowoy.helper.filling.Filler;
 import com.lugowoy.helper.models.Matrix;
 import com.lugowoy.helper.models.points.Point2D;
+import com.lugowoy.helper.other.GeneratorRandomNumber;
 import com.lugowoy.helper.other.setters.attributes.SetterAttributes;
 import com.lugowoy.helper.other.setters.attributes.SetterPoint2DAttributes;
 
@@ -63,7 +64,7 @@ public class Test {
 /*        Point<Integer> point2D = new Point2D<>(3, 5 , 2);
         System.out.println(point2D);*/
 
-        /*Array<Integer> array = new Array<>(new FillingArrayRandomInteger().fill(10, 10, 20));
+        /*Array<Integer> array = new Array<>(new FillingArrayRandomIntegers().fill(10, 10, 20));
 
         System.out.println(array);
 
@@ -115,6 +116,7 @@ public class Test {
         setterAttributes.setAttributes(point2D);
         System.out.println(point2D);*/
 
+        System.out.println(GeneratorRandomNumber.generateExpDouble(10));
 
     }
 
