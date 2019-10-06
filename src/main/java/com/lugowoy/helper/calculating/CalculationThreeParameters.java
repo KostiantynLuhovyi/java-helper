@@ -1,13 +1,13 @@
 package com.lugowoy.helper.calculating;
 
 /**
- * Functional interface declared a contract to perform calculations based on a three parameter.
+ * This is a functional interface declares a contract to perform calculations based on the three parameters.
  * <p>Created by Konstantin Lugowoy on 03-Feb-17.
  *
  * @param <T> - Type of calculation result.
- * @param <K> - Type of parameter to calculate.
- * @param <V> - Type of parameter to calculate.
- * @param <Z> - Type of parameter to calculate.
+ * @param <K> - Type of first parameter to perform calculations.
+ * @param <V> - Type of second parameter to perform calculations.
+ * @param <Z> - Type of third parameter to perform calculations.
  * @author Konstantin Lugowoy
  * @version 1.2
  * @since 1.0
@@ -17,10 +17,12 @@ public interface CalculationThreeParameters<T, K, V, Z> {
 
     /**
      * Function to performs calculations using a three parameter.
+     * The {@code kVar}, {@code vVar} and {@code zVar} arguments encapsulates the data on the basis
+     * of which the calculations will be performed.
      *
-     * @param kVar - Parameter to calculate.
-     * @param vVar - Parameter to calculate.
-     * @param zVar - Parameter to calculate.
+     * @param kVar - An object that encapsulates data to perform calculations.
+     * @param vVar - An object that encapsulates data to perform calculations.
+     * @param zVar - An object that encapsulates data to perform calculations.
      * @return Result of calculation.
      * @since 1.0
      */

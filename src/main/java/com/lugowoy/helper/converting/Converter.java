@@ -1,10 +1,10 @@
 package com.lugowoy.helper.converting;
 
 /**
- * Class that is a kind of container that encapsulates a function for performing data conversion in a concrete object.
- * <p>Created by Konstantin on 29-Jan-17.
+ * This class is a container that takes a specific implementation of functionality to perform data conversion in a specific object.
+ * <p>Created by Konstantin Lugowoy on 29-Jan-17.
  *
- * @param <T> The type of object whose data will be converted.
+ * @param <T> Type of object encapsulating data for conversion.
  * @author Konstantin Lugowoy
  * @version 1.1
  * @since 1.0
@@ -15,9 +15,9 @@ public class Converter<T> {
 
     /**
      * Constructors a new object of the {@link Converter} class.
-     * The parameter {@link Converter#converting} provides the implementation of the function to perform the conversion.
+     * The {@code converting} argument provides a specific implementation of the data conversion functionality.
      *
-     * @param converting The parameter provides the implementation of the function to perform the conversion.
+     * @param converting The specific implementation of functionality for data conversion.
      * @since 1.0
      */
     public Converter(Converting<T> converting) {
@@ -25,10 +25,9 @@ public class Converter<T> {
     }
 
     /**
-     * Method that performs the conversion of object data passed by a parameter to a method.
-     * The method delegates the execution of the function which the object was initialized upon creation.
+     * Converting data encapsulated in an object obtained in {@code t} argument.
      *
-     * @param t The object passed by the parameter whose data is being converted.
+     * @param t The object encapsulating data for conversion.
      * @since 1.0
      */
     public void convert(T t) {

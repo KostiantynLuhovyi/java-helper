@@ -4,8 +4,9 @@ import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 
 /**
- * This abstract class is a superclass for all classes that fill an object or data structure with data read from a specific source which.
- * <p>The implementation for reading data for filling is taken (received) from the specific implementation that will be transferred
+ * This abstract class is the root of the hierarchy of classes providing functionality for filling an object
+ * or data structure with data that is read from a specific source.
+ * <p>The implementation for reading data for filling is obtained from the specific implementation that will be transferred
  * when creating object of this class. To read data for filling, class objects are used that are subclasses of the {@link Reader} class
  * or class objects that implement the {@link Reading} interface.
  * <p>Created by Konstantin Lugowoy on 05.10.2018.
@@ -18,19 +19,20 @@ public abstract class FillingReadValues {
     private Reader reader;
 
     /**
-     * Constructs a new object, initializing with a {@link Reader} class object to read data to fill the object or storage.
+     * Constructs a new object, initializing it with an object of the {@link Reader} class to read data
+     * with which the object or storage will be filled.
      *
-     * @param reader The object of the {@link Reader} class to fill with data.
+     * @param reader An object of the {@link Reader} class for reading data that will be used for filling.
      */
     public FillingReadValues(Reader reader) {
         this.reader = reader;
     }
 
     /**
-     * Constructs a new object, initializing with the object implementing the contract declared in the {@link Reading} interface
-     * to fill an object or storage with data.
+     * Constructs a new object, initializing it with an object implementing the contract declared in the {@link Reading} interface
+     * to read data with which the object or storage will be filled.
      *
-     * @param reading The object implementation {@link Reading} interface to fill with data.
+     * @param reading An object implementation {@link Reading} interface for reading data that will be used for filling.
      */
     public FillingReadValues(Reading reading) {
         this.reader = Reader.getReader(reading);

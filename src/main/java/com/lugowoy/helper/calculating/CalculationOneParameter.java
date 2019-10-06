@@ -1,7 +1,7 @@
 package com.lugowoy.helper.calculating;
 
 /**
- * Functional interface declared a contract to perform calculations based on a single parameter.
+ * This ia a functional interface declared a contract to perform calculations based on a single parameter.
  * <p>Created by Konstantin Lugowoy on 03-Feb-17.
  *
  * @param <T> Type of calculation result.
@@ -15,8 +15,9 @@ public interface CalculationOneParameter<T, K> {
 
     /**
      * Function to performs calculations using a single parameter.
+     * The {@code kVar} argument encapsulates the data on the basis of which the calculations will be performed.
      *
-     * @param kVar Parameter to calculate.
+     * @param kVar An object that encapsulates data to perform calculations.
      * @return Result of calculation.
      * @since 1.0
      */

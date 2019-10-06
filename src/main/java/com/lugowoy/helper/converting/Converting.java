@@ -1,10 +1,10 @@
 package com.lugowoy.helper.converting;
 
 /**
- * Functional interface declared a contract to perform the conversion of object data.
- * <p>Created by Konstantin on 29-Jan-17.
+ * This is a functional interface declared a contract to perform data conversion in a specific object.
+ * <p>Created by Konstantin Lugowoy on 29-Jan-17.
  *
- * @param <T> Type parameter for converting.
+ * @param <T> Type of object encapsulating data for conversion.
  * @author Konstantin Lugowoy
  * @version 1.1
  * @since 1.0
@@ -13,9 +13,9 @@ package com.lugowoy.helper.converting;
 public interface Converting<T> {
 
     /**
-     * Function to converts the data of an object passed by parameter.
+     * Function for converting data encapsulated in the object obtained in the {@code t} argument.
      *
-     * @param t Parameter to converting.
+     * @param t The object encapsulating data for conversion.
      * @since 1.0
      */
     void convert(T t);

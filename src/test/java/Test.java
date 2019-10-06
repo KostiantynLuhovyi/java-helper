@@ -1,10 +1,15 @@
 import com.lugowoy.helper.filling.Filler;
+import com.lugowoy.helper.filling.array.CheckerFillingArray;
+import com.lugowoy.helper.filling.array.numbers.FillingArrayReadIntegers;
+import com.lugowoy.helper.io.reading.ReadingConsole;
+import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.Matrix;
 import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.other.GeneratorRandomNumber;
 import com.lugowoy.helper.other.setters.attributes.SetterAttributes;
 import com.lugowoy.helper.other.setters.attributes.SetterPoint2DAttributes;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
@@ -116,7 +121,41 @@ public class Test {
         setterAttributes.setAttributes(point2D);
         System.out.println(point2D);*/
 
-        System.out.println(GeneratorRandomNumber.generateExpDouble(10));
+        /*Array<Integer> array = new Array<>(new FillingArrayReadIntegers(new ReadingConsole()).fill(5));
+
+        System.out.println(array);*/
+/*        ReadingConsole readingConsole = new ReadingConsole();
+        System.out.println(readingConsole.readByte());*/
+
+/*        for (int i = 0; i < 10; i++) {
+            System.out.println(GeneratorRandomNumber.generateFloat(-2, 3));
+        }*/
+
+/*
+        System.out.println(new BigDecimal(-1895585.3532535235235E28).toPlainString());
+        System.out.println(new BigDecimal(406770000244E+12));
+        System.out.println(new BigDecimal(35554464646464646464648787441321351684868413131.79786111111116));
+        System.out.println(new BigDecimal(3.375692414858597E307));
+*/
+
+/*        for (int i = 0; i < 10; i++) {
+            System.out.print(GeneratorRandomNumber.generateInt(Integer.MAX_VALUE - 1, Integer.MAX_VALUE) + " ");
+        }*/
+
+        /*for (int i = 0; i < 50; i++) {
+            System.out.println(GeneratorRandomNumber.generateInt(-10, -8));
+        }*/
+
+        /*ReadingConsole readingConsole = new ReadingConsole();
+        int i = 0;
+        while (i != -1) {
+            i = readingConsole.readInt();
+            if (i >= 0 && i <= Integer.MAX_VALUE) {
+                System.out.println(i);
+            }
+        }*/
+
+        CheckerFillingArray.isPositiveBound(null);
 
     }
 
