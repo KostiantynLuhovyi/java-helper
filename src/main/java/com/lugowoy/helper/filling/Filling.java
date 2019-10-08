@@ -1,6 +1,6 @@
 package com.lugowoy.helper.filling;
 
-/*
+/**
  * The interface is the root of the hierarchy of declaring a contract for filling object or storage (data structures) with data.
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *

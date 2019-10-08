@@ -5,7 +5,6 @@ import com.lugowoy.helper.models.Array;
 
 /**
  * The interface declares a contract for filling an array or object of the {@link Array} class with numerical data.
- *
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @param <T> Type of numerical data to fill arrays or elements encapsulated in the object of the {@link Array} class.

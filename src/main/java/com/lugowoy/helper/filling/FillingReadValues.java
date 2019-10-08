@@ -35,7 +35,7 @@ public abstract class FillingReadValues {
      * @param reading An object implementation {@link Reading} interface for reading data that will be used for filling.
      */
     public FillingReadValues(Reading reading) {
-        this.reader = Reader.getReader(reading);
+        this.reader = new Reader(reading);
     }
 
     /**
