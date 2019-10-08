@@ -1,13 +1,18 @@
 package com.lugowoy.helper.io.reading;
 
+import com.lugowoy.helper.other.ValueOutOfRangeException;
+
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
- * The class implements the contract declared in the interface by reading different data from the console.
+ * This class reads data entered into the console.
+ * This is an implementation of the contract declared in the {@link Reading} interface.
  * <p>Created by Konstantin Lugowoy on 25.07.2017
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @see com.lugowoy.helper.io.reading.Reading
  * @since 1.0
  */
@@ -16,200 +21,189 @@ public class ReadingConsole implements Reading {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
-     * Reading data by byte type from the console.
+     * Reads a {@code byte} type value from the console.
      *
      * @return Returns the result of reading.
+     * @throws NoSuchElementException If input is exhausted.
+     * @throws IllegalStateException  If this scanner is closed.
+     * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
+     * @see Scanner#nextByte()
      * @since 1.0
      */
     @Override
     public byte readByte() {
-        return this.getCorrectByteNumberValue(CheckerReading::isByteNumber);
+        byte resultByteRead;
+        try {
+            resultByteRead = SCANNER.nextByte();
+        } catch (InputMismatchException ex) {
+            String msgEx = "Value is not a number or is out of range (from " + Byte.MIN_VALUE + " to " + Byte.MAX_VALUE + ").";
+            throw new ValueOutOfRangeException(msgEx);
+        } finally {
+            SCANNER.close();
+        }
+        return resultByteRead;
     }
 
     /**
-     * Reading data by short type from the console.
+     * Reads a {@code short} type value from the console.
      *
      * @return Returns the result of reading.
+     * @throws NoSuchElementException If input is exhausted.
+     * @throws IllegalStateException  If this scanner is closed.
+     * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
+     * @see Scanner#nextShort()
      * @since 1.0
      */
     @Override
     public short readShort() {
-        return this.getCorrectShortNumberValue(CheckerReading::isShortNumber);
+        short resultShortRead;
+        try {
+            resultShortRead = SCANNER.nextShort();
+        } catch (InputMismatchException ex) {
+            String msgEx = "Value is not a number or is out of range (from " + Short.MIN_VALUE + " to " + Short.MAX_VALUE + ").";
+            throw new ValueOutOfRangeException(msgEx);
+        } finally {
+            SCANNER.close();
+        }
+        return resultShortRead;
     }
 
     /**
-     * Reading data by int type from the console.
+     * Reads a {@code int} type value from the console.
      *
      * @return Returns the result of reading.
+     * @throws NoSuchElementException If input is exhausted.
+     * @throws IllegalStateException  If this scanner is closed.
+     * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
+     * @see Scanner#nextInt()
      * @since 1.0
      */
     @Override
     public int readInt() {
-        return this.getCorrectIntNumberValue(CheckerReading::isIntegerNumber);
+        int resultIntRead;
+        try {
+            resultIntRead = SCANNER.nextInt();
+        } catch (InputMismatchException ex) {
+            String msgEx = "Value is not a number or is out of range (from " + Integer.MIN_VALUE + " to " + Integer.MAX_VALUE + ").";
+            throw new ValueOutOfRangeException(msgEx);
+        } finally {
+            SCANNER.close();
+        }
+        return resultIntRead;
     }
 
     /**
-     * Reading data by long type from the console.
+     * Reads a {@code long} type value from the console.
      *
      * @return Returns the result of reading.
+     * @throws NoSuchElementException If input is exhausted.
+     * @throws IllegalStateException  If this scanner is closed.
+     * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
+     * @see Scanner#nextLong()
      * @since 1.0
      */
     @Override
     public long readLong() {
-        return this.getCorrectLongNumberValue(CheckerReading::isLongNumber);
+        long resultLongRead;
+        try {
+            resultLongRead = SCANNER.nextLong();
+        } catch (InputMismatchException ex) {
+            String msgEx = "Value is not a number or is out of range (from " + Long.MIN_VALUE + " to " + Long.MAX_VALUE + ").";
+            throw new ValueOutOfRangeException(msgEx);
+        } finally {
+            SCANNER.close();
+        }
+        return resultLongRead;
     }
 
     /**
-     * Reading data by char type from the console.
+     * Reads a {@code char} type value from the console.
      *
      * @return Returns the result of reading.
+     * @throws NoSuchElementException If input is exhausted.
+     * @throws IllegalStateException  If this scanner is closed.
+     * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
+     * @see Scanner#nextInt()
      * @since 1.0
      */
     @Override
     public char readChar() {
-        return this.getCorrectCharacterValue(CheckerReading::isOnlyCharacter);
+        //todo Understand negative values for unicode characters. Write the appropriate check.
+        char resultCharRead;
+        try {
+            resultCharRead = (char) SCANNER.nextInt();
+        } catch (InputMismatchException ex) {
+            String msgEx = "Value is not a char or is out of range (from " + Character.MIN_VALUE + " to " + Character.MAX_VALUE + ").";
+            throw new ValueOutOfRangeException(msgEx);
+        } finally {
+            SCANNER.close();
+        }
+        return resultCharRead;
     }
 
     /**
-     * Reading data by float type from the console.
+     * Reads a {@code float} type value from the console.
      *
      * @return Returns the result of reading.
+     * @throws NoSuchElementException If input is exhausted.
+     * @throws IllegalStateException  If this scanner is closed.
+     * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
      * @since 1.0
      */
     @Override
     public float readFloat() {
-        return this.getCorrectFloatNumberValue(CheckerReading::isFloatNumber);
+        float resultFloatRead;
+        try {
+            resultFloatRead = SCANNER.nextFloat();
+        } catch (InputMismatchException ex) {
+            String msgEx = "Value is not a char or is out of range (from " + Float.MIN_VALUE + " to " + Float.MAX_VALUE + ").";
+            throw new ValueOutOfRangeException(msgEx);
+        } finally {
+            SCANNER.close();
+        }
+        return resultFloatRead;
     }
 
     /**
-     * Reading data by double type from the console.
+     * Reads a {@code double} type value from the console.
      *
      * @return Returns the result of reading.
+     * @throws NoSuchElementException If input is exhausted.
+     * @throws IllegalStateException  If this scanner is closed.
+     * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
      * @since 1.0
      */
     @Override
     public double readDouble() {
-        return this.getCorrectDoubleNumberValue(CheckerReading::isDoubleNumber);
+        double resultDoubleRead;
+        try {
+            resultDoubleRead = SCANNER.nextDouble();
+        } catch (InputMismatchException ex) {
+            String msgEx = "Value is not a char or is out of range (from " + Double.MIN_VALUE + " to " + Double.MAX_VALUE + ").";
+            throw new ValueOutOfRangeException(msgEx);
+        } finally {
+            SCANNER.close();
+        }
+        return resultDoubleRead;
     }
 
     /**
-     * Reading data by String type from the console.
+     * Reads a {@link String} type value from the console.
      *
      * @return Returns the result of reading.
+     * @throws NoSuchElementException If no line was found.
+     * @throws IllegalStateException If this scanner is closed.
      * @since 1.0
      */
     @Override
     public String readString() {
-        String value = "";
-        if (SCANNER.hasNextLine()) {
-            value = SCANNER.nextLine();
+        String resultStringRead;
+        try {
+            resultStringRead = SCANNER.nextLine();
+        } finally {
+            SCANNER.close();
         }
-        return value.trim();
-    }
-
-    private byte getCorrectByteNumberValue(final CheckerReading checkerReading) {
-        byte resultByteInputValue;
-
-        String inputValue = SCANNER.nextLine().trim();
-
-        if (checkerReading.isCorrectData(inputValue)) {
-            resultByteInputValue = Byte.parseByte(inputValue);
-        } else {
-            System.out.println("Incorrect data entered.");
-            System.out.println("Re-enter : ");
-            resultByteInputValue = this.getCorrectByteNumberValue(checkerReading);
-        }
-        return resultByteInputValue;
-    }
-
-    private short getCorrectShortNumberValue(final CheckerReading checkerReading) {
-        short resultShortInputValue;
-
-        String inputValue = SCANNER.nextLine().trim();
-
-        if (checkerReading.isCorrectData(inputValue)) {
-            resultShortInputValue = Short.parseShort(inputValue);
-        } else {
-            System.out.println("Incorrect data entered.");
-            System.out.println("Re-enter : ");
-            resultShortInputValue = this.getCorrectByteNumberValue(checkerReading);
-        }
-        return resultShortInputValue;
-    }
-
-    private int getCorrectIntNumberValue(final CheckerReading checkerReading) {
-        int resultIntInputValue;
-
-        String inputValue = SCANNER.nextLine().trim();
-
-        if (checkerReading.isCorrectData(inputValue)) {
-            resultIntInputValue = Integer.parseInt(inputValue);
-        } else {
-            System.out.println("Incorrect data entered.");
-            System.out.println("Re-enter : ");
-            resultIntInputValue = this.getCorrectIntNumberValue(checkerReading);
-        }
-        return resultIntInputValue;
-    }
-
-    private long getCorrectLongNumberValue(final CheckerReading checkerReading) {
-        long resultLongInputValue;
-
-        String inputValue = SCANNER.nextLine().trim();
-
-        if (checkerReading.isCorrectData(inputValue)) {
-            resultLongInputValue = Long.parseLong(inputValue);
-        } else {
-            System.out.println("Incorrect data entered.");
-            System.out.println("Re-enter : ");
-            resultLongInputValue = this.getCorrectLongNumberValue(checkerReading);
-        }
-        return resultLongInputValue;
-    }
-
-    private char getCorrectCharacterValue(final CheckerReading checkerReading) {
-        char resultCharacterValue;
-
-        String value = SCANNER.nextLine().trim();
-
-        if (checkerReading.isCorrectData(value)) {
-            resultCharacterValue = value.charAt(0);
-        } else {
-            System.out.println("Incorrect data entered.");
-            System.out.println("Re-enter : ");
-            resultCharacterValue = this.getCorrectCharacterValue(checkerReading);
-        }
-        return resultCharacterValue;
-    }
-
-    private float getCorrectFloatNumberValue(final CheckerReading checkerReading) {
-        float resultFloatInputValue;
-
-        String inputValue = SCANNER.nextLine().trim();
-
-        if (checkerReading.isCorrectData(inputValue)) {
-            resultFloatInputValue = Float.parseFloat(inputValue);
-        } else {
-            System.out.println("Incorrect data entered.");
-            System.out.println("Re-enter : ");
-            resultFloatInputValue = this.getCorrectFloatNumberValue(checkerReading);
-        }
-        return resultFloatInputValue;
-    }
-
-    private double getCorrectDoubleNumberValue(final CheckerReading checkerReading) {
-        double resultDoubleInputValue;
-
-        String inputValue = SCANNER.nextLine().trim();
-
-        if (checkerReading.isCorrectData(inputValue)) {
-            resultDoubleInputValue = Double.parseDouble(inputValue);
-        } else {
-            System.out.println("Incorrect data entered.");
-            System.out.println("Re-enter : ");
-            resultDoubleInputValue = this.getCorrectDoubleNumberValue(checkerReading);
-        }
-        return resultDoubleInputValue;
+        return resultStringRead;
     }
 
 }

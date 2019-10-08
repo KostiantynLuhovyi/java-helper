@@ -1,7 +1,7 @@
 package com.lugowoy.helper.io.reading;
 
 /**
- * The interface declares a contract to implement the reading of different data.
+ * The interface declared a contract for implementing the reading of various data from a specific source.
  * <p>Created by Konstantin Lugowoy on 25.07.2017.
  *
  * @author Konstantin Lugowoy
@@ -11,7 +11,7 @@ package com.lugowoy.helper.io.reading;
 public interface Reading {
 
     /**
-     * Reading data by byte type.
+     * Reads a {@code byte} type value.
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -19,7 +19,7 @@ public interface Reading {
     byte readByte();
 
     /**
-     * Reading data by short type.
+     * Reads a {@code short} type value
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -27,7 +27,7 @@ public interface Reading {
     short readShort();
 
     /**
-     * Reading data by int type.
+     * Reads a {@code int} type value
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -35,7 +35,7 @@ public interface Reading {
     int readInt();
 
     /**
-     * Reading data by long type.
+     * Reads a {@code long} type value
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -43,7 +43,7 @@ public interface Reading {
     long readLong();
 
     /**
-     * Reading data by char type.
+     * Reads a {@code char} type value
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -51,7 +51,7 @@ public interface Reading {
     char readChar();
 
     /**
-     * Reading data by float type.
+     * Reads a {@code float} type value
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -59,7 +59,7 @@ public interface Reading {
     float readFloat();
 
     /**
-     * Reading data by double type.
+     * Reads a {@code double} type value
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -67,7 +67,7 @@ public interface Reading {
     double readDouble();
 
     /**
-     * Reading strings.
+     * Reads a {@link String} type value.
      *
      * @return Returns the result of reading.
      * @since 1.0

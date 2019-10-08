@@ -2,24 +2,25 @@ package com.lugowoy.helper.io.reading;
 
 /**
  * The class is a container that encapsulates a specific implementation of a functional to read different data.
- * <p>Created by LugowoyKonstantin on 26.07.2017.
+ * The execution of functionality is delegated to the class object implementing the contract of the {@link Reading} interface,
+ * which is initialized when an object of this class is created.
+ * <p>Created by Konstantin Lugowoy on 26.07.2017.
  *
- * @author LugowoyKonstantin
- * @version 1.1
+ * @author Konstantin Lugowoy
+ * @version 1.2
  * @see com.lugowoy.helper.io.reading.Reading
  * @since 1.0
  */
-//todo is it worth implementing the Reading interface to this class?
 public class Reader implements Reading {
 
     private final Reading reading;
 
-    private Reader(final Reading reading) {
+    public Reader(Reading reading) {
         this.reading = reading;
     }
 
     /**
-     * Read data by byte type by delegating execution to an encapsulated object.
+     * Reads a {@code byte} type value.
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -30,7 +31,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * Read data by short type by delegating execution to an encapsulated object.
+     * Reads a {@code short} type value.
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -41,7 +42,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * Read data by int type by delegating execution to an encapsulated object.
+     * Reads a {@code int} type value.
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -52,7 +53,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * Read data by long type by delegating execution to an encapsulated object.
+     * Reads a {@code long} type value
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -63,7 +64,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * Read data by char type by delegating execution to an encapsulated object.
+     * Reads a {@code char} type value.
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -74,7 +75,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * Read data by float type by delegating execution to an encapsulated object.
+     * Reads a {@code float} type value
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -85,7 +86,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * Read data by double type by delegating execution to an encapsulated object.
+     * Reads a {@code double} type value
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -96,7 +97,7 @@ public class Reader implements Reading {
     }
 
     /**
-     * Read data by String type by delegating execution to an encapsulated object.
+     * Reads a {@link String} type value.
      *
      * @return Returns the result of reading.
      * @since 1.0
@@ -104,19 +105,6 @@ public class Reader implements Reading {
     @Override
     public String readString() {
         return this.reading.readString();
-    }
-
-    /**
-     * A method that initializes the created object with a specific implementation of the functional to read different data
-     * and return new object of class Reader.
-     *
-     * @param reading Specific implementation of the functional to read different data.
-     *                The parameter must implement the interface Reading.
-     * @return A new object of this class encapsulating a specific implementation of the functional to read different data.
-     * @since 1.1
-     */
-    public static Reader getReader(final Reading reading) {
-        return new Reader(reading);
     }
 
 }
