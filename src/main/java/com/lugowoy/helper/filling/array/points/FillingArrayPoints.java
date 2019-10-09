@@ -11,6 +11,10 @@ import com.lugowoy.helper.models.points.Point;
  * @author Konstantin Lugowoy
  * @version 1.0
  */
+
+//todo refactoring code
+//todo edit doc's
+
 @FunctionalInterface
 public interface FillingArrayPoints<T extends Number> {
 

@@ -24,6 +24,10 @@ import static com.lugowoy.helper.other.CheckerLength.checkLength;
  * @see java.lang.Iterable
  * @since 1.0
  */
+
+//todo refactoring code
+//todo edit doc's
+
 public class Array<T> implements Model, Iterable<T> {
 
     /**
@@ -300,7 +304,6 @@ public class Array<T> implements Model, Iterable<T> {
         }
     }
 
-    //todo add doc
     public int getIndexElement() {
         return this.indexElement;
     }

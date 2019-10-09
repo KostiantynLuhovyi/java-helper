@@ -6,7 +6,10 @@ import com.lugowoy.helper.models.Matrix;
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 public class FillerMatrixNumbers<T extends Number> extends FillerMatrix<T> {
 
     public FillerMatrixNumbers(FillingMatrixNumbers<T> filling) {

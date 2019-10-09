@@ -15,6 +15,10 @@ import com.lugowoy.helper.models.Array;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @since 1.2
  */
+
+//todo refactoring code
+//todo edit doc's
+
 public interface FillingArrayStrings extends FillingArray<String> {
 
     /**

@@ -3,7 +3,10 @@ package com.lugowoy.helper.models;
 /**
  * 10.06.2019
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 class MatrixRowOutOfRangeException extends RuntimeException {
 
     /**

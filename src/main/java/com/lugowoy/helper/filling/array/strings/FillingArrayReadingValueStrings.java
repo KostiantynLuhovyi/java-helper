@@ -19,6 +19,10 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  */
+
+//todo refactoring code
+//todo edit doc's
+
 public class FillingArrayReadingValueStrings implements FillingArrayStrings {
 
     private Reader reader;

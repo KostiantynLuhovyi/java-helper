@@ -16,6 +16,10 @@ import java.util.ArrayList;
  * @version 1.3
  * @since 1.2
  */
+
+//todo refactoring code
+//todo edit doc's
+
 @FunctionalInterface
 public interface ReaderCharacters {
 

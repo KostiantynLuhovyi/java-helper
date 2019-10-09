@@ -15,7 +15,10 @@ import static com.lugowoy.helper.other.setters.attributes.SetterAttributes.*;
  * @version 1.0
  * @since 1.7.4
  */
-//todo add doc's (class, methods)
+
+//todo refactoring code
+//todo edit doc's
+
 public class SetterPoint3DAttributes<T extends Number> extends SetterPointAttributes<Point3D<T>> /*implements SetterAttributes<Point3D<T>> */ {
 
     @Override

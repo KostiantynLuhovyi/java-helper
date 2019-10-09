@@ -1,5 +1,9 @@
 package com.lugowoy.helper.models;
 
+
+//todo refactoring code
+//todo edit doc's
+
 class MatrixColumnOutOfRangeException extends RuntimeException {
 
     /**

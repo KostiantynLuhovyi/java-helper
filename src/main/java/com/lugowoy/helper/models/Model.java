@@ -12,5 +12,8 @@ import java.io.Serializable;
  * @see java.lang.Cloneable
  * @since 1.0
  */
+
+//todo edit doc's
+
 public interface Model extends Serializable, Cloneable {
 }

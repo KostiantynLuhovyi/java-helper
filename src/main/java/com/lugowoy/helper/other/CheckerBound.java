@@ -7,10 +7,12 @@ package com.lugowoy.helper.other;
  * @version 1.0
  * @since 1.6.6
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 public interface CheckerBound {
 
-    //todo add doc's (from 0 to Integer.Max)
     static boolean checkBound(int bound) {
         if (bound > 0 && bound < Integer.MAX_VALUE) {
             return true;
@@ -19,7 +21,6 @@ public interface CheckerBound {
         }
     }
 
-    //todo add doc's (from 0 to upperBound)
     static boolean checkBound(int bound, int upperBound) {
         if (bound > 0 && bound < upperBound) {
             return true;
@@ -28,7 +29,6 @@ public interface CheckerBound {
         }
     }
 
-    //todo add doc's (from lowerBound to upperBound)
     static boolean checkLength(int bound, int lowerBound, int upperBound) {
         if (bound > lowerBound && bound < upperBound) {
             return true;

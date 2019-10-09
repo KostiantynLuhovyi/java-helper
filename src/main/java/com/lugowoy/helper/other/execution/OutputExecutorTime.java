@@ -7,7 +7,10 @@ package com.lugowoy.helper.other.execution;
  * @version 1.2
  * @since 1.7.6
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 @FunctionalInterface
 public interface OutputExecutorTime {
 

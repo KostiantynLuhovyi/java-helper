@@ -9,7 +9,10 @@ import java.security.PrivilegedActionException;
  * @version 1.0
  * @since 1.7.5
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 public class IncorrectBoundCompareException extends RuntimeException {
 
     /**

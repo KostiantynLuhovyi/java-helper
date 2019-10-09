@@ -20,6 +20,10 @@ import java.util.Objects;
  * @see java.lang.Cloneable
  * @since 1.5
  */
+
+//todo refactoring code
+//todo edit doc's
+
 public class Matrix<T> implements Model {
 
     /**
@@ -177,7 +181,6 @@ public class Matrix<T> implements Model {
         }
     }
 
-    //todo add doc's
     public int getRows() {
         return this.rows;
     }
@@ -190,7 +193,6 @@ public class Matrix<T> implements Model {
         }
     }
 
-    //todo add doc's
     public int getColumns() {
         return this.columns;
     }

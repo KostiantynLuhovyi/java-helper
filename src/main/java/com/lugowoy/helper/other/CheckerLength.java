@@ -7,10 +7,12 @@ package com.lugowoy.helper.other;
  * @version 1.0
  * @since 1.6.6
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 public interface CheckerLength {
 
-    //todo add doc's (from 0 to Integer.Max)
     static boolean checkLength(int length) {
         if (length > 0 && length < Integer.MAX_VALUE) {
             return true;
@@ -19,7 +21,6 @@ public interface CheckerLength {
         }
     }
 
-    //todo add doc's (from 0 to upperLength)
     static boolean checkLength(int length, int upperLength) {
         if (length > 0 && length < upperLength) {
             return true;
@@ -28,7 +29,6 @@ public interface CheckerLength {
         }
     }
 
-    //todo add doc's (from lowerLength to upperLength)
     static boolean checkLength(int length, int lowerLength, int upperLength) {
         if (length > lowerLength && length < upperLength) {
             return true;

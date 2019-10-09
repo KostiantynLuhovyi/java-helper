@@ -12,6 +12,10 @@ package com.lugowoy.helper.other;
  * @version 1.0
  * @since 1.6.6
  */
+
+//todo refactoring code
+//todo edit doc's
+
 public class BoundOutOfRangeException extends RuntimeException {
 
     /**

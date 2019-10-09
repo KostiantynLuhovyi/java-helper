@@ -20,6 +20,10 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayRandomStrings
  * @since 1.3
  */
+
+//todo refactoring code
+//todo edit doc's
+
 public class FillingArrayRandomLengthStrings extends FillingArrayRandomStrings {
 
     /**

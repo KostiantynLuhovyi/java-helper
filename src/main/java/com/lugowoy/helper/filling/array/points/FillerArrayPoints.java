@@ -20,7 +20,11 @@ import com.lugowoy.helper.models.points.Point;
  * @see com.lugowoy.helper.filling.array.FillerArray
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
- *///todo fix doc's
+ */
+
+//todo refactoring code
+//todo edit doc's
+
 public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
 
     /**

@@ -12,7 +12,10 @@ import static com.lugowoy.helper.filling.matrix.CheckerFillingMatrix.*;
  * Created by Konstantin Lugowoy on 10.10.2018.
  * @version 1.2
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 public class FillingMatrixReadInteger extends FillingMatrixReadValues<Integer> implements FillingMatrixNumbers<Integer> {
 
     public FillingMatrixReadInteger(Reader reader) {

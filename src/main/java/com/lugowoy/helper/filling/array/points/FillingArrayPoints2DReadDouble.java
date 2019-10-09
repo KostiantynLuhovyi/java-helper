@@ -27,10 +27,11 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see FillingArrayPointsNumbers
  */
-//todo edit doc's
-public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues<Double> {
 
-    //todo come up with and implement a variant of the methods without using the annotation SupressWarning.
+//todo refactoring code
+//todo edit doc's
+
+public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues<Double> {
 
     /**
      * Constructs a new object {@link FillingArrayPoints2DReadDouble} class,

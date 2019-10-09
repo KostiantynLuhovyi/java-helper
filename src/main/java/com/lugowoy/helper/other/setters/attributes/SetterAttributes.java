@@ -13,7 +13,10 @@ import java.util.Objects;
  * @version 1.1
  * @since 1.7.4
  */
-//todo add doc's (interface, methods)
+
+//todo refactoring code
+//todo edit doc's
+
 public interface SetterAttributes<T extends Model> {
 
     void setAttributes(T t);

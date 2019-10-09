@@ -7,7 +7,10 @@ package com.lugowoy.helper.other.execution;
  * @version 1.0
  * @since 1.7.8
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 class ExecutionTimer {
 
     private static final ExecutionTimer EXECUTION_TIMER = new ExecutionTimer();

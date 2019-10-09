@@ -10,6 +10,10 @@ import com.lugowoy.helper.io.reading.Reading;
  * @version 1.3
  * @since 1.0
  */
+
+//todo refactoring code
+//todo edit doc's
+
 public interface LengthReader {
 
     /**

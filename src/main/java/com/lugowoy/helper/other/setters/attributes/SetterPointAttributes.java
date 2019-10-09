@@ -10,7 +10,10 @@ import com.lugowoy.helper.models.points.Point;
  * @version 1.0
  * @since 1.7.4
  */
-//todo add doc's (class, constants, methods)
+
+//todo refactoring code
+//todo edit doc's
+
 public abstract class SetterPointAttributes<T extends Point> implements SetterAttributes<T> {
 
     public static final String MSG_ENTER_CONSOLE_COOR_X = "";

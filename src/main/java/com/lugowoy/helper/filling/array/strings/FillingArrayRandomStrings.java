@@ -12,6 +12,10 @@ import com.lugowoy.helper.models.Array;
  * @version 1.0
  * @since 1.3
  */
+
+//todo refactoring code
+//todo edit doc's
+
 public abstract class FillingArrayRandomStrings implements FillingArrayStrings {
 
     /**

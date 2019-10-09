@@ -7,7 +7,10 @@ package com.lugowoy.helper.other;
  * @version 1.0
  * @since 1.6.6
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 public class LengthValueOutOfRangeException extends RuntimeException {
 
     /**

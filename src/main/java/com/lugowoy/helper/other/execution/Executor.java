@@ -11,7 +11,10 @@ import static com.lugowoy.helper.other.execution.OutputExecutorTime.MSG_MILLISEC
  * @version 1.5
  * @since 1.7.4
  */
-//todo add doc's (class, methods)
+
+//todo refactoring code
+//todo edit doc's
+
 public interface Executor {
 
     static <T> void execute(Callable<T> callable) {

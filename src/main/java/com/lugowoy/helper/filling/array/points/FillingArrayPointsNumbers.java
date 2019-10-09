@@ -13,7 +13,10 @@ import com.lugowoy.helper.models.points.Point;
  * @author Konstantin Lugowoy
  * @version 1.1
  */
-//todo Edit doc's.
+
+//todo refactoring code
+//todo edit doc's
+
 public abstract class FillingArrayPointsNumbers<T extends Number> implements FillingArray<Point<T>> {
 
     private int dimensionPoint;

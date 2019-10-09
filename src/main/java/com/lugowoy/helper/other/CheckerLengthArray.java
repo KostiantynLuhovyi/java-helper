@@ -9,10 +9,12 @@ import com.lugowoy.helper.models.Array;
  * @version 1.1
  * @since 1.6.6
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 public class CheckerLengthArray {
 
-    //todo add doc's
     public static <T> boolean checkLengthArray(Array<T> array) {
         if (array.getLength() < Integer.MAX_VALUE) {
             return true;
@@ -21,7 +23,6 @@ public class CheckerLengthArray {
         }
     }
 
-    //todo add doc's
     public static <T> boolean checkLengthArray(T[] tArray) {
         if (tArray.length < Integer.MAX_VALUE) {
             return true;

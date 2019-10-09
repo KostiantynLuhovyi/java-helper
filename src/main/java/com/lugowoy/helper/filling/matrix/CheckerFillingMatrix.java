@@ -6,7 +6,10 @@ import com.lugowoy.helper.models.points.Point;
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 public interface CheckerFillingMatrix {
 
     static <T> boolean checkNonNullMatrix(Matrix<T> matrix) {

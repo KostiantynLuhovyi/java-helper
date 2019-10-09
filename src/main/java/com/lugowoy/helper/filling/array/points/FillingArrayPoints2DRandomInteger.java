@@ -24,10 +24,11 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see FillingArrayPointsNumbers
  */
-//todo edit doc's
-public class FillingArrayPoints2DRandomInteger extends FillingArrayPointsNumbers<Integer> {
 
-    //todo come up with and implement a variant of the methods without using the annotation SupressWarning.
+//todo refactoring code
+//todo edit doc's
+
+public class FillingArrayPoints2DRandomInteger extends FillingArrayPointsNumbers<Integer> {
 
     public FillingArrayPoints2DRandomInteger(int dimensionPoint) {
         super(dimensionPoint);

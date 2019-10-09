@@ -7,7 +7,10 @@ package com.lugowoy.helper.other;
  * @version 1.0
  * @since 1.8
  */
-//todo add doc's
+
+//todo refactoring code
+//todo edit doc's
+
 public class ValueOutOfRangeException extends RuntimeException {
 
     /**
