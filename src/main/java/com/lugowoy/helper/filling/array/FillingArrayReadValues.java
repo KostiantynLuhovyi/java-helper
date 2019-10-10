@@ -27,6 +27,7 @@ public abstract class FillingArrayReadValues<T> extends FillingReadValues implem
      * with which an array or object of the {@link Array} class will be filled.
      *
      * @param reader An object of the {@link Reader} class for reading data that will be used for filling.
+     * @throws NullPointerException If the {@code reader} argument is null.
      */
     public FillingArrayReadValues(Reader reader) {
         super(reader);
@@ -37,6 +38,7 @@ public abstract class FillingArrayReadValues<T> extends FillingReadValues implem
      * to read data with which the object or storage will be filled.
      *
      * @param reading An object implementation {@link Reading} interface for reading data that will be used for filling.
+     * @throws NullPointerException If the {@code reading} argument is null;
      */
     public FillingArrayReadValues(Reading reading) {
         super(reading);

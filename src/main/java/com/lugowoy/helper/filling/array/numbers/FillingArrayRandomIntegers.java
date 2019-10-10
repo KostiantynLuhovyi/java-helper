@@ -61,13 +61,13 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * Fills an array with pseudo-random numeric data of the type {@link Integer}.
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthValueOutOfRangeException} will be thrown.
+     * then a {@link LengthValueOutOfRangeException} exception will be thrown.
      * <p>The numerical pseudo-random values for filling are generated in the range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param lengthArray The length(size) of the array to fill with pseudo-random numeric data of the type {@link Integer}.
      * @return Created and filled an array with pseudo-random numeric data of the type {@link Integer}.
-     * @throws LengthValueOutOfRangeException If {@code lengthArray} argument value is out of valid range.
+     * @throws LengthValueOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
      */
     @Override
     public Integer[] fill(int lengthArray) {
@@ -77,7 +77,7 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
             this.fillArrayRandomIntegers(integers);
         } else {
             throw new LengthValueOutOfRangeException("Array length value is out of range." + " (" + lengthArray
-                                                                                           + " : valid 0-" + Integer.MAX_VALUE + ")");
+                                                                                           + " : valid 0 - " + Integer.MAX_VALUE + ")");
         }
         return integers;
     }
@@ -86,12 +86,12 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * Fills an object of the {@link Array} class with pseudo-random numeric data of the type {@link Integer}.
      * <p>The numerical pseudo-random values for filling are generated in the range from 0 to {@code bound} argument.
      * If the {@code bound} value of the argument is not in the range from 0 to {@link Integer#MAX_VALUE},
-     * then a {@link BoundOutOfRangeException} will be thrown.
+     * then a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param array The object of the {@link Array} class to fill with pseudo-numeric data of the type {@link Integer}.
      * @param bound The upper bound for generating pseudo-random numbers to fill.
      * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
-     * @throws BoundOutOfRangeException If {@code bound} argument value is out of valid range.
+     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) {
@@ -112,12 +112,12 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * Fills an array with pseudo-random numeric data of the type {@link Integer}.
      * <p>The numerical pseudo-random values for filling are generated in the range from 0 to {@code bound} argument.
      * If the {@code bound} value of the argument is not in the range from 0 to {@link Integer#MAX_VALUE},
-     * then a {@link BoundOutOfRangeException} will be thrown.
+     * then a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param integers The array to fill with pseudo-random numeric data of the type {@link Integer}.
      * @param bound   The upper bound for generating pseudo-random numbers to fill.
      * @throws NullPointerException     If the {@code integers} array argument is null.
-     * @throws BoundOutOfRangeException If {@code bound} argument value is out of valid range.
+     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Integer[] integers, Integer bound) {
@@ -136,16 +136,16 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * Fills an array with pseudo-random numeric data of the type {@link Integer}.
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of the {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthValueOutOfRangeException} will be thrown.
+     * then a {@link LengthValueOutOfRangeException} exception will be thrown.
      * <p>The numerical pseudo-random values for filling are generated in the range from 0 to {@code bound} argument.
      * If the {@code bound} value of the argument is not in the range from 0 to {@link Integer#MAX_VALUE},
-     * then a {@link BoundOutOfRangeException} will be thrown.
+     * then a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with pseudo-random numeric data of the type {@link Integer}.
      * @param bound       The upper bound for generating pseudo-random numbers to fill.
      * @return Created and filled an array with pseudo-random numeric data of the type {@link Integer}.
-     * @throws LengthValueOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws BoundOutOfRangeException If {@code bound} argument value is out of valid range.
+     * @throws LengthValueOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
+     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
@@ -159,7 +159,7 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
             }
         } else {
             throw new LengthValueOutOfRangeException("Array length value is out of range." + " (" + lengthArray
-                    + " : valid 0-" + Integer.MAX_VALUE + ")");
+                                                                                           + " : valid 0 - " + Integer.MAX_VALUE + ")");
         }
         return integers;
     }
@@ -169,13 +169,13 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * <p>The numerical pseudo-random values for filling are generated in the range from {@code lowerBound} to {@code upperBound} argument.
      * If the {@code lowerBound} or {@code upperBound} value of the argument is not in the range from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE} or if the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value,
-     * then a {@link BoundOutOfRangeException} exception will be thrown.
+     * then a {@link BoundOutOfRangeException} exception exception will be thrown.
      *
      * @param array The object of the {@link Array} class to fill with pseudo-random numeric data of the type {@link Integer}.
      * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
      * @param upperBound The upper bound for generating pseudo-random numbers to fill.
      * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
-     * @throws BoundOutOfRangeException If {@code lowerBound} or {@code upperBound} argument values is out of valid range.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
      * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
@@ -209,7 +209,7 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
      * @param upperBound The upper bound for generating pseudo-random numbers to fill.
      * @throws NullPointerException     If the {@code doubles} array argument is null.
-     * @throws BoundOutOfRangeException If {@code lowerBound} or {@code upperBound} argument values is out of valid range.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
      * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
@@ -244,7 +244,7 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
      * @param upperBound The upper bound for generating pseudo-random numbers to fill.
      * @throws LengthValueOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws BoundOutOfRangeException If {@code lowerBound} or {@code upperBound} argument values is out of valid range.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
      * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
@@ -264,7 +264,7 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
             }
         } else {
             throw new LengthValueOutOfRangeException("Array length value is out of range." + " (" + lengthArray
-                                                                                           + " : valid 0-" + Integer.MAX_VALUE + ")");
+                                                                                           + " : valid 0 - " + Integer.MAX_VALUE + ")");
         }
         return integers;
     }

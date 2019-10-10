@@ -23,9 +23,14 @@ public abstract class FillingReadValues {
      * with which the object or storage will be filled.
      *
      * @param reader An object of the {@link Reader} class for reading data that will be used for filling.
+     * @throws NullPointerException If the {@code reader} argument is null.
      */
     public FillingReadValues(Reader reader) {
-        this.reader = reader;
+        if (reader != null) {
+            this.reader = reader;
+        } else {
+            throw new NullPointerException("Reader argument is null.");
+        }
     }
 
     /**
@@ -33,9 +38,14 @@ public abstract class FillingReadValues {
      * to read data with which the object or storage will be filled.
      *
      * @param reading An object implementation {@link Reading} interface for reading data that will be used for filling.
+     * @throws NullPointerException If the {@code reading} argument is null.
      */
     public FillingReadValues(Reading reading) {
-        this.reader = new Reader(reading);
+        if (reading != null) {
+            this.reader = new Reader(reading);
+        } else {
+            throw new NullPointerException("Reading argument is null.");
+        }
     }
 
     /**
