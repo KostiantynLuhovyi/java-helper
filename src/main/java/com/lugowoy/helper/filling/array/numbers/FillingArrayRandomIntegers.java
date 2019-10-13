@@ -10,7 +10,7 @@ import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface to fills a classic array and
- * an object of the {@link Array} class with pseudo-random numeric data of type {@link Double}.
+ * an object of the {@link Array} class with pseudo-random numeric data of type {@link Integer}.
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
@@ -208,7 +208,7 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * @param integers The array to fill with pseudo-random numeric data of the type {@link Integer}.
      * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
      * @param upperBound The upper bound for generating pseudo-random numbers to fill.
-     * @throws NullPointerException     If the {@code doubles} array argument is null.
+     * @throws NullPointerException     If the {@code integers} array argument is null.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
      * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */

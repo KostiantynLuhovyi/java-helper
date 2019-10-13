@@ -158,7 +158,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      *
      * @param integers The array to fill with read data of the {@link Integer} type.
      * @param bound The upper bound for reading value to fill.
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
+     * @throws NullPointerException If the {@code integers} argument is null.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
@@ -254,9 +254,10 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * @param integers The array to fill with read data of the {@link Integer} type.
      * @param lowerBound The lower bound for reading value to fill.
      * @param upperBound The upper bound for reading value to fill.
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
+     * @throws NullPointerException If the {@code integers} argument is null.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Integer[] integers, Integer lowerBound, Integer upperBound) {
@@ -290,10 +291,10 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * @param lengthArray The length(size) of the array to fill with read data of the {@link Integer} type.
      * @param lowerBound The lower bound for reading value to fill.
      * @param upperBound The upper bound for reading value to fill.
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      * @throws LengthValueOutOfRangeException If {@code lengthArray} argument value is out of valid range.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer lowerBound, Integer upperBound) {

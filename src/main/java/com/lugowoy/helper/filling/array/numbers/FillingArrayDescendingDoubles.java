@@ -11,31 +11,31 @@ import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface to fills a classic array and
- * an object of the {@link Array} class with sequential numeric data of type {@link Double} in ascending order.
- * Increase in the number of type {@link Double} for filling occurs by the integer part of the number (ex.: 2.3, 3.3, 4.3, ...).
- * <p>Created by Konstantin Lugowoy on 12-Jan-18.
+ * an object of the {@link Array} class with sequential numeric data of type {@link Double} in descending order.
+ * Decrease in the number of type {@link Double} for filling occurs by the integer part of the number (ex.: 4.3, 3.3, 2.3, ...).
+ * <p>Created by Konstantin Lugowoy on 13-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.7
+ * @version 1.6
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double> {
+public class FillingArrayDescendingDoubles implements FillingArrayNumbers<Double> {
 
     /**
-     * Fills an object of the {@link Array} class with sequential numeric data of type {@link Double} in ascending order.
+     * Fills an object of the {@link Array} class with sequential numeric data of type {@link Double} in descending order.
      * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive)
-     * and an increase in the number of type {@link Double} occurs on the integer part of the number by 1.0 (ex.: 1.0, 2.0, 3.0, ...).
+     * and an decrease in the number of type {@link Double} occurs on the integer part of the number by 1.0 (ex.: 0.0, -1.0, -2.0, ...).
      *
-     * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Double} in ascending order.
+     * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Double} in descending order.
      * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      */
     @Override
     public void fill(Array<Double> array) {
         if (isNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            this.fillArrayAscendingDoubles(doubles);
+            this.fillArrayDescendingDoubles(doubles);
             array.setArray(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("Array argument is null."));
@@ -43,32 +43,32 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
     }
 
     /**
-     * Fills an array with sequential numeric data of type {@link Double} in ascending order.
+     * Fills an array with sequential numeric data of type {@link Double} in descending order.
      * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive)
-     * and an increase in the number of type {@link Double} occurs on the integer part of the number by 1.0 (ex.: 1.0, 2.0, 3.0, ...).
+     * and an decrease in the number of type {@link Double} occurs on the integer part of the number by 1.0 (ex.: 0.0, -1.0, -2.0, ...).
      *
-     * @param doubles The array to fill with sequential numeric data of type {@link Double} in ascending order.
+     * @param doubles The array to fill with sequential numeric data of type {@link Double} in descending order.
      * @throws NullPointerException If the {@code doubles} array argument is null.
      */
     @Override
     public void fill(Double[] doubles) {
         if (isNonNullArray(doubles)) {
-            this.fillArrayAscendingDoubles(doubles);
+            this.fillArrayDescendingDoubles(doubles);
         } else {
             throw new IllegalArgumentException(new NullPointerException("Array argument is null."));
         }
     }
 
     /**
-     * Fills an array with sequential numeric data of type {@link Double} in ascending order.
+     * Fills an array with sequential numeric data of type {@link Double} in descending order.
      * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive)
-     * and an increase in the number of type {@link Double} occurs on the integer part of the number by 1.0 (ex.: 1.0, 2.0, 3.0, ...).
+     * and an decrease in the number of type {@link Double} occurs on the integer part of the number by 1.0 (ex.: 0.0, -1.0, -2.0, ...).
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
      * then a {@link LengthValueOutOfRangeException} exception will be thrown.
      *
-     * @param lengthArray The length(size) of the array to fill with sequential numeric data of type {@link Double} in ascending order.
-     * @return Created and filled an array with sequential numeric data of type {@link Double} in ascending order.
+     * @param lengthArray The length(size) of the array to fill with sequential numeric data of type {@link Double} in descending order.
+     * @return Created and filled an array with sequential numeric data of type {@link Double} in descending order.
      * @throws LengthValueOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
      */
     @Override
@@ -76,7 +76,7 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            this.fillArrayAscendingDoubles(doubles);
+            this.fillArrayDescendingDoubles(doubles);
         } else {
             throw new LengthValueOutOfRangeException("Array length value is out of range." + " (" + lengthArray
                                                                                            + " : valid 0 - " + Integer.MAX_VALUE + ")");
@@ -85,16 +85,16 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
     }
 
     /**
-     * Fills an object of the {@link Array} class with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive) and an increase in the number of type {@link Double}
-     * occurs on the integer part of the number by 1.0 to the value {@code bound} argument (inclusive) (ex.: 1.0, 2.0, 3.0, ...).
+     * Fills an object of the {@link Array} class with sequential numeric data of type {@link Double} in descending order.
+     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive) and an decrease in the number of type {@link Double}
+     * occurs on the integer part of the number by 1.0 to the value {@code bound} argument (inclusive) (ex.: 0.0, -1.0, -2.0, ...).
      * If the range of values from {@link DefaultNumericValues#DOUBLE_ZERO} to {@code bound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO} to {@link Integer#MAX_VALUE},
+     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO} to {@link Integer#MIN_VALUE},
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Double} in ascending order.
-     * @param bound The upper value for sequential ascending values ​​to fill.
+     * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Double} in descending order.
+     * @param bound The lower value for sequential descending values ​​to fill.
      * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
@@ -102,8 +102,8 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
     public void fill(Array<Double> array, Double bound) {
         if (isNonNullArray(array)) {
             Double[] doubles = new Double[array.getLength()];
-            if (isCorrectBounds(bound, DOUBLE_ZERO, Integer.MAX_VALUE)) {
-                this.fillArrayAscendingDoublesFromZeroToPositiveBound(doubles, bound);
+            if (isCorrectBounds(bound, Integer.MIN_VALUE, DOUBLE_ZERO)) {
+                this.fillArrayDescendingDoublesFromZeroToNegativeBound(doubles, bound);
                 array.setArray(doubles);
             } else {
                 throw new BoundOutOfRangeException("Bound value is out of range.");
@@ -114,24 +114,24 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
     }
 
     /**
-     * Fills an array with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive) and an increase in the number of type {@link Double}
-     * occurs on the integer part of the number by 1.0 to the value {@code bound} argument (inclusive) (ex.: 1.0, 2.0, 3.0, ...).
+     * Fills an array with sequential numeric data of type {@link Double} in descending order.
+     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive) and an decrease in the number of type {@link Double}
+     * occurs on the integer part of the number by 1.0 to the value {@code bound} argument (inclusive) (ex.: 0.0, -1.0, -2.0, ...).
      * If the range of values from {@link DefaultNumericValues#DOUBLE_ZERO} to {@code bound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO} to {@link Integer#MAX_VALUE},
+     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO} to {@link Integer#MIN_VALUE},
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param doubles The array to fill with sequential numeric data of type {@link Double} in ascending order.
-     * @param bound The upper value for sequential ascending values ​​to fill.
+     * @param doubles The array to fill with sequential numeric data of type {@link Double} in descending order.
+     * @param bound The lower value for sequential descending values ​​to fill.
      * @throws NullPointerException If the {@code doubles} argument is null.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Double[] doubles, Double bound) {
         if (isNonNullArray(doubles)) {
-            if (isCorrectBounds(bound, DOUBLE_ZERO, Integer.MAX_VALUE)) {
-                this.fillArrayAscendingDoublesFromZeroToPositiveBound(doubles, bound);
+            if (isCorrectBounds(bound, Integer.MIN_VALUE, DOUBLE_ZERO)) {
+                this.fillArrayDescendingDoublesFromZeroToNegativeBound(doubles, bound);
             } else {
                 throw new BoundOutOfRangeException("Bound value is out of range.");
             }
@@ -141,20 +141,20 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
     }
 
     /**
-     * Fills an array with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive) and an increase in the number of type {@link Double}
-     * occurs on the integer part of the number by 1.0 to the value {@code bound} argument (inclusive) (ex.: 1.0, 2.0, 3.0, ...).
+     * Fills an array with sequential numeric data of type {@link Double} in descending order.
+     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive) and an decrease in the number of type {@link Double}
+     * occurs on the integer part of the number by 1.0 to the value {@code bound} argument (inclusive) (ex.: 0.0, -1.0, -2.0, ...).
      * If the range of values from {@link DefaultNumericValues#DOUBLE_ZERO} to {@code bound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO} to {@link Integer#MAX_VALUE},
+     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO} to {@link Integer#MIN_VALUE},
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
      * then a {@link LengthValueOutOfRangeException} exception will be thrown.
      *
-     * @param lengthArray The length(size) of the array to fill with sequential numeric data of type {@link Double} in ascending order.
-     * @param bound The upper value for sequential ascending values ​​to fill.
-     * @return Created and filled an array with sequential numeric data of type {@link Double} in ascending order.
+     * @param lengthArray The length(size) of the array to fill with sequential numeric data of type {@link Double} in descending order.
+     * @param bound The lower value for sequential descending values ​​to fill.
+     * @return Created and filled an array with sequential numeric data of type {@link Double} in descending order.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      * @throws LengthValueOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
      */
@@ -163,8 +163,8 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
         Double[] doubles;
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isCorrectBounds(bound, DOUBLE_ZERO, Integer.MAX_VALUE)) {
-                this.fillArrayAscendingDoublesFromZeroToPositiveBound(doubles, bound);
+            if (isCorrectBounds(bound, Integer.MIN_VALUE, DOUBLE_ZERO)) {
+                this.fillArrayDescendingDoublesFromZeroToNegativeBound(doubles, bound);
             } else {
                 throw new BoundOutOfRangeException("Bound value is out of range.");
             }
@@ -176,20 +176,20 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
     }
 
     /**
-     * Fills an object of the {@link Array} class with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@code lowerBound} argument (inclusive) and an increase in the number of type {@link Double}
-     * occurs on the integer part of the number by 1.0 to the value {@code upperBound} argument (inclusive) (ex.: 1.0, 2.0, 3.0, ...).
-     * If the range of values from {@code lowerBound} to {@code upperBound} is not enough to fill the entire array,
+     * Fills an object of the {@link Array} class with sequential numeric data of type {@link Double} in descending order.
+     * <p>Filling begins with a value of {@code upperBound} argument (inclusive) and an decrease in the number of type {@link Double}
+     * occurs on the integer part of the number by 1.0 to the value {@code lowerBound} argument (inclusive) (ex.: 0.0, -1.0, -2.0, ...).
+     * If the range of values from {@code upperBound} to {@code lowerBound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the {@code lowerBound} and {@code upperBound} arguments must be in the range from {@link Integer#MIN_VALUE}
+     * The value of the {@code upperBound} and {@code lowerBound} arguments must be in the range from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE}, otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Double} in ascending order.
-     * @param lowerBound The lower value for sequential ascending values ​​to fill.
-     * @param upperBound the upper value for sequential ascending values to fill.
+     * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Double} in descending order.
+     * @param lowerBound the lower value for sequential descending values to fill.
+     * @param upperBound The upper value for sequential descending values ​​to fill.
      * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument value is out of valid range.
-     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is less or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Array<Double> array, Double lowerBound, Double upperBound) {
@@ -197,11 +197,10 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
             Double[] doubles = new Double[array.getLength()];
             if (isCorrectBounds(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
                     && isCorrectBounds(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayAscendingDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                    array.setArray(doubles);
+                if (isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillArrayDescendingDoublesFromLowerBoundToUpperBound(doubles, lowerBound, lowerBound);
                 } else {
-                    throw new IncorrectBoundCompareException("Lower bound is greatest or not equal than upper bound.");
+                    throw new IncorrectBoundCompareException("Lower bound is less or not equal than upper bound.");
                 }
             } else {
                 throw new BoundOutOfRangeException("Bound value is out of range.");
@@ -212,30 +211,30 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
     }
 
     /**
-     * Fills an array with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@code lowerBound} argument (inclusive) and an increase in the number of type {@link Double}
-     * occurs on the integer part of the number by 1.0 to the value {@code upperBound} argument (inclusive) (ex.: 1.0, 2.0, 3.0, ...).
-     * If the range of values from {@code lowerBound} to {@code upperBound} is not enough to fill the entire array,
+     * Fills an array with sequential numeric data of type {@link Double} in descending order.
+     * <p>Filling begins with a value of {@code upperBound} argument (inclusive) and an decrease in the number of type {@link Double}
+     * occurs on the integer part of the number by 1.0 to the value {@code lowerBound} argument (inclusive) (ex.: 0.0, -1.0, -2.0, ...).
+     * If the range of values from {@code upperBound} to {@code lowerBound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the {@code lowerBound} and {@code upperBound} arguments must be in the range from {@link Integer#MIN_VALUE}
+     * The value of the {@code upperBound} and {@code lowerBound} arguments must be in the range from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE}, otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param doubles The array to fill with sequential numeric data of type {@link Double} in ascending order.
-     * @param lowerBound The lower value for sequential ascending values ​​to fill.
-     * @param upperBound the upper value for sequential ascending values to fill.
+     * @param doubles The array to fill with sequential numeric data of type {@link Double} in descending order.
+     * @param lowerBound The lower value for sequential descending values ​​to fill.
+     * @param upperBound the upper value for sequential descending values to fill.
      * @throws NullPointerException     If the {@code doubles} argument is null.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument value is out of valid range.
-     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is less or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Double[] doubles, Double lowerBound, Double upperBound) {
         if (isNonNullArray(doubles)) {
             if (isCorrectBounds(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
                     && isCorrectBounds(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayAscendingDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+                if (isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillArrayDescendingDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
                 } else {
-                    throw new IncorrectBoundCompareException("Lower bound is greatest or not equal than upper bound.");
+                    throw new IncorrectBoundCompareException("Lower bound is less or not equal than upper bound.");
                 }
             } else {
                 throw new BoundOutOfRangeException("Bound value is out of range.");
@@ -246,24 +245,24 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
     }
 
     /**
-     * Fills an array with sequential numeric data of type {@link Double} in ascending order.
+     * Fills an array with sequential numeric data of type {@link Double} in descending order.
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
      * then a {@link LengthValueOutOfRangeException} exception will be thrown.
-     * <p>Filling begins with a value of {@code lowerBound} argument (inclusive) and an increase in the number of type {@link Double}
-     * occurs on the integer part of the number by 1.0 to the value {@code upperBound} argument (inclusive) (ex.: 1.0, 2.0, 3.0, ...).
+     * <p>Filling begins with a value of {@code upperBound} argument (inclusive) and an decrease in the number of type {@link Double}
+     * occurs on the integer part of the number by 1.0 to the value {@code lowerBound} argument (inclusive) (ex.: 0.0, -1.0, -2.0, ...).
      * If the range of values from {@code lowerBound} to {@code upperBound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the {@code lowerBound} and {@code upperBound} arguments must be in the range from {@link Integer#MIN_VALUE}
+     * The value of the {@code upperBound} and {@code lowerBound} arguments must be in the range from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE}, otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param lengthArray The length(size) of the array to fill with sequential numeric data of type {@link Double} in ascending order.
-     * @param lowerBound The lower value for sequential ascending values ​​to fill.
-     * @param upperBound the upper value for sequential ascending values to fill.
-     * @return Created and filled an array with sequential numeric data of type {@link Double} in ascending order.
+     * @param lengthArray The length(size) of the array to fill with sequential numeric data of type {@link Double} in descending order.
+     * @param lowerBound The lower value for sequential descending values ​​to fill.
+     * @param upperBound the upper value for sequential descending values to fill.
+     * @return Created and filled an array with sequential numeric data of type {@link Double} in descending order.
      * @throws LengthValueOutOfRangeException If {@code lengthArray} argument value is out of valid range.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument value is out of valid range.
-     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is less or not equal than to the {@code upperBound} value.
      */
     @Override
     public Double[] fill(int lengthArray, Double lowerBound, Double upperBound) {
@@ -272,8 +271,8 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
             doubles = new Double[lengthArray];
             if (isCorrectBounds(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
                     && isCorrectBounds(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayAscendingDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+                if (isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillArrayDescendingDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
                 } else {
                     throw new IncorrectBoundCompareException("Lower bound is greatest or not equal than upper bound.");
                 }
@@ -287,31 +286,32 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
         return doubles;
     }
 
-    private void fillArrayAscendingDoubles(Double[] doubles) {
-        double value = DOUBLE_ZERO, integerDigit = 1.0;
+    private void fillArrayDescendingDoubles(Double[] doubles) {
+        double value = 0.0, integerDigit = 1.0;
         for (int i = 0; i < doubles.length; i++) {
             doubles[i] = value;
-            value += integerDigit;
+            value -= integerDigit;
         }
     }
 
-    private void fillArrayAscendingDoublesFromZeroToPositiveBound(Double[] doubles, double bound) {
-        double value = DOUBLE_ZERO, integerDigit = 1.0;
+    private void fillArrayDescendingDoublesFromZeroToNegativeBound(Double[] doubles, double bound) {
+        double value = 0.0, integerDigit = 1.0;
         for (int i = 0; i < doubles.length; i++) {
-            if (value <= bound) {
+            if (value >= bound) {
                 doubles[i] = value;
-                value += integerDigit;
+                value -= integerDigit;
             } else {
                 break;
             }
         }
     }
 
-    private void fillArrayAscendingDoublesFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
-        double value = lowerBound;
+    private void fillArrayDescendingDoublesFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
+        double value = lowerBound, integerDigit = 1.0;
         for (int i = 0; i < doubles.length; i++) {
-            if (value <= upperBound) {
-                doubles[i] = value++;
+            if (value >= upperBound) {
+                doubles[i] = value;
+                value -= integerDigit;
             } else {
                 break;
             }
