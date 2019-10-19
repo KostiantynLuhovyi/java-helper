@@ -1,24 +1,21 @@
-package com.lugowoy.helper.other.execution;
+package com.lugowoy.helper.utils.execution;
 
 import java.util.concurrent.Callable;
 
-import static com.lugowoy.helper.other.execution.OutputExecutorTime.MSG_MILLISECONDS;
+import static com.lugowoy.helper.utils.execution.OutputExecutorTime.MSG_MILLISECONDS;
 
 /**
- * Created by LugowoyKonstantin on 01.09.2019.
+ * Created by Konstantin Lugowoy on 01.09.2019.
  *
- * @author LugowoyKonstantin
- * @version 1.5
+ * @author Konstantin Lugowoy
+ * @version 1.6
  * @since 1.7.4
  */
-
-//todo refactoring code
-//todo edit doc's
-
+//todo write doc's
 public interface Executor {
 
     static <T> void execute(Callable<T> callable) {
-        ExecutionTimer executionTimer = ExecutionTimer.getExecutionTimer();
+        ExecutionTimer executionTimer = new ExecutionTimer();
         executionTimer.startExecutionTimer();
         T result = callExecution(callable);
         OutputExecutorResult.outputExecutionResultOnConsole(result, "Result : ");
@@ -26,7 +23,7 @@ public interface Executor {
     }
 
     static <T> void execute(Callable<T> callable, String msgOutputTime, String msgOutputResult) {
-        ExecutionTimer executionTimer = ExecutionTimer.getExecutionTimer();
+        ExecutionTimer executionTimer = new ExecutionTimer();
         executionTimer.startExecutionTimer();
         T result = callExecution(callable);
         OutputExecutorResult.outputExecutionResultOnConsole(result, msgOutputResult);
@@ -35,7 +32,7 @@ public interface Executor {
 
     static <T> void execute(Callable<T> callable, String msgOutputResult, String msgOutputTime,
                             OutputExecutorResult<T> outputExecutorResult, OutputExecutorTime outputExecutorTime) {
-        ExecutionTimer executionTimer = ExecutionTimer.getExecutionTimer();
+        ExecutionTimer executionTimer = new ExecutionTimer();
         executionTimer.startExecutionTimer();
         T result = callExecution(callable);
         outputExecutorResult.outputResult(result, msgOutputResult);

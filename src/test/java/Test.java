@@ -1,4 +1,6 @@
-/** Created by Konstantin Lugowoy on 02.10.2018. */
+/**
+ * Created by Konstantin Lugowoy on 02.10.2018.
+ */
 
 public class Test {
 
@@ -139,7 +141,6 @@ public class Test {
             }
         }*/
 
-        CheckerFillingArray.isPositiveBound(null);
 
     }
 

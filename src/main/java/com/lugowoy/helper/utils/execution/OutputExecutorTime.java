@@ -1,16 +1,13 @@
-package com.lugowoy.helper.other.execution;
+package com.lugowoy.helper.utils.execution;
 
 /**
- * Created by LugowoyKonstantin on 11.09.2019.
+ * Created by Konstantin Lugowoy on 11.09.2019.
  *
- * @author LugowoyKonstantin
- * @version 1.2
+ * @author Konstantin Lugowoy
+ * @version 1.3
  * @since 1.7.6
  */
-
-//todo refactoring code
-//todo edit doc's
-
+//todo write doc's
 @FunctionalInterface
 public interface OutputExecutorTime {
 
