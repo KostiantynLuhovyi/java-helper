@@ -1,19 +1,3 @@
-import com.lugowoy.helper.filling.Filler;
-import com.lugowoy.helper.filling.array.CheckerFillingArray;
-import com.lugowoy.helper.filling.array.numbers.FillingArrayReadIntegers;
-import com.lugowoy.helper.io.reading.ReadingConsole;
-import com.lugowoy.helper.models.Array;
-import com.lugowoy.helper.models.Matrix;
-import com.lugowoy.helper.models.points.Point2D;
-import com.lugowoy.helper.other.GeneratorRandomNumber;
-import com.lugowoy.helper.other.setters.attributes.SetterAttributes;
-import com.lugowoy.helper.other.setters.attributes.SetterPoint2DAttributes;
-
-import java.math.BigDecimal;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-
 /** Created by Konstantin Lugowoy on 02.10.2018. */
 
 public class Test {

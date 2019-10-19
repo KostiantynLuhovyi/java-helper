@@ -6,6 +6,6 @@
  */
 module java.helper {
     requires java.base;
-    requires cloning;
+    requires org.apache.commons.lang3;
     requires commons.math3;
 }

@@ -1,4 +1,4 @@
-package com.lugowoy.helper.other;
+package com.lugowoy.helper.utils;
 
 import org.apache.commons.math3.random.RandomDataGenerator;
 
@@ -53,13 +53,13 @@ public class GeneratorRandomNumber {
      * <p>Arguments {@code lowerBound} and {@code upperBound} must be within the range of values from {@link Byte#MIN_VALUE}
      * to {@link Byte#MAX_VALUE}, otherwise {@link BoundOutOfRangeException} exception will be thrown.
      * Also, the value of the {@code lowerBound} argument must be less than or equal to the value of {@code upperBound}.
-     * If these conditions are not met, a {@link IncorrectBoundCompareException} exception will be thrown.
+     * If these conditions are not met, a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lowerBound The lower bound value for generating pseudo-random numbers of {@code byte} type.
      * @param upperBound The upper bound value for generating pseudo-random numbers of {@code byte} type.
      * @return The generated {@code byte} type pseudo-random number in the range from {@code lowerBound} to {@code upperBound}.
-     * @throws BoundOutOfRangeException       If the {@code lowerBound} or {@code upperBound} value is out of range values.
-     * @throws IncorrectBoundCompareException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} value is out of range values.
+     * @throws BoundOutOfRangeException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
      */
     public static byte generateByte(byte lowerBound, byte upperBound) {
         byte resultValue = 0;
@@ -107,14 +107,14 @@ public class GeneratorRandomNumber {
      * of values from {@link Short#MIN_VALUE} to {@link Short#MAX_VALUE} respectively,
      * otherwise {@link BoundOutOfRangeException} exception will be thrown.
      * Also, the value of the {@code lowerBound} argument must be less than or equal to the value of {@code upperBound}.
-     * If these conditions are not met, a {@link IncorrectBoundCompareException} exception will be thrown.
+     * If these conditions are not met, a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lowerBound The lower bound value for generating pseudo-random numbers of {@code short} type.
      * @param upperBound The upper bound value for generating pseudo-random numbers of {@code short} type.
      * @return The generated {@code short} type pseudo-random number
      * in the argument range from {@code lowerBound} to {@code upperBound}.
-     * @throws BoundOutOfRangeException       If the {@code lowerBound} or {@code upperBound} value is out of range values.
-     * @throws IncorrectBoundCompareException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} value is out of range values.
+     * @throws BoundOutOfRangeException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
      */
     public static short generateShort(short lowerBound, short upperBound) {
         short resultValue = 0;
@@ -161,14 +161,14 @@ public class GeneratorRandomNumber {
      * <p>Arguments {@code lowerBound} and {@code upperBound} must be within the range of values from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE} respectively, otherwise {@link BoundOutOfRangeException} exception will be thrown.
      * Also, the value of the {@code lowerBound} argument must be less than or equal to the value of {@code upperBound}.
-     * If these conditions are not met, a {@link IncorrectBoundCompareException} exception will be thrown.
+     * If these conditions are not met, a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lowerBound The lower bound value for generating pseudo-random numbers of {@code int} type.
      * @param upperBound The upper bound value for generating pseudo-random numbers of {@code int} type.
      * @return The generated {@code int} type pseudo-random number
      * in the argument range from {@code lowerBound} to {@code upperBound}.
-     * @throws BoundOutOfRangeException       If the {@code lowerBound} or {@code upperBound} value is out of range values.
-     * @throws IncorrectBoundCompareException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} value is out of range values.
+     * @throws BoundOutOfRangeException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
      */
     public static int generateInt(int lowerBound, int upperBound) {
         int resultValue = 0;
@@ -215,14 +215,14 @@ public class GeneratorRandomNumber {
      * <p>Arguments {@code lowerBound} and {@code upperBound} must be within the range of values from {@link Long#MIN_VALUE}
      * to {@link Long#MAX_VALUE} respectively, otherwise {@link BoundOutOfRangeException} exception will be thrown.
      * Also, the value of the {@code lowerBound} argument must be less than or equal to the value of {@code upperBound}.
-     * If these conditions are not met, a {@link IncorrectBoundCompareException} exception will be thrown.
+     * If these conditions are not met, a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lowerBound The lower bound value for generating pseudo-random numbers of {@code long} type.
      * @param upperBound The upper bound value for generating pseudo-random numbers of {@code long} type.
      * @return The generated {@code long} type pseudo-random number
      * in the argument range from {@code lowerBound} to {@code upperBound}.
-     * @throws BoundOutOfRangeException       If the {@code lowerBound} or {@code upperBound} value is out of range values.
-     * @throws IncorrectBoundCompareException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} value is out of range values.
+     * @throws BoundOutOfRangeException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
      */
     public static long generateLong(long lowerBound, long upperBound) {
         long resultValue = 0L;
@@ -269,14 +269,14 @@ public class GeneratorRandomNumber {
      * <p>Arguments {@code lowerBound} and {@code upperBound} must be within the range of values from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE} respectively, otherwise {@link BoundOutOfRangeException} exception will be thrown.
      * Also, the value of the {@code lowerBound} argument must be less than or equal to the value of {@code upperBound}.
-     * If these conditions are not met, a {@link IncorrectBoundCompareException} exception will be thrown.
+     * If these conditions are not met, a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lowerBound The lower bound value for generating pseudo-random numbers of {@code float} type.
      * @param upperBound The upper bound value for generating pseudo-random numbers of {@code float} type.
      * @return The generated {@code float} type pseudo-random number
      * in the argument range from {@code lowerBound} to {@code upperBound}.
-     * @throws BoundOutOfRangeException       If the {@code lowerBound} or {@code upperBound} value is out of range values.
-     * @throws IncorrectBoundCompareException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} value is out of range values.
+     * @throws BoundOutOfRangeException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
      */
     public static float generateFloat(float lowerBound, float upperBound) {
         float resultValue = 0F;
@@ -323,14 +323,14 @@ public class GeneratorRandomNumber {
      * <p>Arguments {@code lowerBound} and {@code upperBound} must be within the range of values from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE} respectively, otherwise {@link BoundOutOfRangeException} exception will be thrown.
      * Also, the value of the {@code lowerBound} argument must be less than or equal to the value of {@code upperBound}.
-     * If these conditions are not met, a {@link IncorrectBoundCompareException} exception will be thrown.
+     * If these conditions are not met, a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lowerBound The lower bound value for generating pseudo-random numbers of {@code double} type.
      * @param upperBound The upper bound value for generating pseudo-random numbers of {@code double} type.
      * @return The generated {@code double} type pseudo-random number
      * in the argument range from {@code lowerBound} to {@code upperBound}.
-     * @throws BoundOutOfRangeException       If the {@code lowerBound} or {@code upperBound} value is out of range values.
-     * @throws IncorrectBoundCompareException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} value is out of range values.
+     * @throws BoundOutOfRangeException If {@code lowerBound} value is greater or not equal than the {@code upperBound} value.
      */
     public static double generateDouble(double lowerBound, double upperBound) {
         double resultValue = 0D;
@@ -366,7 +366,7 @@ public class GeneratorRandomNumber {
             return true;
         } else {
             String msgEx = "Lower bound (" + lowerBound + ") value is greater than the upper bound (" + upperBound + ") value.";
-            throw new IncorrectBoundCompareException(msgEx);
+            throw new BoundOutOfRangeException(msgEx);
         }
     }
 
@@ -375,7 +375,7 @@ public class GeneratorRandomNumber {
             return true;
         } else {
             String msgEx = "Lower bound (" + lowerBound + ") value is greater than the upper bound (" + upperBound + ") value.";
-            throw new IncorrectBoundCompareException(msgEx);
+            throw new BoundOutOfRangeException(msgEx);
         }
     }
 
