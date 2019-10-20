@@ -1,4 +1,4 @@
-package com.lugowoy.helper.other.setters.attributes;
+package com.lugowoy.helper.utils.setters.attributes;
 
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.Matrix;
@@ -6,19 +6,14 @@ import com.lugowoy.helper.models.Matrix;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import static com.lugowoy.helper.other.setters.attributes.SetterAttributes.*;
-
 /**
- * Created by LugowoyKonstantin on 04.07.2019.
+ * Created by Konstantin Lugowoy on 04.07.2019.
  *
- * @author LugowoyKonstantin
- * @version 1.1
+ * @author Konstantin Lugowoy
+ * @version 1.2
  * @since 1.7.4
  */
-
-//todo refactoring code
-//todo edit doc's
-
+//todo write doc's
 public class SetterMatrixAttributes<T> implements SetterAttributes<Matrix<T>> {
 
     public static final String MSG_ENTER_CONSOLE_ROW = "Enter the number of rows for the matrix : ";
@@ -26,46 +21,59 @@ public class SetterMatrixAttributes<T> implements SetterAttributes<Matrix<T>> {
 
     @Override
     public void setAttributes(Matrix<T> matrix) {
-        if (isNonNullObject(matrix)) {
+        if (matrix != null) {
             matrix.setRows(Matrix.DEFAULT_ROWS);
             matrix.setColumns(Matrix.DEFAULT_COLUMNS);
+        } else {
+            throw new NullPointerException("Matrix is null");
         }
     }
 
     @Override
     public void setAttributes(Matrix<T> matrix, Reading reader) {
-        if (isNonNullObject(matrix)) {
-            if (isNonNullReader(reader)) {
+        if (matrix != null) {
+            if (reader != null) {
                 matrix.setRows(reader.readInt());
                 matrix.setColumns(reader.readInt());
+            } else {
+                throw new NullPointerException("Reader is null.");
             }
+        } else {
+            throw new NullPointerException("Matrix is null.");
         }
     }
 
     public void setAttributes(Matrix<T> matrix, int rows, int columns) {
-        if (isNonNullObject(matrix)) {
+        if (matrix != null) {
+            //todo add checking value of row and column
             matrix.setRows(rows);
             matrix.setColumns(columns);
+        } else {
+            throw new NullPointerException("Matrix is null.");
         }
     }
 
-    //todo Is it worth using this method signature. Perhaps it is better to make it strictly sharpened for console input of attributes.
     public void setAttributes(Matrix<T> matrix, Reading reader, OutputStream outputStreamToMsg,
                               String msgRow, String msgColumn) {
-        if (isNonNullObject(matrix)) {
-            if (isNonNullReader(reader)) {
-                if (isNonNullOutputStream(outputStreamToMsg)) {
-                    try {
+        if (matrix != null) {
+            if (reader != null) {
+                if (outputStreamToMsg != null) {
+                    try (outputStreamToMsg) {
                         outputStreamToMsg.write(msgRow.getBytes());
                         matrix.setRows(reader.readInt());
                         outputStreamToMsg.write(msgColumn.getBytes());
                         matrix.setColumns(reader.readInt());
                     } catch (IOException ex) {
-                        //todo add thoughtful action
                         ex.printStackTrace();
                     }
+                } else {
+                    throw new NullPointerException("Output stream is null.");
                 }
+            } else {
+                throw new NullPointerException("Reader is null.");
             }
+        } else {
+            throw new NullPointerException("Matrix is null.");
         }
     }
 
