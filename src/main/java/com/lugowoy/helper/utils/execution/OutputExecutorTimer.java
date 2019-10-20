@@ -4,23 +4,23 @@ package com.lugowoy.helper.utils.execution;
  * Created by Konstantin Lugowoy on 11.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @since 1.7.6
  */
 //todo write doc's
 @FunctionalInterface
-public interface OutputExecutorTime {
+public interface OutputExecutorTimer {
 
     String MSG_MINUTES_AND_SECONDS = "\nRuntime : %d minutes, %d seconds\n";
     String MSG_MILLISECONDS = "\nRuntime : %d milliseconds\n";
 
     void outputTimer(long milliseconds, String msg);
 
-    static void outputExecutionTimeMillisOnConsole(long milliseconds, String msgOutputTime) {
+    static void outputExecutionTimeMillisToConsole(long milliseconds, String msgOutputTime) {
         System.out.printf(msgOutputTime, milliseconds);
     }
 
-    static void outputExecutionTimeOnConsole(long milliseconds, String msgOutputTime) {
+    static void outputExecutionTimeToConsole(long milliseconds, String msgOutputTime) {
         if (milliseconds >= 1000) {
             long minutes = (milliseconds / 1000) / 60;
             long seconds = (milliseconds / 1000);

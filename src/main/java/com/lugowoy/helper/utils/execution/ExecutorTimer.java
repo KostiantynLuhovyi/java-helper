@@ -4,11 +4,11 @@ package com.lugowoy.helper.utils.execution;
  * Created by Konstantin Lugowoy on 13.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 1.7.8
  */
 //todo write doc's
-class ExecutionTimer {
+class ExecutorTimer {
 
     private long startMillis;
     private long endMillis;
