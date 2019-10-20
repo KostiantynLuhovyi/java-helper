@@ -1,6 +1,6 @@
 package com.lugowoy.helper.io.reading;
 
-import com.lugowoy.helper.other.ValueOutOfRangeException;
+import com.lugowoy.helper.utils.ValueOutOfRangeException;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -24,8 +24,8 @@ public class ReadingConsole implements Reading {
      * Reads a {@code byte} type value from the console.
      *
      * @return Returns the result of reading.
-     * @throws NoSuchElementException If input is exhausted.
-     * @throws IllegalStateException  If this scanner is closed.
+     * @throws NoSuchElementException   If input is exhausted.
+     * @throws IllegalStateException    If this scanner is closed.
      * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
      * @see Scanner#nextByte()
      * @since 1.0
@@ -36,8 +36,8 @@ public class ReadingConsole implements Reading {
         try {
             resultByteRead = SCANNER.nextByte();
         } catch (InputMismatchException ex) {
-            String msgEx = "Value is not a number or is out of range (from " + Byte.MIN_VALUE + " to " + Byte.MAX_VALUE + ").";
-            throw new ValueOutOfRangeException(msgEx);
+            throw new ValueOutOfRangeException("Value is not a byte number or is out of range (from " + Byte.MIN_VALUE
+                                                                                             + " to " + Byte.MAX_VALUE + ").");
         } finally {
             SCANNER.close();
         }
@@ -48,8 +48,8 @@ public class ReadingConsole implements Reading {
      * Reads a {@code short} type value from the console.
      *
      * @return Returns the result of reading.
-     * @throws NoSuchElementException If input is exhausted.
-     * @throws IllegalStateException  If this scanner is closed.
+     * @throws NoSuchElementException   If input is exhausted.
+     * @throws IllegalStateException    If this scanner is closed.
      * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
      * @see Scanner#nextShort()
      * @since 1.0
@@ -60,8 +60,8 @@ public class ReadingConsole implements Reading {
         try {
             resultShortRead = SCANNER.nextShort();
         } catch (InputMismatchException ex) {
-            String msgEx = "Value is not a number or is out of range (from " + Short.MIN_VALUE + " to " + Short.MAX_VALUE + ").";
-            throw new ValueOutOfRangeException(msgEx);
+            throw new ValueOutOfRangeException("Value is not a short number or is out of range (from " + Short.MIN_VALUE
+                                                                                              + " to " + Short.MAX_VALUE + ").");
         } finally {
             SCANNER.close();
         }
@@ -72,8 +72,8 @@ public class ReadingConsole implements Reading {
      * Reads a {@code int} type value from the console.
      *
      * @return Returns the result of reading.
-     * @throws NoSuchElementException If input is exhausted.
-     * @throws IllegalStateException  If this scanner is closed.
+     * @throws NoSuchElementException   If input is exhausted.
+     * @throws IllegalStateException    If this scanner is closed.
      * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
      * @see Scanner#nextInt()
      * @since 1.0
@@ -84,8 +84,8 @@ public class ReadingConsole implements Reading {
         try {
             resultIntRead = SCANNER.nextInt();
         } catch (InputMismatchException ex) {
-            String msgEx = "Value is not a number or is out of range (from " + Integer.MIN_VALUE + " to " + Integer.MAX_VALUE + ").";
-            throw new ValueOutOfRangeException(msgEx);
+            throw new ValueOutOfRangeException("Value is not a int number or is out of range (from " + Integer.MIN_VALUE
+                                                                                            + " to " + Integer.MAX_VALUE + ").");
         } finally {
             SCANNER.close();
         }
@@ -96,8 +96,8 @@ public class ReadingConsole implements Reading {
      * Reads a {@code long} type value from the console.
      *
      * @return Returns the result of reading.
-     * @throws NoSuchElementException If input is exhausted.
-     * @throws IllegalStateException  If this scanner is closed.
+     * @throws NoSuchElementException   If input is exhausted.
+     * @throws IllegalStateException    If this scanner is closed.
      * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
      * @see Scanner#nextLong()
      * @since 1.0
@@ -108,8 +108,8 @@ public class ReadingConsole implements Reading {
         try {
             resultLongRead = SCANNER.nextLong();
         } catch (InputMismatchException ex) {
-            String msgEx = "Value is not a number or is out of range (from " + Long.MIN_VALUE + " to " + Long.MAX_VALUE + ").";
-            throw new ValueOutOfRangeException(msgEx);
+            throw new ValueOutOfRangeException("Value is not a long number or is out of range (from " + Long.MIN_VALUE
+                                                                                             + " to " + Long.MAX_VALUE + ").");
         } finally {
             SCANNER.close();
         }
@@ -120,21 +120,20 @@ public class ReadingConsole implements Reading {
      * Reads a {@code char} type value from the console.
      *
      * @return Returns the result of reading.
-     * @throws NoSuchElementException If input is exhausted.
-     * @throws IllegalStateException  If this scanner is closed.
+     * @throws NoSuchElementException   If input is exhausted.
+     * @throws IllegalStateException    If this scanner is closed.
      * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
      * @see Scanner#nextInt()
      * @since 1.0
      */
     @Override
     public char readChar() {
-        //todo Understand negative values for unicode characters. Write the appropriate check.
         char resultCharRead;
         try {
             resultCharRead = (char) SCANNER.nextInt();
         } catch (InputMismatchException ex) {
-            String msgEx = "Value is not a char or is out of range (from " + Character.MIN_VALUE + " to " + Character.MAX_VALUE + ").";
-            throw new ValueOutOfRangeException(msgEx);
+            throw new ValueOutOfRangeException("Value is not a char or is out of range (from " + Character.MIN_VALUE
+                                                                                      + " to " + Character.MAX_VALUE + ").");
         } finally {
             SCANNER.close();
         }
@@ -145,8 +144,8 @@ public class ReadingConsole implements Reading {
      * Reads a {@code float} type value from the console.
      *
      * @return Returns the result of reading.
-     * @throws NoSuchElementException If input is exhausted.
-     * @throws IllegalStateException  If this scanner is closed.
+     * @throws NoSuchElementException   If input is exhausted.
+     * @throws IllegalStateException    If this scanner is closed.
      * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
      * @since 1.0
      */
@@ -156,8 +155,8 @@ public class ReadingConsole implements Reading {
         try {
             resultFloatRead = SCANNER.nextFloat();
         } catch (InputMismatchException ex) {
-            String msgEx = "Value is not a char or is out of range (from " + Float.MIN_VALUE + " to " + Float.MAX_VALUE + ").";
-            throw new ValueOutOfRangeException(msgEx);
+            throw new ValueOutOfRangeException("Value is not a float number or is out of range (from " + Float.MIN_VALUE
+                                                                                              + " to " + Float.MAX_VALUE + ").");
         } finally {
             SCANNER.close();
         }
@@ -168,8 +167,8 @@ public class ReadingConsole implements Reading {
      * Reads a {@code double} type value from the console.
      *
      * @return Returns the result of reading.
-     * @throws NoSuchElementException If input is exhausted.
-     * @throws IllegalStateException  If this scanner is closed.
+     * @throws NoSuchElementException   If input is exhausted.
+     * @throws IllegalStateException    If this scanner is closed.
      * @throws ValueOutOfRangeException If the reading value is not number or is out of range.
      * @since 1.0
      */
@@ -179,8 +178,8 @@ public class ReadingConsole implements Reading {
         try {
             resultDoubleRead = SCANNER.nextDouble();
         } catch (InputMismatchException ex) {
-            String msgEx = "Value is not a char or is out of range (from " + Double.MIN_VALUE + " to " + Double.MAX_VALUE + ").";
-            throw new ValueOutOfRangeException(msgEx);
+            throw new ValueOutOfRangeException("Value is not a double or is out of range (from " + Double.MIN_VALUE
+                                                                                        + " to " + Double.MAX_VALUE + ").");
         } finally {
             SCANNER.close();
         }
@@ -192,7 +191,7 @@ public class ReadingConsole implements Reading {
      *
      * @return Returns the result of reading.
      * @throws NoSuchElementException If no line was found.
-     * @throws IllegalStateException If this scanner is closed.
+     * @throws IllegalStateException  If this scanner is closed.
      * @since 1.0
      */
     @Override
