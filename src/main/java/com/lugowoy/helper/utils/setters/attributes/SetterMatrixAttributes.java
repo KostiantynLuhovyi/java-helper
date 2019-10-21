@@ -1,7 +1,7 @@
 package com.lugowoy.helper.utils.setters.attributes;
 
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.Matrix;
+import com.lugowoy.helper.models.matrices.Matrix;
 
 import java.io.IOException;
 import java.io.OutputStream;

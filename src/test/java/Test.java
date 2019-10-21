@@ -19,7 +19,7 @@ public class Test {
 
         System.out.println("Array : " + array);
 
-        Integer[] integers = new Integer[matrix.getRows()];
+        Integer[] integers = new Integer[matrix.rows()];
 
         matrix.getColumn(integers, 2);
 
@@ -37,16 +37,16 @@ public class Test {
         System.out.println("Columns");
         System.out.println(matrix.getColumn(4));
         System.out.println("------------");
-        System.out.println(Arrays.toString(matrix.getColumn(new Integer[matrix.getColumns()], 4)));
+        System.out.println(Arrays.toString(matrix.getColumn(new Integer[matrix.columns()], 4)));
         System.out.println("------------");
-        System.out.println(matrix.getColumn(Array.create(matrix.getColumns()), 4));
+        System.out.println(matrix.getColumn(Array.create(matrix.columns()), 4));
 
         System.out.println("Rows");
         System.out.println(matrix.getRow(4));
         System.out.println("------------");
-        System.out.println(Arrays.toString(matrix.getRow(new Integer[matrix.getRows()], 4)));
+        System.out.println(Arrays.toString(matrix.getRow(new Integer[matrix.rows()], 4)));
         System.out.println("------------");
-        System.out.println(matrix.getRow(Array.create(matrix.getRows()), 4));
+        System.out.println(matrix.getRow(Array.create(matrix.rows()), 4));
 
         Integer[] integers = new Integer[]{-2, -2, -2, -2, -2};
         matrix.setRow(integers, 0);
@@ -99,7 +99,7 @@ public class Test {
 
         setMatrixAttributes(matrix, new ReadingConsole(), System.out, MSG_ENTER_CONSOLE_ROW, MSG_ENTER_CONSOLE_COLUMN);
 
-        matrix.setMatrix(new FillingMatrixRandomInteger().fill(matrix.getRows(), matrix.getColumns()));*/
+        matrix.setMatrix(new FillingMatrixRandomInteger().fill(matrix.rows(), matrix.columns()));*/
 
 /*        Point2D<Double> point2D = new Point2D<>(7.0, 7.0);
         System.out.println(point2D);
