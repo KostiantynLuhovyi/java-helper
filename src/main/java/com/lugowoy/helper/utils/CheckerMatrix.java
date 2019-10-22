@@ -1,15 +1,15 @@
 package com.lugowoy.helper.utils;
 
-import com.lugowoy.helper.models.matrices.Matrix;
+import com.lugowoy.helper.models.matrices.AbstractMatrix;
 
 /**
  * Created by Konstantin Lugowoy on 21.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 2.0
  */
-
+//todo write doc's
 public interface CheckerMatrix {
 
     int LOWER_ROWS_VALUE = 1;
@@ -17,17 +17,17 @@ public interface CheckerMatrix {
     int UPPER_ROWS_VALUE = Integer.MAX_VALUE;
     int UPPER_COLUMNS_VALUE = Integer.MAX_VALUE;
 
-    static <T> boolean checkMatrix(Matrix<T> matrix) {
+    static boolean checkMatrix(AbstractMatrix matrix) {
         if (matrix != null) {
-            if (matrix.rows() >= LOWER_ROWS_VALUE && matrix.rows() <= UPPER_ROWS_VALUE) {
-                if (matrix.columns() >= LOWER_COLUMNS_VALUE && matrix.columns() <= UPPER_COLUMNS_VALUE) {
+            if (matrix.getRowsLength() >= LOWER_ROWS_VALUE && matrix.getRowsLength() <= UPPER_ROWS_VALUE) {
+                if (matrix.getColumnsLength() >= LOWER_COLUMNS_VALUE && matrix.getColumnsLength() <= UPPER_COLUMNS_VALUE) {
                     return true;
                 } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix columns value is out of range (" + LOWER_COLUMNS_VALUE
+                    throw new MatrixColumnOutOfRangeException("Matrix getColumnsLength value is out of range (" + LOWER_COLUMNS_VALUE
                                                                                                + " - " + UPPER_COLUMNS_VALUE + ").");
                 }
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix rows value is out of range (" + LOWER_ROWS_VALUE
+                throw new MatrixRowOutOfRangeException("Matrix getRowsLength value is out of range (" + LOWER_ROWS_VALUE
                                                                                      + " - " + UPPER_ROWS_VALUE + ").");
             }
         } else {
@@ -41,11 +41,11 @@ public interface CheckerMatrix {
                 if (matrix[0].length >= LOWER_COLUMNS_VALUE && matrix[0].length <= UPPER_COLUMNS_VALUE) {
                     return true;
                 } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix columns value is out of range (" + LOWER_COLUMNS_VALUE
+                    throw new MatrixColumnOutOfRangeException("Matrix getColumnsLength value is out of range (" + LOWER_COLUMNS_VALUE
                                                                                                + " - " + UPPER_COLUMNS_VALUE + ").");
                 }
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix rows value is out of range (" + LOWER_ROWS_VALUE
+                throw new MatrixRowOutOfRangeException("Matrix getRowsLength value is out of range (" + LOWER_ROWS_VALUE
                                                                                      + " - " + UPPER_ROWS_VALUE + ").");
             }
         } else {
@@ -59,11 +59,11 @@ public interface CheckerMatrix {
                 if (matrix[0].length >= LOWER_COLUMNS_VALUE && matrix[0].length <= UPPER_COLUMNS_VALUE) {
                     return true;
                 } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix columns value is out of range (" + LOWER_COLUMNS_VALUE
+                    throw new MatrixColumnOutOfRangeException("Matrix getColumnsLength value is out of range (" + LOWER_COLUMNS_VALUE
                                                                                                + " - " + UPPER_COLUMNS_VALUE + ").");
                 }
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix rows value is out of range (" + LOWER_ROWS_VALUE
+                throw new MatrixRowOutOfRangeException("Matrix getRowsLength value is out of range (" + LOWER_ROWS_VALUE
                                                                                      + " - " + UPPER_ROWS_VALUE + ").");
             }
         } else {
@@ -77,11 +77,11 @@ public interface CheckerMatrix {
                 if (matrix[0].length >= LOWER_COLUMNS_VALUE && matrix[0].length <= UPPER_COLUMNS_VALUE) {
                     return true;
                 } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix columns value is out of range (" + LOWER_COLUMNS_VALUE
+                    throw new MatrixColumnOutOfRangeException("Matrix getColumnsLength value is out of range (" + LOWER_COLUMNS_VALUE
                                                                                                + " - " + UPPER_COLUMNS_VALUE + ").");
                 }
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix rows value is out of range (" + LOWER_ROWS_VALUE
+                throw new MatrixRowOutOfRangeException("Matrix getRowsLength value is out of range (" + LOWER_ROWS_VALUE
                                                                                      + " - " + UPPER_ROWS_VALUE + ").");
             }
         } else {
@@ -93,7 +93,7 @@ public interface CheckerMatrix {
         if (rows >= LOWER_ROWS_VALUE && rows <= UPPER_ROWS_VALUE) {
             return true;
         } else {
-            throw new MatrixRowOutOfRangeException("Matrix rows value is out of range (" + LOWER_ROWS_VALUE
+            throw new MatrixRowOutOfRangeException("Matrix getRowsLength value is out of range (" + LOWER_ROWS_VALUE
                                                                                  + " - " + UPPER_ROWS_VALUE + ").");
         }
     }
@@ -104,7 +104,7 @@ public interface CheckerMatrix {
             if (rows >= LOWER_ROWS_VALUE && rows <= UPPER_ROWS_VALUE) {
                 resultCheckRows = true;
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix rows value is out of range (" + LOWER_ROWS_VALUE
+                throw new MatrixRowOutOfRangeException("Matrix getRowsLength value is out of range (" + LOWER_ROWS_VALUE
                                                                                      + " - " + UPPER_ROWS_VALUE + ").");
             }
         }
@@ -119,7 +119,7 @@ public interface CheckerMatrix {
                 if (rows >= LOWER_ROWS_VALUE && rows <= UPPER_ROWS_VALUE) {
                     resultCheckRows = true;
                 } else {
-                    throw new MatrixRowOutOfRangeException("Matrix rows value is out of range (" + LOWER_ROWS_VALUE
+                    throw new MatrixRowOutOfRangeException("Matrix getRowsLength value is out of range (" + LOWER_ROWS_VALUE
                                                                                          + " - " + UPPER_ROWS_VALUE + ").");
                 }
             }
@@ -131,7 +131,7 @@ public interface CheckerMatrix {
         if (columns >= LOWER_COLUMNS_VALUE && columns <= UPPER_COLUMNS_VALUE) {
             return true;
         } else {
-            throw new MatrixColumnOutOfRangeException("Matrix columns value is out of range (" + LOWER_COLUMNS_VALUE
+            throw new MatrixColumnOutOfRangeException("Matrix getColumnsLength value is out of range (" + LOWER_COLUMNS_VALUE
                                                                                     + " - " + UPPER_COLUMNS_VALUE + ").");
         }
     }
@@ -142,7 +142,7 @@ public interface CheckerMatrix {
             if (columns >= LOWER_COLUMNS_VALUE && columns <= UPPER_COLUMNS_VALUE) {
                 resultCheckColumns = true;
             } else {
-                throw new MatrixColumnOutOfRangeException("Matrix columns value is out of range (" + LOWER_COLUMNS_VALUE
+                throw new MatrixColumnOutOfRangeException("Matrix getColumnsLength value is out of range (" + LOWER_COLUMNS_VALUE
                                                                                            + " - " + UPPER_COLUMNS_VALUE + ").");
             }
         }
@@ -157,7 +157,7 @@ public interface CheckerMatrix {
                 if (columns >= lowerBoundColumns && columns <= upperBoundColumns) {
                     resultCheckColumns = true;
                 } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix columns value is out of range (" + LOWER_COLUMNS_VALUE
+                    throw new MatrixColumnOutOfRangeException("Matrix getColumnsLength value is out of range (" + LOWER_COLUMNS_VALUE
                                                                                                + " - " + UPPER_COLUMNS_VALUE + ").");
                 }
             }

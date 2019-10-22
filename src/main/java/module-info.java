@@ -8,4 +8,5 @@ module java.helper {
     requires java.base;
     requires org.apache.commons.lang3;
     requires commons.math3;
+    requires cloning;
 }
