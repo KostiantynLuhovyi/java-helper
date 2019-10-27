@@ -19,7 +19,7 @@ public class Test {
 
         System.out.println("Array : " + array);
 
-        Integer[] integers = new Integer[matrix.getRowsLength()];
+        Integer[] integers = new Integer[matrix.getRows()];
 
         matrix.getColumnToArray(integers, 2);
 
@@ -37,16 +37,16 @@ public class Test {
         System.out.println("Columns");
         System.out.println(matrix.getColumnToArray(4));
         System.out.println("------------");
-        System.out.println(Arrays.toString(matrix.getColumnToArray(new Integer[matrix.getColumnsLength()], 4)));
+        System.out.println(Arrays.toString(matrix.getColumnToArray(new Integer[matrix.getColumns()], 4)));
         System.out.println("------------");
-        System.out.println(matrix.getColumnToArray(Array.create(matrix.getColumnsLength()), 4));
+        System.out.println(matrix.getColumnToArray(Array.create(matrix.getColumns()), 4));
 
         System.out.println("Rows");
         System.out.println(matrix.getRowToArray(4));
         System.out.println("------------");
-        System.out.println(Arrays.toString(matrix.getRowToArray(new Integer[matrix.getRowsLength()], 4)));
+        System.out.println(Arrays.toString(matrix.getRowToArray(new Integer[matrix.getRows()], 4)));
         System.out.println("------------");
-        System.out.println(matrix.getRowToArray(Array.create(matrix.getRowsLength()), 4));
+        System.out.println(matrix.getRowToArray(Array.create(matrix.getRows()), 4));
 
         Integer[] integers = new Integer[]{-2, -2, -2, -2, -2};
         matrix.setRowFromArray(integers, 0);
@@ -99,7 +99,7 @@ public class Test {
 
         setMatrixAttributes(matrix, new ReadingConsole(), System.out, MSG_ENTER_CONSOLE_ROW, MSG_ENTER_CONSOLE_COLUMN);
 
-        matrix.setMatrix(new FillingMatrixRandomInteger().fill(matrix.getRowsLength(), matrix.getColumnsLength()));*/
+        matrix.setMatrix(new FillingMatrixRandomInteger().fill(matrix.getRows(), matrix.getColumns()));*/
 
 /*        Point2D<Double> point2D = new Point2D<>(7.0, 7.0);
         System.out.println(point2D);

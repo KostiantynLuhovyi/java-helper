@@ -3,7 +3,6 @@ package com.lugowoy.helper.models.matrices;
 import com.lugowoy.helper.utils.CheckerIndex;
 import com.lugowoy.helper.utils.CheckerLengthArray;
 import com.lugowoy.helper.utils.CheckerMatrix;
-import com.rits.cloning.Cloner;
 
 import java.util.Arrays;
 
@@ -20,27 +19,27 @@ public class MatrixInt extends AbstractMatrix {
     private int[][] matrix;
 
     public MatrixInt() {
-        matrix = new int[super.getRowsLength()][super.getRowsLength()];
+        matrix = new int[super.getRows()][super.getRows()];
     }
 
     public MatrixInt(int rows, int columns) {
         super(rows, columns);
-        this.matrix = new int[super.getRowsLength()][super.getColumnsLength()];
+        this.matrix = new int[super.getRows()][super.getColumns()];
     }
 
     public MatrixInt(int[][] matrix) {
         if (CheckerMatrix.checkMatrix(matrix)) {
-            super.setRowsLength(matrix.length);
-            super.setColumnsLength(matrix[0].length);
-            this.matrix = new Cloner().deepClone(matrix);
+            super.setRows(matrix.length);
+            super.setColumns(matrix[0].length);
+            this.matrix = matrix;
         }
     }
 
     public MatrixInt(MatrixInt matrixInt) {
         if (CheckerMatrix.checkMatrix(matrixInt)) {
-            super.setRowsLength(matrixInt.getRowsLength());
-            super.setColumnsLength(matrixInt.getColumnsLength());
-            this.matrix = new Cloner().deepClone(matrix);
+            super.setRows(matrixInt.getRows());
+            super.setColumns(matrixInt.getColumns());
+            this.matrix = matrixInt.getMatrix();
         }
     }
 
@@ -74,8 +73,8 @@ public class MatrixInt extends AbstractMatrix {
 
     public void setMatrix(int[][] matrix) {
         if (CheckerMatrix.checkMatrix(matrix)) {
-            this.setRowsLength(matrix.length);
-            this.setColumnsLength(matrix[0].length);
+            this.setRows(matrix.length);
+            this.setColumns(matrix[0].length);
             this.matrix = matrix;
         }
     }
@@ -86,9 +85,9 @@ public class MatrixInt extends AbstractMatrix {
 
     public int[][] toMatrix(int[][] matrix) {
         if (CheckerMatrix.checkMatrix(matrix)) {
-            if (super.getRowsLength() == matrix.length && super.getColumnsLength() == matrix[0].length) {
-                for (int i = 0; i < super.getRowsLength(); i++) {
-                    matrix[i] = this.matrix[i].clone();
+            if (super.getRows() == matrix.length && super.getColumns() == matrix[0].length) {
+                for (int i = 0; i < super.getRows(); i++) {
+                    this.matrix[i] = Arrays.copyOf(matrix[i], matrix[i].length);
                 }
             } else {
                 //todo add another exception
@@ -100,25 +99,25 @@ public class MatrixInt extends AbstractMatrix {
 
     public int[] getRowToArray(int indexRow) {
         int[] array = new int[0];
-        if (CheckerIndex.checkIndex(indexRow, super.getColumnsLength())) {
-            array = Arrays.copyOfRange(this.matrix[indexRow], 0, super.getColumnsLength());
+        if (CheckerIndex.checkIndex(indexRow, super.getColumns())) {
+            array = Arrays.copyOfRange(this.matrix[indexRow], 0, super.getColumns());
         }
         return array;
     }
 
     public int[] getRowToArray(int[] array, int indexRow) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getColumnsLength())) {
-            if (CheckerIndex.checkIndex(indexRow, super.getColumnsLength())) {
-                array = Arrays.copyOfRange(this.matrix[indexRow], 0, super.getColumnsLength());
+        if (CheckerLengthArray.checkLengthInArray(array, super.getColumns())) {
+            if (CheckerIndex.checkIndex(indexRow, super.getColumns())) {
+                array = Arrays.copyOfRange(this.matrix[indexRow], 0, super.getColumns());
             }
         }
         return array;
     }
 
     public int[] getColumnToArray(int indexColumn) {
-        int[] array = new int[super.getColumnsLength()];
-        if (CheckerIndex.checkIndex(indexColumn, super.getRowsLength())) {
-            for (int i = 0; i < super.getRowsLength(); i++) {
+        int[] array = new int[super.getColumns()];
+        if (CheckerIndex.checkIndex(indexColumn, super.getRows())) {
+            for (int i = 0; i < super.getRows(); i++) {
                 array[i] = this.matrix[i][indexColumn];
             }
         }
@@ -126,9 +125,9 @@ public class MatrixInt extends AbstractMatrix {
     }
 
     public int[] getColumnToArray(int[] array, int indexColumn) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getRowsLength())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getRowsLength())) {
-                for (int i = 0; i < super.getRowsLength(); i++) {
+        if (CheckerLengthArray.checkLengthInArray(array, super.getRows())) {
+            if (CheckerIndex.checkIndex(indexColumn, super.getRows())) {
+                for (int i = 0; i < super.getRows(); i++) {
                     array[i] = this.matrix[i][indexColumn];
                 }
             }
@@ -137,17 +136,17 @@ public class MatrixInt extends AbstractMatrix {
     }
 
     public void setRowFromArray(int[] array, int indexRow) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getColumnsLength())) {
-            if (CheckerIndex.checkIndex(indexRow, super.getColumnsLength())) {
+        if (CheckerLengthArray.checkLengthInArray(array, super.getColumns())) {
+            if (CheckerIndex.checkIndex(indexRow, super.getColumns())) {
                 this.matrix[indexRow] = Arrays.copyOfRange(array, 0, array.length);
             }
         }
     }
 
     public void setColumnFromArray(int[] array, int indexColumn) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getRowsLength())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getRowsLength())) {
-                for (int i = 0; i < super.getColumnsLength(); i++) {
+        if (CheckerLengthArray.checkLengthInArray(array, super.getRows())) {
+            if (CheckerIndex.checkIndex(indexColumn, super.getRows())) {
+                for (int i = 0; i < super.getColumns(); i++) {
                     this.matrix[i][indexColumn] = array[i];
                 }
             }
@@ -155,11 +154,11 @@ public class MatrixInt extends AbstractMatrix {
     }
 
     public void compressRow(int indexRow) {
-        if (CheckerIndex.checkIndex(indexRow, super.getRowsLength())) {
-            int[][] tmpMatrix = new int[super.getRowsLength() - 1][super.getColumnsLength()];
+        if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
+            int[][] tmpMatrix = new int[super.getRows() - 1][super.getColumns()];
             int tmpIndexRow = 0;
-            for (int i = 0; i < super.getRowsLength(); i++) {
-                for (int j = 0; j < super.getColumnsLength(); j++) {
+            for (int i = 0; i < super.getRows(); i++) {
+                for (int j = 0; j < super.getColumns(); j++) {
                     if (i == indexRow) {
                         tmpIndexRow = 1;
                         break;
@@ -173,11 +172,11 @@ public class MatrixInt extends AbstractMatrix {
     }
 
     public void compressColumn(int indexColumn) {
-        if (CheckerIndex.checkIndex(indexColumn, super.getColumnsLength())) {
-            int[][] tmpMatrix = new int[super.getRowsLength()][super.getColumnsLength() - 1];
+        if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
+            int[][] tmpMatrix = new int[super.getRows()][super.getColumns() - 1];
             int tmpIndexColumn = 0;
-            for (int i = 0; i < super.getRowsLength(); i++) {
-                for (int j = 0; j < super.getColumnsLength(); j++) {
+            for (int i = 0; i < super.getRows(); i++) {
+                for (int j = 0; j < super.getColumns(); j++) {
                     if (j == indexColumn) {
                         tmpIndexColumn = 1;
                     } else {
@@ -192,8 +191,8 @@ public class MatrixInt extends AbstractMatrix {
 
     public int getElement(int indexRow, int indexColumn) {
         int elementValue = 0;
-        if (CheckerIndex.checkIndex(indexRow, super.getRowsLength())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getColumnsLength())) {
+        if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
+            if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
                 elementValue = this.matrix[indexRow][indexColumn];
             }
         }
@@ -201,8 +200,8 @@ public class MatrixInt extends AbstractMatrix {
     }
 
     public void setElement(int element, int indexRow, int indexColumn) {
-        if (CheckerIndex.checkIndex(indexRow, super.getRowsLength())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getColumnsLength())) {
+        if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
+            if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
                 this.matrix[indexRow][indexColumn] = element;
             }
         }

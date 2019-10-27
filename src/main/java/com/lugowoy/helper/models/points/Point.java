@@ -16,10 +16,6 @@ import java.util.Objects;
  * @see java.lang.Cloneable
  * @since 1.0
  */
-
-//todo refactoring code
-//todo edit doc's
-
 public abstract class Point<T extends Number> implements Model {
 
     private T x;

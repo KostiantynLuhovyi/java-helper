@@ -23,8 +23,8 @@ public class SetterMatrixAttributes implements SetterAttributes<AbstractMatrix> 
     @Override
     public void setAttributes(AbstractMatrix matrix) {
         if (matrix != null) {
-            matrix.setRowsLength(Matrix.DEFAULT_ROWS);
-            matrix.setColumnsLength(Matrix.DEFAULT_COLUMNS);
+            matrix.setRows(Matrix.DEFAULT_ROWS);
+            matrix.setColumns(Matrix.DEFAULT_COLUMNS);
         } else {
             throw new NullPointerException("Matrix is null");
         }
@@ -34,8 +34,8 @@ public class SetterMatrixAttributes implements SetterAttributes<AbstractMatrix> 
     public void setAttributes(AbstractMatrix matrix, Reading reader) {
         if (matrix != null) {
             if (reader != null) {
-                matrix.setRowsLength(reader.readInt());
-                matrix.setColumnsLength(reader.readInt());
+                matrix.setRows(reader.readInt());
+                matrix.setColumns(reader.readInt());
             } else {
                 throw new NullPointerException("Reader is null.");
             }
@@ -47,8 +47,8 @@ public class SetterMatrixAttributes implements SetterAttributes<AbstractMatrix> 
     public void setAttributes(AbstractMatrix matrix, int rows, int columns) {
         if (matrix != null) {
             //todo add checking value of row and column
-            matrix.setRowsLength(rows);
-            matrix.setColumnsLength(columns);
+            matrix.setRows(rows);
+            matrix.setColumns(columns);
         } else {
             throw new NullPointerException("Matrix is null.");
         }
@@ -61,9 +61,9 @@ public class SetterMatrixAttributes implements SetterAttributes<AbstractMatrix> 
                 if (outputStreamToMsg != null) {
                     try (outputStreamToMsg) {
                         outputStreamToMsg.write(msgRow.getBytes());
-                        matrix.setRowsLength(reader.readInt());
+                        matrix.setRows(reader.readInt());
                         outputStreamToMsg.write(msgColumn.getBytes());
-                        matrix.setColumnsLength(reader.readInt());
+                        matrix.setColumns(reader.readInt());
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }

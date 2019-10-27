@@ -15,10 +15,6 @@ import java.util.Objects;
  * @see java.lang.Cloneable
  * @since 1.6
  */
-
-//todo refactoring code
-//todo edit doc's
-
 public class Point2D<T extends Number> extends Point<T> {
 
     private T y;
