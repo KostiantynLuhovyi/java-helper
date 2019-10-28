@@ -9,7 +9,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 2.0
  */
 //todo write doc's
@@ -28,14 +28,6 @@ public abstract class AbstractArray implements Model, RandomAccess {
         this.cursorElement = 0;
     }
 
-    int getCursorElement() {
-        return this.cursorElement;
-    }
-
-    void setCursorElement(int cursorElement) {
-        this.cursorElement = cursorElement;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,5 +40,15 @@ public abstract class AbstractArray implements Model, RandomAccess {
     public int hashCode() {
         return Objects.hash(getCursorElement());
     }
+
+    int getCursorElement() {
+        return this.cursorElement;
+    }
+
+    void setCursorElement(int cursorElement) {
+        this.cursorElement = cursorElement;
+    }
+
+    public abstract void setArray(int lengthArray);
 
 }

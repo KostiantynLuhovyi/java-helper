@@ -1,19 +1,18 @@
 package com.lugowoy.helper.models.storages.arrays;
 
-import com.lugowoy.helper.utils.CheckerIndex;
-import com.lugowoy.helper.utils.CheckerLengthArray;
+import com.lugowoy.helper.utils.checking.CheckerIndex;
+import com.lugowoy.helper.utils.checking.CheckerLengthArray;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.RandomAccess;
 import java.util.function.Consumer;
 
 /**
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 2.0
  */
 //todo write doc's
@@ -152,6 +151,13 @@ public class ArrayInts extends AbstractArray {
     public void setArray(int[] arrayInts) {
         if (CheckerLengthArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = Arrays.copyOf(arrayInts, arrayInts.length);
+        }
+    }
+
+    @Override
+    public void setArray(int lengthArray) {
+        if (CheckerLengthArray.checkLengthArray(lengthArray)) {
+            this.arrayInts = new int[lengthArray];
         }
     }
 

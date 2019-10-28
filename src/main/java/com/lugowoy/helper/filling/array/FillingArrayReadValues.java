@@ -3,7 +3,7 @@ package com.lugowoy.helper.filling.array;
 import com.lugowoy.helper.filling.FillingReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
  * This abstract class providing functionality for filling an array or object of the {@link Array} class
@@ -64,7 +64,7 @@ public abstract class FillingArrayReadValues<T> extends FillingReadValues implem
      * Fills an array with read data.
      * <p>The array is created based on the {@code lengthArray} parameter.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link com.lugowoy.helper.other.LengthValueOutOfRangeException} will be thrown.
+     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with read data.
      * @return Created and filled array with read data.

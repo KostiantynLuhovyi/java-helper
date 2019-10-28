@@ -1,8 +1,8 @@
 package com.lugowoy.helper.models.matrices;
 
-import com.lugowoy.helper.utils.CheckerIndex;
-import com.lugowoy.helper.utils.CheckerLengthArray;
-import com.lugowoy.helper.utils.CheckerMatrix;
+import com.lugowoy.helper.utils.checking.CheckerIndex;
+import com.lugowoy.helper.utils.checking.CheckerLengthArray;
+import com.lugowoy.helper.utils.checking.CheckerMatrix;
 
 import java.util.Arrays;
 

@@ -2,6 +2,9 @@ package com.lugowoy.helper.models.matrices;
 
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.*;
+import com.lugowoy.helper.utils.checking.CheckerIndex;
+import com.lugowoy.helper.utils.checking.CheckerLengthArray;
+import com.lugowoy.helper.utils.checking.CheckerMatrix;
 
 import java.util.Arrays;
 

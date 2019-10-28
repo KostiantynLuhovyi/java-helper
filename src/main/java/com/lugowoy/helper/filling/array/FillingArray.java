@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.array;
 
 import com.lugowoy.helper.filling.Filling;
-import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
  * The interface declares a contract for filling an array or object of the {@link Array} class with data.
@@ -33,7 +33,7 @@ public interface FillingArray<T> extends Filling<Array<T>> {
      * Fills an array with data.
      * <p>The array is created based on the {@code lengthArray} parameter.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link com.lugowoy.helper.other.LengthValueOutOfRangeException} will be thrown.
+     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with data.
      * @return Created and filled array with data.

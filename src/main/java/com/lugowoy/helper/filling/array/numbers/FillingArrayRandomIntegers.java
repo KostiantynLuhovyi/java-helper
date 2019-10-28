@@ -1,12 +1,13 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.models.Array;
-import com.lugowoy.helper.other.BoundOutOfRangeException;
-import com.lugowoy.helper.other.GeneratorRandomNumber;
-import com.lugowoy.helper.other.IncorrectBoundCompareException;
-import com.lugowoy.helper.other.LengthValueOutOfRangeException;
+import com.lugowoy.helper.models.storages.arrays.Array;
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
-import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
+import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBounds;
+import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrEqualThanUpperBound;
+import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
+import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthInArray;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface to fills a classic array and
@@ -14,7 +15,7 @@ import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.7
+ * @version 1.8
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
@@ -31,12 +32,10 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      */
     @Override
     public void fill(Array<Integer> array) {
-        if (isNonNullArray(array)) {
-            Integer[] integers = new Integer[array.getLength()];
+        if (checkLengthInArray(array)) {
+            Integer[] integers = new Integer[array.size()];
             this.fillArrayRandomIntegers(integers);
             array.setArray(integers);
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("Array argument is null."));
         }
     }
 
@@ -50,10 +49,8 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      */
     @Override
     public void fill(Integer[] integers) {
-        if (isNonNullArray(integers)) {
+        if (checkLengthInArray(integers)) {
             this.fillArrayRandomIntegers(integers);
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("Array argument is null."));
         }
     }
 
@@ -71,13 +68,10 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      */
     @Override
     public Integer[] fill(int lengthArray) {
-        Integer[] integers;
+        Integer[] integers = new Integer[0];
         if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
             this.fillArrayRandomIntegers(integers);
-        } else {
-            throw new LengthValueOutOfRangeException("Array length value is out of range." + " (" + lengthArray
-                                                                                           + " : valid 0 - " + Integer.MAX_VALUE + ")");
         }
         return integers;
     }
@@ -95,16 +89,12 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) {
-        if (isNonNullArray(array)) {
-            Integer[] integers = new Integer[array.getLength()];
-            if (isCorrectBounds(bound, 0, Integer.MAX_VALUE)) {
+        if (checkLengthInArray(array)) {
+            Integer[] integers = new Integer[array.size()];
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
                 this.fillArrayRandomIntegersFromZeroToPositiveBound(integers, bound);
                 array.setArray(integers);
-            } else {
-                throw new BoundOutOfRangeException("Bound value is out of range.");
             }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("Array argument is null."));
         }
     }
 
@@ -115,20 +105,16 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * then a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param integers The array to fill with pseudo-random numeric data of the type {@link Integer}.
-     * @param bound   The upper bound for generating pseudo-random numbers to fill.
+     * @param bound    The upper bound for generating pseudo-random numbers to fill.
      * @throws NullPointerException     If the {@code integers} array argument is null.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Integer[] integers, Integer bound) {
-        if (isNonNullArray(integers)) {
-            if (isCorrectBounds(bound, 0, Integer.MAX_VALUE)) {
+        if (checkLengthInArray(integers)) {
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
                 this.fillArrayRandomIntegersFromZeroToPositiveBound(integers, bound);
-            } else {
-                throw new BoundOutOfRangeException("Bound value is out of range.");
             }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("Array argument is null."));
         }
     }
 
@@ -145,21 +131,16 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * @param bound       The upper bound for generating pseudo-random numbers to fill.
      * @return Created and filled an array with pseudo-random numeric data of the type {@link Integer}.
      * @throws LengthValueOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @throws BoundOutOfRangeException       If the {@code bound} argument value is out of valid range.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
-        Integer[] integers;
+        Integer[] integers = new Integer[0];
         if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (isCorrectBounds(bound, 0, Integer.MAX_VALUE)) {
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
                 this.fillArrayRandomIntegersFromZeroToPositiveBound(integers, bound);
-            } else {
-                throw new BoundOutOfRangeException("Bound value is out of range.");
             }
-        } else {
-            throw new LengthValueOutOfRangeException("Array length value is out of range." + " (" + lengthArray
-                                                                                           + " : valid 0 - " + Integer.MAX_VALUE + ")");
         }
         return integers;
     }
@@ -171,30 +152,23 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * to {@link Integer#MAX_VALUE} or if the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value,
      * then a {@link BoundOutOfRangeException} exception exception will be thrown.
      *
-     * @param array The object of the {@link Array} class to fill with pseudo-random numeric data of the type {@link Integer}.
+     * @param array      The object of the {@link Array} class to fill with pseudo-random numeric data of the type {@link Integer}.
      * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
      * @param upperBound The upper bound for generating pseudo-random numbers to fill.
      * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
-     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Array<Integer> array, Integer lowerBound, Integer upperBound) {
-        if (isNonNullArray(array)) {
-            Integer[] integers = new Integer[array.getLength()];
-            if (isCorrectBounds(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && isCorrectBounds(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
+        if (checkLengthInArray(array)) {
+            Integer[] integers = new Integer[array.size()];
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
                 if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillArrayRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
                     array.setArray(integers);
-                } else {
-                    throw new IncorrectBoundCompareException("Lower bound is greatest or not equal than upper bound.");
                 }
-            } else {
-                throw new BoundOutOfRangeException("Bound values is out of range.");
             }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("Array argument is null."));
         }
     }
 
@@ -205,28 +179,21 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * to {@link Integer#MAX_VALUE} or if the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value,
      * then a {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param integers The array to fill with pseudo-random numeric data of the type {@link Integer}.
+     * @param integers   The array to fill with pseudo-random numeric data of the type {@link Integer}.
      * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
      * @param upperBound The upper bound for generating pseudo-random numbers to fill.
      * @throws NullPointerException     If the {@code integers} array argument is null.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
-     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Integer[] integers, Integer lowerBound, Integer upperBound) {
-        if (isNonNullArray(integers)) {
-            if (isCorrectBounds(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && isCorrectBounds(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
+        if (checkLengthInArray(integers)) {
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
                 if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillArrayRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                } else {
-                    throw new IncorrectBoundCompareException("Lower bound is greatest or not equal than upper bound.");
                 }
-            } else {
-                throw new BoundOutOfRangeException("Bound values is out of range.");
             }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("Array argument is null."));
         }
     }
 
@@ -241,30 +208,22 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * then a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with pseudo-random numeric data of the type {@link Integer}.
-     * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
-     * @param upperBound The upper bound for generating pseudo-random numbers to fill.
+     * @param lowerBound  The lower bound for generating pseudo-random numbers to fill.
+     * @param upperBound  The upper bound for generating pseudo-random numbers to fill.
      * @throws LengthValueOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
-     * @throws IncorrectBoundCompareException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws BoundOutOfRangeException       If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
+     * @throws BoundOutOfRangeException       If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer lowerBound, Integer upperBound) {
-        Integer[] integers;
+        Integer[] integers = new Integer[0];
         if (checkLengthArray(lengthArray)) {
             integers = new Integer[lengthArray];
-            if (isCorrectBounds(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && isCorrectBounds(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
                 if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillArrayRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                } else {
-                    throw new IncorrectBoundCompareException("Lower bound is greatest or not equal than upper bound.");
                 }
-            } else {
-                throw new BoundOutOfRangeException("Bound values is out of range.");
             }
-        } else {
-            throw new LengthValueOutOfRangeException("Array length value is out of range." + " (" + lengthArray
-                                                                                           + " : valid 0 - " + Integer.MAX_VALUE + ")");
         }
         return integers;
     }

@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.array.FillerArray;
-import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
  * The class provides a container for storing and using (delegates execution)
@@ -53,7 +53,7 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
      * Fills an array with numerical data.
      * <p>The array is created based on the {@code lengthArray} argument.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link com.lugowoy.helper.other.LengthValueOutOfRangeException} will be thrown.
+     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with numerical data.
      * @return Created and filled array with numerical data.
@@ -89,7 +89,7 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
      * Fills an array with numerical data.
      * <p>The array is created based on the {@code lengthArray} argument.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link com.lugowoy.helper.other.LengthValueOutOfRangeException} will be thrown.
+     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
      * <p>Numerical values for filling will be in the range from 0 to {@code bound} argument.
      *
      * @param lengthArray The length(size) of the array to fill with numerical data.
@@ -128,7 +128,7 @@ public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
      * Fills an array with numerical data.
      * <p>The array is created based on the {@code lengthArray} argument.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link com.lugowoy.helper.other.LengthValueOutOfRangeException} will be thrown.
+     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
      * <p>Numerical values for filling will be in the range from 0 to {@code bound} argument.
      *
      * @param lengthArray The length(size) of the array to fill with numerical data.

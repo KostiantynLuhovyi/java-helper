@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.array;
 
 import com.lugowoy.helper.filling.Filler;
-import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
  * The class provides a container for storing and using (delegates execution)
@@ -51,7 +51,7 @@ public abstract class FillerArray<T> extends Filler<Array<T>> {
      * Fills an array with data.
      * <p>The array is created based on the {@code lengthArray} parameter.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link com.lugowoy.helper.other.LengthValueOutOfRangeException} will be thrown.
+     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with data.
      * @return Created and filled array with data.

@@ -1,6 +1,8 @@
-package com.lugowoy.helper.utils;
+package com.lugowoy.helper.utils.checking;
 
 import com.lugowoy.helper.models.storages.arrays.Array;
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 
 /**
  * <p> Created by Konstantin Lugowoy on 08.06.2019

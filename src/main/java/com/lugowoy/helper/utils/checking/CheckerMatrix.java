@@ -1,6 +1,8 @@
-package com.lugowoy.helper.utils;
+package com.lugowoy.helper.utils.checking;
 
 import com.lugowoy.helper.models.matrices.AbstractMatrix;
+import com.lugowoy.helper.utils.MatrixColumnOutOfRangeException;
+import com.lugowoy.helper.utils.MatrixRowOutOfRangeException;
 
 /**
  * Created by Konstantin Lugowoy on 21.10.2019.

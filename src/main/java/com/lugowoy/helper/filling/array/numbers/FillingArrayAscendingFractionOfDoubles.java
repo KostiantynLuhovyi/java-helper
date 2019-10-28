@@ -1,11 +1,12 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.DefaultValuesForFilling;
-import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
-import static com.lugowoy.helper.filling.DefaultValuesForFilling.*;
-import static com.lugowoy.helper.filling.array.CheckerFillingArray.*;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
+import static com.lugowoy.helper.filling.DefaultNumericValues.DEFAULT_DOUBLE_VALUE;
+import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBounds;
+import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrEqualThanUpperBound;
+import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
+import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthInArray;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -14,16 +15,13 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-
-//todo refactoring code
 //todo edit doc's
-
-public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<Double> {
+public class FillingArrayAscendingFractionOfDoubles implements FillingArrayNumbers<Double> {
 
     /**
      * Fills an object of the {@link Array} class with sequential ascending decimal digit of numeric data of type {@link Double}.
@@ -34,13 +32,11 @@ public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<D
      * @throws NullPointerException If the object argument is null.
      */
     @Override
-    public void fill(Array<Double> array) throws IllegalArgumentException {
-        if (checkNonNullArray(array)) {
-            Double[] doubles = new Double[array.getLength()];
-            this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbers(doubles);
+    public void fill(Array<Double> array) {
+        if (checkLengthInArray(array)) {
+            Double[] doubles = new Double[array.size()];
+            this.fillArrayAscendingFractionOfDouble(doubles);
             array.setArray(doubles);
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -52,11 +48,9 @@ public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<D
      * @throws NullPointerException If the array argument is null.
      */
     @Override
-    public void fill(Double[] doubles) throws IllegalArgumentException {
-        if (checkNonNullArray(doubles)) {
-            this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbers(doubles);
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
+    public void fill(Double[] doubles) {
+        if (checkLengthInArray(doubles)) {
+            this.fillArrayAscendingFractionOfDouble(doubles);
         }
     }
 
@@ -72,13 +66,10 @@ public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<D
      */
     @Override
     public Double[] fill(int lengthArray) {
-        Double[] doubles;
+        Double[] doubles = new Double[0];
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbers(doubles);
-        } else {
-            doubles = new Double[DEFAULT_LENGTH];
-            this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbers(doubles);
+            this.fillArrayAscendingFractionOfDouble(doubles);
         }
         return doubles;
     }
@@ -95,19 +86,13 @@ public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<D
      * @throws NullPointerException If the object argument is null.
      */
     @Override
-    public void fill(Array<Double> array, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArray(array)) {
-            Double[] doubles = new Double[array.getLength()];
-            if (isPositiveBound(bound)) {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles, bound);
-                array.setArray(doubles);
-            } else {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles,
-                        POSITIVE_DOUBLE_BOUND);
+    public void fill(Array<Double> array, Double bound) {
+        if (checkLengthInArray(array)) {
+            Double[] doubles = new Double[array.size()];
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+                this.fillArrayAscendingFractionOfDoubleFromZeroToPositiveBound(doubles, bound);
                 array.setArray(doubles);
             }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
@@ -123,16 +108,11 @@ public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<D
      * @throws NullPointerException If the array argument is null.
      */
     @Override
-    public void fill(Double[] doubles, Double bound) throws IllegalArgumentException {
-        if (checkNonNullArray(doubles)) {
-            if (isPositiveBound(bound)) {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles, bound);
-            } else {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles,
-                        POSITIVE_DOUBLE_BOUND);
+    public void fill(Double[] doubles, Double bound) {
+        if (checkLengthInArray(doubles)) {
+            if (isCorrectBounds(bound)) {
+                this.fillArrayAscendingFractionOfDoubleFromZeroToPositiveBound(doubles, bound);
             }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -152,89 +132,68 @@ public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<D
      */
     @Override
     public Double[] fill(int lengthArray, Double bound) {
-        Double[] doubles;
+        Double[] doubles = new Double[0];
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isPositiveBound(bound)) {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles, bound);
-            } else {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles,
-                        POSITIVE_DOUBLE_BOUND);
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+                this.fillArrayAscendingFractionOfDoubleFromZeroToPositiveBound(doubles, bound);
             }
-        } else {
-            doubles = new Double[DEFAULT_LENGTH];
-            this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(doubles,
-                    POSITIVE_DOUBLE_BOUND);
         }
         return doubles;
     }
 
     /**
      * Fills an object of the {@link Array} class with sequential ascending decimal digit of numeric data of type {@link Double}.
-     * <p>The object of the {@link Array} class is filled with numeric data (increases by "0.1") from the value "startBound" to the value of the "endBound" parameters.
-     * If the value of the argument "startBound" is greater than the value of "endBound"
+     * <p>The object of the {@link Array} class is filled with numeric data (increases by "0.1") from the value "lowerBound" to the value of the "upperBound" parameters.
+     * If the value of the argument "lowerBound" is greater than the value of "upperBound"
      * or if one of the arguments is in the range from -32768 to 32768,
      * then the values {@link DefaultValuesForFilling#START_BOUND}
      * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
      * @param array      The object of the {@link Array} class that must be filled with
      *                   sequential ascending decimal digit of numeric data of type {@link Double}.
-     * @param startBound The value of the start bound for filling an object of the {@link Array} class with
+     * @param lowerBound The value of the start bound for filling an object of the {@link Array} class with
      *                   sequential ascending decimal digit of numeric data of type {@link Double}.
-     * @param endBound   The value of the end bound for filling an object of the {@link Array} class with
+     * @param upperBound The value of the end bound for filling an object of the {@link Array} class with
      *                   sequential ascending decimal digit of numeric data of type {@link Double}.
      * @throws NullPointerException If the object argument is null.
      */
     @Override
-    public void fill(Array<Double> array, Double startBound, Double endBound) throws IllegalArgumentException {
-        if (checkNonNullArray(array)) {
-            Double[] doubles = new Double[array.getLength()];
-            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                        startBound,
-                        endBound);
-                array.setArray(doubles);
-            } else {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                        START_BOUND,
-                        POSITIVE_DOUBLE_BOUND);
-                array.setArray(doubles);
+    public void fill(Array<Double> array, Double lowerBound, Double upperBound) {
+        if (checkLengthInArray(array)) {
+            Double[] doubles = new Double[array.size()];
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
+                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillArrayAscendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+                    array.setArray(doubles);
+                }
             }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("The object argument is null."));
         }
     }
 
     /**
      * Fills an array with sequential ascending decimal digit of numeric data of type {@link Double}.
-     * <p>The array is filled with numeric data (increases by "0.1") from "startBound" to the value of the "endBound" parameter.
-     * If the value of the argument "startBound" is greater than the value of "endBound"
+     * <p>The array is filled with numeric data (increases by "0.1") from "lowerBound" to the value of the "upperBound" parameter.
+     * If the value of the argument "lowerBound" is greater than the value of "upperBound"
      * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#START_BOUND}
      * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
      * @param doubles    The array to be filled with
      *                   sequential ascending decimal digit of numeric data of type {@link Double}.
-     * @param startBound The value of the start bound for filling an array with
+     * @param lowerBound The value of the start bound for filling an array with
      *                   sequential ascending decimal digit of numeric data of type {@link Double}.
-     * @param endBound   The value of the end bound for filling an array with
+     * @param upperBound The value of the end bound for filling an array with
      *                   sequential ascending decimal digit of numeric data of type {@link Double}.
      * @throws NullPointerException If the array argument is null.
      */
     @Override
-    public void fill(Double[] doubles, Double startBound, Double endBound) throws IllegalArgumentException {
-        if (checkNonNullArray(doubles)) {
-            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                        startBound,
-                        endBound);
-            } else {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                        START_BOUND,
-                        POSITIVE_DOUBLE_BOUND);
-
+    public void fill(Double[] doubles, Double lowerBound, Double upperBound) {
+        if (checkLengthInArray(doubles)) {
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
+                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillArrayAscendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+                }
             }
-        } else {
-            throw new IllegalArgumentException(new NullPointerException("The array argument is null."));
         }
     }
 
@@ -243,43 +202,34 @@ public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<D
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter determines the length(size) of the created array.
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
-     * <p>The array is filled with numeric data (increases by "0.1") from the value "startBound" to the value of the "endBound" parameters.
-     * If the value of the argument "startBound" is greater than the value of "endBound"
+     * <p>The array is filled with numeric data (increases by "0.1") from the value "lowerBound" to the value of the "upperBound" parameters.
+     * If the value of the argument "lowerBound" is greater than the value of "upperBound"
      * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#START_BOUND}
      * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled with
      *                    sequential ascending decimal digit of numeric data of type {@link Double}.
-     * @param startBound  The value of the start bound for filling an array with
+     * @param lowerBound  The value of the start bound for filling an array with
      *                    sequential ascending decimal digit of numeric data of type {@link Double}.
-     * @param endBound    The value of the end bound for filling an array with
+     * @param upperBound  The value of the end bound for filling an array with
      *                    sequential ascending decimal digit of numeric data of type {@link Double}.
      * @return Created and filled an array with sequential ascending integer part of numeric data of type {@link Double}.
      */
     @Override
-    public Double[] fill(int lengthArray, Double startBound, Double endBound) {
-        Double[] doubles;
+    public Double[] fill(int lengthArray, Double lowerBound, Double upperBound) {
+        Double[] doubles = new Double[0];
         if (checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isCorrectRangeBounds(startBound, endBound) && isLowerBoundLessOrEqualThanUpperBound(startBound, endBound)) {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                        startBound,
-                        endBound);
-            } else {
-                this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                        START_BOUND,
-                        POSITIVE_DOUBLE_BOUND);
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
+                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillArrayAscendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+                }
             }
-        } else {
-            doubles = new Double[DEFAULT_LENGTH];
-            this.fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(doubles,
-                    START_BOUND,
-                    POSITIVE_DOUBLE_BOUND);
         }
         return doubles;
     }
 
-    private void fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbers(Double[] doubles) {
+    private void fillArrayAscendingFractionOfDouble(Double[] doubles) {
         double value = 0, fractionalDigit = 0.1;
         for (int i = 0; i < doubles.length; i++) {
             doubles[i] = value;
@@ -287,29 +237,26 @@ public class FillingArrayAscendingDigitOfDouble implements FillingArrayNumbers<D
         }
     }
 
-    private void fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromZeroToPositiveBound(Double[] doubles,
-                                                                                                        double bound) {
+    private void fillArrayAscendingFractionOfDoubleFromZeroToPositiveBound(Double[] doubles, double bound) {
         double value = 0, fractionalDigit = 0.1;
         for (int i = 0; i < doubles.length; i++) {
             if (value <= bound) {
                 doubles[i] = value;
                 value += fractionalDigit;
             } else {
-                doubles[i] = DOUBLE_VALUE;
+                doubles[i] = DEFAULT_DOUBLE_VALUE;
             }
         }
     }
 
-    private void fillArrayElementsSequentialAscendingDecimalDigitOfDoubleNumbersFromStartBoundToEndBound(Double[] doubles,
-                                                                                                         double startBound,
-                                                                                                         double endBound) {
-        double value = startBound, fractionalDigit = 0.1;
+    private void fillArrayAscendingFractionOfDoubleFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
+        double value = lowerBound, fractionalDigit = 0.1;
         for (int i = 0; i < doubles.length; i++) {
-            if (value <= endBound) {
+            if (value <= upperBound) {
                 doubles[i] = value;
                 value += fractionalDigit;
             } else {
-                doubles[i] = DOUBLE_VALUE;
+                doubles[i] = DEFAULT_DOUBLE_VALUE;
             }
         }
     }

@@ -1,7 +1,7 @@
 package com.lugowoy.helper.models.matrices;
 
 import com.lugowoy.helper.models.Model;
-import com.lugowoy.helper.utils.CheckerMatrix;
+import com.lugowoy.helper.utils.checking.CheckerMatrix;
 
 import java.util.Objects;
 

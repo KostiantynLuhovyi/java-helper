@@ -1,7 +1,7 @@
 package com.lugowoy.helper.models.storages.arrays;
 
-import com.lugowoy.helper.utils.CheckerIndex;
-import com.lugowoy.helper.utils.CheckerLengthArray;
+import com.lugowoy.helper.utils.checking.CheckerIndex;
+import com.lugowoy.helper.utils.checking.CheckerLengthArray;
 import com.rits.cloning.Cloner;
 
 import java.util.*;
@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  * <p>Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 2.5
+ * @version 2.6
  * @since 1.0
  */
 //todo edit doc's
@@ -86,7 +86,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + " [" + Arrays.toString(array)
-                                               + "], cursorElement:" + super.getCursorElement();
+                + "], cursorElement:" + super.getCursorElement();
     }
 
 
@@ -279,6 +279,13 @@ public class Array<T> extends AbstractArray implements List<T> {
             if (flagDeepCopy) {
                 this.array = new Cloner().deepClone(t);
             }
+        }
+    }
+
+    @Override
+    public void setArray(int lengthArray) {
+        if (CheckerLengthArray.checkLengthArray(lengthArray)) {
+            this.array = new Object[lengthArray];
         }
     }
 

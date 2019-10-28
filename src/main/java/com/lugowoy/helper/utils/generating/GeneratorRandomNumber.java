@@ -1,5 +1,6 @@
-package com.lugowoy.helper.utils;
+package com.lugowoy.helper.utils.generating;
 
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import org.apache.commons.math3.random.RandomDataGenerator;
 
 import java.util.Random;

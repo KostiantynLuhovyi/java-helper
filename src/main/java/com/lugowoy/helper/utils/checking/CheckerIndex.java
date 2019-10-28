@@ -1,4 +1,4 @@
-package com.lugowoy.helper.utils;
+package com.lugowoy.helper.utils.checking;
 
 import com.lugowoy.helper.models.storages.arrays.Array;
 
