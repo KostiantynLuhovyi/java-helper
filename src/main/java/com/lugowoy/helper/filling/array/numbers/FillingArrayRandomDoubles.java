@@ -5,6 +5,8 @@ import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
+import java.util.Arrays;
+
 import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBounds;
 import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrEqualThanUpperBound;
 import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
@@ -230,21 +232,15 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     private void fillArrayRandomDoubles(Double[] doubles) {
-        for (int i = 0; i < doubles.length; i++) {
-            doubles[i] = GeneratorRandomNumber.generateDouble();
-        }
+        Arrays.parallelSetAll(doubles, i -> GeneratorRandomNumber.generateDouble());
     }
 
     private void fillArrayRandomDoublesFromZeroToPositiveBound(Double[] doubles, double bound) {
-        for (int i = 0; i < doubles.length; i++) {
-            doubles[i] = GeneratorRandomNumber.generateDouble(bound);
-        }
+        Arrays.parallelSetAll(doubles, i -> GeneratorRandomNumber.generateDouble(bound));
     }
 
     private void fillArrayRandomDoublesFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
-        for (int i = 0; i < doubles.length; i++) {
-            doubles[i] = GeneratorRandomNumber.generateDouble(lowerBound, upperBound);
-        }
+        Arrays.parallelSetAll(doubles, i -> GeneratorRandomNumber.generateDouble(lowerBound, upperBound));
     }
 
 }

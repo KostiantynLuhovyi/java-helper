@@ -4,6 +4,8 @@ import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
+import java.util.Arrays;
+
 import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBounds;
 import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrEqualThanUpperBound;
 import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
@@ -229,21 +231,15 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
     }
 
     private void fillArrayRandomIntegers(Integer[] integers) {
-        for (int i = 0; i < integers.length; i++) {
-            integers[i] = GeneratorRandomNumber.generateInt();
-        }
+        Arrays.parallelSetAll(integers, i -> GeneratorRandomNumber.generateInt());
     }
 
     private void fillArrayRandomIntegersFromZeroToPositiveBound(Integer[] integers, int bound) {
-        for (int i = 0; i < integers.length; i++) {
-            integers[i] = GeneratorRandomNumber.generateInt(bound);
-        }
+        Arrays.parallelSetAll(integers, i -> GeneratorRandomNumber.generateInt(bound));
     }
 
     private void fillArrayRandomIntegersFromLowerBoundToUpperBound(Integer[] integers, int startBound, int endBound) {
-        for (int i = 0; i < integers.length; i++) {
-            integers[i] = GeneratorRandomNumber.generateInt(startBound, endBound);
-        }
+        Arrays.parallelSetAll(integers, i -> GeneratorRandomNumber.generateInt(startBound, endBound));
     }
 
 }

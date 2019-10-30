@@ -49,6 +49,8 @@ public abstract class AbstractArray implements Model, RandomAccess {
         this.cursorElement = cursorElement;
     }
 
+    public abstract int size();
+
     public abstract void setArray(int lengthArray);
 
 }
