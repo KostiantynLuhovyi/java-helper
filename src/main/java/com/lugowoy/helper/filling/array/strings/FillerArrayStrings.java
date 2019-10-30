@@ -3,7 +3,7 @@ package com.lugowoy.helper.filling.array.strings;
 import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.filling.array.FillerArray;
 import com.lugowoy.helper.filling.array.FillingArray;
-import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
  * The class is the inheritor of the class {@link FillerArray}.
@@ -11,17 +11,14 @@ import com.lugowoy.helper.models.Array;
  * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @since 1.2
  */
-
-//todo refactoring code
 //todo edit doc's
-
 public class FillerArrayStrings extends FillerArray<String> {
 
     /**
@@ -51,11 +48,11 @@ public class FillerArrayStrings extends FillerArray<String> {
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class and
      * contains the implementation of the {@link FillingArray} interface contract.
      *
-     * @param tArray The array to be filled with data.
+     * @param strings The array to be filled with data.
      */
     @Override
-    public void fill(String[] tArray) {
-        super.fill(tArray);
+    public void fill(String[] strings) {
+        super.fill(strings);
     }
 
     /**

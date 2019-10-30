@@ -1,6 +1,6 @@
 package com.lugowoy.helper.filling.array.strings;
 
-import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
  * This class implements the {@link FillingArrayStrings} interface
@@ -9,13 +9,10 @@ import com.lugowoy.helper.models.Array;
  * <p>Created by Konstantin Lugowoy on 07.08.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 1.3
  */
-
-//todo refactoring code
 //todo edit doc's
-
 public abstract class FillingArrayRandomStrings implements FillingArrayStrings {
 
     /**

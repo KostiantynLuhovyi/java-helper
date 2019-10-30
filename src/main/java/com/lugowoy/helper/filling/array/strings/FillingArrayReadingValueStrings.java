@@ -2,11 +2,10 @@ package com.lugowoy.helper.filling.array.strings;
 
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.Array;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
-import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkLengthArray;
-import static com.lugowoy.helper.filling.array.CheckerFillingArray.checkNonNullArray;
-import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
+import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
+import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthInArray;
 
 /**
  * The class provides functionality to reads data for fills an object of the {@link Array} class
@@ -14,15 +13,12 @@ import static com.lugowoy.helper.models.Array.DEFAULT_LENGTH;
  * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  */
-
-//todo refactoring code
 //todo edit doc's
-
 public class FillingArrayReadingValueStrings implements FillingArrayStrings {
 
     private Reader reader;
@@ -33,7 +29,7 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
      * @param reading An object that implements the {@link Reading} interface, which provides a specific implementation for reading data.
      */
     public FillingArrayReadingValueStrings(Reading reading) {
-        this.reader = Reader.getReader(reading);
+        this.reader = new Reader(reading);
     }
 
     /**
@@ -42,15 +38,11 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
      * @param array The object of the {@link Array} class to be filled with object of the {@link String} type.
      */
     @Override
-    public void fill(Array<String> array) throws IllegalArgumentException {
-        //todo check or add relevant checks.
-        if (checkNonNullArray(array)) {
-            String[] strings = new String[array.getLength()];
+    public void fill(Array<String> array) {
+        if (checkLengthInArray(array)) {
+            String[] strings = new String[array.size()];
             this.initializeArrayElementsEnteredStrings(strings);
             array.setArray(strings);
-        } else {
-            //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument object is null."));
         }
     }
 
@@ -60,13 +52,9 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
      * @param strings The array to be filled with object of the {@link String} type.
      */
     @Override
-    public void fill(String[] strings) throws IllegalArgumentException {
-        //todo check or add relevant checks.
-        if (strings != null) {
+    public void fill(String[] strings) {
+        if (checkLengthInArray(strings)) {
             this.initializeArrayElementsEnteredStrings(strings);
-        } else {
-            //todo consider the option of eliminating the use of exceptions in this code.
-            throw new IllegalArgumentException(new NullPointerException("The argument array is null."));
         }
     }
 
@@ -80,13 +68,9 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
      */
     @Override
     public String[] fill(int lengthArray) {
-        //todo check or add relevant checks.
-        String[] strings;
+        String[] strings = new String[0];
         if (checkLengthArray(lengthArray)) {
             strings = new String[lengthArray];
-            this.initializeArrayElementsEnteredStrings(strings);
-        } else {
-            strings = new String[DEFAULT_LENGTH];
             this.initializeArrayElementsEnteredStrings(strings);
         }
         return strings;
