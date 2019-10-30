@@ -3,8 +3,8 @@ package com.lugowoy.helper.filling.array.points;
 import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.filling.array.FillerArray;
 import com.lugowoy.helper.filling.array.FillingArray;
-import com.lugowoy.helper.models.Array;
 import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
  * The class is the inheritor of the class {@link FillerArray}.
@@ -15,26 +15,23 @@ import com.lugowoy.helper.models.points.Point;
  *
  * @param <T> The type of coordinates encapsulated in the object of the {@link Point} class.
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  */
-
-//todo refactoring code
 //todo edit doc's
-
-public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
+public class FillerArrayPoints<T extends Point, V extends Number> extends FillerArray<T> {
 
     /**
      * Constructor to create a new {@link FillerArrayPoints}
      * and initializes the object encapsulated in parent class to perform the functionality.
      *
-     * @param fillingArrayPointsNumbers The object that implements the {@link FillingArrayPointsNumbers} interface contract to fill an array.
+     * @param fillingArrayPoints The object that implements the {@link FillingArrayPoints} interface contract to fill an array.
      */
-    private FillerArrayPoints(FillingArrayPointsNumbers<T> fillingArrayPointsNumbers) {
-        super(fillingArrayPointsNumbers);
+    private FillerArrayPoints(FillingArrayPoints<T, V> fillingArrayPoints) {
+        super(fillingArrayPoints);
     }
 
     /**
@@ -46,7 +43,7 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
      *              with the objects of the {@link Point} class with numerical coordinates.
      */
     @Override
-    public void fill(Array<Point<T>> array) {
+    public void fill(Array<T> array) {
         super.fill(array);
     }
 
@@ -58,7 +55,7 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
      * @param tArray The array to be filled with the objects of the {@link Point} class with numerical coordinates.
      */
     @Override
-    public void fill(Point<T>[] tArray) {
+    public void fill(T[] tArray) {
         super.fill(tArray);
     }
 
@@ -74,85 +71,85 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
      * @return Created and filled array of the objects of the {@link Point} class with numerical coordinates.
      */
     @Override
-    public Point<T>[] fill(int lengthArray) {
+    public T[] fill(int lengthArray) {
         return super.fill(lengthArray);
     }
 
     /**
      * Fills an object of the {@link Array} class with an object of the {@link Point} class with numerical coordinates
-     * in the range from "0" to "bound".
+     * in the range from "0" to "boundCoordinate".
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class
-     * and contains the implementation of the {@link FillingArrayPointsNumbers} interface contract.
+     * and contains the implementation of the {@link FillingArrayPoints} interface contract.
      *
-     * @param array The object of the {@link Array} class to be filled
-     *              with an object of the {@link Point} class with numerical coordinates.
-     * @param bound The value of the end of the range boundary
-     *              of numerical values by which the coordinates of points in the array will be initialized.
+     * @param array           The object of the {@link Array} class to be filled
+     *                        with an object of the {@link Point} class with numerical coordinates.
+     * @param boundCoordinate The value of the end of the range boundary
+     *                        of numerical values by which the coordinates of points in the array will be initialized.
      */
-    public void fill(Array<Point<T>> array, T bound) {
-        ((FillingArrayPointsNumbers<T>) super.getFilling()).fill(array, bound);
+    public void fill(Array<T> array, V boundCoordinate) {
+        ((FillingArrayPoints<T, V>) super.getFilling()).fill(array, boundCoordinate);
     }
 
     /**
-     * Fills an array with objects of the {@link Point} class with numerical coordinates in the range from "0" to to "bound".
+     * Fills an array with objects of the {@link Point} class with numerical coordinates in the range from "0" to to "boundCoordinate".
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class
-     * and contains the implementation of the {@link FillingArrayPointsNumbers} interface contract.
+     * and contains the implementation of the {@link FillingArrayPoints} interface contract.
      *
-     * @param points The array to be filled with objects of the {@link Point} class.
-     * @param bound  The value of the end of the range boundary
-     *               of numerical values by which the coordinates of points in the array will be initialized.
+     * @param points          The array to be filled with objects of the {@link Point} class.
+     * @param boundCoordinate The value of the end of the range boundary
+     *                        of numerical values by which the coordinates of points in the array will be initialized.
      */
-    public void fill(Point<T>[] points, T bound) {
-        ((FillingArrayPointsNumbers<T>) super.getFilling()).fill(points, bound);
+    public void fill(T[] points, V boundCoordinate) {
+        ((FillingArrayPoints<T, V>) super.getFilling()).fill(points, boundCoordinate);
     }
 
     /**
-     * Fills an array with objects of the {@link Point} class with numerical coordinates in the range from "0" to "bound" parameter.
+     * Fills an array with objects of the {@link Point} class with numerical coordinates in the range from "0" to "boundCoordinate" parameter.
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class
-     * and contains the implementation of the {@link FillingArrayPointsNumbers} interface contract.
+     * and contains the implementation of the {@link FillingArrayPoints} interface contract.
      *
-     * @param lengthArray The length(size) of the array to be filled with objects of the {@link Point} class with numerical coordinates.
-     * @param bound       The value of the end of the range boundary
-     *                    of numerical values by which the coordinates of points in the array will be initialized.
+     * @param lengthArray     The length(size) of the array to be filled with objects of the {@link Point} class with numerical coordinates.
+     * @param boundCoordinate The value of the end of the range boundary
+     *                        of numerical values by which the coordinates of points in the array will be initialized.
      * @return Created and filled array of objects of the {@link Point} class with numerical coordinates.
      */
-    public Point<T>[] fill(int lengthArray, T bound) {
-        return ((FillingArrayPointsNumbers<T>) super.getFilling()).fill(lengthArray, bound);
+    public T[] fill(int lengthArray, V boundCoordinate) {
+        return ((FillingArrayPoints<T, V>) super.getFilling()).fill(lengthArray, boundCoordinate);
     }
 
     /**
      * Fills an object of the {@link Array} class with an object of the {@link Point} class with numerical coordinates
-     * in the range from "startBound" to "endBound".
+     * in the range from "lowerBoundCoordinate" to "upperBoundCoordinate".
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class
-     * and contains the implementation of the {@link FillingArrayPointsNumbers} interface contract.
+     * and contains the implementation of the {@link FillingArrayPoints} interface contract.
      *
-     * @param array      The object of the {@link Array} class to be filled
-     *                   with an object of the {@link Point} class with numerical coordinates.
-     * @param startBound The value of the start of the range boundary
-     *                   of numerical values by which the coordinates of points in the array will be initialized.
-     * @param endBound   The value of the end of the range boundary
-     *                   of numerical values by which the coordinates of points in the array will be initialized.
+     * @param array                The object of the {@link Array} class to be filled
+     *                             with an object of the {@link Point} class with numerical coordinates.
+     * @param lowerBoundCoordinate The value of the start of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * @param upperBoundCoordinate The value of the end of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
      */
-    public void fill(Array<Point<T>> array, T startBound, T endBound) {
-        ((FillingArrayPointsNumbers<T>) super.getFilling()).fill(array, startBound, endBound);
+    public void fill(Array<T> array, V lowerBoundCoordinate, V upperBoundCoordinate) {
+        ((FillingArrayPoints<T, V>) super.getFilling()).fill(array, lowerBoundCoordinate, upperBoundCoordinate);
     }
 
     /**
      * Fills an array with objects of the {@link Point} class
-     * with numerical coordinates in the range from "startBound" to to "endBound".
+     * with numerical coordinates in the range from "lowerBoundCoordinate" to to "upperBoundCoordinate".
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class
-     * and contains the implementation of the {@link FillingArrayPointsNumbers} interface contract.
+     * and contains the implementation of the {@link FillingArrayPoints} interface contract.
      *
-     * @param points     The array to be filled with objects of the {@link Point} class.
-     * @param startBound The value of the start of the range boundary
-     *                   of numerical values by which the coordinates of points in the array will be initialized.
-     * @param endBound   The value of the end of the range boundary
-     *                   of numerical values by which the coordinates of points in the array will be initialized.
+     * @param points               The array to be filled with objects of the {@link Point} class.
+     * @param lowerBoundCoordinate The value of the start of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * @param upperBoundCoordinate The value of the end of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
      */
-    public void fill(Point<T>[] points, T startBound, T endBound) {
-        ((FillingArrayPointsNumbers<T>) super.getFilling()).fill(points, startBound, endBound);
+    public void fill(T[] points, V lowerBoundCoordinate, V upperBoundCoordinate) {
+        ((FillingArrayPoints<T, V>) super.getFilling()).fill(points, lowerBoundCoordinate, upperBoundCoordinate);
     }
 
     /**
@@ -161,7 +158,7 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * <p>The execution of this method is delegated to the object that encapsulated in the object of parent class
-     * and contains the implementation of the {@link FillingArrayPointsNumbers} interface contract.
+     * and contains the implementation of the {@link FillingArrayPoints} interface contract.
      *
      * @param lengthArray The length(size) of the array to be filled
      *                    with objects of the {@link Point} class with numerical coordinates.
@@ -171,20 +168,20 @@ public class FillerArrayPoints<T extends Number> extends FillerArray<Point<T>> {
      *                    of numerical values by which the coordinates of points in the array will be initialized.
      * @return Created and filled array of objects of the {@link Point} class with numerical coordinates.
      */
-    public Point<T>[] fill(int lengthArray, T startBound, T endBound) {
-        return ((FillingArrayPointsNumbers<T>) super.getFilling()).fill(lengthArray, startBound, endBound);
+    public T[] fill(int lengthArray, V startBound, V endBound) {
+        return ((FillingArrayPoints<T, V>) super.getFilling()).fill(lengthArray, startBound, endBound);
     }
 
     /**
      * Creates a new object of {@link FillerArrayPoints} class by calling a single constructor with a parameter
      * for initialization the object encapsulated in this class to perform the functionality.
      *
-     * @param fillingArrayPointsNumbers The object that implements the {@link FillingArrayPointsNumbers} interface contract
-     *                                  to fill an array with data.
+     * @param fillingArrayPoints The object that implements the {@link FillingArrayPoints} interface contract
+     *                           to fill an array with data.
      * @return The created object of this class.
      */
-    public static <T extends Number> FillerArrayPoints<T> getFillerArrayPoints(FillingArrayPointsNumbers<T> fillingArrayPointsNumbers) {
-        return new FillerArrayPoints<>(fillingArrayPointsNumbers);
+    public static <T extends Point, V extends Number> FillerArrayPoints<T, V> getFillerArrayPoints(FillingArrayPoints<T, V> fillingArrayPoints) {
+        return new FillerArrayPoints<>(fillingArrayPoints);
     }
 
 }

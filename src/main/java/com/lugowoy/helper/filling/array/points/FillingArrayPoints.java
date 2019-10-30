@@ -1,31 +1,92 @@
 package com.lugowoy.helper.filling.array.points;
 
+import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.points.Point;
+import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
- * The functional interface declares a contract to filling an array of an object of the {@link Point} class
- * by initializing the coordinates of the points with the numeric values of the array.
- * <p>Created by Konstantin Lugowoy on 15-Jan-18.
+ * The interface declares a contract to implement the filling of an objects of {@link Array} and classical array
+ * objects of the {@link Point} class with coordinates of a numerical type.
+ * <p>Created by Konstantin Lugowoy on 27-Jan-18.
  *
- * @param <T> Type of numeric data for initializing the coordinates of objects of the class {@link Point}.
+ * @param <T> Type of numeric coordinates that are encapsulated in the object of the {@link Point} class.
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  */
-
-//todo refactoring code
 //todo edit doc's
+public interface FillingArrayPoints<T extends Point, V extends Number> extends FillingArray<T> {
 
-@FunctionalInterface
-public interface FillingArrayPoints<T extends Number> {
+    /**
+     * Fills an object of the {@link Array} class with objects of the {@link Point} class with numerical coordinates
+     * in the range from "0" to "boundCoordinate".
+     *
+     * @param array           The object of the {@link Array} class to be filled
+     *                        with an object of the {@link Point} class with numerical coordinates.
+     * @param boundCoordinate The value of the end of the range boundary
+     *                        of numerical values by which the coordinates of points in the array will be initialized.
+     */
+    void fill(Array<T> array, V boundCoordinate);
+
+    /**
+     * Fills an array with objects of the {@link Point} class with numerical coordinates in the range from "0" to to "boundCoordinate".
+     *
+     * @param points          The array to be filled with objects of the {@link Point} class.
+     * @param boundCoordinate The value of the end of the range boundary
+     *                        of numerical values by which the coordinates of points in the array will be initialized.
+     */
+    void fill(T[] points, V boundCoordinate);
+
+    /**
+     * Fills an array with objects of the {@link Point} class with numerical coordinates in the range from "0" to "boundCoordinate" parameter.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter "lengthArray" determines the length(size) of the created array.
+     *
+     * @param lengthArray     The length(size) of the array to be filled
+     *                        with objects of the {@link Point} class with numerical coordinates.
+     * @param boundCoordinate The value of the end of the range boundary
+     *                        of numerical values by which the coordinates of points in the array will be initialized.
+     */
+    T[] fill(int lengthArray, V boundCoordinate);
+
+    /**
+     * Fills an object of the {@link Array} class with an object of the {@link Point} class with numerical coordinates
+     * in the range from "startBound" to "upperBoundCoordinate".
+     *
+     * @param array                The object of the {@link Array} class to be filled
+     *                             with an object of the {@link Point} class with numerical coordinates.
+     * @param lowerBoundCoordinate The value of the start of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * @param upperBoundCoordinate The value of the end of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     */
+    void fill(Array<T> array, V lowerBoundCoordinate, V upperBoundCoordinate);
 
     /**
      * Fills an array with objects of the {@link Point} class
-     * by initializing the coordinates with values taken from the numeric array passed to the parameter.
+     * with numerical coordinates in the range from "lowerBoundCoordinate" to to "upperBoundCoordinate".
      *
-     * @param array The numeric array whose values are used
-     *              to initialize the coordinates of objects of the {@link Point} class.
-     * @return The array filled with objects of the {@link Point} class.
+     * @param points               The array to be filled with objects of the {@link Point} class.
+     * @param lowerBoundCoordinate The value of the start of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * @param upperBoundCoordinate The value of the end of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
      */
-    Point<T>[] fill(T[] array);
+    void fill(T[] points, V lowerBoundCoordinate, V upperBoundCoordinate);
+
+    /**
+     * Fills an array with objects of the {@link Point} class
+     * with numerical coordinates in the range from "lowerBoundCoordinate" to "upperBoundCoordinate" parameter.
+     * <p>The array is created based on the "lengthArray" parameter.
+     * The parameter "lengthArray" determines the length(size) of the created array.
+     *
+     * @param lengthArray          The length(size) of the array to be filled
+     *                             with objects of the {@link Point} class with numerical coordinates.
+     * @param lowerBoundCoordinate The value of the start of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * @param upperBoundCoordinate The value of the end of the range boundary
+     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * @return Created and filled array with objects of the {@link Point} class with numerical coordinates.
+     */
+    T[] fill(int lengthArray, V lowerBoundCoordinate, V upperBoundCoordinate);
 
 }
