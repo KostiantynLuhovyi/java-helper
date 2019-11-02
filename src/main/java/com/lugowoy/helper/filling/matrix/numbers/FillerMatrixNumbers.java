@@ -1,15 +1,16 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
 import com.lugowoy.helper.filling.matrix.FillerMatrix;
-import com.lugowoy.helper.models.Matrix;
+import com.lugowoy.helper.models.matrices.Matrix;
 
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.1
+ * @since 1.2
  */
-
-//todo refactoring code
 //todo edit doc's
-
 public class FillerMatrixNumbers<T extends Number> extends FillerMatrix<T> {
 
     public FillerMatrixNumbers(FillingMatrixNumbers<T> filling) {
@@ -43,16 +44,16 @@ public class FillerMatrixNumbers<T extends Number> extends FillerMatrix<T> {
         return ((FillingMatrixNumbers<T>) super.getFilling()).fill(rows, columns, bound);
     }
 
-    public void fill(Matrix<T> matrix, T startBound, T endBound) {
-        ((FillingMatrixNumbers<T>) super.getFilling()).fill(matrix, startBound, endBound);
+    public void fill(Matrix<T> matrix, T lowerBound, T upperBound) {
+        ((FillingMatrixNumbers<T>) super.getFilling()).fill(matrix, lowerBound, upperBound);
     }
 
-    public void fill(T[][] matrix, T startBound, T endBound) {
-        ((FillingMatrixNumbers<T>) super.getFilling()).fill(matrix, startBound, endBound);
+    public void fill(T[][] matrix, T lowerBound, T upperBound) {
+        ((FillingMatrixNumbers<T>) super.getFilling()).fill(matrix, lowerBound, upperBound);
     }
 
-    public T[][] fill(int rows, int columns, T startBound, T endBound) {
-        return ((FillingMatrixNumbers<T>) super.getFilling()).fill(rows, columns, startBound, endBound);
+    public T[][] fill(int rows, int columns, T lowerBound, T upperBound) {
+        return ((FillingMatrixNumbers<T>) super.getFilling()).fill(rows, columns, lowerBound, upperBound);
     }
 
 }

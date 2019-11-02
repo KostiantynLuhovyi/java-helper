@@ -24,7 +24,7 @@ public abstract class FillerArray<T> extends Filler<Array<T>> {
      *
      * @param fillingArray The object implements the contract declared in the {@link FillingArray} interface.
      */
-    protected FillerArray(FillingArray<T> fillingArray) {
+    public FillerArray(FillingArray<T> fillingArray) {
         super(fillingArray);
     }
 

@@ -1,163 +1,135 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
-import com.lugowoy.helper.models.Matrix;
-import com.lugowoy.helper.other.GeneratorRandomNumber;
+import com.lugowoy.helper.models.matrices.Matrix;
+import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
-import static com.lugowoy.helper.filling.DefaultValuesForFilling.NEGATIVE_DOUBLE_BOUND;
-import static com.lugowoy.helper.filling.DefaultValuesForFilling.POSITIVE_DOUBLE_BOUND;
-import static com.lugowoy.helper.filling.matrix.CheckerFillingMatrix.*;
+import java.util.Arrays;
+
+import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBounds;
+import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrEqualThanUpperBound;
+import static com.lugowoy.helper.utils.checking.CheckerMatrix.*;
 
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
- * @version 1.2
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.3
+ * @since 1.2
  */
-
-//todo refactoring code
-//todo edit doc's
-
+//todo write doc's
 public class FillingMatrixRandomDouble implements FillingMatrixNumbers<Double> {
 
     @Override
     public void fill(Matrix<Double> matrix) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
+        if (checkMatrix(matrix)) {
             Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
-            this.fillMatrixElementsRandomDoubleNumbers(doubles);
+            this.fillMatrixRandomDoubles(doubles);
             matrix.setMatrix(doubles);
         }
     }
 
     @Override
     public void fill(Double[][] matrix) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
-            this.fillMatrixElementsRandomDoubleNumbers(matrix);
+        if (checkMatrix(matrix)) {
+            this.fillMatrixRandomDoubles(matrix);
         }
     }
 
     @Override
     public Double[][] fill(int rows, int columns) {
-        Double[][] matrix;
-        if (checkMatrixRows(rows) && checkMatrixColumns(columns)) {
+        Double[][] matrix = new Double[0][0];
+        if (checkRows(rows) && checkColumns(columns)) {
             matrix = new Double[rows][columns];
-            this.fillMatrixElementsRandomDoubleNumbers(matrix);
-        } else {
-            matrix = new Double[Matrix.DEFAULT_ROWS][Matrix.DEFAULT_COLUMNS];
-            this.fillMatrixElementsRandomDoubleNumbers(matrix);
+            this.fillMatrixRandomDoubles(matrix);
         }
         return matrix;
     }
 
     @Override
     public void fill(Matrix<Double> matrix, Double bound) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
-            Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
-            if (isPositiveBoundValueAndNonNull(bound)) {
-                this.fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, bound);
-            } else {
-                this.fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(doubles, POSITIVE_DOUBLE_BOUND);
+        if (checkMatrix(matrix)) {
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+                Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
+                this.fillMatrixRandomDoublesFromZeroToBound(doubles, bound);
+                matrix.setMatrix(doubles);
             }
-            matrix.setMatrix(doubles);
         }
     }
 
     @Override
     public void fill(Double[][] matrix, Double bound) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
-            if (isPositiveBoundValueAndNonNull(bound)) {
-                this.fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(matrix, bound);
-            } else {
-                this.fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(matrix, POSITIVE_DOUBLE_BOUND);
+        if (checkMatrix(matrix)) {
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+                this.fillMatrixRandomDoublesFromZeroToBound(matrix, bound);
             }
         }
     }
 
     @Override
     public Double[][] fill(int rows, int columns, Double bound) {
-        Double[][] matrix;
-        if (checkMatrixRows(rows) && checkMatrixColumns(columns)) {
-            matrix = new Double[rows][columns];
-            if (isPositiveBoundValueAndNonNull(bound)) {
-                this.fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(matrix, bound);
-            } else {
-                this.fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(matrix, POSITIVE_DOUBLE_BOUND);
+        Double[][] matrix = new Double[0][0];
+        if (checkRows(rows) && checkColumns(columns)) {
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+                matrix = new Double[rows][columns];
+                this.fillMatrixRandomDoublesFromZeroToBound(matrix, bound);
             }
-        } else {
-            matrix = new Double[Matrix.DEFAULT_ROWS][Matrix.DEFAULT_COLUMNS];
-            this.fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(matrix, POSITIVE_DOUBLE_BOUND);
         }
         return matrix;
     }
 
     @Override
-    public void fill(Matrix<Double> matrix, Double startBound, Double endBound) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
+    public void fill(Matrix<Double> matrix, Double lowerBound, Double upperBound) {
+        if (checkMatrix(matrix)) {
             Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
-            if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
-                this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
-            } else {
-                this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
-            }
-            matrix.setMatrix(doubles);
-        }
-    }
-
-    @Override
-    public void fill(Double[][] matrix, Double startBound, Double endBound) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
-            if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
-                this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(matrix, startBound, endBound);
-            } else {
-                this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(matrix, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
+                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillMatrixRandomDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+                    matrix.setMatrix(doubles);
+                }
             }
         }
     }
 
     @Override
-    public Double[][] fill(int rows, int columns, Double startBound, Double endBound) {
-        Double[][] doubles;
-        if (checkMatrixRows(rows) && checkMatrixColumns(columns)) {
-            doubles = new Double[rows][columns];
-            if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
-                this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, startBound, endBound);
-            } else {
-                this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
+    public void fill(Double[][] matrix, Double lowerBound, Double upperBound) {
+        if (checkMatrix(matrix)) {
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
+                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillMatrixRandomDoublesFromLowerBoundToUpperBound(matrix, lowerBound, upperBound);
+                }
             }
-        } else {
-            doubles = new Double[Matrix.DEFAULT_ROWS][Matrix.DEFAULT_COLUMNS];
-            this.fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(doubles, NEGATIVE_DOUBLE_BOUND, POSITIVE_DOUBLE_BOUND);
+        }
+    }
+
+    @Override
+    public Double[][] fill(int rows, int columns, Double lowerBound, Double upperBound) {
+        Double[][] doubles = new Double[0][0];
+        if (checkRows(rows) && checkColumns(columns)) {
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
+                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    doubles = new Double[rows][columns];
+                    this.fillMatrixRandomDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+                }
+            }
         }
         return doubles;
     }
 
-    private void fillMatrixElementsRandomDoubleNumbers(Double[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = GeneratorRandomNumber.generateDouble();
-            }
+    private void fillMatrixRandomDoubles(Double[][] matrix) {
+        for (Double[] doubles : matrix) {
+            Arrays.parallelSetAll(doubles, j -> GeneratorRandomNumber.generateDouble());
         }
     }
 
-    private void fillMatrixElementsRandomDoubleNumbersFromZeroToPositiveBound(Double[][] matrix, double bound) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = GeneratorRandomNumber.generateDouble(bound);
-            }
+    private void fillMatrixRandomDoublesFromZeroToBound(Double[][] matrix, double bound) {
+        for (Double[] doubles : matrix) {
+            Arrays.parallelSetAll(doubles, j -> GeneratorRandomNumber.generateDouble(bound));
         }
     }
 
-    private void fillMatrixElementsRandomDoubleNumbersFromStartBoundToEndBound(Double[][] matrix, double startBound, double endBound) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = GeneratorRandomNumber.generateDouble(startBound, endBound);
-            }
+    private void fillMatrixRandomDoublesFromLowerBoundToUpperBound(Double[][] matrix, double lowerBound, double upperBound) {
+        for (Double[] doubles : matrix) {
+            Arrays.parallelSetAll(doubles, j -> GeneratorRandomNumber.generateDouble(lowerBound, upperBound));
         }
     }
 

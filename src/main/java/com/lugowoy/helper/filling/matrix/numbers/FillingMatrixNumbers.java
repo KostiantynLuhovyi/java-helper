@@ -1,15 +1,16 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
 import com.lugowoy.helper.filling.matrix.FillingMatrix;
-import com.lugowoy.helper.models.Matrix;
+import com.lugowoy.helper.models.matrices.Matrix;
 
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.1
+ * @since 1.2
  */
-
-//todo refactoring code
 //todo edit doc's
-
 public interface FillingMatrixNumbers<T extends Number> extends FillingMatrix<T> {
 
     @Override
@@ -27,10 +28,10 @@ public interface FillingMatrixNumbers<T extends Number> extends FillingMatrix<T>
 
     T[][] fill(int rows, int columns, T bound);
 
-    void fill(Matrix<T> matrix, T startBound, T endBound);
+    void fill(Matrix<T> matrix, T lowerBound, T upperBound);
 
-    void fill(T[][] matrix, T startBound, T endBound);
+    void fill(T[][] matrix, T lowerBound, T upperBound);
 
-    T[][] fill(int rows, int columns, T startBound, T endBound);
+    T[][] fill(int rows, int columns, T lowerBound, T upperBound);
 
 }

@@ -1,18 +1,19 @@
 package com.lugowoy.helper.filling.matrix;
 
 import com.lugowoy.helper.filling.Filler;
-import com.lugowoy.helper.models.Matrix;
+import com.lugowoy.helper.models.matrices.Matrix;
 
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
+ *
+ * @author Konstantin Lugowoy
+ * @version 1.1
+ * @since 1.2
  */
-
-//todo refactoring code
 //todo edit doc's
-
 public class FillerMatrix<T> extends Filler<Matrix<T>> {
 
-    protected FillerMatrix(FillingMatrix<T> filling) {
+    public FillerMatrix(FillingMatrix<T> filling) {
         super(filling);
     }
 
@@ -27,10 +28,6 @@ public class FillerMatrix<T> extends Filler<Matrix<T>> {
 
     public T[][] fill(int rows, int columns) {
         return ((FillingMatrix<T>) super.getFilling()).fill(rows, columns);
-    }
-
-    public static <T> FillerMatrix<T> getFillerMatrix(FillingMatrix<T> fillingMatrix) {
-        return new FillerMatrix<>(fillingMatrix);
     }
 
 }

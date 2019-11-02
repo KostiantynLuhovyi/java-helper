@@ -3,19 +3,22 @@ package com.lugowoy.helper.filling.matrix.numbers;
 import com.lugowoy.helper.filling.matrix.FillingMatrixReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.Matrix;
+import com.lugowoy.helper.models.matrices.Matrix;
+import com.lugowoy.helper.utils.ValueOutOfRangeException;
 
-import static com.lugowoy.helper.filling.DefaultValuesForFilling.START_BOUND;
-import static com.lugowoy.helper.filling.matrix.CheckerFillingMatrix.*;
+import static com.lugowoy.helper.filling.DefaultNumericValues.INT_ZERO;
+import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBounds;
+import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrEqualThanUpperBound;
+import static com.lugowoy.helper.utils.checking.CheckerMatrix.*;
 
 /**
  * Created by Konstantin Lugowoy on 10.10.2018.
+ *
+ * @author Konstantin Lugowoy
  * @version 1.2
+ * @since 1.0
  */
-
-//todo refactoring code
-//todo edit doc's
-
+//todo write doc's
 public class FillingMatrixReadInteger extends FillingMatrixReadValues<Integer> implements FillingMatrixNumbers<Integer> {
 
     public FillingMatrixReadInteger(Reader reader) {
@@ -28,125 +31,101 @@ public class FillingMatrixReadInteger extends FillingMatrixReadValues<Integer> i
 
     @Override
     public void fill(Matrix<Integer> matrix) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
+        if (checkMatrix(matrix)) {
             Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
-            this.fillMatrixElementsEnteredIntegerNumbers(integers);
+            this.fillMatrixReadIntegers(integers);
             matrix.setMatrix(integers);
         }
     }
 
     @Override
     public void fill(Integer[][] matrix) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
-            this.fillMatrixElementsEnteredIntegerNumbers(matrix);
+        if (checkMatrix(matrix)) {
+            this.fillMatrixReadIntegers(matrix);
         }
     }
 
     @Override
     public Integer[][] fill(int rows, int columns) {
-        Integer[][] integers;
-        if (checkMatrixRows(rows) && checkMatrixColumns(columns)) {
+        Integer[][] integers = new Integer[0][0];
+        if (checkRows(rows) && checkColumns(columns)) {
             integers = new Integer[rows][columns];
-            this.fillMatrixElementsEnteredIntegerNumbers(integers);
-        } else {
-            integers = new Integer[Matrix.DEFAULT_ROWS][Matrix.DEFAULT_COLUMNS];
-            this.fillMatrixElementsEnteredIntegerNumbers(integers);
+            this.fillMatrixReadIntegers(integers);
         }
         return integers;
     }
 
     @Override
     public void fill(Matrix<Integer> matrix, Integer bound) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
-            Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
-            if (isPositiveBoundValueAndNonNull(bound)) {
-                this.fillMatrixElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
-            } else {
-                this.fillMatrixElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, Integer.MAX_VALUE);
+        if (checkMatrix(matrix)) {
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+                Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
+                this.fillMatrixReadIntegersFromZeroToBound(integers, bound);
+                matrix.setMatrix(integers);
             }
-            matrix.setMatrix(integers);
         }
     }
 
     @Override
     public void fill(Integer[][] matrix, Integer bound) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
-            if (isPositiveBoundValueAndNonNull(bound)) {
-                this.fillMatrixElementsEnteredIntegerNumbersFromZeroToPositiveBound(matrix, bound);
-            } else {
-                this.fillMatrixElementsEnteredIntegerNumbersFromZeroToPositiveBound(matrix, Integer.MAX_VALUE);
+        if (checkMatrix(matrix)) {
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+                this.fillMatrixReadIntegersFromZeroToBound(matrix, bound);
             }
         }
     }
 
     @Override
     public Integer[][] fill(int rows, int columns, Integer bound) {
-        Integer[][] integers;
-        if (checkMatrixRows(rows) && checkMatrixColumns(columns)) {
-            integers = new Integer[rows][columns];
-            if (isPositiveBoundValueAndNonNull(bound)) {
-                this.fillMatrixElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, bound);
-            } else {
-                this.fillMatrixElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, Integer.MAX_VALUE);
+        Integer[][] integers = new Integer[0][0];
+        if (checkRows(rows) && checkColumns(columns)) {
+            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+                integers = new Integer[rows][columns];
+                this.fillMatrixReadIntegersFromZeroToBound(integers, bound);
             }
-        } else {
-            integers = new Integer[Matrix.DEFAULT_ROWS][Matrix.DEFAULT_COLUMNS];
-            this.fillMatrixElementsEnteredIntegerNumbersFromZeroToPositiveBound(integers, Integer.MAX_VALUE);
         }
         return integers;
     }
 
     @Override
-    public void fill(Matrix<Integer> matrix, Integer startBound, Integer endBound) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
+    public void fill(Matrix<Integer> matrix, Integer lowerBound, Integer upperBound) {
+        if (checkMatrix(matrix)) {
             Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
-            if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
-                this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
-            } else {
-                this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, Integer.MIN_VALUE, Integer.MAX_VALUE);
-            }
-            matrix.setMatrix(integers);
-        }
-    }
-
-    @Override
-    public void fill(Integer[][] matrix, Integer startBound, Integer endBound) {
-        //todo add a "else" code block, use an exception or leave it like this.
-        if (checkNonNullMatrix(matrix)) {
-            if ((isCorrectRangeBoundValue(startBound) && isCorrectRangeBoundValue(endBound))
-                    && isStartBoundValueGreatestThanEndBoundValue(startBound, endBound)) {
-                this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(matrix, startBound, endBound);
-            } else {
-                this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(matrix, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
+                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillMatrixReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+                    matrix.setMatrix(integers);
+                }
             }
         }
     }
 
     @Override
-    public Integer[][] fill(int rows, int columns, Integer startBound, Integer endBound) {
-        Integer[][] integers;
-        if (checkMatrixRows(rows) && checkMatrixColumns(columns)) {
-            integers = new Integer[rows][columns];
-            if ((isCorrectRangeBoundValue(startBound) & isCorrectRangeBoundValue(endBound))
-                    && isStartBoundValueLessThanEndBoundValue(startBound, endBound)) {
-                this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, startBound, endBound);
-            } else {
-                this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    public void fill(Integer[][] matrix, Integer lowerBound, Integer upperBound) {
+        if (checkMatrix(matrix)) {
+            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
+                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    this.fillMatrixReadIntegersFromLowerBoundToUpperBound(matrix, lowerBound, upperBound);
+                }
             }
-        } else {
-            integers = new Integer[Matrix.DEFAULT_ROWS][Matrix.DEFAULT_COLUMNS];
-            this.fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(integers, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        }
+    }
+
+    @Override
+    public Integer[][] fill(int rows, int columns, Integer lowerBound, Integer upperBound) {
+        Integer[][] integers = new Integer[0][0];
+        if (checkRows(rows) && checkRows(columns)) {
+            if (isCorrectBounds(lowerBound) & isCorrectBounds(upperBound)) {
+                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+                    integers = new Integer[rows][columns];
+                    this.fillMatrixReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+                }
+            }
         }
         return integers;
     }
 
-    private void fillMatrixElementsEnteredIntegerNumbers(Integer[][] matrix) {
+    private void fillMatrixReadIntegers(Integer[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 matrix[i][j] = super.getReader().readInt();
@@ -154,36 +133,34 @@ public class FillingMatrixReadInteger extends FillingMatrixReadValues<Integer> i
         }
     }
 
-    private void fillMatrixElementsEnteredIntegerNumbersFromZeroToPositiveBound(Integer[][] matrix, int bound) {
+    private void fillMatrixReadIntegersFromZeroToBound(Integer[][] matrix, int bound) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                this.enterValueToAssign(matrix, START_BOUND, bound, i, j);
+                this.assignReadValue(matrix, INT_ZERO, bound, i, j);
             }
         }
     }
 
-    private void fillMatrixElementsEnteredIntegerNumbersFromStartBoundToEndBound(Integer[][] matrix, int startBound, int endBound) {
+    private void fillMatrixReadIntegersFromLowerBoundToUpperBound(Integer[][] matrix, int lowerBound, int upperBound) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                this.enterValueToAssign(matrix, startBound, endBound, i, j);
+                this.assignReadValue(matrix, lowerBound, upperBound, i, j);
             }
         }
     }
 
-    private void enterValueToAssign(Integer[][] matrix, int startBound, int endBound, int i, int j) {
-        while (true) {
-            int value = super.getReader().readInt();
-            if (isCorrectEnteredValue(startBound, endBound, value)) {
-                matrix[i][j] = value;
-                break;
-            } else {
-                System.out.println("Incorrect entered value. Re-enter : ");
-            }
+    private void assignReadValue(Integer[][] matrix, int lowerBound, int upperBound, int i, int j) {
+        int valueRead = super.getReader().readInt();
+        if (isCorrectReadValue(valueRead, lowerBound, upperBound)) {
+            matrix[i][j] = valueRead;
+        } else {
+            String msgEx = "Value read is not a double number or is out of range (from " + lowerBound + " to " + upperBound + ").";
+            throw new ValueOutOfRangeException(msgEx);
         }
     }
 
-    private boolean isCorrectEnteredValue(int startBound, int endBound, int value) {
-        return (value >= startBound) && (value <= endBound);
+    private boolean isCorrectReadValue(int valueRead, int lowerBound, int upperBound) {
+        return (valueRead >= lowerBound) && (valueRead <= upperBound);
     }
 
 }
