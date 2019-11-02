@@ -35,7 +35,7 @@
                     <compilerVersion>${java.version}</compilerVersion>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <encoding>UTF-8</encoding>
+                    <encoding>UTF-16</encoding>
                 </configuration>
             </plugin>
             <plugin>
