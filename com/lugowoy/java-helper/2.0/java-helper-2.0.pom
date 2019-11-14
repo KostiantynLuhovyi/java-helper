@@ -122,6 +122,7 @@
             <artifactId>commons-math3</artifactId>
             <optional>true</optional>
             <version>3.6.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
