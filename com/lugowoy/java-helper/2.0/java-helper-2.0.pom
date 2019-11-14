@@ -35,7 +35,7 @@
                     <compilerVersion>${java.version}</compilerVersion>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <encoding>UTF-16</encoding>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -120,6 +120,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-math3</artifactId>
+            <optional>true</optional>
             <version>3.6.1</version>
         </dependency>
     </dependencies>
