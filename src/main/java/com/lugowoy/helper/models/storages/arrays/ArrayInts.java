@@ -1,7 +1,7 @@
 package com.lugowoy.helper.models.storages.arrays;
 
 import com.lugowoy.helper.utils.checking.CheckerIndex;
-import com.lugowoy.helper.utils.checking.CheckerLengthArray;
+import com.lugowoy.helper.utils.checking.CheckerArray;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 2.0
  */
 //todo write doc's
@@ -26,7 +26,7 @@ public class ArrayInts extends AbstractArray {
     }
 
     public ArrayInts(int[] arrayInts) {
-        if (CheckerLengthArray.checkLengthInArray(arrayInts)) {
+        if (CheckerArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = arrayInts.clone();
             super.setCursorElement(this.arrayInts.length);
         }
@@ -138,7 +138,7 @@ public class ArrayInts extends AbstractArray {
     }
 
     public int[] toArray(int[] array) {
-        if (CheckerLengthArray.checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             if (array.length < this.size()) {
                 array = Arrays.copyOf(this.arrayInts, this.size());
             } else {
@@ -149,21 +149,21 @@ public class ArrayInts extends AbstractArray {
     }
 
     public void setArray(int[] arrayInts) {
-        if (CheckerLengthArray.checkLengthInArray(arrayInts)) {
+        if (CheckerArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = Arrays.copyOf(arrayInts, arrayInts.length);
         }
     }
 
     @Override
     public void setArray(int lengthArray) {
-        if (CheckerLengthArray.checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             this.arrayInts = new int[lengthArray];
         }
     }
 
     public int get(int index) {
         int result = 0;
-        if (CheckerIndex.checkIndex(index)) {
+        if (CheckerIndex.checkIndex(index, this.arrayInts.length)) {
             result = this.arrayInts[index];
         }
         return result;
@@ -200,7 +200,7 @@ public class ArrayInts extends AbstractArray {
     public boolean addAll(int[] arrayInts) {
         boolean resultAddAll = false;
         if (arrayInts != null) {
-            if (CheckerLengthArray.checkLengthInArray(arrayInts)) {
+            if (CheckerArray.checkLengthInArray(arrayInts)) {
                 int[] newArrayInts = new int[this.size() + arrayInts.length];
                 System.arraycopy(this.arrayInts, 0, newArrayInts, 0, this.size());
                 System.arraycopy(arrayInts, 0, newArrayInts, this.size() + 1, arrayInts.length);
@@ -215,7 +215,7 @@ public class ArrayInts extends AbstractArray {
     public boolean addAll(int index, int[] arrayInts) {
         boolean resultAddAll = false;
         if (CheckerIndex.checkIndex(index, this.size())) {
-            if (CheckerLengthArray.checkLengthInArray(arrayInts)) {
+            if (CheckerArray.checkLengthInArray(arrayInts)) {
                 int[] newArrayInts = new int[this.size() + arrayInts.length];
                 System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index);
                 System.arraycopy(arrayInts, 0, newArrayInts, index, arrayInts.length);
@@ -256,7 +256,7 @@ public class ArrayInts extends AbstractArray {
 
     public boolean removeAll(int[] arrayInts) {
         boolean resultRemoveAll = false;
-        if (CheckerLengthArray.checkLengthInArray(arrayInts)) {
+        if (CheckerArray.checkLengthInArray(arrayInts)) {
             Arrays.stream(arrayInts).forEach(this::remove);
             resultRemoveAll = true;
         }
@@ -281,7 +281,7 @@ public class ArrayInts extends AbstractArray {
 
     public boolean containsAll(int[] arrayInts) {
         boolean resultContainsAll = false;
-        if (CheckerLengthArray.checkLengthInArray(arrayInts)) {
+        if (CheckerArray.checkLengthInArray(arrayInts)) {
             for (int i = 0; i < arrayInts.length; i++) {
                 for (int j = 0; j < this.size(); j++) {
                     if (arrayInts[i] == this.get(j)) {
@@ -296,7 +296,7 @@ public class ArrayInts extends AbstractArray {
 
     public boolean retainAll(int[] arrayInts) {
         boolean resultRetainAll = false;
-        if (CheckerLengthArray.checkLengthInArray(arrayInts)) {
+        if (CheckerArray.checkLengthInArray(arrayInts)) {
             for (int tmp : arrayInts) {
                 if (!this.contains(tmp)) {
                     this.remove(tmp);

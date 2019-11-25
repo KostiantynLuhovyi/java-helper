@@ -3,8 +3,8 @@ package com.lugowoy.helper.filling.array.strings;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthInArray;
+import static com.lugowoy.helper.utils.checking.CheckerArray.checkLengthArray;
+import static com.lugowoy.helper.utils.checking.CheckerArray.checkLengthInArray;
 
 /**
  * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type.

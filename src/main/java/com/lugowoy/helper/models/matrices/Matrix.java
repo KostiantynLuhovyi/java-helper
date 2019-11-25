@@ -1,9 +1,11 @@
 package com.lugowoy.helper.models.matrices;
 
 import com.lugowoy.helper.models.storages.arrays.Array;
-import com.lugowoy.helper.utils.*;
+import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
+import com.lugowoy.helper.utils.MatrixColumnOutOfRangeException;
+import com.lugowoy.helper.utils.MatrixRowOutOfRangeException;
+import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerIndex;
-import com.lugowoy.helper.utils.checking.CheckerLengthArray;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
 
 import java.util.Arrays;
@@ -13,7 +15,7 @@ import java.util.Arrays;
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 2.1
+ * @version 2.2
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -188,7 +190,7 @@ public class Matrix<T> extends AbstractMatrix {
      * @throws NullPointerException      If argument array is null.
      */
     public T[] getRowToArray(T[] array, int indexRow) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getColumns())) {
+        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
             if (CheckerIndex.checkIndex(indexRow, super.getColumns())) {
                 array = (T[]) Arrays.copyOfRange(this.matrix[indexRow], 0, super.getColumns());
             }
@@ -206,7 +208,7 @@ public class Matrix<T> extends AbstractMatrix {
      * @throws NullPointerException      If argument array is null.
      */
     public Array<T> getRowToArray(Array<T> array, int indexRow) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getColumns())) {
+        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
             if (CheckerIndex.checkIndex(indexRow, super.getColumns())) {
                 for (int i = 0; i < super.getColumns(); i++) {
                     array.add((T) this.matrix[indexRow][i]);
@@ -243,7 +245,7 @@ public class Matrix<T> extends AbstractMatrix {
      * @throws NullPointerException      If argument array is null.
      */
     public T[] getColumnToArray(T[] array, int indexColumn) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getRows())) {
+        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
             if (CheckerIndex.checkIndex(indexColumn, super.getRows())) {
                 for (int i = 0; i < super.getRows(); i++) {
                     array[i] = (T) this.matrix[i][indexColumn];
@@ -263,7 +265,7 @@ public class Matrix<T> extends AbstractMatrix {
      * @throws NullPointerException      If argument array is null.
      */
     public Array<T> getColumnToArray(Array<T> array, int indexColumn) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getRows())) {
+        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
             if (CheckerIndex.checkIndex(indexColumn, super.getRows())) {
                 for (int i = 0; i < super.getRows(); i++) {
                     array.setArray((T[]) this.matrix[i][indexColumn]);
@@ -283,7 +285,7 @@ public class Matrix<T> extends AbstractMatrix {
      * @throws NullPointerException      If argument array is null.
      */
     public void setRowFromArray(T[] array, int indexRow) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getColumns())) {
+        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
             if (CheckerIndex.checkIndex(indexRow, super.getColumns())) {
                 this.matrix[indexRow] = Arrays.copyOfRange(array, 0, array.length);
             }
@@ -300,7 +302,7 @@ public class Matrix<T> extends AbstractMatrix {
      * @throws NullPointerException      If argument array is null.
      */
     public void setRowFromArray(Array<T> array, int indexRow) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getColumns())) {
+        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
             if (CheckerIndex.checkIndex(indexRow, super.getColumns())) {
                 for (int i = 0; i < super.getRows(); i++) {
                     this.matrix[indexRow][i] = array.get(i);
@@ -319,7 +321,7 @@ public class Matrix<T> extends AbstractMatrix {
      * @throws NullPointerException      If argument array is null.
      */
     public void setColumnFromArray(T[] array, int indexColumn) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getRows())) {
+        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
             if (CheckerIndex.checkIndex(indexColumn, super.getRows())) {
                 for (int i = 0; i < super.getColumns(); i++) {
                     this.matrix[i][indexColumn] = array[i];
@@ -338,7 +340,7 @@ public class Matrix<T> extends AbstractMatrix {
      * @throws NullPointerException      If argument array is null.
      */
     public void setColumnFromArray(Array<T> array, int indexColumn) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getRows())) {
+        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
             if (CheckerIndex.checkIndex(indexColumn, super.getRows())) {
                 for (int i = 0; i < super.getColumns(); i++) {
                     this.matrix[i][indexColumn] = array.get(i);

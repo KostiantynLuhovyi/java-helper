@@ -3,215 +3,134 @@ package com.lugowoy.helper.utils.checking;
 import com.lugowoy.helper.utils.BoundCompareException;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 
+import java.util.Objects;
+
 import static com.lugowoy.helper.utils.BoundOutOfRangeException.*;
 
 /**
  * <p> Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @since 1.6.6
  */
 //todo write doc's
-public interface CheckerBound {
+public final class CheckerBound {
 
-    static boolean isPositiveBound(Number bound) {
-        if (bound != null) {
-            if (bound.doubleValue() > 0) {
-                return true;
-            } else {
-                throw new BoundOutOfRangeException(MSG_NEGATIVE_BOUND);
-            }
+    private static final String MSG_BOUND_IS_NULL = "Bound must not be null.";
+    private static final String MSG_LOWER_BOUND_IS_NULL = "Lower bound must not be null.";
+    private static final String MSG_UPPER_BOUND_IS_NULL = "Upper bound must not be null.";
+
+    private CheckerBound() {
+    }
+
+    public static boolean isPositiveBound(final Number bound) {
+        Objects.requireNonNull(bound, MSG_BOUND_IS_NULL);
+        if (bound.doubleValue() > 0) {
+            return true;
         } else {
-            throw new NullPointerException("Bound is null.");
+            throw new BoundOutOfRangeException(MSG_NEGATIVE_BOUND);
         }
     }
 
-    static boolean isNegativeBound(Number bound) {
-        if (bound != null) {
-            if (bound.doubleValue() < 0) {
-                return true;
-            } else {
-                throw new BoundOutOfRangeException(MSG_POSITIVE_BOUND);
-            }
+    public static boolean isNegativeBound(final Number bound) {
+        Objects.requireNonNull(bound, MSG_BOUND_IS_NULL);
+        if (bound.doubleValue() < 0) {
+            return true;
         } else {
-            throw new NullPointerException("Bound is null.");
+            throw new BoundOutOfRangeException(MSG_POSITIVE_BOUND);
         }
     }
 
-    static boolean isZero(Number bound) {
-        if (bound != null) {
-            if (bound.doubleValue() == 0.0) {
-                return true;
-            } else {
-                throw new BoundOutOfRangeException(MSG_NON_ZERO);
-            }
+    public static boolean isZeroBound(final Number bound) {
+        Objects.requireNonNull(bound, MSG_BOUND_IS_NULL);
+        if (bound.doubleValue() == 0.0) {
+            return true;
         } else {
-            throw new NullPointerException("Bound is null.");
+            throw new BoundOutOfRangeException(MSG_NON_ZERO_BOUND);
         }
     }
 
-    static boolean isCorrectBounds(Number bound) {
-        if (bound != null) {
-            if (bound.doubleValue() >= Integer.MIN_VALUE && bound.doubleValue() <= Integer.MAX_VALUE) {
-                return true;
-            } else {
-                throw new BoundOutOfRangeException("Bound is out of range (" + Integer.MIN_VALUE + " - " + Integer.MAX_VALUE + ").");
-            }
+    public static boolean isNonZeroBound(final Number bound) {
+        Objects.requireNonNull(bound, MSG_BOUND_IS_NULL);
+        if (bound.doubleValue() != 0.0) {
+            return true;
         } else {
-            throw new NullPointerException("Bound is null.");
+            throw new BoundOutOfRangeException(MSG_ZERO_BOUND);
         }
     }
 
-    static boolean isCorrectBounds(Number bound, Number upperBound) {
-        if (bound != null) {
-            if (upperBound != null) {
-                if (bound.doubleValue() >= 0 && bound.doubleValue() <= upperBound.doubleValue()) {
-                    return true;
-                } else {
-                    throw new BoundOutOfRangeException("Bound is out of range (0 - " + Integer.MAX_VALUE + ").");
-                }
-            } else {
-                throw new NullPointerException("Upper bound is null.");
-            }
+    public static boolean isCorrectBound(final Number bound, final Number upperBound) {
+        Objects.requireNonNull(bound, MSG_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, MSG_UPPER_BOUND_IS_NULL);
+        double boundValue = bound.doubleValue();
+        if (boundValue >= 0 && boundValue <= upperBound.doubleValue()) {
+            return true;
         } else {
-            throw new NullPointerException("Bound is null.");
+            throw new BoundOutOfRangeException("Bound is out of range (0.0 - " + upperBound.doubleValue() + ").");
         }
     }
 
-    static boolean isCorrectBounds(Number bound, Number upperBound, String msgException) {
-        if (bound != null) {
-            if (upperBound != null) {
-                if (bound.doubleValue() >= 0 && bound.doubleValue() <= upperBound.doubleValue()) {
-                    return true;
-                } else {
-                    throw new BoundOutOfRangeException(msgException);
-                }
-            } else {
-                throw new NullPointerException("Upper bound is null.");
-            }
+    public static boolean isCorrectBound(final Number bound, final Number lowerBound, final Number upperBound) {
+        Objects.requireNonNull(bound, MSG_BOUND_IS_NULL);
+        Objects.requireNonNull(bound, MSG_LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(bound, MSG_UPPER_BOUND_IS_NULL);
+        double boundValue = bound.doubleValue();
+        if (boundValue >= lowerBound.doubleValue() && boundValue <= upperBound.doubleValue()) {
+            return true;
         } else {
-            throw new NullPointerException("Bound is null.");
+            throw new BoundOutOfRangeException("Bound value is out of range (" + lowerBound.doubleValue()
+                                                                       + " - " + upperBound.doubleValue() + ").");
         }
     }
 
-    static boolean isCorrectBounds(Number bound, Number lowerBound, Number upperBound) {
-        if (bound != null) {
-            if (lowerBound != null) {
-                if (upperBound != null) {
-                    if (bound.doubleValue() >= lowerBound.doubleValue() && bound.doubleValue() <= upperBound.doubleValue()) {
-                        return true;
-                    } else {
-                        throw new BoundOutOfRangeException("Bound value is out of range values.");
-                    }
-                } else {
-                    throw new NullPointerException("Upper bound is null");
-                }
-            } else {
-                throw new NullPointerException("Lower bound is null");
-            }
+    public static boolean isLowerBoundEqualThanUpperBound(final Number lowerBound, final Number upperBound) {
+        Objects.requireNonNull(lowerBound, MSG_LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, MSG_UPPER_BOUND_IS_NULL);
+        if (lowerBound.doubleValue() == upperBound.doubleValue()) {
+            return true;
         } else {
-            throw new NullPointerException("Bound is null");
+            throw new BoundCompareException("Lower bound is not equal to upper bound.");
         }
     }
 
-    static boolean isCorrectBounds(Number bound, Number lowerBound, Number upperBound, String msgException) {
-        if (bound != null) {
-            if (lowerBound != null) {
-                if (upperBound != null) {
-                    if (bound.doubleValue() >= lowerBound.doubleValue() && bound.doubleValue() <= upperBound.doubleValue()) {
-                        return true;
-                    } else {
-                        throw new BoundOutOfRangeException(msgException);
-                    }
-                } else {
-                    throw new NullPointerException("Upper bound is null");
-                }
-            } else {
-                throw new NullPointerException("Lower bound is null");
-            }
+    public static boolean isLowerBoundLessThanUpperBound(final Number lowerBound, final Number upperBound) {
+        Objects.requireNonNull(lowerBound, MSG_LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, MSG_UPPER_BOUND_IS_NULL);
+        if (lowerBound.doubleValue() < upperBound.doubleValue()) {
+            return true;
         } else {
-            throw new NullPointerException("Bound is null");
+            throw new BoundCompareException("Lower bound is greater than upper bound.");
         }
     }
 
-    static boolean isLowerBoundEqualThanUpperBound(Number lowerBound, Number upperBound) {
-        if (lowerBound != null) {
-            if (upperBound != null) {
-                if (lowerBound.doubleValue() == upperBound.doubleValue()) {
-                    return true;
-                } else {
-                    throw new BoundCompareException("Lower bound is not equal to upper bound");
-                }
-            } else {
-                throw new NullPointerException("Upper bound is null.");
-            }
+    public static boolean isLowerBoundGreaterThanUpperBound(final Number lowerBound, final Number upperBound) {
+        Objects.requireNonNull(lowerBound, MSG_LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, MSG_UPPER_BOUND_IS_NULL);
+        if (lowerBound.doubleValue() > upperBound.doubleValue()) {
+            return true;
         } else {
-            throw new NullPointerException("Lower bound is null.");
+            throw new BoundCompareException("Lower bound is less than upper bound.");
         }
     }
 
-    static boolean isLowerBoundLessThanUpperBound(Number lowerBound, Number upperBound) {
-        if (lowerBound != null) {
-            if (upperBound != null) {
-                if (lowerBound.doubleValue() < upperBound.doubleValue()) {
-                    return true;
-                } else {
-                    throw new BoundCompareException("Lower bound is greater than upper bound.");
-                }
-            } else {
-                throw new NullPointerException("Upper bound is null.");
-            }
+    public static boolean isLowerBoundLessOrEqualThanUpperBound(final Number lowerBound, final Number upperBound) {
+        Objects.requireNonNull(lowerBound, MSG_LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, MSG_UPPER_BOUND_IS_NULL);
+        if (lowerBound.doubleValue() <= upperBound.doubleValue()) {
+            return true;
         } else {
-            throw new NullPointerException("Lower bound is null.");
+            throw new BoundCompareException("Lower bound is greater or not equal than upper bound.");
         }
     }
 
-    static boolean isLowerBoundGreaterThanUpperBound(Number lowerBound, Number upperBound) {
-        if (lowerBound != null) {
-            if (upperBound != null) {
-                if (lowerBound.doubleValue() > upperBound.doubleValue()) {
-                    return true;
-                } else {
-                    throw new BoundCompareException("Lower bound is less than upper bound.");
-                }
-            } else {
-                throw new NullPointerException("Upper bound is null");
-            }
+    public static boolean isLowerBoundGreaterOrEqualThanUpperBound(final Number lowerBound, final Number upperBound) {
+        Objects.requireNonNull(lowerBound, MSG_LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, MSG_UPPER_BOUND_IS_NULL);
+        if (lowerBound.doubleValue() >= upperBound.doubleValue()) {
+            return true;
         } else {
-            throw new NullPointerException("Lower bound is null.");
-        }
-    }
-
-    static boolean isLowerBoundLessOrEqualThanUpperBound(Number lowerBound, Number upperBound) {
-        if (lowerBound != null) {
-            if (upperBound != null) {
-                if (lowerBound.doubleValue() <= upperBound.doubleValue()) {
-                    return true;
-                } else {
-                    throw new BoundCompareException("Lower bound is greater or not equal than upper bound.");
-                }
-            } else {
-                throw new NullPointerException("Upper bound is null.");
-            }
-        } else {
-            throw new NullPointerException("Lower bound is null.");
-        }
-    }
-
-    static boolean isLowerBoundGreaterOrEqualThanUpperBound(Number lowerBound, Number upperBound) {
-        if (lowerBound != null) {
-            if (upperBound != null) {
-                if (lowerBound.doubleValue() >= upperBound.doubleValue()) {
-                    return true;
-                } else {
-                    throw new BoundCompareException("Lower bound is less or not equal than upper bound.");
-                }
-            } else {
-                throw new NullPointerException("Upper bound is null.");
-            }
-        } else {
-            throw new NullPointerException("Lower bound is null.");
+            throw new BoundCompareException("Lower bound is less or not equal than upper bound.");
         }
     }
 

@@ -1,71 +1,46 @@
 package com.lugowoy.helper.utils.checking;
 
-import com.lugowoy.helper.models.storages.arrays.Array;
-
 /**
  * <p> Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 1.6.6
  */
 //todo write doc's
-public interface CheckerIndex {
+public final class CheckerIndex {
 
-    static boolean checkIndex(int index) {
-        if (index >= 0 && index < Integer.MAX_VALUE) {
-            return true;
-        } else {
-            throw new IndexOutOfBoundsException("Index is out of range.");
-        }
+    private static final String MSG_INDEX_IS_OUT_OF_RANGE = "Index is out of range.";
+    private static final int LOWER_INDEX = 0;
+
+    private CheckerIndex() {
     }
 
-    static <T> boolean checkIndex(int index, Array<T> array) {
-        if (index >= 0 && index < array.size()) {
-            return true;
-        } else {
-            throw new IndexOutOfBoundsException("Index is out of range.");
+    public static boolean checkIndex(final int index, final int upperBoundIndex) {
+        boolean resultCheckIndex = false;
+        if (CheckerBound.isCorrectBound(upperBoundIndex, LOWER_INDEX, Integer.MAX_VALUE)) {
+            if (index >= 0 && index < upperBoundIndex) {
+                resultCheckIndex = true;
+            } else {
+                throw new IndexOutOfBoundsException(MSG_INDEX_IS_OUT_OF_RANGE);
+            }
         }
+        return resultCheckIndex;
     }
 
-    static <T> boolean checkIndex(int index, T[] array) {
-        if (index >= 0 && index < array.length) {
-            return true;
-        } else {
-            throw new IndexOutOfBoundsException("Index is out of range.");
+    public static boolean checkIndex(final int index, final int lowerBoundIndex, final int upperBoundIndex) {
+        boolean resultCheckIndex = false;
+        if (CheckerBound.isCorrectBound(lowerBoundIndex, LOWER_INDEX, Integer.MAX_VALUE)
+                && CheckerBound.isCorrectBound(upperBoundIndex, LOWER_INDEX, Integer.MAX_VALUE)) {
+            if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundIndex, upperBoundIndex)) {
+                if (index >= lowerBoundIndex && index <= upperBoundIndex) {
+                    resultCheckIndex = true;
+                } else {
+                    throw new IndexOutOfBoundsException(MSG_INDEX_IS_OUT_OF_RANGE);
+                }
+            }
         }
-    }
-
-    static boolean checkIndex(int index, int[] array) {
-        if (index >= 0 && index < array.length) {
-            return true;
-        } else {
-            throw new IndexOutOfBoundsException("Index is out of range.");
-        }
-    }
-
-    static boolean checkIndex(int index, double[] array) {
-        if (index >= 0 && index < array.length) {
-            return true;
-        } else {
-            throw new IndexOutOfBoundsException("Index is out of range.");
-        }
-    }
-
-    static boolean checkIndex(int index, int upperBoundIndex) {
-        if (index >= 0 && index < upperBoundIndex) {
-            return true;
-        } else {
-            throw new IndexOutOfBoundsException("Index is out of range.");
-        }
-    }
-
-    static boolean checkIndex(int index, int lowerBoundIndex, int upperBoundIndex) {
-        if (index >= lowerBoundIndex && index <= upperBoundIndex) {
-            return true;
-        } else {
-            throw new IndexOutOfBoundsException("Index is out of range.");
-        }
+        return resultCheckIndex;
     }
 
 }

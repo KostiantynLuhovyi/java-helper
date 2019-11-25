@@ -4,8 +4,8 @@ import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.storages.arrays.Array;
 
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthInArray;
+import static com.lugowoy.helper.utils.checking.CheckerArray.checkLengthArray;
+import static com.lugowoy.helper.utils.checking.CheckerArray.checkLengthInArray;
 
 /**
  * The class provides functionality to reads data for fills an object of the {@link Array} class

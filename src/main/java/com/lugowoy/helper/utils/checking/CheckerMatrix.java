@@ -4,163 +4,159 @@ import com.lugowoy.helper.models.matrices.AbstractMatrix;
 import com.lugowoy.helper.utils.MatrixColumnOutOfRangeException;
 import com.lugowoy.helper.utils.MatrixRowOutOfRangeException;
 
+import java.util.Objects;
+
 /**
  * Created by Konstantin Lugowoy on 21.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 2.0
  */
 //todo write doc's
-public interface CheckerMatrix {
+public final class CheckerMatrix {
 
-    int LOWER_ROWS_VALUE = 1;
-    int LOWER_COLUMNS_VALUE = 1;
-    int UPPER_ROWS_VALUE = Integer.MAX_VALUE;
-    int UPPER_COLUMNS_VALUE = Integer.MAX_VALUE;
+    public static final int LOWER_ROWS_VALUE = 0;
+    public static final int LOWER_COLUMNS_VALUE = 0;
 
-    static boolean checkMatrix(AbstractMatrix matrix) {
-        if (matrix != null) {
-            if (matrix.getRows() >= LOWER_ROWS_VALUE && matrix.getRows() <= UPPER_ROWS_VALUE) {
-                if (matrix.getColumns() >= LOWER_COLUMNS_VALUE && matrix.getColumns() <= UPPER_COLUMNS_VALUE) {
-                    return true;
-                } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix getColumns value is out of range (" + LOWER_COLUMNS_VALUE
-                                                                                               + " - " + UPPER_COLUMNS_VALUE + ").");
-                }
+    private static final int ARRAY_HEADER = 8;
+
+    public static final int UPPER_ROWS_VALUE = Integer.MAX_VALUE - ARRAY_HEADER;
+    public static final int UPPER_COLUMNS_VALUE = Integer.MAX_VALUE - ARRAY_HEADER;
+
+    private static final String MSG_MATRIX_IS_NULL = "Matrix must not be null.";
+    private static final String MSG_MATRIX_ROWS_IS_OUT_OF_RANGE = "Matrix rows value is out of range (" + LOWER_ROWS_VALUE
+                                                                                                + " - " + UPPER_ROWS_VALUE + ").";
+    private static final String MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE = "Matrix columns value is out of range (" + LOWER_COLUMNS_VALUE
+                                                                                                      + " - " + UPPER_COLUMNS_VALUE + ").";
+
+    private CheckerMatrix() {
+    }
+
+    public static boolean checkMatrix(final AbstractMatrix matrix) {
+        Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
+        int matrixRows = matrix.getRows();
+        int matrixColumns = matrix.getColumns();
+        if (matrixRows >= LOWER_ROWS_VALUE && matrixRows <= UPPER_ROWS_VALUE) {
+            if (matrixColumns >= LOWER_COLUMNS_VALUE && matrixColumns <= UPPER_COLUMNS_VALUE) {
+                return true;
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix getRows value is out of range (" + LOWER_ROWS_VALUE
-                                                                                     + " - " + UPPER_ROWS_VALUE + ").");
+                throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
             }
         } else {
-            throw new NullPointerException("Matrix is null.");
+            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
         }
     }
 
-    static <T> boolean checkMatrix(T[][] matrix) {
-        if (matrix != null) {
-            if (matrix.length >= LOWER_ROWS_VALUE && matrix.length <= UPPER_ROWS_VALUE) {
-                if (matrix[0].length >= LOWER_COLUMNS_VALUE && matrix[0].length <= UPPER_COLUMNS_VALUE) {
-                    return true;
-                } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix getColumns value is out of range (" + LOWER_COLUMNS_VALUE
-                                                                                               + " - " + UPPER_COLUMNS_VALUE + ").");
-                }
+    public static <T> boolean checkMatrix(final T[][] matrix) {
+        Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
+        int matrixRows = matrix.length;
+        int matrixColumns = matrix[0].length;
+        if (matrixRows >= LOWER_ROWS_VALUE && matrixRows <= UPPER_ROWS_VALUE) {
+            if (matrixColumns >= LOWER_COLUMNS_VALUE && matrixColumns <= UPPER_COLUMNS_VALUE) {
+                return true;
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix getRows value is out of range (" + LOWER_ROWS_VALUE
-                                                                                     + " - " + UPPER_ROWS_VALUE + ").");
+                throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
             }
         } else {
-            throw new NullPointerException("Matrix is null.");
+            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
         }
     }
 
-    static boolean checkMatrix(int[][] matrix) {
-        if (matrix != null) {
-            if (matrix.length >= LOWER_ROWS_VALUE && matrix.length <= UPPER_ROWS_VALUE) {
-                if (matrix[0].length >= LOWER_COLUMNS_VALUE && matrix[0].length <= UPPER_COLUMNS_VALUE) {
-                    return true;
-                } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix getColumns value is out of range (" + LOWER_COLUMNS_VALUE
-                                                                                               + " - " + UPPER_COLUMNS_VALUE + ").");
-                }
+    public static boolean checkMatrix(final int[][] matrix) {
+        Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
+        int matrixRows = matrix.length;
+        int matrixColumns = matrix[0].length;
+        if (matrixRows >= LOWER_ROWS_VALUE && matrixRows <= UPPER_ROWS_VALUE) {
+            if (matrixColumns >= LOWER_COLUMNS_VALUE && matrixColumns <= UPPER_COLUMNS_VALUE) {
+                return true;
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix getRows value is out of range (" + LOWER_ROWS_VALUE
-                                                                                     + " - " + UPPER_ROWS_VALUE + ").");
+                throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
             }
         } else {
-            throw new NullPointerException("Matrix is null.");
+            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
         }
     }
 
-    static boolean checkMatrix(double[][] matrix) {
-        if (matrix != null) {
-            if (matrix.length >= LOWER_ROWS_VALUE && matrix.length <= UPPER_ROWS_VALUE) {
-                if (matrix[0].length >= LOWER_COLUMNS_VALUE && matrix[0].length <= UPPER_COLUMNS_VALUE) {
-                    return true;
-                } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix getColumns value is out of range (" + LOWER_COLUMNS_VALUE
-                                                                                               + " - " + UPPER_COLUMNS_VALUE + ").");
-                }
+    public static boolean checkMatrix(final double[][] matrix) {
+        Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
+        int matrixRows = matrix.length;
+        int matrixColumns = matrix[0].length;
+        if (matrixRows >= LOWER_ROWS_VALUE && matrixRows <= UPPER_ROWS_VALUE) {
+            if (matrixColumns >= LOWER_COLUMNS_VALUE && matrixColumns <= UPPER_COLUMNS_VALUE) {
+                return true;
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix getRows value is out of range (" + LOWER_ROWS_VALUE
-                                                                                     + " - " + UPPER_ROWS_VALUE + ").");
+                throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
             }
         } else {
-            throw new NullPointerException("Matrix is null.");
+            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
         }
     }
 
-    static boolean checkRows(int rows) {
+    public static boolean checkRows(final int rows) {
         if (rows >= LOWER_ROWS_VALUE && rows <= UPPER_ROWS_VALUE) {
             return true;
         } else {
-            throw new MatrixRowOutOfRangeException("Matrix getRows value is out of range (" + LOWER_ROWS_VALUE
-                                                                                 + " - " + UPPER_ROWS_VALUE + ").");
+            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
         }
     }
 
-    static boolean checkRows(int rows, int upperBoundRows) {
+    public static boolean checkRows(final int rows, final int upperBoundRows) {
         boolean resultCheckRows = false;
-        if (CheckerBound.isCorrectBounds(upperBoundRows, LOWER_ROWS_VALUE, UPPER_ROWS_VALUE)) {
+        if (CheckerBound.isCorrectBound(upperBoundRows, LOWER_ROWS_VALUE, UPPER_ROWS_VALUE)) {
             if (rows >= LOWER_ROWS_VALUE && rows <= UPPER_ROWS_VALUE) {
                 resultCheckRows = true;
             } else {
-                throw new MatrixRowOutOfRangeException("Matrix getRows value is out of range (" + LOWER_ROWS_VALUE
-                                                                                     + " - " + UPPER_ROWS_VALUE + ").");
+                throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
             }
         }
         return resultCheckRows;
     }
 
-    static boolean checkRows(int rows, int lowerBoundRows, int upperBoundRows) {
+    public static boolean checkRows(final int rows, final int lowerBoundRows, final int upperBoundRows) {
         boolean resultCheckRows = false;
-        if (CheckerBound.isCorrectBounds(lowerBoundRows, LOWER_ROWS_VALUE, UPPER_ROWS_VALUE)
-                && CheckerBound.isCorrectBounds(upperBoundRows, LOWER_ROWS_VALUE, UPPER_ROWS_VALUE)) {
+        if (CheckerBound.isCorrectBound(lowerBoundRows, LOWER_ROWS_VALUE, UPPER_ROWS_VALUE)
+                && CheckerBound.isCorrectBound(upperBoundRows, LOWER_ROWS_VALUE, UPPER_ROWS_VALUE)) {
             if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundRows, upperBoundRows)) {
                 if (rows >= LOWER_ROWS_VALUE && rows <= UPPER_ROWS_VALUE) {
                     resultCheckRows = true;
                 } else {
-                    throw new MatrixRowOutOfRangeException("Matrix getRows value is out of range (" + LOWER_ROWS_VALUE
-                                                                                         + " - " + UPPER_ROWS_VALUE + ").");
+                    throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
                 }
             }
         }
         return resultCheckRows;
     }
 
-    static boolean checkColumns(int columns) {
+    public static boolean checkColumns(final int columns) {
         if (columns >= LOWER_COLUMNS_VALUE && columns <= UPPER_COLUMNS_VALUE) {
             return true;
         } else {
-            throw new MatrixColumnOutOfRangeException("Matrix getColumns value is out of range (" + LOWER_COLUMNS_VALUE
-                                                                                    + " - " + UPPER_COLUMNS_VALUE + ").");
+            throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
         }
     }
 
-    static boolean checkColumns(int columns, int upperBoundColumns) {
+    public static boolean checkColumns(final int columns, final int upperBoundColumns) {
         boolean resultCheckColumns = false;
-        if (CheckerBound.isCorrectBounds(upperBoundColumns, LOWER_COLUMNS_VALUE, UPPER_COLUMNS_VALUE)) {
+        if (CheckerBound.isCorrectBound(upperBoundColumns, LOWER_COLUMNS_VALUE, UPPER_COLUMNS_VALUE)) {
             if (columns >= LOWER_COLUMNS_VALUE && columns <= UPPER_COLUMNS_VALUE) {
                 resultCheckColumns = true;
             } else {
-                throw new MatrixColumnOutOfRangeException("Matrix getColumns value is out of range (" + LOWER_COLUMNS_VALUE
-                                                                                           + " - " + UPPER_COLUMNS_VALUE + ").");
+                throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
             }
         }
         return resultCheckColumns;
     }
 
-    static boolean checkColumns(int columns, int lowerBoundColumns, int upperBoundColumns) {
+    public static boolean checkColumns(final int columns, final int lowerBoundColumns, final int upperBoundColumns) {
         boolean resultCheckColumns = false;
-        if (CheckerBound.isCorrectBounds(lowerBoundColumns, LOWER_COLUMNS_VALUE, UPPER_COLUMNS_VALUE)
-                && CheckerBound.isCorrectBounds(upperBoundColumns, LOWER_COLUMNS_VALUE, UPPER_COLUMNS_VALUE)) {
+        if (CheckerBound.isCorrectBound(lowerBoundColumns, LOWER_COLUMNS_VALUE, UPPER_COLUMNS_VALUE)
+                && CheckerBound.isCorrectBound(upperBoundColumns, LOWER_COLUMNS_VALUE, UPPER_COLUMNS_VALUE)) {
             if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundColumns, upperBoundColumns)) {
                 if (columns >= lowerBoundColumns && columns <= upperBoundColumns) {
                     resultCheckColumns = true;
                 } else {
-                    throw new MatrixColumnOutOfRangeException("Matrix getColumns value is out of range (" + LOWER_COLUMNS_VALUE
-                                                                                               + " - " + UPPER_COLUMNS_VALUE + ").");
+                    throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
                 }
             }
         }

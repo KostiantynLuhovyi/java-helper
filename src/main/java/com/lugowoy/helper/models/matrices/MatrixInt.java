@@ -1,7 +1,7 @@
 package com.lugowoy.helper.models.matrices;
 
 import com.lugowoy.helper.utils.checking.CheckerIndex;
-import com.lugowoy.helper.utils.checking.CheckerLengthArray;
+import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
 
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 21.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 2.0
  */
 //todo write doc's
@@ -106,7 +106,7 @@ public class MatrixInt extends AbstractMatrix {
     }
 
     public int[] getRowToArray(int[] array, int indexRow) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getColumns())) {
+        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
             if (CheckerIndex.checkIndex(indexRow, super.getColumns())) {
                 array = Arrays.copyOfRange(this.matrix[indexRow], 0, super.getColumns());
             }
@@ -125,7 +125,7 @@ public class MatrixInt extends AbstractMatrix {
     }
 
     public int[] getColumnToArray(int[] array, int indexColumn) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getRows())) {
+        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
             if (CheckerIndex.checkIndex(indexColumn, super.getRows())) {
                 for (int i = 0; i < super.getRows(); i++) {
                     array[i] = this.matrix[i][indexColumn];
@@ -136,7 +136,7 @@ public class MatrixInt extends AbstractMatrix {
     }
 
     public void setRowFromArray(int[] array, int indexRow) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getColumns())) {
+        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
             if (CheckerIndex.checkIndex(indexRow, super.getColumns())) {
                 this.matrix[indexRow] = Arrays.copyOfRange(array, 0, array.length);
             }
@@ -144,7 +144,7 @@ public class MatrixInt extends AbstractMatrix {
     }
 
     public void setColumnFromArray(int[] array, int indexColumn) {
-        if (CheckerLengthArray.checkLengthInArray(array, super.getRows())) {
+        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
             if (CheckerIndex.checkIndex(indexColumn, super.getRows())) {
                 for (int i = 0; i < super.getColumns(); i++) {
                     this.matrix[i][indexColumn] = array[i];

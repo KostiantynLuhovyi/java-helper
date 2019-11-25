@@ -1,6 +1,7 @@
 package com.lugowoy.helper.utils.generating;
 
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.checking.CheckerBound;
 import org.apache.commons.math3.random.RandomDataGenerator;
 
 import java.util.Random;
@@ -64,9 +65,9 @@ public class GeneratorRandomNumber {
      */
     public static byte generateByte(byte lowerBound, byte upperBound) {
         byte resultValue = 0;
-        if (isBoundValueInRange(lowerBound, Byte.MIN_VALUE, Byte.MAX_VALUE)
-                && isBoundValueInRange(upperBound, Byte.MIN_VALUE, Byte.MAX_VALUE)) {
-            if (isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound)) {
+        if (CheckerBound.isCorrectBound(lowerBound, Byte.MIN_VALUE, Byte.MAX_VALUE)
+                && CheckerBound.isCorrectBound(upperBound, Byte.MIN_VALUE, Byte.MAX_VALUE)) {
+            if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                 resultValue = (byte) generateInt(lowerBound, upperBound);
             }
         }
@@ -119,9 +120,9 @@ public class GeneratorRandomNumber {
      */
     public static short generateShort(short lowerBound, short upperBound) {
         short resultValue = 0;
-        if (isBoundValueInRange(lowerBound, Short.MIN_VALUE, Short.MAX_VALUE)
-                && isBoundValueInRange(upperBound, Short.MIN_VALUE, Short.MAX_VALUE)) {
-            if (isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound)) {
+        if (CheckerBound.isCorrectBound(lowerBound, Short.MIN_VALUE, Short.MAX_VALUE)
+                && CheckerBound.isCorrectBound(upperBound, Short.MIN_VALUE, Short.MAX_VALUE)) {
+            if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                 resultValue = (short) RANDOM_GENERATOR.nextInt(lowerBound, upperBound);
             }
         }
@@ -173,9 +174,9 @@ public class GeneratorRandomNumber {
      */
     public static int generateInt(int lowerBound, int upperBound) {
         int resultValue = 0;
-        if (isBoundValueInRange(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                && isBoundValueInRange(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-            if (isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound)) {
+        if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
+                && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
+            if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                 return RANDOM_GENERATOR.nextInt(lowerBound, upperBound);
             }
         }
@@ -227,9 +228,9 @@ public class GeneratorRandomNumber {
      */
     public static long generateLong(long lowerBound, long upperBound) {
         long resultValue = 0L;
-        if (isBoundValueInRange(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                && isBoundValueInRange(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
-            if (isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound)) {
+        if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
+                && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
+            if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                 resultValue = RANDOM_GENERATOR.nextLong(lowerBound, upperBound);
             }
         }
@@ -281,9 +282,9 @@ public class GeneratorRandomNumber {
      */
     public static float generateFloat(float lowerBound, float upperBound) {
         float resultValue = 0F;
-        if (isBoundValueInRange(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                && isBoundValueInRange(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-            if (isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound)) {
+        if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
+                && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
+            if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                 resultValue = RANDOM.nextFloat() * (upperBound - lowerBound) + lowerBound;
             }
         }
@@ -335,49 +336,13 @@ public class GeneratorRandomNumber {
      */
     public static double generateDouble(double lowerBound, double upperBound) {
         double resultValue = 0D;
-        if (isBoundValueInRange(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                && isBoundValueInRange(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-            if (isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound)) {
+        if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
+                && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
+            if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                 resultValue = RANDOM.nextDouble() * (upperBound - lowerBound) + lowerBound;
             }
         }
         return resultValue;
-    }
-
-    private static boolean isBoundValueInRange(long bound, long minBound, long maxBound) {
-        if (bound >= minBound && bound <= maxBound) {
-            return true;
-        } else {
-            String msgEx = "Bound (" + bound + ") value is out of range (" + minBound + " - " + maxBound + ").";
-            throw new BoundOutOfRangeException(msgEx);
-        }
-    }
-
-    private static boolean isBoundValueInRange(double bound, double minBound, double maxBound) {
-        if (bound >= minBound && bound <= maxBound) {
-            return true;
-        } else {
-            String msgEx = "Bound (" + bound + ") value is out of range (" + minBound + " - " + maxBound + ").";
-            throw new BoundOutOfRangeException(msgEx);
-        }
-    }
-
-    private static boolean isLowerBoundLessOrEqualUpperBound(long lowerBound, long upperBound) {
-        if (lowerBound <= upperBound) {
-            return true;
-        } else {
-            String msgEx = "Lower bound (" + lowerBound + ") value is greater than the upper bound (" + upperBound + ") value.";
-            throw new BoundOutOfRangeException(msgEx);
-        }
-    }
-
-    private static boolean isLowerBoundLessOrEqualUpperBound(double lowerBound, double upperBound) {
-        if (lowerBound <= upperBound) {
-            return true;
-        } else {
-            String msgEx = "Lower bound (" + lowerBound + ") value is greater than the upper bound (" + upperBound + ") value.";
-            throw new BoundOutOfRangeException(msgEx);
-        }
     }
 
 }

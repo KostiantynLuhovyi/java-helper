@@ -1,13 +1,12 @@
 package com.lugowoy.helper.filling.array.numbers;
 
+import com.lugowoy.helper.filling.DefaultNumericValues;
 import com.lugowoy.helper.models.storages.arrays.Array;
+import com.lugowoy.helper.utils.checking.CheckerArray;
+import com.lugowoy.helper.utils.checking.CheckerBound;
 
 import static com.lugowoy.helper.filling.DefaultNumericValues.DEFAULT_DOUBLE_VALUE;
 import static com.lugowoy.helper.filling.DefaultNumericValues.DOUBLE_ZERO;
-import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBounds;
-import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundGreaterOrEqualThanUpperBound;
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthInArray;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -16,7 +15,7 @@ import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthIn
  * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
@@ -34,7 +33,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      */
     @Override
     public void fill(Array<Double> array) {
-        if (checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             Double[] doubles = new Double[array.size()];
             this.fillArrayDescendingFractionOfDouble(doubles);
             array.setArray(doubles);
@@ -50,7 +49,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      */
     @Override
     public void fill(Double[] doubles) {
-        if (checkLengthInArray(doubles)) {
+        if (CheckerArray.checkLengthInArray(doubles)) {
             this.fillArrayDescendingFractionOfDouble(doubles);
         }
     }
@@ -68,7 +67,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
     @Override
     public Double[] fill(int lengthArray) {
         Double[] doubles = new Double[0];
-        if (checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             this.fillArrayDescendingFractionOfDouble(doubles);
         }
@@ -78,7 +77,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
     /**
      * Fills an object of the {@link Array} class with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The object of the {@link Array} class is filled with numeric data from "0.0" (decreases by "0.1") to the value of the "bound" parameter.
-     * If the value of the "bound" argument is a positive number, then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
+     * If the value of the "bound" argument is a positive number, then the range value for filling the array from "0" to {@link DefaultNumericValues}.
      *
      * @param array The object of the {@link Array} class to be filled with
      *              sequential descending decimal digit of numeric data of type {@link Double}.
@@ -88,9 +87,9 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      */
     @Override
     public void fill(Array<Double> array, Double bound) {
-        if (checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             Double[] doubles = new Double[array.size()];
-            if (isCorrectBounds(bound, Integer.MIN_VALUE, DOUBLE_ZERO)) {
+            if (CheckerBound.isCorrectBound(bound, Long.MIN_VALUE, DOUBLE_ZERO)) {
                 this.fillArrayDescendingFractionOfDoubleFromZeroToNegativeBound(doubles, bound);
                 array.setArray(doubles);
             }
@@ -101,7 +100,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * Fills an array with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data from "0.0" (decreases by "0.1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultNumericValues}.
      *
      * @param doubles The array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
      * @param bound   The value of the end bound for filling an array with
@@ -110,8 +109,8 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      */
     @Override
     public void fill(Double[] doubles, Double bound) {
-        if (checkLengthInArray(doubles)) {
-            if (isCorrectBounds(bound, Integer.MIN_VALUE, DOUBLE_ZERO)) {
+        if (CheckerArray.checkLengthInArray(doubles)) {
+            if (CheckerBound.isCorrectBound(bound, Long.MIN_VALUE, DOUBLE_ZERO)) {
                 this.fillArrayDescendingFractionOfDoubleFromZeroToNegativeBound(doubles, bound);
             }
         }
@@ -124,7 +123,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * If the value of "lengthArray" is less than "0.0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from "0.0" (decreases by "0.1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}.
+     * then the range value for filling the array from "0" to {@link DefaultNumericValues}.
      *
      * @param lengthArray The length(size) of the array to be filled with
      *                    sequential descending decimal digit of numeric data of type {@link Double}.
@@ -134,9 +133,9 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
     @Override
     public Double[] fill(int lengthArray, Double bound) {
         Double[] doubles = new Double[0];
-        if (checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isCorrectBounds(bound, Integer.MIN_VALUE, DOUBLE_ZERO)) {
+            if (CheckerBound.isCorrectBound(bound, Long.MIN_VALUE, DOUBLE_ZERO)) {
                 this.fillArrayDescendingFractionOfDoubleFromZeroToNegativeBound(doubles, bound);
             }
         }
@@ -147,8 +146,8 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * Fills an object of the {@link Array} class with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The object of the {@link Array} class is filled with numeric data (decreases by "0.1") from the value "lowerBound" to the value of the "upperBound" parameters.
      * If the value of the argument "lowerBound" is less than the value of "upperBound"
-     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#START_BOUND}
-     * and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultNumericValues}
+     * and {@link DefaultNumericValues} respectively.
      *
      * @param array      The object of the {@link Array} class that must be filled with
      *                   sequential descending decimal digit of numeric data of type {@link Double}.
@@ -160,10 +159,11 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      */
     @Override
     public void fill(Array<Double> array, Double lowerBound, Double upperBound) {
-        if (checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             Double[] doubles = new Double[array.size()];
-            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
-                if (isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
+            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
+                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
+                if (CheckerBound.isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillArrayDescendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
                     array.setArray(doubles);
                 }
@@ -175,8 +175,8 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * Fills an array with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data (decreases by "0.1") from "lowerBound" to the value of the "upperBound" parameter.
      * If the value of the argument "lowerBound" is less than the value of "upperBound"
-     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#START_BOUND}
-     * and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultNumericValues}
+     * and {@link DefaultNumericValues} respectively.
      *
      * @param doubles    The array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
      * @param lowerBound The value of the start bound for filling an array with
@@ -187,9 +187,10 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      */
     @Override
     public void fill(Double[] doubles, Double lowerBound, Double upperBound) {
-        if (checkLengthInArray(doubles)) {
-            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
-                if (isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
+        if (CheckerArray.checkLengthInArray(doubles)) {
+            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
+                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
+                if (CheckerBound.isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillArrayDescendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
                 }
             }
@@ -203,8 +204,8 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data (decreases by "0.1") from the value "lowerBound" to the value of the "upperBound" parameters.
      * If the value of the argument "lowerBound" is less than the value of "upperBound"
-     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultValuesForFilling#START_BOUND}
-     * and {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultNumericValues}
+     * and {@link DefaultNumericValues} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled with
      *                    sequential descending decimal digit of numeric data of type {@link Double}.
@@ -217,10 +218,11 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
     @Override
     public Double[] fill(int lengthArray, Double lowerBound, Double upperBound) {
         Double[] doubles = new Double[0];
-        if (checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
-                if (isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
+            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
+                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
+                if (CheckerBound.isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillArrayDescendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
                 }
             }

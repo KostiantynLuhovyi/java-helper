@@ -7,7 +7,7 @@
     <groupId>com.lugowoy</groupId>
     <artifactId>java-helper</artifactId>
     <name>java-helper</name>
-    <version>2.0</version>
+    <version>2.0.2</version>
 
     <properties>
         <java.version>11</java.version>
@@ -30,7 +30,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <compilerVersion>${java.version}</compilerVersion>
                     <source>${java.version}</source>

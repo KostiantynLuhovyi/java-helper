@@ -6,12 +6,10 @@ import com.lugowoy.helper.models.points.Point;
 import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.ValueOutOfRangeException;
+import com.lugowoy.helper.utils.checking.CheckerArray;
+import com.lugowoy.helper.utils.checking.CheckerBound;
 
 import static com.lugowoy.helper.filling.DefaultNumericValues.DOUBLE_ZERO;
-import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBounds;
-import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrEqualThanUpperBound;
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthInArray;
 
 /**
  * The class is the heir of the {@link FillingArrayPointsReadValues} class and implements it's contract.
@@ -22,7 +20,7 @@ import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthIn
  * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPointsReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
@@ -65,7 +63,7 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point2D<Double>> array) {
-        if (checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             Point2D<Double>[] points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
             this.fillArrayPointsReadDouble(points);
             array.setArray(points);
@@ -81,7 +79,7 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
      */
     @Override
     public void fill(Point2D<Double>[] points) {
-        if (checkLengthInArray(points)) {
+        if (CheckerArray.checkLengthInArray(points)) {
             this.fillArrayPointsReadDouble(points);
         }
     }
@@ -102,7 +100,7 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
     @Override
     public Point2D<Double>[] fill(int lengthArray) {
         Point2D<Double>[] points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, 0);
-        if (checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, lengthArray);
             this.fillArrayPointsReadDouble(points);
         }
@@ -114,7 +112,7 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
      * with numeric coordinates of type {@link Double} in the range from "0" to "bound" parameter,
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}
+     * then the range value for filling the array from "0" to {@link }
      *
      * @param array The object of the {@link Array} class to be filled.
      * @param bound The value of the end of the range boundary
@@ -124,9 +122,9 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point2D<Double>> array, Double bound) {
-        if (checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             Point2D<Double>[] points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
-            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
                 this.fillArrayPointsReadDoubleFromZeroToBound(points, bound);
             }
         }
@@ -137,7 +135,7 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
      * with numeric coordinates of type {@link Double} in the range from "0" to "bound" parameter,
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
+     * then the range value for filling the array from "0" to {@link com.lugowoy.helper.filling.DefaultNumericValues}.
      *
      * @param points The array to be filled.
      * @param bound  The value of the end of the range boundary
@@ -146,8 +144,8 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
      */
     @Override
     public void fill(Point2D<Double>[] points, Double bound) {
-        if (checkLengthInArray(points)) {
-            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+        if (CheckerArray.checkLengthInArray(points)) {
+            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
                 this.fillArrayPointsReadDoubleFromZeroToBound(points, bound);
             }
         }
@@ -160,7 +158,7 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND}.
+     * then the range value for filling the array from "0" to {@link com.lugowoy.helper.filling.DefaultNumericValues}.
      *
      * @param lengthArray The length(size) of the array to be filled.
      * @param bound       The value of the end of the range boundary
@@ -171,9 +169,9 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
     @Override
     public Point2D<Double>[] fill(int lengthArray, Double bound) {
         Point2D<Double>[] points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, 0);
-        if (checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, lengthArray);
-            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
                 this.fillArrayPointsReadDoubleFromZeroToBound(points, bound);
             }
         }
@@ -186,8 +184,8 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the argument "lowerBoundCoordinate" is greater than the value of "upperBoundCoordinate"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
-     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
+     * then the values {@link com.lugowoy.helper.filling.DefaultNumericValues}
+     * and {@link com.lugowoy.helper.filling.DefaultNumericValues} respectively.
      *
      * @param array                The object of the {@link Array} class to be filled.
      * @param lowerBoundCoordinate The value of the start of the range boundary
@@ -199,10 +197,11 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point2D<Double>> array, Double lowerBoundCoordinate, Double upperBoundCoordinate) {
-        if (checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             Point2D<Double>[] points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
-            if (isCorrectBounds(lowerBoundCoordinate) && isCorrectBounds(upperBoundCoordinate)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBoundCoordinate, upperBoundCoordinate)) {
+            if (CheckerBound.isCorrectBound(lowerBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE)
+                    && CheckerBound.isCorrectBound(upperBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE)) {
+                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundCoordinate, upperBoundCoordinate)) {
                     this.fillArrayPointsReadDoubleFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
                     array.setArray(points);
                 }
@@ -216,8 +215,8 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
      * using the data read by the object of the class {@link Reader} encapsulated in parent class.
      * If the value of the argument "lowerBoundCoordinate" is greater than the value of "upperBoundCoordinate"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
-     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
+     * then the values {@link com.lugowoy.helper.filling.DefaultNumericValues}
+     * and {@link com.lugowoy.helper.filling.DefaultNumericValues} respectively.
      *
      * @param points               The array to be filled.
      * @param lowerBoundCoordinate The value of the start of the range boundary
@@ -228,9 +227,10 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
      */
     @Override
     public void fill(Point2D<Double>[] points, Double lowerBoundCoordinate, Double upperBoundCoordinate) {
-        if (checkLengthInArray(points)) {
-            if (isCorrectBounds(lowerBoundCoordinate) && isCorrectBounds(upperBoundCoordinate)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBoundCoordinate, upperBoundCoordinate)) {
+        if (CheckerArray.checkLengthInArray(points)) {
+            if (CheckerBound.isCorrectBound(lowerBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE)
+                    && CheckerBound.isCorrectBound(upperBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE)) {
+                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundCoordinate, upperBoundCoordinate)) {
                     this.fillArrayPointsReadDoubleFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
                 }
             }
@@ -249,8 +249,8 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
      * with numerical coordinates from the value "lowerBoundCoordinate" to the value of the "upperBoundCoordinate" parameters.
      * If the value of the argument "lowerBoundCoordinate" is greater than the value of "upperBoundCoordinate"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultValuesForFilling#NEGATIVE_DOUBLE_BOUND}
-     * and {@link DefaultValuesForFilling#POSITIVE_DOUBLE_BOUND} respectively.
+     * then the values {@link com.lugowoy.helper.filling.DefaultNumericValues}
+     * and {@link com.lugowoy.helper.filling.DefaultNumericValues} respectively.
      *
      * @param lengthArray          The length(size) of the array to be filled.
      * @param lowerBoundCoordinate The value of the start of the range boundary
@@ -263,10 +263,11 @@ public class FillingArrayPoints2DReadDouble extends FillingArrayPointsReadValues
     @Override
     public Point2D<Double>[] fill(int lengthArray, Double lowerBoundCoordinate, Double upperBoundCoordinate) {
         Point2D<Double>[] points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, 0);
-        if (checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, lengthArray);
-            if (isCorrectBounds(lowerBoundCoordinate) && isCorrectBounds(upperBoundCoordinate)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBoundCoordinate, upperBoundCoordinate)) {
+            if (CheckerBound.isCorrectBound(lowerBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE)
+                    && CheckerBound.isCorrectBound(upperBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE)) {
+                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundCoordinate, upperBoundCoordinate)) {
                     this.fillArrayPointsReadDoubleFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
                 }
             }

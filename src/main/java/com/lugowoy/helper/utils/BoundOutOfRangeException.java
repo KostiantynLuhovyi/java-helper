@@ -12,7 +12,8 @@ public class BoundOutOfRangeException extends RuntimeException {
 
     public static final String MSG_POSITIVE_BOUND = "Bound is positive value";
     public static final String MSG_NEGATIVE_BOUND = "Bound is negative value";
-    public static final String MSG_NON_ZERO = "Bound is not zero.";
+    public static final String MSG_ZERO_BOUND = "Bound is zero.";
+    public static final String MSG_NON_ZERO_BOUND = "Bound is not zero.";
 
     /**
      * Constructs a new runtime exception with the specified detail message.

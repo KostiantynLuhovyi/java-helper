@@ -1,7 +1,7 @@
 package com.lugowoy.helper.models.storages.arrays;
 
 import com.lugowoy.helper.utils.checking.CheckerIndex;
-import com.lugowoy.helper.utils.checking.CheckerLengthArray;
+import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.rits.cloning.Cloner;
 
 import java.util.*;
@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  * <p>Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 2.6
+ * @version 2.7
  * @since 1.0
  */
 //todo edit doc's
@@ -25,14 +25,14 @@ public class Array<T> extends AbstractArray implements List<T> {
     }
 
     public Array(T[] array) {
-        if (CheckerLengthArray.checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             this.array = array;
             super.setCursorElement(this.array.length);
         }
     }
 
     public Array(T[] array, boolean flagDeepCopy) {
-        if (CheckerLengthArray.checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             if (flagDeepCopy) {
                 this.array = new Cloner().deepClone(array);
             } else {
@@ -43,21 +43,21 @@ public class Array<T> extends AbstractArray implements List<T> {
     }
 
     public Array(int lengthArray) {
-        if (CheckerLengthArray.checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             this.array = new Object[lengthArray];
             super.setCursorElement(this.array.length);
         }
     }
 
     public Array(Array<T> array) {
-        if (CheckerLengthArray.checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             this.array = array.toArray();
             super.setCursorElement(this.array.length);
         }
     }
 
     public Array(Array<T> array, boolean flagDeepCopy) {
-        if (CheckerLengthArray.checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             if (flagDeepCopy) {
                 this.array = new Cloner().deepClone(array.toArray());
             } else {
@@ -258,7 +258,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      */
     @Override
     public <V> V[] toArray(V[] a) {
-        if (CheckerLengthArray.checkLengthInArray(a)) {
+        if (CheckerArray.checkLengthInArray(a)) {
             if (a.length < this.size()) {
                 a = (V[]) Arrays.copyOf(this.array, this.size());
             } else {
@@ -269,13 +269,13 @@ public class Array<T> extends AbstractArray implements List<T> {
     }
 
     public void setArray(T[] t) {
-        if (CheckerLengthArray.checkLengthInArray(t)) {
+        if (CheckerArray.checkLengthInArray(t)) {
             this.array = Arrays.copyOf(t, t.length);
         }
     }
 
     public void setArray(T[] t, boolean flagDeepCopy) {
-        if (CheckerLengthArray.checkLengthInArray(t)) {
+        if (CheckerArray.checkLengthInArray(t)) {
             if (flagDeepCopy) {
                 this.array = new Cloner().deepClone(t);
             }
@@ -284,7 +284,7 @@ public class Array<T> extends AbstractArray implements List<T> {
 
     @Override
     public void setArray(int lengthArray) {
-        if (CheckerLengthArray.checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             this.array = new Object[lengthArray];
         }
     }

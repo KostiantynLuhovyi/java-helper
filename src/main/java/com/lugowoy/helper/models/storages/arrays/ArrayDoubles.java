@@ -1,7 +1,7 @@
 package com.lugowoy.helper.models.storages.arrays;
 
 import com.lugowoy.helper.utils.checking.CheckerIndex;
-import com.lugowoy.helper.utils.checking.CheckerLengthArray;
+import com.lugowoy.helper.utils.checking.CheckerArray;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 2.0
  */
 //todo write doc's
@@ -26,7 +26,7 @@ public class ArrayDoubles extends AbstractArray {
     }
 
     public ArrayDoubles(double[] arrayDoubles) {
-        if (CheckerLengthArray.checkLengthInArray(arrayDoubles)) {
+        if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             this.arrayDoubles = arrayDoubles;
             super.setCursorElement(this.arrayDoubles.length);
         }
@@ -138,7 +138,7 @@ public class ArrayDoubles extends AbstractArray {
     }
 
     public double[] toArray(double[] array) {
-        if (CheckerLengthArray.checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             if (array.length < this.size()) {
                 array = Arrays.copyOf(this.arrayDoubles, this.size());
             } else {
@@ -149,21 +149,21 @@ public class ArrayDoubles extends AbstractArray {
     }
 
     public void setArray(double[] arrayDoubles) {
-        if (CheckerLengthArray.checkLengthInArray(arrayDoubles)) {
+        if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             this.arrayDoubles = Arrays.copyOf(arrayDoubles, arrayDoubles.length);
         }
     }
 
     @Override
     public void setArray(int lengthArray) {
-        if (CheckerLengthArray.checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             this.arrayDoubles = new double[lengthArray];
         }
     }
 
     public double get(int index) {
         double result = 0;
-        if (CheckerIndex.checkIndex(index)) {
+        if (CheckerIndex.checkIndex(index, this.arrayDoubles.length)) {
             result = this.arrayDoubles[index];
         }
         return result;
@@ -200,7 +200,7 @@ public class ArrayDoubles extends AbstractArray {
     public boolean addAll(double[] arrayDoubles) {
         boolean resultAddAll = false;
         if (arrayDoubles != null) {
-            if (CheckerLengthArray.checkLengthInArray(arrayDoubles)) {
+            if (CheckerArray.checkLengthInArray(arrayDoubles)) {
                 double[] newArrayDoubles = new double[this.size() + arrayDoubles.length];
                 System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, this.size());
                 System.arraycopy(arrayDoubles, 0, newArrayDoubles, this.size() + 1, arrayDoubles.length);
@@ -215,7 +215,7 @@ public class ArrayDoubles extends AbstractArray {
     public boolean addAll(int index, double[] arrayDoubles) {
         boolean resultAddAll = false;
         if (CheckerIndex.checkIndex(index, this.size())) {
-            if (CheckerLengthArray.checkLengthInArray(arrayDoubles)) {
+            if (CheckerArray.checkLengthInArray(arrayDoubles)) {
                 double[] newArrayDoubles = new double[this.size() + arrayDoubles.length];
                 System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, index);
                 System.arraycopy(arrayDoubles, 0, newArrayDoubles, index, arrayDoubles.length);
@@ -256,7 +256,7 @@ public class ArrayDoubles extends AbstractArray {
 
     public boolean removeAll(double[] arrayDoubles) {
         boolean resultRemoveAll = false;
-        if (CheckerLengthArray.checkLengthInArray(arrayDoubles)) {
+        if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             Arrays.stream(arrayDoubles).forEach(this::remove);
             resultRemoveAll = true;
         }
@@ -281,7 +281,7 @@ public class ArrayDoubles extends AbstractArray {
 
     public boolean containsAll(double[] arrayDoubles) {
         boolean resultContainsAll = false;
-        if (CheckerLengthArray.checkLengthInArray(arrayDoubles)) {
+        if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             for (int i = 0; i < arrayDoubles.length; i++) {
                 for (int j = 0; j < this.size(); j++) {
                     if (arrayDoubles[i] == this.get(j)) {
@@ -296,7 +296,7 @@ public class ArrayDoubles extends AbstractArray {
 
     public boolean retainAll(double[] arrayDoubles) {
         boolean resultRetainAll = false;
-        if (CheckerLengthArray.checkLengthInArray(arrayDoubles)) {
+        if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             for (double tmp : arrayDoubles) {
                 if (!this.contains(tmp)) {
                     this.remove(tmp);

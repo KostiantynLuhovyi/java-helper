@@ -3,14 +3,11 @@ package com.lugowoy.helper.filling.array.numbers;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
+import com.lugowoy.helper.utils.checking.CheckerArray;
+import com.lugowoy.helper.utils.checking.CheckerBound;
 import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 import java.util.Arrays;
-
-import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBounds;
-import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrEqualThanUpperBound;
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthArray;
-import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthInArray;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface to fills a classic array and
@@ -18,7 +15,7 @@ import static com.lugowoy.helper.utils.checking.CheckerLengthArray.checkLengthIn
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
@@ -35,7 +32,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      */
     @Override
     public void fill(Array<Double> array) {
-        if (checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             Double[] doubles = new Double[array.size()];
             this.fillArrayRandomDoubles(doubles);
             array.setArray(doubles);
@@ -52,7 +49,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      */
     @Override
     public void fill(Double[] doubles) {
-        if (checkLengthInArray(doubles)) {
+        if (CheckerArray.checkLengthInArray(doubles)) {
             this.fillArrayRandomDoubles(doubles);
         }
     }
@@ -61,18 +58,18 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * Fills an array with pseudo-random numeric data of the type {@link Double}.
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthValueOutOfRangeException} exception will be thrown.
+     * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
      * <p>The numerical pseudo-random values for filling are generated in the range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param lengthArray The length(size) of the array to fill with pseudo-random numeric data of the type {@link Double}.
      * @return Created and filled an array with pseudo-random numeric data of the type {@link Double}.
-     * @throws LengthValueOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
+     * @throws LengthArrayOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
      */
     @Override
     public Double[] fill(int lengthArray) {
         Double[] doubles = new Double[0];
-        if (checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
             this.fillArrayRandomDoubles(doubles);
         }
@@ -92,9 +89,9 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      */
     @Override
     public void fill(Array<Double> array, Double bound) {
-        if (checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             Double[] doubles = new Double[array.size()];
-            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
                 this.fillArrayRandomDoublesFromZeroToPositiveBound(doubles, bound);
                 array.setArray(doubles);
             }
@@ -114,8 +111,8 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      */
     @Override
     public void fill(Double[] doubles, Double bound) {
-        if (checkLengthInArray(doubles)) {
-            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+        if (CheckerArray.checkLengthInArray(doubles)) {
+            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
                 this.fillArrayRandomDoublesFromZeroToPositiveBound(doubles, bound);
             }
         }
@@ -125,7 +122,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * Fills an array with pseudo-random numeric data of the type {@link Double}.
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of the {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthValueOutOfRangeException} exception will be thrown.
+     * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
      * <p>The numerical pseudo-random values for filling are generated in the range from 0 to {@code bound} argument.
      * If the {@code bound} value of the argument is not in the range from 0 to {@link Integer#MAX_VALUE},
      * then a {@link BoundOutOfRangeException} exception will be thrown.
@@ -133,15 +130,15 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * @param lengthArray The length(size) of the array to fill with pseudo-random numeric data of the type {@link Double}.
      * @param bound       The upper bound for generating pseudo-random numbers to fill.
      * @return Created and filled an array with pseudo-random numeric data of the type {@link Double}.
-     * @throws LengthValueOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
+     * @throws LengthArrayOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
      * @throws BoundOutOfRangeException       If the {@code bound} argument value is out of valid range.
      */
     @Override
     public Double[] fill(int lengthArray, Double bound) {
         Double[] doubles = new Double[0];
-        if (checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isCorrectBounds(bound, Integer.MAX_VALUE)) {
+            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
                 this.fillArrayRandomDoublesFromZeroToPositiveBound(doubles, bound);
             }
         }
@@ -164,10 +161,11 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      */
     @Override
     public void fill(Array<Double> array, Double lowerBound, Double upperBound) {
-        if (checkLengthInArray(array)) {
+        if (CheckerArray.checkLengthInArray(array)) {
             Double[] doubles = new Double[array.size()];
-            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
+                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
+                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillArrayRandomDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
                     array.setArray(doubles);
                 }
@@ -191,9 +189,10 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      */
     @Override
     public void fill(Double[] doubles, Double lowerBound, Double upperBound) {
-        if (checkLengthInArray(doubles)) {
-            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+        if (CheckerArray.checkLengthInArray(doubles)) {
+            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
+                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
+                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillArrayRandomDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
                 }
             }
@@ -204,7 +203,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * Fills an array with random numeric data of the type {@link Double}.
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthValueOutOfRangeException} exception will be thrown.
+     * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
      * <p>The numerical pseudo-random values for filling are generated in the range from {@code lowerBound} to {@code upperBound} argument.
      * If the {@code lowerBound} or {@code upperBound} value of the argument is not in the range from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE} or if the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value,
@@ -220,10 +219,11 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     @Override
     public Double[] fill(int lengthArray, Double lowerBound, Double upperBound) {
         Double[] doubles = new Double[0];
-        if (checkLengthArray(lengthArray)) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
             doubles = new Double[lengthArray];
-            if (isCorrectBounds(lowerBound) && isCorrectBounds(upperBound)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
+            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
+                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
+                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillArrayRandomDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
                 }
             }

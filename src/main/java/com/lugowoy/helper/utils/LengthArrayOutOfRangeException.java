@@ -8,7 +8,7 @@ package com.lugowoy.helper.utils;
 //todo write doc's
 public class LengthArrayOutOfRangeException extends RuntimeException {
 
-    private static final String MSG_EXCEPTION = "Length array is out of range (0 - " + Integer.MAX_VALUE + ").";
+    private static final String MSG_EXCEPTION = "Length array is out of range (0 - " + (Integer.MAX_VALUE - 8) + ").";
 
     /**
      * Constructs a new runtime exception with {@code null} as its
