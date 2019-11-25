@@ -7,7 +7,7 @@
     <groupId>com.lugowoy</groupId>
     <artifactId>java-helper</artifactId>
     <name>java-helper</name>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
 
     <properties>
         <java.version>11</java.version>
