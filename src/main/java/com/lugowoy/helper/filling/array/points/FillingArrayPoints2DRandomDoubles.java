@@ -1,6 +1,6 @@
 package com.lugowoy.helper.filling.array.points;
 
-import com.lugowoy.helper.filling.DefaultNumericValues;
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.points.Point;
 import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.models.storages.arrays.Array;
@@ -22,7 +22,7 @@ import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see FillingArrayPoints
  */
-public class FillingArrayPoints2DRandomDouble implements FillingArrayPoints<Point2D<Double>, Double> {
+public class FillingArrayPoints2DRandomDoubles implements FillingArrayPoints<Point2D<Double>, Double> {
 
     /**
      * Fills an object of class {@link Array} with the objects of the {@link Point} class
@@ -88,7 +88,7 @@ public class FillingArrayPoints2DRandomDouble implements FillingArrayPoints<Poin
      * Fills an object of the {@link Array} class with an object of the {@link Point} class
      * with random numeric coordinates of type {@link Double} in the range from "0" to "bound".
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultNumericValues}
+     * then the range value for filling the array from "0" to {@link ValuesToFilling}
      *
      * @param array           The object of the {@link Array} class to be filled
      *                        with an object of the {@link Point} class with random numeric coordinates of type {@link Double}.
@@ -135,7 +135,7 @@ public class FillingArrayPoints2DRandomDouble implements FillingArrayPoints<Poin
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link DefaultNumericValues}.
+     * then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param lengthArray     The length(size) of the array to be filled with objects of the {@link Point} class
      *                        with random numeric coordinates of type {@link Double}.
@@ -161,8 +161,8 @@ public class FillingArrayPoints2DRandomDouble implements FillingArrayPoints<Poin
      * with random numeric coordinates of type {@link Double} in the range from "lowerBound" to "upperBound".
      * If the value of the argument "lowerBound" is greater than the value of "upperBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultNumericValues}
-     * and {@link DefaultNumericValues} respectively.
+     * then the values {@link ValuesToFilling}
+     * and {@link ValuesToFilling} respectively.
      *
      * @param array                The object of the {@link Array} class to be filled
      *                             with an object of the {@link Point} class random numeric coordinates of type {@link Double}.
@@ -192,8 +192,8 @@ public class FillingArrayPoints2DRandomDouble implements FillingArrayPoints<Poin
      * with random numeric coordinates of type {@link Double} in the range from "lowerBound" to to "upperBound".
      * If the value of the argument "lowerBound" is greater than the value of "upperBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultNumericValues}
-     * and {@link DefaultNumericValues} respectively.
+     * then the values {@link ValuesToFilling}
+     * and {@link ValuesToFilling} respectively.
      *
      * @param points               The array to be filled with objects of the {@link Point} class
      *                             with random numeric coordinates of type {@link Double}.
@@ -226,8 +226,8 @@ public class FillingArrayPoints2DRandomDouble implements FillingArrayPoints<Poin
      * with numerical coordinates from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link DefaultNumericValues}
-     * and {@link DefaultNumericValues} respectively.
+     * then the values {@link ValuesToFilling}
+     * and {@link ValuesToFilling} respectively.
      *
      * @param lengthArray          The length(size) of the array to be filled
      *                             with objects of the {@link Point} class with random numeric coordinates of type {@link Double}.

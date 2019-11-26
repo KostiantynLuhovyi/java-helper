@@ -1,6 +1,6 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.DefaultNumericValues;
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.filling.array.FillingArrayReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
@@ -11,7 +11,7 @@ import com.lugowoy.helper.utils.ValueOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 
-import static com.lugowoy.helper.filling.DefaultNumericValues.DOUBLE_ZERO;
+import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
 
 /**
  * The class is an inheritor of the {@link FillingArrayReadValues} class and implements the contract declared
@@ -115,7 +115,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
 
     /**
      * Fills an object of the {@link Array} class with read data of the {@link Double} type.
-     * <p>Read data of the type {@link Double} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO}
+     * <p>Read data of the type {@link Double} must be in the range from {@link ValuesToFilling#DOUBLE_ZERO}
      * to {@code bound}. If the read value is not correct {@link Double} value or out of the valid range of values,
      * then a {@link ValueOutOfRangeException} exception will be thrown. The value of the {@code bound} argument must be
      * in the range from 0 to {@link Double#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
@@ -139,7 +139,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
 
     /**
      * Fills an array with read data of the {@link Double} type.
-     * <p>Read data of the type {@link Double} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO}
+     * <p>Read data of the type {@link Double} must be in the range from {@link ValuesToFilling#DOUBLE_ZERO}
      * to {@code bound}. If the read value is not correct {@link Double} value or out of the valid range of values,
      * then a {@link ValueOutOfRangeException} exception will be thrown.
      * The value of the {@code bound} argument must be in the range from 0 to {@link Double#MAX_VALUE},
@@ -165,7 +165,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
      * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
-     * <p>Read data of the type {@link Double} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO}
+     * <p>Read data of the type {@link Double} must be in the range from {@link ValuesToFilling#DOUBLE_ZERO}
      * to {@code bound}. If the read value is not correct {@link Double} value or out of the valid range of values,
      * then a {@link ValueOutOfRangeException} exception will be thrown. The value of the {@code bound} argument must be
      * in the range from 0 to {@link Double#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.

@@ -5,10 +5,10 @@ package com.lugowoy.helper.filling;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.0 (1.5)
+ * @version 1.6
  * @since 1.7.8
  */
-public interface DefaultNumericValues {
+public interface ValuesToFilling {
 
     /**
      * The integer value by default.

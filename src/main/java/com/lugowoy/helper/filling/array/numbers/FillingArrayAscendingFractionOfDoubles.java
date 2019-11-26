@@ -1,10 +1,11 @@
 package com.lugowoy.helper.filling.array.numbers;
 
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 
-import static com.lugowoy.helper.filling.DefaultNumericValues.DEFAULT_DOUBLE_VALUE;
+import static com.lugowoy.helper.filling.ValuesToFilling.DEFAULT_DOUBLE_VALUE;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -98,7 +99,7 @@ public class FillingArrayAscendingFractionOfDoubles implements FillingArrayNumbe
      * Fills an array with sequential ascending decimal digit of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data from "0.0" (increases by "0.1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link com.lugowoy.helper.filling.DefaultNumericValues}.
+     * then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param doubles The array to be filled with sequential ascending decimal digit of numeric data of type {@link Double}.
      * @param bound   The value of the end bound for filling an array with
@@ -121,7 +122,7 @@ public class FillingArrayAscendingFractionOfDoubles implements FillingArrayNumbe
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from "0" (increases by "0.1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link com.lugowoy.helper.filling.DefaultNumericValues}.
+     * then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param lengthArray The length(size) of the array to be filled with
      *                    sequential ascending decimal digit of numeric data of type {@link Double}.

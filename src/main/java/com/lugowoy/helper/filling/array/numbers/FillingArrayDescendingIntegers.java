@@ -1,13 +1,13 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.DefaultNumericValues;
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 
-import static com.lugowoy.helper.filling.DefaultNumericValues.INT_ZERO;
+import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface to fills a classic array and
@@ -26,7 +26,7 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
 
     /**
      * Fills an object of the {@link Array} class with sequential numeric data of type {@link Integer} in descending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#INT_ZERO} (inclusive)
+     * <p>Filling begins with a value of {@link ValuesToFilling#INT_ZERO} (inclusive)
      * and an decrease in the number of type {@link Integer} occurs by 1 (ex.: 0, -1, -2, ...).
      *
      * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Integer} in descending order.
@@ -43,7 +43,7 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
 
     /**
      * Fills an array with sequential numeric data of type {@link Integer} in descending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#INT_ZERO} (inclusive)
+     * <p>Filling begins with a value of {@link ValuesToFilling#INT_ZERO} (inclusive)
      * and an decrease in the number of type {@link Integer} occurs by 1 (ex.: 0, -1, -2, ...).
      *
      * @param integers The array to fill with sequential numeric data of type {@link Integer} in descending order.
@@ -58,7 +58,7 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
 
     /**
      * Fills an array with sequential numeric data of type {@link Integer} in descending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#INT_ZERO} (inclusive)
+     * <p>Filling begins with a value of {@link ValuesToFilling#INT_ZERO} (inclusive)
      * and an decrease in the number of type {@link Integer} occurs by 1 (ex.: 0, -1, -2, ...).
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
@@ -80,11 +80,11 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
 
     /**
      * Fills an object of the {@link Array} class with sequential numeric data of type {@link Integer} in descending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#INT_ZERO} (inclusive)
+     * <p>Filling begins with a value of {@link ValuesToFilling#INT_ZERO} (inclusive)
      * and an decrease in the number of type {@link Integer} occurs by 1 to the value {@code bound} argument (inclusive) (ex.: 0, -1, -2, ...).
-     * If the range of values from {@link DefaultNumericValues#INT_ZERO} to {@code bound} is not enough to fill the entire array,
+     * If the range of values from {@link ValuesToFilling#INT_ZERO} to {@code bound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#INT_ZERO} to {@link Integer#MIN_VALUE},
+     * The value of the argument {@code bound} must be in the range from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MIN_VALUE},
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Integer} in descending order.
@@ -105,11 +105,11 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
 
     /**
      * Fills an array with sequential numeric data of type {@link Integer} in descending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#INT_ZERO} (inclusive)
+     * <p>Filling begins with a value of {@link ValuesToFilling#INT_ZERO} (inclusive)
      * and an decrease in the number of type {@link Integer} occurs on the integer part of the number by 1 to the value {@code bound} argument (inclusive) (ex.: 0, -1, -2, ...).
-     * If the range of values from {@link DefaultNumericValues#INT_ZERO} to {@code bound} is not enough to fill the entire array,
+     * If the range of values from {@link ValuesToFilling#INT_ZERO} to {@code bound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#INT_ZERO} to {@link Integer#MIN_VALUE},
+     * The value of the argument {@code bound} must be in the range from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MIN_VALUE},
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param integers The array to fill with sequential numeric data of type {@link Integer} in descending order.
@@ -128,11 +128,11 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
 
     /**
      * Fills an array with sequential numeric data of type {@link Integer} in descending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#INT_ZERO} (inclusive)
+     * <p>Filling begins with a value of {@link ValuesToFilling#INT_ZERO} (inclusive)
      * and an decrease in the number of type {@link Integer} occurs by 1 to the value {@code bound} argument (inclusive) (ex.: 0, -1, -2, ...).
-     * If the range of values from {@link DefaultNumericValues#INT_ZERO} to {@code bound} is not enough to fill the entire array,
+     * If the range of values from {@link ValuesToFilling#INT_ZERO} to {@code bound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#INT_ZERO} to {@link Integer#MIN_VALUE},
+     * The value of the argument {@code bound} must be in the range from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MIN_VALUE},
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),

@@ -8,7 +8,7 @@ import com.lugowoy.helper.utils.ValueOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
 
-import static com.lugowoy.helper.filling.DefaultNumericValues.INT_ZERO;
+import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
 
 /**
  * Created by Konstantin Lugowoy on 10.10.2018.
@@ -18,13 +18,13 @@ import static com.lugowoy.helper.filling.DefaultNumericValues.INT_ZERO;
  * @since 1.0
  */
 //todo write doc's
-public class FillingMatrixReadInteger extends FillingMatrixReadValues<Integer> implements FillingMatrixNumbers<Integer> {
+public class FillingMatrixReadIntegers extends FillingMatrixReadValues<Integer> implements FillingMatrixNumbers<Integer> {
 
-    public FillingMatrixReadInteger(Reader reader) {
+    public FillingMatrixReadIntegers(Reader reader) {
         super(reader);
     }
 
-    public FillingMatrixReadInteger(Reading reading) {
+    public FillingMatrixReadIntegers(Reading reading) {
         super(reading);
     }
 

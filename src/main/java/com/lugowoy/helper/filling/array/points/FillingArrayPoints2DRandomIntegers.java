@@ -1,5 +1,6 @@
 package com.lugowoy.helper.filling.array.points;
 
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.points.Point;
 import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.models.storages.arrays.Array;
@@ -19,7 +20,7 @@ import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see FillingArrayPoints
  */
-public class FillingArrayPoints2DRandomInteger implements FillingArrayPoints<Point2D<Integer>, Integer> {
+public class FillingArrayPoints2DRandomIntegers implements FillingArrayPoints<Point2D<Integer>, Integer> {
 
     /**
      * Fills an object of class {@link Array} with the objects of the {@link Point} class
@@ -86,7 +87,7 @@ public class FillingArrayPoints2DRandomInteger implements FillingArrayPoints<Poi
      * Fills an object of the {@link Array} class with an object of the {@link Point} class
      * with random numeric coordinates of type {@link Integer} in the range from "0" to "boundCoordinate".
      * If the value of the "boundCoordinate" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link com.lugowoy.helper.filling.DefaultNumericValues}
+     * then the range value for filling the array from "0" to {@link ValuesToFilling}
      *
      * @param array           The object of the {@link Array} class to be filled
      *                        with an object of the {@link Point} class with random numeric coordinates of type {@link Integer}.
@@ -110,7 +111,7 @@ public class FillingArrayPoints2DRandomInteger implements FillingArrayPoints<Poi
      * Fills an array with objects of the {@link Point} class
      * with random numeric coordinates of type {@link Integer} in the range from "0" to to "boundCoordinate".
      * If the value of the "boundCoordinate" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link com.lugowoy.helper.filling.DefaultNumericValues}.
+     * then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param points          The array to be filled with objects of the {@link Point} class
      *                        with random numeric coordinates of type {@link Integer}.
@@ -133,7 +134,7 @@ public class FillingArrayPoints2DRandomInteger implements FillingArrayPoints<Poi
      * <p>The array is created based on the "lengthArray" parameter.
      * The parameter "lengthArray" determines the length(size) of the created array.
      * If the value of the "bound" argument is a negative number,
-     * then the range value for filling the array from "0" to {@link com.lugowoy.helper.filling.DefaultNumericValues}.
+     * then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param lengthArray     The length(size) of the array to be filled with objects of the {@link Point} class
      *                        with random numeric coordinates of type {@link Integer}.
@@ -159,8 +160,8 @@ public class FillingArrayPoints2DRandomInteger implements FillingArrayPoints<Poi
      * with random numeric coordinates of type {@link Integer} in the range from "lowerBoundCoordinate" to "upperBoundCoordinate".
      * If the value of the argument "lowerBoundCoordinate" is greater than the value of "upperBoundCoordinate"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link com.lugowoy.helper.filling.DefaultNumericValues}
-     * and {@link com.lugowoy.helper.filling.DefaultNumericValues} respectively.
+     * then the values {@link ValuesToFilling}
+     * and {@link ValuesToFilling} respectively.
      *
      * @param array                The object of the {@link Array} class to be filled
      *                             with an object of the {@link Point} class with random numeric coordinates of type {@link Integer}.
@@ -190,8 +191,8 @@ public class FillingArrayPoints2DRandomInteger implements FillingArrayPoints<Poi
      * with random numeric coordinates of type {@link Integer} in the range from "lowerBoundCoordinate" to to "upperBoundCoordinate".
      * If the value of the argument "lowerBoundCoordinate" is greater than the value of "upperBoundCoordinate"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link com.lugowoy.helper.filling.DefaultNumericValues}
-     * and {@link com.lugowoy.helper.filling.DefaultNumericValues} respectively.
+     * then the values {@link ValuesToFilling}
+     * and {@link ValuesToFilling} respectively.
      *
      * @param points               The array to be filled with objects of the {@link Point} class
      *                             with random numeric coordinates of type {@link Integer}.
@@ -224,8 +225,8 @@ public class FillingArrayPoints2DRandomInteger implements FillingArrayPoints<Poi
      * with numerical coordinates from the value "startBound" to the value of the "endBound" parameters.
      * If the value of the argument "startBound" is greater than the value of "endBound"
      * or if one of the arguments is in the range from -32768 to 32768,
-     * then the values {@link com.lugowoy.helper.filling.DefaultNumericValues}
-     * and {@link com.lugowoy.helper.filling.DefaultNumericValues} respectively.
+     * then the values {@link ValuesToFilling}
+     * and {@link ValuesToFilling} respectively.
      *
      * @param lengthArray          The length(size) of the array to be filled
      *                             with objects of the {@link Point} class with random numeric coordinates of type {@link Integer}.

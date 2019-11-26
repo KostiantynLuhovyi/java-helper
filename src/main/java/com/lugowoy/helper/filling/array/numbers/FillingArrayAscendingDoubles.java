@@ -1,13 +1,13 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.DefaultNumericValues;
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 
-import static com.lugowoy.helper.filling.DefaultNumericValues.DOUBLE_ZERO;
+import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
 import static com.lugowoy.helper.utils.checking.CheckerBound.isCorrectBound;
 
 /**
@@ -27,7 +27,7 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
 
     /**
      * Fills an object of the {@link Array} class with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive)
+     * <p>Filling begins with a value of {@link ValuesToFilling#DOUBLE_ZERO} (inclusive)
      * and an increase in the number of type {@link Double} occurs on the integer part of the number by 1.0 (ex.: 1.0, 2.0, 3.0, ...).
      *
      * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Double} in ascending order.
@@ -44,7 +44,7 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
 
     /**
      * Fills an array with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive)
+     * <p>Filling begins with a value of {@link ValuesToFilling#DOUBLE_ZERO} (inclusive)
      * and an increase in the number of type {@link Double} occurs on the integer part of the number by 1.0 (ex.: 1.0, 2.0, 3.0, ...).
      *
      * @param doubles The array to fill with sequential numeric data of type {@link Double} in ascending order.
@@ -59,7 +59,7 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
 
     /**
      * Fills an array with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive)
+     * <p>Filling begins with a value of {@link ValuesToFilling#DOUBLE_ZERO} (inclusive)
      * and an increase in the number of type {@link Double} occurs on the integer part of the number by 1.0 (ex.: 1.0, 2.0, 3.0, ...).
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
@@ -81,11 +81,11 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
 
     /**
      * Fills an object of the {@link Array} class with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive) and an increase in the number of type {@link Double}
+     * <p>Filling begins with a value of {@link ValuesToFilling#DOUBLE_ZERO} (inclusive) and an increase in the number of type {@link Double}
      * occurs on the integer part of the number by 1.0 to the value {@code bound} argument (inclusive) (ex.: 1.0, 2.0, 3.0, ...).
-     * If the range of values from {@link DefaultNumericValues#DOUBLE_ZERO} to {@code bound} is not enough to fill the entire array,
+     * If the range of values from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO} to {@link Integer#MAX_VALUE},
+     * The value of the argument {@code bound} must be in the range from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Integer#MAX_VALUE},
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Double} in ascending order.
@@ -106,11 +106,11 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
 
     /**
      * Fills an array with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive) and an increase in the number of type {@link Double}
+     * <p>Filling begins with a value of {@link ValuesToFilling#DOUBLE_ZERO} (inclusive) and an increase in the number of type {@link Double}
      * occurs on the integer part of the number by 1.0 to the value {@code bound} argument (inclusive) (ex.: 1.0, 2.0, 3.0, ...).
-     * If the range of values from {@link DefaultNumericValues#DOUBLE_ZERO} to {@code bound} is not enough to fill the entire array,
+     * If the range of values from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO} to {@link Integer#MAX_VALUE},
+     * The value of the argument {@code bound} must be in the range from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Integer#MAX_VALUE},
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param doubles The array to fill with sequential numeric data of type {@link Double} in ascending order.
@@ -129,11 +129,11 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
 
     /**
      * Fills an array with sequential numeric data of type {@link Double} in ascending order.
-     * <p>Filling begins with a value of {@link DefaultNumericValues#DOUBLE_ZERO} (inclusive) and an increase in the number of type {@link Double}
+     * <p>Filling begins with a value of {@link ValuesToFilling#DOUBLE_ZERO} (inclusive) and an increase in the number of type {@link Double}
      * occurs on the integer part of the number by 1.0 to the value {@code bound} argument (inclusive) (ex.: 1.0, 2.0, 3.0, ...).
-     * If the range of values from {@link DefaultNumericValues#DOUBLE_ZERO} to {@code bound} is not enough to fill the entire array,
+     * If the range of values from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound} is not enough to fill the entire array,
      * then elements of which are enough to fill, and the rest remain the same.
-     * The value of the argument {@code bound} must be in the range from {@link DefaultNumericValues#DOUBLE_ZERO} to {@link Integer#MAX_VALUE},
+     * The value of the argument {@code bound} must be in the range from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Integer#MAX_VALUE},
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      * <p>The array is created based on the {@code lengthArray} argument.
      * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),

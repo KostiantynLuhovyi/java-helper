@@ -1,12 +1,12 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.DefaultNumericValues;
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 
-import static com.lugowoy.helper.filling.DefaultNumericValues.DEFAULT_DOUBLE_VALUE;
-import static com.lugowoy.helper.filling.DefaultNumericValues.DOUBLE_ZERO;
+import static com.lugowoy.helper.filling.ValuesToFilling.DEFAULT_DOUBLE_VALUE;
+import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -77,7 +77,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
     /**
      * Fills an object of the {@link Array} class with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The object of the {@link Array} class is filled with numeric data from "0.0" (decreases by "0.1") to the value of the "bound" parameter.
-     * If the value of the "bound" argument is a positive number, then the range value for filling the array from "0" to {@link DefaultNumericValues}.
+     * If the value of the "bound" argument is a positive number, then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param array The object of the {@link Array} class to be filled with
      *              sequential descending decimal digit of numeric data of type {@link Double}.
@@ -100,7 +100,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * Fills an array with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data from "0.0" (decreases by "0.1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     * then the range value for filling the array from "0" to {@link DefaultNumericValues}.
+     * then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param doubles The array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
      * @param bound   The value of the end bound for filling an array with
@@ -123,7 +123,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * If the value of "lengthArray" is less than "0.0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data from "0.0" (decreases by "0.1") to the value of the "bound" parameter.
      * If the value of the "bound" argument is a positive number,
-     * then the range value for filling the array from "0" to {@link DefaultNumericValues}.
+     * then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param lengthArray The length(size) of the array to be filled with
      *                    sequential descending decimal digit of numeric data of type {@link Double}.
@@ -146,8 +146,8 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * Fills an object of the {@link Array} class with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The object of the {@link Array} class is filled with numeric data (decreases by "0.1") from the value "lowerBound" to the value of the "upperBound" parameters.
      * If the value of the argument "lowerBound" is less than the value of "upperBound"
-     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultNumericValues}
-     * and {@link DefaultNumericValues} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link ValuesToFilling}
+     * and {@link ValuesToFilling} respectively.
      *
      * @param array      The object of the {@link Array} class that must be filled with
      *                   sequential descending decimal digit of numeric data of type {@link Double}.
@@ -175,8 +175,8 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * Fills an array with sequential descending decimal digit of numeric data of type {@link Double}.
      * <p>The array is filled with numeric data (decreases by "0.1") from "lowerBound" to the value of the "upperBound" parameter.
      * If the value of the argument "lowerBound" is less than the value of "upperBound"
-     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultNumericValues}
-     * and {@link DefaultNumericValues} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link ValuesToFilling}
+     * and {@link ValuesToFilling} respectively.
      *
      * @param doubles    The array to be filled with sequential descending decimal digit of numeric data of type {@link Double}.
      * @param lowerBound The value of the start bound for filling an array with
@@ -204,8 +204,8 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
      * If the value of "lengthArray" is less than "0" or is greatest than "32767", created array of length {@link Array#DEFAULT_LENGTH}.
      * <p>The array is filled with numeric data (decreases by "0.1") from the value "lowerBound" to the value of the "upperBound" parameters.
      * If the value of the argument "lowerBound" is less than the value of "upperBound"
-     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link DefaultNumericValues}
-     * and {@link DefaultNumericValues} respectively.
+     * or if one of the arguments is in the range from -32768 to 32768, then the values {@link ValuesToFilling}
+     * and {@link ValuesToFilling} respectively.
      *
      * @param lengthArray The length(size) of the array to be filled with
      *                    sequential descending decimal digit of numeric data of type {@link Double}.

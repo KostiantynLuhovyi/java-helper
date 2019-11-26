@@ -15,7 +15,7 @@ import java.util.Arrays;
  * @since 1.2
  */
 //todo write doc's
-public class FillingMatrixRandomInteger implements FillingMatrixNumbers<Integer> {
+public class FillingMatrixRandomIntegers implements FillingMatrixNumbers<Integer> {
 
     @Override
     public void fill(Matrix<Integer> matrix) {
