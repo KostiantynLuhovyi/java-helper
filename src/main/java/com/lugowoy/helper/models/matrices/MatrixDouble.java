@@ -199,7 +199,7 @@ public class MatrixDouble extends AbstractMatrix {
         return elementValue;
     }
 
-    public void setElement(double element, int indexRow, int indexColumn) {
+    public void setElement(int indexRow, int indexColumn, double element) {
         if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
             if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
                 this.matrix[indexRow][indexColumn] = element;
