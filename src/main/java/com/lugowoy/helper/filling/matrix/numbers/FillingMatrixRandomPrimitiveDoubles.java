@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
 import com.lugowoy.helper.filling.Filling;
-import com.lugowoy.helper.models.matrices.MatrixDouble;
+import com.lugowoy.helper.models.matrices.MatrixDoubles;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
 import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
@@ -12,14 +12,14 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 26.11.2019.
  */
 //todo write doc's
-public class FillingMatrixRandomPrimitiveDoubles implements Filling<MatrixDouble> {
+public class FillingMatrixRandomPrimitiveDoubles implements Filling<MatrixDoubles> {
 
     @Override
-    public void fill(MatrixDouble matrixDouble) {
-        if (CheckerMatrix.checkMatrix(matrixDouble)) {
-            double[][] doubles = new double[matrixDouble.getRows()][matrixDouble.getColumns()];
+    public void fill(MatrixDoubles matrixDoubles) {
+        if (CheckerMatrix.checkMatrix(matrixDoubles)) {
+            double[][] doubles = new double[matrixDoubles.getRows()][matrixDoubles.getColumns()];
             this.fillMatrixRandomPrimitiveDoubles(doubles);
-            matrixDouble.setMatrix(doubles);
+            matrixDoubles.setMatrix(doubles);
         }
     }
 
@@ -38,12 +38,12 @@ public class FillingMatrixRandomPrimitiveDoubles implements Filling<MatrixDouble
         return doubles;
     }
 
-    public void fill(MatrixDouble matrixDouble, double bound) {
-        if (CheckerMatrix.checkMatrix(matrixDouble)) {
+    public void fill(MatrixDoubles matrixDoubles, double bound) {
+        if (CheckerMatrix.checkMatrix(matrixDoubles)) {
             if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
-                double[][] doubles = new double[matrixDouble.getRows()][matrixDouble.getColumns()];
+                double[][] doubles = new double[matrixDoubles.getRows()][matrixDoubles.getColumns()];
                 this.fillMatrixRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
-                matrixDouble.setMatrix(doubles);
+                matrixDoubles.setMatrix(doubles);
             }
         }
     }
@@ -67,14 +67,14 @@ public class FillingMatrixRandomPrimitiveDoubles implements Filling<MatrixDouble
         return doubles;
     }
 
-    public void fill(MatrixDouble matrixDouble, double lowerBound, double upperBound) {
-        if (CheckerMatrix.checkMatrix(matrixDouble)) {
-            double[][] doubles = new double[matrixDouble.getRows()][matrixDouble.getColumns()];
+    public void fill(MatrixDoubles matrixDoubles, double lowerBound, double upperBound) {
+        if (CheckerMatrix.checkMatrix(matrixDoubles)) {
+            double[][] doubles = new double[matrixDoubles.getRows()][matrixDoubles.getColumns()];
             if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
                     && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
                 if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                     this.fillMatrixRandomPrimitiveDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                    matrixDouble.setMatrix(doubles);
+                    matrixDoubles.setMatrix(doubles);
                 }
             }
         }

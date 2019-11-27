@@ -14,20 +14,20 @@ import java.util.Arrays;
  * @since 2.0
  */
 //todo write doc's
-public class MatrixInt extends AbstractMatrix {
+public class MatrixInts extends AbstractMatrix {
 
     private int[][] matrix;
 
-    public MatrixInt() {
+    public MatrixInts() {
         matrix = new int[super.getRows()][super.getRows()];
     }
 
-    public MatrixInt(int rows, int columns) {
+    public MatrixInts(int rows, int columns) {
         super(rows, columns);
         this.matrix = new int[super.getRows()][super.getColumns()];
     }
 
-    public MatrixInt(int[][] matrix) {
+    public MatrixInts(int[][] matrix) {
         if (CheckerMatrix.checkMatrix(matrix)) {
             super.setRows(matrix.length);
             super.setColumns(matrix[0].length);
@@ -35,21 +35,21 @@ public class MatrixInt extends AbstractMatrix {
         }
     }
 
-    public MatrixInt(MatrixInt matrixInt) {
-        if (CheckerMatrix.checkMatrix(matrixInt)) {
-            super.setRows(matrixInt.getRows());
-            super.setColumns(matrixInt.getColumns());
-            this.matrix = matrixInt.getMatrix();
+    public MatrixInts(MatrixInts matrixInts) {
+        if (CheckerMatrix.checkMatrix(matrixInts)) {
+            super.setRows(matrixInts.getRows());
+            super.setColumns(matrixInts.getColumns());
+            this.matrix = matrixInts.getMatrix();
         }
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof MatrixInt)) return false;
+        if (!(o instanceof MatrixInts)) return false;
         if (!super.equals(o)) return false;
-        MatrixInt matrixInt = (MatrixInt) o;
-        return Arrays.equals(matrix, matrixInt.matrix);
+        MatrixInts matrixInts = (MatrixInts) o;
+        return Arrays.equals(matrix, matrixInts.matrix);
     }
 
     @Override

@@ -14,20 +14,20 @@ import java.util.Arrays;
  * @since 2.0
  */
 //todo write doc's
-public class MatrixDouble extends AbstractMatrix {
+public class MatrixDoubles extends AbstractMatrix {
 
     private double[][] matrix;
 
-    public MatrixDouble() {
+    public MatrixDoubles() {
         matrix = new double[super.getRows()][super.getRows()];
     }
 
-    public MatrixDouble(int rows, int columns) {
+    public MatrixDoubles(int rows, int columns) {
         super(rows, columns);
         this.matrix = new double[super.getRows()][super.getColumns()];
     }
 
-    public MatrixDouble(double[][] matrix) {
+    public MatrixDoubles(double[][] matrix) {
         if (CheckerMatrix.checkMatrix(matrix)) {
             super.setRows(matrix.length);
             super.setColumns(matrix[0].length);
@@ -35,20 +35,20 @@ public class MatrixDouble extends AbstractMatrix {
         }
     }
 
-    public MatrixDouble(MatrixDouble matrixDouble) {
-        if (CheckerMatrix.checkMatrix(matrixDouble)) {
-            super.setRows(matrixDouble.getRows());
-            super.setColumns(matrixDouble.getColumns());
-            this.matrix = matrixDouble.getMatrix();
+    public MatrixDoubles(MatrixDoubles matrixDoubles) {
+        if (CheckerMatrix.checkMatrix(matrixDoubles)) {
+            super.setRows(matrixDoubles.getRows());
+            super.setColumns(matrixDoubles.getColumns());
+            this.matrix = matrixDoubles.getMatrix();
         }
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof MatrixDouble)) return false;
+        if (!(o instanceof MatrixDoubles)) return false;
         if (!super.equals(o)) return false;
-        MatrixDouble that = (MatrixDouble) o;
+        MatrixDoubles that = (MatrixDoubles) o;
         return Arrays.equals(matrix, that.matrix);
     }
 

@@ -1,7 +1,7 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
 import com.lugowoy.helper.filling.Filling;
-import com.lugowoy.helper.models.matrices.MatrixInt;
+import com.lugowoy.helper.models.matrices.MatrixInts;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
 import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
@@ -12,14 +12,14 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 26.11.2019.
  */
 //todo write doc's
-public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInt> {
+public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInts> {
 
     @Override
-    public void fill(MatrixInt matrixInt) {
-        if (CheckerMatrix.checkMatrix(matrixInt)) {
-            int[][] integers = new int[matrixInt.getRows()][matrixInt.getColumns()];
+    public void fill(MatrixInts matrixInts) {
+        if (CheckerMatrix.checkMatrix(matrixInts)) {
+            int[][] integers = new int[matrixInts.getRows()][matrixInts.getColumns()];
             this.fillMatrixRandomPrimitiveInts(integers);
-            matrixInt.setMatrix(integers);
+            matrixInts.setMatrix(integers);
         }
     }
 
@@ -38,12 +38,12 @@ public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInt> 
         return ints;
     }
 
-    public void fill(MatrixInt matrixInt, int bound) {
-        if (CheckerMatrix.checkMatrix(matrixInt)) {
-            int[][] integers = new int[matrixInt.getRows()][matrixInt.getColumns()];
+    public void fill(MatrixInts matrixInts, int bound) {
+        if (CheckerMatrix.checkMatrix(matrixInts)) {
+            int[][] integers = new int[matrixInts.getRows()][matrixInts.getColumns()];
             if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
                 this.fillMatrixRandomPrimitiveIntsFromZeroToBound(integers, bound);
-                matrixInt.setMatrix(integers);
+                matrixInts.setMatrix(integers);
             }
         }
     }
@@ -67,14 +67,14 @@ public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInt> 
         return ints;
     }
 
-    public void fill(MatrixInt matrixInt, int lowerBound, int upperBound) {
-        if (CheckerMatrix.checkMatrix(matrixInt)) {
+    public void fill(MatrixInts matrixInts, int lowerBound, int upperBound) {
+        if (CheckerMatrix.checkMatrix(matrixInts)) {
             if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
                     && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
                 if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    int[][] ints = new int[matrixInt.getRows()][matrixInt.getColumns()];
+                    int[][] ints = new int[matrixInts.getRows()][matrixInts.getColumns()];
                     this.fillMatrixRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
-                    matrixInt.setMatrix(ints);
+                    matrixInts.setMatrix(ints);
                 }
             }
         }
