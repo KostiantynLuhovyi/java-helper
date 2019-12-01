@@ -1,7 +1,7 @@
 package com.lugowoy.helper.models.storages.arrays;
 
-import com.lugowoy.helper.utils.checking.CheckerIndex;
 import com.lugowoy.helper.utils.checking.CheckerArray;
+import com.lugowoy.helper.utils.checking.CheckerIndex;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 2.0
  */
 //todo write doc's
@@ -22,22 +22,29 @@ public class ArrayInts extends AbstractArray {
 
     public ArrayInts() {
         this.arrayInts = new int[DEFAULT_LENGTH];
+        super.setLengthArray(this.arrayInts.length);
         super.setCursorElement(this.arrayInts.length);
     }
 
     public ArrayInts(int[] arrayInts) {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = arrayInts.clone();
+            super.setLengthArray(this.arrayInts.length);
             super.setCursorElement(this.arrayInts.length);
         }
     }
 
+    public ArrayInts(int lengthArray) {
+        super(lengthArray);
+        this.arrayInts = new int[this.size()];
+        super.setCursorElement(this.arrayInts.length);
+    }
+
     public ArrayInts(ArrayInts arrayInts) {
-        if (arrayInts != null) {
+        if (CheckerArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = arrayInts.toArray();
+            super.setLengthArray(this.arrayInts.length);
             super.setCursorElement(this.arrayInts.length);
-        } else {
-            throw new NullPointerException("Object argument is null.");
         }
     }
 
@@ -59,8 +66,7 @@ public class ArrayInts extends AbstractArray {
 
     @Override
     public String toString() {
-        return "ArrayInts [" + Arrays.toString(arrayInts)
-                + "], cursorElement:" + super.getCursorElement();
+        return "ArrayInts [" + Arrays.toString(arrayInts) + "], cursorElement:" + super.getCursorElement();
     }
 
     /**
@@ -72,7 +78,7 @@ public class ArrayInts extends AbstractArray {
      * @return the number of elements in this list
      */
     public int size() {
-        return this.arrayInts.length;
+        return super.size();
     }
 
 
@@ -120,6 +126,7 @@ public class ArrayInts extends AbstractArray {
             @Override
             public void remove() {
                 ArrayInts.this.remove(cursorIteratorElement);
+                ArrayInts.super.setLengthArray(ArrayInts.this.size() - 1);
             }
         };
     }
@@ -151,13 +158,7 @@ public class ArrayInts extends AbstractArray {
     public void setArray(int[] arrayInts) {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = Arrays.copyOf(arrayInts, arrayInts.length);
-        }
-    }
-
-    @Override
-    public void setArray(int lengthArray) {
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            this.arrayInts = new int[lengthArray];
+            super.setLengthArray(this.arrayInts.length);
         }
     }
 
@@ -180,6 +181,7 @@ public class ArrayInts extends AbstractArray {
         boolean resultAdd = false;
         if (super.getCursorElement() < this.size()) {
             this.arrayInts[super.getCursorElement()] = element;
+            super.setLengthArray(this.size() + 1);
             super.setCursorElement(super.getCursorElement() + 1);
             resultAdd = true;
         } else {
@@ -205,6 +207,7 @@ public class ArrayInts extends AbstractArray {
                 System.arraycopy(this.arrayInts, 0, newArrayInts, 0, this.size());
                 System.arraycopy(arrayInts, 0, newArrayInts, this.size() + 1, arrayInts.length);
                 this.arrayInts = newArrayInts;
+                super.setLengthArray(this.size() + arrayInts.length);
                 super.setCursorElement(this.size());
                 resultAddAll = true;
             }
@@ -221,6 +224,7 @@ public class ArrayInts extends AbstractArray {
                 System.arraycopy(arrayInts, 0, newArrayInts, index, arrayInts.length);
                 System.arraycopy(this.arrayInts, index + 1, newArrayInts, index + 1, this.size() - index);
                 this.arrayInts = newArrayInts;
+                super.setLengthArray(this.size() + arrayInts.length);
                 super.setCursorElement(this.size());
                 resultAddAll = true;
             }
@@ -232,8 +236,9 @@ public class ArrayInts extends AbstractArray {
         boolean resultRemove = false;
         for (int i = 0; i < this.size(); i++) {
             if (element == this.arrayInts[i]) {
-                this.remove(i);
+                this.removeByIndex(i);
                 resultRemove = true;
+                super.setLengthArray(this.size() - 1);
                 break;
             }
         }
@@ -249,6 +254,7 @@ public class ArrayInts extends AbstractArray {
             System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index - 1);
             System.arraycopy(this.arrayInts, index + 1, newArrayInts, index, this.size() - index);
             this.arrayInts = newArrayInts;
+            super.setLengthArray(this.size() - 1);
             super.setCursorElement(super.getCursorElement() - 1);
         }
         return resultRemove;
@@ -259,6 +265,7 @@ public class ArrayInts extends AbstractArray {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
             Arrays.stream(arrayInts).forEach(this::remove);
             resultRemoveAll = true;
+            super.setLengthArray(this.size() - arrayInts.length);
         }
         return resultRemoveAll;
     }
@@ -301,6 +308,7 @@ public class ArrayInts extends AbstractArray {
                 if (!this.contains(tmp)) {
                     this.remove(tmp);
                     resultRetainAll = true;
+                    super.setLengthArray(this.size() - 1);
                 }
             }
         }

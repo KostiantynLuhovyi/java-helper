@@ -30,7 +30,7 @@ public class FillerArrayPoints<T extends Point, V extends Number> extends Filler
      *
      * @param fillingArrayPoints The object that implements the {@link FillingArrayPoints} interface contract to fill an array.
      */
-    private FillerArrayPoints(FillingArrayPoints<T, V> fillingArrayPoints) {
+    public FillerArrayPoints(FillingArrayPoints<T, V> fillingArrayPoints) {
         super(fillingArrayPoints);
     }
 
@@ -170,18 +170,6 @@ public class FillerArrayPoints<T extends Point, V extends Number> extends Filler
      */
     public T[] fill(int lengthArray, V startBound, V endBound) {
         return ((FillingArrayPoints<T, V>) super.getFilling()).fill(lengthArray, startBound, endBound);
-    }
-
-    /**
-     * Creates a new object of {@link FillerArrayPoints} class by calling a single constructor with a parameter
-     * for initialization the object encapsulated in this class to perform the functionality.
-     *
-     * @param fillingArrayPoints The object that implements the {@link FillingArrayPoints} interface contract
-     *                           to fill an array with data.
-     * @return The created object of this class.
-     */
-    public static <T extends Point, V extends Number> FillerArrayPoints<T, V> getFillerArrayPoints(FillingArrayPoints<T, V> fillingArrayPoints) {
-        return new FillerArrayPoints<>(fillingArrayPoints);
     }
 
 }

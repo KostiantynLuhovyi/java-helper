@@ -1,6 +1,7 @@
 package com.lugowoy.helper.models.storages.arrays;
 
 import com.lugowoy.helper.models.Model;
+import com.lugowoy.helper.utils.checking.CheckerArray;
 
 import java.util.Objects;
 import java.util.RandomAccess;
@@ -9,7 +10,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 2.0
  */
 //todo write doc's
@@ -22,10 +23,16 @@ public abstract class AbstractArray implements Model, RandomAccess {
      */
     public static final int DEFAULT_LENGTH = 10;
 
+    private int lengthArray;
+
     private int cursorElement;
 
-    AbstractArray() {
+    public AbstractArray() {
         this.cursorElement = 0;
+    }
+
+    public AbstractArray(int lengthArray) {
+        this.setLengthArray(lengthArray);
     }
 
     @Override
@@ -49,8 +56,14 @@ public abstract class AbstractArray implements Model, RandomAccess {
         this.cursorElement = cursorElement;
     }
 
-    public abstract int size();
+    public int size() {
+        return this.lengthArray;
+    }
 
-    public abstract void setArray(int lengthArray);
+    protected void setLengthArray(int lengthArray) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
+            this.lengthArray = lengthArray;
+        }
+    }
 
 }

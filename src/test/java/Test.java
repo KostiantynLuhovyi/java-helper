@@ -1,3 +1,7 @@
+import com.lugowoy.helper.filling.array.numbers.FillerArrayNumbers;
+import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomDoubles;
+import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomIntegers;
+
 /**
  * Created by Konstantin Lugowoy on 02.10.2018.
  */
@@ -141,6 +145,8 @@ public class Test {
             }
         }*/
 
+
+        FillerArrayNumbers<Integer> fillerArrayNumbers = new FillerArrayNumbers<>(new FillingArrayRandomIntegers());
 
     }
 

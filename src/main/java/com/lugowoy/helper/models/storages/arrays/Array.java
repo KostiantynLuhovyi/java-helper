@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  * <p>Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 2.7
+ * @version 2.8
  * @since 1.0
  */
 //todo edit doc's
@@ -21,12 +21,14 @@ public class Array<T> extends AbstractArray implements List<T> {
 
     public Array() {
         this.array = new Object[DEFAULT_LENGTH];
+        super.setLengthArray(this.array.length);
         super.setCursorElement(this.array.length);
     }
 
     public Array(T[] array) {
         if (CheckerArray.checkLengthInArray(array)) {
             this.array = array;
+            super.setLengthArray(this.array.length);
             super.setCursorElement(this.array.length);
         }
     }
@@ -38,20 +40,21 @@ public class Array<T> extends AbstractArray implements List<T> {
             } else {
                 this.array = array;
             }
+            super.setLengthArray(this.array.length);
             super.setCursorElement(this.array.length);
         }
     }
 
     public Array(int lengthArray) {
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            this.array = new Object[lengthArray];
-            super.setCursorElement(this.array.length);
-        }
+        super(lengthArray);
+        this.array = new Object[lengthArray];
+        super.setCursorElement(this.array.length);
     }
 
     public Array(Array<T> array) {
         if (CheckerArray.checkLengthInArray(array)) {
             this.array = array.toArray();
+            super.setLengthArray(this.array.length);
             super.setCursorElement(this.array.length);
         }
     }
@@ -63,6 +66,7 @@ public class Array<T> extends AbstractArray implements List<T> {
             } else {
                 this.array = array.toArray();
             }
+            super.setLengthArray(this.array.length);
             super.setCursorElement(this.array.length);
         }
     }
@@ -85,8 +89,7 @@ public class Array<T> extends AbstractArray implements List<T> {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " [" + Arrays.toString(array)
-                + "], cursorElement:" + super.getCursorElement();
+        return this.getClass().getSimpleName() + " [" + Arrays.toString(array) + "], cursorElement:" + super.getCursorElement();
     }
 
 
@@ -99,7 +102,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      */
     @Override
     public int size() {
-        return this.array.length;
+        return super.size();
     }
 
     /**
@@ -158,6 +161,7 @@ public class Array<T> extends AbstractArray implements List<T> {
             @Override
             public void remove() {
                 Array.this.remove(cursorIteratorElement);
+                Array.super.setLengthArray(Array.this.size() - 1);
             }
         };
     }
@@ -282,10 +286,10 @@ public class Array<T> extends AbstractArray implements List<T> {
         }
     }
 
-    @Override
     public void setArray(int lengthArray) {
         if (CheckerArray.checkLengthArray(lengthArray)) {
             this.array = new Object[lengthArray];
+            super.setLengthArray(this.array.length);
         }
     }
 
@@ -359,6 +363,7 @@ public class Array<T> extends AbstractArray implements List<T> {
         boolean resultAdd = false;
         if (super.getCursorElement() < this.size()) {
             this.array[super.getCursorElement()] = t;
+            super.setLengthArray(this.size() + 1);
             super.setCursorElement(super.getCursorElement() + 1);
             resultAdd = true;
         } else {
@@ -428,6 +433,7 @@ public class Array<T> extends AbstractArray implements List<T> {
                 Object[] arrayOfCollection = c.toArray();
                 System.arraycopy(arrayOfCollection, 0, newArray, this.size() + 1, arrayOfCollection.length);
                 this.array = newArray;
+                super.setLengthArray(this.size() + c.size());
                 super.setCursorElement(this.size());
                 resultAddAll = true;
             }
@@ -477,6 +483,7 @@ public class Array<T> extends AbstractArray implements List<T> {
                     System.arraycopy(arrayOfCollection, 0, newArray, index, arrayOfCollection.length);
                     System.arraycopy(this.array, index + 1, newArray, index + 1, this.size() - index);
                     this.array = newArray;
+                    super.setLengthArray(this.size() + c.size());
                     super.setCursorElement(this.size());
                     resultAddAll = true;
                 }
@@ -516,6 +523,7 @@ public class Array<T> extends AbstractArray implements List<T> {
                 if (o.equals(this.array[i])) {
                     this.remove(i);
                     resultRemove = true;
+                    super.setLengthArray(this.size() - 1);
                     break;
                 }
             }
@@ -546,6 +554,7 @@ public class Array<T> extends AbstractArray implements List<T> {
             System.arraycopy(this.array, 0, newArray, 0, index - 1);
             System.arraycopy(this.array, index + 1, newArray, index, this.size() - index);
             this.array = newArray;
+            super.setLengthArray(this.size() - 1);
             super.setCursorElement(super.getCursorElement() - 1);
         }
         return resultRemove;
@@ -577,6 +586,7 @@ public class Array<T> extends AbstractArray implements List<T> {
                 Object[] tmpCollectionArray = c.toArray();
                 Arrays.stream(tmpCollectionArray).forEach(this::remove);
                 resultRemoveAll = true;
+                super.setLengthArray(this.size() - c.size());
             }
         } else {
             throw new NullPointerException("Collection argument is null.");
@@ -689,6 +699,7 @@ public class Array<T> extends AbstractArray implements List<T> {
                     if (!this.contains(o)) {
                         this.remove(o);
                         resultRetainAll = true;
+                        super.setLengthArray(this.size() - 1);
                     }
                 }
             }

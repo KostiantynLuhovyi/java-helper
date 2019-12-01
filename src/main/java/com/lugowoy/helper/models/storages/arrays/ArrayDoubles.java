@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 2.0
  */
 //todo write doc's
@@ -22,22 +22,29 @@ public class ArrayDoubles extends AbstractArray {
 
     public ArrayDoubles() {
         this.arrayDoubles = new double[DEFAULT_LENGTH];
+        super.setLengthArray(this.arrayDoubles.length);
         super.setCursorElement(this.arrayDoubles.length);
     }
 
     public ArrayDoubles(double[] arrayDoubles) {
         if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             this.arrayDoubles = arrayDoubles;
+            super.setLengthArray(this.arrayDoubles.length);
             super.setCursorElement(this.arrayDoubles.length);
         }
     }
 
+    public ArrayDoubles(int lengthArray) {
+        super(lengthArray);
+        this.arrayDoubles = new double[this.size()];
+        super.setCursorElement(this.arrayDoubles.length);
+    }
+
     public ArrayDoubles(ArrayDoubles arrayDoubles) {
-        if (arrayDoubles != null) {
+        if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             this.arrayDoubles = arrayDoubles.toArray();
-            super.setCursorElement(arrayDoubles.getCursorElement());
-        } else {
-            throw new NullPointerException("Object argument is null.");
+            super.setLengthArray(this.arrayDoubles.length);
+            super.setCursorElement(this.arrayDoubles.length);
         }
     }
 
@@ -59,8 +66,7 @@ public class ArrayDoubles extends AbstractArray {
 
     @Override
     public String toString() {
-        return "ArrayDoubles [" + Arrays.toString(arrayDoubles)
-                + "], cursorElement:" + super.getCursorElement();
+        return "ArrayDoubles [" + Arrays.toString(arrayDoubles) + "], cursorElement:" + super.getCursorElement();
     }
 
     /**
@@ -72,7 +78,7 @@ public class ArrayDoubles extends AbstractArray {
      * @return the number of elements in this list
      */
     public int size() {
-        return this.arrayDoubles.length;
+        return super.size();
     }
 
 
@@ -120,6 +126,7 @@ public class ArrayDoubles extends AbstractArray {
             @Override
             public void remove() {
                 ArrayDoubles.this.remove(cursorIteratorElement);
+                ArrayDoubles.super.setLengthArray(ArrayDoubles.this.size() - 1);
             }
         };
     }
@@ -151,13 +158,7 @@ public class ArrayDoubles extends AbstractArray {
     public void setArray(double[] arrayDoubles) {
         if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             this.arrayDoubles = Arrays.copyOf(arrayDoubles, arrayDoubles.length);
-        }
-    }
-
-    @Override
-    public void setArray(int lengthArray) {
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            this.arrayDoubles = new double[lengthArray];
+            super.setLengthArray(this.arrayDoubles.length);
         }
     }
 
@@ -176,10 +177,11 @@ public class ArrayDoubles extends AbstractArray {
         return element;
     }
 
-    public boolean add(int element) {
+    public boolean add(double element) {
         boolean resultAdd = false;
         if (super.getCursorElement() < this.size()) {
             this.arrayDoubles[super.getCursorElement()] = element;
+            super.setLengthArray(this.size() + 1);
             super.setCursorElement(super.getCursorElement() + 1);
             resultAdd = true;
         } else {
@@ -205,6 +207,7 @@ public class ArrayDoubles extends AbstractArray {
                 System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, this.size());
                 System.arraycopy(arrayDoubles, 0, newArrayDoubles, this.size() + 1, arrayDoubles.length);
                 this.arrayDoubles = newArrayDoubles;
+                super.setLengthArray(this.size() + arrayDoubles.length);
                 super.setCursorElement(this.size());
                 resultAddAll = true;
             }
@@ -221,6 +224,7 @@ public class ArrayDoubles extends AbstractArray {
                 System.arraycopy(arrayDoubles, 0, newArrayDoubles, index, arrayDoubles.length);
                 System.arraycopy(this.arrayDoubles, index + 1, newArrayDoubles, index + 1, this.size() - index);
                 this.arrayDoubles = newArrayDoubles;
+                super.setLengthArray(this.size() + arrayDoubles.length);
                 super.setCursorElement(this.size());
                 resultAddAll = true;
             }
@@ -232,8 +236,9 @@ public class ArrayDoubles extends AbstractArray {
         boolean resultRemove = false;
         for (int i = 0; i < this.size(); i++) {
             if (element == this.arrayDoubles[i]) {
-                this.remove(i);
+                this.removeByIndex(i);
                 resultRemove = true;
+                super.setLengthArray(this.size() - 1);
                 break;
             }
         }
@@ -249,6 +254,7 @@ public class ArrayDoubles extends AbstractArray {
             System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, index - 1);
             System.arraycopy(this.arrayDoubles, index + 1, newArrayDoubles, index, this.size() - index);
             this.arrayDoubles = newArrayDoubles;
+            super.setLengthArray(this.size() - 1);
             super.setCursorElement(super.getCursorElement() - 1);
         }
         return resultRemove;
@@ -259,6 +265,7 @@ public class ArrayDoubles extends AbstractArray {
         if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             Arrays.stream(arrayDoubles).forEach(this::remove);
             resultRemoveAll = true;
+            super.setLengthArray(this.size() - arrayDoubles.length);
         }
         return resultRemoveAll;
     }
@@ -301,6 +308,7 @@ public class ArrayDoubles extends AbstractArray {
                 if (!this.contains(tmp)) {
                     this.remove(tmp);
                     resultRetainAll = true;
+                    super.setLengthArray(this.size() - 1);
                 }
             }
         }
