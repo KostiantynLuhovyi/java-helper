@@ -1,6 +1,8 @@
 import com.lugowoy.helper.filling.array.numbers.FillerArrayNumbers;
 import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomDoubles;
 import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomIntegers;
+import com.lugowoy.helper.io.reading.Reader;
+import com.lugowoy.helper.io.reading.ReadingConsole;
 
 /**
  * Created by Konstantin Lugowoy on 02.10.2018.
@@ -146,7 +148,8 @@ public class Test {
         }*/
 
 
-        FillerArrayNumbers<Integer> fillerArrayNumbers = new FillerArrayNumbers<>(new FillingArrayRandomIntegers());
+        System.out.println(new Reader(new ReadingConsole()).readInt());
+        System.out.println(new Reader(new ReadingConsole()).readInt());
 
     }
 

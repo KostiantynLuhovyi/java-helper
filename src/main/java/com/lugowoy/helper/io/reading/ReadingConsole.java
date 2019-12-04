@@ -38,8 +38,6 @@ public class ReadingConsole implements Reading {
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a byte number or is out of range (from " + Byte.MIN_VALUE
                                                                                              + " to " + Byte.MAX_VALUE + ").");
-        } finally {
-            SCANNER.close();
         }
         return resultByteRead;
     }
@@ -62,8 +60,6 @@ public class ReadingConsole implements Reading {
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a short number or is out of range (from " + Short.MIN_VALUE
                                                                                               + " to " + Short.MAX_VALUE + ").");
-        } finally {
-            SCANNER.close();
         }
         return resultShortRead;
     }
@@ -86,8 +82,6 @@ public class ReadingConsole implements Reading {
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a int number or is out of range (from " + Integer.MIN_VALUE
                                                                                             + " to " + Integer.MAX_VALUE + ").");
-        } finally {
-            SCANNER.close();
         }
         return resultIntRead;
     }
@@ -110,8 +104,6 @@ public class ReadingConsole implements Reading {
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a long number or is out of range (from " + Long.MIN_VALUE
                                                                                              + " to " + Long.MAX_VALUE + ").");
-        } finally {
-            SCANNER.close();
         }
         return resultLongRead;
     }
@@ -134,8 +126,6 @@ public class ReadingConsole implements Reading {
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a char or is out of range (from " + Character.MIN_VALUE
                                                                                       + " to " + Character.MAX_VALUE + ").");
-        } finally {
-            SCANNER.close();
         }
         return resultCharRead;
     }
@@ -157,8 +147,6 @@ public class ReadingConsole implements Reading {
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a float number or is out of range (from " + Float.MIN_VALUE
                                                                                               + " to " + Float.MAX_VALUE + ").");
-        } finally {
-            SCANNER.close();
         }
         return resultFloatRead;
     }
@@ -180,8 +168,6 @@ public class ReadingConsole implements Reading {
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a double or is out of range (from " + Double.MIN_VALUE
                                                                                         + " to " + Double.MAX_VALUE + ").");
-        } finally {
-            SCANNER.close();
         }
         return resultDoubleRead;
     }
@@ -197,11 +183,7 @@ public class ReadingConsole implements Reading {
     @Override
     public String readString() {
         String resultStringRead;
-        try {
-            resultStringRead = SCANNER.nextLine();
-        } finally {
-            SCANNER.close();
-        }
+        resultStringRead = SCANNER.nextLine();
         return resultStringRead;
     }
 
