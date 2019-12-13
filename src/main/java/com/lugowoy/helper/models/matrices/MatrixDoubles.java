@@ -87,7 +87,7 @@ public class MatrixDoubles extends AbstractMatrix {
         if (CheckerMatrix.checkMatrix(matrix)) {
             if (super.getRows() == matrix.length && super.getColumns() == matrix[0].length) {
                 for (int i = 0; i < super.getRows(); i++) {
-                    this.matrix[i] = Arrays.copyOf(matrix[i], matrix[i].length);
+                    matrix[i] = Arrays.copyOf(this.matrix[i], this.matrix[i].length);
                 }
             } else {
                 //todo add another exception

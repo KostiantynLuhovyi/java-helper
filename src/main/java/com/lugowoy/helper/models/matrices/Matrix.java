@@ -30,7 +30,7 @@ public class Matrix<T> extends AbstractMatrix {
      * Constructs a new matrix of the getRows and getColumns.
      */
     public Matrix() {
-        this.matrix = new Object[super.getRows()][super.getColumns()];
+        this.matrix = new Object[DEFAULT_ROWS][AbstractMatrix.DEFAULT_COLUMNS];
     }
 
     /**
@@ -54,7 +54,7 @@ public class Matrix<T> extends AbstractMatrix {
      */
     public Matrix(T[][] matrix) {
         if (CheckerMatrix.checkMatrix(matrix)) {
-            super.setColumns(matrix.length);
+            super.setRows(matrix.length);
             super.setColumns(matrix[0].length);
             this.matrix = matrix;
         }
@@ -72,7 +72,7 @@ public class Matrix<T> extends AbstractMatrix {
         if (CheckerMatrix.checkMatrix(matrix)) {
             super.setRows(matrix.getRows());
             super.setColumns(matrix.getColumns());
-            this.matrix = matrix.toMatrix((T[][]) new Object[matrix.getRows()][matrix.getColumns()]);
+            this.matrix = matrix.getMatrix();
         }
     }
 
@@ -155,7 +155,7 @@ public class Matrix<T> extends AbstractMatrix {
         if (CheckerMatrix.checkMatrix(matrix)) {
             if (super.getRows() == matrix.length && super.getColumns() == matrix[0].length) {
                 for (int i = 0; i < super.getRows(); i++) {
-                    this.matrix[i] = (T[]) Arrays.copyOf(matrix[i], matrix[i].length);
+                    matrix[i] = (T[]) Arrays.copyOf(this.matrix[i], this.matrix[i].length);
                 }
             } else {
                 //todo add another exception

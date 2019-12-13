@@ -1,8 +1,14 @@
 import com.lugowoy.helper.filling.array.numbers.FillerArrayNumbers;
 import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomDoubles;
 import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomIntegers;
+import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomIntegers;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.ReadingConsole;
+import com.lugowoy.helper.models.matrices.AbstractMatrix;
+import com.lugowoy.helper.models.matrices.Matrix;
+
+import static com.lugowoy.helper.models.matrices.AbstractMatrix.DEFAULT_COLUMNS;
+import static com.lugowoy.helper.models.matrices.AbstractMatrix.DEFAULT_ROWS;
 
 /**
  * Created by Konstantin Lugowoy on 02.10.2018.
@@ -147,9 +153,13 @@ public class Test {
             }
         }*/
 
+        Matrix<Integer> matrix = new Matrix<>(new FillingMatrixRandomIntegers().fill(DEFAULT_ROWS, DEFAULT_COLUMNS, 0, 50));
 
-        System.out.println(new Reader(new ReadingConsole()).readInt());
-        System.out.println(new Reader(new ReadingConsole()).readInt());
+        System.out.println(matrix);
+
+        Matrix<Integer> matrixToTest = new Matrix<>(matrix);
+
+        System.out.println(matrixToTest);
 
     }
 
