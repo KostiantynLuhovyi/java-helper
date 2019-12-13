@@ -61,7 +61,7 @@ public class MatrixDoubles extends AbstractMatrix {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("Matrix (doubles) : \n");
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < this.matrix.length; i++) {
             for (int j = 0; j < this.matrix[i].length; j++) {
                 stringBuilder.append(this.matrix[i][j]).append(" ");
