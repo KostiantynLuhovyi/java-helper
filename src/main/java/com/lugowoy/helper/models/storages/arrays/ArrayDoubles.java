@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @since 2.0
  */
 //todo write doc's
@@ -181,13 +181,13 @@ public class ArrayDoubles extends AbstractArray {
         boolean resultAdd = false;
         if (super.getCursorElement() < this.size()) {
             this.arrayDoubles[super.getCursorElement()] = element;
-            super.setLengthArray(this.size() + 1);
             super.setCursorElement(super.getCursorElement() + 1);
             resultAdd = true;
         } else {
             double[] tmpArrayDoubles = new double[this.size() + 1];
             System.arraycopy(this.arrayDoubles, 0, tmpArrayDoubles, 0, this.size());
             this.arrayDoubles = tmpArrayDoubles;
+            super.setLengthArray(this.size() + 1);
             this.add(element);
         }
         return resultAdd;

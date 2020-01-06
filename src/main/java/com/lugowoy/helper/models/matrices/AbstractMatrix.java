@@ -16,12 +16,12 @@ import java.util.Objects;
 public class AbstractMatrix implements Model {
 
     /**
-     * Default getRows of the matrix.
+     * Default rows of the matrix.
      */
     public static final int DEFAULT_ROWS = 10;
 
     /**
-     * Default getColumns of the matrix.
+     * Default columns of the matrix.
      */
     public static final int DEFAULT_COLUMNS = 10;
 
@@ -58,9 +58,7 @@ public class AbstractMatrix implements Model {
         if (CheckerMatrix.checkRows(rows)) {
             this.rows = rows;
         }
-    }
-
-    public int getRows() {
+    }public int getRows() {
         return this.rows;
     }
 
@@ -73,7 +71,5 @@ public class AbstractMatrix implements Model {
     public int getColumns() {
         return this.columns;
     }
-
-
 
 }

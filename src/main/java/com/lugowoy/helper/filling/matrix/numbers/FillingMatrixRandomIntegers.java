@@ -6,7 +6,6 @@ import com.lugowoy.helper.utils.checking.CheckerMatrix;
 import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 /**
  * Created by Konstantin Lugowoy on 05.10.2018.
@@ -107,7 +106,7 @@ public class FillingMatrixRandomIntegers implements FillingMatrixNumbers<Integer
         Integer[][] integers = new Integer[0][0];
         if (CheckerMatrix.checkRows(rows) && CheckerMatrix.checkColumns(columns)) {
             if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(columns, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
+                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
                 if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                     integers = new Integer[rows][columns];
                     this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);

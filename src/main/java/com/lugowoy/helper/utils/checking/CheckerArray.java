@@ -27,7 +27,7 @@ public final class CheckerArray {
     }
 
     public static boolean checkLengthInArray(final AbstractArray array) {
-        return checkLengthInArray(array, Integer.MAX_VALUE);
+        return checkLengthInArray(array, UPPER_BOUND_LENGTH_ARRAY);
     }
 
     public static boolean checkLengthInArray(final AbstractArray array, final int upperBoundLength) {
@@ -44,7 +44,7 @@ public final class CheckerArray {
     }
 
     public static <T> boolean checkLengthInArray(final T[] array) {
-        return checkLengthInArray(array, Integer.MAX_VALUE);
+        return checkLengthInArray(array, UPPER_BOUND_LENGTH_ARRAY);
     }
 
     public static <T> boolean checkLengthInArray(final T[] array, final int upperBoundLength) {
@@ -61,7 +61,7 @@ public final class CheckerArray {
     }
 
     public static boolean checkLengthInArray(final int[] array) {
-        return checkLengthInArray(array, Integer.MAX_VALUE);
+        return checkLengthInArray(array, UPPER_BOUND_LENGTH_ARRAY);
     }
 
     public static boolean checkLengthInArray(final int[] array, final int upperBoundLength) {
@@ -78,7 +78,7 @@ public final class CheckerArray {
     }
 
     public static boolean checkLengthInArray(final double[] array) {
-        return checkLengthInArray(array, Integer.MAX_VALUE);
+        return checkLengthInArray(array, UPPER_BOUND_LENGTH_ARRAY);
     }
 
     public static boolean checkLengthInArray(final double[] array, final int upperBoundLength) {
@@ -95,7 +95,7 @@ public final class CheckerArray {
     }
 
     public static boolean checkLengthArray(final int lengthArray) {
-        return checkLengthArray(lengthArray, Integer.MAX_VALUE);
+        return checkLengthArray(lengthArray, UPPER_BOUND_LENGTH_ARRAY);
     }
 
     public static boolean checkLengthArray(final int lengthArray, final int upperBoundLength) {

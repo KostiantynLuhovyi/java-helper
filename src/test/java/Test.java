@@ -6,6 +6,10 @@ import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.ReadingConsole;
 import com.lugowoy.helper.models.matrices.AbstractMatrix;
 import com.lugowoy.helper.models.matrices.Matrix;
+import com.lugowoy.helper.models.matrices.MatrixInts;
+import com.lugowoy.helper.models.storages.arrays.Array;
+
+import java.util.Arrays;
 
 import static com.lugowoy.helper.models.matrices.AbstractMatrix.DEFAULT_COLUMNS;
 import static com.lugowoy.helper.models.matrices.AbstractMatrix.DEFAULT_ROWS;
@@ -153,13 +157,56 @@ public class Test {
             }
         }*/
 
-        Matrix<Integer> matrix = new Matrix<>(new FillingMatrixRandomIntegers().fill(DEFAULT_ROWS, DEFAULT_COLUMNS, 0, 50));
+/*        Matrix<Integer> matrix = new Matrix<>(new FillingMatrixRandomIntegers().fill(DEFAULT_ROWS, DEFAULT_COLUMNS, 0, 50));
+
+        System.out.println(matrix);*/
+
+/*        Matrix<Integer> matrixToTest = new Matrix<>(matrix);
+
+        System.out.println(matrixToTest);*/
+
+/*        Array<Integer> arrayFirst = new Array<>(new FillingArrayRandomIntegers().fill(5, -20, -1));
+        Array<Integer> arraySecond = new Array<>(new FillingArrayRandomIntegers().fill(6, -20, -1));
+
+        matrix.setRowFromArray(arrayFirst, 2);
+        matrix.setRowFromArray(arraySecond, 7);
 
         System.out.println(matrix);
 
-        Matrix<Integer> matrixToTest = new Matrix<>(matrix);
+        Array<Integer> arrayFromRowOfMatrix = matrix.getRowToArray(2);
+        Integer[] integersFromRowOfMatrix = new Integer[2];
+        integersFromRowOfMatrix = matrix.getRowToArray(integersFromRowOfMatrix, 2);
 
-        System.out.println(matrixToTest);
+        System.out.println(arrayFromRowOfMatrix);
+        System.out.println(Arrays.toString(integersFromRowOfMatrix));
+        System.out.println();
+
+        integersFromRowOfMatrix[0] = 1000000000;
+        System.out.println(Arrays.toString(integersFromRowOfMatrix));
+        System.out.println();
+
+        System.out.println(matrix);
+
+        Integer[][] integersMatrix = new Integer[3][10];
+
+        integersMatrix = matrix.toAnyMatrix(integersMatrix);
+
+        System.out.println(Arrays.deepToString(integersMatrix));
+
+        System.out.println();
+        System.out.println("------------Column (get)---------------------");
+        System.out.println();
+
+        System.out.println(matrix.getColumnToArray(3));
+        System.out.println(matrix.getColumnToArray(8));
+
+        Integer[][] matrix1 = new Integer[3][7];
+        matrix1 = matrix.toMatrix(matrix1);
+        System.out.println(Arrays.deepToString(matrix1));*/
+
+        MatrixInts matrix = new MatrixInts(5, 4);
+        System.out.println(matrix);
+
 
     }
 

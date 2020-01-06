@@ -95,7 +95,7 @@ public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInts>
         int[][] ints = new int[0][0];
         if (CheckerMatrix.checkRows(rows) && CheckerMatrix.checkColumns(columns)) {
             if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(columns, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
+                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
                 if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
                     ints = new int[rows][columns];
                     this.fillMatrixRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);

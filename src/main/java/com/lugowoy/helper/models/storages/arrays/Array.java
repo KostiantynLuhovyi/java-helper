@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  * <p>Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 2.8
+ * @version 2.9
  * @since 1.0
  */
 //todo edit doc's
@@ -275,6 +275,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     public void setArray(T[] t) {
         if (CheckerArray.checkLengthInArray(t)) {
             this.array = Arrays.copyOf(t, t.length);
+            super.setCursorElement(this.array.length);
         }
     }
 
@@ -363,13 +364,13 @@ public class Array<T> extends AbstractArray implements List<T> {
         boolean resultAdd = false;
         if (super.getCursorElement() < this.size()) {
             this.array[super.getCursorElement()] = t;
-            super.setLengthArray(this.size() + 1);
             super.setCursorElement(super.getCursorElement() + 1);
             resultAdd = true;
         } else {
             Object[] tmpArray = new Object[this.size() + 1];
             System.arraycopy(this.array, 0, tmpArray, 0, this.size());
             this.array = tmpArray;
+            super.setLengthArray(this.size() + 1);
             this.add(t);
         }
         return resultAdd;

@@ -19,7 +19,7 @@ public final class CheckerIndex {
     public static boolean checkIndex(final int index, final int upperBoundIndex) {
         boolean resultCheckIndex = false;
         if (CheckerBound.isCorrectBound(upperBoundIndex, LOWER_INDEX, Integer.MAX_VALUE)) {
-            if (index >= 0 && index < upperBoundIndex) {
+            if (index >= LOWER_INDEX && index < upperBoundIndex) {
                 resultCheckIndex = true;
             } else {
                 throw new IndexOutOfBoundsException(MSG_INDEX_IS_OUT_OF_RANGE);
