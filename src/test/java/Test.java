@@ -1,6 +1,8 @@
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.filling.array.numbers.FillerArrayNumbers;
 import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomDoubles;
 import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomIntegers;
+import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomPrimitiveIntegers;
 import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomIntegers;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.ReadingConsole;
@@ -8,9 +10,16 @@ import com.lugowoy.helper.models.matrices.AbstractMatrix;
 import com.lugowoy.helper.models.matrices.Matrix;
 import com.lugowoy.helper.models.matrices.MatrixInts;
 import com.lugowoy.helper.models.storages.arrays.Array;
+import com.lugowoy.helper.models.storages.arrays.ArrayInts;
+import com.lugowoy.helper.utils.checking.CheckerArray;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 
+import static com.lugowoy.helper.filling.ValuesToFilling.INT_LOWER_BOUND;
+import static com.lugowoy.helper.filling.ValuesToFilling.INT_UPPER_BOUND;
 import static com.lugowoy.helper.models.matrices.AbstractMatrix.DEFAULT_COLUMNS;
 import static com.lugowoy.helper.models.matrices.AbstractMatrix.DEFAULT_ROWS;
 
@@ -204,9 +213,247 @@ public class Test {
         matrix1 = matrix.toMatrix(matrix1);
         System.out.println(Arrays.deepToString(matrix1));*/
 
-        MatrixInts matrix = new MatrixInts(5, 4);
-        System.out.println(matrix);
+/*        MatrixInts matrix = new MatrixInts(5, 4);
+        System.out.println(matrix);*/
 
+        Array<Integer> array = new Array<>(new FillingArrayRandomIntegers().fill(10, 400, 500));
+        System.out.println(array);
+
+        Array<Integer> array1 = new Array<>();
+        array1.setArray((Integer[]) array.toArray());
+        System.out.println(array1);
+
+        Integer[] integer = new Integer[] {2, 14, 5, 7, 20};
+        Integer[] integer1 = Arrays.copyOf(integer, integer.length);
+        System.out.println(Arrays.toString(integer));
+        System.out.println(Arrays.toString(integer1));
+        integer[1] = 4554545;
+        integer1[1] = 30000;
+        System.out.println(Arrays.toString(integer));
+        System.out.println(Arrays.toString(integer1));
+        System.out.println("--------------------");
+
+        System.out.println("integ : " + (integer == integer1));
+
+        System.out.println(array.toArray() == array1.toArray());
+        System.out.println(" jjkjkj " + (array.get(4) == array1.get(4)));
+        System.out.println(array.equals(array1));
+        System.out.println(Arrays.equals(array.toArray(), array1.toArray()));
+        array.set(3, 100000);
+        array1.set(5, 99999999);
+        array1.add(44444);
+        array.remove(6);
+        Array<Integer> array2 = new Array<>(new FillingArrayRandomIntegers().fill(20, INT_LOWER_BOUND, INT_UPPER_BOUND));
+        System.out.println(array2);
+        array.addAll(array2);
+        System.out.println(array);
+        System.out.println(array1);
+        System.out.println(array.toArray() == array1.toArray());
+        System.out.println(array.hashCode() == array1.hashCode());
+
+        Human[] humans = new Human[4];
+        humans[0] = new Human(new Adress("Avangardnaya"), 28);
+        humans[1] = new Human(new Adress("Guryevskaya"), 70);
+        humans[2] = new Human(new Adress("LuiPastera"), 35);
+        humans[3] = new Human(new Adress("Zubareva"), 40);
+
+        System.out.println(Arrays.toString(humans));
+        Human[] humans1 = Arrays.copyOf(humans, humans.length);
+        System.out.println(Arrays.toString(humans1));
+
+        humans1[1] = new Human(new Adress("ddsffsdsfd"), 444);
+
+        System.out.println(Arrays.toString(humans));
+        System.out.println(Arrays.toString(humans1));
+
+        System.out.println("++++++++++++++++++++++++++++");
+        String[] strings = new String[] {"1", "2", "3", "4", "5"};
+        String[] strings1 = Arrays.copyOf(strings, strings.length);
+
+        System.out.println(Arrays.toString(strings));
+        System.out.println(Arrays.toString(strings1));
+
+        strings1[1] = "67890";
+
+        System.out.println(Arrays.toString(strings));
+        System.out.println(Arrays.toString(strings1));
+
+        System.out.println("============================");
+
+        Array<Integer> integerArray = new Array<>(integer);
+        System.out.println(Arrays.toString(integerArray.toArray()));
+        System.out.println(Arrays.toString(integer));
+        System.out.println(integer == integerArray.toArray());
+        System.out.println(integer[1] == integerArray.get(1));
+
+        /*integer[1] = 10010101;*/
+        integerArray.set(3, 4444444);
+
+        System.out.println(Arrays.toString(integerArray.toArray()));
+        System.out.println(Arrays.toString(integer));
+
+        System.out.println("00000000000000000000000000000");
+        Array<Human> humanArray = new Array<>(humans);
+        System.out.println(Arrays.toString(humans));
+        System.out.println(Arrays.toString(humanArray.toArray()));
+
+        humans[1] = new Human(new Adress("dfdsfdsfsdf"), 90);
+
+        System.out.println(Arrays.toString(humans));
+        System.out.println(Arrays.toString(humanArray.toArray()));
+
+        System.out.println("((((((((((((((((((((((((");
+        System.out.println(integerArray);
+        integerArray.add(1, 777777);
+        System.out.println(integerArray);
+
+        List<Integer> integerList = new LinkedList<>();
+        integerList.add(555);
+        integerList.add(555);
+        integerList.add(555);
+        integerList.add(555);
+        integerList.add(555);
+        integerList.add(555);
+
+        integerArray.addAll(integerList);
+        integerArray.addAll(1, integerList);
+
+        System.out.println(integerArray + ", size: " + integerArray.size());
+
+/*        integerList.clear();
+        integerList.add(4554545);
+        integerList.add(5);
+        integerList.add(4444444);*/
+
+        /*integerArray.remove(7);*/
+        integerArray.removeAll(integerList);
+        integerArray.removeAll(integerList);
+
+        System.out.println("bla");
+        System.out.println(integerArray);
+        System.out.println("bla");
+
+        System.out.println("^^^^^^^^^^^^^^^^^^");
+
+        ArrayInts arrayInts = new ArrayInts(new FillingArrayRandomPrimitiveIntegers().fill(10/*0_0000*/, INT_LOWER_BOUND, INT_UPPER_BOUND));
+/*
+
+        int[] ints = new int[4];
+*/
+
+        /*ArrayInts arrayInts1 = ArrayInts(new FillingArrayRandomPrimitiveIntegers().fill(1000, );)*/
+/*
+        long start = System.currentTimeMillis();
+        System.out.println(start);*/
+
+        System.out.println(arrayInts);
+
+        arrayInts.add(777);
+
+/*        long finish = System.currentTimeMillis();
+        System.out.println(finish);
+
+        long res = finish - start;*/
+
+        System.out.println(arrayInts);
+
+        arrayInts.removeByIndex(1);
+
+        System.out.println(arrayInts);
+
+        arrayInts.add(7, 777);
+        arrayInts.add(4, 777);
+
+        System.out.println(arrayInts);
+
+        arrayInts.removeAll(777);
+
+        System.out.println(arrayInts);
+
+
+        /*System.out.println("Time : " + res);*/
+
+        /*
+        ints = arrayInts.toArray(new int[0]);
+
+        System.out.println(Arrays.toString(ints));
+        */
+
+    }
+
+    private static class Human {
+
+        private Adress adress;
+        private int age;
+
+        public Human(Adress adress, int age) {
+            this.adress = adress;
+            this.age = age;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Human)) return false;
+            Human human = (Human) o;
+            return getAge() == human.getAge() &&
+                    Objects.equals(getAdress(), human.getAdress());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getAdress(), getAge());
+        }
+
+        @Override
+        public String toString() {
+            return "Human{" +
+                    "adress=" + adress +
+                    ", age=" + age +
+                    '}';
+        }
+
+        public Adress getAdress() {
+            return adress;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+    }
+
+    private static class Adress {
+
+        private String adress;
+
+        public Adress(String adress) {
+            this.adress = adress;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Adress)) return false;
+            Adress adress1 = (Adress) o;
+            return Objects.equals(getAdress(), adress1.getAdress());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getAdress());
+        }
+
+        @Override
+        public String toString() {
+            return "Adress{" +
+                    "adress='" + adress + '\'' +
+                    '}';
+        }
+
+        public String getAdress() {
+            return adress;
+        }
 
     }
 

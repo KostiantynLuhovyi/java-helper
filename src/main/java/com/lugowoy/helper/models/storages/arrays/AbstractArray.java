@@ -10,7 +10,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 2.0
  */
 //todo write doc's
@@ -23,7 +23,6 @@ public abstract class AbstractArray implements Model, RandomAccess {
      */
     public static final int DEFAULT_LENGTH = 10;
 
-    private int lengthArray;
 
     private int cursorElement;
 
@@ -32,7 +31,10 @@ public abstract class AbstractArray implements Model, RandomAccess {
     }
 
     public AbstractArray(int lengthArray) {
-        this.setLengthArray(lengthArray);
+        if (CheckerArray.checkLengthArray(lengthArray)) {
+            this.cursorElement = lengthArray;
+        }
+
     }
 
     @Override
@@ -56,14 +58,6 @@ public abstract class AbstractArray implements Model, RandomAccess {
         this.cursorElement = cursorElement;
     }
 
-    public int size() {
-        return this.lengthArray;
-    }
-
-    protected void setLengthArray(int lengthArray) {
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            this.lengthArray = lengthArray;
-        }
-    }
+    public abstract int size();
 
 }

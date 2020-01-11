@@ -2,7 +2,6 @@ package com.lugowoy.helper.models.storages.arrays;
 
 import com.lugowoy.helper.utils.checking.CheckerIndex;
 import com.lugowoy.helper.utils.checking.CheckerArray;
-import com.rits.cloning.Cloner;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -11,7 +10,7 @@ import java.util.function.Consumer;
  * <p>Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 2.9
+ * @version 3.0
  * @since 1.0
  */
 //todo edit doc's
@@ -21,53 +20,25 @@ public class Array<T> extends AbstractArray implements List<T> {
 
     public Array() {
         this.array = new Object[DEFAULT_LENGTH];
-        super.setLengthArray(this.array.length);
-        super.setCursorElement(this.array.length);
+        super.setCursorElement(this.size());
     }
 
     public Array(T[] array) {
         if (CheckerArray.checkLengthInArray(array)) {
-            this.array = array;
-            super.setLengthArray(this.array.length);
-            super.setCursorElement(this.array.length);
-        }
-    }
-
-    public Array(T[] array, boolean flagDeepCopy) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            if (flagDeepCopy) {
-                this.array = new Cloner().deepClone(array);
-            } else {
-                this.array = array;
-            }
-            super.setLengthArray(this.array.length);
-            super.setCursorElement(this.array.length);
+            this.array = Arrays.copyOf(array, array.length);
+            super.setCursorElement(this.size());
         }
     }
 
     public Array(int lengthArray) {
         super(lengthArray);
         this.array = new Object[lengthArray];
-        super.setCursorElement(this.array.length);
     }
 
     public Array(Array<T> array) {
         if (CheckerArray.checkLengthInArray(array)) {
-            this.array = array.toArray();
-            super.setLengthArray(this.array.length);
-            super.setCursorElement(this.array.length);
-        }
-    }
-
-    public Array(Array<T> array, boolean flagDeepCopy) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            if (flagDeepCopy) {
-                this.array = new Cloner().deepClone(array.toArray());
-            } else {
-                this.array = array.toArray();
-            }
-            super.setLengthArray(this.array.length);
-            super.setCursorElement(this.array.length);
+            this.array = Arrays.copyOf(array.toArray(), array.size());
+            super.setCursorElement(this.size());
         }
     }
 
@@ -92,17 +63,9 @@ public class Array<T> extends AbstractArray implements List<T> {
         return this.getClass().getSimpleName() + " [" + Arrays.toString(array) + "], cursorElement:" + super.getCursorElement();
     }
 
-
-    /**
-     * Returns the number of elements in this list.  If this list contains
-     * more than {@code Integer.MAX_VALUE} elements, returns
-     * {@code Integer.MAX_VALUE}.
-     *
-     * @return the number of elements in this list
-     */
     @Override
     public int size() {
-        return super.size();
+        return this.array.length;
     }
 
     /**
@@ -128,7 +91,7 @@ public class Array<T> extends AbstractArray implements List<T> {
 
             @Override
             public boolean hasNext() {
-                return cursorIteratorElement != size();
+                return cursorIteratorElement != Array.this.size();
             }
 
             @Override
@@ -161,7 +124,6 @@ public class Array<T> extends AbstractArray implements List<T> {
             @Override
             public void remove() {
                 Array.this.remove(cursorIteratorElement);
-                Array.super.setLengthArray(Array.this.size() - 1);
             }
         };
     }
@@ -217,10 +179,6 @@ public class Array<T> extends AbstractArray implements List<T> {
         return Arrays.copyOf(this.array, this.size());
     }
 
-    public Object[] toDeepArray() {
-        return new Cloner().deepClone(this.array);
-    }
-
     /**
      * Returns an array containing all of the elements in this list in
      * proper sequence (from first to last element); the runtime type of
@@ -263,11 +221,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     @Override
     public <V> V[] toArray(V[] a) {
         if (CheckerArray.checkLengthInArray(a)) {
-            if (a.length < this.size()) {
-                a = (V[]) Arrays.copyOf(this.array, this.size());
-            } else {
-                System.arraycopy(this.array, 0, a, 0, this.size());
-            }
+            a = (V[]) Arrays.copyOf(this.array, this.size());
         }
         return a;
     }
@@ -275,22 +229,14 @@ public class Array<T> extends AbstractArray implements List<T> {
     public void setArray(T[] t) {
         if (CheckerArray.checkLengthInArray(t)) {
             this.array = Arrays.copyOf(t, t.length);
-            super.setCursorElement(this.array.length);
-        }
-    }
-
-    public void setArray(T[] t, boolean flagDeepCopy) {
-        if (CheckerArray.checkLengthInArray(t)) {
-            if (flagDeepCopy) {
-                this.array = new Cloner().deepClone(t);
-            }
+            super.setCursorElement(this.size());
         }
     }
 
     public void setArray(int lengthArray) {
         if (CheckerArray.checkLengthArray(lengthArray)) {
             this.array = new Object[lengthArray];
-            super.setLengthArray(this.array.length);
+            super.setCursorElement(this.size());
         }
     }
 
@@ -364,13 +310,12 @@ public class Array<T> extends AbstractArray implements List<T> {
         boolean resultAdd = false;
         if (super.getCursorElement() < this.size()) {
             this.array[super.getCursorElement()] = t;
-            super.setCursorElement(super.getCursorElement() + 1);
+            super.setCursorElement(this.size());
             resultAdd = true;
         } else {
             Object[] tmpArray = new Object[this.size() + 1];
             System.arraycopy(this.array, 0, tmpArray, 0, this.size());
             this.array = tmpArray;
-            super.setLengthArray(this.size() + 1);
             this.add(t);
         }
         return resultAdd;
@@ -398,7 +343,12 @@ public class Array<T> extends AbstractArray implements List<T> {
     @Override
     public void add(int index, T element) {
         if (CheckerIndex.checkIndex(index, this.size())) {
-            this.array[index] = element;
+            Object[] newArray = new Object[this.size() + 1];
+            System.arraycopy(this.array, 0, newArray, 0, index);
+            newArray[index] = element;
+            System.arraycopy(this.array, index, newArray, index + 1, this.size() - index);
+            this.array = newArray;
+            super.setCursorElement(this.size());
         }
     }
 
@@ -432,9 +382,8 @@ public class Array<T> extends AbstractArray implements List<T> {
                 Object[] newArray = new Object[this.size() + collectionSize];
                 System.arraycopy(this.array, 0, newArray, 0, this.size());
                 Object[] arrayOfCollection = c.toArray();
-                System.arraycopy(arrayOfCollection, 0, newArray, this.size() + 1, arrayOfCollection.length);
+                System.arraycopy(arrayOfCollection, 0, newArray, this.size(), arrayOfCollection.length);
                 this.array = newArray;
-                super.setLengthArray(this.size() + c.size());
                 super.setCursorElement(this.size());
                 resultAddAll = true;
             }
@@ -482,9 +431,8 @@ public class Array<T> extends AbstractArray implements List<T> {
                     System.arraycopy(this.array, 0, newArray, 0, index);
                     Object[] arrayOfCollection = c.toArray();
                     System.arraycopy(arrayOfCollection, 0, newArray, index, arrayOfCollection.length);
-                    System.arraycopy(this.array, index + 1, newArray, index + 1, this.size() - index);
+                    System.arraycopy(this.array, index, newArray, arrayOfCollection.length + index, this.size() - index);
                     this.array = newArray;
-                    super.setLengthArray(this.size() + c.size());
                     super.setCursorElement(this.size());
                     resultAddAll = true;
                 }
@@ -524,7 +472,6 @@ public class Array<T> extends AbstractArray implements List<T> {
                 if (o.equals(this.array[i])) {
                     this.remove(i);
                     resultRemove = true;
-                    super.setLengthArray(this.size() - 1);
                     break;
                 }
             }
@@ -552,11 +499,23 @@ public class Array<T> extends AbstractArray implements List<T> {
         if (CheckerIndex.checkIndex(index, this.size())) {
             newArray = new Object[this.size() - 1];
             resultRemove = this.get(index);
-            System.arraycopy(this.array, 0, newArray, 0, index - 1);
-            System.arraycopy(this.array, index + 1, newArray, index, this.size() - index);
+            System.arraycopy(this.array, 0, newArray, 0, index);
+            System.arraycopy(this.array, index + 1, newArray, index, this.size() - (index + 1));
             this.array = newArray;
-            super.setLengthArray(this.size() - 1);
-            super.setCursorElement(super.getCursorElement() - 1);
+            super.setCursorElement(this.size());
+        }
+        return resultRemove;
+    }
+
+    public boolean removeAll(Object o) {
+        boolean resultRemove = false;
+        if (o != null) {
+            for (int i = 0; i < this.array.length; i++) {
+                if (o.equals(this.array[i])) {
+                    this.remove(i);
+                    resultRemove = true;
+                }
+            }
         }
         return resultRemove;
     }
@@ -587,7 +546,6 @@ public class Array<T> extends AbstractArray implements List<T> {
                 Object[] tmpCollectionArray = c.toArray();
                 Arrays.stream(tmpCollectionArray).forEach(this::remove);
                 resultRemoveAll = true;
-                super.setLengthArray(this.size() - c.size());
             }
         } else {
             throw new NullPointerException("Collection argument is null.");
@@ -604,8 +562,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      */
     @Override
     public void clear() {
-        Object[] objects = new Object[0];
-        System.arraycopy(objects, 0, this.array, 0, objects.length);
+        this.array = new Object[0];
     }
 
     /**
@@ -700,7 +657,6 @@ public class Array<T> extends AbstractArray implements List<T> {
                     if (!this.contains(o)) {
                         this.remove(o);
                         resultRetainAll = true;
-                        super.setLengthArray(this.size() - 1);
                     }
                 }
             }

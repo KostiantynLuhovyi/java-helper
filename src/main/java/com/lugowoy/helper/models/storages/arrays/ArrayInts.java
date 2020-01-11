@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @since 2.0
  */
 //todo write doc's
@@ -22,29 +22,25 @@ public class ArrayInts extends AbstractArray {
 
     public ArrayInts() {
         this.arrayInts = new int[DEFAULT_LENGTH];
-        super.setLengthArray(this.arrayInts.length);
-        super.setCursorElement(this.arrayInts.length);
+        super.setCursorElement(this.size());
     }
 
     public ArrayInts(int[] arrayInts) {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
-            this.arrayInts = arrayInts.clone();
-            super.setLengthArray(this.arrayInts.length);
-            super.setCursorElement(this.arrayInts.length);
+            this.arrayInts = Arrays.copyOf(arrayInts, arrayInts.length);
+            super.setCursorElement(this.size());
         }
     }
 
     public ArrayInts(int lengthArray) {
         super(lengthArray);
-        this.arrayInts = new int[this.size()];
-        super.setCursorElement(this.arrayInts.length);
+        this.arrayInts = new int[lengthArray];
     }
 
     public ArrayInts(ArrayInts arrayInts) {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
-            this.arrayInts = arrayInts.toArray();
-            super.setLengthArray(this.arrayInts.length);
-            super.setCursorElement(this.arrayInts.length);
+            this.arrayInts = Arrays.copyOf(arrayInts.toArray(), arrayInts.size());
+            super.setCursorElement(this.size());
         }
     }
 
@@ -69,18 +65,10 @@ public class ArrayInts extends AbstractArray {
         return "ArrayInts [" + Arrays.toString(arrayInts) + "], cursorElement:" + super.getCursorElement();
     }
 
-    /**
-     * Returns the number of elements in this list.  If this list contains
-     * more than {@code Integer.MAX_VALUE} elements, returns
-     * {@code Integer.MAX_VALUE}.
-     * //todo Integer.MAX -> OutOfMemoryError
-     *
-     * @return the number of elements in this list
-     */
+    @Override
     public int size() {
-        return super.size();
+        return this.arrayInts.length;
     }
-
 
     public boolean isEmpty() {
         return this.size() == 0;
@@ -126,7 +114,6 @@ public class ArrayInts extends AbstractArray {
             @Override
             public void remove() {
                 ArrayInts.this.remove(cursorIteratorElement);
-                ArrayInts.super.setLengthArray(ArrayInts.this.size() - 1);
             }
         };
     }
@@ -141,16 +128,12 @@ public class ArrayInts extends AbstractArray {
     }
 
     public int[] toArray() {
-        return arrayInts;
+        return Arrays.copyOf(this.arrayInts, this.size());
     }
 
     public int[] toArray(int[] array) {
         if (CheckerArray.checkLengthInArray(array)) {
-            if (array.length < this.size()) {
-                array = Arrays.copyOf(this.arrayInts, this.size());
-            } else {
-                System.arraycopy(this.arrayInts, 0, array, 0, this.size());
-            }
+            array = Arrays.copyOf(this.arrayInts, this.size());
         }
         return array;
     }
@@ -158,13 +141,20 @@ public class ArrayInts extends AbstractArray {
     public void setArray(int[] arrayInts) {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = Arrays.copyOf(arrayInts, arrayInts.length);
-            super.setLengthArray(this.arrayInts.length);
+            super.setCursorElement(this.size());
+        }
+    }
+
+    public void setArray(int lengthArray) {
+        if (CheckerArray.checkLengthArray(lengthArray)) {
+            this.arrayInts = new int[lengthArray];
+            super.setCursorElement(this.size());
         }
     }
 
     public int get(int index) {
         int result = 0;
-        if (CheckerIndex.checkIndex(index, this.arrayInts.length)) {
+        if (CheckerIndex.checkIndex(index, this.size())) {
             result = this.arrayInts[index];
         }
         return result;
@@ -181,13 +171,12 @@ public class ArrayInts extends AbstractArray {
         boolean resultAdd = false;
         if (super.getCursorElement() < this.size()) {
             this.arrayInts[super.getCursorElement()] = element;
-            super.setCursorElement(super.getCursorElement() + 1);
+            super.setCursorElement(this.size());
             resultAdd = true;
         } else {
             int[] tmpArrayInts = new int[this.size() + 1];
             System.arraycopy(this.arrayInts, 0, tmpArrayInts, 0, this.size());
             this.arrayInts = tmpArrayInts;
-            super.setLengthArray(this.size() + 1);
             this.add(element);
         }
         return resultAdd;
@@ -195,7 +184,12 @@ public class ArrayInts extends AbstractArray {
 
     public void add(int index, int element) {
         if (CheckerIndex.checkIndex(index, this.size())) {
+            int[] newArrayInts = new int[this.size() + 1];
+            System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index);
             this.arrayInts[index] = element;
+            System.arraycopy(this.arrayInts, index, newArrayInts, index + 1, this.size() - index);
+            this.arrayInts = newArrayInts;
+            super.setCursorElement(this.size());
         }
     }
 
@@ -207,7 +201,6 @@ public class ArrayInts extends AbstractArray {
                 System.arraycopy(this.arrayInts, 0, newArrayInts, 0, this.size());
                 System.arraycopy(arrayInts, 0, newArrayInts, this.size() + 1, arrayInts.length);
                 this.arrayInts = newArrayInts;
-                super.setLengthArray(this.size() + arrayInts.length);
                 super.setCursorElement(this.size());
                 resultAddAll = true;
             }
@@ -222,9 +215,8 @@ public class ArrayInts extends AbstractArray {
                 int[] newArrayInts = new int[this.size() + arrayInts.length];
                 System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index);
                 System.arraycopy(arrayInts, 0, newArrayInts, index, arrayInts.length);
-                System.arraycopy(this.arrayInts, index + 1, newArrayInts, index + 1, this.size() - index);
+                System.arraycopy(this.arrayInts, index, newArrayInts, arrayInts.length + index, this.size() - index);
                 this.arrayInts = newArrayInts;
-                super.setLengthArray(this.size() + arrayInts.length);
                 super.setCursorElement(this.size());
                 resultAddAll = true;
             }
@@ -238,7 +230,6 @@ public class ArrayInts extends AbstractArray {
             if (element == this.arrayInts[i]) {
                 this.removeByIndex(i);
                 resultRemove = true;
-                super.setLengthArray(this.size() - 1);
                 break;
             }
         }
@@ -251,11 +242,21 @@ public class ArrayInts extends AbstractArray {
         if (CheckerIndex.checkIndex(index, this.size())) {
             newArrayInts = new int[this.size() - 1];
             resultRemove = this.get(index);
-            System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index - 1);
-            System.arraycopy(this.arrayInts, index + 1, newArrayInts, index, this.size() - index);
+            System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index);
+            System.arraycopy(this.arrayInts, index + 1, newArrayInts, index, this.size() - (index + 1));
             this.arrayInts = newArrayInts;
-            super.setLengthArray(this.size() - 1);
-            super.setCursorElement(super.getCursorElement() - 1);
+            super.setCursorElement(this.size());
+        }
+        return resultRemove;
+    }
+
+    public boolean removeAll(double element) {
+        boolean resultRemove = false;
+        for (int i = 0; i < this.size(); i++) {
+            if (element == this.arrayInts[i]) {
+                this.removeByIndex(i);
+                resultRemove = true;
+            }
         }
         return resultRemove;
     }
@@ -265,14 +266,12 @@ public class ArrayInts extends AbstractArray {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
             Arrays.stream(arrayInts).forEach(this::remove);
             resultRemoveAll = true;
-            super.setLengthArray(this.size() - arrayInts.length);
         }
         return resultRemoveAll;
     }
 
     public void clear() {
-        int[] newInts = new int[0];
-        System.arraycopy(newInts, 0, this.arrayInts, 0, newInts.length);
+        this.arrayInts = new int[0];
     }
 
     public boolean contains(int element) {
@@ -308,7 +307,6 @@ public class ArrayInts extends AbstractArray {
                 if (!this.contains(tmp)) {
                     this.remove(tmp);
                     resultRetainAll = true;
-                    super.setLengthArray(this.size() - 1);
                 }
             }
         }
