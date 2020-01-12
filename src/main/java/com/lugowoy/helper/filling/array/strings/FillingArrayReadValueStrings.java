@@ -19,16 +19,16 @@ import static com.lugowoy.helper.utils.checking.CheckerArray.checkLengthInArray;
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  */
 //todo edit doc's
-public class FillingArrayReadingValueStrings implements FillingArrayStrings {
+public class FillingArrayReadValueStrings implements FillingArrayStrings {
 
     private Reader reader;
 
     /**
-     * Constructs a new object of the {@link FillingArrayReadingValueStrings} class.
+     * Constructs a new object of the {@link FillingArrayReadValueStrings} class.
      *
      * @param reading An object that implements the {@link Reading} interface, which provides a specific implementation for reading data.
      */
-    public FillingArrayReadingValueStrings(Reading reading) {
+    public FillingArrayReadValueStrings(Reading reading) {
         this.reader = new Reader(reading);
     }
 
@@ -41,7 +41,7 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
     public void fill(Array<String> array) {
         if (checkLengthInArray(array)) {
             String[] strings = new String[array.size()];
-            this.initializeArrayElementsEnteredStrings(strings);
+            this.fillArrayReadStrings(strings);
             array.setArray(strings);
         }
     }
@@ -54,7 +54,7 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
     @Override
     public void fill(String[] strings) {
         if (checkLengthInArray(strings)) {
-            this.initializeArrayElementsEnteredStrings(strings);
+            this.fillArrayReadStrings(strings);
         }
     }
 
@@ -71,12 +71,12 @@ public class FillingArrayReadingValueStrings implements FillingArrayStrings {
         String[] strings = new String[0];
         if (checkLengthArray(lengthArray)) {
             strings = new String[lengthArray];
-            this.initializeArrayElementsEnteredStrings(strings);
+            this.fillArrayReadStrings(strings);
         }
         return strings;
     }
 
-    private void initializeArrayElementsEnteredStrings(String[] strings) {
+    private void fillArrayReadStrings(String[] strings) {
         for (int i = 0; i < strings.length; i++) {
             strings[i] = this.reader.readString();
         }

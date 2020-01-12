@@ -27,10 +27,8 @@ import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see FillingArrayPoints
  */
-
 //todo refactoring code
 //todo edit doc's
-
 public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValues<Point2D<Integer>, Integer> {
 
     /**

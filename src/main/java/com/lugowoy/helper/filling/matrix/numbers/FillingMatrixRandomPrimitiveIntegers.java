@@ -10,6 +10,9 @@ import java.util.Arrays;
 
 /**
  * Created by Konstantin Lugowoy on 26.11.2019.
+ *
+ * @version 1.2
+ * @since 2.0
  */
 //todo write doc's
 public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInts> {
@@ -107,19 +110,19 @@ public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInts>
 
     private void fillMatrixRandomPrimitiveInts(int[][] matrix) {
         for (int[] integers : matrix) {
-            Arrays.parallelSetAll(integers, j -> GeneratorRandomNumber.generateInt());
+            Arrays.setAll(integers, j -> GeneratorRandomNumber.generateInt());
         }
     }
 
     private void fillMatrixRandomPrimitiveIntsFromZeroToBound(int[][] matrix, int bound) {
         for (int[] integers : matrix) {
-            Arrays.parallelSetAll(integers, j -> GeneratorRandomNumber.generateInt(bound));
+            Arrays.setAll(integers, j -> GeneratorRandomNumber.generateInt(bound));
         }
     }
 
     private void fillMatrixRandomPrimitiveIntsFromLowerBoundToUpperBound(int[][] matrix, int lowerBound, int upperBound) {
         for (int[] integers : matrix) {
-            Arrays.parallelSetAll(integers, j -> GeneratorRandomNumber.generateInt(lowerBound, upperBound));
+            Arrays.setAll(integers, j -> GeneratorRandomNumber.generateInt(lowerBound, upperBound));
         }
     }
 

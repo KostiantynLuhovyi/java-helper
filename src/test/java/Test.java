@@ -216,7 +216,7 @@ public class Test {
 /*        MatrixInts matrix = new MatrixInts(5, 4);
         System.out.println(matrix);*/
 
-        Array<Integer> array = new Array<>(new FillingArrayRandomIntegers().fill(10, 400, 500));
+/*        Array<Integer> array = new Array<>(new FillingArrayRandomIntegers().fill(10, 400, 500));
         System.out.println(array);
 
         Array<Integer> array1 = new Array<>();
@@ -286,7 +286,7 @@ public class Test {
         System.out.println(integer == integerArray.toArray());
         System.out.println(integer[1] == integerArray.get(1));
 
-        /*integer[1] = 10010101;*/
+        *//*integer[1] = 10010101;*//*
         integerArray.set(3, 4444444);
 
         System.out.println(Arrays.toString(integerArray.toArray()));
@@ -318,7 +318,7 @@ public class Test {
         integerArray.addAll(integerList);
         integerArray.addAll(1, integerList);
 
-        System.out.println(integerArray + ", size: " + integerArray.size());
+        System.out.println(integerArray + ", size: " + integerArray.size());*/
 
 /*        integerList.clear();
         integerList.add(4554545);
@@ -326,7 +326,7 @@ public class Test {
         integerList.add(4444444);*/
 
         /*integerArray.remove(7);*/
-        integerArray.removeAll(integerList);
+/*        integerArray.removeAll(integerList);
         integerArray.removeAll(integerList);
 
         System.out.println("bla");
@@ -335,7 +335,7 @@ public class Test {
 
         System.out.println("^^^^^^^^^^^^^^^^^^");
 
-        ArrayInts arrayInts = new ArrayInts(new FillingArrayRandomPrimitiveIntegers().fill(10/*0_0000*/, INT_LOWER_BOUND, INT_UPPER_BOUND));
+        ArrayInts arrayInts = new ArrayInts(new FillingArrayRandomPrimitiveIntegers().fill(10*//*0_0000*//*, INT_LOWER_BOUND, INT_UPPER_BOUND));*/
 /*
 
         int[] ints = new int[4];
@@ -346,16 +346,16 @@ public class Test {
         long start = System.currentTimeMillis();
         System.out.println(start);*/
 
-        System.out.println(arrayInts);
+/*        System.out.println(arrayInts);
 
-        arrayInts.add(777);
+        arrayInts.add(777);*/
 
 /*        long finish = System.currentTimeMillis();
         System.out.println(finish);
 
         long res = finish - start;*/
 
-        System.out.println(arrayInts);
+/*        System.out.println(arrayInts);
 
         arrayInts.removeByIndex(1);
 
@@ -368,7 +368,7 @@ public class Test {
 
         arrayInts.removeAll(777);
 
-        System.out.println(arrayInts);
+        System.out.println(arrayInts);*/
 
 
         /*System.out.println("Time : " + res);*/
@@ -379,9 +379,12 @@ public class Test {
         System.out.println(Arrays.toString(ints));
         */
 
+        Array<Integer> array = new Array<>(new FillingArrayRandomIntegers().fill(5, -10, 10));
+        System.out.println(array);
+
     }
 
-    private static class Human {
+/*    private static class Human {
 
         private Adress adress;
         private int age;
@@ -455,6 +458,6 @@ public class Test {
             return adress;
         }
 
-    }
+    }*/
 
 }

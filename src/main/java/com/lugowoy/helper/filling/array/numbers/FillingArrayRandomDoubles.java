@@ -15,7 +15,7 @@ import java.util.Arrays;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
@@ -232,15 +232,15 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     private void fillArrayRandomDoubles(Double[] doubles) {
-        Arrays.parallelSetAll(doubles, i -> GeneratorRandomNumber.generateDouble());
+        Arrays.setAll(doubles, i -> GeneratorRandomNumber.generateDouble());
     }
 
     private void fillArrayRandomDoublesFromZeroToPositiveBound(Double[] doubles, double bound) {
-        Arrays.parallelSetAll(doubles, i -> GeneratorRandomNumber.generateDouble(bound));
+        Arrays.setAll(doubles, i -> GeneratorRandomNumber.generateDouble(bound));
     }
 
     private void fillArrayRandomDoublesFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
-        Arrays.parallelSetAll(doubles, i -> GeneratorRandomNumber.generateDouble(lowerBound, upperBound));
+        Arrays.setAll(doubles, i -> GeneratorRandomNumber.generateDouble(lowerBound, upperBound));
     }
 
 }

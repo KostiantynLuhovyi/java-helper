@@ -13,7 +13,7 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 30.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 2.0
  */
 public class FillingArrayRandomPrimitiveIntegers implements Filling<ArrayInts> {
@@ -118,15 +118,15 @@ public class FillingArrayRandomPrimitiveIntegers implements Filling<ArrayInts> {
     }
 
     private void fillArrayRandomPrimitiveInts(int[] ints) {
-        Arrays.parallelSetAll(ints, index -> GeneratorRandomNumber.generateInt());
+        Arrays.setAll(ints, index -> GeneratorRandomNumber.generateInt());
     }
 
     private void fillArrayRandomPrimitiveIntsFromZeroToBound(int[] ints, int bound) {
-        Arrays.parallelSetAll(ints, index -> GeneratorRandomNumber.generateInt(bound));
+        Arrays.setAll(ints, index -> GeneratorRandomNumber.generateInt(bound));
     }
 
     private void fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(int[] ints, int lowerBound, int upperBound) {
-        Arrays.parallelSetAll(ints, index -> GeneratorRandomNumber.generateInt(lowerBound, upperBound));
+        Arrays.setAll(ints, index -> GeneratorRandomNumber.generateInt(lowerBound, upperBound));
     }
 
 }

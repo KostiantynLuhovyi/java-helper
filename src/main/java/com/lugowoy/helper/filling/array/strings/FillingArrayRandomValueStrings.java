@@ -52,7 +52,7 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
     @Override
     public void fill(String[] strings) {
         if (checkLengthInArray(strings)) {
-            this.initializeArrayElementsRandomStrings(strings, DEFAULT_STRING_LENGTH);
+            this.fillArrayRandomStrings(strings, DEFAULT_STRING_LENGTH);
         }
     }
 
@@ -71,7 +71,7 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
         String[] strings = new String[0];
         if (checkLengthArray(lengthArray)) {
             strings = new String[lengthArray];
-            this.initializeArrayElementsRandomStrings(strings, DEFAULT_STRING_LENGTH);
+            this.fillArrayRandomStrings(strings, DEFAULT_STRING_LENGTH);
         }
         return strings;
     }
@@ -88,7 +88,7 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
         if (checkLengthInArray(array)) {
             if (checkCorrectLengthString(lengthString)) {
                 String[] strings = new String[array.size()];
-                this.initializeArrayElementsRandomStrings(strings, lengthString);
+                this.fillArrayRandomStrings(strings, lengthString);
                 array.setArray(strings);
             }
         }
@@ -105,7 +105,7 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
     public void fill(String[] strings, int lengthString) {
         if (checkLengthInArray(strings)) {
             if (checkCorrectLengthString(lengthString)) {
-                this.initializeArrayElementsRandomStrings(strings, lengthString);
+                this.fillArrayRandomStrings(strings, lengthString);
             }
         }
     }
@@ -126,13 +126,13 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
         if (checkLengthArray(lengthArray)) {
             if (checkCorrectLengthString(lengthString)) {
                 strings = new String[lengthArray];
-                this.initializeArrayElementsRandomStrings(strings, lengthString);
+                this.fillArrayRandomStrings(strings, lengthString);
             }
         }
         return strings;
     }
 
-    private void initializeArrayElementsRandomStrings(String[] strings, int lengthString) {
+    private void fillArrayRandomStrings(String[] strings, int lengthString) {
         char[] chars = super.getReaderCharacters().read(super.getFileName());
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {

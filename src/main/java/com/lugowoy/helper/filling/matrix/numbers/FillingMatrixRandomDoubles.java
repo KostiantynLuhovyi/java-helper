@@ -11,7 +11,7 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 05.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @since 1.2
  */
 //todo write doc's
@@ -118,19 +118,19 @@ public class FillingMatrixRandomDoubles implements FillingMatrixNumbers<Double> 
 
     private void fillMatrixRandomDoubles(Double[][] matrix) {
         for (Double[] doubles : matrix) {
-            Arrays.parallelSetAll(doubles, j -> GeneratorRandomNumber.generateDouble());
+            Arrays.setAll(doubles, j -> GeneratorRandomNumber.generateDouble());
         }
     }
 
     private void fillMatrixRandomDoublesFromZeroToBound(Double[][] matrix, double bound) {
         for (Double[] doubles : matrix) {
-            Arrays.parallelSetAll(doubles, j -> GeneratorRandomNumber.generateDouble(bound));
+            Arrays.setAll(doubles, j -> GeneratorRandomNumber.generateDouble(bound));
         }
     }
 
     private void fillMatrixRandomDoublesFromLowerBoundToUpperBound(Double[][] matrix, double lowerBound, double upperBound) {
         for (Double[] doubles : matrix) {
-            Arrays.parallelSetAll(doubles, j -> GeneratorRandomNumber.generateDouble(lowerBound, upperBound));
+            Arrays.setAll(doubles, j -> GeneratorRandomNumber.generateDouble(lowerBound, upperBound));
         }
     }
 

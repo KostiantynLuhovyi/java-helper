@@ -10,6 +10,9 @@ import java.util.Arrays;
 
 /**
  * Created by Konstantin Lugowoy on 26.11.2019.
+ *
+ * @version 1.2
+ * @since 2.0
  */
 //todo write doc's
 public class FillingMatrixRandomPrimitiveDoubles implements Filling<MatrixDoubles> {

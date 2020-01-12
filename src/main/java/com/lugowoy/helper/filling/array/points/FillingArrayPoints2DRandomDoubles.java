@@ -22,6 +22,7 @@ import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see FillingArrayPoints
  */
+//todo edit doc's
 public class FillingArrayPoints2DRandomDoubles implements FillingArrayPoints<Point2D<Double>, Double> {
 
     /**

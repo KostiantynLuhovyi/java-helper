@@ -15,7 +15,7 @@ import java.util.Arrays;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
@@ -232,15 +232,15 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
     }
 
     private void fillArrayRandomIntegers(Integer[] integers) {
-        Arrays.parallelSetAll(integers, i -> GeneratorRandomNumber.generateInt());
+        Arrays.setAll(integers, i -> GeneratorRandomNumber.generateInt());
     }
 
     private void fillArrayRandomIntegersFromZeroToPositiveBound(Integer[] integers, int bound) {
-        Arrays.parallelSetAll(integers, i -> GeneratorRandomNumber.generateInt(bound));
+        Arrays.setAll(integers, i -> GeneratorRandomNumber.generateInt(bound));
     }
 
     private void fillArrayRandomIntegersFromLowerBoundToUpperBound(Integer[] integers, int startBound, int endBound) {
-        Arrays.parallelSetAll(integers, i -> GeneratorRandomNumber.generateInt(startBound, endBound));
+        Arrays.setAll(integers, i -> GeneratorRandomNumber.generateInt(startBound, endBound));
     }
 
 }
