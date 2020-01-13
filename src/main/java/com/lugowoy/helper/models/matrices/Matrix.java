@@ -15,7 +15,7 @@ import java.util.Arrays;
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 2.3
+ * @version 2.4
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -115,13 +115,15 @@ public class Matrix<T> extends AbstractMatrix {
      */
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder(this.getClass().getSimpleName() + " [ ");
         for (int i = 0; i < this.matrix.length; i++) {
+            stringBuilder.append("[ ");
             for (int j = 0; j < this.matrix[i].length; j++) {
                 stringBuilder.append(this.matrix[i][j]).append(" ");
             }
-            stringBuilder.append("\n");
+            stringBuilder.append("]\n\t\t ");
         }
+        stringBuilder.append("rows:").append(this.getRows()).append(", columns:").append(this.getColumns()).append(" ]");
         return stringBuilder.toString();
     }
 

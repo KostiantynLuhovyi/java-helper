@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 2.0
  */
 //todo write doc's
@@ -62,7 +62,7 @@ public class ArrayInts extends AbstractArray {
 
     @Override
     public String toString() {
-        return "ArrayInts [" + Arrays.toString(arrayInts) + "], cursorElement:" + super.getCursorElement();
+        return "ArrayInts [ " + Arrays.toString(arrayInts) + " , cursorElement:" + super.getCursorElement() + " ]";
     }
 
     @Override
@@ -286,14 +286,11 @@ public class ArrayInts extends AbstractArray {
     }
 
     public boolean containsAll(int[] arrayInts) {
-        boolean resultContainsAll = false;
+        boolean resultContainsAll = true;
         if (CheckerArray.checkLengthInArray(arrayInts)) {
             for (int i = 0; i < arrayInts.length; i++) {
-                for (int j = 0; j < this.size(); j++) {
-                    if (arrayInts[i] == this.get(j)) {
-                        resultContainsAll = true;
-                        break;
-                    }
+                if (!this.contains(arrayInts[i])) {
+                    resultContainsAll = false;
                 }
             }
         }

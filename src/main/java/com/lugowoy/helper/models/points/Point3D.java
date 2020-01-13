@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  * @param <T> The type of coordinates that initialize the coordinates of a 3D point.
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @see com.lugowoy.helper.models.Model
  * @see com.lugowoy.helper.models.points.Point
  * @see java.io.Serializable
@@ -49,9 +49,9 @@ public class Point3D<T extends Number> extends Point2D<T> {
     public String toString() {
         return "Point3D[" +
                 "x=" + super.getX() +
-                "y=" + super.getY() +
-                "z=" + z +
-                ']';
+                " y=" + super.getY() +
+                " z=" + this.getZ() +
+                " ]";
     }
 
     /**

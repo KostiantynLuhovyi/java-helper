@@ -10,7 +10,7 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 21.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 2.0
  */
 //todo write doc's
@@ -61,13 +61,15 @@ public class MatrixDoubles extends AbstractMatrix {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder(this.getClass().getSimpleName() + " [ ");
         for (int i = 0; i < this.matrix.length; i++) {
+            stringBuilder.append("[ ");
             for (int j = 0; j < this.matrix[i].length; j++) {
                 stringBuilder.append(this.matrix[i][j]).append(" ");
             }
-            stringBuilder.append("\n");
+            stringBuilder.append("]\n\t\t\t    ");
         }
+        stringBuilder.append("rows:").append(this.getRows()).append(", columns:").append(this.getColumns()).append(" ]");
         return stringBuilder.toString();
     }
 

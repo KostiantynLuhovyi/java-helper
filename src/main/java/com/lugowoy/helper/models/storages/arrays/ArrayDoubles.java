@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 2.0
  */
 //todo write doc's
@@ -62,7 +62,7 @@ public class ArrayDoubles extends AbstractArray {
 
     @Override
     public String toString() {
-        return "ArrayDoubles [" + Arrays.toString(arrayDoubles) + "], cursorElement:" + super.getCursorElement();
+        return "ArrayDoubles [ " + Arrays.toString(arrayDoubles) + " , cursorElement:" + super.getCursorElement() + " ]";
     }
 
     @Override
@@ -285,14 +285,11 @@ public class ArrayDoubles extends AbstractArray {
     }
 
     public boolean containsAll(double[] arrayDoubles) {
-        boolean resultContainsAll = false;
+        boolean resultContainsAll = true;
         if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             for (int i = 0; i < arrayDoubles.length; i++) {
-                for (int j = 0; j < this.size(); j++) {
-                    if (arrayDoubles[i] == this.get(j)) {
-                        resultContainsAll = true;
-                        break;
-                    }
+                if (!this.contains(arrayDoubles[i])) {
+                    resultContainsAll = false;
                 }
             }
         }

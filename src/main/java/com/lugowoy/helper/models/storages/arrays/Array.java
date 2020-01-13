@@ -10,7 +10,7 @@ import java.util.function.Consumer;
  * <p>Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 3.0
+ * @version 3.1
  * @since 1.0
  */
 //todo edit doc's
@@ -60,7 +60,7 @@ public class Array<T> extends AbstractArray implements List<T> {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " [" + Arrays.toString(array) + "], cursorElement:" + super.getCursorElement();
+        return this.getClass().getSimpleName() + " [ " + Arrays.toString(array) + " , cursorElement:" + super.getCursorElement() + " ]";
     }
 
     @Override
@@ -609,16 +609,13 @@ public class Array<T> extends AbstractArray implements List<T> {
      */
     @Override
     public boolean containsAll(Collection<?> c) {
-        boolean resultContainsAll = false;
+        boolean resultContainsAll = true;
         if (c != null) {
             if (!c.isEmpty()) {
                 Object[] tmpArrayOfCollection = c.toArray();
-                for (int i = 0; i < tmpArrayOfCollection.length; i++) {
-                    for (int j = 0; j < this.size(); j++) {
-                        if (Objects.equals(tmpArrayOfCollection[i], this.get(j))) {
-                            resultContainsAll = true;
-                            break;
-                        }
+                for (Object o : tmpArrayOfCollection) {
+                    if (!this.contains(o)) {
+                        resultContainsAll = false;
                     }
                 }
             }

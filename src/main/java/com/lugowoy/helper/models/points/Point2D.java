@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  * @param <T> The type of coordinates that initialize the coordinates of a 2D point.
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @see com.lugowoy.helper.models.Model
  * @see com.lugowoy.helper.models.points.Point
  * @see java.io.Serializable
@@ -48,8 +48,8 @@ public class Point2D<T extends Number> extends Point<T> {
     public String toString() {
         return "Point2D[" +
                 "x=" + super.getX() +
-                "y=" + y +
-                ']';
+                " y=" + this.getY() +
+                " ]";
     }
 
     /**

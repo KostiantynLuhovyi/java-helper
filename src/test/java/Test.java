@@ -4,19 +4,19 @@ import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomDoubles;
 import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomIntegers;
 import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomPrimitiveIntegers;
 import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomIntegers;
+import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomPrimitiveDoubles;
+import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomPrimitiveIntegers;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.ReadingConsole;
 import com.lugowoy.helper.models.matrices.AbstractMatrix;
 import com.lugowoy.helper.models.matrices.Matrix;
+import com.lugowoy.helper.models.matrices.MatrixDoubles;
 import com.lugowoy.helper.models.matrices.MatrixInts;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.models.storages.arrays.ArrayInts;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static com.lugowoy.helper.filling.ValuesToFilling.INT_LOWER_BOUND;
 import static com.lugowoy.helper.filling.ValuesToFilling.INT_UPPER_BOUND;
@@ -379,8 +379,20 @@ public class Test {
         System.out.println(Arrays.toString(ints));
         */
 
-        Array<Integer> array = new Array<>(new FillingArrayRandomIntegers().fill(5, -10, 10));
+/*        Array<Integer> array = new Array<>(new FillingArrayRandomIntegers().fill(500, -100, 100));
+        Array<Integer> array1 = new Array<>(new FillingArrayRandomIntegers().fill(3, -100, 100));
+
         System.out.println(array);
+        System.out.println(array1);
+
+        System.out.println(array.containsAll(array1));*/
+
+        MatrixInts matrixInts = new MatrixInts(new FillingMatrixRandomPrimitiveIntegers().fill(10, 10, -10, 10));
+        System.out.println(matrixInts);
+
+        MatrixDoubles matrixDoubles = new MatrixDoubles(new FillingMatrixRandomPrimitiveDoubles().fill(10, 10, -10, 10));
+        System.out.println(matrixDoubles);
+
 
     }
 
