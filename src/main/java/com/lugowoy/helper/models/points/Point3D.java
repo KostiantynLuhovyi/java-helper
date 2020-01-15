@@ -47,7 +47,7 @@ public class Point3D<T extends Number> extends Point2D<T> {
 
     @Override
     public String toString() {
-        return "Point3D[" +
+        return "Point3D[ " +
                 "x=" + super.getX() +
                 " y=" + super.getY() +
                 " z=" + this.getZ() +

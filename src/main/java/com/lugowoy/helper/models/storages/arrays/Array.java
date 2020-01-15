@@ -344,7 +344,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     public void add(int index, T element) {
         if (CheckerIndex.checkIndex(index, this.size())) {
             Object[] newArray = new Object[this.size() + 1];
-            System.arraycopy(this.array, 0, newArray, 0, index);
+            System.arraycopy(this.array, 0, newArray, 0, index + 1);
             newArray[index] = element;
             System.arraycopy(this.array, index, newArray, index + 1, this.size() - index);
             this.array = newArray;

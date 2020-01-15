@@ -1,8 +1,6 @@
 import com.lugowoy.helper.filling.ValuesToFilling;
-import com.lugowoy.helper.filling.array.numbers.FillerArrayNumbers;
-import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomDoubles;
-import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomIntegers;
-import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomPrimitiveIntegers;
+import com.lugowoy.helper.filling.array.numbers.*;
+import com.lugowoy.helper.filling.array.points.FillingArrayPoints2DReadIntegers;
 import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomIntegers;
 import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomPrimitiveDoubles;
 import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomPrimitiveIntegers;
@@ -12,10 +10,16 @@ import com.lugowoy.helper.models.matrices.AbstractMatrix;
 import com.lugowoy.helper.models.matrices.Matrix;
 import com.lugowoy.helper.models.matrices.MatrixDoubles;
 import com.lugowoy.helper.models.matrices.MatrixInts;
+import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.models.storages.arrays.Array;
+import com.lugowoy.helper.models.storages.arrays.ArrayDoubles;
 import com.lugowoy.helper.models.storages.arrays.ArrayInts;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
 
 import static com.lugowoy.helper.filling.ValuesToFilling.INT_LOWER_BOUND;
@@ -387,12 +391,47 @@ public class Test {
 
         System.out.println(array.containsAll(array1));*/
 
-        MatrixInts matrixInts = new MatrixInts(new FillingMatrixRandomPrimitiveIntegers().fill(10, 10, -10, 10));
-        System.out.println(matrixInts);
+        MatrixInts matrixInts = new MatrixInts(new FillingMatrixRandomPrimitiveIntegers().fill(10, 10, -1000, 1000));
+/*        System.out.println(matrixInts);
 
         MatrixDoubles matrixDoubles = new MatrixDoubles(new FillingMatrixRandomPrimitiveDoubles().fill(10, 10, -10, 10));
-        System.out.println(matrixDoubles);
+        System.out.println(matrixDoubles);*/
 
+/*        File file = new File("C:/newfile.txt");
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file, true)){
+                if (file.exists()) {
+                    file.createNewFile();
+                }
+            *//*fileOutputStream.write(matrixInts.toString().getBytes());*//*
+            String toWrite = matrixInts.toString();
+            for (int i = 0; i < toWrite.length(); i++) {
+                fileOutputStream.write(toWrite.charAt(i));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+/*        Array<Point2D<Integer>> pointsArray = new Array<>(new FillingArrayPoints2DReadIntegers(new ReadingConsole()).fill(10, -10, 10));
+
+        System.out.println(pointsArray);*/
+
+        System.out.println("ArrayInts");
+        ArrayInts arrayInts = new ArrayInts(new FillingArrayRandomPrimitiveIntegers().fill(10, 1000, 10000));
+        System.out.println(arrayInts);
+        arrayInts.add(5, 777777);
+        System.out.println(arrayInts);
+
+        System.out.println("ArrayDoubles");
+        ArrayDoubles arrayDoubles = new ArrayDoubles(new FillingArrayRandomPrimitiveDoubles().fill(10, 1000, 10000));
+        System.out.println(arrayDoubles);
+        arrayDoubles.add(5, 77777777);
+        System.out.println(arrayDoubles);
+
+        System.out.println("Array");
+        Array<Integer> array = new Array<>(new FillingArrayRandomIntegers().fill(10, 1000, 10000));
+        System.out.println(array);
+        array.add(5, 777777);
+        System.out.println(array);
 
     }
 

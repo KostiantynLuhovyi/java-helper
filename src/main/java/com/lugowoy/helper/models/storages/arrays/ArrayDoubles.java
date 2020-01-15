@@ -185,7 +185,7 @@ public class ArrayDoubles extends AbstractArray {
     public void add(int index, double element) {
         if (CheckerIndex.checkIndex(index, this.size())) {
             double[] newArrayDoubles = new double[this.size() + 1];
-            System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, index);
+            System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, index + 1);
             this.arrayDoubles[index] = element;
             System.arraycopy(this.arrayDoubles, index, newArrayDoubles, index + 1, this.size() - index);
             this.setArray(newArrayDoubles);

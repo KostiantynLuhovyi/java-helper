@@ -46,7 +46,7 @@ public class Point2D<T extends Number> extends Point<T> {
 
     @Override
     public String toString() {
-        return "Point2D[" +
+        return "Point2D[ " +
                 "x=" + super.getX() +
                 " y=" + this.getY() +
                 " ]";

@@ -185,7 +185,7 @@ public class ArrayInts extends AbstractArray {
     public void add(int index, int element) {
         if (CheckerIndex.checkIndex(index, this.size())) {
             int[] newArrayInts = new int[this.size() + 1];
-            System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index);
+            System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index + 1);
             this.arrayInts[index] = element;
             System.arraycopy(this.arrayInts, index, newArrayInts, index + 1, this.size() - index);
             this.arrayInts = newArrayInts;
