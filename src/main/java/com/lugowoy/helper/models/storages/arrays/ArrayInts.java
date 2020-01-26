@@ -1,7 +1,6 @@
 package com.lugowoy.helper.models.storages.arrays;
 
 import com.lugowoy.helper.utils.checking.CheckerArray;
-import com.lugowoy.helper.utils.checking.CheckerIndex;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -12,7 +11,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  * @since 2.0
  */
 //todo write doc's
@@ -22,13 +21,12 @@ public class ArrayInts extends AbstractArray {
 
     public ArrayInts() {
         this.arrayInts = new int[DEFAULT_LENGTH];
-        super.setCursorElement(this.size());
     }
 
     public ArrayInts(int[] arrayInts) {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = Arrays.copyOf(arrayInts, arrayInts.length);
-            super.setCursorElement(this.size());
+            super.setSize(this.arrayInts.length);
         }
     }
 
@@ -40,7 +38,7 @@ public class ArrayInts extends AbstractArray {
     public ArrayInts(ArrayInts arrayInts) {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = Arrays.copyOf(arrayInts.toArray(), arrayInts.size());
-            super.setCursorElement(this.size());
+            super.setSize(this.arrayInts.length);
         }
     }
 
@@ -49,8 +47,8 @@ public class ArrayInts extends AbstractArray {
         if (this == o) return true;
         if (!(o instanceof ArrayInts)) return false;
         if (!super.equals(o)) return false;
-        ArrayInts arrayInts = (ArrayInts) o;
-        return Arrays.equals(this.arrayInts, arrayInts.arrayInts);
+        ArrayInts arrayInts1 = (ArrayInts) o;
+        return Arrays.equals(arrayInts, arrayInts1.arrayInts);
     }
 
     @Override
@@ -62,16 +60,25 @@ public class ArrayInts extends AbstractArray {
 
     @Override
     public String toString() {
-        return "ArrayInts [ " + Arrays.toString(arrayInts) + " , cursorElement:" + super.getCursorElement() + " ]";
+        Iterator<Integer> it = iterator();
+        if ( ! it.hasNext()) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        for (;;) {
+            sb.append(it.next());
+            if ( ! it.hasNext())
+                return sb.append(']').toString();
+            sb.append(',').append(' ');
+        }
     }
 
     @Override
-    public int size() {
-        return this.arrayInts.length;
-    }
-
-    public boolean isEmpty() {
-        return this.size() == 0;
+    protected ArrayInts clone() throws CloneNotSupportedException {
+        ArrayInts arrayInts = (ArrayInts) super.clone();
+        arrayInts.setArray(Arrays.copyOf(this.arrayInts, super.size()));
+        return arrayInts;
     }
 
     public Iterator<Integer> iterator() {
@@ -81,7 +88,7 @@ public class ArrayInts extends AbstractArray {
 
             @Override
             public boolean hasNext() {
-                return this.cursorIteratorElement != ArrayInts.this.size();
+                return this.cursorIteratorElement != ArrayInts.super.size();
             }
 
             @Override
@@ -113,8 +120,9 @@ public class ArrayInts extends AbstractArray {
              */
             @Override
             public void remove() {
-                ArrayInts.this.remove(cursorIteratorElement);
+                ArrayInts.this.remove(--this.cursorIteratorElement);
             }
+
         };
     }
 
@@ -128,12 +136,12 @@ public class ArrayInts extends AbstractArray {
     }
 
     public int[] toArray() {
-        return Arrays.copyOf(this.arrayInts, this.size());
+        return Arrays.copyOf(this.arrayInts, super.size());
     }
 
     public int[] toArray(int[] array) {
         if (CheckerArray.checkLengthInArray(array)) {
-            array = Arrays.copyOf(this.arrayInts, this.size());
+            array = Arrays.copyOf(this.arrayInts, super.size());
         }
         return array;
     }
@@ -141,92 +149,93 @@ public class ArrayInts extends AbstractArray {
     public void setArray(int[] arrayInts) {
         if (CheckerArray.checkLengthInArray(arrayInts)) {
             this.arrayInts = Arrays.copyOf(arrayInts, arrayInts.length);
-            super.setCursorElement(this.size());
+            super.setSize(this.arrayInts.length);
         }
     }
 
     public void setArray(int lengthArray) {
         if (CheckerArray.checkLengthArray(lengthArray)) {
             this.arrayInts = new int[lengthArray];
-            super.setCursorElement(this.size());
+            super.setSize(SIZE_ZERO);
         }
+    }
+
+    public boolean isEmpty() {
+        return super.size() == 0;
     }
 
     public int get(int index) {
-        int result = 0;
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            result = this.arrayInts[index];
-        }
-        return result;
+        Objects.checkIndex(index, super.size());
+        return this.arrayInts[index];
     }
 
     public int set(int index, int element) {
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            this.arrayInts[index] = element;
-        }
-        return element;
+        Objects.checkIndex(index, this.size());
+        int oldValue = this.get(index);
+        this.arrayInts[index] = element;
+        return oldValue;
     }
 
     public boolean add(int element) {
-        boolean resultAdd = false;
-        if (super.getCursorElement() < this.size()) {
-            this.arrayInts[super.getCursorElement()] = element;
-            super.setCursorElement(this.size());
-            resultAdd = true;
-        } else {
-            int[] tmpArrayInts = new int[this.size() + 1];
-            System.arraycopy(this.arrayInts, 0, tmpArrayInts, 0, this.size());
-            this.arrayInts = tmpArrayInts;
-            this.add(element);
+        if (super.size() == this.arrayInts.length) {
+            this.arrayInts = Arrays.copyOf(this.arrayInts, this.arrayInts.length * 2);
         }
-        return resultAdd;
+        this.arrayInts[super.size()] = element;
+        super.setSize(super.size() + 1);
+        return true;
     }
 
     public void add(int index, int element) {
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            int[] newArrayInts = new int[this.size() + 1];
-            System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index + 1);
-            this.arrayInts[index] = element;
-            System.arraycopy(this.arrayInts, index, newArrayInts, index + 1, this.size() - index);
-            this.arrayInts = newArrayInts;
-            super.setCursorElement(this.size());
+        super.checkIndexToAddByIndex(index);
+        if (super.size() == this.arrayInts.length) {
+            this.arrayInts = Arrays.copyOf(this.arrayInts, this.arrayInts.length * 2);
         }
-    }
+        System.arraycopy(this.arrayInts, index, this.arrayInts, index + 1, super.size() - index);
+        this.arrayInts[index] = element;
+        super.setSize(super.size() + 1);    }
 
     public boolean addAll(int[] arrayInts) {
         boolean resultAddAll = false;
-        if (arrayInts != null) {
-            if (CheckerArray.checkLengthInArray(arrayInts)) {
-                int[] newArrayInts = new int[this.size() + arrayInts.length];
-                System.arraycopy(this.arrayInts, 0, newArrayInts, 0, this.size());
-                System.arraycopy(arrayInts, 0, newArrayInts, this.size() + 1, arrayInts.length);
-                this.arrayInts = newArrayInts;
-                super.setCursorElement(this.size());
+        if (Objects.nonNull(arrayInts)) {
+            if (arrayInts.length != 0) {
+                if (arrayInts.length > (this.arrayInts.length - super.size())) {
+                    this.arrayInts = Arrays.copyOf(this.arrayInts, (this.arrayInts.length * 2) + arrayInts.length);
+                }
+                System.arraycopy(arrayInts, 0, this.arrayInts, super.size(), arrayInts.length);
+                super.setSize(super.size() + arrayInts.length);
                 resultAddAll = true;
             }
+        } else {
+            throw new NullPointerException("Collection argument is null.");
         }
         return resultAddAll;
     }
 
     public boolean addAll(int index, int[] arrayInts) {
+        super.checkIndexToAddByIndex(index);
         boolean resultAddAll = false;
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            if (CheckerArray.checkLengthInArray(arrayInts)) {
-                int[] newArrayInts = new int[this.size() + arrayInts.length];
-                System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index);
-                System.arraycopy(arrayInts, 0, newArrayInts, index, arrayInts.length);
-                System.arraycopy(this.arrayInts, index, newArrayInts, arrayInts.length + index, this.size() - index);
-                this.arrayInts = newArrayInts;
-                super.setCursorElement(this.size());
+        if (Objects.nonNull(arrayInts)) {
+            if (arrayInts.length != 0) {
+                if (arrayInts.length > (this.arrayInts.length - super.size())) {
+                    this.arrayInts = Arrays.copyOf(this.arrayInts, (this.arrayInts.length * 2) + arrayInts.length);
+                }
+                int numMoved = super.size() - index;
+                if (numMoved > 0) {
+                    System.arraycopy(this.arrayInts, index, this.arrayInts, index + arrayInts.length, numMoved);
+                }
+                System.arraycopy(arrayInts, 0, this.arrayInts, index, arrayInts.length);
+                super.setSize(super.size() + arrayInts.length);
                 resultAddAll = true;
             }
+        } else {
+            throw new NullPointerException("Argument array of integer numbers is null");
         }
         return resultAddAll;
     }
 
     public boolean remove(int element) {
         boolean resultRemove = false;
-        for (int i = 0; i < this.size(); i++) {
+        for (int i = 0; i < super.size(); i++) {
             if (element == this.arrayInts[i]) {
                 this.removeByIndex(i);
                 resultRemove = true;
@@ -237,22 +246,19 @@ public class ArrayInts extends AbstractArray {
     }
 
     public double removeByIndex(int index) {
-        int resultRemove = 0;
-        int[] newArrayInts;
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            newArrayInts = new int[this.size() - 1];
-            resultRemove = this.get(index);
-            System.arraycopy(this.arrayInts, 0, newArrayInts, 0, index);
-            System.arraycopy(this.arrayInts, index + 1, newArrayInts, index, this.size() - (index + 1));
-            this.arrayInts = newArrayInts;
-            super.setCursorElement(this.size());
-        }
+        Objects.checkIndex(index, super.size());
+        int[] newArray = new int[super.size() - 1];
+        int resultRemove = this.get(index);
+        System.arraycopy(this.arrayInts, 0, newArray, 0, index);
+        System.arraycopy(this.arrayInts, index + 1, newArray, index, super.size() - (index + 1));
+        this.arrayInts = newArray;
+        super.setSize(super.size() - 1);
         return resultRemove;
     }
 
-    public boolean removeAll(double element) {
+    public boolean removeAll(int element) {
         boolean resultRemove = false;
-        for (int i = 0; i < this.size(); i++) {
+        for (int i = 0; i < super.size(); i++) {
             if (element == this.arrayInts[i]) {
                 this.removeByIndex(i);
                 resultRemove = true;
@@ -263,9 +269,19 @@ public class ArrayInts extends AbstractArray {
 
     public boolean removeAll(int[] arrayInts) {
         boolean resultRemoveAll = false;
-        if (CheckerArray.checkLengthInArray(arrayInts)) {
-            Arrays.stream(arrayInts).forEach(this::remove);
-            resultRemoveAll = true;
+        if (Objects.nonNull(arrayInts)) {
+            if (arrayInts.length != 0) {
+                for (int i = 0; i < arrayInts.length; i++) {
+                    for (int j = 0; j < super.size(); j++) {
+                        if (arrayInts[i] == this.arrayInts[j]) {
+                            this.remove(j);
+                            resultRemoveAll = true;
+                        }
+                    }
+                }
+            }
+        } else {
+            throw new NullPointerException("Argument array of integer numbers is null.");
         }
         return resultRemoveAll;
     }
@@ -276,44 +292,56 @@ public class ArrayInts extends AbstractArray {
 
     public boolean contains(int element) {
         boolean resultContains = false;
-        for (int i = 0; i < this.size(); i++) {
+        int i = 0;
+        while (i < super.size()) {
             if (element == this.arrayInts[i]) {
                 resultContains = true;
                 break;
             }
+            i++;
         }
         return resultContains;
     }
 
     public boolean containsAll(int[] arrayInts) {
         boolean resultContainsAll = true;
-        if (CheckerArray.checkLengthInArray(arrayInts)) {
-            for (int i = 0; i < arrayInts.length; i++) {
-                if (!this.contains(arrayInts[i])) {
-                    resultContainsAll = false;
+        if (Objects.nonNull(arrayInts)) {
+            if (arrayInts.length != 0) {
+                for (int i = 0; i < arrayInts.length; i++) {
+                    if (!this.contains(arrayInts[i])) {
+                        resultContainsAll = false;
+                    }
                 }
             }
+        } else {
+            throw new NullPointerException("Argument array of integer numbers is null.");
         }
         return resultContainsAll;
     }
 
     public boolean retainAll(int[] arrayInts) {
         boolean resultRetainAll = false;
-        if (CheckerArray.checkLengthInArray(arrayInts)) {
-            for (int tmp : arrayInts) {
-                if (!this.contains(tmp)) {
-                    this.remove(tmp);
-                    resultRetainAll = true;
+        if (Objects.nonNull(arrayInts)) {
+            if (arrayInts.length != 0) {
+                for (int i = 0; i < arrayInts.length; i++) {
+                    for (int j = 0; j < super.size(); j++) {
+                        if (arrayInts[i] != this.arrayInts[j]) {
+                            this.removeByIndex(j);
+                            resultRetainAll = true;
+                        }
+                    }
                 }
             }
+        } else {
+            throw new NullPointerException("Argument array of integer numbers is null.");
         }
         return resultRetainAll;
     }
 
     public int indexOf(int element) {
         int resultIndexOf = -1;
-        for (int i = 0; i < this.size(); i++) {
-            if (element == this.get(i)) {
+        for (int i = 0; i < super.size(); i++) {
+            if (element == this.arrayInts[i]) {
                 resultIndexOf = i;
             }
         }
@@ -322,8 +350,8 @@ public class ArrayInts extends AbstractArray {
 
     public int lastIndexOf(int element) {
         int resultLastIndexOf = -1;
-        for (int i = this.size() - 1; i > 0; i--) {
-            if (element == this.get(i)) {
+        for (int i = super.size() - 1; i > 0; i--) {
+            if (element == this.arrayInts[i]) {
                 resultLastIndexOf = i;
             }
         }

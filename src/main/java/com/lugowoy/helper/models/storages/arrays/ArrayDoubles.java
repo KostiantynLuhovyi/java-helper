@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  * @since 2.0
  */
 //todo write doc's
@@ -22,13 +22,12 @@ public class ArrayDoubles extends AbstractArray {
 
     public ArrayDoubles() {
         this.arrayDoubles = new double[DEFAULT_LENGTH];
-        super.setCursorElement(this.size());
     }
 
     public ArrayDoubles(double[] arrayDoubles) {
         if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             this.arrayDoubles = Arrays.copyOf(arrayDoubles, arrayDoubles.length);
-            super.setCursorElement(this.size());
+            super.setSize(this.arrayDoubles.length);
         }
     }
 
@@ -40,7 +39,7 @@ public class ArrayDoubles extends AbstractArray {
     public ArrayDoubles(ArrayDoubles arrayDoubles) {
         if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             this.arrayDoubles = Arrays.copyOf(arrayDoubles.toArray(), arrayDoubles.size());
-            super.setCursorElement(this.size());
+            super.setSize(this.arrayDoubles.length);
         }
     }
 
@@ -49,8 +48,8 @@ public class ArrayDoubles extends AbstractArray {
         if (this == o) return true;
         if (!(o instanceof ArrayDoubles)) return false;
         if (!super.equals(o)) return false;
-        ArrayDoubles arrayDoubles = (ArrayDoubles) o;
-        return Arrays.equals(this.arrayDoubles, arrayDoubles.arrayDoubles);
+        ArrayDoubles that = (ArrayDoubles) o;
+        return Arrays.equals(arrayDoubles, that.arrayDoubles);
     }
 
     @Override
@@ -62,16 +61,25 @@ public class ArrayDoubles extends AbstractArray {
 
     @Override
     public String toString() {
-        return "ArrayDoubles [ " + Arrays.toString(arrayDoubles) + " , cursorElement:" + super.getCursorElement() + " ]";
+        Iterator<Double> it = iterator();
+        if ( ! it.hasNext()) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        for (;;) {
+            sb.append(it.next());
+            if ( ! it.hasNext())
+                return sb.append(']').toString();
+            sb.append(',').append(' ');
+        }
     }
 
     @Override
-    public int size() {
-        return this.arrayDoubles.length;
-    }
-
-    public boolean isEmpty() {
-        return this.size() == 0;
+    protected ArrayDoubles clone() throws CloneNotSupportedException {
+        ArrayDoubles arrayDoubles = (ArrayDoubles) super.clone();
+        arrayDoubles.setArray(Arrays.copyOf(this.arrayDoubles, super.size()));
+        return arrayDoubles;
     }
 
     public Iterator<Double> iterator() {
@@ -81,7 +89,7 @@ public class ArrayDoubles extends AbstractArray {
 
             @Override
             public boolean hasNext() {
-                return this.cursorIteratorElement != ArrayDoubles.this.size();
+                return this.cursorIteratorElement != ArrayDoubles.super.size();
             }
 
             @Override
@@ -113,7 +121,7 @@ public class ArrayDoubles extends AbstractArray {
              */
             @Override
             public void remove() {
-                ArrayDoubles.this.remove(cursorIteratorElement);
+                ArrayDoubles.this.remove(--this.cursorIteratorElement);
             }
         };
     }
@@ -128,12 +136,12 @@ public class ArrayDoubles extends AbstractArray {
     }
 
     public double[] toArray() {
-        return Arrays.copyOf(this.arrayDoubles, this.size());
+        return Arrays.copyOf(this.arrayDoubles, super.size());
     }
 
     public double[] toArray(double[] array) {
         if (CheckerArray.checkLengthInArray(array)) {
-            array = Arrays.copyOf(this.arrayDoubles, this.size());
+            array = Arrays.copyOf(this.arrayDoubles, super.size());
         }
         return array;
     }
@@ -141,91 +149,94 @@ public class ArrayDoubles extends AbstractArray {
     public void setArray(double[] arrayDoubles) {
         if (CheckerArray.checkLengthInArray(arrayDoubles)) {
             this.arrayDoubles = Arrays.copyOf(arrayDoubles, arrayDoubles.length);
-            super.setCursorElement(this.size());
+            super.setSize(this.arrayDoubles.length);
         }
     }
 
     public void setArray(int lengthArray) {
         if (CheckerArray.checkLengthArray(lengthArray)) {
             this.arrayDoubles = new double[lengthArray];
-            super.setCursorElement(this.size());
+            super.setSize(SIZE_ZERO);
         }
+    }
+
+    public boolean isEmpty() {
+        return super.size() == 0;
     }
 
     public double get(int index) {
-        double result = 0;
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            result = this.arrayDoubles[index];
-        }
-        return result;
+        CheckerIndex.checkIndex(index, this.size());
+        return this.arrayDoubles[index];
     }
 
     public double set(int index, double element) {
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            this.arrayDoubles[index] = element;
-        }
-        return element;
+        Objects.checkIndex(index, this.size());
+        double oldValue = this.get(index);
+        this.arrayDoubles[index] = element;
+        return oldValue;
     }
 
     public boolean add(double element) {
-        boolean resultAdd = false;
-        if (super.getCursorElement() < this.size()) {
-            this.arrayDoubles[super.getCursorElement()] = element;
-            super.setCursorElement(this.size());
-            resultAdd = true;
-        } else {
-            double[] tmpArrayDoubles = new double[this.size() + 1];
-            System.arraycopy(this.arrayDoubles, 0, tmpArrayDoubles, 0, this.size());
-            this.arrayDoubles = tmpArrayDoubles;
-            this.add(element);
+        if (super.size() == this.arrayDoubles.length) {
+            this.arrayDoubles = Arrays.copyOf(this.arrayDoubles, this.arrayDoubles.length * 2);
         }
-        return resultAdd;
+        this.arrayDoubles[super.size()] = element;
+        super.setSize(super.size() + 1);
+        return true;
     }
 
     public void add(int index, double element) {
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            double[] newArrayDoubles = new double[this.size() + 1];
-            System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, index + 1);
-            this.arrayDoubles[index] = element;
-            System.arraycopy(this.arrayDoubles, index, newArrayDoubles, index + 1, this.size() - index);
-            this.setArray(newArrayDoubles);
+        super.checkIndexToAddByIndex(index);
+        if (super.size() == this.arrayDoubles.length) {
+            this.arrayDoubles = Arrays.copyOf(this.arrayDoubles, this.arrayDoubles.length * 2);
         }
+        System.arraycopy(this.arrayDoubles, index, this.arrayDoubles, index + 1, super.size() - index);
+        this.arrayDoubles[index] = element;
+        super.setSize(super.size() + 1);
     }
 
     public boolean addAll(double[] arrayDoubles) {
         boolean resultAddAll = false;
-        if (arrayDoubles != null) {
-            if (CheckerArray.checkLengthInArray(arrayDoubles)) {
-                double[] newArrayDoubles = new double[this.size() + arrayDoubles.length];
-                System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, this.size());
-                System.arraycopy(arrayDoubles, 0, newArrayDoubles, this.size(), arrayDoubles.length);
-                this.arrayDoubles = newArrayDoubles;
-                super.setCursorElement(this.size());
+        if (Objects.nonNull(arrayDoubles)) {
+            if (arrayDoubles.length != 0) {
+                if (arrayDoubles.length > (this.arrayDoubles.length - super.size())) {
+                    this.arrayDoubles = Arrays.copyOf(this.arrayDoubles, (this.arrayDoubles.length * 2) + arrayDoubles.length);
+                }
+                System.arraycopy(arrayDoubles, 0, this.arrayDoubles, super.size(), arrayDoubles.length);
+                super.setSize(super.size() + arrayDoubles.length);
                 resultAddAll = true;
             }
+        } else {
+            throw new NullPointerException("Collection argument is null.");
         }
         return resultAddAll;
     }
 
     public boolean addAll(int index, double[] arrayDoubles) {
+        super.checkIndexToAddByIndex(index);
         boolean resultAddAll = false;
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            if (CheckerArray.checkLengthInArray(arrayDoubles)) {
-                double[] newArrayDoubles = new double[this.size() + arrayDoubles.length];
-                System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, index);
-                System.arraycopy(arrayDoubles, 0, newArrayDoubles, index, arrayDoubles.length);
-                System.arraycopy(this.arrayDoubles, index, newArrayDoubles, arrayDoubles.length + index, this.size() - index);
-                this.arrayDoubles = newArrayDoubles;
-                super.setCursorElement(this.size());
+        if (Objects.nonNull(arrayDoubles)) {
+            if (arrayDoubles.length != 0) {
+                if (arrayDoubles.length > (this.arrayDoubles.length - super.size())) {
+                    this.arrayDoubles = Arrays.copyOf(this.arrayDoubles, (this.arrayDoubles.length * 2) + arrayDoubles.length);
+                }
+                int numMoved = super.size() - index;
+                if (numMoved > 0) {
+                    System.arraycopy(this.arrayDoubles, index, this.arrayDoubles, index + arrayDoubles.length, numMoved);
+                }
+                System.arraycopy(arrayDoubles, 0, this.arrayDoubles, index, arrayDoubles.length);
+                super.setSize(super.size() + arrayDoubles.length);
                 resultAddAll = true;
             }
+        } else {
+            throw new NullPointerException("Argument array of double numbers is null");
         }
         return resultAddAll;
     }
 
     public boolean remove(double element) {
         boolean resultRemove = false;
-        for (int i = 0; i < this.size(); i++) {
+        for (int i = 0; i < super.size(); i++) {
             if (element == this.arrayDoubles[i]) {
                 this.removeByIndex(i);
                 resultRemove = true;
@@ -236,22 +247,19 @@ public class ArrayDoubles extends AbstractArray {
     }
 
     public double removeByIndex(int index) {
-        double resultRemove = 0.0;
-        double[] newArrayDoubles;
-        if (CheckerIndex.checkIndex(index, this.size())) {
-            newArrayDoubles = new double[this.size() - 1];
-            resultRemove = this.get(index);
-            System.arraycopy(this.arrayDoubles, 0, newArrayDoubles, 0, index);
-            System.arraycopy(this.arrayDoubles, index + 1, newArrayDoubles, index, this.size() - (index + 1));
-            this.arrayDoubles = newArrayDoubles;
-            super.setCursorElement(super.getCursorElement() - 1);
-        }
+        Objects.checkIndex(index, super.size());
+        double[] newArray = new double[super.size() - 1];
+        double resultRemove = this.get(index);
+        System.arraycopy(this.arrayDoubles, 0, newArray, 0, index);
+        System.arraycopy(this.arrayDoubles, index + 1, newArray, index, super.size() - (index + 1));
+        this.arrayDoubles = newArray;
+        super.setSize(super.size() - 1);
         return resultRemove;
     }
 
     public boolean removeAll(double element) {
         boolean resultRemove = false;
-        for (int i = 0; i < this.size(); i++) {
+        for (int i = 0; i < super.size(); i++) {
             if (element == this.arrayDoubles[i]) {
                 this.removeByIndex(i);
                 resultRemove = true;
@@ -262,9 +270,19 @@ public class ArrayDoubles extends AbstractArray {
 
     public boolean removeAll(double[] arrayDoubles) {
         boolean resultRemoveAll = false;
-        if (CheckerArray.checkLengthInArray(arrayDoubles)) {
-            Arrays.stream(arrayDoubles).forEach(this::remove);
-            resultRemoveAll = true;
+        if (Objects.nonNull(arrayDoubles)) {
+            if (arrayDoubles.length != 0) {
+                for (int i = 0; i < arrayDoubles.length; i++) {
+                    for (int j = 0; j < super.size(); j++) {
+                        if (arrayDoubles[i] == this.arrayDoubles[j]) {
+                            this.remove(j);
+                            resultRemoveAll = true;
+                        }
+                    }
+                }
+            }
+        } else {
+            throw new NullPointerException("Argument array of double numbers is null.");
         }
         return resultRemoveAll;
     }
@@ -275,44 +293,56 @@ public class ArrayDoubles extends AbstractArray {
 
     public boolean contains(double element) {
         boolean resultContains = false;
-        for (int i = 0; i < this.size(); i++) {
+        int i = 0;
+        while (i < super.size()) {
             if (element == this.arrayDoubles[i]) {
                 resultContains = true;
                 break;
             }
+            i++;
         }
         return resultContains;
     }
 
     public boolean containsAll(double[] arrayDoubles) {
         boolean resultContainsAll = true;
-        if (CheckerArray.checkLengthInArray(arrayDoubles)) {
-            for (int i = 0; i < arrayDoubles.length; i++) {
-                if (!this.contains(arrayDoubles[i])) {
-                    resultContainsAll = false;
+        if (Objects.nonNull(arrayDoubles)) {
+            if (arrayDoubles.length != 0) {
+                for (int i = 0; i < arrayDoubles.length; i++) {
+                    if (!this.contains(arrayDoubles[i])) {
+                        resultContainsAll = false;
+                    }
                 }
             }
+        } else {
+            throw new NullPointerException("Argument array of double numbers is null.");
         }
         return resultContainsAll;
     }
 
     public boolean retainAll(double[] arrayDoubles) {
         boolean resultRetainAll = false;
-        if (CheckerArray.checkLengthInArray(arrayDoubles)) {
-            for (double tmp : arrayDoubles) {
-                if (!this.contains(tmp)) {
-                    this.remove(tmp);
-                    resultRetainAll = true;
+        if (Objects.nonNull(arrayDoubles)) {
+            if (arrayDoubles.length != 0) {
+                for (int i = 0; i < arrayDoubles.length; i++) {
+                    for (int j = 0; j < super.size(); j++) {
+                        if (arrayDoubles[i] != this.arrayDoubles[j]) {
+                            this.removeByIndex(j);
+                            resultRetainAll = true;
+                        }
+                    }
                 }
             }
+        } else {
+            throw new NullPointerException("Argument array of double numbers is null.");
         }
         return resultRetainAll;
     }
 
     public int indexOf(double element) {
         int resultIndexOf = -1;
-        for (int i = 0; i < this.size(); i++) {
-            if (element == this.get(i)) {
+        for (int i = 0; i < super.size(); i++) {
+            if (element == this.arrayDoubles[i]) {
                 resultIndexOf = i;
             }
         }
@@ -321,8 +351,8 @@ public class ArrayDoubles extends AbstractArray {
 
     public int lastIndexOf(double element) {
         int resultLastIndexOf = -1;
-        for (int i = this.size() - 1; i > 0; i--) {
-            if (element == this.get(i)) {
+        for (int i = super.size() - 1; i > 0; i--) {
+            if (element == this.arrayDoubles[i]) {
                 resultLastIndexOf = i;
             }
         }

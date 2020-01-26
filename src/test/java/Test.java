@@ -15,6 +15,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.models.storages.arrays.ArrayDoubles;
 import com.lugowoy.helper.models.storages.arrays.ArrayInts;
 import com.lugowoy.helper.utils.checking.CheckerArray;
+import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -433,6 +434,54 @@ public class Test {
         array.add(5, 777777);
         System.out.println(array);
 
+        arrayInts.add(0, 8888888);
+
+        System.out.println(arrayInts);
+
+        arrayDoubles.add(10, 10010101);
+        System.out.println(arrayDoubles);
+
+
+        ArrayList<Integer> arrayList = new ArrayList<>(2222);
+        arrayList.add(34);
+        /*int i = 0;
+        while (i < arrayList.size()) {
+            arrayList.add(GeneratorRandomNumber.generateInt(-10, 10));
+            i++;
+        }*/
+        System.out.println(arrayList + " : " + arrayList.size());
+
+        Array<Integer> integerArray = new Array<>(11);
+        integerArray.add(55);
+        System.out.println(integerArray);
+
+        Array<Integer> integerArray1 = new Array<>();
+        integerArray1.add(45);
+        integerArray1.add(7676);
+        System.out.println(integerArray1);
+
+    }
+
+    static void insertElement(int element, ArrayInts array) {
+        if (CheckerArray.checkLengthInArray(array)) {
+            for (int i = 0; i < array.size(); i++) {
+                if (element < array.get(i)) {
+                    System.out.println(i + " - " + element + " : " + array.get(i));
+                    array.add(i, element);
+                    break;
+                }
+            }
+            System.out.println(array);
+            /*if (element >= array.get(0) && element <= array.get(array.size() - 1)) {
+                for (int i = 0; i < array.size(); i++) {
+                    if (element >= array.get(i)) {
+                        array.add(i, element);
+                    }
+                }
+            } else {
+                System.out.println("The element does not correspond to the sequence.");
+            }*/
+        }
     }
 
 /*    private static class Human {

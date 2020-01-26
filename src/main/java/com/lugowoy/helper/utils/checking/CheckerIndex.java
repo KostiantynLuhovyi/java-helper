@@ -10,7 +10,7 @@ package com.lugowoy.helper.utils.checking;
 //todo write doc's
 public final class CheckerIndex {
 
-    private static final String MSG_INDEX_IS_OUT_OF_RANGE = "Index is out of range.";
+    public static final String MSG_INDEX_IS_OUT_OF_RANGE = "Index is out of range.";
     private static final int LOWER_INDEX = 0;
 
     private CheckerIndex() {
@@ -26,6 +26,14 @@ public final class CheckerIndex {
             }
         }
         return resultCheckIndex;
+    }
+
+    public static void checkIndexTest(final int index, final int upperBoundIndex) {
+        if (CheckerBound.isCorrectBound(upperBoundIndex, LOWER_INDEX, Integer.MAX_VALUE)) {
+            if (index < LOWER_INDEX || index > upperBoundIndex) {
+                throw new IndexOutOfBoundsException(MSG_INDEX_IS_OUT_OF_RANGE);
+            }
+        }
     }
 
     public static boolean checkIndex(final int index, final int lowerBoundIndex, final int upperBoundIndex) {

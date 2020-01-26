@@ -6,11 +6,13 @@ import com.lugowoy.helper.utils.checking.CheckerArray;
 import java.util.Objects;
 import java.util.RandomAccess;
 
+import static com.lugowoy.helper.utils.checking.CheckerIndex.MSG_INDEX_IS_OUT_OF_RANGE;
+
 /**
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @since 2.0
  */
 //todo write doc's
@@ -23,18 +25,17 @@ public abstract class AbstractArray implements Model, RandomAccess {
      */
     public static final int DEFAULT_LENGTH = 10;
 
+    static final int SIZE_ZERO = 0;
 
-    private int cursorElement;
+    private int size;
 
-    public AbstractArray() {
-        this.cursorElement = 0;
+    AbstractArray() {
+        this.size = SIZE_ZERO;
     }
 
-    public AbstractArray(int lengthArray) {
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            this.cursorElement = lengthArray;
-        }
-
+    AbstractArray(int lengthArray) {
+        CheckerArray.checkLengthArray(lengthArray);
+        this.size = SIZE_ZERO;
     }
 
     @Override
@@ -42,22 +43,26 @@ public abstract class AbstractArray implements Model, RandomAccess {
         if (this == o) return true;
         if (!(o instanceof AbstractArray)) return false;
         AbstractArray that = (AbstractArray) o;
-        return getCursorElement() == that.getCursorElement();
+        return size == that.size;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCursorElement());
+        return Objects.hash(size);
     }
 
-    int getCursorElement() {
-        return this.cursorElement;
+    public int size() {
+        return this.size;
     }
 
-    void setCursorElement(int cursorElement) {
-        this.cursorElement = cursorElement;
+    protected void setSize(int size) {
+        this.size = size;
     }
 
-    public abstract int size();
+    protected void checkIndexToAddByIndex(int index) {
+        if (index > this.size() || index < 0) {
+            throw new IndexOutOfBoundsException(MSG_INDEX_IS_OUT_OF_RANGE);
+        }
+    }
 
 }
