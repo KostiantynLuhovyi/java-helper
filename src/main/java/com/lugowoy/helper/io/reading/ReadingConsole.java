@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class ReadingConsole implements Reading {
 
-    private static final Scanner SCANNER = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     /**
      * Reads a {@code byte} type value from the console.
@@ -34,7 +34,7 @@ public class ReadingConsole implements Reading {
     public byte readByte() {
         byte resultByteRead;
         try {
-            resultByteRead = SCANNER.nextByte();
+            resultByteRead = this.scanner.nextByte();
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a byte number or is out of range (from " + Byte.MIN_VALUE
                                                                                              + " to " + Byte.MAX_VALUE + ").");
@@ -56,7 +56,7 @@ public class ReadingConsole implements Reading {
     public short readShort() {
         short resultShortRead;
         try {
-            resultShortRead = SCANNER.nextShort();
+            resultShortRead = this.scanner.nextShort();
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a short number or is out of range (from " + Short.MIN_VALUE
                                                                                               + " to " + Short.MAX_VALUE + ").");
@@ -78,7 +78,7 @@ public class ReadingConsole implements Reading {
     public int readInt() {
         int resultIntRead;
         try {
-            resultIntRead = SCANNER.nextInt();
+            resultIntRead = this.scanner.nextInt();
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a int number or is out of range (from " + Integer.MIN_VALUE
                                                                                             + " to " + Integer.MAX_VALUE + ").");
@@ -100,7 +100,7 @@ public class ReadingConsole implements Reading {
     public long readLong() {
         long resultLongRead;
         try {
-            resultLongRead = SCANNER.nextLong();
+            resultLongRead = this.scanner.nextLong();
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a long number or is out of range (from " + Long.MIN_VALUE
                                                                                              + " to " + Long.MAX_VALUE + ").");
@@ -122,7 +122,7 @@ public class ReadingConsole implements Reading {
     public char readChar() {
         char resultCharRead;
         try {
-            resultCharRead = (char) SCANNER.nextInt();
+            resultCharRead = (char) this.scanner.nextInt();
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a char or is out of range (from " + Character.MIN_VALUE
                                                                                       + " to " + Character.MAX_VALUE + ").");
@@ -143,7 +143,7 @@ public class ReadingConsole implements Reading {
     public float readFloat() {
         float resultFloatRead;
         try {
-            resultFloatRead = SCANNER.nextFloat();
+            resultFloatRead = this.scanner.nextFloat();
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a float number or is out of range (from " + Float.MIN_VALUE
                                                                                               + " to " + Float.MAX_VALUE + ").");
@@ -164,7 +164,7 @@ public class ReadingConsole implements Reading {
     public double readDouble() {
         double resultDoubleRead;
         try {
-            resultDoubleRead = SCANNER.nextDouble();
+            resultDoubleRead = this.scanner.nextDouble();
         } catch (InputMismatchException ex) {
             throw new ValueOutOfRangeException("Value is not a double or is out of range (from " + Double.MIN_VALUE
                                                                                         + " to " + Double.MAX_VALUE + ").");
@@ -182,8 +182,10 @@ public class ReadingConsole implements Reading {
      */
     @Override
     public String readString() {
-        String resultStringRead;
-        resultStringRead = SCANNER.nextLine();
+        String resultStringRead = "";
+        if (this.scanner.hasNextLine()) {
+            resultStringRead = this.scanner.nextLine();
+        }
         return resultStringRead;
     }
 
