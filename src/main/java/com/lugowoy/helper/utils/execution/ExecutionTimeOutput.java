@@ -4,7 +4,7 @@ package com.lugowoy.helper.utils.execution;
  * Created by Konstantin Lugowoy on 11.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 1.7.6
  */
 //todo write doc's
@@ -23,7 +23,7 @@ public interface ExecutionTimeOutput {
     static void outputExecutionTimeToConsole(long milliseconds, String msgOutputTime) {
         if (milliseconds >= 1000) {
             long minutes = (milliseconds / 1000) / 60;
-            long seconds = (milliseconds / 1000);
+            long seconds = (milliseconds / 1000) % 60;
             System.out.printf(msgOutputTime, minutes, seconds);
         } else {
             System.out.printf(MSG_MILLISECONDS, milliseconds);

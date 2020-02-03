@@ -22,7 +22,7 @@ class ExecutionTime {
     }
 
     long executionTime() {
-        return this.endMillis = this.startMillis;
+        return this.endMillis - this.startMillis;
     }
 
 }

@@ -9,7 +9,7 @@ import static com.lugowoy.helper.utils.execution.ExecutionTimeOutput.MSG_MILLISE
  * Created by Konstantin Lugowoy on 01.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @since 1.7.4
  */
 //todo write doc's
@@ -21,15 +21,15 @@ public interface Executor {
         EXECUTION_TIMER.startExecutionTime();
         T result = callable.call();
         EXECUTION_TIMER.endExecutionTime();
-        ExecutionResultOutput.outputExecutionResultToConsole(result, MSG_DEFAULT_RESULT);
+        ExecutionResultOutput.outputExecutionResultToConsole(MSG_DEFAULT_RESULT, result);
         ExecutionTimeOutput.outputExecutionTimeMillisToConsole(EXECUTION_TIMER.executionTime(), MSG_MILLISECONDS);
     }
 
-    static <T> void execute(Callable<T> callable, String msgOutputTime, String msgOutputResult) throws Exception {
+    static <T> void execute(Callable<T> callable, String msgOutputResult, String msgOutputTime) throws Exception {
         EXECUTION_TIMER.startExecutionTime();
         T result = callable.call();
         EXECUTION_TIMER.endExecutionTime();
-        ExecutionResultOutput.outputExecutionResultToConsole(result, msgOutputResult);
+        ExecutionResultOutput.outputExecutionResultToConsole(msgOutputResult, result);
         ExecutionTimeOutput.outputExecutionTimeToConsole(EXECUTION_TIMER.executionTime(), msgOutputTime);
     }
 
@@ -38,7 +38,7 @@ public interface Executor {
         EXECUTION_TIMER.startExecutionTime();
         T result = callable.call();
         EXECUTION_TIMER.endExecutionTime();
-        executionResultOutput.outputResult(result, msgOutputResult);
+        executionResultOutput.outputResult(msgOutputResult, result);
         executionTimeOutput.outputTimer(EXECUTION_TIMER.executionTime(), msgOutputTime);
     }
 
