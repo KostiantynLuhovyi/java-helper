@@ -4,12 +4,12 @@ package com.lugowoy.helper.utils.execution;
  * Created by Konstantin Lugowoy on 11.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @since 1.7.6
  */
 //todo write doc's
 @FunctionalInterface
-public interface OutputExecutorTimer {
+public interface ExecutionTimeOutput {
 
     String MSG_MINUTES_AND_SECONDS = "\nRuntime : %d minutes, %d seconds\n";
     String MSG_MILLISECONDS = "\nRuntime : %d milliseconds\n";

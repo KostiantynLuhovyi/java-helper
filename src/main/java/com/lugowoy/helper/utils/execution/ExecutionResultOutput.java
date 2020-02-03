@@ -4,12 +4,12 @@ package com.lugowoy.helper.utils.execution;
  * Created by Konstantin Lugowoy on 12.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @since 1.7.8
  */
 //todo write doc's
 @FunctionalInterface
-public interface OutputExecutorResult<T> {
+public interface ExecutionResultOutput<T> {
 
     String MSG_DEFAULT_RESULT = "Result : ";
     String MSG_STRING_RESULT = "Result : %s";

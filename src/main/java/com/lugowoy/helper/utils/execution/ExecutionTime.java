@@ -4,22 +4,25 @@ package com.lugowoy.helper.utils.execution;
  * Created by Konstantin Lugowoy on 13.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 1.7.8
  */
 //todo write doc's
-class ExecutorTimer {
+class ExecutionTime {
 
     private long startMillis;
     private long endMillis;
 
-    void startExecutionTimer() {
+    void startExecutionTime() {
         this.startMillis = System.currentTimeMillis();
     }
 
-    long endExecutionTimer() {
+    void endExecutionTime() {
         this.endMillis = System.currentTimeMillis();
-        return endMillis - this.startMillis;
+    }
+
+    long executionTime() {
+        return this.endMillis = this.startMillis;
     }
 
 }
