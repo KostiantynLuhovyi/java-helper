@@ -1,8 +1,7 @@
-import com.lugowoy.helper.filling.array.strings.FillingArrayReadValueStrings;
-import com.lugowoy.helper.io.reading.Reader;
-import com.lugowoy.helper.io.reading.ReadingConsole;
-import com.lugowoy.helper.models.storages.arrays.Array;
-import com.lugowoy.helper.utils.ArrayLengthReader;
+import com.lugowoy.helper.filling.array.numbers.FillerArrayNumbers;
+import com.lugowoy.helper.filling.array.numbers.FillingArrayRandomIntegers;
+import com.lugowoy.helper.filling.matrix.FillerMatrix;
+import com.lugowoy.helper.filling.matrix.numbers.FillingMatrixRandomIntegers;
 
 import java.util.Arrays;
 
@@ -12,6 +11,16 @@ import java.util.Arrays;
 public class Test {
 
     public static void main(String[] args) {
+
+        FillerArrayNumbers<Integer> fillerArrayNumbers = new FillerArrayNumbers<>();
+        fillerArrayNumbers.setFilling(new FillingArrayRandomIntegers());
+
+        System.out.println(Arrays.toString(fillerArrayNumbers.fill(10, 10)));
+
+        FillerMatrix<Integer> fillerMatrix = new FillerMatrix<>();
+        fillerMatrix.setFilling(new FillingMatrixRandomIntegers());
+
+        System.out.println(Arrays.deepToString(fillerMatrix.fill(5, 5)));
 
     }
 

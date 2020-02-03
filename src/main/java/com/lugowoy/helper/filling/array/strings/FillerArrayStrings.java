@@ -11,7 +11,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
  * @see com.lugowoy.helper.filling.Filling
@@ -20,6 +20,9 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  */
 //todo edit doc's
 public class FillerArrayStrings extends FillerArray<String> {
+
+    public FillerArrayStrings() {
+    }
 
     /**
      * Constructor to create a new {@link FillerArrayStrings}

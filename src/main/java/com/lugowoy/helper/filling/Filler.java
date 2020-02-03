@@ -10,11 +10,14 @@ package com.lugowoy.helper.filling;
  *
  * @param <T> Type of data to fill storage(data structure) or the object.
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  */
 public abstract class Filler<T> {
 
     private Filling<T> filling;
+
+    protected Filler() {
+    }
 
     /**
      * Constructs a new object of this class by initializing it with a concrete implementation of the contract declared
@@ -43,6 +46,10 @@ public abstract class Filler<T> {
      */
     protected Filling<T> getFilling() {
         return this.filling;
+    }
+
+    public void setFilling(Filling<T> filling) {
+        this.filling = filling;
     }
 
 }

@@ -15,7 +15,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  *
  * @param <T> The type of coordinates encapsulated in the object of the {@link Point} class.
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
  * @see com.lugowoy.helper.filling.Filling
@@ -23,6 +23,9 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  */
 //todo edit doc's
 public class FillerArrayPoints<T extends Point, V extends Number> extends FillerArray<T> {
+
+    public FillerArrayPoints() {
+    }
 
     /**
      * Constructor to create a new {@link FillerArrayPoints}

@@ -7,11 +7,14 @@ import com.lugowoy.helper.models.matrices.Matrix;
  * Created by Konstantin Lugowoy on 05.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 1.2
  */
 //todo edit doc's
 public class FillerMatrixNumbers<T extends Number> extends FillerMatrix<T> {
+
+    public FillerMatrixNumbers() {
+    }
 
     public FillerMatrixNumbers(FillingMatrixNumbers<T> filling) {
         super(filling);

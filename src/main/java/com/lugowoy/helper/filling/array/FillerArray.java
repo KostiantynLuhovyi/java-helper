@@ -1,6 +1,7 @@
 package com.lugowoy.helper.filling.array;
 
 import com.lugowoy.helper.filling.Filler;
+import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
@@ -13,10 +14,13 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  *
  * @param <T> Type of data to fill arrays or elements encapsulated in the object of the {@link Array} class.
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @see com.lugowoy.helper.filling.Filler
  */
 public abstract class FillerArray<T> extends Filler<Array<T>> {
+
+    protected FillerArray() {
+    }
 
     /**
      * Constructs a new object of this class by initializing it with a concrete implementation of the contract declared
@@ -24,7 +28,7 @@ public abstract class FillerArray<T> extends Filler<Array<T>> {
      *
      * @param fillingArray The object implements the contract declared in the {@link FillingArray} interface.
      */
-    public FillerArray(FillingArray<T> fillingArray) {
+    protected FillerArray(FillingArray<T> fillingArray) {
         super(fillingArray);
     }
 
@@ -51,13 +55,18 @@ public abstract class FillerArray<T> extends Filler<Array<T>> {
      * Fills an array with data.
      * <p>The array is created based on the {@code lengthArray} parameter.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
+     * otherwise a {@link } will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with data.
      * @return Created and filled array with data.
      */
     public T[] fill(int lengthArray) {
         return ((FillingArray<T>) super.getFilling()).fill(lengthArray);
+    }
+
+    @Override
+    public void setFilling(Filling<Array<T>> fillingArray) {
+        super.setFilling(fillingArray);
     }
 
 }

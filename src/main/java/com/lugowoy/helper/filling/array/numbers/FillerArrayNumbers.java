@@ -14,11 +14,14 @@ import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
  *
  * @param <T> Type of numerical data to fill arrays or elements encapsulated in the object of the {@link Array} class.
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
  */
 public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
+
+    public FillerArrayNumbers() {
+    }
 
     /**
      * Constructs a new object of this class by initializing it with a concrete implementation of the contract declared
