@@ -7,6 +7,7 @@ public class Test {
 
         System.out.println("Test master-dev branch.");
         System.out.println("Test second master-dev branch.");
+        System.out.println("Test merge two branches.");
 
     }
 
