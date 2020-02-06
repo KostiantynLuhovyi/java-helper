@@ -15,8 +15,8 @@ public class ExecutionResultOutputToConsole {
     String RESULT_DOUBLE = "Result : %.3f";
     String RESULT_BOOLEAN = "Result : %b";
 
-    static <T> void outputExecutionResultToConsole(String msgOutputResult, T t) {
-        System.out.printf(msgOutputResult, t);
+    static <T> void outputExecutionResultToConsole(T t, String outputResult) {
+        System.out.printf(outputResult, t);
     }
 
 }
