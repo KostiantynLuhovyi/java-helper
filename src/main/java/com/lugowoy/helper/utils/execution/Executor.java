@@ -15,7 +15,7 @@ public interface Executor {
     ExecutionTime EXECUTION_TIME = new ExecutionTime();
 
     static <T> void execute(Callable<T> callable, ExecutionResultOutput executionResultOutput, String outputResult,
-                                                    ExecutionTimeOutput executionTimeOutput) throws Exception {
+                                                        ExecutionTimeOutput executionTimeOutput) throws Exception {
         EXECUTION_TIME.startExecutionTime();
         T result = callable.call();
         EXECUTION_TIME.endExecutionTime();
@@ -23,7 +23,7 @@ public interface Executor {
         executionTimeOutput.outputExecutionTime(EXECUTION_TIME.executionTime());
     }
 
-    static <T> void execute(Runnable runnable, ExecutionTimeOutput executionTimeOutput) {
+    static void execute(Runnable runnable, ExecutionTimeOutput executionTimeOutput) {
         EXECUTION_TIME.startExecutionTime();
         runnable.run();
         EXECUTION_TIME.endExecutionTime();
