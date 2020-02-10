@@ -10,12 +10,15 @@ import java.util.concurrent.TimeUnit;
  * @since 2.7
  */
 //todo write doc's
-public class ExecutionTimeOutputToConsole {
+public final class ExecutionTimeOutputToConsole {
 
     private static final String TIME_HOURS_AND_THEN = "\nRuntime: %d hours, %d minutes, %d seconds, %d milliseconds \n";
     private static final String TIME_MINUTES_AND_THEN = "\nRuntime: %d minutes, %d seconds, %d milliseconds \n";
     private static final String TIME_SECONDS_AND_THEN = "\nRuntime: %d seconds, %d milliseconds \n";
     private static final String TIME_MILLISECONDS = "\nRuntime: %d milliseconds \n";
+
+    private ExecutionTimeOutputToConsole() {
+    }
 
     public static void outputExecutionTime(long milliseconds) {
         long hours = calculateMillisecondsToHours(milliseconds);
