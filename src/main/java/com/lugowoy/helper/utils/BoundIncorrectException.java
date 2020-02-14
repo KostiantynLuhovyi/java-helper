@@ -2,14 +2,14 @@ package com.lugowoy.helper.utils;
 
 /**
  * Class exception.
- * Thrown when various boundary value is not in the valid range of values.
- * <p> Created by Konstantin Lugowoy on 06.09.2019.
+ * Thrown when various boundary values do not satisfy certain conditions.
+ * <p> Created by Konstantin Lugowoy on 14.02.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
- * @since 1.7.5
+ * @version 1.0
+ * @since 2.8
  */
-public class BoundOutOfRangeException extends RuntimeException {
+public class BoundIncorrectException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with the specified detail message.
@@ -19,7 +19,7 @@ public class BoundOutOfRangeException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public BoundOutOfRangeException(String message) {
+    public BoundIncorrectException(String message) {
         super(message);
     }
 

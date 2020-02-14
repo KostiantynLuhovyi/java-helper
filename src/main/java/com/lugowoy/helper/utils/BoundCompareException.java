@@ -1,13 +1,14 @@
 package com.lugowoy.helper.utils;
 
 /**
- * Created by Konstantin Lugowoy on 19.10.2019.
+ * Class exception.
+ * Thrown when comparisons of various boundary values do not satisfy certain conditions.
+ * <p> Created by Konstantin Lugowoy on 19.10.2019.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
  * @since 2.0
  */
-//todo write doc's
 public class BoundCompareException extends RuntimeException {
 
     /**
