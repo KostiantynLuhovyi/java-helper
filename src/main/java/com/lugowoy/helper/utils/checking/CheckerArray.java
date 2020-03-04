@@ -16,18 +16,20 @@ import java.util.Objects;
  */
 public final class CheckerArray {
 
+    private static final int ARRAY_HEADER = 8;
+
+    private static final String MSG_EXCEPTION_ARRAY_IS_NULL = "Array is null.";
+    private static final String MSG_EXCEPTION_LENGTH_OUT_OF_DEFAULT_RANGE =
+                                       "Length array is out of range (0 - " + (Integer.MAX_VALUE - ARRAY_HEADER) + ").";
+
     /**
      * The lower (starting) value of the boundary of the length of the array.
      */
     public static final int LOWER_BOUND_LENGTH_ARRAY = 0;
-    private static final int ARRAY_HEADER = 8;
     /**
      * The upper (finishing) value of the boundary of the length of the array.
      */
     public static final int UPPER_BOUND_LENGTH_ARRAY = Integer.MAX_VALUE - ARRAY_HEADER;
-    private static final String MSG_EXCEPTION_ARRAY_IS_NULL = "Array is null.";
-    private static final String MSG_EXCEPTION_LENGTH_OUT_OF_DEFAULT_RANGE =
-            "Length array is out of range (0 - " + (Integer.MAX_VALUE - ARRAY_HEADER) + ").";
 
     private CheckerArray() {
     }
