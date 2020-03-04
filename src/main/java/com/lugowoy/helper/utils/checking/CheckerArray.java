@@ -46,7 +46,7 @@ public final class CheckerArray {
     public static void checkLengthInArray(AbstractArray array) {
         Objects.requireNonNull(array, MSG_EXCEPTION_ARRAY_IS_NULL);
         int arraySize = array.size();
-        if (arraySize < LOWER_BOUND_LENGTH_ARRAY || arraySize > UPPER_BOUND_LENGTH_ARRAY) {
+        if (isIncorrectLength(arraySize, UPPER_BOUND_LENGTH_ARRAY)) {
             throw new LengthArrayOutOfRangeException(MSG_EXCEPTION_LENGTH_OUT_OF_DEFAULT_RANGE);
         }
     }
@@ -67,7 +67,7 @@ public final class CheckerArray {
         Objects.requireNonNull(array, MSG_EXCEPTION_ARRAY_IS_NULL);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH_ARRAY, UPPER_BOUND_LENGTH_ARRAY);
         int arraySize = array.size();
-        if (arraySize < LOWER_BOUND_LENGTH_ARRAY || array.size() > upperBoundLength) {
+        if (isIncorrectLength(arraySize, upperBoundLength)) {
             throw new LengthArrayOutOfRangeException("Length array is out of range (0 - " + upperBoundLength + ").");
         }
     }
@@ -84,7 +84,7 @@ public final class CheckerArray {
     public static <T> void checkLengthInArray(T[] array) {
         Objects.requireNonNull(array, MSG_EXCEPTION_ARRAY_IS_NULL);
         int arrayLength = array.length;
-        if (arrayLength < LOWER_BOUND_LENGTH_ARRAY || arrayLength > UPPER_BOUND_LENGTH_ARRAY) {
+        if (isIncorrectLength(arrayLength, UPPER_BOUND_LENGTH_ARRAY)) {
             throw new LengthArrayOutOfRangeException(MSG_EXCEPTION_LENGTH_OUT_OF_DEFAULT_RANGE);
         }
     }
@@ -105,7 +105,7 @@ public final class CheckerArray {
         Objects.requireNonNull(array, MSG_EXCEPTION_ARRAY_IS_NULL);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH_ARRAY, UPPER_BOUND_LENGTH_ARRAY);
         int arrayLength = array.length;
-        if (arrayLength < LOWER_BOUND_LENGTH_ARRAY || arrayLength > upperBoundLength) {
+        if (isIncorrectLength(arrayLength, upperBoundLength)) {
             throw new LengthArrayOutOfRangeException("Length array is out of range (0 - " + upperBoundLength + ").");
         }
     }
@@ -122,7 +122,7 @@ public final class CheckerArray {
     public static void checkLengthInArray(int[] array) {
         Objects.requireNonNull(array, MSG_EXCEPTION_ARRAY_IS_NULL);
         int arrayLength = array.length;
-        if (arrayLength < LOWER_BOUND_LENGTH_ARRAY || arrayLength > UPPER_BOUND_LENGTH_ARRAY) {
+        if (isIncorrectLength(arrayLength, UPPER_BOUND_LENGTH_ARRAY)) {
             throw new LengthArrayOutOfRangeException(MSG_EXCEPTION_LENGTH_OUT_OF_DEFAULT_RANGE);
         }
     }
@@ -143,7 +143,7 @@ public final class CheckerArray {
         Objects.requireNonNull(array, MSG_EXCEPTION_ARRAY_IS_NULL);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH_ARRAY, UPPER_BOUND_LENGTH_ARRAY);
         int arrayLength = array.length;
-        if (arrayLength < LOWER_BOUND_LENGTH_ARRAY || arrayLength > upperBoundLength) {
+        if (isIncorrectLength(arrayLength, upperBoundLength)) {
             throw new LengthArrayOutOfRangeException("Length array is out of range (0 - " + upperBoundLength + ").");
         }
     }
@@ -160,7 +160,7 @@ public final class CheckerArray {
     public static void checkLengthInArray(double[] array) {
         Objects.requireNonNull(array, MSG_EXCEPTION_ARRAY_IS_NULL);
         int arrayLength = array.length;
-        if (arrayLength < LOWER_BOUND_LENGTH_ARRAY || arrayLength > UPPER_BOUND_LENGTH_ARRAY) {
+        if (isIncorrectLength(arrayLength, UPPER_BOUND_LENGTH_ARRAY)) {
             throw new LengthArrayOutOfRangeException(MSG_EXCEPTION_LENGTH_OUT_OF_DEFAULT_RANGE);
         }
     }
@@ -182,7 +182,7 @@ public final class CheckerArray {
         Objects.requireNonNull(array, MSG_EXCEPTION_ARRAY_IS_NULL);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH_ARRAY, UPPER_BOUND_LENGTH_ARRAY);
         int arrayLength = array.length;
-        if (arrayLength < LOWER_BOUND_LENGTH_ARRAY || arrayLength > upperBoundLength) {
+        if (isIncorrectLength(arrayLength, upperBoundLength)) {
             throw new LengthArrayOutOfRangeException("Length array is out of range (0 - " + upperBoundLength + ").");
         }
     }
@@ -197,7 +197,7 @@ public final class CheckerArray {
      */
     public static void checkLengthArray(int lengthArray) {
         CheckerBound.isCorrectBound(lengthArray, LOWER_BOUND_LENGTH_ARRAY, UPPER_BOUND_LENGTH_ARRAY);
-        if (lengthArray < LOWER_BOUND_LENGTH_ARRAY || lengthArray > UPPER_BOUND_LENGTH_ARRAY) {
+        if (isIncorrectLength(lengthArray, UPPER_BOUND_LENGTH_ARRAY)) {
             throw new LengthArrayOutOfRangeException(MSG_EXCEPTION_LENGTH_OUT_OF_DEFAULT_RANGE);
         }
     }
@@ -216,9 +216,17 @@ public final class CheckerArray {
     public static void checkLengthArray(int lengthArray, int upperBoundLength) {
         CheckerBound.isCorrectBound(lengthArray, LOWER_BOUND_LENGTH_ARRAY, UPPER_BOUND_LENGTH_ARRAY);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH_ARRAY, UPPER_BOUND_LENGTH_ARRAY);
-        if (lengthArray < LOWER_BOUND_LENGTH_ARRAY || lengthArray > upperBoundLength) {
+        if (isIncorrectLength(lengthArray, upperBoundLength)) {
             throw new LengthArrayOutOfRangeException("Length array is out of range (0 - " + upperBoundLength + ").");
         }
+    }
+
+    private static boolean isIncorrectLength(int lengthArray, int upperBoundLength) {
+        boolean isIncorrectLength = false;
+        if ((lengthArray < LOWER_BOUND_LENGTH_ARRAY) || (lengthArray > upperBoundLength)) {
+            isIncorrectLength = true;
+        }
+        return isIncorrectLength;
     }
 
 }
