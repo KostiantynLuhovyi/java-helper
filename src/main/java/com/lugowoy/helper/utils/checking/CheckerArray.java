@@ -11,7 +11,7 @@ import java.util.Objects;
  * <p> Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 1.6.6
  */
 public final class CheckerArray {
@@ -38,9 +38,9 @@ public final class CheckerArray {
      * Checks that the length(size) of the {@code array} argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      *
-     * @param array Object of the class {@link AbstractArray} whose length(size) will be checked.
-     * @throws NullPointerException           If the argument {@code array} is null.
-     * @throws LengthArrayOutOfRangeException If the argument {@code array} length(size) of the argument is out of range of valid values
+     * @param array an object of the class {@link AbstractArray} whose length(size) will be checked.
+     * @throws NullPointerException           if the argument {@code array} is null.
+     * @throws LengthArrayOutOfRangeException if the argument {@code array} length(size) of the argument is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     public static void checkLengthInArray(AbstractArray array) {
@@ -55,12 +55,12 @@ public final class CheckerArray {
      * Checks that the length(size) of the {@code array} argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      *
-     * @param array            Object of the class {@link AbstractArray} whose length(size) will be checked.
-     * @param upperBoundLength Numeric upper bound valid value of the length of the array to check.
-     * @throws NullPointerException           If the argument {@code array} is null.
-     * @throws BoundOutOfRangeException       If the argument value {@code upperBoundLength} out of range values
+     * @param array            an object of the class {@link AbstractArray} whose length(size) will be checked.
+     * @param upperBoundLength numeric upper bound valid value of the length of the array to check.
+     * @throws NullPointerException           if the argument {@code array} is null.
+     * @throws BoundOutOfRangeException       if the argument value {@code upperBoundLength} out of range values
      *                                        from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws LengthArrayOutOfRangeException If the argument {@code array} length(size) of the argument is out of range of valid values
+     * @throws LengthArrayOutOfRangeException if the argument {@code array} length(size) of the argument is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      */
     public static void checkLengthInArray(AbstractArray array, int upperBoundLength) {
@@ -76,9 +76,9 @@ public final class CheckerArray {
      * Checks that the length(size) of the {@code array} argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      *
-     * @param array Array whose length(size) will be checked.
-     * @throws NullPointerException           If the argument {@code array} is null.
-     * @throws LengthArrayOutOfRangeException If the argument {@code array} length(size) of the argument is out of range of valid values
+     * @param array an array whose length(size) will be checked.
+     * @throws NullPointerException           if the argument {@code array} is null.
+     * @throws LengthArrayOutOfRangeException if the argument {@code array} length(size) of the argument is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     public static <T> void checkLengthInArray(T[] array) {
@@ -93,12 +93,12 @@ public final class CheckerArray {
      * Checks that the length(size) of the {@code array} argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      *
-     * @param array            Array whose length(size) will be checked.
-     * @param upperBoundLength Numeric upper bound valid value of the length of the array to check.
-     * @throws NullPointerException           If the argument {@code array} is null.
-     * @throws BoundOutOfRangeException       If the argument value {@code upperBoundLength} out of range values
+     * @param array            an array whose length(size) will be checked.
+     * @param upperBoundLength numeric upper bound valid value of the length of the array to check.
+     * @throws NullPointerException           if the argument {@code array} is null.
+     * @throws BoundOutOfRangeException       if the argument value {@code upperBoundLength} out of range values
      *                                        from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws LengthArrayOutOfRangeException If the argument {@code array} length(size) of the argument is out of range of valid values
+     * @throws LengthArrayOutOfRangeException if the argument {@code array} length(size) of the argument is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      */
     public static <T> void checkLengthInArray(T[] array, int upperBoundLength) {
@@ -114,9 +114,9 @@ public final class CheckerArray {
      * Checks that the length(size) of the {@code array} argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      *
-     * @param array Array whose length(size) will be checked.
-     * @throws NullPointerException           If the argument {@code array} is null.
-     * @throws LengthArrayOutOfRangeException If the argument {@code array} length(size) of the argument is out of range of valid values
+     * @param array an array whose length(size) will be checked.
+     * @throws NullPointerException           if the argument {@code array} is null.
+     * @throws LengthArrayOutOfRangeException if the argument {@code array} length(size) of the argument is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     public static void checkLengthInArray(int[] array) {
@@ -131,12 +131,12 @@ public final class CheckerArray {
      * Checks that the length(size) of the {@code array} argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      *
-     * @param array            Array whose length(size) will be checked.
-     * @param upperBoundLength Numeric upper bound valid value of the length of the array to check.
-     * @throws NullPointerException           If the argument {@code array} is null.
-     * @throws BoundOutOfRangeException       If the argument value {@code upperBoundLength} out of range values
+     * @param array            an array whose length(size) will be checked.
+     * @param upperBoundLength numeric upper bound valid value of the length of the array to check.
+     * @throws NullPointerException           if the argument {@code array} is null.
+     * @throws BoundOutOfRangeException       if the argument value {@code upperBoundLength} out of range values
      *                                        from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws LengthArrayOutOfRangeException If the argument {@code array} length(size) of the argument is out of range of valid values
+     * @throws LengthArrayOutOfRangeException if the argument {@code array} length(size) of the argument is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      */
     public static void checkLengthInArray(int[] array, int upperBoundLength) {
@@ -152,9 +152,9 @@ public final class CheckerArray {
      * Checks that the length(size) of the {@code array} argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      *
-     * @param array Array whose length(size) will be checked.
-     * @throws NullPointerException           If the argument {@code array} is null.
-     * @throws LengthArrayOutOfRangeException If the argument {@code array} length(size) of the argument is out of range of valid values
+     * @param array an array whose length(size) will be checked.
+     * @throws NullPointerException           if the argument {@code array} is null.
+     * @throws LengthArrayOutOfRangeException if the argument {@code array} length(size) of the argument is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     public static void checkLengthInArray(double[] array) {
@@ -169,13 +169,13 @@ public final class CheckerArray {
      * Checks that the length(size) of the {@code array} argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      *
-     * @param array            Array whose length(size) will be checked.
-     * @param upperBoundLength Numeric upper bound valid value of the length of the array to check.
-     * @throws NullPointerException           If the argument {@code array} is null.
-     * @throws BoundOutOfRangeException       If the argument value {@code upperBoundLength} out of range values
+     * @param array            an array whose length(size) will be checked.
+     * @param upperBoundLength numeric upper bound valid value of the length of the array to check.
+     * @throws NullPointerException           if the argument {@code array} is null.
+     * @throws BoundOutOfRangeException       if the argument value {@code upperBoundLength} out of range values
      *                                        from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY}
      *                                        to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws LengthArrayOutOfRangeException If the argument {@code array} length(size) of the argument is out of range of valid values
+     * @throws LengthArrayOutOfRangeException if the argument {@code array} length(size) of the argument is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      */
     public static void checkLengthInArray(double[] array, int upperBoundLength) {
@@ -191,8 +191,8 @@ public final class CheckerArray {
      * Checks that the length(size) value argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      *
-     * @param lengthArray Length(size) value to check.
-     * @throws LengthArrayOutOfRangeException If the argument {@code lengthArray} is out of range of valid values
+     * @param lengthArray length(size) value to check.
+     * @throws LengthArrayOutOfRangeException if the argument {@code lengthArray} is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     public static void checkLengthArray(int lengthArray) {
@@ -206,11 +206,11 @@ public final class CheckerArray {
      * Checks that the length(size) value argument is in the valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      *
-     * @param lengthArray      Length(size) value to check.
-     * @param upperBoundLength Numeric upper bound valid value of the length to check.
-     * @throws BoundOutOfRangeException       If the argument value {@code upperBoundLength} out of range values
+     * @param lengthArray      length(size) value to check.
+     * @param upperBoundLength numeric upper bound valid value of the length to check.
+     * @throws BoundOutOfRangeException       if the argument value {@code upperBoundLength} out of range values
      *                                        from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws LengthArrayOutOfRangeException If the argument {@code array} length(size) of the argument is out of range of valid values
+     * @throws LengthArrayOutOfRangeException if the argument {@code array} length(size) of the argument is out of range of valid values
      *                                        ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      */
     public static void checkLengthArray(int lengthArray, int upperBoundLength) {
