@@ -47,31 +47,27 @@ public final class CheckerBound {
     /**
      * Description of the exception that the lower bound not equal to the upper bound.
      */
-    public static final String MSG_EXCEPTION_LOWER_NOT_EQUAL_UPPER = "Lower bound is not equal to upper bound.";
+    public static final String MSG_EXCEPTION_LOWER_NOT_EQUAL_UPPER = "Lower bound not equal to upper bound.";
     /**
      * Description of the exception that the lower bound equal to the upper bound.
      */
-    public static final String MSG_EXCEPTION_LOWER_EQUAL_UPPER = "Lower bound is equal to upper bound.";
+    public static final String MSG_EXCEPTION_LOWER_EQUAL_UPPER = "Lower bound equal to upper bound.";
     /**
      * Description of the exception that the lower bound greater or equal to the upper bound.
      */
-    public static final String MSG_EXCEPTION_LOWER_GREATER_OR_EQUAL_THAN_UPPER =
-            "Lower bound is greater or equal than upper bound.";
+    public static final String MSG_EXCEPTION_LOWER_GREATER_OR_EQUAL_UPPER = "Lower bound greater or equal upper bound.";
     /**
      * Description of the exception that the lower bound less or equal to the upper bound.
      */
-    public static final String MSG_EXCEPTION_LOWER_LESS_OR_EQUAL_THAN_UPPER =
-            "Lower bound is less or equal than upper bound.";
+    public static final String MSG_EXCEPTION_LOWER_LESS_OR_EQUAL_UPPER = "Lower bound less or equal upper bound.";
     /**
      * Description of the exception that the lower bound greater or not equal to the upper bound.
      */
-    public static final String MSG_EXCEPTION_LOWER_GREATER_OR_NOT_EQUAL_THAN_UPPER =
-            "Lower bound is greater or not equal than upper bound.";
+    public static final String MSG_EXCEPTION_LOWER_GREATER_OR_NOT_EQUAL_UPPER = "Lower bound greater or not equal upper bound.";
     /**
      * Description of the exception that the lower bound less or not equal to the upper bound.
      */
-    public static final String MSG_EXCEPTION_LOWER_LESS_OR_NOT_EQUAL_THAN_UPPER =
-            "Lower bound is less or not equal than upper bound.";
+    public static final String MSG_EXCEPTION_LOWER_LESS_OR_NOT_EQUAL_UPPER = "Lower bound less or not equal upper bound.";
 
     private CheckerBound() {
     }
@@ -164,8 +160,8 @@ public final class CheckerBound {
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         double boundValue = bound.doubleValue();
         if (boundValue < lowerBound.doubleValue() || boundValue > upperBound.doubleValue()) {
-            throw new BoundOutOfRangeException("Bound value is out of range (" + lowerBound.doubleValue()
-                    + " - " + upperBound.doubleValue() + ").");
+            throw new BoundOutOfRangeException("Bound value out of range (" + lowerBound.doubleValue()
+                                                                    + " - " + upperBound.doubleValue() + ").");
         }
     }
 
@@ -213,7 +209,7 @@ public final class CheckerBound {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() >= upperBound.doubleValue()) {
-            throw new BoundCompareException(MSG_EXCEPTION_LOWER_GREATER_OR_EQUAL_THAN_UPPER);
+            throw new BoundCompareException(MSG_EXCEPTION_LOWER_GREATER_OR_EQUAL_UPPER);
         }
     }
 
@@ -229,7 +225,7 @@ public final class CheckerBound {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() <= upperBound.doubleValue()) {
-            throw new BoundCompareException(MSG_EXCEPTION_LOWER_LESS_OR_EQUAL_THAN_UPPER);
+            throw new BoundCompareException(MSG_EXCEPTION_LOWER_LESS_OR_EQUAL_UPPER);
         }
     }
 
@@ -245,7 +241,7 @@ public final class CheckerBound {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() > upperBound.doubleValue()) {
-            throw new BoundCompareException(MSG_EXCEPTION_LOWER_GREATER_OR_NOT_EQUAL_THAN_UPPER);
+            throw new BoundCompareException(MSG_EXCEPTION_LOWER_GREATER_OR_NOT_EQUAL_UPPER);
         }
     }
 
@@ -261,7 +257,7 @@ public final class CheckerBound {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() < upperBound.doubleValue()) {
-            throw new BoundCompareException(MSG_EXCEPTION_LOWER_LESS_OR_NOT_EQUAL_THAN_UPPER);
+            throw new BoundCompareException(MSG_EXCEPTION_LOWER_LESS_OR_NOT_EQUAL_UPPER);
         }
     }
 
