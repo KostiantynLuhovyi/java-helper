@@ -11,7 +11,7 @@ import java.util.Objects;
  * <p> Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  * @since 1.6.6
  */
 public final class CheckerBound {
