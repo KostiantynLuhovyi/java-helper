@@ -173,7 +173,7 @@ public final class CheckerBound {
      * @throws NullPointerException  if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} not equal {@code upperBound}.
      */
-    public static void isLowerBoundEqualThanUpperBound(Number lowerBound, Number upperBound) {
+    public static void isLowerBoundEqualUpperBound(Number lowerBound, Number upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() != upperBound.doubleValue()) {
@@ -189,7 +189,7 @@ public final class CheckerBound {
     * @throws NullPointerException if any of the arguments null.
     * @throws BoundCompareException if {@code lowerBound} equal {@code upperBound}.
     */
-    public static void isLowerBoundNotEqualThanUpperBound(Number lowerBound, Number upperBound) {
+    public static void isLowerBoundNotEqualUpperBound(Number lowerBound, Number upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() == upperBound.doubleValue()) {
@@ -205,7 +205,7 @@ public final class CheckerBound {
      * @throws NullPointerException  if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
-    public static void isLowerBoundLessThanUpperBound(Number lowerBound, Number upperBound) {
+    public static void isLowerBoundLessUpperBound(Number lowerBound, Number upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() >= upperBound.doubleValue()) {
@@ -221,7 +221,7 @@ public final class CheckerBound {
      * @throws NullPointerException  if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} less or equal than {@code upperBound}.
      */
-    public static void isLowerBoundGreaterThanUpperBound(Number lowerBound, Number upperBound) {
+    public static void isLowerBoundGreaterUpperBound(Number lowerBound, Number upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() <= upperBound.doubleValue()) {
@@ -237,7 +237,7 @@ public final class CheckerBound {
      * @throws NullPointerException  if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} greater than {@code upperBound}.
      */
-    public static void isLowerBoundLessOrEqualThanUpperBound(Number lowerBound, Number upperBound) {
+    public static void isLowerBoundLessOrEqualUpperBound(Number lowerBound, Number upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() > upperBound.doubleValue()) {
@@ -253,7 +253,7 @@ public final class CheckerBound {
      * @throws NullPointerException  if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} less than {@code upperBound}.
      */
-    public static void isLowerBoundGreaterOrEqualThanUpperBound(Number lowerBound, Number upperBound) {
+    public static void isLowerBoundGreaterOrEqualUpperBound(Number lowerBound, Number upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
         if (lowerBound.doubleValue() < upperBound.doubleValue()) {
