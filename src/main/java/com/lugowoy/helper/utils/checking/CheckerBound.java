@@ -76,7 +76,8 @@ public final class CheckerBound {
      * Check the {@code bound} is positive.
      *
      * @param bound the bound value to check.
-     * @throws NullPointerException    if the {@code bound} null.
+     *
+     * @throws NullPointerException if the {@code bound} null.
      * @throws BoundIncorrectException if the {@code bound} negative or zero.
      */
     public static void isPositiveBound(Number bound) {
@@ -90,7 +91,8 @@ public final class CheckerBound {
      * Check the {@code bound} is negative.
      *
      * @param bound the bound value to check.
-     * @throws NullPointerException    if the {@code bound} null.
+     *
+     * @throws NullPointerException if the {@code bound} null.
      * @throws BoundIncorrectException if the {@code bound} positive or zero.
      */
     public static void isNegativeBound(Number bound) {
@@ -104,7 +106,8 @@ public final class CheckerBound {
      * Check the {@code bound} is zero.
      *
      * @param bound the bound value to check.
-     * @throws NullPointerException    if the {@code bound} null.
+     *
+     * @throws NullPointerException if the {@code bound} null.
      * @throws BoundIncorrectException if the {@code bound} nonzero.
      */
     public static void isZeroBound(Number bound) {
@@ -118,7 +121,8 @@ public final class CheckerBound {
      * Check the {@code bound} is nonzero.
      *
      * @param bound the bound value to check.
-     * @throws NullPointerException    if the {@code bound} null.
+     *
+     * @throws NullPointerException if the {@code bound} null.
      * @throws BoundIncorrectException If the {@code bound} zero.
      */
     public static void isNonZeroBound(Number bound) {
@@ -131,9 +135,10 @@ public final class CheckerBound {
     /**
      * Check the {@code bound} in range from {@literal 0.0} to {@code upperBound}.
      *
-     * @param bound      the bound value to check.
+     * @param bound the bound value to check.
      * @param upperBound the upper bound value to check.
-     * @throws NullPointerException     if any of the arguments null.
+     *
+     * @throws NullPointerException if any of the arguments null.
      * @throws BoundOutOfRangeException if the {@code bound} out of range from {@literal 0.0} to {@code upperBound}.
      */
     public static void isCorrectBound(Number bound, Number upperBound) {
@@ -148,10 +153,11 @@ public final class CheckerBound {
     /**
      * Check the {@code bound} in range from {@code lowerBound} to {@code upperBound}.
      *
-     * @param bound      the bound value to check.
+     * @param bound the bound value to check.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     * @throws NullPointerException     if any of the arguments null.
+     *
+     * @throws NullPointerException if any of the arguments null.
      * @throws BoundOutOfRangeException if the {@code bound} out of range from {@code lowerBound} to {@code upperBound}.
      */
     public static void isCorrectBound(Number bound, Number lowerBound, Number upperBound) {
@@ -170,7 +176,8 @@ public final class CheckerBound {
      *
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     * @throws NullPointerException  if any of the arguments null.
+     *
+     * @throws NullPointerException if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} not equal {@code upperBound}.
      */
     public static void isLowerBoundEqualUpperBound(Number lowerBound, Number upperBound) {
@@ -182,13 +189,14 @@ public final class CheckerBound {
     }
 
     /**
-    * Check {@code lowerBound} and {@code upperBound} not equal.
-    *
-    * @param lowerBound the lower bound value to check.
-    * @param upperBound the upper bound value to check.
-    * @throws NullPointerException if any of the arguments null.
-    * @throws BoundCompareException if {@code lowerBound} equal {@code upperBound}.
-    */
+     * Check {@code lowerBound} and {@code upperBound} not equal.
+     *
+     * @param lowerBound the lower bound value to check.
+     * @param upperBound the upper bound value to check.
+     *
+     * @throws NullPointerException if any of the arguments null.
+     * @throws BoundCompareException if {@code lowerBound} equal {@code upperBound}.
+     */
     public static void isLowerBoundNotEqualUpperBound(Number lowerBound, Number upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXCEPTION_LOWER_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXCEPTION_UPPER_BOUND_IS_NULL);
@@ -202,7 +210,8 @@ public final class CheckerBound {
      *
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     * @throws NullPointerException  if any of the arguments null.
+     *
+     * @throws NullPointerException if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     public static void isLowerBoundLessUpperBound(Number lowerBound, Number upperBound) {
@@ -218,7 +227,8 @@ public final class CheckerBound {
      *
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     * @throws NullPointerException  if any of the arguments null.
+     *
+     * @throws NullPointerException if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} less or equal than {@code upperBound}.
      */
     public static void isLowerBoundGreaterUpperBound(Number lowerBound, Number upperBound) {
@@ -234,7 +244,8 @@ public final class CheckerBound {
      *
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     * @throws NullPointerException  if any of the arguments null.
+     *
+     * @throws NullPointerException if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} greater than {@code upperBound}.
      */
     public static void isLowerBoundLessOrEqualUpperBound(Number lowerBound, Number upperBound) {
@@ -250,7 +261,8 @@ public final class CheckerBound {
      *
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     * @throws NullPointerException  if any of the arguments null.
+     *
+     * @throws NullPointerException if any of the arguments null.
      * @throws BoundCompareException if {@code lowerBound} less than {@code upperBound}.
      */
     public static void isLowerBoundGreaterOrEqualUpperBound(Number lowerBound, Number upperBound) {
