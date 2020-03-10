@@ -11,63 +11,24 @@ import java.util.Objects;
  * <p> Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 1.7
+ * @version 1.8
  * @since 1.6.6
  */
 public final class CheckerBound {
 
-    /**
-     * Description of the exception that bound value is null.
-     */
-    public static final String MSG_EXCEPTION_BOUND_IS_NULL = "Bound is null.";
-    /**
-     * Description of the exception that lower bound value is null.
-     */
-    public static final String MSG_EXCEPTION_LOWER_BOUND_IS_NULL = "Lower bound is null.";
-    /**
-     * Description of the exception that upper bound value is null.
-     */
-    public static final String MSG_EXCEPTION_UPPER_BOUND_IS_NULL = "Upper bound is null.";
-    /**
-     * Description of the exception that bound value is negative.
-     */
-    public static final String MSG_EXCEPTION_NEGATIVE_BOUND = "Bound is negative";
-    /**
-     * Description of the exception that bound value is positive.
-     */
-    public static final String MSG_EXCEPTION_POSITIVE_BOUND = "Bound is positive";
-    /**
-     * Description of the exception that bound value is nonzero.
-     */
-    public static final String MSG_EXCEPTION_NONZERO_BOUND = "Bound is nonzero.";
-    /**
-     * Description of the exception that bound value is zero.
-     */
-    public static final String MSG_EXCEPTION_ZERO_BOUND = "Bound is zero.";
-    /**
-     * Description of the exception that the lower bound not equal to the upper bound.
-     */
-    public static final String MSG_EXCEPTION_LOWER_NOT_EQUAL_UPPER = "Lower bound not equal to upper bound.";
-    /**
-     * Description of the exception that the lower bound equal to the upper bound.
-     */
-    public static final String MSG_EXCEPTION_LOWER_EQUAL_UPPER = "Lower bound equal to upper bound.";
-    /**
-     * Description of the exception that the lower bound greater or equal to the upper bound.
-     */
-    public static final String MSG_EXCEPTION_LOWER_GREATER_OR_EQUAL_UPPER = "Lower bound greater or equal upper bound.";
-    /**
-     * Description of the exception that the lower bound less or equal to the upper bound.
-     */
-    public static final String MSG_EXCEPTION_LOWER_LESS_OR_EQUAL_UPPER = "Lower bound less or equal upper bound.";
-    /**
-     * Description of the exception that the lower bound greater or not equal to the upper bound.
-     */
-    public static final String MSG_EXCEPTION_LOWER_GREATER_OR_NOT_EQUAL_UPPER = "Lower bound greater or not equal upper bound.";
-    /**
-     * Description of the exception that the lower bound less or not equal to the upper bound.
-     */
-    public static final String MSG_EXCEPTION_LOWER_LESS_OR_NOT_EQUAL_UPPER = "Lower bound less or not equal upper bound.";
+    private static final String MSG_EXCEPTION_BOUND_IS_NULL = "Bound is null.";
+    private static final String MSG_EXCEPTION_LOWER_BOUND_IS_NULL = "Lower bound is null.";
+    private static final String MSG_EXCEPTION_UPPER_BOUND_IS_NULL = "Upper bound is null.";
+    private static final String MSG_EXCEPTION_NEGATIVE_BOUND = "Bound is negative";
+    private static final String MSG_EXCEPTION_POSITIVE_BOUND = "Bound is positive";
+    private static final String MSG_EXCEPTION_NONZERO_BOUND = "Bound is nonzero.";
+    private static final String MSG_EXCEPTION_ZERO_BOUND = "Bound is zero.";
+    private static final String MSG_EXCEPTION_LOWER_NOT_EQUAL_UPPER = "Lower bound not equal to upper bound.";
+    private static final String MSG_EXCEPTION_LOWER_EQUAL_UPPER = "Lower bound equal to upper bound.";
+    private static final String MSG_EXCEPTION_LOWER_GREATER_OR_EQUAL_UPPER = "Lower bound greater or equal upper bound.";
+    private static final String MSG_EXCEPTION_LOWER_LESS_OR_EQUAL_UPPER = "Lower bound less or equal upper bound.";
+    private static final String MSG_EXCEPTION_LOWER_GREATER_OR_NOT_EQUAL_UPPER = "Lower bound greater or not equal upper bound.";
+    private static final String MSG_EXCEPTION_LOWER_LESS_OR_NOT_EQUAL_UPPER = "Lower bound less or not equal upper bound.";
 
     private CheckerBound() {
     }
