@@ -9,7 +9,7 @@ package com.lugowoy.helper.utils;
  * @version 1.0
  * @since 2.0
  */
-public class BoundCompareException extends RuntimeException {
+public class BoundsCompareException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with the specified detail message.
@@ -19,7 +19,7 @@ public class BoundCompareException extends RuntimeException {
      * @param message the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public BoundCompareException(String message) {
+    public BoundsCompareException(String message) {
         super(message);
     }
 
