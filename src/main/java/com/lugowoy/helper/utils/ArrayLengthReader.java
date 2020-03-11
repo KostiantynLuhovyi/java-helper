@@ -9,23 +9,25 @@ import java.io.OutputStream;
 import java.util.Objects;
 
 /**
- * Interface with static functionality for reading and providing data about the length of the array.
- * <p>Created by Konstantin Lugowoy on 02.08.2017.
+ * This interafce contains functionality for reading data about the length of the array.
+ * <p> Created by Konstantin Lugowoy on 02.08.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 1.0
  */
-//todo edit doc's
 public final class ArrayLengthReader {
 
     /**
-     * Read and returns the length of an array.
+     * Reads the length(size) for an array.
      *
-     * @param reader The object to read the length value.
-     * @return The result of the length of an array.
-     * @throws NullPointerException           If reader is null.
-     * @throws LengthArrayOutOfRangeException If result length array value is incorrect.
+     * @param reader the {@code reader} to read the length(size) value.
+     *
+     * @return the read length(size) for an array.
+     *
+     * @throws NullPointerException if {@code reader} is null.
+     * @throws LengthArrayOutOfRangeException if the read length(size) for an array out of valid range
+     * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     public static int readLength(final Reading reader) {
         int resultLengthArray;
@@ -36,14 +38,18 @@ public final class ArrayLengthReader {
     }
 
     /**
-     * Read and returns the length of an array.
+     * Reads the length(size) for an array.
      *
-     * @param reader           The object to read the length value.
-     * @param upperBoundLength An argument whose value indicates the maximum allowable length of the array.
-     * @return The result of the length of an array.
-     * @throws NullPointerException           If reader is null.
-     * @throws BoundOutOfRangeException       If bound value is incorrect.
-     * @throws LengthArrayOutOfRangeException If result length array value is incorrect.
+     * @param reader the {@code reader} to read the length(size) value.
+     * @param upperBoundLength the upper bound length(size) value to check the read value.
+     *
+     * @return the read length(size) for an array.
+     *
+     * @throws NullPointerException if {@code reader} is null.
+     * @throws BoundOutOfRangeException if the {@code upperBoundLength} out of range
+     * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws LengthArrayOutOfRangeException if the read length(size) for an array out of valid range
+     * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      */
     public static int readLength(final Reading reader, final int upperBoundLength) {
         int resultLengthArray;
@@ -53,22 +59,49 @@ public final class ArrayLengthReader {
         return resultLengthArray;
     }
 
-    public static int readLength(final Reading reader, final OutputStream outputStream, final String msgOutputStream) throws IOException {
-        int resultLengthArray;
-        Objects.requireNonNull(reader, "Input is not possible. Reader must not be null.");
-        Objects.requireNonNull(outputStream, "OutputStream must not be null.");
+    /**
+     * Reads the length(size) for an array.
+     *
+     * @param reader the {@code reader} to read the length(size) value.
+     * @param outputStream the stream for outputting a message prior to read the length(size) value.
+     * @param msgOutputStream the text message to output by {@code outputStream} stream.
+     *
+     * @return the read length(size) for an array.
+     *
+     * @throws NullPointerException if at least one of the arguments is null.
+     * @throws IOException if an I/O error occurs.
+     * @throws LengthArrayOutOfRangeException if the read length(size) for an array out of valid range
+     * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     */
+    public static int readLength(Reading reader, OutputStream outputStream, String msgOutputStream) throws IOException {
+        Objects.requireNonNull(reader, MSG_EXCEPTION_READER_IS_NULL);
+        Objects.requireNonNull(outputStream, MSG_EXCEPTION_OUTPUT_STREAM_IS_NULL);
         outputStream.write(msgOutputStream.getBytes());
         resultLengthArray = reader.readInt();
         CheckerArray.checkLengthArray(resultLengthArray);
         return resultLengthArray;
     }
 
-    public static int readLength(final Reading reader, final int upperBoundLength,
-                                 final OutputStream outputStream, final String msgOutputStream) throws IOException {
-        int resultLengthArray;
-        Objects.requireNonNull(reader, "Input is not possible. Reader must not be null.");
-        Objects.requireNonNull(outputStream, "OutputStream must not be null.");
-        CheckerBound.isCorrectBound(upperBoundLength, Integer.MAX_VALUE);
+    /**
+     * Reads the length(size) for an array.
+     *
+     * @param reader the {@code reader} to read the length(size) value.
+     * @param upperBoundLength the upper bound length(size) value to check the read value.
+     * @param outputStream the stream for outputting a message prior to read the length(size) value.
+     * @param msgOutputStream the text message to output by {@code outputStream} stream.
+     *
+     * @return the read length(size) for an array.
+     *
+     * @throws NullPointerException if at least one of the arguments is null.
+     * @throws IOException if an I/O error occurs.
+     * @throws LengthArrayOutOfRangeException if the read length(size) for an array out of valid range
+     * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     */
+    public static int readLength(Reading reader, int upperBoundLength,
+                                 OutputStream outputStream, String msgOutputStream) throws IOException {
+        Objects.requireNonNull(reader, MSG_EXCEPTION_READER_IS_NULL);
+        Objects.requireNonNull(outputStream, MSG_EXCEPTION_OUTPUT_STREAM_IS_NULL);
+        CheckerBound.isCorrectBound(upperBoundLength, CheckerArray.UPPER_BOUND_LENGTH_ARRAY);
         outputStream.write(msgOutputStream.getBytes());
         resultLengthArray = reader.readInt();
         CheckerArray.checkLengthArray(resultLengthArray, upperBoundLength);
