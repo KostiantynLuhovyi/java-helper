@@ -10,7 +10,7 @@ package com.lugowoy.helper.utils.checking;
  */
 public final class CheckerIndex {
 
-    private static final String MSG_EXCEPTION_INDEX_IS_OUT_OF_RANGE = "Index is out of range.";
+    private static final String MSG_EXCEPTION_INDEX_OUT_OF_RANGE = "Index out of range.";
 
     private static final int LOWER_INDEX = 0;
 
@@ -29,7 +29,7 @@ public final class CheckerIndex {
     public static void checkIndex(int index, int upperBoundIndex) {
         CheckerBound.isCorrectBound(upperBoundIndex, LOWER_INDEX, Integer.MAX_VALUE);
         if (index < LOWER_INDEX || index > upperBoundIndex) {
-            throw new IndexOutOfBoundsException(MSG_EXCEPTION_INDEX_IS_OUT_OF_RANGE);
+            throw new IndexOutOfBoundsException(MSG_EXCEPTION_INDEX_OUT_OF_RANGE);
         }
     }
 
@@ -46,9 +46,9 @@ public final class CheckerIndex {
     public static void checkIndex(int index, int lowerBoundIndex, int upperBoundIndex) {
         CheckerBound.isCorrectBound(lowerBoundIndex, LOWER_INDEX, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBoundIndex, LOWER_INDEX, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundIndex, upperBoundIndex);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundIndex, upperBoundIndex);
         if (index < lowerBoundIndex && index > upperBoundIndex) {
-            throw new IndexOutOfBoundsException(MSG_EXCEPTION_INDEX_IS_OUT_OF_RANGE);
+            throw new IndexOutOfBoundsException(MSG_EXCEPTION_INDEX_OUT_OF_RANGE);
         }
     }
 
