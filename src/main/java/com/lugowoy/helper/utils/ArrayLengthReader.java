@@ -18,6 +18,9 @@ import java.util.Objects;
  */
 public final class ArrayLengthReader {
 
+    private static final String MSG_EXCEPTION_READER_IS_NULL = "Input not possible. Reader is null.";
+    private static final String MSG_EXCEPTION_OUTPUT_STREAM_IS_NULL = "OutputStream is null.";
+
     /**
      * Reads the length(size) for an array.
      *
@@ -29,10 +32,9 @@ public final class ArrayLengthReader {
      * @throws LengthArrayOutOfRangeException if the read length(size) for an array out of valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
-    public static int readLength(final Reading reader) {
-        int resultLengthArray;
-        Objects.requireNonNull(reader, "Input is not possible. Reader must not be null.");
-        resultLengthArray = reader.readInt();
+    public static int readLength(Reading reader) {
+        Objects.requireNonNull(reader, MSG_EXCEPTION_READER_IS_NULL);
+        int resultLengthArray = reader.readInt();
         CheckerArray.checkLengthArray(resultLengthArray);
         return resultLengthArray;
     }
@@ -51,10 +53,9 @@ public final class ArrayLengthReader {
      * @throws LengthArrayOutOfRangeException if the read length(size) for an array out of valid range
      * from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@code upperBoundLength}.
      */
-    public static int readLength(final Reading reader, final int upperBoundLength) {
-        int resultLengthArray;
-        Objects.requireNonNull(reader, "Input is not possible. Reader must not be null.");
-        resultLengthArray = reader.readInt();
+    public static int readLength(Reading reader, int upperBoundLength) {
+        Objects.requireNonNull(reader, MSG_EXCEPTION_READER_IS_NULL);
+        int resultLengthArray = reader.readInt();
         CheckerArray.checkLengthArray(resultLengthArray, upperBoundLength);
         return resultLengthArray;
     }
@@ -77,7 +78,7 @@ public final class ArrayLengthReader {
         Objects.requireNonNull(reader, MSG_EXCEPTION_READER_IS_NULL);
         Objects.requireNonNull(outputStream, MSG_EXCEPTION_OUTPUT_STREAM_IS_NULL);
         outputStream.write(msgOutputStream.getBytes());
-        resultLengthArray = reader.readInt();
+        int resultLengthArray = reader.readInt();
         CheckerArray.checkLengthArray(resultLengthArray);
         return resultLengthArray;
     }
@@ -103,7 +104,7 @@ public final class ArrayLengthReader {
         Objects.requireNonNull(outputStream, MSG_EXCEPTION_OUTPUT_STREAM_IS_NULL);
         CheckerBound.isCorrectBound(upperBoundLength, CheckerArray.UPPER_BOUND_LENGTH_ARRAY);
         outputStream.write(msgOutputStream.getBytes());
-        resultLengthArray = reader.readInt();
+        int resultLengthArray = reader.readInt();
         CheckerArray.checkLengthArray(resultLengthArray, upperBoundLength);
         return resultLengthArray;
     }
