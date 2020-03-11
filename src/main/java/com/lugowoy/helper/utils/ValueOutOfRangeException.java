@@ -1,13 +1,13 @@
 package com.lugowoy.helper.utils;
 
 /**
- * <p>Created by Konstantin Lugowoy on 27.09.2019.
+ * Thrown when the value is out of range.
+ * <p> Created by Konstantin Lugowoy on 27.09.2019.
  *
  * @author Konstantin Lugowoy
  * @version 1.2
  * @since 1.8
  */
-//todo write doc's
 public class ValueOutOfRangeException extends RuntimeException {
 
     /**

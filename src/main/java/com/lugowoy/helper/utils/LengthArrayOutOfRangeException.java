@@ -1,7 +1,6 @@
 package com.lugowoy.helper.utils;
 
 /**
- * Class exception.
  * Thrown out when the various numerical values associated with the length of the array does not satisfy certain tests.
  * <p> Created by Konstantin Lugowoy on 18.10.2019.
  *

@@ -1,13 +1,13 @@
 package com.lugowoy.helper.utils;
 
 /**
- * <p>Created by Konstantin Lugowoy on 10.06.2019.
+ * Thrown when the value of the matrix column is out of range.
+ * <p> Created by Konstantin Lugowoy on 10.06.2019.
  *
  * @author Konstantin Lugowoy
  * @version 1.1
  * @since 1.7
  */
-//todo write doc's
 public class MatrixColumnOutOfRangeException extends RuntimeException {
 
     /**

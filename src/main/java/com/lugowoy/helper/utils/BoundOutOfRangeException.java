@@ -1,7 +1,6 @@
 package com.lugowoy.helper.utils;
 
 /**
- * Class exception.
  * Thrown when various boundary value is not in the valid range of values.
  * <p> Created by Konstantin Lugowoy on 06.09.2019.
  *

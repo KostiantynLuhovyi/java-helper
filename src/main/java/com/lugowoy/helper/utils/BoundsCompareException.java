@@ -1,7 +1,6 @@
 package com.lugowoy.helper.utils;
 
 /**
- * Class exception.
  * Thrown when comparisons of various boundary values do not satisfy certain conditions.
  * <p> Created by Konstantin Lugowoy on 19.10.2019.
  *
