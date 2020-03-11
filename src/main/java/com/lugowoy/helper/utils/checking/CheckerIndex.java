@@ -5,7 +5,7 @@ package com.lugowoy.helper.utils.checking;
  * <p> Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @since 1.6.6
  */
 public final class CheckerIndex {
@@ -18,13 +18,13 @@ public final class CheckerIndex {
     }
 
     /**
-     * Check the argument {@code index} for correct entry into a range of values
-     * from {@link CheckerIndex#LOWER_INDEX} argument to {@code upperBoundIndex}
+     * Check the {@code index} in range from {@link CheckerIndex#LOWER_INDEX} to {@code upperBoundIndex}.
      *
-     * @param index           Index value to check.
-     * @param upperBoundIndex Upper bound value to check index.
-     * @throws IndexOutOfBoundsException If the value {@code index} is not in the range of valid values
-     *                                   from {@link CheckerIndex#LOWER_INDEX} to {@code upperBoundIndex}.
+     * @param index the index value to check.
+     * @param upperBoundIndex the upper bound value to check index.
+     *
+     * @throws IndexOutOfBoundsException if the {@code index} value out of range
+     * from {@link CheckerIndex#LOWER_INDEX} to {@code upperBoundIndex}.
      */
     public static void checkIndex(int index, int upperBoundIndex) {
         CheckerBound.isCorrectBound(upperBoundIndex, LOWER_INDEX, Integer.MAX_VALUE);
@@ -34,14 +34,14 @@ public final class CheckerIndex {
     }
 
     /**
-     * Check the argument {@code index} for correct entry into a range of values
-     * from {@code lowerBoundIndex} argument to {@code upperBoundIndex}
+     * Check the {@code index} in range from {@code lowerBoundIndex} argument to {@code upperBoundIndex}
      *
-     * @param index           Index value to check.
-     * @param lowerBoundIndex Lower bound value to check index.
-     * @param upperBoundIndex Upper bound value to check index.
-     * @throws IndexOutOfBoundsException If the value {@code index} is not in the range of valid values
-     *                                   from {@code lowerBoundIndex} to {@code upperBoundIndex}.
+     * @param index the index value to check.
+     * @param lowerBoundIndex the lower bound value to check index.
+     * @param upperBoundIndex the upper bound value to check index.
+     *
+     * @throws IndexOutOfBoundsException if the {@code index} value out of range
+     * from {@code lowerBoundIndex} to {@code upperBoundIndex}.
      */
     public static void checkIndex(int index, int lowerBoundIndex, int upperBoundIndex) {
         CheckerBound.isCorrectBound(lowerBoundIndex, LOWER_INDEX, Integer.MAX_VALUE);
