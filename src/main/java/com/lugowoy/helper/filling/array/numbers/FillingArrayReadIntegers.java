@@ -23,12 +23,13 @@ import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
+//TODO edit doc's
 public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> implements FillingArrayNumbers<Integer> {
 
     /**
@@ -36,6 +37,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * to read numerical data of the {@link Integer} type to fill an array.
      *
      * @param reader The object of {@link Reader} class to read numeric data of the {@link Integer} type to fill an array.
+     *
      * @throws NullPointerException If the {@code reader} argument is null.
      */
     public FillingArrayReadIntegers(Reader reader) {
@@ -47,6 +49,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * in the interface {@link Reading} to read numerical data of the {@link Integer} type to fill an array.
      *
      * @param reading The object of class that implements the {@link Reading} interface to read numerical data of the {@link Integer} type to fill array.
+     *
      * @throws NullPointerException If the {@code reading} argument is null;
      */
     public FillingArrayReadIntegers(Reading reading) {
@@ -60,16 +63,16 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * then a {@link ValueOutOfRangeException} exception will be thrown.
      *
      * @param array The object of the {@link Array} class to fill with read data of the {@link Integer} type.
-     * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
+     *
+     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      * @throws ValueOutOfRangeException If read value is not correct {@link Integer} value or out of the valid range values.
      */
     @Override
     public void fill(Array<Integer> array) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Integer[] integers = new Integer[array.size()];
-            this.fillArrayReadIntegers(integers);
-            array.setArray(integers);
-        }
+        CheckerArray.checkLengthInArray(array);
+        Integer[] integers = new Integer[array.size()];
+        this.fillArrayReadIntegers(integers);
+        array.setArray(integers);
     }
 
     /**
@@ -79,14 +82,14 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * then a {@link ValueOutOfRangeException} exception will be thrown.
      *
      * @param integers The array to fill with read data of the {@link Integer} type.
-     * @throws NullPointerException     If {@code integers} argument is null.
+     *
+     * @throws NullPointerException If {@code integers} argument is null.
      * @throws ValueOutOfRangeException If read value is not correct {@link Integer} value or out of the valid range values.
      */
     @Override
     public void fill(Integer[] integers) {
-        if (CheckerArray.checkLengthInArray(integers)) {
-            this.fillArrayReadIntegers(integers);
-        }
+        CheckerArray.checkLengthInArray(integers);
+        this.fillArrayReadIntegers(integers);
     }
 
     /**
@@ -99,17 +102,17 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * then a {@link ValueOutOfRangeException} exception will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with read data of the {@link Integer} type.
+     *
      * @return Created and filled an array with data of the {@link Integer} type.
+     *
      * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws ValueOutOfRangeException       If read value is not correct {@link Integer} value or out of the valid range values.
+     * @throws ValueOutOfRangeException If read value is not correct {@link Integer} value or out of the valid range values.
      */
     @Override
     public Integer[] fill(int lengthArray) {
-        Integer[] integers = new Integer[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            integers = new Integer[lengthArray];
-            this.fillArrayReadIntegers(integers);
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        Integer[] integers = new Integer[lengthArray];
+        this.fillArrayReadIntegers(integers);
         return integers;
     }
 
@@ -122,19 +125,18 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      *
      * @param array The object of the {@link Array} class to fill with data of the {@link Integer} type.
      * @param bound The upper bound for reading value to fill.
-     * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
+     *
+     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Integer[] integers = new Integer[array.size()];
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                this.fillArrayReadIntegersFromZeroToPositiveBound(integers, bound);
-                array.setArray(integers);
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        Integer[] integers = new Integer[array.size()];
+        this.fillArrayReadIntegersFromZeroToPositiveBound(integers, bound);
+        array.setArray(integers);
     }
 
     /**
@@ -146,18 +148,17 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * otherwise a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param integers The array to fill with read data of the {@link Integer} type.
-     * @param bound    The upper bound for reading value to fill.
-     * @throws NullPointerException     If the {@code integers} argument is null.
+     * @param bound The upper bound for reading value to fill.
+     *
+     * @throws NullPointerException If the {@code integers} argument is null.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Integer[] integers, Integer bound) {
-        if (CheckerArray.checkLengthInArray(integers)) {
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                this.fillArrayReadIntegersFromZeroToPositiveBound(integers, bound);
-            }
-        }
+        CheckerArray.checkLengthInArray(integers);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        this.fillArrayReadIntegersFromZeroToPositiveBound(integers, bound);
     }
 
     /**
@@ -171,20 +172,18 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * in the range from 0 to {@link Integer#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with read data of the {@link Integer} type.
-     * @param bound       The upper bound for reading value to fill.
+     * @param bound The upper bound for reading value to fill.
+     *
      * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws ValueOutOfRangeException       If the read value is not correct or out of the valid range.
-     * @throws BoundOutOfRangeException       If the {@code bound} argument value is out of valid range.
+     * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
+     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
-        Integer[] integers = new Integer[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            integers = new Integer[lengthArray];
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                this.fillArrayReadIntegersFromZeroToPositiveBound(integers, bound);
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        Integer[] integers = new Integer[lengthArray];
+        this.fillArrayReadIntegersFromZeroToPositiveBound(integers, bound);
         return integers;
     }
 
@@ -196,25 +195,23 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * The value of the {@code lowerBound} and {@code upperBound} arguments must be in the range from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param array      The object of the {@link Array} class to fill with read data of the {@link Integer} type.
+     * @param array The object of the {@link Array} class to fill with read data of the {@link Integer} type.
      * @param lowerBound The lower bound for reading to fill.
      * @param upperBound The upper bound for reading to fill.
-     * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
+     *
+     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
      * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Array<Integer> array, Integer lowerBound, Integer upperBound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Integer[] integers = new Integer[array.size()];
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                    array.setArray(integers);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        Integer[] integers = new Integer[array.size()];
+        this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        array.setArray(integers);
     }
 
     /**
@@ -225,24 +222,22 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * The value of the {@code lowerBound} and {@code upperBound} arguments must be in the range from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param integers   The array to fill with read data of the {@link Integer} type.
+     * @param integers The array to fill with read data of the {@link Integer} type.
      * @param lowerBound The lower bound for reading value to fill.
      * @param upperBound The upper bound for reading value to fill.
-     * @throws NullPointerException     If the {@code integers} argument is null.
+     *
+     * @throws NullPointerException If the {@code integers} argument is null.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Integer[] integers, Integer lowerBound, Integer upperBound) {
-        if (CheckerArray.checkLengthInArray(integers)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(integers);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
     }
 
     /**
@@ -257,25 +252,22 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * to {@link Integer#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with read data of the {@link Integer} type.
-     * @param lowerBound  The lower bound for reading value to fill.
-     * @param upperBound  The upper bound for reading value to fill.
+     * @param lowerBound The lower bound for reading value to fill.
+     * @param upperBound The upper bound for reading value to fill.
+     *
      * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws ValueOutOfRangeException       If the read value is not correct or out of the valid range.
-     * @throws BoundOutOfRangeException       If the {@code bound} argument value is out of valid range.
-     * @throws BoundOutOfRangeException       If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
+     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer lowerBound, Integer upperBound) {
-        Integer[] integers = new Integer[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            integers = new Integer[lengthArray];
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        Integer[] integers = new Integer[lengthArray];
+        this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
         return integers;
     }
 
@@ -292,7 +284,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
             if (valueRead >= INT_ZERO && valueRead <= bound) {
                 integers[i] = valueRead;
             } else {
-                String msgEx = "Value is not a int number or is out of range (from 0 to " + bound + ").";
+                String msgEx = "Value not an integer number or out of range (0 - " + bound + ").";
                 throw new ValueOutOfRangeException(msgEx);
             }
         }
@@ -304,7 +296,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
             if (valueRead >= lowerBound && valueRead <= upperBound) {
                 integers[i] = valueRead;
             } else {
-                String msgEx = "Value is not a int number or is out of range (from " + lowerBound + " to " + upperBound + ").";
+                String msgEx = "Value not an integer number or out of range (" + lowerBound + " - " + upperBound + ").";
                 throw new ValueOutOfRangeException(msgEx);
             }
         }

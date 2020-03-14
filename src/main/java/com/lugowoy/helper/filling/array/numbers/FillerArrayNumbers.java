@@ -18,6 +18,7 @@ import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
  */
+//TODO edit doc's
 public class FillerArrayNumbers<T extends Number> extends FillerArray<T> {
 
     public FillerArrayNumbers() {

@@ -13,9 +13,10 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 30.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 2.0
  */
+//TODO edit doc's
 public class FillingArrayRandomPrimitiveIntegers implements Filling<ArrayInts> {
 
     /**
@@ -24,96 +25,76 @@ public class FillingArrayRandomPrimitiveIntegers implements Filling<ArrayInts> {
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param array The object of the {@link Array} class to fill with pseudo-random numeric data of the type {@link int}.
+     *
      * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      */
     @Override
     public void fill(ArrayInts array) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            int[] ints = new int[array.size()];
-            this.fillArrayRandomPrimitiveInts(ints);
-            array.setArray(ints);
-        }
+        CheckerArray.checkLengthInArray(array);
+        int[] ints = new int[array.size()];
+        this.fillArrayRandomPrimitiveInts(ints);
+        array.setArray(ints);
     }
 
     public void fill(int[] ints) {
-        if (CheckerArray.checkLengthInArray(ints)) {
-            this.fillArrayRandomPrimitiveInts(ints);
-        }
+        CheckerArray.checkLengthInArray(ints);
+        this.fillArrayRandomPrimitiveInts(ints);
     }
 
     public int[] fill(int lengthArray) {
-        int[] ints = new int[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            ints = new int[lengthArray];
-            this.fillArrayRandomPrimitiveInts(ints);
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        int[] ints = new int[lengthArray];
+        this.fillArrayRandomPrimitiveInts(ints);
         return ints;
     }
 
     public void fill(ArrayInts array, int bound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                int[] ints = new int[array.size()];
-                this.fillArrayRandomPrimitiveIntsFromZeroToBound(ints, bound);
-                array.setArray(ints);
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        int[] ints = new int[array.size()];
+        this.fillArrayRandomPrimitiveIntsFromZeroToBound(ints, bound);
+        array.setArray(ints);
     }
 
     public void fill(int[] ints, int bound) {
-        if (CheckerArray.checkLengthInArray(ints)) {
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                this.fillArrayRandomPrimitiveIntsFromZeroToBound(ints, bound);
-            }
-        }
+        CheckerArray.checkLengthInArray(ints);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        this.fillArrayRandomPrimitiveIntsFromZeroToBound(ints, bound);
     }
 
     public int[] fill(int lengthArray, int bound) {
-        int[] ints = new int[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                ints = new int[lengthArray];
-                this.fillArrayRandomPrimitiveIntsFromZeroToBound(ints, bound);
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        int[] ints = new int[lengthArray];
+        this.fillArrayRandomPrimitiveIntsFromZeroToBound(ints, bound);
         return ints;
     }
 
     public void fill(ArrayInts array, int lowerBound, int upperBound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    int[] ints = new int[array.size()];
-                    this.fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
-                    array.setArray(ints);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        int[] ints = new int[array.size()];
+        this.fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
+        array.setArray(ints);
     }
 
     public void fill(int[] ints, int lowerBound, int upperBound) {
-        if (CheckerArray.checkLengthInArray(ints)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(ints);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        this.fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
     }
 
     public int[] fill(int lengthArray, int lowerBound, int upperBound) {
-        int[] ints = new int[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    ints = new int[lengthArray];
-                    this.fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        int[] ints = new int[lengthArray];
+        this.fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
         return ints;
     }
 

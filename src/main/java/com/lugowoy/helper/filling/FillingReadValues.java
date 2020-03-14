@@ -4,7 +4,7 @@ import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 
 /**
- * This abstract class is the root of the hierarchy of classes providing functionality for filling an object
+ * The abstract class is the root of the hierarchy of classes providing functionality for filling an object
  * or data structure with data that is read from a specific source.
  * <p>The implementation for reading data for filling is obtained from the specific implementation that will be transferred
  * when creating object of this class. To read data for filling, class objects are used that are subclasses of the {@link Reader} class
@@ -14,6 +14,7 @@ import com.lugowoy.helper.io.reading.Reading;
  * @author Konstantin Lugowoy
  * @version 1.1
  */
+//TODO edit doc's
 public abstract class FillingReadValues {
 
     private Reader reader;

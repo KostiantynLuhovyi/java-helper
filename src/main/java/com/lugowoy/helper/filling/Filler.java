@@ -12,6 +12,7 @@ package com.lugowoy.helper.filling;
  * @author Konstantin Lugowoy
  * @version 1.4
  */
+//TODO edit doc's
 public abstract class Filler<T> {
 
     private Filling<T> filling;

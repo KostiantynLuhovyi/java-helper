@@ -13,9 +13,10 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 30.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 2.0
  */
+//TODO edit doc's
 public class FillingArrayRandomPrimitiveDoubles implements Filling<ArrayDoubles> {
 
     /**
@@ -24,96 +25,76 @@ public class FillingArrayRandomPrimitiveDoubles implements Filling<ArrayDoubles>
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param array The object of the {@link Array} class to fill with pseudo-random numeric data of the type {@link Double}.
+     *
      * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      */
     @Override
     public void fill(ArrayDoubles array) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            double[] doubles = new double[array.size()];
-            this.fillArrayRandomPrimitiveDoubles(doubles);
-            array.setArray(doubles);
-        }
+        CheckerArray.checkLengthInArray(array);
+        double[] doubles = new double[array.size()];
+        this.fillArrayRandomPrimitiveDoubles(doubles);
+        array.setArray(doubles);
     }
 
     public void fill(double[] doubles) {
-        if (CheckerArray.checkLengthInArray(doubles)) {
-            this.fillArrayRandomPrimitiveDoubles(doubles);
-        }
+        CheckerArray.checkLengthInArray(doubles);
+        this.fillArrayRandomPrimitiveDoubles(doubles);
     }
 
     public double[] fill(int lengthArray) {
-        double[] doubles = new double[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            doubles = new double[lengthArray];
-            this.fillArrayRandomPrimitiveDoubles(doubles);
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        double[] doubles = new double[lengthArray];
+        this.fillArrayRandomPrimitiveDoubles(doubles);
         return doubles;
     }
 
     public void fill(ArrayDoubles array, double bound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
-                double[] doubles = new double[array.size()];
-                this.fillArrayRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
-                array.setArray(doubles);
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        double[] doubles = new double[array.size()];
+        this.fillArrayRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
+        array.setArray(doubles);
     }
 
     public void fill(double[] doubles, double bound) {
-        if (CheckerArray.checkLengthInArray(doubles)) {
-            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
-                this.fillArrayRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
-            }
-        }
+        CheckerArray.checkLengthInArray(doubles);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        this.fillArrayRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
     }
 
     public double[] fill(int lengthArray, double bound) {
-        double[] doubles = new double[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
-                doubles = new double[lengthArray];
-                this.fillArrayRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        double[] doubles = new double[lengthArray];
+        this.fillArrayRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
         return doubles;
     }
 
     public void fill(ArrayDoubles array, double lowerBound, double upperBound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    double[] doubles = new double[array.size()];
-                    this.fillArrayRandomPrimitiveDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                    array.setArray(doubles);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        double[] doubles = new double[array.size()];
+        this.fillArrayRandomPrimitiveDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        array.setArray(doubles);
     }
 
     public void fill(double[] doubles, double lowerBound, double upperBound) {
-        if (CheckerArray.checkLengthInArray(doubles)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MIN_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayRandomPrimitiveDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(doubles);
+        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MIN_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        this.fillArrayRandomPrimitiveDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
     }
 
     public double[] fill(int lengthArray, double lowerBound, double upperBound) {
-        double[] doubles = new double[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    doubles = new double[lengthArray];
-                    this.fillArrayRandomPrimitiveDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        double[] doubles = new double[lengthArray];
+        this.fillArrayRandomPrimitiveDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
         return doubles;
     }
 

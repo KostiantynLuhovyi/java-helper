@@ -8,6 +8,7 @@ package com.lugowoy.helper.filling;
  * @author Konstantin Lugowoy
  * @version 1.1
  */
+//TODO edit doc's
 public interface Filling<T> {
 
     /**

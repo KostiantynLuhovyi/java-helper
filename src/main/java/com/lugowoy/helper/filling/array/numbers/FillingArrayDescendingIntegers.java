@@ -16,12 +16,12 @@ import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
  * <p>Created by Konstantin Lugowoy on 13-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-//todo edit doc's
+//TODO edit doc's
 public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integer> {
 
     /**
@@ -30,15 +30,15 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
      * and an decrease in the number of type {@link Integer} occurs by 1 (ex.: 0, -1, -2, ...).
      *
      * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Integer} in descending order.
+     *
      * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      */
     @Override
     public void fill(Array<Integer> array) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Integer[] integers = new Integer[array.size()];
-            this.fillArrayDescendingIntegers(integers);
-            array.setArray(integers);
-        }
+        CheckerArray.checkLengthInArray(array);
+        Integer[] integers = new Integer[array.size()];
+        this.fillArrayDescendingIntegers(integers);
+        array.setArray(integers);
     }
 
     /**
@@ -47,13 +47,13 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
      * and an decrease in the number of type {@link Integer} occurs by 1 (ex.: 0, -1, -2, ...).
      *
      * @param integers The array to fill with sequential numeric data of type {@link Integer} in descending order.
+     *
      * @throws NullPointerException If the {@code integers} array argument is null.
      */
     @Override
     public void fill(Integer[] integers) {
-        if (CheckerArray.checkLengthInArray(integers)) {
-            this.fillArrayDescendingIntegers(integers);
-        }
+        CheckerArray.checkLengthInArray(integers);
+        this.fillArrayDescendingIntegers(integers);
     }
 
     /**
@@ -65,16 +65,16 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
      * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with sequential numeric data of type {@link Integer} in descending order.
+     *
      * @return Created and filled an array with sequential numeric data of type {@link Integer} in descending order.
+     *
      * @throws LengthArrayOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
      */
     @Override
     public Integer[] fill(int lengthArray) {
-        Integer[] integers = new Integer[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            integers = new Integer[lengthArray];
-            this.fillArrayDescendingIntegers(integers);
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        Integer[] integers = new Integer[lengthArray];
+        this.fillArrayDescendingIntegers(integers);
         return integers;
     }
 
@@ -89,18 +89,17 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
      *
      * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Integer} in descending order.
      * @param bound The lower value for sequential descending values ​​to fill.
-     * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
+     *
+     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Integer[] integers = new Integer[array.size()];
-            if (CheckerBound.isCorrectBound(bound, Integer.MIN_VALUE, INT_ZERO)) {
-                this.fillArrayDescendingIntegersFromZeroToNegativeBound(integers, bound);
-                array.setArray(integers);
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(bound, Integer.MIN_VALUE, INT_ZERO);
+        Integer[] integers = new Integer[array.size()];
+        this.fillArrayDescendingIntegersFromZeroToNegativeBound(integers, bound);
+        array.setArray(integers);
     }
 
     /**
@@ -113,17 +112,16 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
      * otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param integers The array to fill with sequential numeric data of type {@link Integer} in descending order.
-     * @param bound    The lower value for sequential descending values ​​to fill.
-     * @throws NullPointerException     If the {@code integers} argument is null.
+     * @param bound The lower value for sequential descending values ​​to fill.
+     *
+     * @throws NullPointerException If the {@code integers} argument is null.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Integer[] integers, Integer bound) {
-        if (CheckerArray.checkLengthInArray(integers)) {
-            if (CheckerBound.isCorrectBound(bound, Integer.MIN_VALUE, INT_ZERO)) {
-                this.fillArrayDescendingIntegersFromZeroToNegativeBound(integers, bound);
-            }
-        }
+        CheckerArray.checkLengthInArray(integers);
+        CheckerBound.isCorrectBound(bound, Integer.MIN_VALUE, INT_ZERO);
+        this.fillArrayDescendingIntegersFromZeroToNegativeBound(integers, bound);
     }
 
     /**
@@ -139,20 +137,19 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
      * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with sequential numeric data of type {@link Integer} in descending order.
-     * @param bound       The lower value for sequential descending values ​​to fill.
+     * @param bound The lower value for sequential descending values ​​to fill.
+     *
      * @return Created and filled an array with sequential numeric data of type {@link Integer} in descending order.
-     * @throws BoundOutOfRangeException       If the {@code bound} argument value is out of valid range.
+     *
+     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      * @throws LengthArrayOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
-        Integer[] integers = new Integer[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            integers = new Integer[lengthArray];
-            if (CheckerBound.isCorrectBound(bound, Integer.MIN_VALUE, INT_ZERO)) {
-                this.fillArrayDescendingIntegersFromZeroToNegativeBound(integers, bound);
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(bound, Integer.MIN_VALUE, INT_ZERO);
+        Integer[] integers = new Integer[lengthArray];
+        this.fillArrayDescendingIntegersFromZeroToNegativeBound(integers, bound);
         return integers;
     }
 
@@ -165,25 +162,23 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
      * The value of the {@code upperBound} and {@code lowerBound} arguments must be in the range from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE}, otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param array      The object of the {@link Array} class to fill with sequential numeric data of type {@link Integer} in descending order.
+     * @param array The object of the {@link Array} class to fill with sequential numeric data of type {@link Integer} in descending order.
      * @param lowerBound the lower value for sequential descending values to fill.
      * @param upperBound The upper value for sequential descending values ​​to fill.
-     * @throws NullPointerException     If the object {@code array} of the {@link Array} class argument is null.
+     *
+     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument value is out of valid range.
      * @throws BoundOutOfRangeException If the {@code lowerBound} value is less or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Array<Integer> array, Integer lowerBound, Integer upperBound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Integer[] integers = new Integer[array.size()];
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                    array.setArray(integers);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        Integer[] integers = new Integer[array.size()];
+        this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        array.setArray(integers);
     }
 
     /**
@@ -195,23 +190,21 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
      * The value of the {@code upperBound} and {@code lowerBound} arguments must be in the range from {@link Integer#MIN_VALUE}
      * to {@link Integer#MAX_VALUE}, otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param integers   The array to fill with sequential numeric data of type {@link Integer} in descending order.
+     * @param integers The array to fill with sequential numeric data of type {@link Integer} in descending order.
      * @param lowerBound The lower value for sequential descending values ​​to fill.
      * @param upperBound the upper value for sequential descending values to fill.
-     * @throws NullPointerException     If the {@code integers} argument is null.
+     *
+     * @throws NullPointerException If the {@code integers} argument is null.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument value is out of valid range.
      * @throws BoundOutOfRangeException If the {@code lowerBound} value is less or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Integer[] integers, Integer lowerBound, Integer upperBound) {
-        if (CheckerArray.checkLengthInArray(integers)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(integers);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
     }
 
     /**
@@ -227,25 +220,23 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
      * to {@link Integer#MAX_VALUE}, otherwise an {@link BoundOutOfRangeException} exception will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with sequential numeric data of type {@link Integer} in descending order.
-     * @param lowerBound  The lower value for sequential descending values ​​to fill.
-     * @param upperBound  the upper value for sequential descending values to fill.
+     * @param lowerBound The lower value for sequential descending values ​​to fill.
+     * @param upperBound the upper value for sequential descending values to fill.
+     *
      * @return Created and filled an array with sequential numeric data of type {@link Integer} in descending order.
+     *
      * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws BoundOutOfRangeException       If the {@code lowerBound} or {@code upperBound} argument value is out of valid range.
-     * @throws BoundOutOfRangeException       If the {@code lowerBound} value is less or not equal than to the {@code upperBound} value.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument value is out of valid range.
+     * @throws BoundOutOfRangeException If the {@code lowerBound} value is less or not equal than to the {@code upperBound} value.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer lowerBound, Integer upperBound) {
-        Integer[] integers = new Integer[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            integers = new Integer[lengthArray];
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundGreaterOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        Integer[] integers = new Integer[lengthArray];
+        this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
         return integers;
     }
 
@@ -269,7 +260,8 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
         }
     }
 
-    private void fillArrayDescendingIntegersFromLowerBoundToUpperBound(Integer[] integers, int lowerBound, int upperBound) {
+    private void fillArrayDescendingIntegersFromLowerBoundToUpperBound(Integer[] integers, int lowerBound,
+                                                                       int upperBound) {
         int value = lowerBound, integerDigit = 1;
         for (int i = 0; i < integers.length; i++) {
             if (value >= upperBound) {

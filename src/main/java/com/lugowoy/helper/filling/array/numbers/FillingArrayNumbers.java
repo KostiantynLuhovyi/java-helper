@@ -2,6 +2,7 @@ package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.array.FillingArray;
 import com.lugowoy.helper.models.storages.arrays.Array;
+import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 
 /**
  * The interface declares a contract for filling an array or object of the {@link Array} class with numerical data.
@@ -13,6 +14,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  */
+//TODO edit doc's
 public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
 
     /**
@@ -35,7 +37,7 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * Fills an array with numerical data.
      * <p>The array is created based on the {@code lengthArray} argument.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
+     * otherwise a {@link LengthArrayOutOfRangeException} will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with numerical data.
      * @return Created and filled array with numerical data.
@@ -65,7 +67,7 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * Fills an array with numerical data.
      * <p>The array is created based on the {@code lengthArray} argument.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
+     * otherwise a {@link LengthArrayOutOfRangeException} will be thrown.
      * <p>Numerical values for filling will be in the range from 0 to {@code bound} argument.
      *
      * @param lengthArray The length(size) of the array to fill with numerical data.
@@ -98,7 +100,7 @@ public interface FillingArrayNumbers<T extends Number> extends FillingArray<T> {
      * Fills an array with numerical data.
      * <p>The array is created based on the {@code lengthArray} argument.
      * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link LengthArrayValueOutOfRangeException} will be thrown.
+     * otherwise a {@link LengthArrayOutOfRangeException} will be thrown.
      * <p>Numerical values for filling will be in the range from 0 to {@code bound} argument.
      *
      * @param lengthArray The length(size) of the array to fill with numerical data.

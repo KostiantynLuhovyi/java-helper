@@ -17,6 +17,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  * @version 1.4
  * @see com.lugowoy.helper.filling.Filler
  */
+//TODO edit  doc's
 public abstract class FillerArray<T> extends Filler<Array<T>> {
 
     protected FillerArray() {

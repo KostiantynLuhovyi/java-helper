@@ -13,6 +13,7 @@ import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
  * @version 1.2
  * @see com.lugowoy.helper.filling.Filling
  */
+//TODO edit doc's
 public interface FillingArray<T> extends Filling<Array<T>> {
 
     /**

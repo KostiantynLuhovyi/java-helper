@@ -23,12 +23,13 @@ import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
+//TODO edit doc's
 public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> implements FillingArrayNumbers<Double> {
 
     /**
@@ -36,6 +37,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * to read numerical data of the {@link Double} type to fill an array.
      *
      * @param reader The object of {@link Reader} class to read numeric data of the {@link Double} type to fill an array.
+     *
      * @throws NullPointerException If the {@code reader} argument is null.
      */
     public FillingArrayReadDoubles(Reader reader) {
@@ -47,6 +49,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * in the interface {@link Reading} to read numerical data of the {@link Double} type to fill an array.
      *
      * @param reading The object of class that implements the {@link Reading} interface to read numerical data of the {@link Double} type to fill array.
+     *
      * @throws NullPointerException If the {@code reading} argument is null;
      */
     public FillingArrayReadDoubles(Reading reading) {
@@ -60,16 +63,16 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * then a {@link ValueOutOfRangeException} exception will be thrown.
      *
      * @param array The object of the {@link Array} class to fill with read data of the {@link Double} type.
+     *
      * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      * @throws ValueOutOfRangeException If read value is not correct {@link Double} value or out of the valid range values.
      */
     @Override
     public void fill(Array<Double> array) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Double[] doubles = new Double[array.size()];
-            this.fillArrayReadDoubles(doubles);
-            array.setArray(doubles);
-        }
+        CheckerArray.checkLengthInArray(array);
+        Double[] doubles = new Double[array.size()];
+        this.fillArrayReadDoubles(doubles);
+        array.setArray(doubles);
     }
 
     /**
@@ -79,14 +82,14 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * then a {@link ValueOutOfRangeException} exception will be thrown.
      *
      * @param doubles The array to fill with read data of the {@link Double} type.
+     *
      * @throws NullPointerException If {@code doubles} argument is null.
      * @throws ValueOutOfRangeException If read value is not correct {@link Double} value or out of the valid range values.
      */
     @Override
     public void fill(Double[] doubles) {
-        if (CheckerArray.checkLengthInArray(doubles)) {
-            this.fillArrayReadDoubles(doubles);
-        }
+        CheckerArray.checkLengthInArray(doubles);
+        this.fillArrayReadDoubles(doubles);
     }
 
     /**
@@ -99,17 +102,17 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * then a {@link ValueOutOfRangeException} exception will be thrown.
      *
      * @param lengthArray The length(size) of the array to fill with read data of the {@link Double} type.
+     *
      * @return Created and filled an array with data of the {@link Double} type.
+     *
      * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
      * @throws ValueOutOfRangeException If read value is not correct {@link Double} value or out of the valid range values.
      */
     @Override
     public Double[] fill(int lengthArray) {
-        Double[] doubles = new Double[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            doubles = new Double[lengthArray];
-            this.fillArrayReadDoubles(doubles);
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        Double[] doubles = new Double[lengthArray];
+        this.fillArrayReadDoubles(doubles);
         return doubles;
     }
 
@@ -122,19 +125,18 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      *
      * @param array The object of the {@link Array} class to fill with data of the {@link Double} type.
      * @param bound The upper bound for reading value to fill.
+     *
      * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Array<Double> array, Double bound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Double[] doubles = new Double[array.size()];
-            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
-                this.fillArrayReadDoublesFromZeroToPositiveBound(doubles, bound);
-                array.setArray(doubles);
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        Double[] doubles = new Double[array.size()];
+        this.fillArrayReadDoublesFromZeroToPositiveBound(doubles, bound);
+        array.setArray(doubles);
     }
 
     /**
@@ -147,17 +149,16 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      *
      * @param doubles The array to fill with read data of the {@link Double} type.
      * @param bound The upper bound for reading value to fill.
+     *
      * @throws NullPointerException If the {@code doubles} argument is null.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public void fill(Double[] doubles, Double bound) {
-        if (CheckerArray.checkLengthInArray(doubles)) {
-            if (CheckerBound.isCorrectBound(bound,Long.MAX_VALUE)) {
-                this.fillArrayReadDoublesFromZeroToPositiveBound(doubles, bound);
-            }
-        }
+        CheckerArray.checkLengthInArray(doubles);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        this.fillArrayReadDoublesFromZeroToPositiveBound(doubles, bound);
     }
 
     /**
@@ -172,19 +173,17 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      *
      * @param lengthArray The length(size) of the array to fill with read data of the {@link Double} type.
      * @param bound The upper bound for reading value to fill.
+     *
      * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
      */
     @Override
     public Double[] fill(int lengthArray, Double bound) {
-        Double[] doubles = new Double[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            doubles = new Double[lengthArray];
-            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
-                this.fillArrayReadDoublesFromZeroToPositiveBound(doubles, bound);
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        Double[] doubles = new Double[lengthArray];
+        this.fillArrayReadDoublesFromZeroToPositiveBound(doubles, bound);
         return doubles;
     }
 
@@ -196,25 +195,23 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * The value of the {@code lowerBound} and {@code upperBound} arguments must be in the range from {@link Double#MIN_VALUE}
      * to {@link Double#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
      *
-     * @param array      The object of the {@link Array} class to fill with read data of the {@link Double} type.
+     * @param array The object of the {@link Array} class to fill with read data of the {@link Double} type.
      * @param lowerBound The lower bound for reading to fill.
      * @param upperBound The upper bound for reading to fill.
+     *
      * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
      * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
      * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
      */
     @Override
     public void fill(Array<Double> array, Double lowerBound, Double upperBound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Double[] doubles = new Double[array.size()];
-            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                    array.setArray(doubles);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        Double[] doubles = new Double[array.size()];
+        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        array.setArray(doubles);
     }
 
     /**
@@ -228,6 +225,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * @param doubles The array to fill with read data of the {@link Double} type.
      * @param lowerBound The lower bound for reading value to fill.
      * @param upperBound The upper bound for reading value to fill.
+     *
      * @throws NullPointerException If the {@code doubles} argument is null.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
@@ -235,14 +233,11 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      */
     @Override
     public void fill(Double[] doubles, Double lowerBound, Double upperBound) {
-        if (CheckerArray.checkLengthInArray(doubles)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(doubles);
+        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
     }
 
     /**
@@ -259,6 +254,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * @param lengthArray The length(size) of the array to fill with read data of the {@link Double} type.
      * @param lowerBound The lower bound for reading value to fill.
      * @param upperBound The upper bound for reading value to fill.
+     *
      * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
      * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
      * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
@@ -266,16 +262,12 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      */
     @Override
     public Double[] fill(int lengthArray, Double lowerBound, Double upperBound) {
-        Double[] doubles = new Double[0];
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            doubles = new Double[lengthArray];
-            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        Double[] doubles = new Double[lengthArray];
+        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
         return doubles;
     }
 
@@ -291,7 +283,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
             if (valueRead >= DOUBLE_ZERO && valueRead <= bound) {
                 doubles[i] = valueRead;
             } else {
-                String msgEx = "Value is not a double number or is out of range (from 0.0 to " + bound + ").";
+                String msgEx = "Value not a double number or out of range (0.0 - " + bound + ").";
                 throw new ValueOutOfRangeException(msgEx);
             }
         }
@@ -303,7 +295,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
             if (valueRead >= lowerBound && valueRead <= upperBound) {
                 doubles[i] = valueRead;
             } else {
-                String msgEx = "Value is not a double number or is out of range (from " + lowerBound +" to " + upperBound + ").";
+                String msgEx = "Value not a double number or out of range (" + lowerBound + " - " + upperBound + ").";
                 throw new ValueOutOfRangeException(msgEx);
             }
         }
