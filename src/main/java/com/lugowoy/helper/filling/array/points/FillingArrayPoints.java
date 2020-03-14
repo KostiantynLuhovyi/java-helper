@@ -13,7 +13,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  * @author Konstantin Lugowoy
  * @version 1.1
  */
-//todo edit doc's
+//TODO edit doc's
 public interface FillingArrayPoints<T extends Point, V extends Number> extends FillingArray<T> {
 
     /**

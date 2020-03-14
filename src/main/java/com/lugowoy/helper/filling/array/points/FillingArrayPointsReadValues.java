@@ -12,11 +12,11 @@ import com.lugowoy.helper.models.points.Point;
  * <p>Created by Konstantin Lugowoy on 27-Jan-18.
  *
  * @author Konsytantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  */
-//todo edit doc's
+//TODO edit doc's
 public abstract class FillingArrayPointsReadValues<T extends Point, V extends Number> implements FillingArrayPoints<T, V> {
 
     private Reader reader;

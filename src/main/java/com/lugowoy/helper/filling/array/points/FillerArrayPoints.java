@@ -21,7 +21,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  */
-//todo edit doc's
+//TODO edit doc's
 public class FillerArrayPoints<T extends Point, V extends Number> extends FillerArray<T> {
 
     public FillerArrayPoints() {

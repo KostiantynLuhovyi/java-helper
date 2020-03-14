@@ -21,14 +21,13 @@ import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
  * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.7
+ * @version 1.8
  * @see com.lugowoy.helper.filling.array.points.FillingArrayPointsReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see FillingArrayPoints
  */
-//todo refactoring code
-//todo edit doc's
+//TODO edit doc's
 public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValues<Point2D<Integer>, Integer> {
 
     /**
@@ -36,7 +35,7 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * initializing an object of {@link Reader} class encapsulated in parent class to read the data to be fill array.
      *
      * @param reader The object of {@link Reader} class for initializing an object {@link Reader} class
-     *               encapsulated in parent class to read data to fill array.
+     * encapsulated in parent class to read data to fill array.
      */
     public FillingArrayPoints2DReadIntegers(Reader reader) {
         super(reader);
@@ -48,7 +47,7 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * of the concrete implementation of the contract declared in the interface {@link Reading} to read the data to be fill array.
      *
      * @param reading The object of class that implements the {@link Reading} interface to initialize an object of the {@link Reader} class
-     *                encapsulated in parent class to read the data to be fill array.
+     * encapsulated in parent class to read the data to be fill array.
      */
     public FillingArrayPoints2DReadIntegers(Reading reading) {
         super(reading);
@@ -60,16 +59,16 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * by the object of the class {@link Reader} encapsulated in parent class.
      *
      * @param array The object of class {@link Array} to be filled.
+     *
      * @throws NullPointerException The argument object is null.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point2D<Integer>> array) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
-            this.fillArrayPointsReadInteger(points);
-            array.setArray(points);
-        }
+        CheckerArray.checkLengthInArray(array);
+        Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
+        this.fillArrayPointsReadInteger(points);
+        array.setArray(points);
     }
 
     /**
@@ -77,13 +76,13 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * by the object of the class {@link Reader} encapsulated in parent class.
      *
      * @param points The array to be filled.
+     *
      * @throws NullPointerException If argument array is null.
      */
     @Override
     public void fill(Point2D<Integer>[] points) {
-        if (CheckerArray.checkLengthInArray(points)) {
-            this.fillArrayPointsReadInteger(points);
-        }
+        CheckerArray.checkLengthInArray(points);
+        this.fillArrayPointsReadInteger(points);
     }
 
     /**
@@ -95,17 +94,16 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * created array of length {@link Array#DEFAULT_LENGTH}.
      *
      * @param lengthArray The length(size) of the array to be filled.
+     *
      * @return Created and filled array of the objects of the {@link Point} class
      * with random numeric coordinates of type {@link Double}.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public Point2D<Integer>[] fill(int lengthArray) {
-        Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, 0);
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, lengthArray);
-            this.fillArrayPointsReadInteger(points);
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, lengthArray);
+        this.fillArrayPointsReadInteger(points);
         return points;
     }
 
@@ -118,19 +116,18 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      *
      * @param array The object of the {@link Array} class to be filled.
      * @param bound The value of the end of the range boundary
-     *              of numerical values by which the coordinates of points in the array will be initialized.
+     * of numerical values by which the coordinates of points in the array will be initialized.
+     *
      * @throws NullPointerException If argument object is null.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point2D<Integer>> array, Integer bound) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                this.fillArrayPointsReadIntegerFromZeroToBound(points, bound);
-                array.setArray(points);
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
+        this.fillArrayPointsReadIntegerFromZeroToBound(points, bound);
+        array.setArray(points);
     }
 
     /**
@@ -141,17 +138,16 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param points The array to be filled.
-     * @param bound  The value of the end of the range boundary
-     *               of numerical values by which the coordinates of points in the array will be initialized.
+     * @param bound The value of the end of the range boundary
+     * of numerical values by which the coordinates of points in the array will be initialized.
+     *
      * @throws NullPointerException If argument array is null.
      */
     @Override
     public void fill(Point2D<Integer>[] points, Integer bound) {
-        if (CheckerArray.checkLengthInArray(points)) {
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                this.fillArrayPointsReadIntegerFromZeroToBound(points, bound);
-            }
-        }
+        CheckerArray.checkLengthInArray(points);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        this.fillArrayPointsReadIntegerFromZeroToBound(points, bound);
     }
 
     /**
@@ -164,20 +160,18 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * then the range value for filling the array from "0" to {@link ValuesToFilling}.
      *
      * @param lengthArray The length(size) of the array to be filled.
-     * @param bound       The value of the end of the range boundary
-     *                    of numerical values by which the coordinates of points in the array will be initialized.
+     * @param bound The value of the end of the range boundary
+     * of numerical values by which the coordinates of points in the array will be initialized.
+     *
      * @return Created and filled array of objects of the {@link Point} class with random numeric coordinates of type {@link Integer}.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public Point2D<Integer>[] fill(int lengthArray, Integer bound) {
-        Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, 0);
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                this.fillArrayPointsReadIntegerFromZeroToBound(points, bound);
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point.class, lengthArray);
+        this.fillArrayPointsReadIntegerFromZeroToBound(points, bound);
         return points;
     }
 
@@ -190,26 +184,24 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * then the values {@link ValuesToFilling}
      * and {@link ValuesToFilling} respectively.
      *
-     * @param array                The object of the {@link Array} class to be filled.
+     * @param array The object of the {@link Array} class to be filled.
      * @param lowerBoundCoordinate The value of the start of the range boundary
-     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * of numerical values by which the coordinates of points in the array will be initialized.
      * @param upperBoundCoordinate The value of the end of the range boundary
-     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * of numerical values by which the coordinates of points in the array will be initialized.
+     *
      * @throws NullPointerException If argument object is null;
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public void fill(Array<Point2D<Integer>> array, Integer lowerBoundCoordinate, Integer upperBoundCoordinate) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
-            if (CheckerBound.isCorrectBound(lowerBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundCoordinate, upperBoundCoordinate)) {
-                    this.fillArrayPointsReadIntegerFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
-                    array.setArray(points);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(array);
+        CheckerBound.isCorrectBound(lowerBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
+        Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
+        this.fillArrayPointsReadIntegerFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
+        array.setArray(points);
     }
 
     /**
@@ -221,23 +213,21 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * then the values {@link ValuesToFilling}
      * and {@link ValuesToFilling} respectively.
      *
-     * @param points               The array to be filled.
+     * @param points The array to be filled.
      * @param lowerBoundCoordinate The value of the start of the range boundary
-     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * of numerical values by which the coordinates of points in the array will be initialized.
      * @param upperBoundCoordinate The value of the end of the range boundary
-     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * of numerical values by which the coordinates of points in the array will be initialized.
+     *
      * @throws NullPointerException The argument array is null.
      */
     @Override
     public void fill(Point2D<Integer>[] points, Integer lowerBoundCoordinate, Integer upperBoundCoordinate) {
-        if (CheckerArray.checkLengthInArray(points)) {
-            if (CheckerBound.isCorrectBound(lowerBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundCoordinate, upperBoundCoordinate)) {
-                    this.fillArrayPointsReadIntegerFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
-                }
-            }
-        }
+        CheckerArray.checkLengthInArray(points);
+        CheckerBound.isCorrectBound(lowerBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
+        this.fillArrayPointsReadIntegerFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
     }
 
     /**
@@ -255,26 +245,23 @@ public class FillingArrayPoints2DReadIntegers extends FillingArrayPointsReadValu
      * then the values {@link ValuesToFilling}
      * and {@link ValuesToFilling} respectively.
      *
-     * @param lengthArray          The length(size) of the array to be filled.
+     * @param lengthArray The length(size) of the array to be filled.
      * @param lowerBoundCoordinate The value of the start of the range boundary
-     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * of numerical values by which the coordinates of points in the array will be initialized.
      * @param upperBoundCoordinate The value of the end of the range boundary
-     *                             of numerical values by which the coordinates of points in the array will be initialized.
+     * of numerical values by which the coordinates of points in the array will be initialized.
+     *
      * @return Created and filled array of objects of the {@link Point} class with numerical coordinates.
      */
     @SuppressWarnings("unchecked") //Type safety when casting.
     @Override
     public Point2D<Integer>[] fill(int lengthArray, Integer lowerBoundCoordinate, Integer upperBoundCoordinate) {
-        Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, 0);
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, lengthArray);
-            if (CheckerBound.isCorrectBound(lowerBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBoundCoordinate, upperBoundCoordinate)) {
-                    this.fillArrayPointsReadIntegerFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
-                }
-            }
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        CheckerBound.isCorrectBound(lowerBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
+        Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, lengthArray);
+        this.fillArrayPointsReadIntegerFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
         return points;
     }
 
