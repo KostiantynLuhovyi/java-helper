@@ -9,7 +9,6 @@ import com.lugowoy.helper.utils.checking.CheckerBound;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
 
 import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
-import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrEqualThanUpperBound;
 
 /**
  * Created by Konstantin Lugowoy on 10.10.2018.
@@ -18,7 +17,7 @@ import static com.lugowoy.helper.utils.checking.CheckerBound.isLowerBoundLessOrE
  * @version 1.4
  * @since 1.2
  */
-//todo write doc's
+//TODO write the doc's
 public class FillingMatrixReadDoubles extends FillingMatrixReadValues<Double> implements FillingMatrixNumbers<Double> {
 
     public FillingMatrixReadDoubles(Reader reader) {
@@ -31,100 +30,82 @@ public class FillingMatrixReadDoubles extends FillingMatrixReadValues<Double> im
 
     @Override
     public void fill(Matrix<Double> matrix) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
-            this.fillMatrixElementsEnteredDoubleNumbers(doubles);
-            matrix.setMatrix(doubles);
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
+        this.fillMatrixElementsEnteredDoubleNumbers(doubles);
+        matrix.setMatrix(doubles);
     }
 
     @Override
     public void fill(Double[][] matrix) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            this.fillMatrixElementsEnteredDoubleNumbers(matrix);
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        this.fillMatrixElementsEnteredDoubleNumbers(matrix);
     }
 
     @Override
     public Double[][] fill(int rows, int columns) {
-        Double[][] matrix = new Double[0][0];
-        if (CheckerMatrix.checkRows(rows) && CheckerMatrix.checkColumns(columns)) {
-            matrix = new Double[rows][columns];
-            this.fillMatrixElementsEnteredDoubleNumbers(matrix);
-        }
+        CheckerMatrix.checkRows(rows);
+        CheckerMatrix.checkColumns(columns);
+        Double[][] matrix = new Double[rows][columns];
+        this.fillMatrixElementsEnteredDoubleNumbers(matrix);
         return matrix;
     }
 
     @Override
     public void fill(Matrix<Double> matrix, Double bound) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
-                Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
-                this.fillMatrixReadDoublesFromZeroToBound(doubles, bound);
-                matrix.setMatrix(doubles);
-            }
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
+        this.fillMatrixReadDoublesFromZeroToBound(doubles, bound);
+        matrix.setMatrix(doubles);
     }
 
     @Override
     public void fill(Double[][] matrix, Double bound) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
-                this.fillMatrixReadDoublesFromZeroToBound(matrix, bound);
-            }
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        this.fillMatrixReadDoublesFromZeroToBound(matrix, bound);
     }
 
     @Override
     public Double[][] fill(int rows, int columns, Double bound) {
-        Double[][] matrix = new Double[0][0];
-        if (CheckerMatrix.checkRows(rows) && CheckerMatrix.checkRows(columns)) {
-            if (CheckerBound.isCorrectBound(bound, Long.MAX_VALUE)) {
-                matrix = new Double[rows][columns];
-                this.fillMatrixReadDoublesFromZeroToBound(matrix, bound);
-            }
-        }
+        CheckerMatrix.checkRows(rows);
+        CheckerMatrix.checkRows(columns);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        Double[][] matrix = new Double[rows][columns];
+        this.fillMatrixReadDoublesFromZeroToBound(matrix, bound);
         return matrix;
     }
 
     @Override
     public void fill(Matrix<Double> matrix, Double lowerBound, Double upperBound) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
-                    this.fillMatrixReadIntegersFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                    matrix.setMatrix(doubles);
-                }
-            }
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
+        this.fillMatrixReadIntegersFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        matrix.setMatrix(doubles);
     }
 
     @Override
     public void fill(Double[][] matrix, Double lowerBound, Double upperBound) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillMatrixReadIntegersFromLowerBoundToUpperBound(matrix, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        this.fillMatrixReadIntegersFromLowerBoundToUpperBound(matrix, lowerBound, upperBound);
     }
 
     @Override
     public Double[][] fill(int rows, int columns, Double lowerBound, Double upperBound) {
-        Double[][] doubles = new Double[0][0];
-        if (CheckerMatrix.checkRows(rows) && CheckerMatrix.checkColumns(columns)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE)) {
-                if (isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    doubles = new Double[rows][columns];
-                    this.fillMatrixReadIntegersFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerMatrix.checkRows(rows);
+        CheckerMatrix.checkColumns(columns);
+        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        Double[][] doubles = new Double[rows][columns];
+        this.fillMatrixReadIntegersFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
         return doubles;
     }
 
@@ -144,7 +125,8 @@ public class FillingMatrixReadDoubles extends FillingMatrixReadValues<Double> im
         }
     }
 
-    private void fillMatrixReadIntegersFromLowerBoundToUpperBound(Double[][] matrix, double lowerBound, double upperBound) {
+    private void fillMatrixReadIntegersFromLowerBoundToUpperBound(Double[][] matrix, double lowerBound,
+                                                                  double upperBound) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
                 this.assignReadValue(matrix, lowerBound, upperBound, i, j);
@@ -157,7 +139,7 @@ public class FillingMatrixReadDoubles extends FillingMatrixReadValues<Double> im
         if (isCorrectReadValue(valueRead, lowerBound, upperBound)) {
             matrix[i][j] = valueRead;
         } else {
-            String msgEx = "Value read is not a double number or is out of range (from " + lowerBound + " to " + upperBound + ").";
+            String msgEx = "Value not a double number or out of range (" + lowerBound + " - " + upperBound + ").";
             throw new ValueOutOfRangeException(msgEx);
         }
     }

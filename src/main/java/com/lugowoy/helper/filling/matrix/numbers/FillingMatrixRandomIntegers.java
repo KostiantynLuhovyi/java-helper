@@ -14,105 +14,87 @@ import java.util.Arrays;
  * @version 1.5
  * @since 1.2
  */
-//todo write doc's
+//TODO write the doc's
 public class FillingMatrixRandomIntegers implements FillingMatrixNumbers<Integer> {
 
     @Override
     public void fill(Matrix<Integer> matrix) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
-            this.fillMatrixRandomIntegers(integers);
-            matrix.setMatrix(integers);
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
+        this.fillMatrixRandomIntegers(integers);
+        matrix.setMatrix(integers);
     }
 
     @Override
     public void fill(Integer[][] matrix) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            this.fillMatrixRandomIntegers(matrix);
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        this.fillMatrixRandomIntegers(matrix);
     }
 
     @Override
     public Integer[][] fill(int rows, int columns) {
-        Integer[][] matrix = new Integer[0][0];
-        if (CheckerMatrix.checkRows(rows) && CheckerMatrix.checkColumns(columns)) {
-            matrix = new Integer[rows][columns];
-            this.fillMatrixRandomIntegers(matrix);
-        }
+        CheckerMatrix.checkRows(rows);
+        CheckerMatrix.checkColumns(columns);
+        Integer[][] matrix = new Integer[rows][columns];
+        this.fillMatrixRandomIntegers(matrix);
         return matrix;
     }
 
     @Override
     public void fill(Matrix<Integer> matrix, Integer bound) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                this.fillMatrixRandomIntegersFromZeroToBound(integers, bound);
-                matrix.setMatrix(integers);
-            }
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
+        this.fillMatrixRandomIntegersFromZeroToBound(integers, bound);
+        matrix.setMatrix(integers);
     }
 
     @Override
     public void fill(Integer[][] matrix, Integer bound) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                this.fillMatrixRandomIntegersFromZeroToBound(matrix, bound);
-            }
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        this.fillMatrixRandomIntegersFromZeroToBound(matrix, bound);
     }
 
     @Override
     public Integer[][] fill(int rows, int columns, Integer bound) {
-        Integer[][] matrix = new Integer[0][0];
-        if (CheckerMatrix.checkRows(rows) && CheckerMatrix.checkColumns(columns)) {
-            if (CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE)) {
-                matrix = new Integer[rows][columns];
-                this.fillMatrixRandomIntegersFromZeroToBound(matrix, bound);
-            }
-        }
+        CheckerMatrix.checkRows(rows);
+        CheckerMatrix.checkColumns(columns);
+        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        Integer[][] matrix = new Integer[rows][columns];
+        this.fillMatrixRandomIntegersFromZeroToBound(matrix, bound);
         return matrix;
     }
 
     @Override
     public void fill(Matrix<Integer> matrix, Integer lowerBound, Integer upperBound) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
-                    this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                    matrix.setMatrix(integers);
-                }
-            }
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
+        this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        matrix.setMatrix(integers);
     }
 
     @Override
     public void fill(Integer[][] matrix, Integer lowerBound, Integer upperBound) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(matrix, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerMatrix.checkMatrix(matrix);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(matrix, lowerBound, upperBound);
     }
 
     @Override
     public Integer[][] fill(int rows, int columns, Integer lowerBound, Integer upperBound) {
-        Integer[][] integers = new Integer[0][0];
-        if (CheckerMatrix.checkRows(rows) && CheckerMatrix.checkColumns(columns)) {
-            if (CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE)
-                    && CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE)) {
-                if (CheckerBound.isLowerBoundLessOrEqualThanUpperBound(lowerBound, upperBound)) {
-                    integers = new Integer[rows][columns];
-                    this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
-                }
-            }
-        }
+        CheckerMatrix.checkRows(rows);
+        CheckerMatrix.checkColumns(columns);
+        CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        Integer[][] integers = new Integer[rows][columns];
+        this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
         return integers;
     }
 

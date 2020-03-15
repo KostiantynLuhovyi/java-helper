@@ -10,7 +10,7 @@ import com.lugowoy.helper.models.matrices.Matrix;
  * @version 1.2
  * @since 1.2
  */
-//todo edit doc's
+//TODO edit doc's
 public class FillerMatrixNumbers<T extends Number> extends FillerMatrix<T> {
 
     public FillerMatrixNumbers() {
