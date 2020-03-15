@@ -18,7 +18,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @since 1.2
  */
-//todo edit doc's
+//TODO edit doc's
 public class FillerArrayStrings extends FillerArray<String> {
 
     public FillerArrayStrings() {

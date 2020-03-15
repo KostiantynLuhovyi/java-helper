@@ -12,7 +12,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
  * @version 1.1
  * @since 1.3
  */
-//todo edit doc's
+//TODO edit doc's
 public abstract class FillingArrayRandomStrings implements FillingArrayStrings {
 
     /**
@@ -71,6 +71,7 @@ public abstract class FillingArrayRandomStrings implements FillingArrayStrings {
      * The parameter determines the length(size) of the created array.
      *
      * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
+     *
      * @return Created and filled array with object of the {@link String} type.
      */
     @Override

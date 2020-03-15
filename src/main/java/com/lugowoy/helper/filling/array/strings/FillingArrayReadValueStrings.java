@@ -3,9 +3,7 @@ package com.lugowoy.helper.filling.array.strings;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.storages.arrays.Array;
-
-import static com.lugowoy.helper.utils.checking.CheckerArray.checkLengthArray;
-import static com.lugowoy.helper.utils.checking.CheckerArray.checkLengthInArray;
+import com.lugowoy.helper.utils.checking.CheckerArray;
 
 /**
  * The class provides functionality to reads data for fills an object of the {@link Array} class
@@ -39,11 +37,10 @@ public class FillingArrayReadValueStrings implements FillingArrayStrings {
      */
     @Override
     public void fill(Array<String> array) {
-        if (checkLengthInArray(array)) {
-            String[] strings = new String[array.size()];
-            this.fillArrayReadStrings(strings);
-            array.setArray(strings);
-        }
+        CheckerArray.checkLengthInArray(array);
+        String[] strings = new String[array.size()];
+        this.fillArrayReadStrings(strings);
+        array.setArray(strings);
     }
 
     /**
@@ -53,9 +50,8 @@ public class FillingArrayReadValueStrings implements FillingArrayStrings {
      */
     @Override
     public void fill(String[] strings) {
-        if (checkLengthInArray(strings)) {
-            this.fillArrayReadStrings(strings);
-        }
+        CheckerArray.checkLengthInArray(strings);
+        this.fillArrayReadStrings(strings);
     }
 
     /**
@@ -64,15 +60,14 @@ public class FillingArrayReadValueStrings implements FillingArrayStrings {
      * The parameter determines the length(size) of the created array.
      *
      * @param lengthArray The length(size) of the array to be filled with object of the {@link String} type.
+     *
      * @return Created and filled array with object of the {@link String} type.
      */
     @Override
     public String[] fill(int lengthArray) {
-        String[] strings = new String[0];
-        if (checkLengthArray(lengthArray)) {
-            strings = new String[lengthArray];
-            this.fillArrayReadStrings(strings);
-        }
+        CheckerArray.checkLengthArray(lengthArray);
+        String[] strings = new String[lengthArray];
+        this.fillArrayReadStrings(strings);
         return strings;
     }
 
