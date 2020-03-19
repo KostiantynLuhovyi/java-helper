@@ -3,8 +3,7 @@ package com.lugowoy.helper.filling;
 /**
  * The interface contains a set of constants that used as default values
  * for filling objects, storages (data structures), etc.
- *
- * <p>Created by Konstantin Lugowoy on 08-Jan-18.
+ * <p> Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
  * @version 1.7

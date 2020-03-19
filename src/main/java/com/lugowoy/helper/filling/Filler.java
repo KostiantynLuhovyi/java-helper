@@ -1,54 +1,60 @@
 package com.lugowoy.helper.filling;
 
 /**
- * The class is the root of the hierarchy providing a container for storing and using (delegates the execution)
- * the implementation of the functionality declared in the {@link Filling} interface
- * for filling an object or storage (data structure) with data.
- * <p>The implementation of filling an object or storage (data structure) will be obtained
- * from a specific object that will be transferred when creating an object of this class.
- * <p>Created by Konstantin Lugowoy on 08-Jan-18.
+ * The class is the root of the hierarchy of container classes for encapsulating functionality for filling objects or
+ * storages (data structures) with data.
+ * Objects of this class delegate the execution of functionality to objects whose classes implement the {@link Filling} interface.
+ * <p> Created by Konstantin Lugowoy on 08-Jan-18.
  *
- * @param <T> Type of data to fill storage(data structure) or the object.
+ * @param <T> the type data to fill storage(data structure) or the object.
  * @author Konstantin Lugowoy
  * @version 1.4
  */
-//TODO edit doc's
 public abstract class Filler<T> {
 
     private Filling<T> filling;
 
+    /**
+     * Constructs a new object, without initializing the functionality to fill.
+     */
     protected Filler() {
     }
 
     /**
-     * Constructs a new object of this class by initializing it with a concrete implementation of the contract declared
-     * in the {@link Filling} interface.
+     * Constructs a new object, initializing by the implementation of the functionality to fill.
+     * The implementation of functionality provided by the object of the classes that implement the {@link Filling} interface.
      *
-     * @param filling The object implements the contract declared in the {@link Filling} interface.
+     * @param filling the object that implementation of functionality to fill.
      */
     protected Filler(Filling<T> filling) {
         this.filling = filling;
     }
 
     /**
-     * Fills an object or data structure from argument {@code t} with data.
+     * Fills {@code t} with data.
      *
-     * @param t The object or storage(data structure) to fill with data.
+     * @param t the object or storage(data structure) to fill.
      */
     public void fill(T t) {
         this.filling.fill(t);
     }
 
     /**
-     * Gets the object provides functionality and implementation of the contract declared in the {@link Filling} interface
-     * to fill an object or data structure with data.
+     * Gets the object encapsulated in this class and implements the {@link Filling} interface to fill the object
+     * or data structure with data.
      *
-     * @return The object provides functionality to fill an object or data structure with data.
+     * @return the object that implements of functionality to fill.
      */
     protected Filling<T> getFilling() {
         return this.filling;
     }
 
+    /**
+     * Sets the implementation of functionality for filling objects or data structures with data.
+     * The implementation of functionality provided by the object of the classes that implement the {@link Filling} interface.
+     *
+     * @param filling the object that implementation of functionality to fill.
+     */
     public void setFilling(Filling<T> filling) {
         this.filling = filling;
     }
