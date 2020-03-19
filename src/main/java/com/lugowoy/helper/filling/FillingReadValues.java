@@ -11,7 +11,7 @@ import com.lugowoy.helper.io.reading.Reading;
  * <p> Created by Konstantin Lugowoy on 05.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  */
 public abstract class FillingReadValues {
 
@@ -23,12 +23,11 @@ public abstract class FillingReadValues {
      *
      * @param reader the implementation of data reading to fill.
      */
-    public FillingReadValues(Reader reader) {
-        if (reader != null) {
-            this.reader = reader;
-        } else {
-            throw new NullPointerException("Reader argument is null.");
-        }
+    protected FillingReadValues(Reader reader) {
+//        if (reader == null) {
+//            throw new NullPointerException("Reader is null.");
+//        }
+        this.reader = reader;
     }
 
     /**
@@ -37,12 +36,11 @@ public abstract class FillingReadValues {
      *
      * @param reading the implementation of data reading to fill.
      */
-    public FillingReadValues(Reading reading) {
-        if (reading != null) {
-            this.reader = new Reader(reading);
-        } else {
-            throw new NullPointerException("Reading argument is null.");
-        }
+    protected FillingReadValues(Reading reading) {
+//        if (reading == null) {
+//            throw new NullPointerException("Reading is null");
+//        }
+        this.reader = new Reader(reading);
     }
 
     /**
