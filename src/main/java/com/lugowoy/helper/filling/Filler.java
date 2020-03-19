@@ -8,7 +8,7 @@ package com.lugowoy.helper.filling;
  *
  * @param <T> the type data to fill storage(data structure) or the object.
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  */
 public abstract class Filler<T> {
 
@@ -55,7 +55,7 @@ public abstract class Filler<T> {
      *
      * @param filling the object that implementation of functionality to fill.
      */
-    public void setFilling(Filling<T> filling) {
+    protected void setFilling(Filling<T> filling) {
         this.filling = filling;
     }
 
