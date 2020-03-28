@@ -2,43 +2,33 @@ package com.lugowoy.helper.filling.array;
 
 import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.models.storages.arrays.Array;
-import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 
 /**
- * The interface declares a contract for filling an array or object of the {@link Array} class with data.
- * <p>Created by Konstantin Lugowoy on 08-Jan-18.
+ * The interface declares a contract for filling objects of the {@link Array} class or
+ * arrays of different reference data types.
+ * <p> Created by Konstantin Lugowoy on 08-Jan-18.
  *
- * @param <T> Type of data to fill arrays or elements encapsulated in the object of the {@link Array} class.
+ * @param <T> the data type to fill arrays.
+ *
  * @author Konstantin Lugowoy
  * @version 1.2
  * @see com.lugowoy.helper.filling.Filling
  */
-//TODO edit doc's
 public interface FillingArray<T> extends Filling<Array<T>> {
 
     /**
-     * Fills an object of the {@link Array} class from argument {@code array} with data.
+     * Fills the {@code tArray} array with data.
      *
-     * @param array The object of the {@link Array} class to fill with data.
-     */
-    @Override
-    void fill(Array<T> array);
-
-    /**
-     * Fills an array from argument {@code tArray} with data.
-     *
-     * @param tArray The array to fill with data.
+     * @param tArray the array to fill with data.
      */
     void fill(T[] tArray);
 
     /**
-     * Fills an array with data.
-     * <p>The array is created based on the {@code lengthArray} parameter.
-     * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link LengthArrayOutOfRangeException} will be thrown.
+     * Creates an array of length {@code lengthArray} and fills it with data.
      *
-     * @param lengthArray The length(size) of the array to fill with data.
-     * @return Created and filled array with data.
+     * @param lengthArray the length(size) of the created array to fill.
+     *
+     * @return the array created and filled with data.
      */
     T[] fill(int lengthArray);
 

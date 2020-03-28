@@ -1,11 +1,10 @@
 package com.lugowoy.helper.filling;
 
 /**
- * The interface the root of the hierarchy of declaring a contract
- * for filling object or storage (data structures) with data.
+ * The interface declares the contract for filling the object or storage (data structures) with data.
  * <p> Created by Konstantin Lugowoy on 08-Jan-18.
  *
- * @param <T> the type data to fill storage(data structure) or the object.
+ * @param <T> the data type to fill the object or storage(data structure).
  *
  * @author Konstantin Lugowoy
  * @version 1.1
@@ -13,7 +12,7 @@ package com.lugowoy.helper.filling;
 public interface Filling<T> {
 
     /**
-     * Fills {@code t} with data.
+     * Fills the {@code t} object with data.
      *
      * @param t the object or storage(data structure) to fill.
      */
