@@ -1,28 +1,23 @@
 package com.lugowoy.helper.filling;
 
 /**
- * The class is the root of the hierarchy of container classes for encapsulating functionality for filling objects or
- * storages (data structures) with data.
- * Objects of this class delegate the execution of functionality to objects whose classes implement the {@link Filling} interface.
+ * This class is a container that encapsulates the functionality for filling objects or storages (data structures) with data.
+ * The execution of functionality delegated through classes objects implementing the {@link Filling} interface.
  * <p> Created by Konstantin Lugowoy on 08-Jan-18.
  *
- * @param <T> the type data to fill storage(data structure) or the object.
+ * @param <T> the data type to fill objects or storage(data structure).
+ *
  * @author Konstantin Lugowoy
  * @version 1.5
+ * @see com.lugowoy.helper.filling.Filling
  */
 public abstract class Filler<T> {
 
     private Filling<T> filling;
 
     /**
-     * Constructs a new object, without initializing the functionality to fill.
-     */
-    protected Filler() {
-    }
-
-    /**
-     * Constructs a new object, initializing by the implementation of the functionality to fill.
-     * The implementation of functionality provided by the object of the classes that implement the {@link Filling} interface.
+     * Constructs a new object, initializing the implementation of the functionality to fill.
+     * The implementation of functionality provided by class objects that implement the {@link Filling} interface.
      *
      * @param filling the object that implementation of functionality to fill.
      */
@@ -31,7 +26,8 @@ public abstract class Filler<T> {
     }
 
     /**
-     * Fills {@code t} with data.
+     * Fills the {@code t} object with data.
+     * The functionality execution delegated through an object encapsulated in an object of this class.
      *
      * @param t the object or storage(data structure) to fill.
      */
@@ -40,8 +36,8 @@ public abstract class Filler<T> {
     }
 
     /**
-     * Gets the object encapsulated in this class and implements the {@link Filling} interface to fill the object
-     * or data structure with data.
+     * Gets the object encapsulated in this class and implements the {@link Filling} interface to fill the object or
+     * storages(data structure) with data.
      *
      * @return the object that implements of functionality to fill.
      */
@@ -50,13 +46,13 @@ public abstract class Filler<T> {
     }
 
     /**
-     * Sets the implementation of functionality for filling objects or data structures with data.
+     * Sets the implementation of functionality for filling objects or storages(data structures) with data.
      * The implementation of functionality provided by the object of the classes that implement the {@link Filling} interface.
      *
      * @param filling the object that implementation of functionality to fill.
+     *
+     * @return new object of this class initialized by the functionality provided by the {@code filling} object from the argument.
      */
-    protected void setFilling(Filling<T> filling) {
-        this.filling = filling;
-    }
+    protected abstract Filler<T> setFilling(Filling<T> filling);
 
 }
