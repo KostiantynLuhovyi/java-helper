@@ -36,9 +36,26 @@ public abstract class FillingReadValues {
      * @param reading the implementation of data reading to fill.
      */
     protected FillingReadValues(Reading reading) {
-//        if (reading == null) {
-//            throw new NullPointerException("Reading is null");
-//        }
+        this.reader = new Reader(reading);
+    }
+
+    /**
+     * Sets the implementation of reading data to fill.
+     * The implementation of data reading provided by class objects {@link Reader} or its subclasses.
+     *
+     * @param reader the object implementation of reading data to fill.
+     */
+    public void setReader(Reader reader) {
+        this.reader = reader;
+    }
+
+    /**
+     * Set the implementation of reading data to fill.
+     * The implementation of reading data provided by classes objects that implementation the {@link Reading} interface.
+     *
+     * @param reading the object implementation of reading data to fill.
+     */
+    public void setReader(Reading reading) {
         this.reader = new Reader(reading);
     }
 
