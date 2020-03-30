@@ -8,7 +8,7 @@ import com.lugowoy.helper.models.storages.arrays.Array;
 
 /**
  * The class is a container that encapsulates the functionality for filling objects of the {@link Array} class or
- * arrays of different reference data types.
+ * arrays of reference data types of descendants of the {@link Number} class.
  * The execution of functionality delegated through classes objects implementing the {@link FillingArray} interface.
  * <p> Created by Konstantin Lugowoy on 15-Jan-18.
  *
