@@ -17,6 +17,8 @@ public abstract class FillingReadValues {
 
     private Reader reader;
 
+    //TODO add the constructors that accept objects from the standard java.io library
+
     /**
      * Constructs a new object, initializing by the implementation of reading data to fill.
      * The implementation of data reading provided by an object of the {@link Reader} class or its subclasses.
@@ -24,9 +26,6 @@ public abstract class FillingReadValues {
      * @param reader the implementation of data reading to fill.
      */
     protected FillingReadValues(Reader reader) {
-//        if (reader == null) {
-//            throw new NullPointerException("Reader is null.");
-//        }
         this.reader = reader;
     }
 
@@ -48,10 +47,8 @@ public abstract class FillingReadValues {
      *
      * @return the implementation of reading data to fill.
      */
-    protected Reader getReader() {
+    public Reader getReader() {
         return reader;
     }
 
 }
-
-//TODO add the constructors that accept objects from the standard java.io library

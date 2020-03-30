@@ -46,32 +46,4 @@ public abstract class FillingArrayReadValues<T> extends FillingReadValues implem
         super(reading);
     }
 
-    /**
-     * Fills an object of the {@link Array} class from argument {@code array} with read data.
-     *
-     * @param array The object of the {@link Array} class to fill with read data.
-     */
-    @Override
-    public abstract void fill(Array<T> array);
-
-    /**
-     * Fills an array from argument {@code tArray} with read data.
-     *
-     * @param tArray The array to fill with read data.
-     */
-    @Override
-    public abstract void fill(T[] tArray);
-
-    /**
-     * Fills an array with read data.
-     * <p>The array is created based on the {@code lengthArray} parameter.
-     * The value of the argument {@code lengthArray} must be in the range of values from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link LengthArrayOutOfRangeException} will be thrown.
-     *
-     * @param lengthArray The length(size) of the array to fill with read data.
-     * @return Created and filled array with read data.
-     */
-    @Override
-    public abstract T[] fill(int lengthArray);
-
 }
