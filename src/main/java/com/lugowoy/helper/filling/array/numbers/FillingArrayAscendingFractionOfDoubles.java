@@ -6,6 +6,7 @@ import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 
 import static com.lugowoy.helper.filling.ValuesToFilling.DEFAULT_DOUBLE_VALUE;
+import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayNumbers} interface.
@@ -19,7 +20,6 @@ import static com.lugowoy.helper.filling.ValuesToFilling.DEFAULT_DOUBLE_VALUE;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-//TODO edit doc's
 public class FillingArrayAscendingFractionOfDoubles implements FillingArrayNumbers<Double> {
 
     /**
@@ -229,24 +229,15 @@ public class FillingArrayAscendingFractionOfDoubles implements FillingArrayNumbe
     }
 
     private void fillArrayAscendingFractionOfDoubleFromZeroToPositiveBound(Double[] doubles, double bound) {
-        double value = 0, fractionalDigit = 0.1;
-        for (int i = 0; i < doubles.length; i++) {
-            if (value <= bound) {
-                doubles[i] = value;
-                value += fractionalDigit;
-            } else {
-                doubles[i] = DEFAULT_DOUBLE_VALUE;
-            }
-        }
+        this.fillArrayAscendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, DOUBLE_ZERO, bound);
     }
 
-    private void fillArrayAscendingFractionOfDoubleFromLowerBoundToUpperBound(Double[] doubles, double lowerBound,
-                                                                              double upperBound) {
-        double value = lowerBound, fractionalDigit = 0.1;
+    private void fillArrayAscendingFractionOfDoubleFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
+        double value = lowerBound, fractionalValue = 0.1;
         for (int i = 0; i < doubles.length; i++) {
             if (value <= upperBound) {
                 doubles[i] = value;
-                value += fractionalDigit;
+                value += fractionalValue;
             } else {
                 doubles[i] = DEFAULT_DOUBLE_VALUE;
             }

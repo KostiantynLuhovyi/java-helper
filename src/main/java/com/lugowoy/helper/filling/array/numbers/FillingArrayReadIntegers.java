@@ -23,13 +23,12 @@ import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 2.0
+ * @version 2.1
  * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-//TODO edit doc's
 public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> implements FillingArrayNumbers<Integer> {
 
     /**
@@ -279,25 +278,17 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     private void fillArrayReadIntegersFromZeroToPositiveBound(Integer[] integers, int bound) {
-        for (int i = 0; i < integers.length; i++) {
-            int valueRead = super.getReader().readInt();
-            if (valueRead >= INT_ZERO && valueRead <= bound) {
-                integers[i] = valueRead;
-            } else {
-                String msgEx = "Value not an integer number or out of range (0 - " + bound + ").";
-                throw new ValueOutOfRangeException(msgEx);
-            }
-        }
+        this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, INT_ZERO, bound);
     }
 
     private void fillArrayReadIntegersFromLowerBoundToUpperBound(Integer[] integers, int lowerBound, int upperBound) {
         for (int i = 0; i < integers.length; i++) {
             int valueRead = super.getReader().readInt();
-            if (valueRead >= lowerBound && valueRead <= upperBound) {
-                integers[i] = valueRead;
-            } else {
-                String msgEx = "Value not an integer number or out of range (" + lowerBound + " - " + upperBound + ").";
+            if (valueRead < lowerBound || valueRead > upperBound) {
+                String msgEx = "Value out of range (" + lowerBound + " - " + upperBound + ").";
                 throw new ValueOutOfRangeException(msgEx);
+            } else {
+                integers[i] = valueRead;
             }
         }
     }

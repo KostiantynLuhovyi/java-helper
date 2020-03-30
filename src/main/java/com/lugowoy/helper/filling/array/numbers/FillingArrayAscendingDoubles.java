@@ -21,7 +21,6 @@ import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-//TODO edit doc's
 public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double> {
 
     /**
@@ -249,15 +248,7 @@ public class FillingArrayAscendingDoubles implements FillingArrayNumbers<Double>
     }
 
     private void fillArrayAscendingDoublesFromZeroToPositiveBound(Double[] doubles, double bound) {
-        double value = DOUBLE_ZERO, integerDigit = 1.0;
-        for (int i = 0; i < doubles.length; i++) {
-            if (value <= bound) {
-                doubles[i] = value;
-                value += integerDigit;
-            } else {
-                break;
-            }
-        }
+        this.fillArrayAscendingDoublesFromLowerBoundToUpperBound(doubles, DOUBLE_ZERO, bound);
     }
 
     private void fillArrayAscendingDoublesFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {

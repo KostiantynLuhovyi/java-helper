@@ -23,34 +23,29 @@ import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 2.0
+ * @version 2.1
  * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-//TODO edit doc's
 public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> implements FillingArrayNumbers<Double> {
 
     /**
-     * Constructs a new object of this class, initializing it with an object of the {@link Reader} class
-     * to read numerical data of the {@link Double} type to fill an array.
+     * Constructs a new object, initializing the implementation of reading data to fill.
+     * The implementation of data reading provided by class objects {@link Reader} or its subclasses.
      *
-     * @param reader The object of {@link Reader} class to read numeric data of the {@link Double} type to fill an array.
-     *
-     * @throws NullPointerException If the {@code reader} argument is null.
+     * @param reader the object implementation of reading data to fill.
      */
     public FillingArrayReadDoubles(Reader reader) {
         super(reader);
     }
 
     /**
-     * Constructs a new object of this class, initializing it with an object of the concrete implementation of the contract declared
-     * in the interface {@link Reading} to read numerical data of the {@link Double} type to fill an array.
+     * Constructs a new object, initializing the implementation of reading data to fill.
+     * The implementation of reading data provided by classes objects that implementation the {@link Reading} interface.
      *
-     * @param reading The object of class that implements the {@link Reading} interface to read numerical data of the {@link Double} type to fill array.
-     *
-     * @throws NullPointerException If the {@code reading} argument is null;
+     * @param reading the object implementation of reading data to fill.
      */
     public FillingArrayReadDoubles(Reading reading) {
         super(reading);
@@ -278,25 +273,17 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
     }
 
     private void fillArrayReadDoublesFromZeroToPositiveBound(Double[] doubles, double bound) {
-        for (int i = 0; i < doubles.length; i++) {
-            double valueRead = super.getReader().readDouble();
-            if (valueRead >= DOUBLE_ZERO && valueRead <= bound) {
-                doubles[i] = valueRead;
-            } else {
-                String msgEx = "Value not a double number or out of range (0.0 - " + bound + ").";
-                throw new ValueOutOfRangeException(msgEx);
-            }
-        }
+        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, DOUBLE_ZERO, bound);
     }
 
     private void fillArrayReadDoublesFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
         for (int i = 0; i < doubles.length; i++) {
             double valueRead = super.getReader().readDouble();
-            if (valueRead >= lowerBound && valueRead <= upperBound) {
-                doubles[i] = valueRead;
-            } else {
-                String msgEx = "Value not a double number or out of range (" + lowerBound + " - " + upperBound + ").";
+            if (valueRead < lowerBound || valueRead > upperBound) {
+                String msgEx = "Value out of range (" + lowerBound + " - " + upperBound + ")";
                 throw new ValueOutOfRangeException(msgEx);
+            } else {
+                doubles[i] = valueRead;
             }
         }
     }

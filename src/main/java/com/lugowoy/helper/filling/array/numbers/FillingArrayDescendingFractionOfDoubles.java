@@ -5,6 +5,8 @@ import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 
+import java.util.Arrays;
+
 import static com.lugowoy.helper.filling.ValuesToFilling.DEFAULT_DOUBLE_VALUE;
 import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
 
@@ -15,12 +17,11 @@ import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
  * <p>Created by Konstantin Lugowoy on 15-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-//TODO edit doc's
 public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumbers<Double> {
 
     /**
@@ -158,7 +159,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Double[] doubles = new Double[array.size()];
         this.fillArrayDescendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
         array.setArray(doubles);
@@ -184,7 +185,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
         CheckerArray.checkLengthInArray(doubles);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         this.fillArrayDescendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
     }
 
@@ -212,7 +213,7 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Double[] doubles = new Double[lengthArray];
         this.fillArrayDescendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
         return doubles;
@@ -227,23 +228,15 @@ public class FillingArrayDescendingFractionOfDoubles implements FillingArrayNumb
     }
 
     private void fillArrayDescendingFractionOfDoubleFromZeroToNegativeBound(Double[] doubles, double bound) {
-        double value = 0, fractionalDigit = 0.1;
-        for (int i = 0; i < doubles.length; i++) {
-            if (value >= bound) {
-                doubles[i] = value;
-                value -= fractionalDigit;
-            } else {
-                doubles[i] = DEFAULT_DOUBLE_VALUE;
-            }
-        }
+        this.fillArrayDescendingFractionOfDoubleFromLowerBoundToUpperBound(doubles, bound, DOUBLE_ZERO);
     }
 
     private void fillArrayDescendingFractionOfDoubleFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
-        double value = lowerBound, fractionalDigit = 0.1;
+        double value = upperBound, fractionalValue = 0.1;
         for (int i = 0; i < doubles.length; i++) {
-            if (value >= upperBound) {
+            if (value >= lowerBound) {
                 doubles[i] = value;
-                value -= fractionalDigit;
+                value -= fractionalValue;
             } else {
                 doubles[i] = DEFAULT_DOUBLE_VALUE;
             }

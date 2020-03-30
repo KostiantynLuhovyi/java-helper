@@ -16,12 +16,11 @@ import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
  * <p>Created by Konstantin Lugowoy on 13-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-//TODO edit doc's
 public class FillingArrayDescendingDoubles implements FillingArrayNumbers<Double> {
 
     /**
@@ -175,7 +174,7 @@ public class FillingArrayDescendingDoubles implements FillingArrayNumbers<Double
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Double[] doubles = new Double[array.size()];
         this.fillArrayDescendingDoublesFromLowerBoundToUpperBound(doubles, lowerBound, lowerBound);
     }
@@ -202,7 +201,7 @@ public class FillingArrayDescendingDoubles implements FillingArrayNumbers<Double
         CheckerArray.checkLengthInArray(doubles);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         this.fillArrayDescendingDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
     }
 
@@ -233,14 +232,14 @@ public class FillingArrayDescendingDoubles implements FillingArrayNumbers<Double
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Double[] doubles = new Double[lengthArray];
         this.fillArrayDescendingDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
         return doubles;
     }
 
     private void fillArrayDescendingDoubles(Double[] doubles) {
-        double value = 0.0, integerDigit = 1.0;
+        double value = DOUBLE_ZERO, integerDigit = 1.0;
         for (int i = 0; i < doubles.length; i++) {
             doubles[i] = value;
             value -= integerDigit;
@@ -248,23 +247,15 @@ public class FillingArrayDescendingDoubles implements FillingArrayNumbers<Double
     }
 
     private void fillArrayDescendingDoublesFromZeroToNegativeBound(Double[] doubles, double bound) {
-        double value = 0.0, integerDigit = 1.0;
-        for (int i = 0; i < doubles.length; i++) {
-            if (value >= bound) {
-                doubles[i] = value;
-                value -= integerDigit;
-            } else {
-                break;
-            }
-        }
+        this.fillArrayDescendingDoublesFromLowerBoundToUpperBound(doubles, bound, DOUBLE_ZERO);
     }
 
     private void fillArrayDescendingDoublesFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
-        double value = lowerBound, integerDigit = 1.0;
+        double value = upperBound, integerValue = 1.0;
         for (int i = 0; i < doubles.length; i++) {
-            if (value >= upperBound) {
+            if (value >= lowerBound) {
                 doubles[i] = value;
-                value -= integerDigit;
+                value -= integerValue;
             } else {
                 break;
             }

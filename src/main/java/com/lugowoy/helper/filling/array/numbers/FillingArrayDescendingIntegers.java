@@ -16,12 +16,11 @@ import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
  * <p>Created by Konstantin Lugowoy on 13-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-//TODO edit doc's
 public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integer> {
 
     /**
@@ -175,7 +174,7 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Integer[] integers = new Integer[array.size()];
         this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
         array.setArray(integers);
@@ -203,7 +202,7 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
         CheckerArray.checkLengthInArray(integers);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
     }
 
@@ -234,7 +233,7 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundGreaterOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Integer[] integers = new Integer[lengthArray];
         this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
         return integers;
@@ -249,22 +248,13 @@ public class FillingArrayDescendingIntegers implements FillingArrayNumbers<Integ
     }
 
     private void fillArrayDescendingIntegersFromZeroToNegativeBound(Integer[] integers, int bound) {
-        int value = 0, integerDigit = 1;
-        for (int i = 0; i < integers.length; i++) {
-            if (value >= bound) {
-                integers[i] = value;
-                value -= integerDigit;
-            } else {
-                break;
-            }
-        }
+        this.fillArrayDescendingIntegersFromLowerBoundToUpperBound(integers, bound, INT_ZERO);
     }
 
-    private void fillArrayDescendingIntegersFromLowerBoundToUpperBound(Integer[] integers, int lowerBound,
-                                                                       int upperBound) {
-        int value = lowerBound, integerDigit = 1;
+    private void fillArrayDescendingIntegersFromLowerBoundToUpperBound(Integer[] integers, int lowerBound, int upperBound) {
+        int value = upperBound, integerDigit = 1;
         for (int i = 0; i < integers.length; i++) {
-            if (value >= upperBound) {
+            if (value >= lowerBound) {
                 integers[i] = value;
                 value -= integerDigit;
             } else {
