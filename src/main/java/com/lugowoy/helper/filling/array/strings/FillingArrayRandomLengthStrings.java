@@ -2,7 +2,7 @@ package com.lugowoy.helper.filling.array.strings;
 
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.checking.CheckerArray;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
+import com.lugowoy.helper.utils.checking.CheckerString;
 
 /**
  * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type of the random length.
@@ -86,11 +86,10 @@ public class FillingArrayRandomLengthStrings extends FillingArrayRandomStrings {
      */
     public void fill(Array<String> array, int lengthString) {
         CheckerArray.checkLengthInArray(array);
+        CheckerString.checkLengthString(lengthString);
         String[] strings = new String[array.size()];
-        if (lengthString >= 0) {
-            this.fillArrayRandomLengthStrings(strings, lengthString);
-            array.setArray(strings);
-        }
+        this.fillArrayRandomLengthStrings(strings, lengthString);
+        array.setArray(strings);
     }
 
     /**
@@ -104,9 +103,8 @@ public class FillingArrayRandomLengthStrings extends FillingArrayRandomStrings {
      */
     public void fill(String[] strings, int lengthString) {
         CheckerArray.checkLengthInArray(strings);
-        if (lengthString >= 0) {
-            this.fillArrayRandomLengthStrings(strings, lengthString);
-        }
+        CheckerString.checkLengthString(lengthString);
+        this.fillArrayRandomLengthStrings(strings, lengthString);
     }
 
     /**
@@ -124,6 +122,7 @@ public class FillingArrayRandomLengthStrings extends FillingArrayRandomStrings {
      */
     public String[] fill(int lengthArray, int lengthString) {
         CheckerArray.checkLengthArray(lengthArray);
+        CheckerString.checkLengthString(lengthString);
         String[] strings = new String[lengthArray];
         this.fillArrayRandomLengthStrings(strings, lengthString);
         return strings;

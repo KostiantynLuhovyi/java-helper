@@ -2,7 +2,7 @@ package com.lugowoy.helper.filling.array.strings;
 
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.checking.CheckerArray;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
+import com.lugowoy.helper.utils.checking.CheckerString;
 
 /**
  * The class fills an object of the {@link Array} class and a classic array with random an object of the {@link String} type.
@@ -82,11 +82,10 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
      */
     public void fill(Array<String> array, int lengthString) {
         CheckerArray.checkLengthInArray(array);
-        if (checkCorrectLengthString(lengthString)) {
-            String[] strings = new String[array.size()];
-            this.fillArrayRandomStrings(strings, lengthString);
-            array.setArray(strings);
-        }
+        CheckerString.checkLengthString(lengthString);
+        String[] strings = new String[array.size()];
+        this.fillArrayRandomStrings(strings, lengthString);
+        array.setArray(strings);
     }
 
     /**
@@ -99,9 +98,8 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
      */
     public void fill(String[] strings, int lengthString) {
         CheckerArray.checkLengthInArray(strings);
-        if (checkCorrectLengthString(lengthString)) {
-            this.fillArrayRandomStrings(strings, lengthString);
-        }
+        CheckerString.checkLengthString(lengthString);
+        this.fillArrayRandomStrings(strings, lengthString);
     }
 
     /**
@@ -118,10 +116,9 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
      */
     public String[] fill(int lengthArray, int lengthString) {
         CheckerArray.checkLengthArray(lengthArray);
+        CheckerString.checkLengthString(lengthString);
         String[] strings = new String[lengthArray];
-        if (checkCorrectLengthString(lengthString)) {
-            this.fillArrayRandomStrings(strings, lengthString);
-        }
+        this.fillArrayRandomStrings(strings, lengthString);
         return strings;
     }
 
@@ -135,10 +132,6 @@ public class FillingArrayRandomValueStrings extends FillingArrayRandomStrings {
             strings[i] = stringBuilder.toString();
             stringBuilder.delete(0, stringBuilder.length());
         }
-    }
-
-    private static boolean checkCorrectLengthString(int lengthString) {
-        return (lengthString > DEFAULT_MIN_STRING_LENGTH) && (lengthString < Integer.MAX_VALUE);
     }
 
 }
