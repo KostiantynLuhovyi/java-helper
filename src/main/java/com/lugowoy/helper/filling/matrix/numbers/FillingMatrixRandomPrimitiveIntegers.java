@@ -1,17 +1,18 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
 import com.lugowoy.helper.filling.Filling;
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.matrices.MatrixInts;
+import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 import java.util.Arrays;
 
 /**
  * Created by Konstantin Lugowoy on 26.11.2019.
  *
- * @version 1.2
+ * @version 1.3
  * @since 2.0
  */
 //TODO write the doc's
@@ -65,9 +66,9 @@ public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInts>
         CheckerMatrix.checkMatrix(matrixInts);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         int[][] ints = new int[matrixInts.getRows()][matrixInts.getColumns()];
-        this.fillMatrixRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
+        this.fillMatrixRandomPrimitiveIntsFromLowerToUpperBounds(ints, lowerBound, upperBound);
         matrixInts.setMatrix(ints);
     }
 
@@ -75,8 +76,8 @@ public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInts>
         CheckerMatrix.checkMatrix(matrixInt);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        this.fillMatrixRandomPrimitiveIntsFromLowerBoundToUpperBound(matrixInt, lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        this.fillMatrixRandomPrimitiveIntsFromLowerToUpperBounds(matrixInt, lowerBound, upperBound);
     }
 
     public int[][] fill(int rows, int columns, int lowerBound, int upperBound) {
@@ -84,27 +85,24 @@ public class FillingMatrixRandomPrimitiveIntegers implements Filling<MatrixInts>
         CheckerMatrix.checkColumns(columns);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         int[][] ints = new int[rows][columns];
-        this.fillMatrixRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
+        this.fillMatrixRandomPrimitiveIntsFromLowerToUpperBounds(ints, lowerBound, upperBound);
         return ints;
     }
 
     private void fillMatrixRandomPrimitiveInts(int[][] matrix) {
-        for (int[] integers : matrix) {
-            Arrays.setAll(integers, j -> GeneratorRandomNumber.generateInt());
-        }
+        this.fillMatrixRandomPrimitiveIntsFromLowerToUpperBounds(matrix, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     private void fillMatrixRandomPrimitiveIntsFromZeroToBound(int[][] matrix, int bound) {
-        for (int[] integers : matrix) {
-            Arrays.setAll(integers, j -> GeneratorRandomNumber.generateInt(bound));
-        }
+        this.fillMatrixRandomPrimitiveIntsFromLowerToUpperBounds(matrix, ValuesToFilling.INT_ZERO, bound);
     }
 
-    private void fillMatrixRandomPrimitiveIntsFromLowerBoundToUpperBound(int[][] matrix, int lowerBound, int upperBound) {
+    private void fillMatrixRandomPrimitiveIntsFromLowerToUpperBounds(int[][] matrix, int lowerBound, int upperBound) {
+        RandomNumber randomNumber = new RandomNumber();
         for (int[] integers : matrix) {
-            Arrays.setAll(integers, j -> GeneratorRandomNumber.generateInt(lowerBound, upperBound));
+            Arrays.setAll(integers, j -> randomNumber.generateInt(lowerBound, upperBound));
         }
     }
 

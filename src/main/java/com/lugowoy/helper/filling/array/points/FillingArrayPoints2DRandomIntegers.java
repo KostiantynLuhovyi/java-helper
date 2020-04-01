@@ -4,9 +4,9 @@ import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.points.Point;
 import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.models.storages.arrays.Array;
+import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 /**
  * The class implements the contract declared by the {@link FillingArrayPoints} interface.
@@ -15,7 +15,7 @@ import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
  * <p>Created by Konstantin Lugowoy on 16-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see FillingArrayPoints
@@ -174,9 +174,9 @@ public class FillingArrayPoints2DRandomIntegers implements FillingArrayPoints<Po
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
         Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
-        this.fillArrayPointsRandomIntegerFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
+        this.fillArrayPointsRandomIntegerFromLowerToUpperBounds(points, lowerBoundCoordinate, upperBoundCoordinate);
         array.setArray(points);
     }
 
@@ -202,8 +202,8 @@ public class FillingArrayPoints2DRandomIntegers implements FillingArrayPoints<Po
         CheckerArray.checkLengthInArray(points);
         CheckerBound.isCorrectBound(lowerBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
-        this.fillArrayPointsRandomIntegerFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
+        this.fillArrayPointsRandomIntegerFromLowerToUpperBounds(points, lowerBoundCoordinate, upperBoundCoordinate);
     }
 
     /**
@@ -235,37 +235,26 @@ public class FillingArrayPoints2DRandomIntegers implements FillingArrayPoints<Po
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBoundCoordinate, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
         Point2D<Integer>[] points = (Point2D<Integer>[]) java.lang.reflect.Array.newInstance(Point2D.class, lengthArray);
-        this.fillArrayPointsRandomIntegerFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
+        this.fillArrayPointsRandomIntegerFromLowerToUpperBounds(points, lowerBoundCoordinate, upperBoundCoordinate);
         return points;
     }
 
     private void fillArrayPointsRandomInteger(Point2D<Integer>[] points) {
-        int xCoor, yCoor;
-        for (int i = 0; i < points.length; i++) {
-            xCoor = GeneratorRandomNumber.generateInt();
-            yCoor = GeneratorRandomNumber.generateInt();
-            Point2D<Integer> point = new Point2D<>(xCoor, yCoor);
-            points[i] = point;
-        }
+        this.fillArrayPointsRandomIntegerFromLowerToUpperBounds(points, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     private void fillArrayPointsRandomIntegerFromZeroToBound(Point2D<Integer>[] points, int bound) {
-        int xCoor, yCoor;
-        for (int i = 0; i < points.length; i++) {
-            xCoor = GeneratorRandomNumber.generateInt(bound);
-            yCoor = GeneratorRandomNumber.generateInt(bound);
-            Point2D<Integer> point = new Point2D<>(xCoor, yCoor);
-            points[i] = point;
-        }
+        this.fillArrayPointsRandomIntegerFromLowerToUpperBounds(points, ValuesToFilling.INT_ZERO, bound);
     }
 
-    private void fillArrayPointsRandomIntegerFromLowerBoundToUpperBound(Point2D<Integer>[] points, int lowerBound, int upperBound) {
+    private void fillArrayPointsRandomIntegerFromLowerToUpperBounds(Point2D<Integer>[] points, int lowerBound, int upperBound) {
+        RandomNumber randomNumber = new RandomNumber();
         int xCoor, yCoor;
         for (int i = 0; i < points.length; i++) {
-            xCoor = GeneratorRandomNumber.generateInt(lowerBound, upperBound);
-            yCoor = GeneratorRandomNumber.generateInt(lowerBound, upperBound);
+            xCoor = randomNumber.generateInt(lowerBound, upperBound);
+            yCoor = randomNumber.generateInt(lowerBound, upperBound);
             Point2D<Integer> point = new Point2D<>(xCoor, yCoor);
             points[i] = point;
         }

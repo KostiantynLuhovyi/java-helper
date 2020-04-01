@@ -1,11 +1,12 @@
 package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.Filling;
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.models.storages.arrays.ArrayInts;
+import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 import java.util.Arrays;
 
@@ -13,7 +14,7 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 30.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @since 2.0
  */
 //TODO edit doc's
@@ -74,9 +75,9 @@ public class FillingArrayRandomPrimitiveIntegers implements Filling<ArrayInts> {
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         int[] ints = new int[array.size()];
-        this.fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
+        this.fillArrayRandomPrimitiveIntsFromLowerToUpperBounds(ints, lowerBound, upperBound);
         array.setArray(ints);
     }
 
@@ -84,30 +85,31 @@ public class FillingArrayRandomPrimitiveIntegers implements Filling<ArrayInts> {
         CheckerArray.checkLengthInArray(ints);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        this.fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        this.fillArrayRandomPrimitiveIntsFromLowerToUpperBounds(ints, lowerBound, upperBound);
     }
 
     public int[] fill(int lengthArray, int lowerBound, int upperBound) {
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         int[] ints = new int[lengthArray];
-        this.fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
+        this.fillArrayRandomPrimitiveIntsFromLowerToUpperBounds(ints, lowerBound, upperBound);
         return ints;
     }
 
     private void fillArrayRandomPrimitiveInts(int[] ints) {
-        Arrays.setAll(ints, index -> GeneratorRandomNumber.generateInt());
+        this.fillArrayRandomPrimitiveIntsFromLowerToUpperBounds(ints, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     private void fillArrayRandomPrimitiveIntsFromZeroToBound(int[] ints, int bound) {
-        Arrays.setAll(ints, index -> GeneratorRandomNumber.generateInt(bound));
+        this.fillArrayRandomPrimitiveIntsFromLowerToUpperBounds(ints, ValuesToFilling.INT_ZERO, bound);
     }
 
-    private void fillArrayRandomPrimitiveIntsFromLowerBoundToUpperBound(int[] ints, int lowerBound, int upperBound) {
-        Arrays.setAll(ints, index -> GeneratorRandomNumber.generateInt(lowerBound, upperBound));
+    private void fillArrayRandomPrimitiveIntsFromLowerToUpperBounds(int[] ints, int lowerBound, int upperBound) {
+        RandomNumber randomNumber = new RandomNumber();
+        Arrays.setAll(ints, index -> randomNumber.generateInt(lowerBound, upperBound));
     }
 
 }

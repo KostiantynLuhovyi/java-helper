@@ -1,6 +1,7 @@
 package com.lugowoy.helper.filling.array.strings;
 
 import com.lugowoy.helper.models.storages.arrays.Array;
+import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerString;
 
@@ -9,7 +10,7 @@ import com.lugowoy.helper.utils.checking.CheckerString;
  * <p>Created by Konstantin Lugowoy on 18.07.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
@@ -129,12 +130,13 @@ public class FillingArrayRandomLengthStrings extends FillingArrayRandomStrings {
     }
 
     private void fillArrayRandomLengthStrings(String[] strings, int lengthString) {
+        RandomNumber randomNumber = new RandomNumber();
         char[] chars = super.getReaderCharacters().read(super.getFileName());
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
-            int randomLengthString = GeneratorRandomNumber.generateInt(DEFAULT_MIN_STRING_LENGTH, lengthString);
+            int randomLengthString = randomNumber.generateInt(DEFAULT_MIN_STRING_LENGTH, lengthString);
             for (int j = 0; j < randomLengthString; j++) {
-                stringBuilder.append(chars[GeneratorRandomNumber.generateInt(chars.length - 1)]);
+                stringBuilder.append(chars[randomNumber.generateInt(chars.length - 1)]);
             }
             strings[i] = stringBuilder.toString();
             stringBuilder.delete(0, stringBuilder.length());

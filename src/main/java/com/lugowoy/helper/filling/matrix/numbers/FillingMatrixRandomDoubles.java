@@ -1,9 +1,10 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.matrices.Matrix;
+import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 import java.util.Arrays;
 
@@ -11,7 +12,7 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 05.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 1.2
  */
 //TODO write the doc's
@@ -71,9 +72,9 @@ public class FillingMatrixRandomDoubles implements FillingMatrixNumbers<Double> 
         CheckerMatrix.checkMatrix(matrix);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Double[][] doubles = new Double[matrix.getRows()][matrix.getColumns()];
-        this.fillMatrixRandomDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillMatrixRandomDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         matrix.setMatrix(doubles);
     }
 
@@ -82,8 +83,8 @@ public class FillingMatrixRandomDoubles implements FillingMatrixNumbers<Double> 
         CheckerMatrix.checkMatrix(matrix);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        this.fillMatrixRandomDoublesFromLowerBoundToUpperBound(matrix, lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        this.fillMatrixRandomDoublesFromLowerToUpperBounds(matrix, lowerBound, upperBound);
     }
 
     @Override
@@ -92,27 +93,24 @@ public class FillingMatrixRandomDoubles implements FillingMatrixNumbers<Double> 
         CheckerMatrix.checkColumns(columns);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Double[][] doubles = new Double[rows][columns];
-        this.fillMatrixRandomDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillMatrixRandomDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         return doubles;
     }
 
     private void fillMatrixRandomDoubles(Double[][] matrix) {
-        for (Double[] doubles : matrix) {
-            Arrays.setAll(doubles, j -> GeneratorRandomNumber.generateDouble());
-        }
+        this.fillMatrixRandomDoublesFromLowerToUpperBounds(matrix, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
     private void fillMatrixRandomDoublesFromZeroToBound(Double[][] matrix, double bound) {
-        for (Double[] doubles : matrix) {
-            Arrays.setAll(doubles, j -> GeneratorRandomNumber.generateDouble(bound));
-        }
+        this.fillMatrixRandomDoublesFromLowerToUpperBounds(matrix, ValuesToFilling.DOUBLE_ZERO, bound);
     }
 
-    private void fillMatrixRandomDoublesFromLowerBoundToUpperBound(Double[][] matrix, double lowerBound, double upperBound) {
+    private void fillMatrixRandomDoublesFromLowerToUpperBounds(Double[][] matrix, double lowerBound, double upperBound) {
+        RandomNumber randomNumber = new RandomNumber();
         for (Double[] doubles : matrix) {
-            Arrays.setAll(doubles, j -> GeneratorRandomNumber.generateDouble(lowerBound, upperBound));
+            Arrays.setAll(doubles, j -> randomNumber.generateDouble(lowerBound, upperBound));
         }
     }
 

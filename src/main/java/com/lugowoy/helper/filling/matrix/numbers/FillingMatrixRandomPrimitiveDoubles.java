@@ -1,17 +1,18 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
 import com.lugowoy.helper.filling.Filling;
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.matrices.MatrixDoubles;
+import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 import java.util.Arrays;
 
 /**
  * Created by Konstantin Lugowoy on 26.11.2019.
  *
- * @version 1.2
+ * @version 1.3
  * @since 2.0
  */
 //TODO write the doc's
@@ -65,9 +66,9 @@ public class FillingMatrixRandomPrimitiveDoubles implements Filling<MatrixDouble
         CheckerMatrix.checkMatrix(matrixDoubles);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         double[][] doubles = new double[matrixDoubles.getRows()][matrixDoubles.getColumns()];
-        this.fillMatrixRandomPrimitiveDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         matrixDoubles.setMatrix(doubles);
     }
 
@@ -75,8 +76,8 @@ public class FillingMatrixRandomPrimitiveDoubles implements Filling<MatrixDouble
         CheckerMatrix.checkMatrix(matrixDouble);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        this.fillMatrixRandomPrimitiveDoublesFromLowerBoundToUpperBound(matrixDouble, lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(matrixDouble, lowerBound, upperBound);
     }
 
     public double[][] fill(int rows, int columns, double lowerBound, double upperBound) {
@@ -84,27 +85,24 @@ public class FillingMatrixRandomPrimitiveDoubles implements Filling<MatrixDouble
         CheckerMatrix.checkColumns(columns);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         double[][] doubles = new double[rows][columns];
-        this.fillMatrixRandomPrimitiveDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         return doubles;
     }
 
     private void fillMatrixRandomPrimitiveDoubles(double[][] matrix) {
-        for (double[] doubles : matrix) {
-            Arrays.parallelSetAll(doubles, j -> GeneratorRandomNumber.generateDouble());
-        }
+        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(matrix, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
     private void fillMatrixRandomPrimitiveDoublesFromZeroToBound(double[][] matrix, double bound) {
-        for (double[] doubles : matrix) {
-            Arrays.parallelSetAll(doubles, j -> GeneratorRandomNumber.generateDouble(bound));
-        }
+        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(matrix, ValuesToFilling.DOUBLE_ZERO, bound);
     }
 
-    private void fillMatrixRandomPrimitiveDoublesFromLowerBoundToUpperBound(double[][] matrix, double lowerBound, double upperBound) {
+    private void fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(double[][] matrix, double lowerBound, double upperBound) {
+        RandomNumber randomNumber = new RandomNumber();
         for (double[] doubles : matrix) {
-            Arrays.parallelSetAll(doubles, j -> GeneratorRandomNumber.generateDouble(lowerBound, upperBound));
+            Arrays.parallelSetAll(doubles, j -> randomNumber.generateDouble(lowerBound, upperBound));
         }
     }
 

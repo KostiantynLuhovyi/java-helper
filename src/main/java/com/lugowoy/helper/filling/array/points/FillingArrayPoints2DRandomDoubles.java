@@ -4,9 +4,9 @@ import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.points.Point;
 import com.lugowoy.helper.models.points.Point2D;
 import com.lugowoy.helper.models.storages.arrays.Array;
+import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 /**
  * Created by Konstantin Lugowoy on 15-Jan-18.
@@ -16,7 +16,7 @@ import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
  * and classical arrays of object of the {@link Point} class with random numeric coordinates of type {@link Double}.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see FillingArrayPoints
@@ -175,9 +175,9 @@ public class FillingArrayPoints2DRandomDoubles implements FillingArrayPoints<Poi
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
         Point2D<Double>[] points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, array.size());
-        this.fillArrayPointsRandomDoubleFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
+        this.fillArrayPointsRandomDoubleFromLowerToUpperBounds(points, lowerBoundCoordinate, upperBoundCoordinate);
         array.setArray(points);
     }
 
@@ -203,8 +203,8 @@ public class FillingArrayPoints2DRandomDoubles implements FillingArrayPoints<Poi
         CheckerArray.checkLengthInArray(points);
         CheckerBound.isCorrectBound(lowerBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
-        this.fillArrayPointsRandomDoubleFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
+        this.fillArrayPointsRandomDoubleFromLowerToUpperBounds(points, lowerBoundCoordinate, upperBoundCoordinate);
     }
 
     /**
@@ -236,37 +236,26 @@ public class FillingArrayPoints2DRandomDoubles implements FillingArrayPoints<Poi
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBoundCoordinate, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundCoordinate, upperBoundCoordinate);
         Point2D<Double>[] points = (Point2D<Double>[]) java.lang.reflect.Array.newInstance(Point2D.class, lengthArray);
-        this.fillArrayPointsRandomDoubleFromLowerBoundToUpperBound(points, lowerBoundCoordinate, upperBoundCoordinate);
+        this.fillArrayPointsRandomDoubleFromLowerToUpperBounds(points, lowerBoundCoordinate, upperBoundCoordinate);
         return points;
     }
 
     private void fillArrayPointsRandomDouble(Point2D<Double>[] points) {
-        double xCoor, yCoor;
-        for (int i = 0; i < points.length; i++) {
-            xCoor = GeneratorRandomNumber.generateDouble();
-            yCoor = GeneratorRandomNumber.generateDouble();
-            Point2D<Double> point = new Point2D<>(xCoor, yCoor);
-            points[i] = point;
-        }
+        this.fillArrayPointsRandomDoubleFromLowerToUpperBounds(points, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
     private void fillArrayPointsRandomDoubleFromZeroToPositiveBound(Point<Double>[] points, double bound) {
-        double xCoor, yCoor;
-        for (int i = 0; i < points.length; i++) {
-            xCoor = GeneratorRandomNumber.generateDouble(bound);
-            yCoor = GeneratorRandomNumber.generateDouble(bound);
-            Point2D<Double> point = new Point2D<>(xCoor, yCoor);
-            points[i] = point;
-        }
+        this.fillArrayPointsRandomDoubleFromLowerToUpperBounds(points, ValuesToFilling.DOUBLE_ZERO, bound);
     }
 
-    private void fillArrayPointsRandomDoubleFromLowerBoundToUpperBound(Point<Double>[] points, double lowerBound, double upperBound) {
+    private void fillArrayPointsRandomDoubleFromLowerToUpperBounds(Point<Double>[] points, double lowerBound, double upperBound) {
+        RandomNumber randomNumber = new RandomNumber();
         double xCoor, yCoor;
         for (int i = 0; i < points.length; i++) {
-            xCoor = GeneratorRandomNumber.generateDouble(lowerBound, upperBound);
-            yCoor = GeneratorRandomNumber.generateDouble(lowerBound, upperBound);
+            xCoor = randomNumber.generateDouble(lowerBound, upperBound);
+            yCoor = randomNumber.generateDouble(lowerBound, upperBound);
             Point2D<Double> point = new Point2D<>(xCoor, yCoor);
             points[i] = point;
         }

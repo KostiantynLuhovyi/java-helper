@@ -1,11 +1,12 @@
 package com.lugowoy.helper.filling.array.numbers;
 
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
+import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 import java.util.Arrays;
 
@@ -15,7 +16,7 @@ import java.util.Arrays;
  * <p>Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 2.1
+ * @version 2.2
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
@@ -163,9 +164,9 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Integer[] integers = new Integer[array.size()];
-        this.fillArrayRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        this.fillArrayRandomIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
         array.setArray(integers);
     }
 
@@ -189,8 +190,8 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
         CheckerArray.checkLengthInArray(integers);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        this.fillArrayRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        this.fillArrayRandomIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
     }
 
     /**
@@ -216,22 +217,23 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Integer[] integers = new Integer[lengthArray];
-        this.fillArrayRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        this.fillArrayRandomIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
         return integers;
     }
 
     private void fillArrayRandomIntegers(Integer[] integers) {
-        Arrays.setAll(integers, i -> GeneratorRandomNumber.generateInt());
+        this.fillArrayRandomIntegersFromLowerToUpperBounds(integers, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     private void fillArrayRandomIntegersFromZeroToPositiveBound(Integer[] integers, int bound) {
-        Arrays.setAll(integers, i -> GeneratorRandomNumber.generateInt(bound));
+        this.fillArrayRandomIntegersFromLowerToUpperBounds(integers, ValuesToFilling.INT_ZERO, bound);
     }
 
-    private void fillArrayRandomIntegersFromLowerBoundToUpperBound(Integer[] integers, int startBound, int endBound) {
-        Arrays.setAll(integers, i -> GeneratorRandomNumber.generateInt(startBound, endBound));
+    private void fillArrayRandomIntegersFromLowerToUpperBounds(Integer[] integers, int startBound, int endBound) {
+        RandomNumber randomNumber = new RandomNumber();
+        Arrays.setAll(integers, i -> randomNumber.generateInt(startBound, endBound));
     }
 
 }

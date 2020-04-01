@@ -1,9 +1,10 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
+import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.matrices.Matrix;
+import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 import com.lugowoy.helper.utils.checking.CheckerMatrix;
-import com.lugowoy.helper.utils.generating.GeneratorRandomNumber;
 
 import java.util.Arrays;
 
@@ -11,7 +12,7 @@ import java.util.Arrays;
  * Created by Konstantin Lugowoy on 05.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 1.2
  */
 //TODO write the doc's
@@ -71,9 +72,9 @@ public class FillingMatrixRandomIntegers implements FillingMatrixNumbers<Integer
         CheckerMatrix.checkMatrix(matrix);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Integer[][] integers = new Integer[matrix.getRows()][matrix.getColumns()];
-        this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        this.fillMatrixRandomIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
         matrix.setMatrix(integers);
     }
 
@@ -82,8 +83,8 @@ public class FillingMatrixRandomIntegers implements FillingMatrixNumbers<Integer
         CheckerMatrix.checkMatrix(matrix);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(matrix, lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        this.fillMatrixRandomIntegersFromLowerToUpperBounds(matrix, lowerBound, upperBound);
     }
 
     @Override
@@ -92,27 +93,24 @@ public class FillingMatrixRandomIntegers implements FillingMatrixNumbers<Integer
         CheckerMatrix.checkColumns(columns);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Integer[][] integers = new Integer[rows][columns];
-        this.fillMatrixRandomIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        this.fillMatrixRandomIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
         return integers;
     }
 
     private void fillMatrixRandomIntegers(Integer[][] matrix) {
-        for (Integer[] integers : matrix) {
-            Arrays.setAll(integers, j -> GeneratorRandomNumber.generateInt());
-        }
+        this.fillMatrixRandomIntegersFromLowerToUpperBounds(matrix, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     private void fillMatrixRandomIntegersFromZeroToBound(Integer[][] matrix, int bound) {
-        for (Integer[] integers : matrix) {
-            Arrays.setAll(integers, j -> GeneratorRandomNumber.generateInt(bound));
-        }
+        this.fillMatrixRandomIntegersFromLowerToUpperBounds(matrix, ValuesToFilling.INT_ZERO, bound);
     }
 
-    private void fillMatrixRandomIntegersFromLowerBoundToUpperBound(Integer[][] matrix, int lowerBound, int upperBound) {
+    private void fillMatrixRandomIntegersFromLowerToUpperBounds(Integer[][] matrix, int lowerBound, int upperBound) {
+        RandomNumber randomNumber = new RandomNumber();
         for (Integer[] integers : matrix) {
-            Arrays.setAll(integers, j -> GeneratorRandomNumber.generateInt(lowerBound, upperBound));
+            Arrays.setAll(integers, j -> randomNumber.generateInt(lowerBound, upperBound));
         }
     }
 
