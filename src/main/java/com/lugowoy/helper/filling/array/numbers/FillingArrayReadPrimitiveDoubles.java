@@ -34,19 +34,19 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
     public void fill(ArrayDoubles arrayDoubles) {
         CheckerArray.checkLengthInArray(arrayDoubles);
         double[] doubles = new double[arrayDoubles.size()];
-        this.fillArrayReadDoubles(doubles);
+        this.fillArrayReadPrimitiveDoubles(doubles);
         arrayDoubles.setArray(doubles);
     }
 
     public void fill(double[] doubles) {
         CheckerArray.checkLengthInArray(doubles);
-        this.fillArrayReadDoubles(doubles);
+        this.fillArrayReadPrimitiveDoubles(doubles);
     }
 
     public double[] fill(int lengthArray) {
         CheckerArray.checkLengthArray(lengthArray);
         double[] doubles = new double[lengthArray];
-        this.fillArrayReadDoubles(doubles);
+        this.fillArrayReadPrimitiveDoubles(doubles);
         return doubles;
     }
 
@@ -54,21 +54,21 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
         double[] doubles = new double[array.size()];
-        this.fillArrayReadDoublesFromZeroToPositiveBound(doubles, bound);
+        this.fillArrayReadPrimitiveDoublesFromZeroToPositiveBound(doubles, bound);
         array.setArray(doubles);
     }
 
     public void fill(double[] doubles, double bound) {
         CheckerArray.checkLengthInArray(doubles);
         CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
-        this.fillArrayReadDoublesFromZeroToPositiveBound(doubles, bound);
+        this.fillArrayReadPrimitiveDoublesFromZeroToPositiveBound(doubles, bound);
     }
 
     public double[] fill(int lengthArray, double bound) {
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
         double[] doubles = new double[lengthArray];
-        this.fillArrayReadDoublesFromZeroToPositiveBound(doubles, bound);
+        this.fillArrayReadPrimitiveDoublesFromZeroToPositiveBound(doubles, bound);
         return doubles;
     }
 
@@ -78,7 +78,7 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         double[] doubles = new double[array.size()];
-        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         array.setArray(doubles);
     }
 
@@ -87,7 +87,7 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
     }
 
     public double[] fill(int lengthArray, double lowerBound, double upperBound) {
@@ -96,30 +96,30 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         double[] doubles = new double[lengthArray];
-        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         return doubles;
     }
 
-    private void fillArrayReadDoubles(double[] doubles) {
+    private void fillArrayReadPrimitiveDoubles(double[] doubles) {
+        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    private void fillArrayReadPrimitiveDoublesFromZeroToPositiveBound(double[] doubles, double bound) {
+        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, ValuesToFilling.DOUBLE_ZERO, bound);
+    }
+
+    private void fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(double[] doubles, double lowerBound, double upperBound) {
         for (int i = 0; i < doubles.length; i++) {
             double valueRead = this.fillingArray.getReader().readDouble();
+            checkReadPrimitiveDoubleValue(valueRead, lowerBound, upperBound);
             doubles[i] = valueRead;
         }
     }
 
-    private void fillArrayReadDoublesFromZeroToPositiveBound(double[] doubles, double bound) {
-        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, ValuesToFilling.DOUBLE_ZERO, bound);
-    }
-
-    private void fillArrayReadDoublesFromLowerBoundToUpperBound(double[] doubles, double lowerBound, double upperBound) {
-        for (int i = 0; i < doubles.length; i++) {
-            double valueRead = this.fillingArray.getReader().readDouble();
-            if (valueRead < lowerBound || valueRead > upperBound) {
-                String msgEx = "Value out of range (" + lowerBound + " - " + upperBound + ").";
-                throw new ValueOutOfRangeException(msgEx);
-            } else {
-                doubles[i] = valueRead;
-            }
+    private static void checkReadPrimitiveDoubleValue(double value, double lowerValue, double upperValue) {
+        if (value < lowerValue || value > upperValue) {
+            String msgEx = "Value out of range (" + lowerValue + " - " + upperValue + ")";
+            throw new ValueOutOfRangeException(msgEx);
         }
     }
 

@@ -40,19 +40,19 @@ public class FillingArrayReadPrimitiveIntegers implements Filling<ArrayInts> {
     public void fill(ArrayInts array) {
         CheckerArray.checkLengthInArray(array);
         int[] ints = new int[array.size()];
-        this.fillArrayReadInts(ints);
+        this.fillArrayReadPrimitiveInts(ints);
         array.setArray(ints);
     }
 
     public void fill(int[] ints) {
         CheckerArray.checkLengthInArray(ints);
-        this.fillArrayReadInts(ints);
+        this.fillArrayReadPrimitiveInts(ints);
     }
 
     public int[] fill(int lengthArray) {
         CheckerArray.checkLengthArray(lengthArray);
         int[] ints = new int[lengthArray];
-        this.fillArrayReadInts(ints);
+        this.fillArrayReadPrimitiveInts(ints);
         return ints;
     }
 
@@ -60,21 +60,21 @@ public class FillingArrayReadPrimitiveIntegers implements Filling<ArrayInts> {
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
         int[] ints = new int[array.size()];
-        this.fillArrayReadIntsFromZeroToPositiveBound(ints, bound);
+        this.fillArrayReadPrimitiveIntsFromZeroToPositiveBound(ints, bound);
         array.setArray(ints);
     }
 
     public void fill(int[] ints, int bound) {
         CheckerArray.checkLengthInArray(ints);
         CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
-        this.fillArrayReadIntsFromZeroToPositiveBound(ints, bound);
+        this.fillArrayReadPrimitiveIntsFromZeroToPositiveBound(ints, bound);
     }
 
     public int[] fill(int lengthArray, int bound) {
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
         int[] ints = new int[lengthArray];
-        this.fillArrayReadIntsFromZeroToPositiveBound(ints, bound);
+        this.fillArrayReadPrimitiveIntsFromZeroToPositiveBound(ints, bound);
         return ints;
     }
 
@@ -84,7 +84,7 @@ public class FillingArrayReadPrimitiveIntegers implements Filling<ArrayInts> {
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         int[] ints = new int[array.size()];
-        this.fillArrayReadIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
+        this.fillArrayReadPrimitiveIntsFromLowerToUpperBounds(ints, lowerBound, upperBound);
         array.setArray(ints);
     }
 
@@ -93,7 +93,7 @@ public class FillingArrayReadPrimitiveIntegers implements Filling<ArrayInts> {
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        this.fillArrayReadIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
+        this.fillArrayReadPrimitiveIntsFromLowerToUpperBounds(ints, lowerBound, upperBound);
     }
 
     public int[] fill(int lengthArray, int lowerBound, int upperBound) {
@@ -102,30 +102,30 @@ public class FillingArrayReadPrimitiveIntegers implements Filling<ArrayInts> {
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         int[] ints = new int[lengthArray];
-        this.fillArrayReadIntsFromLowerBoundToUpperBound(ints, lowerBound, upperBound);
+        this.fillArrayReadPrimitiveIntsFromLowerToUpperBounds(ints, lowerBound, upperBound);
         return ints;
     }
 
-    private void fillArrayReadInts(int[] ints) {
+    private void fillArrayReadPrimitiveInts(int[] ints) {
+        this.fillArrayReadPrimitiveIntsFromLowerToUpperBounds(ints, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private void fillArrayReadPrimitiveIntsFromZeroToPositiveBound(int[] ints, int bound) {
+        this.fillArrayReadPrimitiveIntsFromLowerToUpperBounds(ints, INT_ZERO, bound);
+    }
+
+    private void fillArrayReadPrimitiveIntsFromLowerToUpperBounds(int[] ints, int lowerBound, int upperBound) {
         for (int i = 0; i < ints.length; i++) {
             int valueRead = this.fillingArray.getReader().readInt();
+            checkReadPrimitiveIntValue(valueRead, lowerBound, upperBound);
             ints[i] = valueRead;
         }
     }
 
-    private void fillArrayReadIntsFromZeroToPositiveBound(int[] ints, int bound) {
-        this.fillArrayReadIntsFromLowerBoundToUpperBound(ints, INT_ZERO, bound);
-    }
-
-    private void fillArrayReadIntsFromLowerBoundToUpperBound(int[] ints, int lowerBound, int upperBound) {
-        for (int i = 0; i < ints.length; i++) {
-            int valueRead = this.fillingArray.getReader().readInt();
-            if (valueRead < lowerBound || valueRead > upperBound) {
-                String msgEx = "Value out of range (" + lowerBound + " - " + upperBound + ").";
-                throw new ValueOutOfRangeException(msgEx);
-            } else {
-                ints[i] = valueRead;
-            }
+    private static void checkReadPrimitiveIntValue(int value, int lowerValue, int upperValue) {
+        if (value < lowerValue || value > upperValue) {
+            String msgEx = "Value out of range (" + lowerValue + " - " + upperValue + ")";
+            throw new ValueOutOfRangeException(msgEx);
         }
     }
 

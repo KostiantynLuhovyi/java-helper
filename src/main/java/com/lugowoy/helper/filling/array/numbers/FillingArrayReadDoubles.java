@@ -205,7 +205,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Double[] doubles = new Double[array.size()];
-        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillArrayReadDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         array.setArray(doubles);
     }
 
@@ -232,7 +232,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillArrayReadDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
     }
 
     /**
@@ -262,29 +262,30 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Double[] doubles = new Double[lengthArray];
-        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, lowerBound, upperBound);
+        this.fillArrayReadDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         return doubles;
     }
 
     private void fillArrayReadDoubles(Double[] doubles) {
-        for (int i = 0; i < doubles.length; i++) {
-            doubles[i] = super.getReader().readDouble();
-        }
+        this.fillArrayReadDoublesFromLowerToUpperBounds(doubles, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
     private void fillArrayReadDoublesFromZeroToPositiveBound(Double[] doubles, double bound) {
-        this.fillArrayReadDoublesFromLowerBoundToUpperBound(doubles, DOUBLE_ZERO, bound);
+        this.fillArrayReadDoublesFromLowerToUpperBounds(doubles, DOUBLE_ZERO, bound);
     }
 
-    private void fillArrayReadDoublesFromLowerBoundToUpperBound(Double[] doubles, double lowerBound, double upperBound) {
+    private void fillArrayReadDoublesFromLowerToUpperBounds(Double[] doubles, double lowerBound, double upperBound) {
         for (int i = 0; i < doubles.length; i++) {
             double valueRead = super.getReader().readDouble();
-            if (valueRead < lowerBound || valueRead > upperBound) {
-                String msgEx = "Value out of range (" + lowerBound + " - " + upperBound + ")";
-                throw new ValueOutOfRangeException(msgEx);
-            } else {
-                doubles[i] = valueRead;
-            }
+            checkReadDoubleValue(valueRead, lowerBound, upperBound);
+            doubles[i] = valueRead;
+        }
+    }
+
+    private static void checkReadDoubleValue(double value, double lowerValue, double upperValue) {
+        if (value < lowerValue || value > upperValue) {
+            String msgEx = "Value out of range (" + lowerValue + " - " + upperValue + ")";
+            throw new ValueOutOfRangeException(msgEx);
         }
     }
 

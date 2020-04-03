@@ -209,7 +209,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Integer[] integers = new Integer[array.size()];
-        this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        this.fillArrayReadIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
         array.setArray(integers);
     }
 
@@ -236,7 +236,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
-        this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        this.fillArrayReadIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
     }
 
     /**
@@ -266,30 +266,30 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
         Integer[] integers = new Integer[lengthArray];
-        this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, lowerBound, upperBound);
+        this.fillArrayReadIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
         return integers;
     }
 
     private void fillArrayReadIntegers(Integer[] integers) {
+        this.fillArrayReadIntegersFromLowerToUpperBounds(integers, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private void fillArrayReadIntegersFromZeroToPositiveBound(Integer[] integers, int bound) {
+        this.fillArrayReadIntegersFromLowerToUpperBounds(integers, INT_ZERO, bound);
+    }
+
+    private void fillArrayReadIntegersFromLowerToUpperBounds(Integer[] integers, int lowerBound, int upperBound) {
         for (int i = 0; i < integers.length; i++) {
             int valueRead = super.getReader().readInt();
+            checkReadIntValue(valueRead, lowerBound, upperBound);
             integers[i] = valueRead;
         }
     }
 
-    private void fillArrayReadIntegersFromZeroToPositiveBound(Integer[] integers, int bound) {
-        this.fillArrayReadIntegersFromLowerBoundToUpperBound(integers, INT_ZERO, bound);
-    }
-
-    private void fillArrayReadIntegersFromLowerBoundToUpperBound(Integer[] integers, int lowerBound, int upperBound) {
-        for (int i = 0; i < integers.length; i++) {
-            int valueRead = super.getReader().readInt();
-            if (valueRead < lowerBound || valueRead > upperBound) {
-                String msgEx = "Value out of range (" + lowerBound + " - " + upperBound + ").";
-                throw new ValueOutOfRangeException(msgEx);
-            } else {
-                integers[i] = valueRead;
-            }
+    private static void checkReadIntValue(int value, int lowerValue, int upperValue) {
+        if (value < lowerValue || value > upperValue) {
+            String msgEx = "Value out of range (" + lowerValue + " - " + upperValue + ")";
+            throw new ValueOutOfRangeException(msgEx);
         }
     }
 
