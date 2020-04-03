@@ -3,6 +3,7 @@ package com.lugowoy.helper.filling.array.numbers;
 import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsCompareException;
 import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerArray;
@@ -11,9 +12,11 @@ import com.lugowoy.helper.utils.checking.CheckerBound;
 import java.util.Arrays;
 
 /**
- * The class implements the contract declared by the {@link FillingArrayNumbers} interface to fills a classic array and
- * an object of the {@link Array} class with pseudo-random numeric data of type {@link Double}.
- * <p>Created by Konstantin Lugowoy on 08-Jan-18.
+ * The class implements the functionality to fill the class objects {@link Array} and
+ * arrays of the type {@link Double} with pseudo-random data of type {@link Double}.
+ * Thereby the class implements the interface contract {@link FillingArrayNumbers}.
+ * <p> To see the functionality of pseudorandom number generation you can in the class {@link RandomNumber}.
+ * <p> Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
  * @version 2.2
@@ -21,17 +24,18 @@ import java.util.Arrays;
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.numbers.FillingArrayNumbers
  */
-//TODO edit doc's
 public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
 
     /**
-     * Fills an object of the {@link Array} class with pseudo-random numeric data of the type {@link Double}.
-     * <p>The numerical pseudo-random values for filling are generated in the range
-     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * Fills the {@code array} object with pseudo-random numerical data of the type {@link Double}.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      *
-     * @param array The object of the {@link Array} class to fill with pseudo-random numeric data of the type {@link Double}.
+     * @param array the object of the {@link Array} class to fill.
      *
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     @Override
     public void fill(Array<Double> array) {
@@ -42,13 +46,15 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     /**
-     * Fills an array with pseudo-random numeric data of the type {@link Double}.
-     * <p>The numerical pseudo-random values for filling are generated in the range
-     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * Fills the {@code doubles} array with pseudo-random numerical data of the type {@link Double}.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      *
-     * @param doubles The array to fill with pseudo-random numeric data of the type {@link Double}.
+     * @param doubles the array to fill.
      *
-     * @throws NullPointerException If the {@code doubles} array argument is null.
+     * @throws NullPointerException if the {@code doubles} array is null.
+     * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     @Override
     public void fill(Double[] doubles) {
@@ -57,18 +63,17 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     /**
-     * Fills an array with pseudo-random numeric data of the type {@link Double}.
-     * <p>The array is created based on the {@code lengthArray} argument.
-     * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
-     * <p>The numerical pseudo-random values for filling are generated in the range
-     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * Creates an array of the {@code lengthArray} length(size) of the type {@link Double} and
+     * fills it with pseudo-random numerical data of the type {@link Double}.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      *
-     * @param lengthArray The length(size) of the array to fill with pseudo-random numeric data of the type {@link Double}.
+     * @param lengthArray the length(size) of the created array to fill.
      *
-     * @return Created and filled an array with pseudo-random numeric data of the type {@link Double}.
+     * @return the array created and filled with data.
      *
-     * @throws LengthArrayOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
+     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
+     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     @Override
     public Double[] fill(int lengthArray) {
@@ -79,16 +84,19 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     /**
-     * Fills an object of the {@link Array} class with pseudo-random numeric data of the type {@link Double}.
-     * <p>The numerical pseudo-random values for filling are generated in the range from 0 to {@code bound} argument.
-     * If the {@code bound} value of the argument is not in the range from 0 to {@link Integer#MAX_VALUE},
-     * then a {@link BoundOutOfRangeException} exception will be thrown.
+     * Fills the {@code array} object with pseudo-random numerical data of the type {@link Double}.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
      *
-     * @param array The object of the {@link Array} class to fill with pseudo-numeric data of the type {@link Double}.
-     * @param bound The upper bound for generating pseudo-random numbers to fill.
+     * @param array the object of the {@link Array} class to fill.
+     * @param bound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
-     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws NullPointerException if the {@code bound} value is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
      */
     @Override
     public void fill(Array<Double> array, Double bound) {
@@ -100,16 +108,19 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     /**
-     * Fills an array with pseudo-random numeric data of the type {@link Double}.
-     * <p>The numerical pseudo-random values for filling are generated in the range from 0 to {@code bound} argument.
-     * If the {@code bound} value of the argument is not in the range from 0 to {@link Integer#MAX_VALUE},
-     * then a {@link BoundOutOfRangeException} exception will be thrown.
+     * Fills the {@code doubles} array with pseudo-random numerical data of the type {@link Double}.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
      *
-     * @param doubles The array to fill with pseudo-random numeric data of the type {@link Double}.
-     * @param bound The upper bound for generating pseudo-random numbers to fill.
+     * @param doubles the array to fill.
+     * @param bound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException If the {@code doubles} array argument is null.
-     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @throws NullPointerException if the {@code doubles} array is null.
+     * @throws NullPointerException if the {@code bound} value is null.
+     * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
      */
     @Override
     public void fill(Double[] doubles, Double bound) {
@@ -119,21 +130,21 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     /**
-     * Fills an array with pseudo-random numeric data of the type {@link Double}.
-     * <p>The array is created based on the {@code lengthArray} argument.
-     * If the value of the {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
-     * <p>The numerical pseudo-random values for filling are generated in the range from 0 to {@code bound} argument.
-     * If the {@code bound} value of the argument is not in the range from 0 to {@link Integer#MAX_VALUE},
-     * then a {@link BoundOutOfRangeException} exception will be thrown.
+     * Creates an array of the {@code lengthArray} length(size) of the type {@link Double} and
+     * fills it with pseudo-random numerical data of the type {@link Double}.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
      *
-     * @param lengthArray The length(size) of the array to fill with pseudo-random numeric data of the type {@link Double}.
-     * @param bound The upper bound for generating pseudo-random numbers to fill.
+     * @param lengthArray the length(size) of the created array to fill.
+     * @param bound the upper bound numeric value to fill.
      *
-     * @return Created and filled an array with pseudo-random numeric data of the type {@link Double}.
+     * @return the array created and filled with data.
      *
-     * @throws LengthArrayOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @throws NullPointerException if the {@code bound} value is null.
+     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
+     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
      */
     @Override
     public Double[] fill(int lengthArray, Double bound) {
@@ -145,19 +156,21 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     /**
-     * Fills an object of the {@link Array} class with pseudo-random numeric data of the type {@link Double}.
-     * <p>The numerical pseudo-random values for filling are generated in the range from {@code lowerBound} to {@code upperBound} argument.
-     * If the {@code lowerBound} or {@code upperBound} value of the argument is not in the range from {@link Integer#MIN_VALUE}
-     * to {@link Integer#MAX_VALUE} or if the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value,
-     * then a {@link BoundOutOfRangeException} exception will be thrown.
+     * Fills the {@code array} object with pseudo-random numerical data of the type {@link Double}.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@code lowerBound} to {@code upperBound}.
      *
-     * @param array The object of the {@link Array} class to fill with pseudo-random numeric data of the type {@link Double}.
-     * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
-     * @param upperBound The upper bound for generating pseudo-random numbers to fill.
+     * @param array the object of the {@link Array} class to fill.
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws NullPointerException if any of the boundary values is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if any of the boundary values out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     @Override
     public void fill(Array<Double> array, Double lowerBound, Double upperBound) {
@@ -171,19 +184,21 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     /**
-     * Fills an array with pseudo-random numeric data of the type {@link Double}.
-     * <p>The numerical pseudo-random values for filling are generated in the range from {@code lowerBound} to {@code upperBound} argument.
-     * If the {@code lowerBound} or {@code upperBound} value of the argument is not in the range from {@link Integer#MIN_VALUE}
-     * to {@link Integer#MAX_VALUE} or if the {@code lowerBound} value is greater or than not equal to the {@code upperBound} value,
-     * then a {@link BoundOutOfRangeException} exception will be thrown.
+     * Fills the {@code doubles} array with pseudo-random numerical data of the type {@link Double}.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@code lowerBound} to {@code upperBound}.
      *
-     * @param doubles The array to fill with pseudo-random numeric data of the type {@link Double}.
-     * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
-     * @param upperBound The upper bound for generating pseudo-random numbers to fill.
+     * @param doubles the array to fill.
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException If the {@code doubles} array argument is null.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws NullPointerException if the {@code doubles} is null.
+     * @throws NullPointerException if any of the boundary values is null.
+     * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     @Override
     public void fill(Double[] doubles, Double lowerBound, Double upperBound) {
@@ -195,22 +210,23 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     }
 
     /**
-     * Fills an array with random numeric data of the type {@link Double}.
-     * <p>The array is created based on the {@code lengthArray} argument.
-     * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
-     * <p>The numerical pseudo-random values for filling are generated in the range from {@code lowerBound} to {@code upperBound} argument.
-     * If the {@code lowerBound} or {@code upperBound} value of the argument is not in the range from {@link Integer#MIN_VALUE}
-     * to {@link Integer#MAX_VALUE} or if the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value,
-     * then a {@link BoundOutOfRangeException} exception will be thrown.
+     * Creates an array of the {@code lengthArray} length(size) of the type {@link Double} and
+     * fills it with pseudo-random numerical data of the type {@link Double}.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@code lowerBound} to {@code upperBound}.
      *
-     * @param lengthArray The length(size) of the array to fill with pseudo-random numeric data of the type {@link Double}.
-     * @param lowerBound The lower bound for generating pseudo-random numbers to fill.
-     * @param upperBound The upper bound for generating pseudo-random numbers to fill.
+     * @param lengthArray the length(size) of the created array to fill.
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
      *
-     * @throws LengthArrayOutOfRangeException If the {@code lengthArray} argument value is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @return the array created and filled with data.
+     *
+     * @throws NullPointerException if any of the boundary values is null.
+     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
+     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     @Override
     public Double[] fill(int lengthArray, Double lowerBound, Double upperBound) {

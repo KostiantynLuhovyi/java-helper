@@ -1,9 +1,11 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.Filling;
 import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.models.storages.arrays.ArrayDoubles;
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsCompareException;
+import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.RandomNumber;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
@@ -11,25 +13,28 @@ import com.lugowoy.helper.utils.checking.CheckerBound;
 import java.util.Arrays;
 
 /**
- * Created by Konstantin Lugowoy on 30.10.2019.
+ * The class implements the functionality to fill the class objects {@link ArrayDoubles} and
+ * arrays of the double type with pseudo-random data of the double type.
+ * <p> To see the functionality of pseudorandom number generation you can in the class {@link RandomNumber}.
+ * <p> Created by Konstantin Lugowoy on 30.10.2019.
  *
  * @author Konstantin Lugowoy
  * @version 1.4
  * @since 2.0
  */
-//TODO edit doc's
-public class FillingArrayRandomPrimitiveDoubles implements Filling<ArrayDoubles> {
+public class FillingArrayRandomPrimitiveDoubles {
 
     /**
-     * Fills an object of the {@link Array} class with pseudo-random numeric data of the type {@link Double}.
-     * <p>The numerical pseudo-random values for filling are generated in the range
-     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * Fills the {@code array} object with pseudo-random numerical data of the double type.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      *
-     * @param array The object of the {@link Array} class to fill with pseudo-random numeric data of the type {@link Double}.
+     * @param array the object of the {@link ArrayDoubles} class to fill.
      *
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
-    @Override
     public void fill(ArrayDoubles array) {
         CheckerArray.checkLengthInArray(array);
         double[] doubles = new double[array.size()];
@@ -37,11 +42,35 @@ public class FillingArrayRandomPrimitiveDoubles implements Filling<ArrayDoubles>
         array.setArray(doubles);
     }
 
+    /**
+     * Fills the {@code doubles} array with pseudo-random numerical data of the double type.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     *
+     * @param doubles the array to fill.
+     *
+     * @throws NullPointerException if the {@code doubles} array is null.
+     * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     */
     public void fill(double[] doubles) {
         CheckerArray.checkLengthInArray(doubles);
         this.fillArrayRandomPrimitiveDoubles(doubles);
     }
 
+    /**
+     * Creates an array of the {@code lengthArray} length(size) of the double type and
+     * fills it with pseudo-random numerical data of the double type.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     *
+     * @param lengthArray the length(size) of the created array to fill.
+     *
+     * @return the array created and filled with data.
+     *
+     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
+     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     */
     public double[] fill(int lengthArray) {
         CheckerArray.checkLengthArray(lengthArray);
         double[] doubles = new double[lengthArray];
@@ -49,6 +78,20 @@ public class FillingArrayRandomPrimitiveDoubles implements Filling<ArrayDoubles>
         return doubles;
     }
 
+    /**
+     * Fills the {@code array} object with pseudo-random numerical data of the double type.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     *
+     * @param array the object of the {@link ArrayDoubles} class to fill.
+     * @param bound the upper bound numeric value to fill.
+     *
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     */
     public void fill(ArrayDoubles array, double bound) {
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
@@ -57,12 +100,42 @@ public class FillingArrayRandomPrimitiveDoubles implements Filling<ArrayDoubles>
         array.setArray(doubles);
     }
 
+    /**
+     * Fills the {@code doubles} array with pseudo-random numerical data of the double type.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     *
+     * @param doubles the array to fill.
+     * @param bound the upper bound numeric value to fill.
+     *
+     * @throws NullPointerException if the {@code doubles} array is null.
+     * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     */
     public void fill(double[] doubles, double bound) {
         CheckerArray.checkLengthInArray(doubles);
         CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
         this.fillArrayRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
     }
 
+    /**
+     * Creates an array of the {@code lengthArray} length(size) of the double type and
+     * fills it with pseudo-random numerical data of the double type.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     *
+     * @param lengthArray the length(size) of the created array to fill.
+     * @param bound the upper bound numeric value to fill.
+     *
+     * @return the array created and filled with data.
+     *
+     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
+     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     */
     public double[] fill(int lengthArray, double bound) {
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
@@ -71,6 +144,22 @@ public class FillingArrayRandomPrimitiveDoubles implements Filling<ArrayDoubles>
         return doubles;
     }
 
+    /**
+     * Fills the {@code array} object with pseudo-random numerical data of the double type.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@code lowerBound} to {@code upperBound}.
+     *
+     * @param array the object of the {@link ArrayDoubles} class to fill.
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
+     *
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if any of the boundary values out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     */
     public void fill(ArrayDoubles array, double lowerBound, double upperBound) {
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
@@ -81,6 +170,22 @@ public class FillingArrayRandomPrimitiveDoubles implements Filling<ArrayDoubles>
         array.setArray(doubles);
     }
 
+    /**
+     * Fills the {@code doubles} array with pseudo-random numerical data of the double type.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@code lowerBound} to {@code upperBound}.
+     *
+     * @param doubles the array to fill.
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
+     *
+     * @throws NullPointerException if the {@code doubles} array is null.
+     * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     */
     public void fill(double[] doubles, double lowerBound, double upperBound) {
         CheckerArray.checkLengthInArray(doubles);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
@@ -89,6 +194,24 @@ public class FillingArrayRandomPrimitiveDoubles implements Filling<ArrayDoubles>
         this.fillArrayRandomPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
     }
 
+    /**
+     * Creates an array of the {@code lengthArray} length(size) of the double type and
+     * fills it with pseudo-random numerical data of the double type.
+     * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
+     * Numeric values ​​generate in the range of {@code lowerBound} to {@code upperBound}.
+     *
+     * @param lengthArray the length(size) of the created array to fill.
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
+     *
+     * @return the array created and filled with data.
+     *
+     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
+     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     */
     public double[] fill(int lengthArray, double lowerBound, double upperBound) {
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
