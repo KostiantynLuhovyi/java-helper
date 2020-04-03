@@ -182,7 +182,7 @@ public class FillingArrayRandomPrimitiveDoubles {
      * @throws NullPointerException if the {@code doubles} array is null.
      * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
@@ -208,7 +208,7 @@ public class FillingArrayRandomPrimitiveDoubles {
      *
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */

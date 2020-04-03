@@ -195,7 +195,7 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * @throws NullPointerException if any of the boundary values is null.
      * @throws LengthArrayOutOfRangeException if the {@code integers} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
@@ -223,7 +223,7 @@ public class FillingArrayRandomIntegers implements FillingArrayNumbers<Integer> 
      * @throws NullPointerException if any of the boundary values is null.
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
