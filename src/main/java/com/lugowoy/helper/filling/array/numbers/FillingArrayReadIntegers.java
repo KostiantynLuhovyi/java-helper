@@ -6,6 +6,7 @@ import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsCompareException;
 import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.ValueOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerArray;
@@ -207,7 +208,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Integer[] integers = new Integer[array.size()];
         this.fillArrayReadIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
         array.setArray(integers);
@@ -264,7 +265,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Integer[] integers = new Integer[lengthArray];
         this.fillArrayReadIntegersFromLowerToUpperBounds(integers, lowerBound, upperBound);
         return integers;

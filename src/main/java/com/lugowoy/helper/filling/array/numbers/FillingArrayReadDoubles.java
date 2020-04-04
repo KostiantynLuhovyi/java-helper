@@ -6,6 +6,7 @@ import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
 import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsCompareException;
 import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.ValueOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerArray;
@@ -203,7 +204,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Double[] doubles = new Double[array.size()];
         this.fillArrayReadDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         array.setArray(doubles);
@@ -231,7 +232,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
         CheckerArray.checkLengthInArray(doubles);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         this.fillArrayReadDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
     }
 
@@ -260,7 +261,7 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         Double[] doubles = new Double[lengthArray];
         this.fillArrayReadDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         return doubles;

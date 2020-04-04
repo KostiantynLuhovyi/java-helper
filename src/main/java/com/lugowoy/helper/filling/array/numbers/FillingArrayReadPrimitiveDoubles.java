@@ -1,11 +1,14 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.Filling;
+import com.lugowoy.helper.filling.FillingReadValues;
 import com.lugowoy.helper.filling.ValuesToFilling;
-import com.lugowoy.helper.filling.array.FillingArrayReadValues;
 import com.lugowoy.helper.io.reading.Reader;
 import com.lugowoy.helper.io.reading.Reading;
+import com.lugowoy.helper.models.storages.arrays.Array;
 import com.lugowoy.helper.models.storages.arrays.ArrayDoubles;
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsCompareException;
+import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.ValueOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
@@ -13,16 +16,16 @@ import com.lugowoy.helper.utils.checking.CheckerBound;
 /**
  * Created by Konstantin Lugowoy on 23.03.2020.
  */
-public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
+public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
 
     private FillingArrayReadValues<Double> fillingArray;
 
     public FillingArrayReadPrimitiveDoubles(Reader reader) {
-        this.fillingArray = new FillingArrayReadDoubles(reader);
+        super(reader);
     }
 
     public FillingArrayReadPrimitiveDoubles(Reading reading) {
-        this.fillingArray = new FillingArrayReadDoubles(reading);
+        super(reading);
     }
 
     /**
@@ -30,7 +33,6 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
      *
      * @param arrayDoubles the object or storage(data structure) to fill.
      */
-    @Override
     public void fill(ArrayDoubles arrayDoubles) {
         CheckerArray.checkLengthInArray(arrayDoubles);
         double[] doubles = new double[arrayDoubles.size()];
@@ -76,7 +78,7 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
         CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         double[] doubles = new double[array.size()];
         this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         array.setArray(doubles);
@@ -86,7 +88,7 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
         CheckerArray.checkLengthInArray(doubles);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
     }
 
@@ -94,7 +96,7 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
         CheckerArray.checkLengthArray(lengthArray);
         CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
         double[] doubles = new double[lengthArray];
         this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
         return doubles;
@@ -110,7 +112,7 @@ public class FillingArrayReadPrimitiveDoubles implements Filling<ArrayDoubles> {
 
     private void fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(double[] doubles, double lowerBound, double upperBound) {
         for (int i = 0; i < doubles.length; i++) {
-            double valueRead = this.fillingArray.getReader().readDouble();
+            double valueRead = super.getReader().readDouble();
             checkReadPrimitiveDoubleValue(valueRead, lowerBound, upperBound);
             doubles[i] = valueRead;
         }
