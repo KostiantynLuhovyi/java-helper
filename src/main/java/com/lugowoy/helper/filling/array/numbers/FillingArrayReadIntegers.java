@@ -15,16 +15,15 @@ import com.lugowoy.helper.utils.checking.CheckerBound;
 import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
 
 /**
- * The class is an inheritor of the {@link FillingArrayReadValues} class and implements the contract declared
- * by the {@link FillingArrayNumbers} interface to fills a classic array and an object of the {@link Array} class
- * with read numerical data of the {@link Integer} type.
- * <p>The functionality of reading data of the {@link Integer} type from a specific source to fill the array is provided
- * when creating an object of this class with an object of the class as a successor of the {@link Reader} class (implementing the contract
- * of the {@link Reading} interface) or as an object of the class implementing the contract declared in the {@link Reading} interface.
- * <p>Created by Konstantin Lugowoy on 08-Jan-18.
+ * The class implements the functionality to fill the class objects {@link Array} and
+ * arrays of the type {@link Integer} with the read numeric data of the type {@link Integer}.
+ * Thereby the class implements the interface contract {@link FillingArrayNumbers}.
+ * <p> To see the functionality of read numeric data can in the class {@link Reader} and the interface {@link Reading}.
+ * <p> Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
  * @version 2.1
+ * @see com.lugowoy.helper.filling.FillingReadValues
  * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
@@ -33,39 +32,39 @@ import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
 public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> implements FillingArrayNumbers<Integer> {
 
     /**
-     * Constructs a new object of this class, initializing it with an object of the {@link Reader} class
-     * to read numerical data of the {@link Integer} type to fill an array.
+     * Constructs a new object, initializing the implementation of reading numeric data of the type {@link Integer} to fill
+     * the class objects {@link Array} and arrays of the type {@link Integer}.
+     * The implementation of data reading provided by class objects {@link Reader} or its subclasses.
      *
-     * @param reader The object of {@link Reader} class to read numeric data of the {@link Integer} type to fill an array.
-     *
-     * @throws NullPointerException If the {@code reader} argument is null.
+     * @param reader the object implementation of reading data to fill.
      */
     public FillingArrayReadIntegers(Reader reader) {
         super(reader);
     }
 
     /**
-     * Constructs a new object of this class, initializing it with an object of the concrete implementation of the contract declared
-     * in the interface {@link Reading} to read numerical data of the {@link Integer} type to fill an array.
+     * Constructs a new object, initializing the implementation of reading numeric data of the type {@link Integer} to fill
+     * the class objects {@link Array} and arrays of the type {@link Integer}.
+     * The implementation of reading data provided by classes objects that implementation the {@link Reading} interface.
      *
-     * @param reading The object of class that implements the {@link Reading} interface to read numerical data of the {@link Integer} type to fill array.
-     *
-     * @throws NullPointerException If the {@code reading} argument is null;
+     * @param reading the object implementation of reading data to fill.
      */
     public FillingArrayReadIntegers(Reading reading) {
         super(reading);
     }
 
     /**
-     * Fills an object of the {@link Array} class with read data of the {@link Integer} type.
-     * <p>Read data of the type {@link Integer} must be in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * If the read value is not correct {@link Integer} value or out of the valid range of values,
-     * then a {@link ValueOutOfRangeException} exception will be thrown.
+     * Fills the {@code array} object with the read numeric data of the type {@link Integer}.
+     * <p> For reading the data used to fill the functional encapsulated in the class.
+     * The functionality for reading data provided by objects of the {@link Reader} class or
+     * by objects of classes implementing the {@link Reading} interface.
+     * The read numeric values must in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
-     * @param array The object of the {@link Array} class to fill with read data of the {@link Integer} type.
+     * @param array the object of the {@link Array} class to fill.
      *
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
-     * @throws ValueOutOfRangeException If read value is not correct {@link Integer} value or out of the valid range values.
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     @Override
     public void fill(Array<Integer> array) {
@@ -76,15 +75,17 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     /**
-     * Fills an array with read data of the {@link Integer} type.
-     * <p>Read data of the type {@link Integer} must be in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * If the read value is not correct {@link Integer} value or out of the valid range of values,
-     * then a {@link ValueOutOfRangeException} exception will be thrown.
+     * Fills the {@code integers} array with the read numeric data of the type {@link Integer}.
+     * <p> For reading the data used to fill the functional encapsulated in the class.
+     * The functionality for reading data provided by objects of the {@link Reader} class or
+     * by objects of classes implementing the {@link Reading} interface.
+     * The read numeric values must in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
-     * @param integers The array to fill with read data of the {@link Integer} type.
+     * @param integers the array to fill.
      *
-     * @throws NullPointerException If {@code integers} argument is null.
-     * @throws ValueOutOfRangeException If read value is not correct {@link Integer} value or out of the valid range values.
+     * @throws NullPointerException if the {@code integers} array is null.
+     * @throws LengthArrayOutOfRangeException if the {@code integers} array attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     @Override
     public void fill(Integer[] integers) {
@@ -93,20 +94,19 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     /**
-     * Fills an array with read data of the {@link Integer} type.
-     * <p>The array is created based on the {@code lengthArray} argument.
-     * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
-     * <p>Read data of the type {@link Integer} must be in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * If the read value is not correct {@link Integer} value or out of the valid range of values,
-     * then a {@link ValueOutOfRangeException} exception will be thrown.
+     * Creates an array of the {@code lengthArray} length(size) of the type {@link Integer} and
+     * fills it with the read numeric data of type {@link Integer}.
+     * <p> For reading the data used to fill the functional encapsulated in the class.
+     * The functionality for reading data provided by objects of the {@link Reader} class or
+     * by objects of classes implementing the {@link Reading} interface.
+     * The read numeric values must in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
-     * @param lengthArray The length(size) of the array to fill with read data of the {@link Integer} type.
+     * @param lengthArray the length(size) of the created array to fill.
      *
-     * @return Created and filled an array with data of the {@link Integer} type.
+     * @return the array created and filled with data.
      *
-     * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws ValueOutOfRangeException If read value is not correct {@link Integer} value or out of the valid range values.
+     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
+     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     @Override
     public Integer[] fill(int lengthArray) {
@@ -117,18 +117,21 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     /**
-     * Fills an object of the {@link Array} class with read data of the {@link Integer} type.
-     * <p>Read data of the type {@link Integer} must be in the range from {@link ValuesToFilling#INT_ZERO}
-     * to {@code bound}. If the read value is not correct {@link Integer} value or out of the valid range of values,
-     * then a {@link ValueOutOfRangeException} exception will be thrown. The value of the {@code bound} argument must be
-     * in the range from 0 to {@link Integer#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
+     * Fills the {@code array} object with the read numeric data of the type {@link Integer}.
+     * <p> For reading the data used to fill the functional encapsulated in the class.
+     * The functionality for reading data provided by objects of the {@link Reader} class or
+     * by objects of classes implementing the {@link Reading} interface.
+     * The read numeric values must in the range from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      *
-     * @param array The object of the {@link Array} class to fill with data of the {@link Integer} type.
-     * @param bound The upper bound for reading value to fill.
+     * @param array the object of the {@link Array} class to fill.
+     * @param bound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
-     * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
-     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws NullPointerException if the {@code bound} value is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) {
@@ -140,19 +143,21 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     /**
-     * Fills an array with read data of the {@link Integer} type.
-     * <p>Read data of the type {@link Integer} must be in the range from {@link ValuesToFilling#INT_ZERO}
-     * to {@code bound}. If the read value is not correct {@link Integer} value or out of the valid range of values,
-     * then a {@link ValueOutOfRangeException} exception will be thrown.
-     * The value of the {@code bound} argument must be in the range from 0 to {@link Integer#MAX_VALUE},
-     * otherwise a {@link BoundOutOfRangeException} exception will be thrown.
+     * Fills the {@code integers} array with the read numeric data of the type {@link Integer}.
+     * <p> For reading the data used to fill the functional encapsulated in the class.
+     * The functionality for reading data provided by objects of the {@link Reader} class or
+     * by objects of classes implementing the {@link Reading} interface.
+     * The read numeric values must in the range from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      *
-     * @param integers The array to fill with read data of the {@link Integer} type.
-     * @param bound The upper bound for reading value to fill.
+     * @param integers the array to fill.
+     * @param bound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException If the {@code integers} argument is null.
-     * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
-     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @throws NullPointerException if the {@code integers} array is null.
+     * @throws NullPointerException if the {@code bound} value is null.
+     * @throws LengthArrayOutOfRangeException if the {@code integers} array attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      */
     @Override
     public void fill(Integer[] integers, Integer bound) {
@@ -162,21 +167,23 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     /**
-     * Fills an array with read data of the {@link Integer} type.
-     * <p>The array is created based on the {@code lengthArray} argument.
-     * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
-     * <p>Read data of the type {@link Integer} must be in the range from {@link ValuesToFilling#INT_ZERO}
-     * to {@code bound}. If the read value is not correct {@link Integer} value or out of the valid range of values,
-     * then a {@link ValueOutOfRangeException} exception will be thrown. The value of the {@code bound} argument must be
-     * in the range from 0 to {@link Integer#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
+     * Creates an array of the {@code lengthArray} length(size) of the type {@link Integer} and
+     * fills it with the read numeric data of type {@link Integer}.
+     * <p> For reading the data used to fill the functional encapsulated in the class.
+     * The functionality for reading data provided by objects of the {@link Reader} class or
+     * by objects of classes implementing the {@link Reading} interface.
+     * The read numeric values must in the range from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      *
-     * @param lengthArray The length(size) of the array to fill with read data of the {@link Integer} type.
-     * @param bound The upper bound for reading value to fill.
+     * @param lengthArray the length(size) of the created array to fill.
+     * @param bound the upper bound numeric value to fill.
      *
-     * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
-     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
+     * @return the array created and filled with data.
+     *
+     * @throws NullPointerException if the {@code bound} value is null.
+     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
+     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {
@@ -188,20 +195,23 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     /**
-     * Fills an object of the {@link Array} class with read data of the {@link Integer} type.
-     * <p>Read data of the type {@link Integer} must be in the range from {@code lowerBound} to {@code upperBound}.
-     * If the read value is not correct {@link Integer} value or out of the valid range of values,
-     * then a {@link ValueOutOfRangeException} exception will be thrown.
-     * The value of the {@code lowerBound} and {@code upperBound} arguments must be in the range from {@link Integer#MIN_VALUE}
-     * to {@link Integer#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
+     * Fills the {@code array} object with the read numeric data of the type {@link Integer}.
+     * <p> For reading the data used to fill the functional encapsulated in the class.
+     * The functionality for reading data provided by objects of the {@link Reader} class or
+     * by objects of classes implementing the {@link Reading} interface.
+     * The read numeric values must in the range from {@code lowerBound} to {@code upperBound}.
      *
-     * @param array The object of the {@link Array} class to fill with read data of the {@link Integer} type.
-     * @param lowerBound The lower bound for reading to fill.
-     * @param upperBound The upper bound for reading to fill.
+     * @param array the object of the {@link Array} class to fill.
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException If the object {@code array} of the {@link Array} class argument is null.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} or {@code upperBound} argument values is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws NullPointerException if any of the boundary values is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if any of the boundary values out of range
+     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     @Override
     public void fill(Array<Integer> array, Integer lowerBound, Integer upperBound) {
@@ -215,21 +225,23 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     /**
-     * Fills an array with read data of the {@link Integer} type.
-     * <p>Read data of the type {@link Integer} must be in the range from {@code lowerBound} to {@code upperBound}.
-     * If the read value is not correct {@link Integer} value or out of the valid range of values,
-     * then a {@link ValueOutOfRangeException} exception will be thrown.
-     * The value of the {@code lowerBound} and {@code upperBound} arguments must be in the range from {@link Integer#MIN_VALUE}
-     * to {@link Integer#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
+     * Fills the {@code integers} array with the read numeric data of the type {@link Integer}.
+     * <p> For reading the data used to fill the functional encapsulated in the class.
+     * The functionality for reading data provided by objects of the {@link Reader} class or
+     * by objects of classes implementing the {@link Reading} interface.
+     * The read numeric values must in the range from {@code lowerBound} to {@code upperBound}.
      *
-     * @param integers The array to fill with read data of the {@link Integer} type.
-     * @param lowerBound The lower bound for reading value to fill.
-     * @param upperBound The upper bound for reading value to fill.
+     * @param integers the array to fill.
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException If the {@code integers} argument is null.
-     * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
-     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @throws NullPointerException if the {@code integers} is null.
+     * @throws NullPointerException if any of the boundary values is null.
+     * @throws LengthArrayOutOfRangeException if the {@code integers} array attribute length(size) out of range
+     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if any of the boundary values out of range
+     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     @Override
     public void fill(Integer[] integers, Integer lowerBound, Integer upperBound) {
@@ -241,24 +253,25 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     /**
-     * Fills an array with read data of the {@link Integer} type.
-     * <p>The array is created based on the {@code lengthArray} argument.
-     * If the value of {@code lengthArray} is less than 0 or is greatest than {@link Integer#MAX_VALUE}(inclusive),
-     * then a {@link LengthArrayOutOfRangeException} exception will be thrown.
-     * <p>Read data of the type {@link Integer} must be in the range from {@code lowerBound} to {@code upperBound}.
-     * If the read value is not correct {@link Integer} value or out of the valid range of values,
-     * then a {@link ValueOutOfRangeException} exception will be thrown.
-     * The value of the {@code lowerBound} and {@code upperBound} arguments must be in the range from {@link Integer#MIN_VALUE}
-     * to {@link Integer#MAX_VALUE}, otherwise a {@link BoundOutOfRangeException} exception will be thrown.
+     * Creates an array of the {@code lengthArray} length(size) of the type {@link Integer} and
+     * fills it with the read numeric data of type {@link Integer}.
+     * <p> For reading the data used to fill the functional encapsulated in the class.
+     * The functionality for reading data provided by objects of the {@link Reader} class or
+     * by objects of classes implementing the {@link Reading} interface.
+     * The read numeric values must in the range from {@code lowerBound} to {@code upperBound}.
      *
-     * @param lengthArray The length(size) of the array to fill with read data of the {@link Integer} type.
-     * @param lowerBound The lower bound for reading value to fill.
-     * @param upperBound The upper bound for reading value to fill.
+     * @param lengthArray the length(size) of the created array to fill.
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
      *
-     * @throws LengthArrayOutOfRangeException If {@code lengthArray} argument value is out of valid range.
-     * @throws ValueOutOfRangeException If the read value is not correct or out of the valid range.
-     * @throws BoundOutOfRangeException If the {@code bound} argument value is out of valid range.
-     * @throws BoundOutOfRangeException If the {@code lowerBound} value is greater or not equal than to the {@code upperBound} value.
+     * @return the array created and filled with data.
+     *
+     * @throws NullPointerException if any of the boundary values is null.
+     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
+     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws BoundOutOfRangeException if any of the boundary values out of range
+     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer lowerBound, Integer upperBound) {
