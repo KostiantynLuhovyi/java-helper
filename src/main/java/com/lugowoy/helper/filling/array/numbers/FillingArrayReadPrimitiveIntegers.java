@@ -13,7 +13,7 @@ import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 
 /**
- * The class implements the functionality to fill the class objects {@link ArrayInts} and
+ * The class provides the functionality to fill the class objects {@link ArrayInts} and
  * arrays of the int type with the read numeric data of the int type.
  * <p> To see the functionality of read numeric data can in the class {@link Reader} and the interface {@link Reading}.
  * <p> Created by Konstantin Lugowoy on 23.03.2020.
@@ -48,16 +48,16 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
     }
 
     /**
-     * Fills the {@code arrayInts} object with the read numeric data of the int type.
+     * Fills the {@code array} object with the read numeric data of the int type.
      * <p> For reading the data used to fill the functional encapsulated in the class.
      * The functionality for reading data provided by objects of the {@link Reader} class or
      * by objects of classes implementing the {@link Reading} interface.
      * The read numeric values must in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
-     * @param arrayInts the object of the {@link ArrayInts} class to fill.
+     * @param array the object of the {@link ArrayInts} class to fill.
      *
-     * @throws NullPointerException if the {@code arrayInts} object is null.
-     * @throws LengthArrayOutOfRangeException if the {@code arrayInts} object attribute length(size) out of range
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     public void fill(ArrayInts array) {
@@ -108,19 +108,19 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
     }
 
     /**
-     * Fills the {@code arrayInts} object with the read numeric data of the int type.
+     * Fills the {@code array} object with the read numeric data of the int type.
      * <p> For reading the data used to fill the functional encapsulated in the class.
      * The functionality for reading data provided by objects of the {@link Reader} class or
      * by objects of classes implementing the {@link Reading} interface.
      * The read numeric values must in the range from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      *
-     * @param arrayInts the object of the {@link ArrayInts} class to fill.
+     * @param array the object of the {@link ArrayInts} class to fill.
      * @param bound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException if the {@code arrayInts} object is null.
-     * @throws LengthArrayOutOfRangeException if the {@code arrayInts} attribute length(size) out of range
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if the {@code bound} value out of range
      * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     public void fill(ArrayInts array, int bound) {
@@ -144,7 +144,7 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
      * @throws NullPointerException if the {@code ints} array is null.
      * @throws LengthArrayOutOfRangeException if the {@code ints} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if the {@code bound} value out of range
      * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     public void fill(int[] ints, int bound) {
@@ -168,7 +168,7 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
      *
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if the {@code bound} value out of range
      * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     public int[] fill(int lengthArray, int bound) {
@@ -180,22 +180,22 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
     }
 
     /**
-     * Fills the {@code arrayInts} object with the read numeric data of the int type.
+     * Fills the {@code array} object with the read numeric data of the int type.
      * <p> For reading the data used to fill the functional encapsulated in the class.
      * The functionality for reading data provided by objects of the {@link Reader} class or
      * by objects of classes implementing the {@link Reading} interface.
      * The read numeric values must in the range from {@code lowerBound} to {@code upperBound}.
      *
-     * @param arrayInts the object of the {@link ArrayInts} class to fill.
+     * @param array the object of the {@link ArrayInts} class to fill.
      * @param lowerBound the lower bound numeric value to fill.
      * @param upperBound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException if the {@code arrayInts} object is null.
-     * @throws LengthArrayOutOfRangeException if the {@code arrayInts} attribute length(size) out of range
+     * @throws NullPointerException if the {@code array} object is null.
+     * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
     public void fill(ArrayInts array, int lowerBound, int upperBound) {
         CheckerArray.checkLengthInArray(array);
@@ -218,12 +218,12 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
      * @param lowerBound the lower bound numeric value to fill.
      * @param upperBound the upper bound numeric value to fill.
      *
-     * @throws NullPointerException if the {@code ints} is null.
+     * @throws NullPointerException if the {@code ints} array is null.
      * @throws LengthArrayOutOfRangeException if the {@code ints} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
     public void fill(int[] ints, int lowerBound, int upperBound) {
         CheckerArray.checkLengthInArray(ints);
@@ -251,7 +251,7 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
     public int[] fill(int lengthArray, int lowerBound, int upperBound) {
         CheckerArray.checkLengthArray(lengthArray);

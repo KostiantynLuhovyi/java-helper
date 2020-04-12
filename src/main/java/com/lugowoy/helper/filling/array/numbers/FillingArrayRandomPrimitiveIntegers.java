@@ -12,7 +12,7 @@ import com.lugowoy.helper.utils.checking.CheckerBound;
 import java.util.Arrays;
 
 /**
- * The class implements the functionality to fill the class objects {@link ArrayInts} and
+ * The class provides the functionality to fill the class objects {@link ArrayInts} and
  * arrays of the int type with pseudo-random data of the int type.
  * <p> To see the functionality of pseudorandom number generation you can in the class {@link RandomNumber}.
  * <p> Created by Konstantin Lugowoy on 30.10.2019.
@@ -26,12 +26,12 @@ public class FillingArrayRandomPrimitiveIntegers {
     /**
      * Fills the {@code array} object with pseudo-random numerical data of the int type.
      * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
-     * Numeric values ​​generate in the range of {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * Numeric values ​​generate in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param array the object of the {@link ArrayInts} class to fill.
      *
      * @throws NullPointerException if the {@code array} object is null.
-     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
     public void fill(ArrayInts array) {
@@ -44,7 +44,7 @@ public class FillingArrayRandomPrimitiveIntegers {
     /**
      * Fills the {@code ints} array with pseudo-random numerical data of the int type.
      * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
-     * Numeric values ​​generate in the range of {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * Numeric values ​​generate in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param ints the array to fill.
      *
@@ -61,7 +61,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * Creates an array of the {@code lengthArray} length(size) of the int type and
      * fills it with pseudo-random numerical data of the int type.
      * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
-     * Numeric values ​​generate in the range of {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * Numeric values ​​generate in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param lengthArray the length(size) of the created array to fill.
      *
@@ -80,15 +80,15 @@ public class FillingArrayRandomPrimitiveIntegers {
     /**
      * Fills the {@code array} object with pseudo-random numerical data of the int type.
      * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
-     * Numeric values ​​generate in the range of {@link ValuesToFilling#INT_ZERO} to {@code bound}.
+     * Numeric values ​​generate in the range from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      *
      * @param array the object of the {@link ArrayInts} class to fill.
      * @param bound the upper bound numeric value to fill.
      *
      * @throws NullPointerException if the {@code array} object is null.
-     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if the {@code bound} value out of range
      * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     public void fill(ArrayInts array, int bound) {
@@ -102,7 +102,7 @@ public class FillingArrayRandomPrimitiveIntegers {
     /**
      * Fills the {@code ints} array with pseudo-random numerical data of the int type.
      * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
-     * Numeric values ​​generate in the range of {@link ValuesToFilling#INT_ZERO} to {@code bound}.
+     * Numeric values ​​generate in the range from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      *
      * @param ints the array to fill.
      * @param bound the upper bound numeric value to fill.
@@ -110,7 +110,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * @throws NullPointerException if the {@code ints} array is null.
      * @throws LengthArrayOutOfRangeException if the {@code ints} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if the {@code bound} value out of range
      * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     public void fill(int[] ints, int bound) {
@@ -123,7 +123,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * Creates an array of the {@code lengthArray} length(size) of the int type and
      * fills it with pseudo-random numerical data of the int type.
      * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
-     * Numeric values ​​generate in the range of {@link ValuesToFilling#INT_ZERO} to {@code bound}.
+     * Numeric values ​​generate in the range from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
      *
      * @param lengthArray the length(size) of the created array to fill.
      * @param bound the upper bound numeric value to fill.
@@ -132,7 +132,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      *
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range
+     * @throws BoundOutOfRangeException if the {@code bound} value out of range
      * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     public int[] fill(int lengthArray, int bound) {
@@ -146,18 +146,18 @@ public class FillingArrayRandomPrimitiveIntegers {
     /**
      * Fills the {@code array} object with pseudo-random numerical data of the int type.
      * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
-     * Numeric values ​​generate in the range of {@code lowerBound} to {@code upperBound}.
+     * Numeric values ​​generate in the range from {@code lowerBound} to {@code upperBound}.
      *
      * @param array the object of the {@link ArrayInts} class to fill.
      * @param lowerBound the lower bound numeric value to fill.
      * @param upperBound the upper bound numeric value to fill.
      *
      * @throws NullPointerException if the {@code array} object is null.
-     * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
+     * @throws LengthArrayOutOfRangeException if the {@code array} objectattribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
     public void fill(ArrayInts array, int lowerBound, int upperBound) {
         CheckerArray.checkLengthInArray(array);
@@ -172,7 +172,7 @@ public class FillingArrayRandomPrimitiveIntegers {
     /**
      * Fills the {@code ints} array with pseudo-random numerical data of the ints type.
      * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
-     * Numeric values ​​generate in the range of {@code lowerBound} to {@code upperBound}.
+     * Numeric values ​​generate in the range from {@code lowerBound} to {@code upperBound}.
      *
      * @param ints the array to fill.
      * @param lowerBound the lower bound numeric value to fill.
@@ -183,7 +183,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
     public void fill(int[] ints, int lowerBound, int upperBound) {
         CheckerArray.checkLengthInArray(ints);
@@ -197,7 +197,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * Creates an array of the {@code lengthArray} length(size) of the int type and
      * fills it with pseudo-random numerical data of the int type.
      * <p> Pseudorandom numeric data to fill generates functional of the class {@link RandomNumber}.
-     * Numeric values ​​generate in the range of {@code lowerBound} to {@code upperBound}.
+     * Numeric values ​​generate in the range from {@code lowerBound} to {@code upperBound}.
      *
      * @param lengthArray the length(size) of the created array to fill.
      * @param lowerBound the lower bound numeric value to fill.
@@ -209,7 +209,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
     public int[] fill(int lengthArray, int lowerBound, int upperBound) {
         CheckerArray.checkLengthArray(lengthArray);
