@@ -22,8 +22,8 @@ import com.lugowoy.helper.utils.checking.CheckerBound;
  *
  * @author Konstantin Lugowoy
  * @version 1.1
- * @since 3.0
  * @see com.lugowoy.helper.filling.FillingReadValues
+ * @since 3.0
  */
 public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
 
@@ -62,11 +62,11 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @throws LengthArrayOutOfRangeException if the {@code arrayDoubles} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
-    public void fill(ArrayDoubles arrayDoubles) {
-        CheckerArray.checkLengthInArray(arrayDoubles);
-        double[] doubles = new double[arrayDoubles.size()];
+    public void fill(ArrayDoubles array) {
+        CheckerArray.checkLengthInArray(array);
+        double[] doubles = new double[array.size()];
         this.fillArrayReadPrimitiveDoubles(doubles);
-        arrayDoubles.setArray(doubles);
+        array.setArray(doubles);
     }
 
     /**

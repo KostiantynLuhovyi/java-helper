@@ -12,8 +12,6 @@ import com.lugowoy.helper.utils.ValueOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
 
-import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
-
 /**
  * The class implements the functionality to fill the class objects {@link ArrayInts} and
  * arrays of the int type with the read numeric data of the int type.
@@ -62,11 +60,11 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
      * @throws LengthArrayOutOfRangeException if the {@code arrayInts} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
-    public void fill(ArrayInts arrayInts) {
-        CheckerArray.checkLengthInArray(arrayInts);
-        int[] ints = new int[arrayInts.size()];
+    public void fill(ArrayInts array) {
+        CheckerArray.checkLengthInArray(array);
+        int[] ints = new int[array.size()];
         this.fillArrayReadPrimitiveInts(ints);
-        arrayInts.setArray(ints);
+        array.setArray(ints);
     }
 
     /**
@@ -125,12 +123,12 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
      * @throws BoundOutOfRangeException if the {@code bound} out of range
      * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
-    public void fill(ArrayInts arrayInts, int bound) {
-        CheckerArray.checkLengthInArray(arrayInts);
+    public void fill(ArrayInts array, int bound) {
+        CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
-        int[] ints = new int[arrayInts.size()];
+        int[] ints = new int[array.size()];
         this.fillArrayReadPrimitiveIntsFromZeroToPositiveBound(ints, bound);
-        arrayInts.setArray(ints);
+        array.setArray(ints);
     }
 
     /**
@@ -199,14 +197,14 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
-    public void fill(ArrayInts arrayInts, int lowerBound, int upperBound) {
-        CheckerArray.checkLengthInArray(arrayInts);
+    public void fill(ArrayInts array, int lowerBound, int upperBound) {
+        CheckerArray.checkLengthInArray(array);
         CheckerBound.isCorrectBound(lowerBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBound, Integer.MIN_VALUE, Integer.MAX_VALUE);
         CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBound, upperBound);
-        int[] ints = new int[arrayInts.size()];
+        int[] ints = new int[array.size()];
         this.fillArrayReadPrimitiveIntsFromLowerToUpperBounds(ints, lowerBound, upperBound);
-        arrayInts.setArray(ints);
+        array.setArray(ints);
     }
 
     /**
@@ -270,7 +268,7 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
     }
 
     private void fillArrayReadPrimitiveIntsFromZeroToPositiveBound(int[] ints, int bound) {
-        this.fillArrayReadPrimitiveIntsFromLowerToUpperBounds(ints, INT_ZERO, bound);
+        this.fillArrayReadPrimitiveIntsFromLowerToUpperBounds(ints, ValuesToFilling.INT_ZERO, bound);
     }
 
     private void fillArrayReadPrimitiveIntsFromLowerToUpperBounds(int[] ints, int lowerBound, int upperBound) {

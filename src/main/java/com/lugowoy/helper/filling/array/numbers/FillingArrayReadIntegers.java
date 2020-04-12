@@ -289,7 +289,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     }
 
     private void fillArrayReadIntegersFromZeroToPositiveBound(Integer[] integers, int bound) {
-        this.fillArrayReadIntegersFromLowerToUpperBounds(integers, INT_ZERO, bound);
+        this.fillArrayReadIntegersFromLowerToUpperBounds(integers, ValuesToFilling.INT_ZERO, bound);
     }
 
     private void fillArrayReadIntegersFromLowerToUpperBounds(Integer[] integers, int lowerBound, int upperBound) {

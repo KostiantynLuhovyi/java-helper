@@ -1,7 +1,6 @@
 package com.lugowoy.helper.filling.array.numbers;
 
 import com.lugowoy.helper.filling.ValuesToFilling;
-import com.lugowoy.helper.models.storages.arrays.ArrayDoubles;
 import com.lugowoy.helper.models.storages.arrays.ArrayInts;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.BoundsCompareException;
