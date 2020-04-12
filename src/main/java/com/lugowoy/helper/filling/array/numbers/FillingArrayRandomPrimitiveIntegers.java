@@ -90,7 +90,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     public void fill(ArrayInts array, int bound) {
         CheckerArray.checkLengthInArray(array);
@@ -112,7 +112,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * @throws LengthArrayOutOfRangeException if the {@code ints} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     public void fill(int[] ints, int bound) {
         CheckerArray.checkLengthInArray(ints);
@@ -134,7 +134,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     public int[] fill(int lengthArray, int bound) {
         CheckerArray.checkLengthArray(lengthArray);
@@ -157,7 +157,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
-     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     public void fill(ArrayInts array, int lowerBound, int upperBound) {
@@ -183,7 +183,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * @throws LengthArrayOutOfRangeException if the {@code ints} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
-     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     public void fill(int[] ints, int lowerBound, int upperBound) {
@@ -209,7 +209,7 @@ public class FillingArrayRandomPrimitiveIntegers {
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
-     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
      */
     public int[] fill(int lengthArray, int lowerBound, int upperBound) {

@@ -131,7 +131,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     @Override
     public void fill(Array<Integer> array, Integer bound) {
@@ -157,7 +157,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * @throws LengthArrayOutOfRangeException if the {@code integers} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     @Override
     public void fill(Integer[] integers, Integer bound) {
@@ -183,7 +183,7 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#INT_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
      */
     @Override
     public Integer[] fill(int lengthArray, Integer bound) {

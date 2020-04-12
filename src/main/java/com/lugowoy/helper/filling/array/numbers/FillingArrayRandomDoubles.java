@@ -96,7 +96,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
     @Override
     public void fill(Array<Double> array, Double bound) {
@@ -120,7 +120,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
     @Override
     public void fill(Double[] doubles, Double bound) {
@@ -144,7 +144,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
     @Override
     public Double[] fill(int lengthArray, Double bound) {

@@ -90,7 +90,7 @@ public class FillingArrayRandomPrimitiveDoubles {
      * @throws LengthArrayOutOfRangeException if the {@code array} attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
     public void fill(ArrayDoubles array, double bound) {
         CheckerArray.checkLengthInArray(array);
@@ -112,7 +112,7 @@ public class FillingArrayRandomPrimitiveDoubles {
      * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
     public void fill(double[] doubles, double bound) {
         CheckerArray.checkLengthInArray(doubles);
@@ -134,7 +134,7 @@ public class FillingArrayRandomPrimitiveDoubles {
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} out of range
-     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code bound}.
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
     public double[] fill(int lengthArray, double bound) {
         CheckerArray.checkLengthArray(lengthArray);
