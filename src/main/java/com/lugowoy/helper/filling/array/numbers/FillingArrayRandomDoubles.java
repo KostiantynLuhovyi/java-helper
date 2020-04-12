@@ -101,7 +101,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     @Override
     public void fill(Array<Double> array, Double bound) {
         CheckerArray.checkLengthInArray(array);
-        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
         Double[] doubles = new Double[array.size()];
         this.fillArrayRandomDoublesFromZeroToPositiveBound(doubles, bound);
         array.setArray(doubles);
@@ -125,7 +125,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     @Override
     public void fill(Double[] doubles, Double bound) {
         CheckerArray.checkLengthInArray(doubles);
-        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
         this.fillArrayRandomDoublesFromZeroToPositiveBound(doubles, bound);
     }
 
@@ -149,7 +149,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     @Override
     public Double[] fill(int lengthArray, Double bound) {
         CheckerArray.checkLengthArray(lengthArray);
-        CheckerBound.isCorrectBound(bound, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
         Double[] doubles = new Double[lengthArray];
         this.fillArrayRandomDoublesFromZeroToPositiveBound(doubles, bound);
         return doubles;
