@@ -68,7 +68,7 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
     public void fill(ArrayDoubles array) {
         CheckerArray.checkLengthInArray(array);
         double[] doubles = new double[array.size()];
-        this.fillArrayReadPrimitiveDoubles(doubles);
+        this.fillArray(doubles);
         array.setArray(doubles);
     }
 
@@ -89,7 +89,7 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      */
     public void fill(double[] doubles) {
         CheckerArray.checkLengthInArray(doubles);
-        this.fillArrayReadPrimitiveDoubles(doubles);
+        this.fillArray(doubles);
     }
 
     /**
@@ -112,7 +112,7 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
     public double[] fill(int lengthArray) {
         CheckerArray.checkLengthArray(lengthArray);
         double[] doubles = new double[lengthArray];
-        this.fillArrayReadPrimitiveDoubles(doubles);
+        this.fillArray(doubles);
         return doubles;
     }
 
@@ -134,11 +134,11 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
      * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
-    public void fill(ArrayDoubles array, double bound) {
+    public void fill(ArrayDoubles array, double boundValue) {
         CheckerArray.checkLengthInArray(array);
-        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(boundValue, Long.MAX_VALUE);
         double[] doubles = new double[array.size()];
-        this.fillArrayReadPrimitiveDoublesFromZeroToPositiveBound(doubles, bound);
+        this.fillArrayFromZeroToBound(doubles, boundValue);
         array.setArray(doubles);
     }
 
@@ -160,10 +160,10 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
      * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
-    public void fill(double[] doubles, double bound) {
+    public void fill(double[] doubles, double boundValue) {
         CheckerArray.checkLengthInArray(doubles);
-        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
-        this.fillArrayReadPrimitiveDoublesFromZeroToPositiveBound(doubles, bound);
+        CheckerBound.isCorrectBound(boundValue, Long.MAX_VALUE);
+        this.fillArrayFromZeroToBound(doubles, boundValue);
     }
 
     /**
@@ -186,11 +186,11 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
      * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
-    public double[] fill(int lengthArray, double bound) {
+    public double[] fill(int lengthArray, double boundValue) {
         CheckerArray.checkLengthArray(lengthArray);
-        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(boundValue, Long.MAX_VALUE);
         double[] doubles = new double[lengthArray];
-        this.fillArrayReadPrimitiveDoublesFromZeroToPositiveBound(doubles, bound);
+        this.fillArrayFromZeroToBound(doubles, boundValue);
         return doubles;
     }
 
@@ -214,13 +214,13 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
-    public void fill(ArrayDoubles array, double lowerBound, double upperBound) {
+    public void fill(ArrayDoubles array, double lowerBoundValue, double upperBoundValue) {
         CheckerArray.checkLengthInArray(array);
-        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        CheckerBound.isCorrectBound(lowerBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundValue, upperBoundValue);
         double[] doubles = new double[array.size()];
-        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
+        this.fillArrayFromLowerToUpper(doubles, lowerBoundValue, upperBoundValue);
         array.setArray(doubles);
     }
 
@@ -244,12 +244,12 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
-    public void fill(double[] doubles, double lowerBound, double upperBound) {
+    public void fill(double[] doubles, double lowerBoundValue, double upperBoundValue) {
         CheckerArray.checkLengthInArray(doubles);
-        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
-        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
+        CheckerBound.isCorrectBound(lowerBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundValue, upperBoundValue);
+        this.fillArrayFromLowerToUpper(doubles, lowerBoundValue, upperBoundValue);
     }
 
     /**
@@ -274,25 +274,25 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
-    public double[] fill(int lengthArray, double lowerBound, double upperBound) {
+    public double[] fill(int lengthArray, double lowerBoundValue, double upperBoundValue) {
         CheckerArray.checkLengthArray(lengthArray);
-        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        CheckerBound.isCorrectBound(lowerBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundValue, upperBoundValue);
         double[] doubles = new double[lengthArray];
-        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
+        this.fillArrayFromLowerToUpper(doubles, lowerBoundValue, upperBoundValue);
         return doubles;
     }
 
-    private void fillArrayReadPrimitiveDoubles(double[] doubles) {
-        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, Long.MIN_VALUE, Long.MAX_VALUE);
+    private void fillArray(double[] doubles) {
+        this.fillArrayFromLowerToUpper(doubles, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    private void fillArrayReadPrimitiveDoublesFromZeroToPositiveBound(double[] doubles, double bound) {
-        this.fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(doubles, ValuesToFilling.DOUBLE_ZERO, bound);
+    private void fillArrayFromZeroToBound(double[] doubles, double boundValue) {
+        this.fillArrayFromLowerToUpper(doubles, ValuesToFilling.DOUBLE_ZERO, boundValue);
     }
 
-    private void fillArrayReadPrimitiveDoublesFromLowerToUpperBounds(double[] doubles, double lowerBound, double upperBound) {
+    private void fillArrayFromLowerToUpper(double[] doubles, double lowerBoundValue, double upperBoundValue) {
         for (int i = 0; i < doubles.length; i++) {
             double valueRead = super.getReader().readDouble();
             CheckerValue.checkValue(valueRead, lowerBoundValue, upperBoundValue);

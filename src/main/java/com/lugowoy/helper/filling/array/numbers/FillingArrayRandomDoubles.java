@@ -41,7 +41,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     public void fill(Array<Double> array) {
         CheckerArray.checkLengthInArray(array);
         Double[] doubles = new Double[array.size()];
-        this.fillArrayRandomDoubles(doubles);
+        this.fillArray(doubles);
         array.setArray(doubles);
     }
 
@@ -59,7 +59,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     @Override
     public void fill(Double[] doubles) {
         CheckerArray.checkLengthInArray(doubles);
-        this.fillArrayRandomDoubles(doubles);
+        this.fillArray(doubles);
     }
 
     /**
@@ -79,7 +79,7 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
     public Double[] fill(int lengthArray) {
         CheckerArray.checkLengthArray(lengthArray);
         Double[] doubles = new Double[lengthArray];
-        this.fillArrayRandomDoubles(doubles);
+        this.fillArray(doubles);
         return doubles;
     }
 
@@ -99,11 +99,11 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
     @Override
-    public void fill(Array<Double> array, Double bound) {
+    public void fill(Array<Double> array, Double boundValue) {
         CheckerArray.checkLengthInArray(array);
-        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(boundValue, Long.MAX_VALUE);
         Double[] doubles = new Double[array.size()];
-        this.fillArrayRandomDoublesFromZeroToPositiveBound(doubles, bound);
+        this.fillArrayFromZeroToBound(doubles, boundValue);
         array.setArray(doubles);
     }
 
@@ -123,10 +123,10 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
     @Override
-    public void fill(Double[] doubles, Double bound) {
+    public void fill(Double[] doubles, Double boundValue) {
         CheckerArray.checkLengthInArray(doubles);
-        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
-        this.fillArrayRandomDoublesFromZeroToPositiveBound(doubles, bound);
+        CheckerBound.isCorrectBound(boundValue, Long.MAX_VALUE);
+        this.fillArrayFromZeroToBound(doubles, boundValue);
     }
 
     /**
@@ -147,11 +147,11 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * from {@link ValuesToFilling#DOUBLE_ZERO} to {@link Long#MAX_VALUE}.
      */
     @Override
-    public Double[] fill(int lengthArray, Double bound) {
+    public Double[] fill(int lengthArray, Double boundValue) {
         CheckerArray.checkLengthArray(lengthArray);
-        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(boundValue, Long.MAX_VALUE);
         Double[] doubles = new Double[lengthArray];
-        this.fillArrayRandomDoublesFromZeroToPositiveBound(doubles, bound);
+        this.fillArrayFromZeroToBound(doubles, boundValue);
         return doubles;
     }
 
@@ -173,13 +173,13 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
     @Override
-    public void fill(Array<Double> array, Double lowerBound, Double upperBound) {
+    public void fill(Array<Double> array, Double lowerBoundValue, Double upperBoundValue) {
         CheckerArray.checkLengthInArray(array);
-        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        CheckerBound.isCorrectBound(lowerBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundValue, upperBoundValue);
         Double[] doubles = new Double[array.size()];
-        this.fillArrayRandomDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
+        this.fillArrayFromLowerToUpper(doubles, lowerBoundValue, upperBoundValue);
         array.setArray(doubles);
     }
 
@@ -201,12 +201,12 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
     @Override
-    public void fill(Double[] doubles, Double lowerBound, Double upperBound) {
+    public void fill(Double[] doubles, Double lowerBoundValue, Double upperBoundValue) {
         CheckerArray.checkLengthInArray(doubles);
-        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
-        this.fillArrayRandomDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
+        CheckerBound.isCorrectBound(lowerBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundValue, upperBoundValue);
+        this.fillArrayFromLowerToUpper(doubles, lowerBoundValue, upperBoundValue);
     }
 
     /**
@@ -229,27 +229,27 @@ public class FillingArrayRandomDoubles implements FillingArrayNumbers<Double> {
      * @throws BoundsCompareException if {@code lowerBound} value greater or equal than {@code upperBound} value.
      */
     @Override
-    public Double[] fill(int lengthArray, Double lowerBound, Double upperBound) {
+    public Double[] fill(int lengthArray, Double lowerBoundValue, Double upperBoundValue) {
         CheckerArray.checkLengthArray(lengthArray);
-        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+        CheckerBound.isCorrectBound(lowerBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundValue, Long.MIN_VALUE, Long.MAX_VALUE);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundValue, upperBoundValue);
         Double[] doubles = new Double[lengthArray];
-        this.fillArrayRandomDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
+        this.fillArrayFromLowerToUpper(doubles, lowerBoundValue, upperBoundValue);
         return doubles;
     }
 
-    private void fillArrayRandomDoubles(Double[] doubles) {
-        this.fillArrayRandomDoublesFromLowerToUpperBounds(doubles, Long.MIN_VALUE, Long.MAX_VALUE);
+    private void fillArray(Double[] doubles) {
+        this.fillArrayFromLowerToUpper(doubles, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    private void fillArrayRandomDoublesFromZeroToPositiveBound(Double[] doubles, double bound) {
-        this.fillArrayRandomDoublesFromLowerToUpperBounds(doubles, ValuesToFilling.DOUBLE_ZERO, bound);
+    private void fillArrayFromZeroToBound(Double[] doubles, double boundValue) {
+        this.fillArrayFromLowerToUpper(doubles, ValuesToFilling.DOUBLE_ZERO, boundValue);
     }
 
-    private void fillArrayRandomDoublesFromLowerToUpperBounds(Double[] doubles, double lowerBound, double upperBound) {
+    private void fillArrayFromLowerToUpper(Double[] doubles, double lowerBoundValue, double upperBoundValue) {
         RandomNumber randomNumber = new RandomNumber();
-        Arrays.setAll(doubles, i -> randomNumber.generateDouble(lowerBound, upperBound));
+        Arrays.setAll(doubles, i -> randomNumber.generateDouble(lowerBoundValue, upperBoundValue));
     }
 
 }
