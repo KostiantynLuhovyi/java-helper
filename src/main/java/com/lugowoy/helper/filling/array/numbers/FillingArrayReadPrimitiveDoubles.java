@@ -22,7 +22,7 @@ import com.lugowoy.helper.utils.checking.CheckerValue;
  * <p> Created by Konstantin Lugowoy on 23.03.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @see com.lugowoy.helper.filling.FillingReadValues
  * @since 3.0
  */
@@ -60,6 +60,8 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @param array the object of the {@link ArrayDoubles} class to fill.
      *
      * @throws NullPointerException if the {@code array} object is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
@@ -80,6 +82,8 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @param doubles the array to fill.
      *
      * @throws NullPointerException if the {@code doubles} array is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
@@ -100,6 +104,8 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      *
      * @return the array created and filled with data.
      *
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
@@ -121,6 +127,8 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @param bound the upper bound numeric value to fill.
      *
      * @throws NullPointerException if the {@code array} object is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code boundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
@@ -145,6 +153,8 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @param bound the upper bound numeric value to fill.
      *
      * @throws NullPointerException if the {@code doubles} array is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code boundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
@@ -169,6 +179,8 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      *
      * @return the array created and filled with data.
      *
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code boundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
@@ -194,6 +206,8 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @param upperBound the upper bound numeric value to fill.
      *
      * @throws NullPointerException if the {@code array} object is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@code lowerBoundValue} to {@code upperBoundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
@@ -222,6 +236,8 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      * @param upperBound the upper bound numeric value to fill.
      *
      * @throws NullPointerException if the {@code doubles} is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@code lowerBoundValue} to {@code upperBoundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
@@ -250,6 +266,8 @@ public class FillingArrayReadPrimitiveDoubles extends FillingReadValues {
      *
      * @return the array created and filled with data.
      *
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@code lowerBoundValue} to {@code upperBoundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range

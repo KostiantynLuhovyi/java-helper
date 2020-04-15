@@ -23,7 +23,7 @@ import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
  * <p> Created by Konstantin Lugowoy on 08-Jan-18.
  *
  * @author Konstantin Lugowoy
- * @version 2.1
+ * @version 2.2
  * @see com.lugowoy.helper.filling.FillingReadValues
  * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
@@ -64,6 +64,8 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * @param array the object of the {@link Array} class to fill.
      *
      * @throws NullPointerException if the {@code array} object is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
@@ -85,6 +87,8 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * @param doubles the array to fill.
      *
      * @throws NullPointerException if the {@code doubles} array is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
@@ -106,6 +110,8 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      *
      * @return the array created and filled with data.
      *
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      */
@@ -128,7 +134,9 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * @param bound the upper bound numeric value to fill.
      *
      * @throws NullPointerException if the {@code array} object is null.
-     * @throws NullPointerException if the {@code bound} value is null.
+     * @throws NullPointerException if the {@code boundValue} value is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code boundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
@@ -154,7 +162,9 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * @param bound the upper bound numeric value to fill.
      *
      * @throws NullPointerException if the {@code doubles} array is null.
-     * @throws NullPointerException if the {@code bound} value is null.
+     * @throws NullPointerException if the {@code boundValue} value is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code boundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
@@ -180,7 +190,9 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      *
      * @return the array created and filled with data.
      *
-     * @throws NullPointerException if the {@code bound} value is null.
+     * @throws NullPointerException if the {@code boundValue} value is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@link ValuesToFilling#DOUBLE_ZERO} to {@code boundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
@@ -208,6 +220,8 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      *
      * @throws NullPointerException if the {@code array} object is null.
      * @throws NullPointerException if any of the boundary values is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@code lowerBoundValue} to {@code upperBoundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
@@ -238,6 +252,8 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      *
      * @throws NullPointerException if the {@code doubles} is null.
      * @throws NullPointerException if any of the boundary values is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@code lowerBoundValue} to {@code upperBoundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code doubles} array attribute length(size) out of range
      * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
@@ -268,6 +284,8 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
      * @return the array created and filled with data.
      *
      * @throws NullPointerException if any of the boundary values is null.
+     * @throws ValueOutOfRangeException if the read {@code value} out of range
+     * from {@code lowerBoundValue} to {@code upperBoundValue}.
      * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
      * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
      * @throws BoundOutOfRangeException if any of the boundary values out of range
