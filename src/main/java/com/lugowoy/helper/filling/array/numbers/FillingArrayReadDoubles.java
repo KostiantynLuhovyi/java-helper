@@ -11,6 +11,7 @@ import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.ValueOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
+import com.lugowoy.helper.utils.checking.CheckerValue;
 
 import static com.lugowoy.helper.filling.ValuesToFilling.DOUBLE_ZERO;
 
@@ -295,15 +296,8 @@ public class FillingArrayReadDoubles extends FillingArrayReadValues<Double> impl
     private void fillArrayReadDoublesFromLowerToUpperBounds(Double[] doubles, double lowerBound, double upperBound) {
         for (int i = 0; i < doubles.length; i++) {
             double valueRead = super.getReader().readDouble();
-            checkReadDoubleValue(valueRead, lowerBound, upperBound);
+            CheckerValue.checkValue(valueRead, lowerBoundValue, upperBoundValue);
             doubles[i] = valueRead;
-        }
-    }
-
-    private static void checkReadDoubleValue(double value, double lowerValue, double upperValue) {
-        if (value < lowerValue || value > upperValue) {
-            String msgEx = "Value out of range (" + lowerValue + " - " + upperValue + ")";
-            throw new ValueOutOfRangeException(msgEx);
         }
     }
 

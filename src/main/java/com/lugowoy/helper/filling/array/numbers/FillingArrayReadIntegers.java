@@ -11,8 +11,7 @@ import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
 import com.lugowoy.helper.utils.ValueOutOfRangeException;
 import com.lugowoy.helper.utils.checking.CheckerArray;
 import com.lugowoy.helper.utils.checking.CheckerBound;
-
-import static com.lugowoy.helper.filling.ValuesToFilling.INT_ZERO;
+import com.lugowoy.helper.utils.checking.CheckerValue;
 
 /**
  * The class provides the functionality to fill the class objects {@link Array} and
@@ -295,15 +294,8 @@ public class FillingArrayReadIntegers extends FillingArrayReadValues<Integer> im
     private void fillArrayReadIntegersFromLowerToUpperBounds(Integer[] integers, int lowerBound, int upperBound) {
         for (int i = 0; i < integers.length; i++) {
             int valueRead = super.getReader().readInt();
-            checkReadIntValue(valueRead, lowerBound, upperBound);
+            CheckerValue.checkValue(valueRead, lowerBound, upperBound);
             integers[i] = valueRead;
-        }
-    }
-
-    private static void checkReadIntValue(int value, int lowerValue, int upperValue) {
-        if (value < lowerValue || value > upperValue) {
-            String msgEx = "Value out of range (" + lowerValue + " - " + upperValue + ")";
-            throw new ValueOutOfRangeException(msgEx);
         }
     }
 
