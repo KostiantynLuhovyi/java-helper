@@ -1,5 +1,7 @@
 package com.lugowoy.helper.utils.checking;
 
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsCompareException;
 import com.lugowoy.helper.utils.LengthStringOutOfRangeException;
 
 /**
@@ -12,6 +14,8 @@ import com.lugowoy.helper.utils.LengthStringOutOfRangeException;
  */
 public class CheckerString {
 
+    private static final int DEFAULT_LOWER_STRING = 0;
+
     /**
      * Checks the {@code lengthString} value in the valid range from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      *
@@ -20,8 +24,8 @@ public class CheckerString {
      * @throws LengthStringOutOfRangeException if the {@code lengthString} value out of range
      * from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      */
-    public static void checkLengthString(long lengthString) {
-        checkLengthString(lengthString, Long.MIN_VALUE, Long.MAX_VALUE);
+    public static void checkLengthString(int lengthString) {
+        checkLengthString(lengthString, DEFAULT_LOWER_STRING, Integer.MAX_VALUE);
     }
 
     /**
@@ -34,7 +38,10 @@ public class CheckerString {
      * @throws LengthStringOutOfRangeException if the {@code lengthString} value out of range
      * from {@code lowerBoundLength} to {@code upperBoundLength}.
      */
-    public static void checkLengthString(long lengthString, long lowerBoundLength, long upperBoundLength) {
+    public static void checkLengthString(int lengthString, int lowerBoundLength, int upperBoundLength) {
+        CheckerBound.isCorrectBound(lowerBoundLength, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isCorrectBound(upperBoundLength, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        CheckerBound.isLowerBoundLessUpperBound(lowerBoundLength, upperBoundLength);
         if (lengthString < lowerBoundLength || lengthString > upperBoundLength) {
             String msgEx = "Value length of the string out of range (" + lowerBoundLength + " - " + upperBoundLength + ")";
             throw new LengthStringOutOfRangeException(msgEx);
