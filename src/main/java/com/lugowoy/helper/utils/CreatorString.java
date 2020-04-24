@@ -10,21 +10,15 @@ import java.util.Objects;
  * <p> Created by Konstantin Lugowoy on 21.04.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 3.0
  */
 public final class CreatorString {
 
-    private CreatorString() {
-    }
-
     /**
-     * Gets the object of this class.
-     *
-     * @return the object of this class.
+     * Constructs an object of this class
      */
-    public static CreatorString getCreator() {
-        return new CreatorString();
+    public CreatorString() {
     }
 
     /**

@@ -13,21 +13,15 @@ import java.util.Objects;
  * <p> Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @since 1.2
  */
 public final class ReaderCharacters {
 
-    private ReaderCharacters() {
-    }
-
     /**
-     * Gets the object of this class.
-     *
-     * @return the object of this class.
+     * Constructs an object of this class.
      */
-    public static ReaderCharacters getReader() {
-        return new ReaderCharacters();
+    public ReaderCharacters() {
     }
 
     /**
