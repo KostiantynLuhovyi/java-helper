@@ -36,7 +36,7 @@ public final class CreatorString {
      * @see CheckerString#checkLengthString(int)
      * @see CheckerString#checkLengthString(int)
      */
-    public String create(char[] characters, int lengthString) {
+    public String create(final char[] characters, final int lengthString) {
         CheckerString.checkLengthString(lengthString);
         Objects.requireNonNull(characters);
         StringBuilder stringBuilder = new StringBuilder();
@@ -68,11 +68,12 @@ public final class CreatorString {
      * @see CreatorString#create(char[], int)
      * @see CheckerString#checkLengthString(int)
      */
-    public String create(char[] characters, int lowerBoundLength, int upperBoundLength) {
+    public String create(final char[] characters, final int lowerBoundLength, final int upperBoundLength) {
         CheckerBound.isCorrectBound(lowerBoundLength, Integer.MAX_VALUE);
         CheckerBound.isCorrectBound(upperBoundLength, Integer.MAX_VALUE);
         CheckerBound.isLowerBoundLessUpperBound(lowerBoundLength, upperBoundLength);
-        return this.create(characters, new RandomNumber().generateInt(lowerBoundLength, upperBoundLength));
+        int randomLengthString = new RandomNumber().generateInt(lowerBoundLength, upperBoundLength);
+        return this.create(characters, randomLengthString);
     }
 
 }
