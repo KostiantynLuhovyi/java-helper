@@ -2,7 +2,10 @@ package com.lugowoy.helper.utils;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,22 +40,25 @@ public final class ReaderCharacters {
      * @throws IOException if an I/O error occurs.
      * @see Objects#requireNonNull(Object)
      */
-    public char[] readCharacters(String... pathToFiles) throws IOException {
+    public char[] readCharacters(final String... pathToFiles) throws IOException {
         Objects.requireNonNull(pathToFiles);
         List<Character> charactersList = new ArrayList<>();
+        FileInputStream fileStream = null;
+        InputStreamReader streamReader = null;
         BufferedReader reader = null;
-        InputStream stream = null;
         try {
             for (String fileName : pathToFiles) {
-                stream = new FileInputStream(fileName);
-                reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+                fileStream = new FileInputStream(fileName);
+                streamReader = new InputStreamReader(fileStream, StandardCharsets.UTF_8);
+                reader = new BufferedReader(streamReader);
                 int character;
                 while ((character = reader.read()) != -1) {
                     charactersList.add((char) character);
                 }
             }
         } finally {
-            Objects.requireNonNull(stream).close();
+            Objects.requireNonNull(fileStream).close();
+            Objects.requireNonNull(streamReader).close();
             Objects.requireNonNull(reader).close();
         }
         return ArrayUtils.toPrimitive(charactersList.toArray(Character[]::new));
