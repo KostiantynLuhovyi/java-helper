@@ -3,10 +3,13 @@ package com.lugowoy.helper.converting;
 import java.util.Objects;
 
 /**
- * This class is a container that takes a specific implementation of functionality to perform data conversion in a specific object.
- * <p>Created by Konstantin Lugowoy on 29-Jan-17.
+ * The class provides a container for implementing the functionality
+ * to perform data conversion encapsulated in a specific object.
+ * <p>
+ * Created by Konstantin Lugowoy on 29-Jan-17.
  *
- * @param <T> Type of object encapsulating data for conversion.
+ * @param <T> the type of object encapsulating data for conversion.
+ *
  * @author Konstantin Lugowoy
  * @version 1.1
  * @since 1.0
@@ -16,10 +19,14 @@ public class Converter<T> {
     private Converting<T> converter;
 
     /**
-     * Constructors a new object of the {@link Converter} class.
-     * The {@code converting} argument provides a specific implementation of the data conversion functionality.
+     * Constructs an object of this class, initializing it with
+     * an implementation of the functionality for data conversion.The
+     * necessary functionality provide by the class object implementing
+     * the contract interface {@link Converting}.
      *
-     * @param converting The specific implementation of functionality for data conversion.
+     * @param converter the object providing functionality for data conversion.
+     *
+     * @throws NullPointerException if the {@code converter} object is null.
      * @since 1.0
      */
     public Converter(final Converting<T> converter) {
@@ -28,9 +35,10 @@ public class Converter<T> {
     }
 
     /**
-     * Converting data encapsulated in an object obtained in {@code t} argument.
+     * Converts data encapsulated in an object {@code tObj}.
      *
-     * @param t The object encapsulating data for conversion.
+     * @param tObj the object encapsulating data for conversion.
+     *
      * @since 1.0
      */
     public void convert(final T tObj) {
