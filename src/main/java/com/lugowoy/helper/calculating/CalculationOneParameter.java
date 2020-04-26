@@ -1,11 +1,14 @@
 package com.lugowoy.helper.calculating;
 
 /**
- * This ia a functional interface to perform calculations based on a single parameter.
- * <p>Created by Konstantin Lugowoy on 03-Feb-17.
+ * This is a functional interface providing functions for
+ * calculations based on one operand.
+ * <p>
+ * Created by Konstantin Lugowoy on 03-Feb-17.
  *
- * @param <T> the type of calculation result.
- * @param <K> the type of argument to calculate.
+ * @param <T> - the type of the calculation result.
+ * @param <K> - the type of the object to calculate.
+ *
  * @author Konstantin Lugowoy
  * @version 1.2
  * @since 1.0
@@ -14,11 +17,12 @@ package com.lugowoy.helper.calculating;
 public interface CalculationOneParameter<T, K> {
 
     /**
-     * Function to perform calculations using a single argument.
-     * The {@code kVar} argument encapsulates the data on the basis of which the calculations will be performed.
+     * Calculations based on the object {@code kVar}.
      *
-     * @param kVar an object that encapsulates data to perform calculations.
-     * @return result of calculation.
+     * @param kVar - the object to perform calculations.
+     *
+     * @return the result of calculation.
+     *
      * @since 1.0
      */
     T calculate(K kVar);
