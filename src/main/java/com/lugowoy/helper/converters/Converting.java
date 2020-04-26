@@ -1,4 +1,4 @@
-package com.lugowoy.helper.converting;
+package com.lugowoy.helper.converters;
 
 /**
  * This is a functional interface declared a contract to perform data

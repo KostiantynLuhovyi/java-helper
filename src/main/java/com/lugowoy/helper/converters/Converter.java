@@ -1,4 +1,4 @@
-package com.lugowoy.helper.converting;
+package com.lugowoy.helper.converters;
 
 import java.util.Objects;
 
