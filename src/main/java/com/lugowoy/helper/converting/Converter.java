@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class Converter<T> {
 
-    private Converting<T> converting;
+    private Converting<T> converter;
 
     /**
      * Constructors a new object of the {@link Converter} class.
@@ -22,8 +22,9 @@ public class Converter<T> {
      * @param converting The specific implementation of functionality for data conversion.
      * @since 1.0
      */
-    public Converter(Converting<T> converting) {
-        this.converting = converting;
+    public Converter(final Converting<T> converter) {
+        Objects.requireNonNull(converter, "Converter is null.");
+        this.converter = converter;
     }
 
     /**
@@ -32,8 +33,8 @@ public class Converter<T> {
      * @param t The object encapsulating data for conversion.
      * @since 1.0
      */
-    public void convert(T t) {
-        converting.convert(t);
+    public void convert(final T tObj) {
+        converter.convert(tObj);
     }
 
     /**
