@@ -14,7 +14,7 @@ package com.lugowoy.helper.calculations;
  * @since 1.0
  */
 @FunctionalInterface
-public interface CalculationOneParameter<T, K> {
+public interface CalculationByOneParameter<T, K> {
 
     /**
      * Calculations based on the object {@code kVar}.
