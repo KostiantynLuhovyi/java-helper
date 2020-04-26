@@ -1,4 +1,4 @@
-package com.lugowoy.helper.calculating;
+package com.lugowoy.helper.calculations;
 
 /**
  * This is a functional interface providing functions for
