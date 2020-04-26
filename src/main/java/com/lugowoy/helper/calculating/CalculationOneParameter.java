@@ -6,8 +6,8 @@ package com.lugowoy.helper.calculating;
  * <p>
  * Created by Konstantin Lugowoy on 03-Feb-17.
  *
- * @param <T> - the type of the calculation result.
- * @param <K> - the type of the object to calculate.
+ * @param <T> the type of the calculation result.
+ * @param <K> the type of the object to calculate.
  *
  * @author Konstantin Lugowoy
  * @version 1.2
@@ -19,7 +19,7 @@ public interface CalculationOneParameter<T, K> {
     /**
      * Calculations based on the object {@code kVar}.
      *
-     * @param kVar - the object to perform calculations.
+     * @param kVar the object to perform calculations.
      *
      * @return the result of calculation.
      *
