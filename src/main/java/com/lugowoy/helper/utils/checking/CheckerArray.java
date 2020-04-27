@@ -79,8 +79,8 @@ public final class CheckerArray {
                              final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH,
-                                    UPPER_BOUND_LENGTH); if (isIncorrectLength(
-                array.size(), upperBoundLength)) {
+                                    UPPER_BOUND_LENGTH);
+        if (isIncorrectLength(array.size(), upperBoundLength)) {
             throwExceptionLengthOutRange(upperBoundLength);
         }
     }
@@ -127,8 +127,8 @@ public final class CheckerArray {
     public static <T> void check(final T[] array, final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH,
-                                    UPPER_BOUND_LENGTH); if (isIncorrectLength(
-                array.length, upperBoundLength)) {
+                                    UPPER_BOUND_LENGTH);
+        if (isIncorrectLength(array.length, upperBoundLength)) {
             throwExceptionLengthOutRange(upperBoundLength);
         }
     }
@@ -173,8 +173,8 @@ public final class CheckerArray {
     public static void check(final int[] array, final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH,
-                                    UPPER_BOUND_LENGTH); if (isIncorrectLength(
-                array.length, upperBoundLength)) {
+                                    UPPER_BOUND_LENGTH);
+        if (isIncorrectLength(array.length, upperBoundLength)) {
             throwExceptionLengthOutRange(upperBoundLength);
         }
     }
@@ -195,8 +195,8 @@ public final class CheckerArray {
      */
     public static void check(final double[] array) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        int arrayLength = array.length; if (isIncorrectLength(arrayLength,
-                                                              UPPER_BOUND_LENGTH)) {
+        int arrayLength = array.length;
+        if (isIncorrectLength(arrayLength, UPPER_BOUND_LENGTH)) {
             throwExceptionLengthOutRange(UPPER_BOUND_LENGTH);
         }
     }
@@ -220,8 +220,8 @@ public final class CheckerArray {
     public static void check(final double[] array, final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH,
-                                    UPPER_BOUND_LENGTH); if (isIncorrectLength(
-                array.length, upperBoundLength)) {
+                                    UPPER_BOUND_LENGTH);
+        if (isIncorrectLength(array.length, upperBoundLength)) {
             throwExceptionLengthOutRange(upperBoundLength);
         }
     }
@@ -239,8 +239,8 @@ public final class CheckerArray {
      */
     public static void checkLength(final int lengthArray) {
         CheckerBound.isCorrectBound(lengthArray, LOWER_BOUND_LENGTH,
-                                    UPPER_BOUND_LENGTH); if (isIncorrectLength(
-                lengthArray, UPPER_BOUND_LENGTH)) {
+                                    UPPER_BOUND_LENGTH);
+        if (isIncorrectLength(lengthArray, UPPER_BOUND_LENGTH)) {
             throwExceptionLengthOutRange(UPPER_BOUND_LENGTH);
         }
     }
@@ -264,8 +264,8 @@ public final class CheckerArray {
         CheckerBound.isCorrectBound(lengthArray, LOWER_BOUND_LENGTH,
                                     UPPER_BOUND_LENGTH);
         CheckerBound.isCorrectBound(upperBoundLength, LOWER_BOUND_LENGTH,
-                                    UPPER_BOUND_LENGTH); if (isIncorrectLength(
-                lengthArray, upperBoundLength)) {
+                                    UPPER_BOUND_LENGTH);
+        if (isIncorrectLength(lengthArray, upperBoundLength)) {
             throwExceptionLengthOutRange(upperBoundLength);
         }
     }
