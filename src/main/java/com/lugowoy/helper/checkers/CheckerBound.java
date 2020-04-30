@@ -1,4 +1,4 @@
-package com.lugowoy.helper.utils.checking;
+package com.lugowoy.helper.checkers;
 
 import org.jetbrains.annotations.NotNull;
 
