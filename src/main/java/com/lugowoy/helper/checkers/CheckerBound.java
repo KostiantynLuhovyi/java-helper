@@ -5,11 +5,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 /**
- * The class contains static functionality for checking various boundary numerical values.
- * <p> Created by Konstantin Lugowoy on 08.06.2019
+ * The class provides functionality for checking various boundary numerical
+ * values.
+ * <p>
+ * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @since 1.6.6
  */
 public final class CheckerBound {
@@ -70,73 +72,17 @@ public final class CheckerBound {
     }
 
     /**
-     * Check the {@code bound} is positive.
+     * Checks that the {@code bound} value in range from {@literal 0} to {@code
+     * upperBound} value.
      *
-     * @param bound the bound value to check.
-     *
-     * @throws NullPointerException if the {@code bound} null.
-     * @throws BoundIncorrectException if the {@code bound} negative or zero.
-     */
-    public static void isPositiveBound(Number bound) {
-        Objects.requireNonNull(bound, MSG_EXCEPTION_BOUND_IS_NULL);
-        if (bound.doubleValue() < 0) {
-            throw new BoundIncorrectException(MSG_EXCEPTION_NEGATIVE_BOUND);
-        }
-    }
-
-    /**
-     * Check the {@code bound} is negative.
-     *
-     * @param bound the bound value to check.
-     *
-     * @throws NullPointerException if the {@code bound} null.
-     * @throws BoundIncorrectException if the {@code bound} positive or zero.
-     */
-    public static void isNegativeBound(Number bound) {
-        Objects.requireNonNull(bound, MSG_EXCEPTION_BOUND_IS_NULL);
-        if (bound.doubleValue() > 0) {
-            throw new BoundIncorrectException(MSG_EXCEPTION_POSITIVE_BOUND);
-        }
-    }
-
-    /**
-     * Check the {@code bound} is zero.
-     *
-     * @param bound the bound value to check.
-     *
-     * @throws NullPointerException if the {@code bound} null.
-     * @throws BoundIncorrectException if the {@code bound} nonzero.
-     */
-    public static void isZeroBound(Number bound) {
-        Objects.requireNonNull(bound, MSG_EXCEPTION_BOUND_IS_NULL);
-        if (bound.doubleValue() != 0.0) {
-            throw new BoundIncorrectException(MSG_EXCEPTION_NONZERO_BOUND);
-        }
-    }
-
-    /**
-     * Check the {@code bound} is nonzero.
-     *
-     * @param bound the bound value to check.
-     *
-     * @throws NullPointerException if the {@code bound} null.
-     * @throws BoundIncorrectException If the {@code bound} zero.
-     */
-    public static void isNonZeroBound(Number bound) {
-        Objects.requireNonNull(bound, MSG_EXCEPTION_BOUND_IS_NULL);
-        if (bound.doubleValue() == 0.0) {
-            throw new BoundIncorrectException(MSG_EXCEPTION_ZERO_BOUND);
-        }
-    }
-
-    /**
-     * Check the {@code bound} in range from {@literal 0.0} to {@code upperBound}.
-     *
+     * @param <T> the type of the boundary values.
      * @param bound the bound value to check.
      * @param upperBound the upper bound value to check.
      *
-     * @throws NullPointerException if any of the arguments null.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range from {@literal 0.0} to {@code upperBound}.
+     * @return result of checking.
+     *
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
      */
     public static <T extends Number & Comparable<T>> boolean isCorrectBound(
             @NotNull final T bound, @NotNull final T upperBound) {
@@ -150,14 +96,18 @@ public final class CheckerBound {
     }
 
     /**
-     * Check the {@code bound} in range from {@code lowerBound} to {@code upperBound}.
+     * Checks that the {@code bound} value in range from {@code lowerBound}
+     * value to {@code upperBound} value.
      *
+     * @param <T> the type of the boundary values.
      * @param bound the bound value to check.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
      *
-     * @throws NullPointerException if any of the arguments null.
-     * @throws BoundOutOfRangeException if the {@code bound} out of range from {@code lowerBound} to {@code upperBound}.
+     * @return result of checking.
+     *
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
      */
     public static <T extends Number & Comparable<T>> boolean isCorrectBound(
             @NotNull final T bound, @NotNull final T lowerBound,
@@ -173,13 +123,17 @@ public final class CheckerBound {
     }
 
     /**
-     * Check {@code lowerBound} and {@code upperBound} equal.
+     * Checks that the {@code lowerBound} value and the {@code upperBound} value
+     * is equal.
      *
+     * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
      *
-     * @throws NullPointerException if any of the arguments null.
-     * @throws BoundsCompareException if {@code lowerBound} not equal {@code upperBound}.
+     * @return result of checking.
+     *
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
      */
     public static <T extends Number & Comparable<T>> boolean isLowerBoundEqualUpperBound(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
@@ -193,13 +147,17 @@ public final class CheckerBound {
     }
 
     /**
-     * Check {@code lowerBound} and {@code upperBound} not equal.
+     * Check that the {@code lowerBound} value and the {@code upperBound} value
+     * is not equal.
      *
+     * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
      *
-     * @throws NullPointerException if any of the arguments null.
-     * @throws BoundsCompareException if {@code lowerBound} equal {@code upperBound}.
+     * @return result of checking.
+     *
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
      */
     public static <T extends Number & Comparable<T>> boolean isLowerBoundNotEqualUpperBound(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
@@ -213,13 +171,17 @@ public final class CheckerBound {
     }
 
     /**
-     * Check {@code lowerBound} less than {@code upperBound}.
+     * Check that the {@code lowerBound} value less than the {@code upperBound}
+     * value.
      *
+     * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
      *
-     * @throws NullPointerException if any of the arguments null.
-     * @throws BoundsCompareException if {@code lowerBound} greater or equal than {@code upperBound}.
+     * @return result of checking.
+     *
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
      */
     public static <T extends Number & Comparable<T>> boolean isLowerBoundLessUpperBound(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
@@ -233,13 +195,17 @@ public final class CheckerBound {
     }
 
     /**
-     * Check {@code lowerBound} greater than {@code upperBound}.
+     * Check that the {@code lowerBound} value greater than the {@code
+     * upperBound} value.
      *
+     * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
      *
-     * @throws NullPointerException if any of the arguments null.
-     * @throws BoundsCompareException if {@code lowerBound} less or equal than {@code upperBound}.
+     * @return result of checking.
+     *
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
      */
     public static <T extends Number & Comparable<T>> boolean isLowerBoundGreaterUpperBound(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
@@ -253,13 +219,17 @@ public final class CheckerBound {
     }
 
     /**
-     * Check {@code lowerBound} less or equal than {@code upperBound}.
+     * Check that the {@code lowerBound} value less or equal than the {@code
+     * upperBound} value.
      *
+     * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
      *
-     * @throws NullPointerException if any of the arguments null.
-     * @throws BoundsCompareException if {@code lowerBound} greater than {@code upperBound}.
+     * @return result of checking.
+     *
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
      */
     public static <T extends Number & Comparable<T>> boolean isLowerBoundLessOrEqualUpperBound(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
@@ -273,13 +243,17 @@ public final class CheckerBound {
     }
 
     /**
-     * Check {@code lowerBound} greater or equal than {@code upperBound}.
+     * Check that the {@code lowerBound} value greater or equal than the {@code
+     * upperBound} value.
      *
+     * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
      *
-     * @throws NullPointerException if any of the arguments null.
-     * @throws BoundsCompareException if {@code lowerBound} less than {@code upperBound}.
+     * @return result of checking.
+     *
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
      */
     public static <T extends Number & Comparable<T>> boolean isLowerBoundGreaterOrEqualUpperBound(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
