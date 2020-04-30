@@ -84,7 +84,7 @@ public final class CheckerBound {
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
-    public static <T extends Number & Comparable<T>> boolean isCorrectBound(
+    public static <T extends Number & Comparable<T>> boolean isInRange(
             @NotNull final T bound, @NotNull final T upperBound) {
         boolean resultOfCheck = false;
         Objects.requireNonNull(bound, MSG_EXC_BOUND_IS_NULL);
@@ -109,7 +109,7 @@ public final class CheckerBound {
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
-    public static <T extends Number & Comparable<T>> boolean isCorrectBound(
+    public static <T extends Number & Comparable<T>> boolean isInRange(
             @NotNull final T bound, @NotNull final T lowerBound,
             @NotNull final T upperBound) {
         boolean resultOfCheck = false;
@@ -135,7 +135,7 @@ public final class CheckerBound {
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
-    public static <T extends Number & Comparable<T>> boolean isLowerBoundEqualUpperBound(
+    public static <T extends Number & Comparable<T>> boolean isLowerEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
         boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
@@ -159,7 +159,7 @@ public final class CheckerBound {
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
-    public static <T extends Number & Comparable<T>> boolean isLowerBoundNotEqualUpperBound(
+    public static <T extends Number & Comparable<T>> boolean isLowerNotEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
         boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
@@ -183,7 +183,7 @@ public final class CheckerBound {
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
-    public static <T extends Number & Comparable<T>> boolean isLowerBoundLessUpperBound(
+    public static <T extends Number & Comparable<T>> boolean isLowerLessUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
         boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
@@ -207,7 +207,7 @@ public final class CheckerBound {
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
-    public static <T extends Number & Comparable<T>> boolean isLowerBoundGreaterUpperBound(
+    public static <T extends Number & Comparable<T>> boolean isLowerGreaterUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
         boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
@@ -231,7 +231,7 @@ public final class CheckerBound {
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
-    public static <T extends Number & Comparable<T>> boolean isLowerBoundLessOrEqualUpperBound(
+    public static <T extends Number & Comparable<T>> boolean isLowerLessOrEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
         boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
@@ -255,7 +255,7 @@ public final class CheckerBound {
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
-    public static <T extends Number & Comparable<T>> boolean isLowerBoundGreaterOrEqualUpperBound(
+    public static <T extends Number & Comparable<T>> boolean isLowerGreaterOrEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
         boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
