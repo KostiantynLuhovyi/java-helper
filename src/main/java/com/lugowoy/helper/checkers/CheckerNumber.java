@@ -1,8 +1,5 @@
 package com.lugowoy.helper.checkers;
 
-import com.lugowoy.helper.checkers.BoundsComparisonException;
-import com.lugowoy.helper.checkers.CheckerBound;
-
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -130,7 +127,7 @@ public final class CheckerNumber {
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
         Objects.requireNonNull(lowerValue, MSG_EXC_LOWER_VALUE_IS_NULL);
         Objects.requireNonNull(upperValue, MSG_EXC_UPPER_VALUE_IS_NULL);
-        CheckerBound.checkLowerLessUpper(lowerValue, upperValue);
+        CheckerBoundNumber.checkLowerLessUpper(lowerValue, upperValue);
         if (value.compareTo(lowerValue) > 0 && value.compareTo(upperValue)
                 < 0) {
             resultOfCheck = true;
