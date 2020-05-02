@@ -14,7 +14,7 @@ import java.util.Objects;
  * @version 2.0
  * @since 1.6.6
  */
-public final class CheckerBound {
+public final class CheckerBoundNumber {
 
     /**
      * An exception message indicating that the boundary value is null.
@@ -68,7 +68,7 @@ public final class CheckerBound {
     private static final Number ZERO = 0.0;
 
 
-    private CheckerBound() {
+    private CheckerBoundNumber() {
     }
 
     /**
