@@ -1,4 +1,4 @@
-package com.lugowoy.helper.utils;
+package com.lugowoy.helper.checkers;
 
 /**
  * Thrown when comparisons of various boundary values do not satisfy certain conditions.
