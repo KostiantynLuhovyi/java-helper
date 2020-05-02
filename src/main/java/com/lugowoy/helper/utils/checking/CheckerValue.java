@@ -1,46 +1,141 @@
 package com.lugowoy.helper.utils.checking;
 
-import com.lugowoy.helper.utils.BoundsCompareException;
-import com.lugowoy.helper.utils.ValueOutOfRangeException;
+import com.lugowoy.helper.checkers.BoundsComparisonException;
+import com.lugowoy.helper.checkers.CheckerBound;
+
+import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * The class provides functionality for checking various values.
- * <p> Created by Konstantin Lugowoy on 15.04.2020.
+ * <p>
+ * Created by Konstantin Lugowoy on 15.04.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 3.0
  */
 public final class CheckerValue {
+
+    private static final String MSG_EXC_VALUE_IS_NULL = "Value is null.";
+    private static final String MSG_EXC_LOWER_VALUE_IS_NULL =
+            "Lower value is null";
+    private static final String MSG_EXC_UPPER_VALUE_IS_NULL =
+            "Upper value is null";
 
     private CheckerValue() {
     }
 
     /**
-     * Checks the {@code value} argument in of the range from {@code lowerBoundValue} value to {@code upperBoundValue} value.
+     * Checks that the {@code value} is positive.
      *
-     * @param value the numeric value to check.
-     * @param lowerBoundValue the lower bound numeric value to check.
-     * @param upperBoundValue the upper bound numeric value to check.
+     * @param <T> the type of the value to check.
+     * @param value the value to check.
      *
-     * @throws NullPointerException if the {@code value} argument is null.
-     * @throws BoundsCompareException if the {lowerBoundValue} value greater of equal than {@code upperBoundValue} value.
-     * @throws ValueOutOfRangeException if the {@code value} argument out of range
-     * from {@code lowerBoundValue} to {@code upperBoundValue}.
-     * @since 3.0
+     * @return result of checking.
+     *
+     * @throws NullPointerException if the {@code value} is {@code null}.
      */
-    public static void checkValue(Number value, Number lowerBoundValue, Number upperBoundValue) {
-        if (value == null) { throw new NullPointerException("Value is null."); }
-        CheckerBound.isLowerBoundLessUpperBound(lowerBoundValue, upperBoundValue);
-        boolean valueLessLower = value.doubleValue() < lowerBoundValue.doubleValue();
-        boolean valueGreaterUpper = value.doubleValue() > upperBoundValue.doubleValue();
-        if (valueLessLower || valueGreaterUpper) {
-            throw new ValueOutOfRangeException(getMsgExceptionValueOutOfRange(lowerBoundValue, upperBoundValue));
+    public static <T extends Number & Comparable<T>> boolean isPositive(
+            final T value) {
+        boolean resultOfCheck = false;
+        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+        if (value.compareTo((T) BigDecimal.ZERO) > 0) {
+            resultOfCheck = true;
         }
+        return resultOfCheck;
     }
 
-    private static String getMsgExceptionValueOutOfRange(Number lowerBoundValue, Number upperBoundValue) {
-        return "Value out of range (" + lowerBoundValue + " - " + upperBoundValue + ")";
+    /**
+     * Check that the {@code value} is negative.
+     *
+     * @param <T> the type of the value to check.
+     * @param value the value to check.
+     *
+     * @return result of checking.
+     *
+     * @throws NullPointerException if the {@code value} is {@code null}.
+     */
+    public static <T extends Number & Comparable<T>> boolean isNegative(
+            final T value) {
+        boolean resultOfCheck = false;
+        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+        if (value.compareTo((T) BigDecimal.ZERO) < 0) {
+            resultOfCheck = true;
+        }
+        return resultOfCheck;
+    }
+
+    /**
+     * Checks that the {@code value} is zero.
+     *
+     * @param <T> the type of the value to check.
+     * @param value the value to check.
+     *
+     * @return result of checking.
+     *
+     * @throws NullPointerException if the {@code value} is {@code null}.
+     */
+    public static <T extends Number & Comparable<T>> boolean isZero(
+            final T value) {
+        boolean resultOfCheck = false;
+        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+        if (value.compareTo((T) BigDecimal.ZERO) == 0) {
+            resultOfCheck = true;
+        }
+        return resultOfCheck;
+    }
+
+    /**
+     * Checks that the {@code value} is nonzero.
+     *
+     * @param <T> the type of the value to check.
+     * @param value the value to check.
+     *
+     * @return result of checking.
+     *
+     * @throws NullPointerException if the {@code value} is {@code null}.
+     */
+    public static <T extends Number & Comparable<T>> boolean isNonZero(
+            final T value) {
+        boolean resultOfCheck = false;
+        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+        if (value.compareTo((T) BigDecimal.ZERO) != 0) {
+            resultOfCheck = true;
+        }
+        return resultOfCheck;
+    }
+
+
+    /**
+     * Checks the {@code value} in range from {@code lowerValue}(exclusive) to
+     * {@code upperValue}(exclusive).
+     *
+     * @param <T> the type of the value and boundary values to check.
+     * @param value the value to check.
+     * @param lowerValue the lower bound value to check.
+     * @param upperValue the upper bound value to check.
+     *
+     * @return result of checking.
+     *
+     * @throws NullPointerException if the {@code value} is {@code null}.
+     * @throws NullPointerException if any of boundary values is {@code null}.
+     * @throws BoundsComparisonException if the {@code lowerValue} greater or
+     * equal than {@code upperValue} value.
+     * @since 3.0
+     */
+    public static <T extends Number & Comparable<T>> boolean check(
+            final T value, final T lowerValue, final T upperValue) {
+        boolean resultOfCheck = false;
+        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+        Objects.requireNonNull(lowerValue, MSG_EXC_LOWER_VALUE_IS_NULL);
+        Objects.requireNonNull(upperValue, MSG_EXC_UPPER_VALUE_IS_NULL);
+        CheckerBound.checkLowerLessUpper(lowerValue, upperValue);
+        if (value.compareTo(lowerValue) > 0 && value.compareTo(upperValue)
+                < 0) {
+            resultOfCheck = true;
+        }
+        return resultOfCheck;
     }
 
 }
