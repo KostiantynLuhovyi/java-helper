@@ -1,4 +1,4 @@
-package com.lugowoy.helper.utils.checking;
+package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.checkers.BoundsComparisonException;
 import com.lugowoy.helper.checkers.CheckerBound;
