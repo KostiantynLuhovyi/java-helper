@@ -1,4 +1,4 @@
-package com.lugowoy.helper.utils.checking;
+package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.models.storages.arrays.AbstractArray;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
