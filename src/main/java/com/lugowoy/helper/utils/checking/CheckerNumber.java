@@ -15,7 +15,7 @@ import java.util.Objects;
  * @version 1.1
  * @since 3.0
  */
-public final class CheckerValue {
+public final class CheckerNumber {
 
     private static final String MSG_EXC_VALUE_IS_NULL = "Value is null.";
     private static final String MSG_EXC_LOWER_VALUE_IS_NULL =
@@ -23,7 +23,7 @@ public final class CheckerValue {
     private static final String MSG_EXC_UPPER_VALUE_IS_NULL =
             "Upper value is null";
 
-    private CheckerValue() {
+    private CheckerNumber() {
     }
 
     /**
