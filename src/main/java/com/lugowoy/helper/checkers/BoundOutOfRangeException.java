@@ -1,4 +1,4 @@
-package com.lugowoy.helper.utils;
+package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.OutOfRangeException;
 
