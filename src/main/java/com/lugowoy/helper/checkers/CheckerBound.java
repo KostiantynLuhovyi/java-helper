@@ -1,7 +1,6 @@
 package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
-import com.lugowoy.helper.utils.BoundsCompareException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -208,7 +207,7 @@ public final class CheckerBound {
      *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
-     * @throws BoundsCompareException if the {@code lowerBound} value is not
+     * @throws BoundsComparisonException if the {@code lowerBound} value is not
      * equal the {@code upperBound} value.
      */
     public static <T extends Number & Comparable<T>> void checkLowerEqualUpper(
@@ -216,7 +215,7 @@ public final class CheckerBound {
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
         if (compare(lowerBound, upperBound) != 0) {
-            throw new BoundsCompareException(MSG_EXC_LOWER_NOT_EQUAL_UPPER);
+            throw new BoundsComparisonException(MSG_EXC_LOWER_NOT_EQUAL_UPPER);
         }
     }
 
@@ -254,15 +253,15 @@ public final class CheckerBound {
      *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
-     * @throws BoundsCompareException if the {@code lowerBound} value is equal
-     * the {@code upperBound} value.
+     * @throws BoundsComparisonException if the {@code lowerBound} value is
+     * equal the {@code upperBound} value.
      */
     public static <T extends Number & Comparable<T>> void checkLowerNotEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
         if (compare(lowerBound, upperBound) == 0) {
-            throw new BoundsCompareException(MSG_EXC_LOWER_EQUAL_UPPER);
+            throw new BoundsComparisonException(MSG_EXC_LOWER_EQUAL_UPPER);
         }
     }
 
@@ -300,15 +299,15 @@ public final class CheckerBound {
      *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
-     * @throws BoundsCompareException if the {@code lowerBound} value greater or
-     * equal than the {@code upperBound} value.
+     * @throws BoundsComparisonException if the {@code lowerBound} value greater
+     * or equal than the {@code upperBound} value.
      */
     public static <T extends Number & Comparable<T>> void checkLowerLessUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
         if (compare(lowerBound, upperBound) >= 0) {
-            throw new BoundsCompareException(
+            throw new BoundsComparisonException(
                     MSG_EXC_LOWER_GREATER_OR_EQUAL_UPPER);
         }
     }
@@ -347,7 +346,7 @@ public final class CheckerBound {
      *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
-     * @throws BoundsCompareException if the {@code lowerBound} value less or
+     * @throws BoundsComparisonException if the {@code lowerBound} value less or
      * equal than the {@code upperBound} value.
      */
     public static <T extends Number & Comparable<T>> void checkLowerGreaterUpper(
@@ -355,7 +354,8 @@ public final class CheckerBound {
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
         if (compare(lowerBound, upperBound) <= 0) {
-            throw new BoundsCompareException(MSG_EXC_LOWER_LESS_OR_EQUAL_UPPER);
+            throw new BoundsComparisonException(
+                    MSG_EXC_LOWER_LESS_OR_EQUAL_UPPER);
         }
     }
 
@@ -393,15 +393,15 @@ public final class CheckerBound {
      *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
-     * @throws BoundsCompareException if the {@code lowerBound} value greater or
-     * not equal than the {@code upperBound} value.
+     * @throws BoundsComparisonException if the {@code lowerBound} value greater
+     * or not equal than the {@code upperBound} value.
      */
     public static <T extends Number & Comparable<T>> void checkLowerLessOrEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
         if (compare(lowerBound, upperBound) > 0) {
-            throw new BoundsCompareException(
+            throw new BoundsComparisonException(
                     MSG_EXC_LOWER_GREATER_OR_NOT_EQUAL_UPPER);
         }
     }
@@ -440,7 +440,7 @@ public final class CheckerBound {
      *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
-     * @throws BoundsCompareException if the {@code lowerBound} value less or
+     * @throws BoundsComparisonException if the {@code lowerBound} value less or
      * not equal than the {@code upperBound} value.
      */
     public static <T extends Number & Comparable<T>> void checkLowerGreaterOrEqualUpper(
@@ -448,7 +448,7 @@ public final class CheckerBound {
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
         if (compare(lowerBound, upperBound) < 0) {
-            throw new BoundsCompareException(
+            throw new BoundsComparisonException(
                     MSG_EXC_LOWER_LESS_OR_NOT_EQUAL_UPPER);
         }
     }
