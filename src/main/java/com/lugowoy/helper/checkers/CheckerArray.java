@@ -1,7 +1,7 @@
 package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.models.storages.arrays.AbstractArray;
-import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @since 1.6.6
  */
 public final class CheckerArray {
@@ -40,25 +40,6 @@ public final class CheckerArray {
     /**
      * Checks the {@code array} is not {@code null} and that the length value of
      * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * to {@link CheckerArray#UPPER_BOUND_LENGTH}.
-     *
-     * @param array the {@code array} to check.
-     *
-     * @throws NullPointerException if the {@code array} is {@code null}.
-     * @throws LengthArrayOutOfRangeException if the length value of the {@code
-     * array} out of range ​from {@link CheckerArray#LOWER_BOUND_LENGTH} to
-     * {@link CheckerArray#UPPER_BOUND_LENGTH}.
-     */
-    public static void check(final AbstractArray array) {
-        Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        if (isIncorrectLength(array.size(), UPPER_BOUND_LENGTH)) {
-            throwExceptionLengthOutRange(UPPER_BOUND_LENGTH);
-        }
-    }
-
-    /**
-     * Checks the {@code array} is not {@code null} and that the length value of
-     * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
      * to {@code upperBoundLength}.
      *
      * @param array the {@code array} to check.
@@ -68,37 +49,19 @@ public final class CheckerArray {
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
      * CheckerArray#UPPER_BOUND_LENGTH}.
-     * @throws LengthArrayOutOfRangeException if the length value of the {@code
+     * @throws LengthOutOfRangeException if the length value of the {@code
      * array} out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to
      * {@code upperBoundLength}.
      */
-    public static void check(final AbstractArray array,
+    public static void check(@NotNull final AbstractArray array,
                              final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBound.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                               UPPER_BOUND_LENGTH);
-        if (isIncorrectLength(array.size(), upperBoundLength)) {
-            throwExceptionLengthOutRange(upperBoundLength);
-        }
-    }
-
-    /**
-     * Checks the {@code array} is not {@code null} and that the length value of
-     * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * to {@link CheckerArray#UPPER_BOUND_LENGTH}.
-     *
-     * @param <T> the type of the {@code array} to check.
-     * @param array the {@code array} to check.
-     *
-     * @throws NullPointerException if the {@code array} is {@code null}.
-     * @throws LengthArrayOutOfRangeException if the length value of the {@code
-     * array} out of range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to
-     * {@link CheckerArray#UPPER_BOUND_LENGTH}.
-     */
-    public static <T> void check(final T[] array) {
-        Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        if (isIncorrectLength(array.length, UPPER_BOUND_LENGTH)) {
-            throwExceptionLengthOutRange(UPPER_BOUND_LENGTH);
+        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
+                                        UPPER_BOUND_LENGTH);
+        if (array.size() > upperBoundLength) {
+            throw new LengthOutOfRangeException(
+                    "Length of the array out of range(" + LOWER_BOUND_LENGTH
+                            + "-" + upperBoundLength + ").");
         }
     }
 
@@ -115,35 +78,19 @@ public final class CheckerArray {
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
      * CheckerArray#UPPER_BOUND_LENGTH}.
-     * @throws LengthArrayOutOfRangeException if the length value of the {@code
+     * @throws LengthOutOfRangeException if the length value of the {@code
      * array} out of range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to
      * {@code upperBoundLength}.
      */
-    public static <T> void check(final T[] array, final int upperBoundLength) {
+    public static <T> void check(@NotNull final T[] array,
+                                 final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBound.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                               UPPER_BOUND_LENGTH);
-        if (isIncorrectLength(array.length, upperBoundLength)) {
-            throwExceptionLengthOutRange(upperBoundLength);
-        }
-    }
-
-    /**
-     * Checks the {@code array} is not {@code null} and that the length value of
-     * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * to {@link CheckerArray#UPPER_BOUND_LENGTH}.
-     *
-     * @param array the {@code array} to check.
-     *
-     * @throws NullPointerException if the {@code array} is {@code null}.
-     * @throws LengthArrayOutOfRangeException if the length value of the {@code
-     * array} out of range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to
-     * {@link CheckerArray#UPPER_BOUND_LENGTH}.
-     */
-    public static void check(final int[] array) {
-        Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        if (isIncorrectLength(array.length, UPPER_BOUND_LENGTH)) {
-            throwExceptionLengthOutRange(UPPER_BOUND_LENGTH);
+        CheckerBoundNumber.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
+                                     UPPER_BOUND_LENGTH);
+        if (array.length > upperBoundLength) {
+            throw new LengthOutOfRangeException(
+                    "Length of the array out of range(" + LOWER_BOUND_LENGTH
+                            + "-" + upperBoundLength + ").");
         }
     }
 
@@ -159,36 +106,19 @@ public final class CheckerArray {
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
      * CheckerArray#UPPER_BOUND_LENGTH}.
-     * @throws LengthArrayOutOfRangeException if the length value of the {@code
+     * @throws LengthOutOfRangeException if the length value of the {@code
      * array} out of range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to
      * {@code upperBoundLength}.
      */
-    public static void check(final int[] array, final int upperBoundLength) {
+    public static void check(@NotNull final int[] array,
+                             final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBound.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                               UPPER_BOUND_LENGTH);
-        if (isIncorrectLength(array.length, upperBoundLength)) {
-            throwExceptionLengthOutRange(upperBoundLength);
-        }
-    }
-
-    /**
-     * Checks the {@code array} is not {@code null} and that the length value of
-     * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * to {@link CheckerArray#UPPER_BOUND_LENGTH}.
-     *
-     * @param array the {@code array} to check.
-     *
-     * @throws NullPointerException if the {@code array} is {@code null}.
-     * @throws LengthArrayOutOfRangeException if the length value of the {@code
-     * array} out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to
-     * {@link CheckerArray#UPPER_BOUND_LENGTH}.
-     */
-    public static void check(final double[] array) {
-        Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        int arrayLength = array.length;
-        if (isIncorrectLength(arrayLength, UPPER_BOUND_LENGTH)) {
-            throwExceptionLengthOutRange(UPPER_BOUND_LENGTH);
+        CheckerBoundNumber.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
+                                     UPPER_BOUND_LENGTH);
+        if (array.length > upperBoundLength) {
+            throw new LengthOutOfRangeException(
+                    "Length of the array out of range(" + LOWER_BOUND_LENGTH
+                            + "-" + upperBoundLength + ").");
         }
     }
 
@@ -204,16 +134,19 @@ public final class CheckerArray {
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
      * CheckerArray#UPPER_BOUND_LENGTH}.
-     * @throws LengthArrayOutOfRangeException if the length value of the {@code
+     * @throws LengthOutOfRangeException if the length value of the {@code
      * array} out of range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to
      * {@code upperBoundLength}.
      */
-    public static void check(final double[] array, final int upperBoundLength) {
+    public static void check(@NotNull final double[] array,
+                             final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBound.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                               UPPER_BOUND_LENGTH);
-        if (isIncorrectLength(array.length, upperBoundLength)) {
-            throwExceptionLengthOutRange(upperBoundLength);
+        CheckerBoundNumber.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
+                                     UPPER_BOUND_LENGTH);
+        if (array.length > upperBoundLength) {
+            throw new LengthOutOfRangeException(
+                    "Length of the array out of range(" + LOWER_BOUND_LENGTH
+                            + "-" + upperBoundLength + ").");
         }
     }
 
@@ -223,15 +156,18 @@ public final class CheckerArray {
      *
      * @param lengthArray the {@code lengthArray} value to check.
      *
-     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value
-     * out of range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
+     * @throws LengthOutOfRangeException if the {@code lengthArray} value out of
+     * range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
      * CheckerArray#UPPER_BOUND_LENGTH}.
      */
     public static void checkLength(final int lengthArray) {
-        CheckerBound.isInRange(lengthArray, LOWER_BOUND_LENGTH,
-                               UPPER_BOUND_LENGTH);
-        if (isIncorrectLength(lengthArray, UPPER_BOUND_LENGTH)) {
-            throwExceptionLengthOutRange(UPPER_BOUND_LENGTH);
+        CheckerBoundNumber.isInRange(lengthArray, LOWER_BOUND_LENGTH,
+                                     UPPER_BOUND_LENGTH);
+        if (lengthArray < LOWER_BOUND_LENGTH
+                || lengthArray > UPPER_BOUND_LENGTH) {
+            throw new LengthOutOfRangeException(
+                    "Length value out of range(" + LOWER_BOUND_LENGTH + "-"
+                            + UPPER_BOUND_LENGTH + ").");
         }
     }
 
@@ -245,31 +181,22 @@ public final class CheckerArray {
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
      * CheckerArray#UPPER_BOUND_LENGTH}.
-     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value
-     * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@code
+     * @throws LengthOutOfRangeException if the {@code lengthArray} value out of
+     * range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@code
      * upperBoundLength}.
      */
     public static void checkLength(final int lengthArray,
                                    final int upperBoundLength) {
-        CheckerBound.isInRange(lengthArray, LOWER_BOUND_LENGTH,
-                               UPPER_BOUND_LENGTH);
-        CheckerBound.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                               UPPER_BOUND_LENGTH);
-        if (isIncorrectLength(lengthArray, upperBoundLength)) {
-            throwExceptionLengthOutRange(upperBoundLength);
+        CheckerBoundNumber.isInRange(lengthArray, LOWER_BOUND_LENGTH,
+                                     UPPER_BOUND_LENGTH);
+        CheckerBoundNumber.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
+                                     UPPER_BOUND_LENGTH);
+        if (lengthArray < LOWER_BOUND_LENGTH
+                || lengthArray > upperBoundLength) {
+            throw new LengthOutOfRangeException(
+                    "Length value out of range(" + LOWER_BOUND_LENGTH + "-"
+                            + upperBoundLength + ").");
         }
-    }
-
-    private static boolean isIncorrectLength(final int lengthArray,
-                                             final int upperLength) {
-        return lengthArray < LOWER_BOUND_LENGTH || lengthArray > upperLength;
-    }
-
-    private static void throwExceptionLengthOutRange(final int upperLength) {
-        String msgExc =
-                "Length array out of range (" + CheckerArray.LOWER_BOUND_LENGTH
-                        + " - " + upperLength + ").";
-        throw new LengthArrayOutOfRangeException(msgExc);
     }
 
 }
