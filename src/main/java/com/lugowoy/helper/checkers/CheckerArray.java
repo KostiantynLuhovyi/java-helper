@@ -85,8 +85,8 @@ public final class CheckerArray {
     public static <T> void check(@NotNull final T[] array,
                                  final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBoundNumber.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                                     UPPER_BOUND_LENGTH);
+        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
+                                        UPPER_BOUND_LENGTH);
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range(" + LOWER_BOUND_LENGTH
@@ -113,8 +113,8 @@ public final class CheckerArray {
     public static void check(@NotNull final int[] array,
                              final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBoundNumber.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                                     UPPER_BOUND_LENGTH);
+        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
+                                        UPPER_BOUND_LENGTH);
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range(" + LOWER_BOUND_LENGTH
@@ -141,8 +141,8 @@ public final class CheckerArray {
     public static void check(@NotNull final double[] array,
                              final int upperBoundLength) {
         Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBoundNumber.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                                     UPPER_BOUND_LENGTH);
+        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
+                                        UPPER_BOUND_LENGTH);
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range(" + LOWER_BOUND_LENGTH
@@ -161,8 +161,6 @@ public final class CheckerArray {
      * CheckerArray#UPPER_BOUND_LENGTH}.
      */
     public static void checkLength(final int lengthArray) {
-        CheckerBoundNumber.isInRange(lengthArray, LOWER_BOUND_LENGTH,
-                                     UPPER_BOUND_LENGTH);
         if (lengthArray < LOWER_BOUND_LENGTH
                 || lengthArray > UPPER_BOUND_LENGTH) {
             throw new LengthOutOfRangeException(
@@ -187,10 +185,8 @@ public final class CheckerArray {
      */
     public static void checkLength(final int lengthArray,
                                    final int upperBoundLength) {
-        CheckerBoundNumber.isInRange(lengthArray, LOWER_BOUND_LENGTH,
-                                     UPPER_BOUND_LENGTH);
-        CheckerBoundNumber.isInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                                     UPPER_BOUND_LENGTH);
+        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
+                                        UPPER_BOUND_LENGTH);
         if (lengthArray < LOWER_BOUND_LENGTH
                 || lengthArray > upperBoundLength) {
             throw new LengthOutOfRangeException(
