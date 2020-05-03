@@ -1,4 +1,4 @@
-package com.lugowoy.helper.utils;
+package com.lugowoy.helper;
 
 /**
  * Thrown when the value is out of range.
