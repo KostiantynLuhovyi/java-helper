@@ -1,5 +1,7 @@
 package com.lugowoy.helper.utils.checking;
 
+import com.lugowoy.helper.checkers.CheckerBoundNumber;
+
 /**
  * This class contains static functionality for checking the index value for correctness.
  * <p> Created by Konstantin Lugowoy on 08.06.2019
@@ -27,7 +29,8 @@ public final class CheckerIndex {
      * from {@link CheckerIndex#LOWER_INDEX} to {@code upperBoundIndex}.
      */
     public static void checkIndex(int index, int upperBoundIndex) {
-        CheckerBound.isCorrectBound(upperBoundIndex, LOWER_INDEX, Integer.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundIndex, LOWER_INDEX,
+                                        Integer.MAX_VALUE);
         if (index < LOWER_INDEX || index > upperBoundIndex) {
             throw new IndexOutOfBoundsException(MSG_EXCEPTION_INDEX_OUT_OF_RANGE);
         }
@@ -43,10 +46,14 @@ public final class CheckerIndex {
      * @throws IndexOutOfBoundsException if the {@code index} value out of range
      * from {@code lowerBoundIndex} to {@code upperBoundIndex}.
      */
-    public static void checkIndex(int index, int lowerBoundIndex, int upperBoundIndex) {
-        CheckerBound.isCorrectBound(lowerBoundIndex, LOWER_INDEX, Integer.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBoundIndex, LOWER_INDEX, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundIndex, upperBoundIndex);
+    public static void checkIndex(int index, int lowerBoundIndex,
+                                  int upperBoundIndex) {
+        CheckerBoundNumber.checkInRange(lowerBoundIndex, LOWER_INDEX,
+                                        Integer.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundIndex, LOWER_INDEX,
+                                        Integer.MAX_VALUE);
+        CheckerBoundNumber.checkLowerLessUpper(lowerBoundIndex,
+                                               upperBoundIndex);
         if (index < lowerBoundIndex && index > upperBoundIndex) {
             throw new IndexOutOfBoundsException(MSG_EXCEPTION_INDEX_OUT_OF_RANGE);
         }
