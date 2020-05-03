@@ -1,8 +1,4 @@
-package com.lugowoy.helper.utils.checking;
-
-import com.lugowoy.helper.checkers.BoundOutOfRangeException;
-import com.lugowoy.helper.checkers.BoundsComparisonException;
-import com.lugowoy.helper.checkers.CheckerBoundNumber;
+package com.lugowoy.helper.checkers;
 
 /**
  * This class contains static functionality for checking the index value for
