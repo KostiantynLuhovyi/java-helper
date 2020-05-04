@@ -1,6 +1,7 @@
 package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.BoundsComparisonException;
+import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -36,13 +37,12 @@ public final class CheckerNumber {
      * @throws NullPointerException if the {@code value} is {@code null}.
      */
     public static <T extends Number & Comparable<T>> boolean isPositive(
-            final T value) {
-        boolean resultOfCheck = false;
-        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+            @NotNull final T value) {
+        boolean resultOfCheck = false; Objects.requireNonNull(value,
+                                                              MSG_EXC_VALUE_IS_NULL);
         if (value.compareTo((T) BigDecimal.ZERO) > 0) {
             resultOfCheck = true;
-        }
-        return resultOfCheck;
+        } return resultOfCheck;
     }
 
     /**
@@ -56,13 +56,12 @@ public final class CheckerNumber {
      * @throws NullPointerException if the {@code value} is {@code null}.
      */
     public static <T extends Number & Comparable<T>> boolean isNegative(
-            final T value) {
-        boolean resultOfCheck = false;
-        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+            @NotNull final T value) {
+        boolean resultOfCheck = false; Objects.requireNonNull(value,
+                                                              MSG_EXC_VALUE_IS_NULL);
         if (value.compareTo((T) BigDecimal.ZERO) < 0) {
             resultOfCheck = true;
-        }
-        return resultOfCheck;
+        } return resultOfCheck;
     }
 
     /**
@@ -76,13 +75,12 @@ public final class CheckerNumber {
      * @throws NullPointerException if the {@code value} is {@code null}.
      */
     public static <T extends Number & Comparable<T>> boolean isZero(
-            final T value) {
-        boolean resultOfCheck = false;
-        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+            @NotNull final T value) {
+        boolean resultOfCheck = false; Objects.requireNonNull(value,
+                                                              MSG_EXC_VALUE_IS_NULL);
         if (value.compareTo((T) BigDecimal.ZERO) == 0) {
             resultOfCheck = true;
-        }
-        return resultOfCheck;
+        } return resultOfCheck;
     }
 
     /**
@@ -96,13 +94,12 @@ public final class CheckerNumber {
      * @throws NullPointerException if the {@code value} is {@code null}.
      */
     public static <T extends Number & Comparable<T>> boolean isNonZero(
-            final T value) {
-        boolean resultOfCheck = false;
-        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+            @NotNull final T value) {
+        boolean resultOfCheck = false; Objects.requireNonNull(value,
+                                                              MSG_EXC_VALUE_IS_NULL);
         if (value.compareTo((T) BigDecimal.ZERO) != 0) {
             resultOfCheck = true;
-        }
-        return resultOfCheck;
+        } return resultOfCheck;
     }
 
 
@@ -124,17 +121,17 @@ public final class CheckerNumber {
      * @since 3.0
      */
     public static <T extends Number & Comparable<T>> boolean check(
-            final T value, final T lowerValue, final T upperValue) {
-        boolean resultOfCheck = false;
-        Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
+            @NotNull final T value, @NotNull final T lowerValue,
+            @NotNull final T upperValue) {
+        boolean resultOfCheck = false; Objects.requireNonNull(value,
+                                                              MSG_EXC_VALUE_IS_NULL);
         Objects.requireNonNull(lowerValue, MSG_EXC_LOWER_VALUE_IS_NULL);
         Objects.requireNonNull(upperValue, MSG_EXC_UPPER_VALUE_IS_NULL);
         CheckerBoundNumber.checkLowerLessUpper(lowerValue, upperValue);
         if (value.compareTo(lowerValue) > 0 && value.compareTo(upperValue)
                 < 0) {
             resultOfCheck = true;
-        }
-        return resultOfCheck;
+        } return resultOfCheck;
     }
 
 }
