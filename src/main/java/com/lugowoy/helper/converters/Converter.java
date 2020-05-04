@@ -1,5 +1,7 @@
 package com.lugowoy.helper.converters;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
 /**
@@ -29,7 +31,7 @@ public class Converter<T> {
      * @throws NullPointerException if the {@code converter} object is null.
      * @since 1.0
      */
-    public Converter(final Converting<T> converter) {
+    public Converter(@NotNull final Converting<T> converter) {
         Objects.requireNonNull(converter, "Converter is null.");
         this.converter = converter;
     }
@@ -41,7 +43,7 @@ public class Converter<T> {
      *
      * @since 1.0
      */
-    public void convert(final T tObj) {
+    public void convert(@NotNull final T tObj) {
         converter.convert(tObj);
     }
 
@@ -55,7 +57,7 @@ public class Converter<T> {
      * @throws NullPointerException if the {@code converter} object is null.
      * @since 3.0
      */
-    public void setConverter(final Converting<T> converter) {
+    public void setConverter(@NotNull final Converting<T> converter) {
         Objects.requireNonNull(converter, "Converter is null.");
         this.converter = converter;
     }
