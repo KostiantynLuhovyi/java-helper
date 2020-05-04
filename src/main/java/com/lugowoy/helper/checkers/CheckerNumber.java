@@ -1,5 +1,7 @@
 package com.lugowoy.helper.checkers;
 
+import com.lugowoy.helper.BoundsComparisonException;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 

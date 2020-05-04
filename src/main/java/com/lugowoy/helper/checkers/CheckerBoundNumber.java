@@ -1,5 +1,7 @@
 package com.lugowoy.helper.checkers;
 
+import com.lugowoy.helper.BoundOutOfRangeException;
+import com.lugowoy.helper.BoundsComparisonException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
