@@ -3,8 +3,8 @@ package com.lugowoy.helper.converters;
 import java.util.Objects;
 
 /**
- * The class provides a container for implementing the functionality
- * to perform data conversion encapsulated in a specific object.
+ * The class provides a container for implementing the functionality to perform
+ * data conversion encapsulated in a specific object.
  * <p>
  * Created by Konstantin Lugowoy on 29-Jan-17.
  *
@@ -19,10 +19,10 @@ public class Converter<T> {
     private Converting<T> converter;
 
     /**
-     * Constructs an object of this class, initializing it with
-     * an implementation of the functionality for data conversion.The
-     * necessary functionality provide by the class object implementing
-     * the contract interface {@link Converting}.
+     * Constructs an object of this class, initializing it with an
+     * implementation of the functionality for data conversion.The necessary
+     * functionality provide by the class object implementing the contract
+     * interface {@link Converting}.
      *
      * @param converter the object providing functionality for data conversion.
      *
@@ -46,9 +46,9 @@ public class Converter<T> {
     }
 
     /**
-     * Sets the implementation of the functionality for converting data.
-     * The necessary functionality provide by the class object implementing
-     * the contract interface {@link Converting}.
+     * Sets the implementation of the functionality for converting data. The
+     * necessary functionality provide by the class object implementing the
+     * contract interface {@link Converting}.
      *
      * @param converter the object providing functionality for data conversion.
      *

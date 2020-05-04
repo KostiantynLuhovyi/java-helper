@@ -1,8 +1,8 @@
 package com.lugowoy.helper.converters;
 
 /**
- * This is a functional interface declared a contract to perform data
- * conversion in a specific object.
+ * This is a functional interface declared a contract to perform data conversion
+ * in a specific object.
  * <p>
  * Created by Konstantin Lugowoy on 29-Jan-17.
  *
