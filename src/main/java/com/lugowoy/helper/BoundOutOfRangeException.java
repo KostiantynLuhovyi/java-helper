@@ -1,6 +1,4 @@
-package com.lugowoy.helper.checkers;
-
-import com.lugowoy.helper.OutOfRangeException;
+package com.lugowoy.helper;
 
 /**
  * Thrown when various boundary value is not in the valid range of values.

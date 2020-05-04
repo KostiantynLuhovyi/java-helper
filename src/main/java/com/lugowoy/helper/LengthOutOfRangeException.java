@@ -1,6 +1,4 @@
-package com.lugowoy.helper.checkers;
-
-import com.lugowoy.helper.OutOfRangeException;
+package com.lugowoy.helper;
 
 /**
  * Thrown if the length of the used object that has the length attribute is out
