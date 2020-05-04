@@ -39,7 +39,8 @@ public final class CheckerIndex {
         boolean resultOFCheck = false;
         if (index >= LOWER_INDEX && index < upperBoundIndex) {
             resultOFCheck = true;
-        } return resultOFCheck;
+        }
+        return resultOFCheck;
     }
 
     /**
@@ -93,7 +94,8 @@ public final class CheckerIndex {
         boolean resultOfCheck = false;
         if (index >= lowerBoundIndex && index < upperBoundIndex) {
             resultOfCheck = true;
-        } return resultOfCheck;
+        }
+        return resultOfCheck;
     }
 
     /**
