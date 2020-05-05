@@ -1,8 +1,10 @@
 package com.lugowoy.helper;
 
 /**
- * Thrown when comparisons of various boundary values do not satisfy certain conditions.
- * <p> Created by Konstantin Lugowoy on 19.10.2019.
+ * Thrown when comparisons of various boundary values do not satisfy certain
+ * conditions.
+ * <p>
+ * Created by Konstantin Lugowoy on 19.10.2019.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
@@ -11,14 +13,14 @@ package com.lugowoy.helper;
 public class BoundsComparisonException extends RuntimeException {
 
     /**
-     * Constructs a new runtime exception with the specified detail message.
-     * The cause is not initialized, and may subsequently be initialized by a
-     * call to {@link #initCause}.
+     * Constructs a new runtime exception with the specified detail message. The
+     * cause is not initialized, and may subsequently be initialized by a call to
+     * {@link #initCause}.
      *
-     * @param message the detail message. The detail message is saved for
-     *                later retrieval by the {@link #getMessage()} method.
+     * @param message the detail message. The detail message is saved for later
+     * retrieval by the {@link #getMessage()} method.
      */
-    public BoundsComparisonException(String message) {
+    public BoundsComparisonException(final String message) {
         super(message);
     }
 
