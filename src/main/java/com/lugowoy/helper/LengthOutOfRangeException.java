@@ -1,8 +1,8 @@
 package com.lugowoy.helper;
 
 /**
- * Thrown if the length of the used object that has the length attribute is out
- * of range.
+ * Thrown when the length of the used object that has the length attribute is
+ * out of range.
  * <p>
  * Created by Konstantin Lugowoy on 03.05.2020.
  *
