@@ -21,7 +21,7 @@ import java.util.Objects;
  * @version 1.7
  * @since 1.0
  */
-public final class ArrayLengthReader {
+public final class ReaderLengthArray {
 
     private static final String MSG_EXC_READER_IS_NULL =
             "Input not possible. Reader is null.";
