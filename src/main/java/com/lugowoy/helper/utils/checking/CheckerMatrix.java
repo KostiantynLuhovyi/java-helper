@@ -1,17 +1,23 @@
 package com.lugowoy.helper.utils.checking;
 
+import com.lugowoy.helper.BoundOutOfRangeException;
+import com.lugowoy.helper.BoundsComparisonException;
+import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.models.matrices.AbstractMatrix;
-import com.lugowoy.helper.utils.MatrixColumnOutOfRangeException;
-import com.lugowoy.helper.utils.MatrixRowOutOfRangeException;
+import com.lugowoy.helper.models.matrices.MatrixColumnOutOfRangeException;
+import com.lugowoy.helper.models.matrices.MatrixRowOutOfRangeException;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
 /**
- * The class contains functionality for checking various types of matrices and its attributes.
+ * The class is provides functionality for checking various types of matrices
+ * and its attributes.
+ * <p>
  * Created by Konstantin Lugowoy on 21.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @since 2.0
  */
 public final class CheckerMatrix {
@@ -34,204 +40,287 @@ public final class CheckerMatrix {
     /**
      * The upper value of the columns in the matrix.
      */
-    public static final int UPPER_COLUMNS_VALUE = Integer.MAX_VALUE - ARRAY_HEADER;
+    public static final int UPPER_COLUMNS_VALUE =
+            Integer.MAX_VALUE - ARRAY_HEADER;
 
     private static final String MSG_MATRIX_IS_NULL = "Matrix is null.";
-    private static final String MSG_MATRIX_ROWS_IS_OUT_OF_RANGE =
-            "Matrix rows out of range (" + LOWER_ROWS_VALUE + " - " + UPPER_ROWS_VALUE + ").";
-    private static final String MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE =
-            "Matrix columns out of range (" + LOWER_COLUMNS_VALUE + " - " + UPPER_COLUMNS_VALUE + ").";
 
     private CheckerMatrix() {
     }
 
     /**
-     * Checks the {@code matrix} for null and that the {@code matrix} attributes rows and columns in range.
-     * Valid values range for matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link CheckerMatrix#UPPER_ROWS_VALUE}.
-     * Valid values range for matrix columns from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}.
+     * Checks the {@code matrix} for null and that the {@code matrix} attributes
+     * rows and columns in range. Valid values range for matrix rows from {@link
+     * CheckerMatrix#LOWER_ROWS_VALUE} to {@link CheckerMatrix#UPPER_ROWS_VALUE}.
+     * Valid values range for matrix columns from {@link
+     * CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}.
+     * But for verification, the parameters {@code upperBoundRows} and {@code
+     * upperBoundColumns} used as the upper boundary values ​​for the rows and
+     * columns of the matrix, respectively.
      *
      * @param matrix the {@code matrix} to check.
+     * @param upperBoundRows the upper bound value of rows of the matrix.
+     * @param upperBoundColumns the upper bound value of columns of the matrix.
      *
      * @throws NullPointerException if the {@code matrix} null.
-     * @throws MatrixRowOutOfRangeException if the matrix rows value out of range.
-     * @throws MatrixColumnOutOfRangeException if the matrix columns value out of range.
+     * @throws BoundOutOfRangeException if the {@code upperBoundRows} value out
+     * of range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
+     * CheckerMatrix#UPPER_ROWS_VALUE} value.
+     * @throws BoundOutOfRangeException if the {@code upperBoundColumns} value
+     * out of range from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
+     * CheckerMatrix#UPPER_COLUMNS_VALUE} value.
+     * @throws MatrixRowOutOfRangeException if the rows value of the matrix out
+     * of range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@code
+     * upperBoundRows}.
+     * @throws MatrixColumnOutOfRangeException if the columns value of the
+     * matrix out of range from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to
+     * {@code upperBoundColumns}.
      */
-    public static void checkMatrix(AbstractMatrix matrix) {
+    public static void check(@NotNull final AbstractMatrix matrix,
+                             final int upperBoundRows,
+                             final int upperBoundColumns) {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
+        CheckerBoundNumber.checkInRange(upperBoundRows, LOWER_ROWS_VALUE,
+                                        UPPER_ROWS_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundColumns, LOWER_COLUMNS_VALUE,
+                                        UPPER_COLUMNS_VALUE);
         int matrixRows = matrix.getRows();
         int matrixColumns = matrix.getColumns();
-        if (matrixRows < LOWER_ROWS_VALUE || matrixRows > UPPER_ROWS_VALUE) {
-            if (matrixColumns < LOWER_COLUMNS_VALUE || matrixColumns > UPPER_COLUMNS_VALUE) {
-                throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
+        if (matrixRows < LOWER_ROWS_VALUE || matrixRows > upperBoundRows) {
+            if (matrixColumns < LOWER_COLUMNS_VALUE
+                    || matrixColumns > upperBoundColumns) {
+                throw new MatrixColumnOutOfRangeException(
+                        "Matrix columns out of range (" + LOWER_COLUMNS_VALUE
+                                + " - " + upperBoundColumns + ").");
             }
         } else {
-            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
+            throw new MatrixRowOutOfRangeException(
+                    "Matrix rows out of range (" + LOWER_ROWS_VALUE + " - "
+                            + upperBoundRows + ").");
         }
     }
 
     /**
-     * Checks the {@code matrix} for null and that the {@code matrix} attributes length(size) ("rows" and "columns") in range.
-     * Valid values range for matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link CheckerMatrix#UPPER_ROWS_VALUE}.
-     * Valid values range for matrix columns from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}.
+     * Checks the {@code matrix} for null and that the {@code matrix} attributes
+     * length(size) ("rows" and "columns") in range. Valid values range for
+     * matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
+     * CheckerMatrix#UPPER_ROWS_VALUE}. Valid values range for matrix columns
+     * from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
+     * CheckerMatrix#UPPER_COLUMNS_VALUE}. But for verification, the parameters
+     * {@code upperBoundRows} and {@code upperBoundColumns} used as the upper
+     * boundary values ​​for the rows and columns of the matrix, respectively.
      *
+     * @param <T> the type of the matrix.
      * @param matrix the {@code matrix} to check.
+     * @param upperBoundRows the upper bound value of rows of the matrix.
+     * @param upperBoundColumns the upper bound value of columns of the matrix.
      *
      * @throws NullPointerException if the {@code matrix} null.
-     * @throws MatrixRowOutOfRangeException if the {@code matrix} rows (length) value out of range.
-     * @throws MatrixColumnOutOfRangeException if the {@code matrix} columns (length) value out of range.
+     * @throws BoundOutOfRangeException if the {@code upperBoundRows} value out
+     * of range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
+     * CheckerMatrix#UPPER_ROWS_VALUE} value.
+     * @throws BoundOutOfRangeException if the {@code upperBoundColumns} value
+     * out of range from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
+     * CheckerMatrix#UPPER_COLUMNS_VALUE} value.
+     * @throws MatrixRowOutOfRangeException if the rows(length) value of the
+     * matrix out of range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@code
+     * upperBoundRows}.
+     * @throws MatrixColumnOutOfRangeException if the columns(length) value of
+     * the matrix out of range from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to
+     * {@code upperBoundColumns}.
      */
-    public static <T> void checkMatrix(T[][] matrix) {
+    public static <T> void check(@NotNull final T[][] matrix,
+                                 final int upperBoundRows,
+                                 final int upperBoundColumns) {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
+        CheckerBoundNumber.checkInRange(upperBoundRows, LOWER_ROWS_VALUE,
+                                        UPPER_ROWS_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundColumns, LOWER_COLUMNS_VALUE,
+                                        UPPER_COLUMNS_VALUE);
         int matrixRows = matrix.length;
-        if (matrixRows < LOWER_ROWS_VALUE || matrixRows > UPPER_ROWS_VALUE) {
-            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
-        } else {
-            for (int i = 0; i < matrix.length; i++) {
-                int matrixColumns = matrix[i].length;
-                if (matrixColumns < LOWER_COLUMNS_VALUE || matrixColumns > UPPER_COLUMNS_VALUE) {
-                    throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
-                }
+        if (matrixRows > upperBoundRows) {
+            throw new MatrixRowOutOfRangeException(
+                    "Matrix rows out of range (" + LOWER_ROWS_VALUE + " - "
+                            + upperBoundRows + ").");
+        }
+        for (final T[] tArr : matrix) {
+            int matrixColumns = tArr.length;
+            if (matrixColumns > upperBoundColumns) {
+                throw new MatrixColumnOutOfRangeException(
+                        "Matrix columns out of range (" + LOWER_COLUMNS_VALUE
+                                + " - " + upperBoundColumns + ").");
             }
         }
     }
 
     /**
-     * Checks the {@code matrix} for null and that the {@code matrix} attributes length(size) ("rows" and "columns") in range.
-     * Valid values range for matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link CheckerMatrix#UPPER_ROWS_VALUE}.
-     * Valid values range for matrix columns from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}.
+     * Checks the {@code matrix} for null and that the {@code matrix} attributes
+     * length(size) ("rows" and "columns") in range. Valid values range for
+     * matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
+     * CheckerMatrix#UPPER_ROWS_VALUE}. Valid values range for matrix columns
+     * from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
+     * CheckerMatrix#UPPER_COLUMNS_VALUE}. But for verification, the parameters
+     * {@code upperBoundRows} and {@code upperBoundColumns} used as the upper
+     * boundary values ​​for the rows and columns of the matrix, respectively.
      *
      * @param matrix the {@code matrix} to check.
+     * @param upperBoundRows the upper bound value of rows of the matrix.
+     * @param upperBoundColumns the upper bound value of columns of the matrix.
      *
      * @throws NullPointerException if the {@code matrix} null.
-     * @throws MatrixRowOutOfRangeException if the {@code matrix} rows (length) value out of range.
-     * @throws MatrixColumnOutOfRangeException if the {@code matrix} columns (length) value out of range.
+     * @throws BoundOutOfRangeException if the {@code upperBoundRows} value out
+     * of range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
+     * CheckerMatrix#UPPER_ROWS_VALUE} value.
+     * @throws BoundOutOfRangeException if the {@code upperBoundColumns} value
+     * out of range from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
+     * CheckerMatrix#UPPER_COLUMNS_VALUE} value.
+     * @throws MatrixRowOutOfRangeException if the rows(length) value of the
+     * matrix out of range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@code
+     * upperBoundRows}.
+     * @throws MatrixColumnOutOfRangeException if the columns(length) value of
+     * the matrix out of range from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to
+     * {@code upperBoundColumns}.
      */
-    public static void checkMatrix(int[][] matrix) {
+    public static void checkMatrix(@NotNull final int[][] matrix,
+                                   final int upperBoundRows,
+                                   final int upperBoundColumns) {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
+        CheckerBoundNumber.checkInRange(upperBoundRows, LOWER_ROWS_VALUE,
+                                        UPPER_ROWS_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundColumns, LOWER_COLUMNS_VALUE,
+                                        UPPER_COLUMNS_VALUE);
         int matrixRows = matrix.length;
-        if (matrixRows < LOWER_ROWS_VALUE || matrixRows > UPPER_ROWS_VALUE) {
-            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
-        } else {
-            for (int i = 0; i < matrix.length; i++) {
-                int matrixColumns = matrix[i].length;
-                if (matrixColumns < LOWER_COLUMNS_VALUE || matrixColumns > UPPER_COLUMNS_VALUE) {
-                    throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
-                }
+        if (matrixRows > UPPER_ROWS_VALUE) {
+            throw new MatrixRowOutOfRangeException(
+                    "Matrix rows out of range (" + LOWER_ROWS_VALUE + " - "
+                            + upperBoundRows + ").");
+        }
+        for (final int[] ints : matrix) {
+            int matrixColumns = ints.length;
+            if (matrixColumns > UPPER_COLUMNS_VALUE) {
+                throw new MatrixColumnOutOfRangeException(
+                        "Matrix columns out of range (" + LOWER_COLUMNS_VALUE
+                                + " - " + upperBoundColumns + ").");
             }
         }
     }
 
     /**
-     * Checks the {@code matrix} for null and that the {@code matrix} attributes length(size) ("rows" and "columns") in range.
-     * Valid values range for matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link CheckerMatrix#UPPER_ROWS_VALUE}.
-     * Valid values range for matrix columns from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}.
+     * Checks the {@code matrix} for null and that the {@code matrix} attributes
+     * length(size) ("rows" and "columns") in range. Valid values range for
+     * matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
+     * CheckerMatrix#UPPER_ROWS_VALUE}. Valid values range for matrix columns
+     * from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
+     * CheckerMatrix#UPPER_COLUMNS_VALUE}. But for verification, the parameters
+     * {@code upperBoundRows} and {@code upperBoundColumns} used as the upper
+     * boundary values ​​for the rows and columns of the matrix, respectively.
      *
      * @param matrix the {@code matrix} to check.
+     * @param upperBoundRows the upper bound value of rows of the matrix.
+     * @param upperBoundColumns the upper bound value of columns of the matrix.
      *
      * @throws NullPointerException if the {@code matrix} null.
-     * @throws MatrixRowOutOfRangeException if the {@code matrix} rows (length) value out of range.
-     * @throws MatrixColumnOutOfRangeException if the {@code matrix} columns (length) value out of range.
+     * @throws BoundOutOfRangeException if the {@code upperBoundRows} value out
+     * of range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
+     * CheckerMatrix#UPPER_ROWS_VALUE} value.
+     * @throws BoundOutOfRangeException if the {@code upperBoundColumns} value
+     * out of range from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
+     * CheckerMatrix#UPPER_COLUMNS_VALUE} value.
+     * @throws MatrixRowOutOfRangeException if the rows(length) value of the
+     * matrix out of range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@code
+     * upperBoundRows}.
+     * @throws MatrixColumnOutOfRangeException if the columns(length) value of
+     * the matrix out of range from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to
+     * {@code upperBoundColumns}.
      */
-    public static void checkMatrix(double[][] matrix) {
+    public static void checkMatrix(@NotNull final double[][] matrix,
+                                   final int upperBoundRows,
+                                   final int upperBoundColumns) {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
+        CheckerBoundNumber.checkInRange(upperBoundRows, LOWER_ROWS_VALUE,
+                                        UPPER_ROWS_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundColumns, LOWER_COLUMNS_VALUE,
+                                        UPPER_COLUMNS_VALUE);
         int matrixRows = matrix.length;
-        if (matrixRows < LOWER_ROWS_VALUE || matrixRows > UPPER_ROWS_VALUE) {
-            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
-        } else {
-            for (int i = 0; i < matrix.length; i++) {
-                int matrixColumns = matrix[i].length;
-                if (matrixColumns < LOWER_COLUMNS_VALUE || matrixColumns > UPPER_COLUMNS_VALUE) {
-                    throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
-                }
+        if (matrixRows > UPPER_ROWS_VALUE) {
+            throw new MatrixRowOutOfRangeException(
+                    "Matrix rows out of range (" + LOWER_ROWS_VALUE + " - "
+                            + upperBoundRows + ").");
+        }
+        for (final double[] doubles : matrix) {
+            int matrixColumns = doubles.length;
+            if (matrixColumns > UPPER_COLUMNS_VALUE) {
+                throw new MatrixColumnOutOfRangeException(
+                        "Matrix columns out of range (" + LOWER_COLUMNS_VALUE
+                                + " - " + upperBoundColumns + ").");
             }
         }
     }
 
     /**
-     * Checks the {@code rows} number value in of the range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link CheckerMatrix#UPPER_ROWS_VALUE}.
+     * Checks the {@code rows} value in range from {@code lowerBoundRows} to
+     * {@code upperBoundRows}.
      *
-     * @param rows the rows number value to check.
+     * @param rows the rows value of the matrix to check.
+     * @param lowerBoundRows the lower bound value of rows of the matrix to
+     * check.
+     * @param upperBoundRows the upper bound value of rows of the matrix to
+     * check.
      *
-     * @throws MatrixRowOutOfRangeException the rows number value out of the range.
+     * @throws BoundOutOfRangeException if the any of boundary values out of
+     * range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
+     * CheckerMatrix#UPPER_ROWS_VALUE} value.
+     * @throws BoundsComparisonException if the {@code lowerBoundRows} value
+     * greater or not equal than the {@code upperBoundRows} value.
+     * @throws MatrixRowOutOfRangeException the {@code rows} value out of the
+     * range.
      */
-    public static void checkRows(int rows) {
-        if (rows < LOWER_ROWS_VALUE || rows > UPPER_ROWS_VALUE) {
-            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
+    public static void checkRows(final int rows, final int lowerBoundRows,
+                                 final int upperBoundRows) {
+        CheckerBoundNumber.checkInRange(lowerBoundRows, LOWER_ROWS_VALUE,
+                                        UPPER_ROWS_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundRows, LOWER_ROWS_VALUE,
+                                        UPPER_ROWS_VALUE);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBoundRows,
+                                                      upperBoundRows);
+        if (rows < lowerBoundRows || rows > upperBoundRows) {
+            throw new MatrixRowOutOfRangeException(
+                    "Matrix rows out of range (" + lowerBoundRows + " - "
+                            + upperBoundRows + ").");
         }
     }
 
     /**
-     * Checks the {@code rows} number value in of the range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@code upperBoundRows}.
+     * Checks the {@code columns} value in range from {@code lowerBoundColumns}
+     * to {@code upperBoundColumns}.
      *
-     * @param rows the rows number value to check.
+     * @param columns the columns value of the matrix to check.
+     * @param lowerBoundColumns the lower bound value of columns of the matrix
+     * to check.
+     * @param upperBoundColumns the upper bound value of columns of the matrix
+     * to check.
      *
-     * @throws MatrixRowOutOfRangeException the rows number value out of the range.
+     * @throws BoundOutOfRangeException if the any of boundary values out of
+     * range from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
+     * CheckerMatrix#UPPER_COLUMNS_VALUE} value.
+     * @throws BoundsComparisonException if the {@code lowerBoundColumns} value
+     * greater or not equal than the {@code upperBoundColumns} value.
+     * @throws MatrixColumnOutOfRangeException the {@code columns} value out of
+     * the range.
      */
-    public static void checkRows(int rows, int upperBoundRows) {
-        CheckerBound.isCorrectBound(upperBoundRows, LOWER_ROWS_VALUE, UPPER_ROWS_VALUE);
-        if (rows < LOWER_ROWS_VALUE || rows > UPPER_ROWS_VALUE) {
-            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
-        }
-    }
-
-    /**
-     * Checks the {@code rows} number value in of the range from {@code lowerBoundRows} to {@code upperBoundRows}.
-     *
-     * @param rows the rows number value to check.
-     *
-     * @throws MatrixRowOutOfRangeException the rows number value out of the range.
-     */
-    public static void checkRows(int rows, int lowerBoundRows, int upperBoundRows) {
-        CheckerBound.isCorrectBound(lowerBoundRows, LOWER_ROWS_VALUE, UPPER_ROWS_VALUE);
-        CheckerBound.isCorrectBound(upperBoundRows, LOWER_ROWS_VALUE, UPPER_ROWS_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundRows, upperBoundRows);
-        if (rows < LOWER_ROWS_VALUE || rows > UPPER_ROWS_VALUE) {
-            throw new MatrixRowOutOfRangeException(MSG_MATRIX_ROWS_IS_OUT_OF_RANGE);
-        }
-    }
-
-    /**
-     * Checks the {@code columns} number value in of the range
-     * from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}.
-     *
-     * @param columns the columns number value to check.
-     *
-     * @throws MatrixColumnOutOfRangeException the columns number value out of the range.
-     */
-    public static void checkColumns(int columns) {
-        if (columns < LOWER_COLUMNS_VALUE || columns > UPPER_COLUMNS_VALUE) {
-            throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
-        }
-    }
-
-    /**
-     * Checks the {@code columns} number value in of the range
-     * from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@code upperBoundColumns}.
-     *
-     * @param columns the columns number value to check.
-     *
-     * @throws MatrixColumnOutOfRangeException the columns number value out of the range.
-     */
-    public static void checkColumns(int columns, int upperBoundColumns) {
-        CheckerBound.isCorrectBound(upperBoundColumns, LOWER_COLUMNS_VALUE, UPPER_COLUMNS_VALUE);
-        if (columns < LOWER_COLUMNS_VALUE || columns > UPPER_COLUMNS_VALUE) {
-            throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
-        }
-    }
-
-    /**
-     * Checks the {@code columns} number value in of the range from {@code lowerBoundColumns} to {@code upperBoundColumns}.
-     *
-     * @param columns the columns number value to check.
-     *
-     * @throws MatrixColumnOutOfRangeException the columns number value out of the range.
-     */
-    public static void checkColumns(int columns, int lowerBoundColumns, int upperBoundColumns) {
-        CheckerBound.isCorrectBound(lowerBoundColumns, LOWER_COLUMNS_VALUE, UPPER_COLUMNS_VALUE);
-        CheckerBound.isCorrectBound(upperBoundColumns, LOWER_COLUMNS_VALUE, UPPER_COLUMNS_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundColumns, upperBoundColumns);
+    public static void checkColumns(final int columns,
+                                    final int lowerBoundColumns,
+                                    final int upperBoundColumns) {
+        CheckerBoundNumber.checkInRange(lowerBoundColumns, LOWER_COLUMNS_VALUE,
+                                        UPPER_COLUMNS_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundColumns, LOWER_COLUMNS_VALUE,
+                                        UPPER_COLUMNS_VALUE);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBoundColumns,
+                                                      upperBoundColumns);
         if (columns < lowerBoundColumns || columns > upperBoundColumns) {
-            throw new MatrixColumnOutOfRangeException(MSG_MATRIX_COLUMNS_IS_OUT_OF_RANGE);
+            throw new MatrixColumnOutOfRangeException(
+                    "Matrix columns out of range (" + lowerBoundColumns + " - "
+                            + upperBoundColumns + ").");
         }
     }
 
