@@ -37,9 +37,10 @@ public final class ReaderCharacters {
      *
      * @return char array filled with read characters.
      *
-     * @throws NullPointerException if the {@code pathsToFiles} null.
+     * @throws NullPointerException if the {@code pathsToFiles} is {@code
+     * null}.
      * @throws NullPointerException if objects for reading characters, for some
-     * reason null.
+     * reason is {@code null}.
      * @throws IOException if an I/O error occurs.
      */
     public char[] readCharacters(final String... pathsToFiles)
