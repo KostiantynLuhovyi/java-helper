@@ -1,16 +1,15 @@
-package com.lugowoy.helper;
+package com.lugowoy.helper.utils;
 
 /**
- * Thrown when the length of the used object that has the length attribute is
- * out of range.
+ * Thrown when the value is out of range.
  * <p>
- * Created by Konstantin Lugowoy on 03.05.2020.
+ * Created by Konstantin Lugowoy on 27.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
- * @since 3.0
+ * @version 1.3
+ * @since 1.8
  */
-public class LengthOutOfRangeException extends OutOfRangeException {
+public class ValueOutOfRangeException extends OutOfRangeException {
 
     /**
      * Constructs a new runtime exception with the specified detail message. The
@@ -20,7 +19,7 @@ public class LengthOutOfRangeException extends OutOfRangeException {
      * @param message the detail message. The detail message is saved for later
      * retrieval by the {@link #getMessage()} method.
      */
-    public LengthOutOfRangeException(final String message) {
+    public ValueOutOfRangeException(String message) {
         super(message);
     }
 
@@ -38,8 +37,8 @@ public class LengthOutOfRangeException extends OutOfRangeException {
      *
      * @since 1.4
      */
-    public LengthOutOfRangeException(final String message,
-                                     final Throwable cause) {
+    public ValueOutOfRangeException(final String message,
+                                    final Throwable cause) {
         super(message, cause);
     }
 
@@ -56,7 +55,7 @@ public class LengthOutOfRangeException extends OutOfRangeException {
      *
      * @since 1.4
      */
-    public LengthOutOfRangeException(final Throwable cause) {
+    public ValueOutOfRangeException(final Throwable cause) {
         super(cause);
     }
 
@@ -75,10 +74,9 @@ public class LengthOutOfRangeException extends OutOfRangeException {
      *
      * @since 1.7
      */
-    public LengthOutOfRangeException(final String message,
-                                     final Throwable cause,
-                                     final boolean enableSuppression,
-                                     final boolean writableStackTrace) {
+    public ValueOutOfRangeException(final String message, final Throwable cause,
+                                    final boolean enableSuppression,
+                                    final boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 

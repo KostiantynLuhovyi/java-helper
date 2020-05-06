@@ -1,15 +1,15 @@
-package com.lugowoy.helper;
+package com.lugowoy.helper.utils;
 
 /**
- * Thrown when the value is out of range.
+ * Thrown when something is out of range.
  * <p>
- * Created by Konstantin Lugowoy on 27.09.2019.
+ * Created by Konstantin Lugowoy on 02.05.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
- * @since 1.8
+ * @version 1.1
+ * @since 3.0
  */
-public class ValueOutOfRangeException extends OutOfRangeException {
+public class OutOfRangeException extends RuntimeException {
 
     /**
      * Constructs a new runtime exception with the specified detail message. The
@@ -19,7 +19,7 @@ public class ValueOutOfRangeException extends OutOfRangeException {
      * @param message the detail message. The detail message is saved for later
      * retrieval by the {@link #getMessage()} method.
      */
-    public ValueOutOfRangeException(String message) {
+    public OutOfRangeException(final String message) {
         super(message);
     }
 
@@ -37,8 +37,7 @@ public class ValueOutOfRangeException extends OutOfRangeException {
      *
      * @since 1.4
      */
-    public ValueOutOfRangeException(final String message,
-                                    final Throwable cause) {
+    public OutOfRangeException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
@@ -55,7 +54,7 @@ public class ValueOutOfRangeException extends OutOfRangeException {
      *
      * @since 1.4
      */
-    public ValueOutOfRangeException(final Throwable cause) {
+    public OutOfRangeException(final Throwable cause) {
         super(cause);
     }
 
@@ -74,9 +73,9 @@ public class ValueOutOfRangeException extends OutOfRangeException {
      *
      * @since 1.7
      */
-    public ValueOutOfRangeException(final String message, final Throwable cause,
-                                    final boolean enableSuppression,
-                                    final boolean writableStackTrace) {
+    public OutOfRangeException(final String message, final Throwable cause,
+                               final boolean enableSuppression,
+                               final boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
