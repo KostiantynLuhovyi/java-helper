@@ -9,4 +9,5 @@ module java.helper {
     requires org.apache.commons.lang3;
     requires commons.math3;
     requires cloning;
+    requires org.jetbrains.annotations;
 }
