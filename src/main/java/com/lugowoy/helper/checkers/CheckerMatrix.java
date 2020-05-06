@@ -1,7 +1,7 @@
 package com.lugowoy.helper.checkers;
 
-import com.lugowoy.helper.BoundOutOfRangeException;
-import com.lugowoy.helper.BoundsComparisonException;
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsComparisonException;
 import com.lugowoy.helper.models.matrices.AbstractMatrix;
 import com.lugowoy.helper.models.matrices.MatrixColumnOutOfRangeException;
 import com.lugowoy.helper.models.matrices.MatrixRowOutOfRangeException;

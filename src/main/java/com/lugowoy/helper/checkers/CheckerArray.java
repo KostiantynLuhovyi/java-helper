@@ -1,7 +1,7 @@
 package com.lugowoy.helper.checkers;
 
-import com.lugowoy.helper.BoundOutOfRangeException;
-import com.lugowoy.helper.LengthOutOfRangeException;
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.LengthOutOfRangeException;
 import com.lugowoy.helper.models.storages.arrays.AbstractArray;
 import org.jetbrains.annotations.NotNull;
 

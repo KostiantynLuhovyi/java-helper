@@ -1,8 +1,8 @@
 package com.lugowoy.helper.checkers;
 
-import com.lugowoy.helper.BoundOutOfRangeException;
-import com.lugowoy.helper.BoundsComparisonException;
-import com.lugowoy.helper.LengthOutOfRangeException;
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsComparisonException;
+import com.lugowoy.helper.utils.LengthOutOfRangeException;
 
 /**
  * The class provides functionality for checking strings and their attributes.
