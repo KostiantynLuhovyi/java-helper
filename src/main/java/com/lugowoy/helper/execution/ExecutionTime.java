@@ -1,4 +1,4 @@
-package com.lugowoy.helper.utils.execution;
+package com.lugowoy.helper.execution;
 
 /**
  * Created by Konstantin Lugowoy on 13.09.2019.

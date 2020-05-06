@@ -1,4 +1,4 @@
-package com.lugowoy.helper.utils.execution;
+package com.lugowoy.helper.execution;
 
 import java.util.concurrent.Callable;
 
