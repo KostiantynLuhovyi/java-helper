@@ -1,7 +1,5 @@
 package com.lugowoy.helper.utils;
 
-import com.lugowoy.helper.BoundOutOfRangeException;
-import com.lugowoy.helper.ValueOutOfRangeException;
 import com.lugowoy.helper.checkers.CheckerArray;
 import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.checkers.CheckerNumber;
