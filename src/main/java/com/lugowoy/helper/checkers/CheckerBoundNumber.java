@@ -88,13 +88,10 @@ public final class CheckerBoundNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isInRange(
             @NotNull final T bound, @NotNull final T upperBound) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(bound, MSG_EXC_BOUND_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
-        if (compare(bound, (T) ZERO) > 0 && compare(bound, upperBound) < 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return (compare(bound, (T) ZERO) >= 0 && compare(bound, upperBound)
+                                                 <= 0);
     }
 
     /**
@@ -137,14 +134,11 @@ public final class CheckerBoundNumber {
     public static <T extends Number & Comparable<T>> boolean isInRange(
             @NotNull final T bound, @NotNull final T lowerBound,
             @NotNull final T upperBound) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(bound, MSG_EXC_BOUND_IS_NULL);
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
-        if (compare(bound, lowerBound) > 0 && compare(bound, upperBound) < 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return (compare(bound, lowerBound) >= 0 && compare(bound, upperBound)
+                                                   <= 0);
     }
 
     /**
@@ -170,7 +164,7 @@ public final class CheckerBoundNumber {
         if (compare(bound, lowerBound) < 0 || compare(bound, upperBound) > 0) {
             throw new BoundOutOfRangeException(
                     "Bound value out of range (" + lowerBound + " - "
-                            + upperBound + ")");
+                    + upperBound + ")");
         }
     }
 
@@ -189,13 +183,9 @@ public final class CheckerBoundNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isLowerEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
-        if (compare(lowerBound, upperBound) == 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return (compare(lowerBound, upperBound) == 0);
     }
 
     /**
@@ -235,13 +225,9 @@ public final class CheckerBoundNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isLowerNotEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
-        if (compare(lowerBound, upperBound) != 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return (compare(lowerBound, upperBound) != 0);
     }
 
     /**
@@ -281,13 +267,9 @@ public final class CheckerBoundNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isLowerLessUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
-        if (compare(lowerBound, upperBound) < 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return (compare(lowerBound, upperBound) < 0);
     }
 
     /**
@@ -328,13 +310,9 @@ public final class CheckerBoundNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isLowerGreaterUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
-        if (compare(lowerBound, upperBound) > 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return (compare(lowerBound, upperBound) > 0);
     }
 
     /**
@@ -375,13 +353,9 @@ public final class CheckerBoundNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isLowerLessOrEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
-        if (compare(lowerBound, upperBound) <= 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return (compare(lowerBound, upperBound) <= 0);
     }
 
     /**
@@ -422,13 +396,9 @@ public final class CheckerBoundNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isLowerGreaterOrEqualUpper(
             @NotNull final T lowerBound, @NotNull final T upperBound) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(lowerBound, MSG_EXC_LOWER_IS_NULL);
         Objects.requireNonNull(upperBound, MSG_EXC_UPPER_IS_NULL);
-        if (compare(lowerBound, upperBound) >= 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return (compare(lowerBound, upperBound) >= 0);
     }
 
     /**
