@@ -74,8 +74,8 @@ public final class CheckerBoundNumber {
     }
 
     /**
-     * Checks that the {@code bound} value in range from {@literal 0} to {@code
-     * upperBound} value.
+     * Checks that the {@code bound} value in range from {@literal 0}
+     * (inclusive) to {@code upperBound} (inclusive) value.
      *
      * @param <T> the type of the boundary values.
      * @param bound the bound value to check.
@@ -95,8 +95,8 @@ public final class CheckerBoundNumber {
     }
 
     /**
-     * Checks that the {@code bound} value in range from {@literal 0} to {@code
-     * upperBound} value.
+     * Checks that the {@code bound} value in range from {@literal 0}
+     * (inclusive) to {@code upperBound} (inclusive) value.
      *
      * @param <T> the type of the boundary values.
      * @param bound the bound value to check.
@@ -119,7 +119,7 @@ public final class CheckerBoundNumber {
 
     /**
      * Checks that the {@code bound} value in range from {@code lowerBound}
-     * value to {@code upperBound} value.
+     * (inclusive) value to {@code upperBound} (inclusive) value.
      *
      * @param <T> the type of the boundary values.
      * @param bound the bound value to check.
@@ -143,7 +143,7 @@ public final class CheckerBoundNumber {
 
     /**
      * Checks that the {@code bound} value in range from {@code lowerBound}
-     * value to {@code upperBound} value.
+     * (inclusive) value to {@code upperBound} (inclusive) value.
      *
      * @param <T> the type of the boundary values.
      * @param bound the bound value to check.
