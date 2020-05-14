@@ -8,12 +8,12 @@ import java.util.Objects;
 
 /**
  * The class provides functionality for generating pseudorandom objects of the
- * {@link String} class from character storage.
+ * {@link String} class from character from the store.
  * <p>
  * Created by Konstantin Lugowoy on 21.04.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 3.0
  */
 public final class CreatorString {
@@ -30,9 +30,10 @@ public final class CreatorString {
     }
 
     /**
-     * Creates a string of length as the value {@code lengthString} from the
-     * pseudo-random characters contained in the {@code characters} array. The
-     * maximum length of the created string is {@link Integer#MAX_VALUE}.
+     * Creates an object of the {@link String} class of length as the value
+     * {@code lengthString} from the pseudo-random characters contained in the
+     * {@code characters} array. The maximum length of the created string is
+     * {@link Integer#MAX_VALUE}.
      *
      * @param characters the array of characters from which the string creates.
      * @param lengthString the length of created string.
@@ -42,7 +43,7 @@ public final class CreatorString {
      * @throws NullPointerException if the {@code characters} array is {@code
      * null}.
      * @throws LengthOutOfRangeException if the {@code lengthString} value out
-     * of range from {@literal 0} to {@link Integer#MAX_VALUE}.
+     * of range from 0 to {@link Integer#MAX_VALUE}.
      */
     public String create(final int lengthString,
                          @NotNull final char... characters) {
@@ -57,24 +58,26 @@ public final class CreatorString {
     }
 
     /**
-     * Creates a string with a length as a pseudo-random number ranging from
-     * {@code lowerLength} to {@code upperLength} and containing pseudo-random
+     * Creates an object of the {@link String} calss with a length as a
+     * pseudo-random number ranging from {@code lowerLengthString}(inclusive) to
+     * {@code upperLengthString}(inclusive) and containing pseudo-random
      * characters contained in the {@code characters} array. The maximum length
      * of the created string is {@link Integer#MAX_VALUE}.
      *
      * @param characters the array of characters from which the string creates.
-     * @param lowerLength the lower boundary length value of string.
-     * @param upperLength the upper boundary length value of string.
+     * @param lowerLengthString the lower boundary length value of string.
+     * @param upperLengthString the upper boundary length value of string.
      *
      * @return the created string.
      *
-     * @throws NullPointerException if the {@code characters} array is null.
+     * @throws NullPointerException if the {@code characters} array is {@code
+     * null}.
      * @throws BoundOutOfRangeException if the any of boundary arguments out of
-     * range from {@literal 0} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsComparisonException if the {@code lowerLength} greater or
-     * equal than {@code upperLength}.
+     * range from 0 to {@link Integer#MAX_VALUE}.
+     * @throws BoundsComparisonException if the {@code lowerLengthString}
+     * greater or equal than {@code upperLengthString}.
      * @throws LengthOutOfRangeException if the {@code lengthString} value out
-     * of range from {@literal 0} to {@link Integer#MAX_VALUE}.
+     * of range from 0 to {@link Integer#MAX_VALUE}.
      */
     public String create(final int lowerLengthString,
                          final int upperLengthString,
