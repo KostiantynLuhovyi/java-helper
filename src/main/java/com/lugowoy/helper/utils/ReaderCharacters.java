@@ -1,6 +1,7 @@
 package com.lugowoy.helper.utils;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -43,7 +44,7 @@ public final class ReaderCharacters {
      * reason is {@code null}.
      * @throws IOException if an I/O error occurs.
      */
-    public char[] readCharacters(final String... pathsToFiles)
+    public char[] readCharacters(@NotNull final String... pathsToFiles)
             throws IOException {
         Objects.requireNonNull(pathsToFiles,
                                "Array with paths to files is null.");
