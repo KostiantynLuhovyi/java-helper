@@ -50,10 +50,11 @@ public final class CheckerMatrix {
     /**
      * Checks the {@code matrix} for null and that the {@code matrix} attributes
      * rows and columns in range. Valid values range for matrix rows from {@link
-     * CheckerMatrix#LOWER_ROWS_VALUE} to {@link CheckerMatrix#UPPER_ROWS_VALUE}.
-     * Valid values range for matrix columns from {@link
-     * CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}.
-     * But for verification, the parameters {@code upperBoundRows} and {@code
+     * CheckerMatrix#LOWER_ROWS_VALUE}(inclusive) to {@link
+     * CheckerMatrix#UPPER_ROWS_VALUE}(inclusive). Valid values range for matrix
+     * columns from {@link CheckerMatrix#LOWER_COLUMNS_VALUE}(inclusive) to
+     * {@link CheckerMatrix#UPPER_COLUMNS_VALUE}(inclusive). But for
+     * verification, the parameters {@code upperBoundRows} and {@code
      * upperBoundColumns} used as the upper boundary values ​​for the rows and
      * columns of the matrix, respectively.
      *
@@ -61,7 +62,7 @@ public final class CheckerMatrix {
      * @param upperBoundRows the upper bound value of rows of the matrix.
      * @param upperBoundColumns the upper bound value of columns of the matrix.
      *
-     * @throws NullPointerException if the {@code matrix} null.
+     * @throws NullPointerException if the {@code matrix} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundRows} value out
      * of range from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
      * CheckerMatrix#UPPER_ROWS_VALUE} value.
@@ -102,12 +103,13 @@ public final class CheckerMatrix {
     /**
      * Checks the {@code matrix} for null and that the {@code matrix} attributes
      * length(size) ("rows" and "columns") in range. Valid values range for
-     * matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
-     * CheckerMatrix#UPPER_ROWS_VALUE}. Valid values range for matrix columns
-     * from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
-     * CheckerMatrix#UPPER_COLUMNS_VALUE}. But for verification, the parameters
-     * {@code upperBoundRows} and {@code upperBoundColumns} used as the upper
-     * boundary values ​​for the rows and columns of the matrix, respectively.
+     * matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE}(inclusive) to
+     * {@link CheckerMatrix#UPPER_ROWS_VALUE}(inclusive). Valid values range for
+     * matrix columns from {@link CheckerMatrix#LOWER_COLUMNS_VALUE}(inclusive)
+     * to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}(inclusive). But for
+     * verification, the parameters {@code upperBoundRows} and {@code
+     * upperBoundColumns} used as the upper boundary values ​​for the rows and
+     * columns of the matrix, respectively.
      *
      * @param <T> the type of the matrix.
      * @param matrix the {@code matrix} to check.
@@ -155,12 +157,13 @@ public final class CheckerMatrix {
     /**
      * Checks the {@code matrix} for null and that the {@code matrix} attributes
      * length(size) ("rows" and "columns") in range. Valid values range for
-     * matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
-     * CheckerMatrix#UPPER_ROWS_VALUE}. Valid values range for matrix columns
-     * from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
-     * CheckerMatrix#UPPER_COLUMNS_VALUE}. But for verification, the parameters
-     * {@code upperBoundRows} and {@code upperBoundColumns} used as the upper
-     * boundary values ​​for the rows and columns of the matrix, respectively.
+     * matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE}(inclusive) to
+     * {@link CheckerMatrix#UPPER_ROWS_VALUE}(inclusive). Valid values range for
+     * matrix columns from {@link CheckerMatrix#LOWER_COLUMNS_VALUE}(inclusive)
+     * to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}(inclusive). But for
+     * verification, the parameters {@code upperBoundRows} and {@code
+     * upperBoundColumns} used as the upper boundary values ​​for the rows and
+     * columns of the matrix, respectively.
      *
      * @param matrix the {@code matrix} to check.
      * @param upperBoundRows the upper bound value of rows of the matrix.
@@ -207,12 +210,13 @@ public final class CheckerMatrix {
     /**
      * Checks the {@code matrix} for null and that the {@code matrix} attributes
      * length(size) ("rows" and "columns") in range. Valid values range for
-     * matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE} to {@link
-     * CheckerMatrix#UPPER_ROWS_VALUE}. Valid values range for matrix columns
-     * from {@link CheckerMatrix#LOWER_COLUMNS_VALUE} to {@link
-     * CheckerMatrix#UPPER_COLUMNS_VALUE}. But for verification, the parameters
-     * {@code upperBoundRows} and {@code upperBoundColumns} used as the upper
-     * boundary values ​​for the rows and columns of the matrix, respectively.
+     * matrix rows from {@link CheckerMatrix#LOWER_ROWS_VALUE}(inclusive) to
+     * {@link CheckerMatrix#UPPER_ROWS_VALUE}(inclusive). Valid values range for
+     * matrix columns from {@link CheckerMatrix#LOWER_COLUMNS_VALUE}(inclusive)
+     * to {@link CheckerMatrix#UPPER_COLUMNS_VALUE}(inclusive). But for
+     * verification, the parameters {@code upperBoundRows} and {@code
+     * upperBoundColumns} used as the upper boundary values ​​for the rows and
+     * columns of the matrix, respectively.
      *
      * @param matrix the {@code matrix} to check.
      * @param upperBoundRows the upper bound value of rows of the matrix.
@@ -257,8 +261,8 @@ public final class CheckerMatrix {
     }
 
     /**
-     * Checks the {@code rows} value in range from {@code lowerBoundRows} to
-     * {@code upperBoundRows}.
+     * Checks the {@code rows} value in range from {@code
+     * lowerBoundRows}(inclusive) to {@code upperBoundRows}(inclusive).
      *
      * @param rows the rows value of the matrix to check.
      * @param lowerBoundRows the lower bound value of rows of the matrix to
@@ -290,8 +294,8 @@ public final class CheckerMatrix {
     }
 
     /**
-     * Checks the {@code columns} value in range from {@code lowerBoundColumns}
-     * to {@code upperBoundColumns}.
+     * Checks the {@code columns} value in range from {@code
+     * lowerBoundColumns}(inclusive) to {@code upperBoundColumns}(inclusive).
      *
      * @param columns the columns value of the matrix to check.
      * @param lowerBoundColumns the lower bound value of columns of the matrix
