@@ -2,6 +2,7 @@ package com.lugowoy.helper.utils;
 
 import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.checkers.CheckerString;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -43,7 +44,8 @@ public final class CreatorString {
      * @throws LengthOutOfRangeException if the {@code lengthString} value out
      * of range from {@literal 0} to {@link Integer#MAX_VALUE}.
      */
-    public String create(final char[] characters, final int lengthString) {
+    public String create(final int lengthString,
+                         @NotNull final char... characters) {
         Objects.requireNonNull(characters, "Array of characters is null.");
         CheckerString.checkLength(lengthString, 0, Integer.MAX_VALUE);
         for (int i = 0; i < lengthString; i++) {
@@ -74,14 +76,16 @@ public final class CreatorString {
      * @throws LengthOutOfRangeException if the {@code lengthString} value out
      * of range from {@literal 0} to {@link Integer#MAX_VALUE}.
      */
-    public String create(final char[] characters, final int lowerLength,
-                         final int upperLength) {
-        CheckerBoundNumber.checkInRange(lowerLength, 0, Integer.MAX_VALUE);
-        CheckerBoundNumber.checkInRange(upperLength, 0, Integer.MAX_VALUE);
-        CheckerBoundNumber.checkLowerLessUpper(lowerLength, upperLength);
-        int randLength = new RandomNumber().generateInt(lowerLength,
-                                                        upperLength);
-        return this.create(characters, randLength);
+    public String create(final int lowerLengthString,
+                         final int upperLengthString,
+                         @NotNull final char... characters) {
+        CheckerBoundNumber.checkInRange(lowerLengthString, Integer.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperLengthString, Integer.MAX_VALUE);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerLengthString,
+                                                      upperLengthString);
+        int randLength = new RandomNumber().generateInt(lowerLengthString,
+                                                        upperLengthString);
+        return this.create(randLength, characters);
     }
 
 }
