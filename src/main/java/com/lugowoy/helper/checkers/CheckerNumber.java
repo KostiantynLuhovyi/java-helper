@@ -108,8 +108,8 @@ public final class CheckerNumber {
 
 
     /**
-     * Checks the {@code value} in range from {@code lowerValue}(exclusive) to
-     * {@code upperValue}(exclusive).
+     * Checks the {@code value} in range from {@code lowerValue}(inclusive) to
+     * {@code upperValue}(inclusive).
      *
      * @param <T> the type of the value and boundary values to check.
      * @param value the value to check.
