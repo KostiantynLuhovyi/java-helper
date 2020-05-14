@@ -37,11 +37,7 @@ public final class CheckerIndex {
                                     final long upperBoundIndex) {
         CheckerBoundNumber.checkInRange(upperBoundIndex, LOWER_INDEX,
                                         Long.MAX_VALUE);
-        boolean resultOFCheck = false;
-        if (index >= LOWER_INDEX && index < upperBoundIndex) {
-            resultOFCheck = true;
-        }
-        return resultOFCheck;
+        return index >= LOWER_INDEX && index < upperBoundIndex;
     }
 
     /**
@@ -64,7 +60,7 @@ public final class CheckerIndex {
         if (index < LOWER_INDEX || index >= upperBoundIndex) {
             throw new IndexOutOfBoundsException(
                     "Index value out of range(" + CheckerIndex.LOWER_INDEX + "-"
-                            + upperBoundIndex + ")");
+                    + upperBoundIndex + ")");
         }
     }
 
@@ -92,11 +88,7 @@ public final class CheckerIndex {
                                         Long.MAX_VALUE);
         CheckerBoundNumber.checkLowerLessUpper(lowerBoundIndex,
                                                upperBoundIndex);
-        boolean resultOfCheck = false;
-        if (index >= lowerBoundIndex && index < upperBoundIndex) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return index >= lowerBoundIndex && index < upperBoundIndex;
     }
 
     /**
@@ -126,7 +118,7 @@ public final class CheckerIndex {
         if (index < lowerBoundIndex || index >= upperBoundIndex) {
             throw new IndexOutOfBoundsException(
                     "Index value out of range(" + lowerBoundIndex + "-"
-                            + upperBoundIndex + ")");
+                    + upperBoundIndex + ")");
         }
     }
 
