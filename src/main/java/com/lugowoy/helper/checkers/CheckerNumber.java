@@ -133,7 +133,7 @@ public final class CheckerNumber {
         Objects.requireNonNull(upperValue, MSG_EXC_UPPER_VALUE_IS_NULL);
         CheckerBoundNumber.checkLowerLessUpper(lowerValue, upperValue);
         if (value.compareTo(lowerValue) > 0 && value.compareTo(upperValue)
-                < 0) {
+                                               < 0) {
             resultOfCheck = true;
         }
         return resultOfCheck;
