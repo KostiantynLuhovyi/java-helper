@@ -1,10 +1,10 @@
 package com.lugowoy.helper.checkers;
 
-import com.lugowoy.helper.utils.BoundOutOfRangeException;
-import com.lugowoy.helper.utils.BoundsComparisonException;
 import com.lugowoy.helper.models.matrices.AbstractMatrix;
 import com.lugowoy.helper.models.matrices.MatrixColumnOutOfRangeException;
 import com.lugowoy.helper.models.matrices.MatrixRowOutOfRangeException;
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsComparisonException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -87,15 +87,15 @@ public final class CheckerMatrix {
         int matrixColumns = matrix.getColumns();
         if (matrixRows < LOWER_ROWS_VALUE || matrixRows > upperBoundRows) {
             if (matrixColumns < LOWER_COLUMNS_VALUE
-                    || matrixColumns > upperBoundColumns) {
+                || matrixColumns > upperBoundColumns) {
                 throw new MatrixColumnOutOfRangeException(
                         "Matrix columns out of range (" + LOWER_COLUMNS_VALUE
-                                + " - " + upperBoundColumns + ").");
+                        + " - " + upperBoundColumns + ").");
             }
         } else {
             throw new MatrixRowOutOfRangeException(
                     "Matrix rows out of range (" + LOWER_ROWS_VALUE + " - "
-                            + upperBoundRows + ").");
+                    + upperBoundRows + ").");
         }
     }
 
@@ -140,14 +140,14 @@ public final class CheckerMatrix {
         if (matrixRows > upperBoundRows) {
             throw new MatrixRowOutOfRangeException(
                     "Matrix rows out of range (" + LOWER_ROWS_VALUE + " - "
-                            + upperBoundRows + ").");
+                    + upperBoundRows + ").");
         }
         for (final T[] tArr : matrix) {
             int matrixColumns = tArr.length;
             if (matrixColumns > upperBoundColumns) {
                 throw new MatrixColumnOutOfRangeException(
                         "Matrix columns out of range (" + LOWER_COLUMNS_VALUE
-                                + " - " + upperBoundColumns + ").");
+                        + " - " + upperBoundColumns + ").");
             }
         }
     }
@@ -192,14 +192,14 @@ public final class CheckerMatrix {
         if (matrixRows > UPPER_ROWS_VALUE) {
             throw new MatrixRowOutOfRangeException(
                     "Matrix rows out of range (" + LOWER_ROWS_VALUE + " - "
-                            + upperBoundRows + ").");
+                    + upperBoundRows + ").");
         }
         for (final int[] ints : matrix) {
             int matrixColumns = ints.length;
             if (matrixColumns > UPPER_COLUMNS_VALUE) {
                 throw new MatrixColumnOutOfRangeException(
                         "Matrix columns out of range (" + LOWER_COLUMNS_VALUE
-                                + " - " + upperBoundColumns + ").");
+                        + " - " + upperBoundColumns + ").");
             }
         }
     }
@@ -244,14 +244,14 @@ public final class CheckerMatrix {
         if (matrixRows > UPPER_ROWS_VALUE) {
             throw new MatrixRowOutOfRangeException(
                     "Matrix rows out of range (" + LOWER_ROWS_VALUE + " - "
-                            + upperBoundRows + ").");
+                    + upperBoundRows + ").");
         }
         for (final double[] doubles : matrix) {
             int matrixColumns = doubles.length;
             if (matrixColumns > UPPER_COLUMNS_VALUE) {
                 throw new MatrixColumnOutOfRangeException(
                         "Matrix columns out of range (" + LOWER_COLUMNS_VALUE
-                                + " - " + upperBoundColumns + ").");
+                        + " - " + upperBoundColumns + ").");
             }
         }
     }
@@ -285,7 +285,7 @@ public final class CheckerMatrix {
         if (rows < lowerBoundRows || rows > upperBoundRows) {
             throw new MatrixRowOutOfRangeException(
                     "Matrix rows out of range (" + lowerBoundRows + " - "
-                            + upperBoundRows + ").");
+                    + upperBoundRows + ").");
         }
     }
 
@@ -319,7 +319,7 @@ public final class CheckerMatrix {
         if (columns < lowerBoundColumns || columns > upperBoundColumns) {
             throw new MatrixColumnOutOfRangeException(
                     "Matrix columns out of range (" + lowerBoundColumns + " - "
-                            + upperBoundColumns + ").");
+                    + upperBoundColumns + ").");
         }
     }
 
