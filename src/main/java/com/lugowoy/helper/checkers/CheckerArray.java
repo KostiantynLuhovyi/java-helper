@@ -42,7 +42,7 @@ public final class CheckerArray {
     /**
      * Checks the {@code array} is not {@code null} and that the length value of
      * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * to {@code upperBoundLength}.
+     * (inclusive) to {@code upperBoundLength}(inclusive).
      *
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
@@ -70,7 +70,7 @@ public final class CheckerArray {
     /**
      * Checks the {@code array} is not {@code null} and that the length value of
      * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * to {@code upperBoundLength}.
+     * (inclusive) to {@code upperBoundLength}(inclusive).
      *
      * @param <T> the type of the {@code array} to check.
      * @param array the {@code array} to check.
@@ -99,7 +99,7 @@ public final class CheckerArray {
     /**
      * Checks the {@code array} is not {@code null} and that the length value of
      * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * to {@code upperBoundLength}.
+     * (inclusive) to {@code upperBoundLength}(inclusive).
      *
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
@@ -126,8 +126,8 @@ public final class CheckerArray {
 
     /**
      * Checks the {@code array} is not {@code null} and that the length value of
-     * the array in range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@code
-     * upperBoundLength}.
+     * the array in range from {@link CheckerArray#LOWER_BOUND_LENGTH}(inlusive)
+     * to {@code upperBoundLength}(inclusive).
      *
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
@@ -154,7 +154,8 @@ public final class CheckerArray {
 
     /**
      * Checks the {@code lengthArray} value in range from {@link
-     * CheckerArray#LOWER_BOUND_LENGTH} to {@link CheckerArray#UPPER_BOUND_LENGTH}.
+     * CheckerArray#LOWER_BOUND_LENGTH}(inclusive) to {@link
+     * CheckerArray#UPPER_BOUND_LENGTH}(inclusive).
      *
      * @param lengthArray the {@code lengthArray} value to check.
      *
@@ -173,7 +174,8 @@ public final class CheckerArray {
 
     /**
      * Checks the {@code lengthArray} value in range from {@link
-     * CheckerArray#LOWER_BOUND_LENGTH} to {@code upperBoundLength}.
+     * CheckerArray#LOWER_BOUND_LENGTH}(inclusive) to {@code
+     * upperBoundLength}(inclusive).
      *
      * @param lengthArray the {@code lengthArray} value to check.
      * @param upperBoundLength the upper bound value of the length to check.
