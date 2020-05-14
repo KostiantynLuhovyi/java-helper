@@ -32,7 +32,7 @@ public final class ReaderCharacters {
 
     /**
      * Reads characters from all files found at addresses in the {@code
-     * pathsToFiles} argument and write to an array of type char.
+     * pathsToFiles} argument and write to an array of type {@code char}.
      *
      * @param pathsToFiles paths to files storing characters.
      *
