@@ -33,18 +33,15 @@ public class CheckerString {
     public static void checkLength(final int lengthString,
                                    final int lowerBoundLength,
                                    final int upperBoundLength) {
-        CheckerBoundNumber.checkInRange(lowerBoundLength, Integer.MIN_VALUE,
-                                        Integer.MAX_VALUE);
-        CheckerBoundNumber.checkInRange(upperBoundLength, Integer.MIN_VALUE,
-                                        Integer.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(lowerBoundLength, 0, Integer.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundLength, 0, Integer.MAX_VALUE);
         CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBoundLength,
                                                       upperBoundLength);
         if (lengthString < lowerBoundLength
-                || lengthString >= upperBoundLength) {
+            || lengthString > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Value length of the string out of range ("
-                            + lowerBoundLength + " - " + upperBoundLength
-                            + ")");
+                    + lowerBoundLength + " - " + upperBoundLength + ")");
         }
     }
 
