@@ -17,16 +17,20 @@ public class CheckerString {
 
     /**
      * Checks the {@code lengthString} value in range from {@code
-     * lowerBoundLength} (inclusive) to {@code upperBoundLength} (exclusive).
+     * lowerBoundLength}(inclusive) to {@code upperBoundLength}(inclusive).
+     * <p>
+     * Boundary values must be in the range from 0(inclusive) to {@link
+     * Integer#MAX_VALUE}(inclusive). Lower bound value must be less than or
+     * equal to upper bound value.
      *
      * @param lengthString the length value of the string to check.
      * @param lowerBoundLength the lower bound length of the string to check.
      * @param upperBoundLength the upper bound length of the string to check.
      *
      * @throws BoundOutOfRangeException if the any of boundary values out of
-     * range from {@code lowerBoundLength} to {@code upperBoundLength}.
+     * range from 0 to {@link Integer#MAX_VALUE}.
      * @throws BoundsComparisonException if the {@code lowerBoundLength} value
-     * greater or equal than the {@code upperBoundLength} value.
+     * greater than the {@code upperBoundLength} value.
      * @throws LengthOutOfRangeException if the {@code lengthString} value out
      * of range from {@code lowerBoundLength} to {@code upperBoundLength}.
      */
