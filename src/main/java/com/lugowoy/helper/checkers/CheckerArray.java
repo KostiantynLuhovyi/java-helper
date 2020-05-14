@@ -63,7 +63,7 @@ public final class CheckerArray {
         if (array.size() > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range(" + LOWER_BOUND_LENGTH
-                            + "-" + upperBoundLength + ").");
+                    + "-" + upperBoundLength + ").");
         }
     }
 
@@ -92,7 +92,7 @@ public final class CheckerArray {
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range(" + LOWER_BOUND_LENGTH
-                            + "-" + upperBoundLength + ").");
+                    + "-" + upperBoundLength + ").");
         }
     }
 
@@ -120,7 +120,7 @@ public final class CheckerArray {
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range(" + LOWER_BOUND_LENGTH
-                            + "-" + upperBoundLength + ").");
+                    + "-" + upperBoundLength + ").");
         }
     }
 
@@ -148,7 +148,7 @@ public final class CheckerArray {
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range(" + LOWER_BOUND_LENGTH
-                            + "-" + upperBoundLength + ").");
+                    + "-" + upperBoundLength + ").");
         }
     }
 
@@ -165,10 +165,10 @@ public final class CheckerArray {
      */
     public static void checkLength(final int lengthArray) {
         if (lengthArray < LOWER_BOUND_LENGTH
-                || lengthArray > UPPER_BOUND_LENGTH) {
+            || lengthArray > UPPER_BOUND_LENGTH) {
             throw new LengthOutOfRangeException(
                     "Length value out of range(" + LOWER_BOUND_LENGTH + "-"
-                            + UPPER_BOUND_LENGTH + ").");
+                    + UPPER_BOUND_LENGTH + ").");
         }
     }
 
@@ -192,10 +192,10 @@ public final class CheckerArray {
         CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
                                         UPPER_BOUND_LENGTH);
         if (lengthArray < LOWER_BOUND_LENGTH
-                || lengthArray > upperBoundLength) {
+            || lengthArray > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length value out of range(" + LOWER_BOUND_LENGTH + "-"
-                            + upperBoundLength + ").");
+                    + upperBoundLength + ").");
         }
     }
 
