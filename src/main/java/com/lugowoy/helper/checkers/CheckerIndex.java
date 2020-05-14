@@ -6,7 +6,8 @@ import com.lugowoy.helper.utils.BoundsComparisonException;
 /**
  * This class contains static functionality for checking the index value for
  * correctness.
- * <p> Created by Konstantin Lugowoy on 08.06.2019
+ * <p>
+ * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
  * @version 1.5
@@ -21,7 +22,7 @@ public final class CheckerIndex {
 
     /**
      * Check the {@code index} in range from {@link CheckerIndex#LOWER_INDEX}
-     * (inclusive) to {@code upperBoundIndex} (exclusive).
+     * (inclusive) to {@code upperBoundIndex}(exclusive).
      *
      * @param index the index value to check.
      * @param upperBoundIndex the upper bound value to check index.
@@ -45,7 +46,7 @@ public final class CheckerIndex {
 
     /**
      * Check the {@code index} in range from {@link CheckerIndex#LOWER_INDEX}
-     * (inclusive) to {@code upperBoundIndex} (exclusive).
+     * (inclusive) to {@code upperBoundIndex}(exclusive).
      *
      * @param index the index value to check.
      * @param upperBoundIndex the upper bound value to check index.
@@ -69,7 +70,7 @@ public final class CheckerIndex {
 
     /**
      * Check the {@code index} in range from {@code lowerBoundIndex} (inclusive)
-     * argument to {@code upperBoundIndex} (exclusive).
+     * argument to {@code upperBoundIndex}(exclusive).
      *
      * @param index the index value to check.
      * @param lowerBoundIndex the lower bound value to check index.
@@ -100,7 +101,7 @@ public final class CheckerIndex {
 
     /**
      * Check the {@code index} in range from {@code lowerBoundIndex} (inclusive)
-     * argument to {@code upperBoundIndex} (exclusive).
+     * argument to {@code upperBoundIndex}(exclusive).
      *
      * @param index the index value to check.
      * @param lowerBoundIndex the lower bound value to check index.
