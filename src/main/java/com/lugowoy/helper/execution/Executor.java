@@ -22,7 +22,7 @@ import java.util.concurrent.Callable;
  * Created by Konstantin Lugowoy on 01.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.1
+ * @version 2.2
  * @since 1.7.4
  */
 public class Executor {
@@ -53,15 +53,19 @@ public class Executor {
      */
     public <T> void execute(@NotNull final Callable<T> callable,
                             @NotNull final OutputExecutionResult outputResult,
-                            @NotNull final OutputExecutionTime outputTime)
-            throws Exception {
+                            @NotNull final OutputExecutionTime outputTime) {
         Objects.requireNonNull(callable, "The thread to execute is null");
         Objects.requireNonNull(outputResult,
                                "The output of the result is null");
         Objects.requireNonNull(outputTime, "The output of the time is null.");
         ExecutionTime executionTime = new ExecutionTime();
         executionTime.setStartTime();
-        T result = callable.call();
+        T result;
+        try {
+            result = callable.call();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not get the execution result");
+        }
         executionTime.setEndTime();
         outputResult.outputExecutionResult(result);
         outputTime.outputExecutionTime(executionTime.calculateExecutionTime());
