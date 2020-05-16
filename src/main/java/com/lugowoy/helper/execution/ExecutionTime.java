@@ -1,5 +1,7 @@
 package com.lugowoy.helper.execution;
 
+import com.lugowoy.helper.checkers.CheckerNumber;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 
@@ -10,22 +12,22 @@ import java.math.MathContext;
  * @version 1.5
  * @since 1.7.8
  */
-//todo write doc's
 public class ExecutionTime {
 
-    private long startMillis;
-    private long endMillis;
+    private long startMillis = 0L;
+    private long endMillis = 0L;
 
     public void setStartTime() {
         this.startMillis = System.currentTimeMillis();
     }
 
     public void setStartTime(final long milliseconds) {
-        if (milliseconds >= 0) {
+        if (CheckerNumber.isPositive(milliseconds)
+                            || CheckerNumber.isZero(milliseconds)) {
             this.startMillis = milliseconds;
         } else {
             throw new IllegalArgumentException(
-                    "Negative value of the argument in milliseconds.");
+                            "Negative value of the argument in milliseconds.");
         }
     }
 
@@ -34,11 +36,12 @@ public class ExecutionTime {
     }
 
     public void setEndTime(final long milliseconds) {
-        if (milliseconds >= 0) {
+        if (CheckerNumber.isPositive(milliseconds)
+                            || CheckerNumber.isZero(milliseconds)) {
             this.endMillis = milliseconds;
         } else {
             throw new IllegalArgumentException(
-                    "Negative value of the argument in milliseconds.");
+                            "Negative value of the argument in milliseconds.");
         }
     }
 
