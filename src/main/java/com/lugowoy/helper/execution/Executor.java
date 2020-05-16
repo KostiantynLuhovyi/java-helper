@@ -50,6 +50,7 @@ public class Executor {
      * @throws NullPointerException if the {@code outputResult} is {@code
      * null}.
      * @throws NullPointerException if the {@code outputTime} is {@code null}.
+     * @throws RuntimeException if could not get the result of execution.
      */
     public <T> void execute(@NotNull final Callable<T> callable,
                             @NotNull final OutputExecutionResult outputResult,
@@ -77,6 +78,11 @@ public class Executor {
      * OutputExecutionTime} contract.
      *
      * @param runnable stream object that executes the functional.
+     * @param outputTime object to output execution time.
+     *
+     * @throws NullPointerException if the {@code runnable} is {@code null}.
+     * @throws NullPointerException if the {@code outputTime} is null.
+     * @throws IllegalThreadStateException if the thread was already started.
      */
     public void execute(@NotNull final Runnable runnable,
                         @NotNull final OutputExecutionTime outputTime) {
