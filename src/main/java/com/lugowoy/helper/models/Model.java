@@ -3,8 +3,10 @@ package com.lugowoy.helper.models;
 import java.io.Serializable;
 
 /**
- * Marker interface that marked class is a kind of model to use.
- * <p>Created by Konstantin Lugowoy on 31.05.2017.
+ * The interface is a marker for classes that represent some kind of model to
+ * use.
+ * <p>
+ * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
  * @version 1.0
