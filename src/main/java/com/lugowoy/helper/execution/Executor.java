@@ -67,8 +67,8 @@ public class Executor {
             throw new RuntimeException("Could not get the execution result");
         }
         executionTime.setEndTime();
-        outputResult.outputExecutionResult(result);
-        outputTime.outputExecutionTime(executionTime.calculateExecutionTime());
+        outputResult.output(result);
+        outputTime.output(executionTime.calculateExecutionTime());
     }
 
     /**
@@ -93,7 +93,7 @@ public class Executor {
         Thread execution = new Thread(runnable, "Execution");
         execution.start();
         executionTime.setEndTime();
-        outputTime.outputExecutionTime(executionTime.calculateExecutionTime());
+        outputTime.output(executionTime.calculateExecutionTime());
     }
 
 }
