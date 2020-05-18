@@ -1,6 +1,6 @@
 package com.lugowoy.helper.models.matrices;
 
-import com.lugowoy.helper.OutOfRangeException;
+import com.lugowoy.helper.utils.OutOfRangeException;
 
 /**
  * Thrown when the value of the matrix row is out of range.
