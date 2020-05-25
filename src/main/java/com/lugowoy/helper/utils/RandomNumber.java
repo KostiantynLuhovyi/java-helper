@@ -42,6 +42,8 @@ public class RandomNumber {
      * Byte#MIN_VALUE} (inclusive) to {@link Byte#MAX_VALUE} (inclusive).
      *
      * @return the generated pseudo-random number of type byte.
+     *
+     * @see RandomNumber#generateInt(int, int)
      */
     public byte generateByte() {
         return this.generateByte(Byte.MIN_VALUE, Byte.MAX_VALUE);
@@ -56,7 +58,8 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type byte.
      *
      * @throws BoundOutOfRangeException if the {@code upperBound} value out of
-     * range from {@link BigDecimal#ZERO} to {@code upperBound} value.
+     * range from {@link RandomNumber#ZERO} to {@code upperBound} value.
+     * @see RandomNumber#generateInt(int, int)
      */
     public byte generateByte(final byte upperBound) {
         return this.generateByte((byte) ZERO, upperBound);
@@ -75,6 +78,7 @@ public class RandomNumber {
      * range from {@link Byte#MIN_VALUE} to {@link Byte#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
      * than {@code upperBound}.
+     * @see RandomNumber#generateInt(int, int)
      */
     public byte generateByte(final byte lowerBound, final byte upperBound) {
         CheckerBoundNumber.checkInRange(lowerBound, Byte.MIN_VALUE,
@@ -90,6 +94,8 @@ public class RandomNumber {
      * Short#MIN_VALUE} (inclusive) to {@link Short#MAX_VALUE} (inclusive).
      *
      * @return the generated pseudo-random number of type short.
+     *
+     * @see RandomNumber#generateInt(int, int)
      */
     public short generateShort() {
         return this.generateShort(Short.MIN_VALUE, Short.MAX_VALUE);
@@ -104,7 +110,8 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type short.
      *
      * @throws BoundOutOfRangeException if the {@code upperBound} value out of
-     * range from {@link BigDecimal#ZERO} to {@code upperBound} value.
+     * range from {@link RandomNumber#ZERO} to {@code upperBound} value.
+     * @see RandomNumber#generateInt(int, int)
      */
     public short generateShort(final short upperBound) {
         return this.generateShort((short) ZERO, upperBound);
@@ -123,6 +130,7 @@ public class RandomNumber {
      * range from {@link Short#MIN_VALUE} to {@link Short#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
      * than {@code upperBound}.
+     * @see RandomNumber#generateInt(int, int)
      */
     public short generateShort(final short lowerBound, final short upperBound) {
         CheckerBoundNumber.checkInRange(lowerBound, Short.MIN_VALUE,
@@ -152,7 +160,7 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type int.
      *
      * @throws BoundOutOfRangeException if the {@code upperBound} value out of
-     * range from {@link BigDecimal#ZERO} to {@code upperBound}.
+     * range from {@link RandomNumber#ZERO} to {@code upperBound}.
      */
     public int generateInt(final int upperBound) {
         return this.generateInt(ZERO, upperBound);
@@ -200,7 +208,7 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type long.
      *
      * @throws BoundOutOfRangeException if the {@code upperBound} out of range
-     * from {@link BigDecimal#ZERO} to {@code upperBound}.
+     * from {@link RandomNumber#ZERO} to {@code upperBound}.
      */
     public long generateLong(final long upperBound) {
         return this.generateLong(ZERO, upperBound);
@@ -231,7 +239,7 @@ public class RandomNumber {
 
     /**
      * Generates a pseudo-random number of float type in the range from {@link
-     * Integer#MIN_VALUE} (inclusive) to {@link Integer#MAX_VALUE} (inclusive).
+     * Float#MIN_VALUE} (inclusive) to {@link Float#MAX_VALUE} (inclusive).
      *
      * @return the generated pseudo-random number of type float.
      */
@@ -248,7 +256,7 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type float.
      *
      * @throws BoundOutOfRangeException if the {@code upperBound} out of range
-     * from {@link BigDecimal#ZERO} to {@code upperBound}.
+     * from {@link RandomNumber#ZERO} to {@code upperBound}.
      */
     public float generateFloat(final float upperBound) {
         return this.generateFloat(ZERO, upperBound);
@@ -264,7 +272,7 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type float.
      *
      * @throws BoundOutOfRangeException if any of the boundary values out of
-     * range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * range from {@link Float#MIN_VALUE} to {@link Float#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
      * than {@code upperBound}.
      */
@@ -279,7 +287,7 @@ public class RandomNumber {
 
     /**
      * Generates a pseudo-random number of double type in the range from {@link
-     * Long#MIN_VALUE} (inclusive) to {@link Long#MAX_VALUE} (inclusive).
+     * Double#MIN_VALUE} (inclusive) to {@link Double#MAX_VALUE} (inclusive).
      *
      * @return the generated pseudo-random number of type double.
      */
@@ -296,7 +304,7 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type double.
      *
      * @throws BoundOutOfRangeException if the {@code upperBound} out of range
-     * from {@link BigDecimal#ZERO} to {@code upperBound}.
+     * from {@link RandomNumber#ZERO} to {@code upperBound}.
      */
     public double generateDouble(final double upperBound) {
         return this.generateDouble(ZERO, upperBound);
@@ -312,7 +320,7 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type double.
      *
      * @throws BoundOutOfRangeException if any of the boundary values out of
-     * range from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
+     * range from {@link Double#MIN_VALUE} to {@link Double#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
      * than {@code upperBound}.
      */
