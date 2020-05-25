@@ -18,9 +18,24 @@ import java.util.Random;
  */
 public class RandomNumber {
 
-    private final Random random = new Random();
-    private final RandomDataGenerator randomGenerator =
-            new RandomDataGenerator();
+    /**
+     * The default zero value to generating pseudo-random number.
+     */
+    public static final int ZERO = BigDecimal.ZERO.intValue();
+
+    private final Random random;
+    private final RandomDataGenerator randomGenerator;
+
+    /**
+     * Constructs an object of this class to generate pseudo-random numeric
+     * values of all primitive data types.
+     *
+     * @since 3.0
+     */
+    public RandomNumber() {
+        this.random = new Random();
+        this.randomGenerator = new RandomDataGenerator();
+    }
 
     /**
      * Generates a pseudo-random number of byte type in the range from {@link
@@ -44,7 +59,7 @@ public class RandomNumber {
      * range from {@link BigDecimal#ZERO} to {@code upperBound} value.
      */
     public byte generateByte(final byte upperBound) {
-        return this.generateByte((byte) BigDecimal.ZERO.intValue(), upperBound);
+        return this.generateByte((byte) ZERO, upperBound);
     }
 
     /**
@@ -92,8 +107,7 @@ public class RandomNumber {
      * range from {@link BigDecimal#ZERO} to {@code upperBound} value.
      */
     public short generateShort(final short upperBound) {
-        return this.generateShort((short) BigDecimal.ZERO.intValue(),
-                                  upperBound);
+        return this.generateShort((short) ZERO, upperBound);
     }
 
     /**
@@ -141,7 +155,7 @@ public class RandomNumber {
      * range from {@link BigDecimal#ZERO} to {@code upperBound}.
      */
     public int generateInt(final int upperBound) {
-        return this.generateInt(BigDecimal.ZERO.intValue(), upperBound);
+        return this.generateInt(ZERO, upperBound);
     }
 
     /**
@@ -189,7 +203,7 @@ public class RandomNumber {
      * from {@link BigDecimal#ZERO} to {@code upperBound}.
      */
     public long generateLong(final long upperBound) {
-        return this.generateLong(BigDecimal.ZERO.longValue(), upperBound);
+        return this.generateLong(ZERO, upperBound);
     }
 
     /**
@@ -222,7 +236,7 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type float.
      */
     public float generateFloat() {
-        return this.generateFloat(Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return this.generateFloat(Float.MIN_VALUE, Float.MAX_VALUE);
     }
 
     /**
@@ -237,7 +251,7 @@ public class RandomNumber {
      * from {@link BigDecimal#ZERO} to {@code upperBound}.
      */
     public float generateFloat(final float upperBound) {
-        return this.generateFloat(BigDecimal.ZERO.floatValue(), upperBound);
+        return this.generateFloat(ZERO, upperBound);
     }
 
     /**
@@ -255,10 +269,10 @@ public class RandomNumber {
      * than {@code upperBound}.
      */
     public float generateFloat(final float lowerBound, final float upperBound) {
-        float lower = Float.parseFloat(String.valueOf(Integer.MIN_VALUE));
-        float upper = Float.parseFloat(String.valueOf(Integer.MAX_VALUE));
-        CheckerBoundNumber.checkInRange(lowerBound, lower, upper);
-        CheckerBoundNumber.checkInRange(upperBound, lower, upper);
+        CheckerBoundNumber.checkInRange(lowerBound, Float.MIN_VALUE,
+                                        Float.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBound, Float.MIN_VALUE,
+                                        Float.MAX_VALUE);
         CheckerBoundNumber.checkLowerLessUpper(lowerBound, upperBound);
         return this.random.nextFloat() * (upperBound - lowerBound) + lowerBound;
     }
@@ -270,7 +284,7 @@ public class RandomNumber {
      * @return the generated pseudo-random number of type double.
      */
     public double generateDouble() {
-        return this.generateDouble(Long.MIN_VALUE, Long.MAX_VALUE);
+        return this.generateDouble(Double.MIN_VALUE, Double.MAX_VALUE);
     }
 
     /**
@@ -285,7 +299,7 @@ public class RandomNumber {
      * from {@link BigDecimal#ZERO} to {@code upperBound}.
      */
     public double generateDouble(final double upperBound) {
-        return this.generateDouble(BigDecimal.ZERO.doubleValue(), upperBound);
+        return this.generateDouble(ZERO, upperBound);
     }
 
     /**
@@ -304,10 +318,10 @@ public class RandomNumber {
      */
     public double generateDouble(final double lowerBound,
                                  final double upperBound) {
-        double lower = Double.parseDouble(String.valueOf(Long.MIN_VALUE));
-        double upper = Double.parseDouble(String.valueOf(Long.MAX_VALUE));
-        CheckerBoundNumber.checkInRange(lowerBound, lower, upper);
-        CheckerBoundNumber.checkInRange(upperBound, lower, upper);
+        CheckerBoundNumber.checkInRange(lowerBound, Double.MIN_VALUE,
+                                        Double.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBound, Double.MIN_VALUE,
+                                        Double.MAX_VALUE);
         CheckerBoundNumber.checkLowerLessUpper(lowerBound, upperBound);
         return this.random.nextDouble() * (upperBound - lowerBound)
                 + lowerBound;
