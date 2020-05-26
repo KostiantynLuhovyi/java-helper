@@ -1,8 +1,8 @@
 package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.models.matrices.AbstractMatrix;
-import com.lugowoy.helper.models.matrices.MatrixColumnOutOfRangeException;
-import com.lugowoy.helper.models.matrices.MatrixRowOutOfRangeException;
+import com.lugowoy.helper.utils.MatrixColumnOutOfRangeException;
+import com.lugowoy.helper.utils.MatrixRowOutOfRangeException;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.BoundsComparisonException;
 import org.jetbrains.annotations.NotNull;
