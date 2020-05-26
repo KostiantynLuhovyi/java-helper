@@ -1,16 +1,14 @@
-package com.lugowoy.helper.models.matrices;
-
-import com.lugowoy.helper.utils.OutOfRangeException;
+package com.lugowoy.helper.utils;
 
 /**
- * Thrown when the value of the matrix row is out of range.
+ * Thrown when the value of the matrix column is out of range.
  * <p> Created by Konstantin Lugowoy on 10.06.2019.
  *
  * @author Konstantin Lugowoy
  * @version 1.2
  * @since 1.7
  */
-public class MatrixRowOutOfRangeException extends OutOfRangeException {
+public class MatrixColumnOutOfRangeException extends OutOfRangeException {
 
     /**
      * Constructs a new runtime exception with the specified detail message. The
@@ -20,7 +18,7 @@ public class MatrixRowOutOfRangeException extends OutOfRangeException {
      * @param message the detail message. The detail message is saved for later
      * retrieval by the {@link #getMessage()} method.
      */
-    public MatrixRowOutOfRangeException(final String message) {
+    public MatrixColumnOutOfRangeException(final String message) {
         super(message);
     }
 
@@ -38,8 +36,8 @@ public class MatrixRowOutOfRangeException extends OutOfRangeException {
      *
      * @since 1.4
      */
-    public MatrixRowOutOfRangeException(final String message,
-                                        final Throwable cause) {
+    public MatrixColumnOutOfRangeException(final String message,
+                                           final Throwable cause) {
         super(message, cause);
     }
 
@@ -56,7 +54,7 @@ public class MatrixRowOutOfRangeException extends OutOfRangeException {
      *
      * @since 1.4
      */
-    public MatrixRowOutOfRangeException(final Throwable cause) {
+    public MatrixColumnOutOfRangeException(final Throwable cause) {
         super(cause);
     }
 
@@ -75,10 +73,10 @@ public class MatrixRowOutOfRangeException extends OutOfRangeException {
      *
      * @since 1.7
      */
-    public MatrixRowOutOfRangeException(final String message,
-                                        final Throwable cause,
-                                        final boolean enableSuppression,
-                                        final boolean writableStackTrace) {
+    public MatrixColumnOutOfRangeException(final String message,
+                                           final Throwable cause,
+                                           final boolean enableSuppression,
+                                           final boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
