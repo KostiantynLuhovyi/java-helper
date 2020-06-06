@@ -38,12 +38,8 @@ public final class CheckerNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isPositive(
             @NotNull final T value) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
-        if (value.compareTo((T) BigDecimal.ZERO) > 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return value.compareTo((T) BigDecimal.ZERO) > 0;
     }
 
     /**
@@ -58,12 +54,8 @@ public final class CheckerNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isNegative(
             @NotNull final T value) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
-        if (value.compareTo((T) BigDecimal.ZERO) < 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return value.compareTo((T) BigDecimal.ZERO) < 0;
     }
 
     /**
@@ -78,12 +70,8 @@ public final class CheckerNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isZero(
             @NotNull final T value) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
-        if (value.compareTo((T) BigDecimal.ZERO) == 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return value.compareTo((T) BigDecimal.ZERO) == 0;
     }
 
     /**
@@ -98,12 +86,8 @@ public final class CheckerNumber {
      */
     public static <T extends Number & Comparable<T>> boolean isNonZero(
             @NotNull final T value) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
-        if (value.compareTo((T) BigDecimal.ZERO) != 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return value.compareTo((T) BigDecimal.ZERO) != 0;
     }
 
 
@@ -127,16 +111,12 @@ public final class CheckerNumber {
     public static <T extends Number & Comparable<T>> boolean check(
             @NotNull final T value, @NotNull final T lowerValue,
             @NotNull final T upperValue) {
-        boolean resultOfCheck = false;
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
         Objects.requireNonNull(lowerValue, MSG_EXC_LOWER_VALUE_IS_NULL);
         Objects.requireNonNull(upperValue, MSG_EXC_UPPER_VALUE_IS_NULL);
         CheckerBoundNumber.checkLowerLessUpper(lowerValue, upperValue);
-        if (value.compareTo(lowerValue) > 0 && value.compareTo(upperValue)
-                                               < 0) {
-            resultOfCheck = true;
-        }
-        return resultOfCheck;
+        return value.compareTo(lowerValue) > 0
+                        && value.compareTo(upperValue) < 0;
     }
 
 }
