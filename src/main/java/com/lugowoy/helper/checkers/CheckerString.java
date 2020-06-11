@@ -42,7 +42,7 @@ public class CheckerString {
         CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBoundLength,
                                                       upperBoundLength);
         if (lengthString < lowerBoundLength
-            || lengthString > upperBoundLength) {
+                || lengthString > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Value length of the string out of range ("
                     + lowerBoundLength + " - " + upperBoundLength + ")");
