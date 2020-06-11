@@ -22,25 +22,16 @@ import java.util.Objects;
 public final class CheckerMatrix {
 
     /**
-     * The lower value of the rows in the matrix.
+     * The lower value of the rows and columns in the matrix.
      */
-    public static final int LOWER_ROWS_VALUE = 0;
-    /**
-     * The lower value of the columns in the matrix.
-     */
-    public static final int LOWER_COLUMNS_VALUE = 0;
+    public static final int LOWER_VALUE = 0;
 
     private static final int ARRAY_HEADER = 8;
 
     /**
-     * The upper value of the rows in the matrix.
+     * The upper value of the rows and columns in the matrix.
      */
-    public static final int UPPER_ROWS_VALUE = Integer.MAX_VALUE - ARRAY_HEADER;
-    /**
-     * The upper value of the columns in the matrix.
-     */
-    public static final int UPPER_COLUMNS_VALUE =
-            Integer.MAX_VALUE - ARRAY_HEADER;
+    public static final int UPPER_VALUE = Integer.MAX_VALUE - ARRAY_HEADER;
 
     private static final String MSG_MATRIX_IS_NULL = "Matrix is null.";
 
