@@ -22,7 +22,7 @@ public final class CheckerIndex {
 
     /**
      * Check the {@code index} in range from {@link CheckerIndex#LOWER_INDEX}
-     * (inclusive) to {@code upperBoundIndex}(exclusive).
+     * (inclusive) to {@code upperBoundIndex} (exclusive).
      *
      * @param index the index value to check.
      * @param upperBoundIndex the upper bound value to check index.
@@ -30,8 +30,7 @@ public final class CheckerIndex {
      * @return result of checking.
      *
      * @throws BoundOutOfRangeException if the {@code upperBoundIndex} value out
-     * of range from {@link CheckerIndex#LOWER_INDEX} to {@link
-     * Long#MAX_VALUE}.
+     * of range from {@link CheckerIndex#LOWER_INDEX} to {@link Long#MAX_VALUE}.
      */
     public static boolean isInRange(final long index,
                                     final long upperBoundIndex) {
@@ -41,32 +40,8 @@ public final class CheckerIndex {
     }
 
     /**
-     * Check the {@code index} in range from {@link CheckerIndex#LOWER_INDEX}
-     * (inclusive) to {@code upperBoundIndex}(exclusive).
-     *
-     * @param index the index value to check.
-     * @param upperBoundIndex the upper bound value to check index.
-     *
-     * @throws BoundOutOfRangeException if the {@code upperBoundIndex} value out
-     * of range from {@link CheckerIndex#LOWER_INDEX} to {@link
-     * Long#MAX_VALUE}.
-     * @throws IndexOutOfBoundsException if the {@code index} value out of range
-     * from {@link CheckerIndex#LOWER_INDEX} to {@code upperBoundIndex}.
-     */
-    public static void checkInRange(final long index,
-                                    final long upperBoundIndex) {
-        CheckerBoundNumber.checkInRange(upperBoundIndex, LOWER_INDEX,
-                                        Long.MAX_VALUE);
-        if (index < LOWER_INDEX || index >= upperBoundIndex) {
-            throw new IndexOutOfBoundsException(
-                    "Index value out of range(" + CheckerIndex.LOWER_INDEX + "-"
-                    + upperBoundIndex + ")");
-        }
-    }
-
-    /**
      * Check the {@code index} in range from {@code lowerBoundIndex} (inclusive)
-     * argument to {@code upperBoundIndex}(exclusive).
+     * argument to {@code upperBoundIndex} (exclusive).
      *
      * @param index the index value to check.
      * @param lowerBoundIndex the lower bound value to check index.
@@ -92,8 +67,32 @@ public final class CheckerIndex {
     }
 
     /**
+     * Check the {@code index} in range from {@link CheckerIndex#LOWER_INDEX}
+     * (inclusive) to {@code upperBoundIndex} (exclusive).
+     *
+     * @param index the index value to check.
+     * @param upperBoundIndex the upper bound value to check index.
+     *
+     * @throws BoundOutOfRangeException if the {@code upperBoundIndex} value out
+     * of range from {@link CheckerIndex#LOWER_INDEX} to {@link
+     * Long#MAX_VALUE}.
+     * @throws IndexOutOfBoundsException if the {@code index} value out of range
+     * from {@link CheckerIndex#LOWER_INDEX} to {@code upperBoundIndex}.
+     */
+    public static void checkInRange(final long index,
+                                    final long upperBoundIndex) {
+        CheckerBoundNumber.checkInRange(upperBoundIndex, LOWER_INDEX,
+                                        Long.MAX_VALUE);
+        if (index < LOWER_INDEX || index >= upperBoundIndex) {
+            throw new IndexOutOfBoundsException(
+                    "Index value out of range(" + CheckerIndex.LOWER_INDEX + "-"
+                    + upperBoundIndex + ")");
+        }
+    }
+
+    /**
      * Check the {@code index} in range from {@code lowerBoundIndex} (inclusive)
-     * argument to {@code upperBoundIndex}(exclusive).
+     * argument to {@code upperBoundIndex} (exclusive).
      *
      * @param index the index value to check.
      * @param lowerBoundIndex the lower bound value to check index.
