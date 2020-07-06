@@ -81,7 +81,7 @@ public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
                 long minutes = this.calculateMinutes(milliseconds);
                 long seconds = this.calculateSeconds(milliseconds);
                 long remainingMillis = this.calculateRemainingMilliseconds(
-                                        milliseconds, hours, minutes, seconds);
+                        milliseconds, hours, minutes, seconds);
                 this.showExecutionTime(hours, minutes, seconds, remainingMillis);
             }
         } else {
@@ -133,8 +133,8 @@ public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
                                                 final long minutes,
                                                 final long seconds) {
         return milliseconds - (TimeUnit.HOURS.toMillis(hours)
-                                    + TimeUnit.MINUTES.toMillis(minutes)
-                                        + TimeUnit.SECONDS.toMillis(seconds));
+                                + TimeUnit.MINUTES.toMillis(minutes)
+                                    + TimeUnit.SECONDS.toMillis(seconds));
     }
 
     private void showExecutionTime(final long hours, final long minutes,
