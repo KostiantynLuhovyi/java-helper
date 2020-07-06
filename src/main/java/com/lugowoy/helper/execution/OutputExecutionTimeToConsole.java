@@ -18,13 +18,13 @@ import java.util.concurrent.TimeUnit;
 public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
 
     private static final String TIME_HOURS_AND_THEN =
-            "\nRuntime: %d hours, %d minutes, %d seconds, %d milliseconds \n";
+            "%nRuntime: %d hours, %d minutes, %d seconds, %d milliseconds %n";
     private static final String TIME_MINUTES_AND_THEN =
-            "\nRuntime: %d minutes, %d seconds, %d milliseconds \n";
+            "%nRuntime: %d minutes, %d seconds, %d milliseconds %n";
     private static final String TIME_SECONDS_AND_THEN =
-            "\nRuntime: %d seconds, %d milliseconds \n";
+            "%nRuntime: %d seconds, %d milliseconds %n";
     private static final String TIME_MILLISECONDS =
-            "\nRuntime: %d milliseconds \n";
+            "%nRuntime: %d milliseconds %n";
 
     private boolean isOnlyMilliseconds = true;
 
