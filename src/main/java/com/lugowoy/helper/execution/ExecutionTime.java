@@ -89,9 +89,9 @@ public class ExecutionTime {
      * @return the execution time in the milliseconds.
      */
     public long calculateExecutionTime() {
-        return BigDecimal.valueOf(this.startMillis).subtract(
-                BigDecimal.valueOf(this.endMillis), MathContext.DECIMAL64)
-                         .longValue();
+        return BigDecimal.valueOf(this.endMillis).subtract(
+                BigDecimal.valueOf(this.startMillis), MathContext.DECIMAL64)
+                        .longValue();
     }
 
 }
