@@ -46,11 +46,11 @@ public class ExecutionTime {
      */
     public void setStartTime(final long milliseconds) {
         if (CheckerNumber.isPositive(milliseconds)
-                            || CheckerNumber.isZero(milliseconds)) {
+                || CheckerNumber.isZero(milliseconds)) {
             this.startMillis = milliseconds;
         } else {
             throw new IllegalArgumentException(
-                            "Negative value of the argument in milliseconds.");
+                    "Negative value of the argument in milliseconds.");
         }
     }
 
@@ -73,11 +73,11 @@ public class ExecutionTime {
      */
     public void setEndTime(final long milliseconds) {
         if (CheckerNumber.isPositive(milliseconds)
-                            || CheckerNumber.isZero(milliseconds)) {
+                || CheckerNumber.isZero(milliseconds)) {
             this.endMillis = milliseconds;
         } else {
             throw new IllegalArgumentException(
-                            "Negative value of the argument in milliseconds.");
+                    "Negative value of the argument in milliseconds.");
         }
     }
 
@@ -89,9 +89,9 @@ public class ExecutionTime {
      * @return the execution time in the milliseconds.
      */
     public long calculateExecutionTime() {
-        return BigDecimal.valueOf(this.endMillis).subtract(
-                BigDecimal.valueOf(this.startMillis), MathContext.DECIMAL64)
-                        .longValue();
+        return BigDecimal.valueOf(this.endMillis)
+                        .subtract(BigDecimal.valueOf(this.startMillis),
+                                  MathContext.DECIMAL64).longValue();
     }
 
 }
