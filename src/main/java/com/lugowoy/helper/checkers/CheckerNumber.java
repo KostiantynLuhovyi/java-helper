@@ -1,6 +1,7 @@
 package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.utils.BoundsComparisonException;
+import com.lugowoy.helper.utils.ComparatorNumber;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
@@ -16,6 +17,9 @@ import java.util.Objects;
  * @since 3.0
  */
 public final class CheckerNumber {
+
+    private static final ComparatorNumber COMPARATOR =
+            ComparatorNumber::compareNumber;
 
     private static final String MSG_EXC_VALUE_IS_NULL = "Value is null.";
     private static final String MSG_EXC_LOWER_VALUE_IS_NULL =
@@ -39,7 +43,7 @@ public final class CheckerNumber {
     public static <T extends Number & Comparable<T>> boolean isPositive(
             @NotNull final T value) {
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
-        return value.compareTo((T) BigDecimal.ZERO) > 0;
+        return COMPARATOR.compare(value, BigDecimal.ZERO) > 0;
     }
 
     /**
@@ -55,7 +59,7 @@ public final class CheckerNumber {
     public static <T extends Number & Comparable<T>> boolean isNegative(
             @NotNull final T value) {
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
-        return value.compareTo((T) BigDecimal.ZERO) < 0;
+        return COMPARATOR.compare(value, BigDecimal.ZERO) < 0;
     }
 
     /**
@@ -71,7 +75,7 @@ public final class CheckerNumber {
     public static <T extends Number & Comparable<T>> boolean isZero(
             @NotNull final T value) {
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
-        return value.compareTo((T) BigDecimal.ZERO) == 0;
+        return COMPARATOR.compare(value, BigDecimal.ZERO) == 0;
     }
 
     /**
@@ -87,7 +91,7 @@ public final class CheckerNumber {
     public static <T extends Number & Comparable<T>> boolean isNonZero(
             @NotNull final T value) {
         Objects.requireNonNull(value, MSG_EXC_VALUE_IS_NULL);
-        return value.compareTo((T) BigDecimal.ZERO) != 0;
+        return COMPARATOR.compare(value, BigDecimal.ZERO) != 0;
     }
 
 
@@ -115,8 +119,8 @@ public final class CheckerNumber {
         Objects.requireNonNull(lowerValue, MSG_EXC_LOWER_VALUE_IS_NULL);
         Objects.requireNonNull(upperValue, MSG_EXC_UPPER_VALUE_IS_NULL);
         CheckerBoundNumber.checkLowerLessUpper(lowerValue, upperValue);
-        return value.compareTo(lowerValue) > 0
-                        && value.compareTo(upperValue) < 0;
+        return COMPARATOR.compare(value, lowerValue) > 0
+                && COMPARATOR.compare(value, upperValue) < 0;
     }
 
 }
