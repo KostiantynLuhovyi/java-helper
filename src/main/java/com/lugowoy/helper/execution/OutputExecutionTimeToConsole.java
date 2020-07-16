@@ -12,18 +12,23 @@ import java.util.concurrent.TimeUnit;
  * Created by Konstantin Lugowoy on 06.02.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 2.7
  */
 public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
 
-    private static final String TIME_HOURS_AND_THEN =
+    private static final int MILLIS_IN_SECOND = 1000;
+    private static final int MINUTES_IN_HOUR = 60;
+    private static final int SECONDS_IN_MINUTE = 60;
+    private static final int HOURS_IN_DAY = 24;
+
+    private static final String PATTERN_TIME_HOURS_AND_THEN =
             "%nRuntime: %d hours, %d minutes, %d seconds, %d milliseconds %n";
-    private static final String TIME_MINUTES_AND_THEN =
+    private static final String PATTERN_TIME_MINUTES_AND_THEN =
             "%nRuntime: %d minutes, %d seconds, %d milliseconds %n";
-    private static final String TIME_SECONDS_AND_THEN =
+    private static final String PATTERN_TIME_SECONDS_AND_THEN =
             "%nRuntime: %d seconds, %d milliseconds %n";
-    private static final String TIME_MILLISECONDS =
+    private static final String PATTERN_TIME_MILLISECONDS =
             "%nRuntime: %d milliseconds %n";
 
     private boolean isOnlyMilliseconds = true;
@@ -75,18 +80,19 @@ public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
         if (CheckerNumber.isPositive(milliseconds) || CheckerNumber.isZero(
                 milliseconds)) {
             if (this.isOnlyMilliseconds()) {
-                System.out.printf(TIME_MILLISECONDS, milliseconds);
+                System.out.printf(PATTERN_TIME_MILLISECONDS, milliseconds);
             } else {
                 long hours = this.calculateHours(milliseconds);
                 long minutes = this.calculateMinutes(milliseconds);
                 long seconds = this.calculateSeconds(milliseconds);
                 long remainingMillis = this.calculateRemainingMilliseconds(
                         milliseconds, hours, minutes, seconds);
-                this.showExecutionTime(hours, minutes, seconds, remainingMillis);
+                this.showExecutionTime(hours, minutes, seconds,
+                                       remainingMillis);
             }
         } else {
             throw new IllegalArgumentException(
-                            "Negative value of the argument in milliseconds");
+                    "Negative value of the argument in milliseconds");
         }
     }
 
@@ -94,7 +100,7 @@ public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
      * Gets the value of the attribute that determines the formatting appearance
      * of the execution time.
      *
-     * @return the value that determines of the frmatting appearance of the
+     * @return the value that determines of the formatting appearance of the
      * execution time.
      */
     public boolean isOnlyMilliseconds() {
@@ -114,18 +120,34 @@ public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
         this.isOnlyMilliseconds = isOnlyMilliseconds;
     }
 
-    //TODO: Get rid of magic numbers.
+    private void showExecutionTime(final long hours, final long minutes,
+                                   final long seconds,
+                                   final long milliseconds) {
+        if (hours >= 1) {
+            System.out.printf(PATTERN_TIME_HOURS_AND_THEN, hours, minutes, seconds,
+                              milliseconds);
+        } else if (minutes >= 1) {
+            System.out.printf(PATTERN_TIME_MINUTES_AND_THEN, minutes, seconds,
+                              milliseconds);
+        } else if (seconds >= 1) {
+            System.out.printf(PATTERN_TIME_SECONDS_AND_THEN, seconds, milliseconds);
+        } else {
+            System.out.printf(PATTERN_TIME_MILLISECONDS, milliseconds);
+        }
+    }
 
     private long calculateHours(final long milliseconds) {
-        return ((milliseconds / (1000 * 60 * 60)) % 24);
+        return ((milliseconds / (MINUTES_IN_HOUR * SECONDS_IN_MINUTE
+                                 * MILLIS_IN_SECOND)) % HOURS_IN_DAY);
     }
 
     private long calculateMinutes(final long milliseconds) {
-        return ((milliseconds / (1000 * 60)) % 60);
+        return ((milliseconds / (SECONDS_IN_MINUTE * MILLIS_IN_SECOND))
+                % MINUTES_IN_HOUR);
     }
 
     private long calculateSeconds(final long milliseconds) {
-        return (milliseconds / 1000) % 60;
+        return (milliseconds / MILLIS_IN_SECOND) % SECONDS_IN_MINUTE;
     }
 
     private long calculateRemainingMilliseconds(final long milliseconds,
@@ -135,22 +157,6 @@ public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
         return milliseconds - (TimeUnit.HOURS.toMillis(hours)
                                 + TimeUnit.MINUTES.toMillis(minutes)
                                     + TimeUnit.SECONDS.toMillis(seconds));
-    }
-
-    private void showExecutionTime(final long hours, final long minutes,
-                                   final long seconds,
-                                   final long milliseconds) {
-        if (hours >= 1) {
-            System.out.printf(TIME_HOURS_AND_THEN, hours, minutes, seconds,
-                              milliseconds);
-        } else if (minutes >= 1) {
-            System.out.printf(TIME_MINUTES_AND_THEN, minutes, seconds,
-                              milliseconds);
-        } else if (seconds >= 1) {
-            System.out.printf(TIME_SECONDS_AND_THEN, seconds, milliseconds);
-        } else {
-            System.out.printf(TIME_MILLISECONDS, milliseconds);
-        }
     }
 
 }
