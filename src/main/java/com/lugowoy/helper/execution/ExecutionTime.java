@@ -19,7 +19,7 @@ import java.math.MathContext;
  * Created by Konstantin Lugowoy on 13.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  * @since 1.7.8
  */
 public class ExecutionTime {
@@ -45,8 +45,8 @@ public class ExecutionTime {
      * value is negative.
      */
     public void setStartTime(final long milliseconds) {
-        if (CheckerNumber.isPositive(milliseconds)
-                || CheckerNumber.isZero(milliseconds)) {
+        if (CheckerNumber.isPositive(milliseconds) || CheckerNumber.isZero(
+                milliseconds)) {
             this.startMillis = milliseconds;
         } else {
             throw new IllegalArgumentException(
@@ -72,8 +72,8 @@ public class ExecutionTime {
      * value is negative.
      */
     public void setEndTime(final long milliseconds) {
-        if (CheckerNumber.isPositive(milliseconds)
-                || CheckerNumber.isZero(milliseconds)) {
+        if (CheckerNumber.isPositive(milliseconds) || CheckerNumber.isZero(
+                milliseconds)) {
             this.endMillis = milliseconds;
         } else {
             throw new IllegalArgumentException(
@@ -89,9 +89,9 @@ public class ExecutionTime {
      * @return the execution time in the milliseconds.
      */
     public long calculateExecutionTime() {
-        return BigDecimal.valueOf(this.endMillis)
-                        .subtract(BigDecimal.valueOf(this.startMillis),
-                                  MathContext.DECIMAL64).longValue();
+        return BigDecimal.valueOf(this.endMillis).subtract(
+                BigDecimal.valueOf(this.startMillis), MathContext.DECIMAL64)
+                         .longValue();
     }
 
 }
