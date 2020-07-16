@@ -6,7 +6,7 @@ package com.lugowoy.helper.execution;
  * Created by Konstantin Lugowoy on 12.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @since 1.7.8
  */
 public interface OutputExecutionResult {
@@ -18,7 +18,7 @@ public interface OutputExecutionResult {
      * @param <T> the type of the result.
      * @param tResult the result to output.
      */
-    <T> void output(T tResult);
+    <T> void output(T resultValue);
 
     /**
      * Outputs the result of the execution, formalizing its appearance as
@@ -28,6 +28,6 @@ public interface OutputExecutionResult {
      * @param msgOutputResult the string for the appearance of the result.
      * @param tResult the result to output.
      */
-    <T> void output(String msgOutputResult, T tResult);
+    <T> void output(String patternResult, T... resultValues);
 
 }
