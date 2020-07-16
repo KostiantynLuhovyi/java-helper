@@ -15,19 +15,21 @@ public interface OutputExecutionResult {
      * Outputs the result of the execution, formalizing its appearance as
      * a default string.
      *
-     * @param <T> the type of the result.
-     * @param tResult the result to output.
+     * @param <T> the type of the result of the execution.
+     * @param resultValue the result to output.
      */
     <T> void output(T resultValue);
 
     /**
-     * Outputs the result of the execution, formalizing its appearance as
-     * a {@code msgOutputResult} string.
+     * Outputs the result values of the execution, formalizing its appearance as
+     * a {@code patternResult} string.
      *
-     * @param <T> the type of the result.
-     * @param msgOutputResult the string for the appearance of the result.
-     * @param tResult the result to output.
+     * @param <T> the type of the result values of the execution.
+     * @param patternResult the pattern appearance of the result.
+     * @param resultValues the result values to output.
      */
+    @SuppressWarnings("unchecked")
+    //Possible heap pollution from parameterized vararg type
     <T> void output(String patternResult, T... resultValues);
 
 }
