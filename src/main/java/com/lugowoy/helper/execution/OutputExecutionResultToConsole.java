@@ -8,7 +8,7 @@ package com.lugowoy.helper.execution;
  * Created by Konstantin Lugowoy on 06.02.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @see com.lugowoy.helper.execution.OutputExecutionResult
  * @since 2.7
  */
@@ -18,37 +18,30 @@ public class OutputExecutionResultToConsole implements OutputExecutionResult {
      * The string of the formatting appearance of the output if the result of
      * execution a string.
      */
-    public static final String RESULT_STRING = "Result : %s";
+    public static final String PATTERN_RESULT_STRING = "Result : %s";
+
     /**
      * The string of the formatting appearance of the output if the result of
      * execution an integer.
      */
-    public static final String RESULT_INTEGER = "Result : %d";
+    public static final String PATTERN_RESULT_INTEGER = "Result : %d";
+
     /**
      * The string of the formatting appearance of the output if the result of
      * execution a double.
      */
-    public static final String RESULT_DOUBLE = "Result : %.3f";
+    public static final String PATTERN_RESULT_DOUBLE = "Result : %f";
+
     /**
      * The string of the formatting appearance of the output if the result of
      * execution a boolean.
      */
-    public static final String RESULT_BOOLEAN = "Result : %b";
-
-    private String msgOutputResult;
+    public static final String PATTERN_RESULT_BOOLEAN = "Result : %b";
 
     /**
      * Constructs an object of this class.
      */
     public OutputExecutionResultToConsole() {
-    }
-
-    /**
-     * Constructs an object of this class by initializing it with a string
-     * {@code msgOutputResult} to formatting the appearance of the result.
-     */
-    public OutputExecutionResultToConsole(final String msgOutputResult) {
-        this.msgOutputResult = msgOutputResult;
     }
 
     /**
@@ -58,8 +51,8 @@ public class OutputExecutionResultToConsole implements OutputExecutionResult {
      * @param tResult the result to output.
      */
     @Override
-    public <T> void output(final T tResult) {
-        System.out.printf(RESULT_STRING, tResult);
+    public <T> void output(final T resultValue) {
+        System.out.printf(PATTERN_RESULT_STRING, resultValue);
     }
 
     /**
@@ -70,19 +63,12 @@ public class OutputExecutionResultToConsole implements OutputExecutionResult {
      * result.
      * @param tResult the result to output.
      */
+    @SuppressWarnings("unchecked")
+    //Possible heap pollution from parameterized vararg type
     @Override
-    public <T> void output(final String msgOutputResult, final T tResult) {
-        System.out.printf(msgOutputResult, tResult);
-    }
-
-    /**
-     * Sets the string for the formatting appearance of the output result.
-     *
-     * @param msgOutputResult the string for the formatting appearance of the
-     * output result.
-     */
-    public void setMsgOutputResult(final String msgOutputResult) {
-        this.msgOutputResult = msgOutputResult;
+    public <T> void output(final String patternResult,
+                           final T... resultValues) {
+        System.out.printf(patternResult, resultValues);
     }
 
 }
