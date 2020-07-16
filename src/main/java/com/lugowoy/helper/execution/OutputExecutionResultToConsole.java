@@ -15,25 +15,23 @@ package com.lugowoy.helper.execution;
 public class OutputExecutionResultToConsole implements OutputExecutionResult {
 
     /**
-     * The string of the formatting appearance of the output if the result of
-     * execution a string.
+     * The pattern appearance of the output if the result of execution a string.
      */
     public static final String PATTERN_RESULT_STRING = "Result : %s";
 
     /**
-     * The string of the formatting appearance of the output if the result of
-     * execution an integer.
+     * The pattern appearance of the output if the result of execution an
+     * integer.
      */
     public static final String PATTERN_RESULT_INTEGER = "Result : %d";
 
     /**
-     * The string of the formatting appearance of the output if the result of
-     * execution a double.
+     * The pattern appearance of the output if the result of execution a double.
      */
     public static final String PATTERN_RESULT_DOUBLE = "Result : %f";
 
     /**
-     * The string of the formatting appearance of the output if the result of
+     * The pattern appearance of the output if the result of
      * execution a boolean.
      */
     public static final String PATTERN_RESULT_BOOLEAN = "Result : %b";
@@ -45,10 +43,12 @@ public class OutputExecutionResultToConsole implements OutputExecutionResult {
     }
 
     /**
-     * Outputs the result {@code tResult} of execution, formatting its
-     * appearance as a default string.
+     * Outputs the result {@code resultValue} of the execution, formatting its
+     * appearance as a default string. The output uses the {@link
+     * OutputExecutionResultToConsole#PATTERN_RESULT_STRING} appearance pattern.
      *
-     * @param tResult the result to output.
+     * @param <T> the type of the result of the execution.
+     * @param resultValue the result to output.
      */
     @Override
     public <T> void output(final T resultValue) {
@@ -56,12 +56,12 @@ public class OutputExecutionResultToConsole implements OutputExecutionResult {
     }
 
     /**
-     * Outputs the result {@code tResult} of execution, formatting its
-     * appearance as a {@code msgOutputResult} string.
+     * Outputs the result values of execution, formatting its appearance as
+     * a {@code patternResult} string.
      *
-     * @param msgOutputResult the string for the formatting appearance of the
-     * result.
-     * @param tResult the result to output.
+     * @param <T> the type of the result values of the execution.
+     * @param patternResult the pattern appearance of the result.
+     * @param resultValues the result values to output.
      */
     @SuppressWarnings("unchecked")
     //Possible heap pollution from parameterized vararg type
