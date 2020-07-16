@@ -82,6 +82,8 @@ public class Executor {
      * @throws NullPointerException if the {@code runnable} is {@code null}.
      * @throws NullPointerException if the {@code outputTime} is null.
      * @throws IllegalThreadStateException if the thread was already started.
+     * @throws ArithmeticException if the result time is inexact but the
+     * rounding mode is UNNECESSARY.
      */
     public void execute(@NotNull final Runnable runnable,
                         @NotNull final OutputExecutionTime outputTime) {
