@@ -33,15 +33,13 @@ public abstract class AbstractArray implements Model, RandomAccess {
      *
      * @since 1.0
      */
-    public static final int DEFAULT_LENGTH = 10;
-
-    static final int LOWER_SIZE = 0;
+    public static final int DEFAULT_SIZE = 10;
 
     private int size;
     private int modCount = 0;
 
     AbstractArray() {
-        this.size = DEFAULT_LENGTH;
+        this.size = DEFAULT_SIZE;
     }
 
     AbstractArray(final int lengthArray) {
