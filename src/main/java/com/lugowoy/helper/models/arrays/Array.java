@@ -9,38 +9,82 @@ import java.util.function.Consumer;
 import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
 
 /**
- * <p>Created by Konstantin Lugowoy on 31.05.2017.
+ * The class describes a data structure such as a dynamic array. Array elements
+ * can be any reference data type. Inherits from {@link AbstractArray} class.
+ * Implements the contract declared in the {@link List} interface.
+ * <p>
+ * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 3.2
+ * @version 3.3
  * @since 1.0
  */
-//todo edit doc's
 public class Array<T> extends AbstractArray implements List<T> {
 
     private Object[] array;
 
+    /**
+     * Constructs an object of this class, thereby creating a dynamic array of
+     * size(length) {@link AbstractArray#DEFAULT_SIZE}.
+     */
     public Array() {
-        this.array = new Object[DEFAULT_LENGTH];
+        this.array = new Object[DEFAULT_SIZE];
     }
 
-    public Array(T[] array) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            this.array = Arrays.copyOf(array, array.length);
-            super.setSize(this.array.length);
-        }
+    /**
+     * Constructs an object of this class, thereby creating a dynamic array by
+     * initializing it with the elements of the {@code array} passed as argument.
+     * To copy elements, call the {@link Arrays#copyOf} method. The size of the
+     * generated array is the same as the {@code array} argument.
+     *
+     * @param array an array containing elements to initialize the
+     * generated array.
+     *
+     * @throws NullPointerException if the {@code array} is null.
+     * @throws LengthOutOfRangeException if the size(length) value of the array
+     * out of range ​​from {@link AbstractArray#LOWER_SIZE} to {@link
+     * AbstractArray#UPPER_SIZE}.
+     */
+    @SafeVarargs
+    public Array(final T... array) {
+        CheckerArray.check(array, AbstractArray.UPPER_SIZE);
+        this.array = Arrays.copyOf(array, array.length);
+        super.setSize(this.array.length);
     }
 
-    public Array(int lengthArray) {
-        super(lengthArray);
-        this.array = new Object[lengthArray];
+    /**
+     * Constructs an object of this class, thereby creating a dynamic array of
+     * size(length) {@code size}.
+     *
+     * @param size an array size value.
+     *
+     * @throws LengthOutOfRangeException if the {@code size} value out of range
+     * ​​from {@link AbstractArray#LOWER_SIZE} to {@link AbstractArray#UPPER_SIZE}.
+     */
+    public Array(final int size) {
+        super(size);
+        this.array = new Object[size];
     }
 
-    public Array(Array<T> array) {
-        if (CheckerArray.checkLengthInArray(array)) {
-            this.array = Arrays.copyOf(array.toArray(), array.size());
-            super.setSize(this.array.length);
-        }
+    /**
+     * Copy constructor. Constructs an object of this class, thereby creating a
+     * dynamic array by initializing it with the elements of the {@code array}
+     * passed as argument. To copy elements, call the {@link Arrays#copyOf}
+     * method. The size of the generated array is the same as the {@code array}
+     * argument.
+     *
+     * @param array an array containing elements to initialize the
+     * generated array.
+     *
+     * @throws NullPointerException if the {@code array} is null.
+     * @throws LengthOutOfRangeException if the size(length) value of the array
+     * out of range ​​from {@link AbstractArray#LOWER_SIZE} to {@link
+     * AbstractArray#UPPER_SIZE}.
+     */
+    public Array(final Array<T> array) {
+        CheckerArray.check(array, AbstractArray.UPPER_SIZE);
+        this.array = Arrays.copyOf(array.toArray(), array.size());
+        super.setSize(this.array.length);
     }
 
     @Override
