@@ -38,6 +38,7 @@ public abstract class AbstractArray implements Model, RandomAccess {
     static final int LOWER_SIZE = 0;
 
     private int size;
+    private int modCount = 0;
 
     AbstractArray() {
         this.size = DEFAULT_LENGTH;
@@ -145,6 +146,33 @@ public abstract class AbstractArray implements Model, RandomAccess {
     protected void setSize(final int size) {
         CheckerArray.checkLength(size);
         this.size = size;
+    }
+
+    /**
+     * Gets the value of the modification count.
+     *
+     * @return the value of the modification count.
+     */
+    protected int getModCount() {
+        return this.modCount;
+    }
+
+    /**
+     * Set the value of the modification count. The {@code newModCount} value
+     * must be positive.
+     *
+     * @param newModCount the value of the new modification count.
+     *
+     * @throws IllegalArgumentException if the {@code newModCount} argument
+     * is negative.
+     */
+    protected void setModCount(final int newModCount) {
+        if (newModCount >= 0) {
+            this.modCount = newModCount;
+        } else {
+            throw new IllegalArgumentException(
+                    "The new modification count value must be positive.");
+        }
     }
 
 }
