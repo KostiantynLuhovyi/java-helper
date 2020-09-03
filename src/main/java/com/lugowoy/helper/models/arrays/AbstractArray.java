@@ -16,8 +16,20 @@ import java.util.RandomAccess;
 //todo write doc's
 public abstract class AbstractArray implements Model, RandomAccess {
 
+    private static final int ARRAY_HEADER = 8;
+
     /**
-     * Default length of an array.
+     * The lower boundary value of the size(length) of an array.
+     */
+    public static final int LOWER_SIZE = 0;
+
+    /**
+     * The upper boundary value of the size(length) of an array.
+     */
+    public static final int UPPER_SIZE = Integer.MAX_VALUE - ARRAY_HEADER;
+
+    /**
+     * The default size of an array.
      *
      * @since 1.0
      */
