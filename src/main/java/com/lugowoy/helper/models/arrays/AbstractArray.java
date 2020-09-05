@@ -17,7 +17,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 2.0
  */
 public abstract class AbstractArray implements Model, RandomAccess {
@@ -44,14 +44,15 @@ public abstract class AbstractArray implements Model, RandomAccess {
     private int size;
     private int modCount = 0;
 
+    //TODO change documentation
     /**
      * Constructs an object of an array (for the heir class), with size(length)
      * {@link AbstractArray#DEFAULT_SIZE}.
      */
     AbstractArray() {
-        this.size = DEFAULT_SIZE;
     }
 
+    //TODO change documentation
     /**
      * Constructs an object of an array (for the heir class) by initializing it
      * with the size(length) of the {@code size} argument. The argument {@code
@@ -65,7 +66,6 @@ public abstract class AbstractArray implements Model, RandomAccess {
      */
     AbstractArray(final int size) {
         CheckerArray.checkLength(size, AbstractArray.UPPER_SIZE);
-        this.size = size;
     }
 
     /**
