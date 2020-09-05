@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 3.4
+ * @version 3.5
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -85,15 +85,27 @@ public class Array<T> extends AbstractArray implements List<T> {
         this.array = Arrays.copyOf(array.toArray(), array.size());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Array)) return false;
-        if (!super.equals(o)) return false;
-        Array<?> array1 = (Array<?>) o;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Array)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        final Array<?> array1 = (Array<?>) o;
         return Arrays.equals(array, array1.array);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         int result = super.hashCode();
@@ -101,28 +113,41 @@ public class Array<T> extends AbstractArray implements List<T> {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        Iterator<T> it = iterator();
-        if ( ! it.hasNext()) {
+        Iterator<T> iterator = this.iterator();
+        if (!iterator.hasNext()) {
             return "[]";
         }
         StringBuilder sb = new StringBuilder();
         sb.append('[');
         for (;;) {
-            T t = it.next();
+            T t = iterator.next();
             sb.append(t == this ? "(this Collection)" : t);
-            if ( ! it.hasNext())
+            if (!iterator.hasNext()) {
                 return sb.append(']').toString();
+            }
             sb.append(',').append(' ');
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked") //possibly unchecked cast
     @Override
-    protected Array<T> clone() throws CloneNotSupportedException {
-        Array<T> array = (Array<T>) super.clone();
-        array.setArray((T[]) Arrays.copyOf(this.array, super.size()));
-        return array;
+    public Array<T> clone() {
+        Array<T> cloneArray;
+        try {
+            cloneArray = (Array<T>) super.clone();
+            cloneArray.setArray((T[]) Arrays.copyOf(this.array, super.size()));
+        } catch (CloneNotSupportedException ex) {
+            throw new UnsupportedOperationException(ex);
+        }
+        return cloneArray;
     }
 
     /**
