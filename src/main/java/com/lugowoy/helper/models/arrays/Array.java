@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 3.3
+ * @version 3.4
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -49,7 +49,6 @@ public class Array<T> extends AbstractArray implements List<T> {
     public Array(final T... array) {
         CheckerArray.check(array, AbstractArray.UPPER_SIZE);
         this.array = Arrays.copyOf(array, array.length);
-        super.setSize(this.array.length);
     }
 
     /**
@@ -84,7 +83,6 @@ public class Array<T> extends AbstractArray implements List<T> {
     public Array(final Array<T> array) {
         CheckerArray.check(array, AbstractArray.UPPER_SIZE);
         this.array = Arrays.copyOf(array.toArray(), array.size());
-        super.setSize(this.array.length);
     }
 
     @Override
