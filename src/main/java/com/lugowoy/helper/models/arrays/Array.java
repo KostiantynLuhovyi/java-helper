@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 3.5
+ * @version 3.6
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -28,7 +28,8 @@ public class Array<T> extends AbstractArray implements List<T> {
      * size(length) {@link AbstractArray#DEFAULT_SIZE}.
      */
     public Array() {
-        this.array = new Object[DEFAULT_SIZE];
+        super();
+        this.array = new Object[DEFAULT_CAPACITY];
     }
 
     /**
@@ -47,8 +48,10 @@ public class Array<T> extends AbstractArray implements List<T> {
      */
     @SafeVarargs
     public Array(final T... array) {
-        CheckerArray.check(array, AbstractArray.UPPER_SIZE);
+        super();
+        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
         this.array = Arrays.copyOf(array, array.length);
+        super.setSize(this.array.length);
     }
 
     /**
@@ -60,9 +63,9 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @throws LengthOutOfRangeException if the {@code size} value out of range
      * ​​from {@link AbstractArray#LOWER_SIZE} to {@link AbstractArray#UPPER_SIZE}.
      */
-    public Array(final int size) {
-        super(size);
-        this.array = new Object[size];
+    public Array(final int capacity) {
+        super();
+        this.array = new Object[capacity];
     }
 
     /**
@@ -81,8 +84,10 @@ public class Array<T> extends AbstractArray implements List<T> {
      * AbstractArray#UPPER_SIZE}.
      */
     public Array(final Array<T> array) {
-        CheckerArray.check(array, AbstractArray.UPPER_SIZE);
+        super();
+        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
         this.array = Arrays.copyOf(array.toArray(), array.size());
+        this.setSize(this.array.length);
     }
 
     /**
