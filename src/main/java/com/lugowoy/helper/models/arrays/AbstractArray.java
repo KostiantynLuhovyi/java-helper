@@ -17,7 +17,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.7
+ * @version 1.8
  * @since 2.0
  */
 public abstract class AbstractArray implements Model, RandomAccess {
@@ -44,10 +44,8 @@ public abstract class AbstractArray implements Model, RandomAccess {
     private int size;
     private int modCount = 0;
 
-    //TODO change documentation
     /**
-     * Constructs an object of an array (for the heir class), with size(length)
-     * {@link AbstractArray#DEFAULT_SIZE}.
+     * Constructs an object of an array (for the heir class).
      */
     AbstractArray() {
     }
@@ -55,17 +53,18 @@ public abstract class AbstractArray implements Model, RandomAccess {
     //TODO change documentation
     /**
      * Constructs an object of an array (for the heir class) by initializing it
-     * with the size(length) of the {@code size} argument. The argument {@code
-     * size} must range (inclusive, respectively) from {@link
-     * AbstractArray#LOWER_SIZE} to {@link AbstractArray#UPPER_SIZE}.
+     * with the capacity of the {@code capacity} argument. The argument {@code
+     * capacity} must range (inclusive, respectively) from {@link
+     * AbstractArray#LOWER_CAPACITY} to {@link AbstractArray#UPPER_CAPACITY}.
      *
-     * @param size the size(length) of the created array.
+     * @param capacity the capacity of the created array.
      *
-     * @throws LengthOutOfRangeException if the {@code size} value out of range
-     * ​​from {@link AbstractArray#LOWER_SIZE} to {@link AbstractArray#UPPER_SIZE}.
+     * @throws LengthOutOfRangeException if the {@code capacity} value out of
+     * range from {@link AbstractArray#LOWER_CAPACITY} to {@link
+     * AbstractArray#UPPER_CAPACITY}.
      */
-    AbstractArray(final int size) {
-        CheckerArray.checkLength(size, AbstractArray.UPPER_SIZE);
+    AbstractArray(final int capacity) {
+        CheckerArray.checkLength(capacity, AbstractArray.UPPER_CAPACITY);
     }
 
     /**
