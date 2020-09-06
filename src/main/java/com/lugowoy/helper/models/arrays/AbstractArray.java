@@ -17,7 +17,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  * @since 2.0
  */
 public abstract class AbstractArray implements Model, RandomAccess {
@@ -25,21 +25,21 @@ public abstract class AbstractArray implements Model, RandomAccess {
     private static final int ARRAY_HEADER = 8;
 
     /**
-     * The lower boundary value of the size(length) of an array.
+     * The lower boundary value of the capacity of an array.
      */
-    public static final int LOWER_SIZE = 0;
+    public static final int LOWER_CAPACITY = 0;
 
     /**
-     * The upper boundary value of the size(length) of an array.
+     * The upper boundary value of the capacity of an array.
      */
-    public static final int UPPER_SIZE = Integer.MAX_VALUE - ARRAY_HEADER;
+    public static final int UPPER_CAPACITY = Integer.MAX_VALUE - ARRAY_HEADER;
 
     /**
      * The default size of an array.
      *
      * @since 1.0
      */
-    public static final int DEFAULT_SIZE = 10;
+    public static final int DEFAULT_CAPACITY = 10;
 
     private int size;
     private int modCount = 0;
