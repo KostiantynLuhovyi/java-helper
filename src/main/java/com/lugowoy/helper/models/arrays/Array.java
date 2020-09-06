@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
 
 /**
- * The class describes a data structure such as a dynamic array. Array elements
- * can be any reference data type. Inherits from {@link AbstractArray} class.
- * Implements the contract declared in the {@link List} interface.
+ * The class represents a description of a dynamic array data structure. Array
+ * elements can be of any reference data type. Inherits from class {@link
+ * AbstractArray}. Implements the contract declared in interface {@link List}.
  * <p>
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
@@ -25,7 +25,7 @@ public class Array<T> extends AbstractArray implements List<T> {
 
     /**
      * Constructs an object of this class, thereby creating a dynamic array of
-     * size(length) {@link AbstractArray#DEFAULT_SIZE}.
+     * capacity {@link AbstractArray#DEFAULT_CAPACITY}.
      */
     public Array() {
         super();
@@ -35,16 +35,17 @@ public class Array<T> extends AbstractArray implements List<T> {
     /**
      * Constructs an object of this class, thereby creating a dynamic array by
      * initializing it with the elements of the {@code array} passed as argument.
-     * To copy elements, call the {@link Arrays#copyOf} method. The size of the
-     * generated array is the same as the {@code array} argument.
+     * To copy elements, call the {@link Arrays#copyOf} method. The capacity of
+     * the generated array is the same as the length of the {@code array}
+     * argument.
      *
      * @param array an array containing elements to initialize the
      * generated array.
      *
      * @throws NullPointerException if the {@code array} is null.
-     * @throws LengthOutOfRangeException if the size(length) value of the array
-     * out of range ​​from {@link AbstractArray#LOWER_SIZE} to {@link
-     * AbstractArray#UPPER_SIZE}.
+     * @throws LengthOutOfRangeException if the size(length) of the array out of
+     * range ​​from {@link AbstractArray#LOWER_CAPACITY} to {@link
+     * AbstractArray#UPPER_CAPACITY}.
      */
     @SafeVarargs
     public Array(final T... array) {
@@ -56,12 +57,13 @@ public class Array<T> extends AbstractArray implements List<T> {
 
     /**
      * Constructs an object of this class, thereby creating a dynamic array of
-     * size(length) {@code size}.
+     * the {@code capacity} value.
      *
-     * @param size an array size value.
+     * @param capacity an array capacity value.
      *
-     * @throws LengthOutOfRangeException if the {@code size} value out of range
-     * ​​from {@link AbstractArray#LOWER_SIZE} to {@link AbstractArray#UPPER_SIZE}.
+     * @throws LengthOutOfRangeException if the {@code capacity} value out of
+     * range from {@link AbstractArray#LOWER_CAPACITY} to {@link
+     * AbstractArray#UPPER_CAPACITY}.
      */
     public Array(final int capacity) {
         super();
@@ -72,16 +74,16 @@ public class Array<T> extends AbstractArray implements List<T> {
      * Copy constructor. Constructs an object of this class, thereby creating a
      * dynamic array by initializing it with the elements of the {@code array}
      * passed as argument. To copy elements, call the {@link Arrays#copyOf}
-     * method. The size of the generated array is the same as the {@code array}
-     * argument.
+     * method. The capacity of the generated array is the same as the length of
+     * the {@code array} argument.
      *
      * @param array an array containing elements to initialize the
      * generated array.
      *
      * @throws NullPointerException if the {@code array} is null.
      * @throws LengthOutOfRangeException if the size(length) value of the array
-     * out of range ​​from {@link AbstractArray#LOWER_SIZE} to {@link
-     * AbstractArray#UPPER_SIZE}.
+     * out of range ​​from {@link AbstractArray#LOWER_CAPACITY} to {@link
+     * AbstractArray#UPPER_CAPACITY}.
      */
     public Array(final Array<T> array) {
         super();
