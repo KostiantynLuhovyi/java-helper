@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 3.7
+ * @version 3.8
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -237,23 +237,24 @@ public class Array<T> extends AbstractArray implements List<T> {
      * side-effects that modify the underlying source of elements, unless an
      * overriding class has specified a concurrent modification policy.
      *
-     * @param action The action to be performed for each element
-     * @throws NullPointerException if the specified action is null
-     * @implSpec <p>The default implementation behaves as if:
-     * <pre>{@code
-     *     for (T t : this)
-     *         action.accept(t);
-     * }</pre>
+     * @param action the action to be performed for each element.
+     *
+     * @throws NullPointerException if the specified action is null.
+     * @throws NullPointerException if the element is null.
      * @since 1.8
      */
     @Override
-    public void forEach(Consumer<? super T> action) {
-        Objects.requireNonNull(action);
-        T res = null;
-        for (T t : this) {
-            res = t;
+    public void forEach(final Consumer<? super T> action) {
+        Objects.requireNonNull(action, "Action is null.");
+        final int expectedModCount = super.getModCount();
+        final int size = super.size();
+        for (int i = 0; i < size; i++) {
+            if (expectedModCount == super.getModCount()) {
+                action.accept(this.get(i));
+            } else {
+                throw new ConcurrentModificationException();
+            }
         }
-        action.accept(res);
     }
 
     /**
