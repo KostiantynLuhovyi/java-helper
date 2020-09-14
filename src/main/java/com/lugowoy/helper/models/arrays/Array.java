@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 3.6
+ * @version 3.7
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -160,51 +160,70 @@ public class Array<T> extends AbstractArray implements List<T> {
     /**
      * Returns an iterator over the elements in this list in proper sequence.
      *
-     * @return an iterator over the elements in this list in proper sequence
+     * @return an iterator over elements.
      */
     @Override
-    public Iterator<T> iterator() {
-        return new Iterator<>() {
+    public @NotNull Iterator<T> iterator() {
+        return new IteratorArray();
+    }
 
-            private int cursorIteratorElement = 0;
+    private class IteratorArray implements Iterator<T> {
 
-            @Override
-            public boolean hasNext() {
-                return cursorIteratorElement != Array.super.size();
+        private int cursorIterator = 0;
+        private int lastReturned = -1;
+        private int expectedModCount = Array.super.getModCount();
+
+        private IteratorArray() {
+            super();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.cursorIterator != Array.super.size();
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public T next() {
+            this.checkModification();
+            if (this.cursorIterator >= Array.super.size()) {
+                throw new NoSuchElementException();
             }
-
-            @Override
-            public T next() {
-                return Array.this.get(this.cursorIteratorElement++);
+            if (this.cursorIterator >= Array.this.array.length) {
+                throw new ConcurrentModificationException();
             }
+            this.lastReturned = this.cursorIterator++;
+            return (T) Array.this.array[lastReturned];
+        }
 
-            /**
-             * Removes from the underlying collection the last element returned
-             * by this iterator (optional operation).  This method can be called
-             * only once per call to {@link #next}.
-             * <p>
-             * The behavior of an iterator is unspecified if the underlying collection
-             * is modified while the iteration is in progress in any way other than by
-             * calling this method, unless an overriding class has specified a
-             * concurrent modification policy.
-             * <p>
-             * The behavior of an iterator is unspecified if this method is called
-             * after a call to the {@link #forEachRemaining forEachRemaining} method.
-             *
-             * @throws UnsupportedOperationException if the {@code remove}
-             *                                       operation is not supported by this iterator
-             * @throws IllegalStateException         if the {@code next} method has not
-             *                                       yet been called, or the {@code remove} method has already
-             *                                       been called after the last call to the {@code next}
-             *                                       method
-             * @implSpec The default implementation throws an instance of
-             * {@link UnsupportedOperationException} and performs no other action.
-             */
-            @Override
-            public void remove() {
-                Array.this.remove(--cursorIteratorElement);
+        @Override
+        public void remove() {
+            if (this.lastReturned < 0) {
+                throw new IllegalStateException();
             }
-        };
+            this.checkModification();
+            try {
+                Array.this.remove(this.lastReturned);
+                this.cursorIterator = lastReturned;
+                this.lastReturned = -1;
+                this.expectedModCount = Array.super.getModCount();
+            } catch (IndexOutOfBoundsException ex) {
+                throw new ConcurrentModificationException();
+            }
+        }
+
+        @Override
+        public void forEachRemaining(final Consumer<? super T> action) {
+            //TODO not realize
+            throw new UnsupportedOperationException("Not realize.");
+        }
+
+        private void checkModification() {
+            if (this.expectedModCount != Array.super.getModCount()) {
+                throw new ConcurrentModificationException();
+            }
+        }
+
     }
 
     /**
