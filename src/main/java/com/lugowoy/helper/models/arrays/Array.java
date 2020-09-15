@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 3.8
+ * @version 3.9
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -170,7 +170,6 @@ public class Array<T> extends AbstractArray implements List<T> {
     private class IteratorArray implements Iterator<T> {
 
         private int cursorIterator = 0;
-        private int lastReturned = -1;
         private int expectedModCount = Array.super.getModCount();
 
         private IteratorArray() {
@@ -192,20 +191,17 @@ public class Array<T> extends AbstractArray implements List<T> {
             if (this.cursorIterator >= Array.this.array.length) {
                 throw new ConcurrentModificationException();
             }
-            this.lastReturned = this.cursorIterator++;
-            return (T) Array.this.array[lastReturned];
+            return (T) Array.this.array[this.cursorIterator++];
         }
 
         @Override
         public void remove() {
-            if (this.lastReturned < 0) {
+            if (this.cursorIterator < 0) {
                 throw new IllegalStateException();
             }
             this.checkModification();
             try {
-                Array.this.remove(this.lastReturned);
-                this.cursorIterator = lastReturned;
-                this.lastReturned = -1;
+                Array.this.remove(--this.cursorIterator);
                 this.expectedModCount = Array.super.getModCount();
             } catch (IndexOutOfBoundsException ex) {
                 throw new ConcurrentModificationException();
