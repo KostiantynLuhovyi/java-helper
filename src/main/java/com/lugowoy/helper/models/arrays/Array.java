@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 4.0
+ * @version 4.1
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -264,6 +264,10 @@ public class Array<T> extends AbstractArray implements List<T> {
         return Arrays.copyOf(this.array, super.size());
     }
 
+    public Object[] toDeepArray() {
+        return SerializationUtils.clone(this.toArray());
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -278,11 +282,15 @@ public class Array<T> extends AbstractArray implements List<T> {
         return a;
     }
 
-    public void setArray(T[] t) {
-        if (CheckerArray.checkLengthInArray(t)) {
-            this.array = Arrays.copyOf(t, t.length);
-            super.setSize(this.array.length);
+    @SuppressWarnings("unchecked")
+    public <E> E[] toDeepArray(E[] a) {
+        CheckerArray.check(a, CheckerArray.UPPER_BOUND_LENGTH);
+        if (a.length < super.size()) {
+            a = (E[]) SerializationUtils.clone(
+                    Arrays.copyOf(this.array, super.size(), a.getClass()));
         }
+        System.arraycopy(this.array, 0, a, 0, super.size());
+        return SerializationUtils.clone(a);
     }
 
     public void setArray(int lengthArray) {
