@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 3.9
+ * @version 4.0
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -254,20 +254,10 @@ public class Array<T> extends AbstractArray implements List<T> {
     }
 
     /**
-     * Returns an array containing all of the elements in this list in proper
-     * sequence (from first to last element).
+     * {@inheritDoc}
      *
-     * <p>The returned array will be "safe" in that no references to it are
-     * maintained by this list.  (In other words, this method must
-     * allocate a new array even if this list is backed by an array).
-     * The caller is thus free to modify the returned array.
-     *
-     * <p>This method acts as bridge between array-based and collection-based
-     * APIs.
-     *
-     * @return an array containing all of the elements in this list in proper
-     * sequence
-     * @see Arrays#asList(Object[])
+     * @return an array containing all of the elements in this list in
+     * proper sequence
      */
     @Override
     public Object[] toArray() {
@@ -275,49 +265,16 @@ public class Array<T> extends AbstractArray implements List<T> {
     }
 
     /**
-     * Returns an array containing all of the elements in this list in
-     * proper sequence (from first to last element); the runtime type of
-     * the returned array is that of the specified array.  If the list fits
-     * in the specified array, it is returned therein.  Otherwise, a new
-     * array is allocated with the runtime type of the specified array and
-     * the size of this list.
-     *
-     * <p>If the list fits in the specified array with room to spare (i.e.,
-     * the array has more elements than the list), the element in the array
-     * immediately following the end of the list is set to {@code null}.
-     * (This is useful in determining the length of the list <i>only</i> if
-     * the caller knows that the list does not contain any null elements.)
-     *
-     * <p>Like the {@link #toArray()} method, this method acts as bridge between
-     * array-based and collection-based APIs.  Further, this method allows
-     * precise control over the runtime type of the output array, and may,
-     * under certain circumstances, be used to save allocation costs.
-     *
-     * <p>Suppose {@code x} is a list known to contain only strings.
-     * The following code can be used to dump the list into a newly
-     * allocated array of {@code String}:
-     *
-     * <pre>{@code
-     *     String[] y = x.toArray(new String[0]);
-     * }</pre>
-     * <p>
-     * Note that {@code toArray(new Object[0])} is identical in function to
-     * {@code toArray()}.
-     *
-     * @param a the array into which the elements of this list are to
-     *          be stored, if it is big enough; otherwise, a new array of the
-     *          same runtime type is allocated for this purpose.
-     * @return an array containing the elements of this list
-     * @throws ArrayStoreException  if the runtime type of the specified array
-     *                              is not a supertype of the runtime type of every element in
-     *                              this list
-     * @throws NullPointerException if the specified array is null
+     * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     @Override
-    public <V> V[] toArray(V[] a) {
-        if (CheckerArray.checkLengthInArray(a)) {
-            a = (V[]) Arrays.copyOf(this.array, super.size());
+    public <E> E[] toArray(E[] a) {
+        CheckerArray.check(a, CheckerArray.UPPER_BOUND_LENGTH);
+        if (a.length < super.size()) {
+            a = (E[]) Arrays.copyOf(this.array, super.size(), a.getClass());
         }
+        System.arraycopy(this.array, 0, a, 0, super.size());
         return a;
     }
 
