@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 4.2
+ * @version 4.3
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -293,11 +293,25 @@ public class Array<T> extends AbstractArray implements List<T> {
         return SerializationUtils.clone(a);
     }
 
-    public void setArray(int lengthArray) {
-        if (CheckerArray.checkLengthArray(lengthArray)) {
-            this.array = new Object[lengthArray];
-            super.setSize(SIZE_ZERO);
-        }
+    public void setArray(final int size) {
+        CheckerArray.checkLength(size, AbstractArray.UPPER_CAPACITY);
+        this.array = new Object[size];
+        super.setSize(size);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
+    }
+
+    public void setArray(final T... t) {
+        CheckerArray.check(t, AbstractArray.UPPER_CAPACITY);
+        this.array = Arrays.copyOf(t, t.length);
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
+    }
+
+    public void setDeepArray(final T... t) {
+        CheckerArray.check(t, AbstractArray.UPPER_CAPACITY);
+        this.array = SerializationUtils.clone(t);
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     /**
