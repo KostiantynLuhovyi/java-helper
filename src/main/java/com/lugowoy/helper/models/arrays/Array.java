@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 4.3
+ * @version 4.4
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -131,7 +131,7 @@ public class Array<T> extends AbstractArray implements List<T> {
         }
         StringBuilder sb = new StringBuilder();
         sb.append('[');
-        for (;;) {
+        for (; ; ) {
             T t = iterator.next();
             sb.append(t == this ? "(this Collection)" : t);
             if (!iterator.hasNext()) {
@@ -315,7 +315,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     }
 
     /**
-     * Returns {@code true} if this list contains no elements.
+     * {@inheritDoc}
      *
      * @return {@code true} if this list contains no elements
      */
@@ -328,13 +328,16 @@ public class Array<T> extends AbstractArray implements List<T> {
      * Returns the element at the specified position in this list.
      *
      * @param index index of the element to return
+     *
      * @return the element at the specified position in this list
+     *
      * @throws IndexOutOfBoundsException if the index is out of range
-     *                                   ({@code index < 0 || index >= size()})
+     * ({@code index < 0 || index >= size()})
      */
+    @SuppressWarnings("unchecked")
     @Override
-    public T get(int index) {
-        Objects.checkIndex(index, super.size());
+    public T get(final int index) {
+        CheckerIndex.checkInRange(index, super.size());
         return (T) this.array[index];
     }
 
@@ -342,23 +345,25 @@ public class Array<T> extends AbstractArray implements List<T> {
      * Replaces the element at the specified position in this list with the
      * specified element (optional operation).
      *
-     * @param index   index of the element to replace
+     * @param index index of the element to replace
      * @param element element to be stored at the specified position
+     *
      * @return the element previously at the specified position
+     *
      * @throws UnsupportedOperationException if the {@code set} operation
-     *                                       is not supported by this list
-     * @throws ClassCastException            if the class of the specified element
-     *                                       prevents it from being added to this list
-     * @throws NullPointerException          if the specified element is null and
-     *                                       this list does not permit null elements
-     * @throws IllegalArgumentException      if some property of the specified
-     *                                       element prevents it from being added to this list
-     * @throws IndexOutOfBoundsException     if the index is out of range
-     *                                       ({@code index < 0 || index >= size()})
+     * is not supported by this list
+     * @throws ClassCastException if the class of the specified element
+     * prevents it from being added to this list
+     * @throws NullPointerException if the specified element is null and
+     * this list does not permit null elements
+     * @throws IllegalArgumentException if some property of the specified
+     * element prevents it from being added to this list
+     * @throws IndexOutOfBoundsException if the index is out of range
+     * ({@code index < 0 || index >= size()})
      */
     @Override
-    public T set(int index, T element) {
-        Objects.checkIndex(index, super.size());
+    public T set(final int index, final T element) {
+        CheckerIndex.checkInRange(index, super.size());
         T oldElement = this.get(index);
         this.array[index] = element;
         return oldElement;
@@ -376,24 +381,35 @@ public class Array<T> extends AbstractArray implements List<T> {
      * on what elements may be added.
      *
      * @param t element to be appended to this list
+     *
      * @return {@code true} (as specified by {@link Collection#add})
+     *
      * @throws UnsupportedOperationException if the {@code add} operation
-     *                                       is not supported by this list
-     * @throws ClassCastException            if the class of the specified element
-     *                                       prevents it from being added to this list
-     * @throws NullPointerException          if the specified element is null and this
-     *                                       list does not permit null elements
-     * @throws IllegalArgumentException      if some property of this element
-     *                                       prevents it from being added to this list
+     * is not supported by this list
+     * @throws ClassCastException if the class of the specified element
+     * prevents it from being added to this list
+     * @throws NullPointerException if the specified element is null and this
+     * list does not permit null elements
+     * @throws IllegalArgumentException if some property of this element
+     * prevents it from being added to this list
      */
     @Override
-    public boolean add(T t) {
-        if (super.size() == this.array.length) {
-            this.array = Arrays.copyOf(this.array, this.array.length * 2);
+    public boolean add(final T t) {
+        if (super.size() >= this.array.length) {
+            this.expandArray();
         }
         this.array[super.size()] = t;
-        super.setSize(super.size() + 1);
-        return true;
+        boolean additionResult = false;
+        if (this.isExactlyAdded(t)) {
+            additionResult = true;
+            super.setSize(super.size() + 1);
+            super.setModCount(super.getModCount() + 1);
+        }
+        return additionResult;
+    }
+
+    private boolean isExactlyAdded(final T t) {
+        return this.array[super.size()].equals(t);
     }
 
     /**
@@ -402,28 +418,37 @@ public class Array<T> extends AbstractArray implements List<T> {
      * (if any) and any subsequent elements to the right (adds one to their
      * indices).
      *
-     * @param index   index at which the specified element is to be inserted
+     * @param index index at which the specified element is to be inserted
      * @param element element to be inserted
+     *
      * @throws UnsupportedOperationException if the {@code add} operation
-     *                                       is not supported by this list
-     * @throws ClassCastException            if the class of the specified element
-     *                                       prevents it from being added to this list
-     * @throws NullPointerException          if the specified element is null and
-     *                                       this list does not permit null elements
-     * @throws IllegalArgumentException      if some property of the specified
-     *                                       element prevents it from being added to this list
-     * @throws IndexOutOfBoundsException     if the index is out of range
-     *                                       ({@code index < 0 || index > size()})
+     * is not supported by this list
+     * @throws ClassCastException if the class of the specified element
+     * prevents it from being added to this list
+     * @throws NullPointerException if the specified element is null and
+     * this list does not permit null elements
+     * @throws IllegalArgumentException if some property of the specified
+     * element prevents it from being added to this list
+     * @throws IndexOutOfBoundsException if the index is out of range from
+     * ({@code index >= 0 || index > super.size()})
      */
     @Override
-    public void add(int index, T element) {
-        super.checkIndexToAddByIndex(index);
-        if (super.size() == this.array.length) {
-            this.array = Arrays.copyOf(this.array, this.array.length * 2);
+    public void add(final int index, final T element) {
+        CheckerBoundNumber.checkInRange(index, AbstractArray.UPPER_CAPACITY);
+        CheckerIndex.checkInRange(index, super.size() + 1);
+        if (super.size() >= this.array.length) {
+            this.expandArray();
         }
-        System.arraycopy(this.array, index, this.array, index + 1, super.size() - index);
+        System.arraycopy(this.array, index, this.array, index + 1,
+                         super.size() - index);
         this.array[index] = element;
         super.setSize(super.size() + 1);
+        super.setModCount(super.getModCount() + 1);
+    }
+
+    private void expandArray() {
+        this.array = Arrays.copyOf(this.array, this.array.length << 1);
+        super.setSize(super.size());
     }
 
     /**
@@ -435,28 +460,32 @@ public class Array<T> extends AbstractArray implements List<T> {
      * specified collection is this list, and it's nonempty.)
      *
      * @param c collection containing elements to be added to this list
+     *
      * @return {@code true} if this list changed as a result of the call
+     *
      * @throws UnsupportedOperationException if the {@code addAll} operation
-     *                                       is not supported by this list
-     * @throws ClassCastException            if the class of an element of the specified
-     *                                       collection prevents it from being added to this list
-     * @throws NullPointerException          if the specified collection contains one
-     *                                       or more null elements and this list does not permit null
-     *                                       elements, or if the specified collection is null
-     * @throws IllegalArgumentException      if some property of an element of the
-     *                                       specified collection prevents it from being added to this list
+     * is not supported by this list
+     * @throws ClassCastException if the class of an element of the specified
+     * collection prevents it from being added to this list
+     * @throws NullPointerException if the specified collection contains one
+     * or more null elements and this list does not permit null
+     * elements, or if the specified collection is null
+     * @throws IllegalArgumentException if some property of an element of the
+     * specified collection prevents it from being added to this list
      * @see #add(Object)
      */
     @Override
-    public boolean addAll(Collection<? extends T> c) {
+    public boolean addAll(final Collection<? extends T> c) {
         boolean resultAddAll = false;
         if (Objects.nonNull(c)) {
             if (!c.isEmpty()) {
                 if (c.size() > (this.array.length - super.size())) {
-                    this.array = Arrays.copyOf(this.array, (this.array.length * 2) + c.size());
+                    this.array = Arrays.copyOf(this.array,
+                                               (this.array.length << 1) + c.size());
                 }
                 System.arraycopy(c.toArray(), 0, this.array, this.size(), c.size());
                 super.setSize(super.size() + c.size());
+                super.setModCount(super.getModCount() + 1);
                 resultAddAll = true;
             }
         } else {
@@ -477,36 +506,42 @@ public class Array<T> extends AbstractArray implements List<T> {
      * collection is this list, and it's nonempty.)
      *
      * @param index index at which to insert the first element from the
-     *              specified collection
-     * @param c     collection containing elements to be added to this list
+     * specified collection
+     * @param c collection containing elements to be added to this list
+     *
      * @return {@code true} if this list changed as a result of the call
+     *
      * @throws UnsupportedOperationException if the {@code addAll} operation
-     *                                       is not supported by this list
-     * @throws ClassCastException            if the class of an element of the specified
-     *                                       collection prevents it from being added to this list
-     * @throws NullPointerException          if the specified collection contains one
-     *                                       or more null elements and this list does not permit null
-     *                                       elements, or if the specified collection is null
-     * @throws IllegalArgumentException      if some property of an element of the
-     *                                       specified collection prevents it from being added to this list
-     * @throws IndexOutOfBoundsException     if the index is out of range
-     *                                       ({@code index < 0 || index > size()})
+     * is not supported by this list
+     * @throws ClassCastException if the class of an element of the specified
+     * collection prevents it from being added to this list
+     * @throws NullPointerException if the specified collection contains one
+     * or more null elements and this list does not permit null
+     * elements, or if the specified collection is null
+     * @throws IllegalArgumentException if some property of an element of the
+     * specified collection prevents it from being added to this list
+     * @throws IndexOutOfBoundsException if the index is out of range
+     * ({@code index < 0 || index > size()})
      */
     @Override
-    public boolean addAll(int index, Collection<? extends T> c) {
-        super.checkIndexToAddByIndex(index);
+    public boolean addAll(final int index, final Collection<? extends T> c) {
+        CheckerIndex.checkInRange(index, super.size() + 1);
         boolean resultAddAll = false;
         if (Objects.nonNull(c)) {
             if (!c.isEmpty()) {
                 if (c.size() > (this.array.length - super.size())) {
-                    this.array = Arrays.copyOf(this.array, (this.array.length * 2) + c.size());
+                    this.array = Arrays.copyOf(this.array,
+                                               (this.array.length * 2) + c
+                                                       .size());
                 }
                 int numMoved = super.size() - index;
                 if (numMoved > 0) {
-                    System.arraycopy(this.array, index, this.array, index + c.size(), numMoved);
+                    System.arraycopy(this.array, index, this.array,
+                                     index + c.size(), numMoved);
                 }
                 System.arraycopy(c.toArray(), 0, this.array, index, c.size());
                 super.setSize(super.size() + c.size());
+                super.setModCount(super.getModCount() + 1);
                 resultAddAll = true;
             }
         } else {
