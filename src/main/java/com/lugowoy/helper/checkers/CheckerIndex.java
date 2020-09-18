@@ -10,7 +10,7 @@ import com.lugowoy.helper.utils.BoundsComparisonException;
  * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 1.6.6
  */
 public final class CheckerIndex {
@@ -85,8 +85,8 @@ public final class CheckerIndex {
                                         Long.MAX_VALUE);
         if (index < LOWER_INDEX || index >= upperBoundIndex) {
             throw new IndexOutOfBoundsException(
-                    "Index value out of range(" + CheckerIndex.LOWER_INDEX + "-"
-                    + upperBoundIndex + ")");
+                    "Index value " + index + " out of range from "
+                    + CheckerIndex.LOWER_INDEX + " to " + upperBoundIndex);
         }
     }
 
@@ -116,8 +116,8 @@ public final class CheckerIndex {
                                                upperBoundIndex);
         if (index < lowerBoundIndex || index >= upperBoundIndex) {
             throw new IndexOutOfBoundsException(
-                    "Index value out of range(" + lowerBoundIndex + "-"
-                    + upperBoundIndex + ")");
+                    "Index value " + index + " out of range from "
+                    + lowerBoundIndex + " to " + upperBoundIndex);
         }
     }
 
