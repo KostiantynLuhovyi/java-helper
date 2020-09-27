@@ -2,6 +2,7 @@ package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.BoundsComparisonException;
+import com.lugowoy.helper.utils.ComparatorNumber;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -13,7 +14,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 2.0
+ * @version 2.1
  * @since 1.6.6
  */
 public final class CheckerBoundNumber {
@@ -426,7 +427,8 @@ public final class CheckerBoundNumber {
 
     private static <T extends Number & Comparable<T>> int compare(
             final T valueFirst, final T valueSecond) {
-        return valueFirst.compareTo(valueSecond);
+        ComparatorNumber comparator = ComparatorNumber::compareNumber;
+        return comparator.compare(valueFirst, valueSecond);
     }
 
 }
