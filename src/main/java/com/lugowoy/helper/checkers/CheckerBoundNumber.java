@@ -81,9 +81,7 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param bound the bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
@@ -102,7 +100,6 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param bound the bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
@@ -126,9 +123,7 @@ public final class CheckerBoundNumber {
      * @param bound the bound value to check.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
@@ -150,7 +145,6 @@ public final class CheckerBoundNumber {
      * @param bound the bound value to check.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      * @throws BoundOutOfRangeException if the {@code bound} value out of range
@@ -176,9 +170,7 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
@@ -196,7 +188,6 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      * @throws BoundsComparisonException if the {@code lowerBound} value is not
@@ -218,9 +209,7 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
@@ -238,7 +227,6 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      * @throws BoundsComparisonException if the {@code lowerBound} value is
@@ -260,9 +248,7 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
@@ -280,7 +266,6 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      * @throws BoundsComparisonException if the {@code lowerBound} value greater
@@ -303,9 +288,7 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
@@ -323,7 +306,6 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      * @throws BoundsComparisonException if the {@code lowerBound} value less or
@@ -346,9 +328,7 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
@@ -366,7 +346,6 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      * @throws BoundsComparisonException if the {@code lowerBound} value greater
@@ -389,9 +368,7 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      */
@@ -409,7 +386,6 @@ public final class CheckerBoundNumber {
      * @param <T> the type of the boundary values.
      * @param lowerBound the lower bound value to check.
      * @param upperBound the upper bound value to check.
-     *
      * @throws NullPointerException if any of the boundary values is {@code
      * null}.
      * @throws BoundsComparisonException if the {@code lowerBound} value less or
