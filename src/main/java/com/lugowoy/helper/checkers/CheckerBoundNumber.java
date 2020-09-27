@@ -14,7 +14,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 2.2
+ * @version 2.3
  * @since 1.6.6
  */
 public final class CheckerBoundNumber {
@@ -405,6 +405,11 @@ public final class CheckerBoundNumber {
             final T valueFirst, final T valueSecond) {
         ComparatorNumber comparator = ComparatorNumber::compareNumber;
         return comparator.compare(valueFirst, valueSecond);
+    }
+
+    private static <T extends Number & Comparable<T>> String getExceptionMessage(
+            final T lowerBound, final T upperBound) {
+        return "Bound value out of range (" + lowerBound + "-" + upperBound + ")";
     }
 
 }
