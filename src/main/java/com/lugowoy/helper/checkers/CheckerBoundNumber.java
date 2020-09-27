@@ -14,7 +14,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 2.4
+ * @version 2.5
  * @since 1.6.6
  */
 public final class CheckerBoundNumber {
@@ -69,7 +69,6 @@ public final class CheckerBoundNumber {
             "Lower bound greater or not equal upper bound";
 
     private static final Number ZERO = 0.0;
-
 
     private CheckerBoundNumber() {
     }
@@ -397,6 +396,86 @@ public final class CheckerBoundNumber {
         if (compare(lowerBound, upperBound) < 0) {
             throw new BoundsComparisonException(
                     LOWER_BOUND_LESS_OR_NOT_EQUAL_UPPER_BOUND);
+        }
+    }
+
+    /**
+     * Check that the {@code lowerBound} value less or not equal than the {@code
+     * upperBound} value.
+     *
+     * @param <T> the type of the boundary values.
+     * @param lowerBound the lower bound value to check.
+     * @param upperBound the upper bound value to check.
+     * @return result of checking.
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
+     */
+    public static <T extends Number & Comparable<T>> boolean isLowerLessOrNotEqualUpper(
+            @NotNull final T lowerBound, @NotNull final T upperBound) {
+        Objects.requireNonNull(lowerBound, LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, UPPER_BOUND_IS_NULL);
+        return compare(lowerBound, upperBound) < 0;
+    }
+
+    /**
+     * Check that the {@code lowerBound} value less or not equal than the {@code
+     * upperBound} value.
+     *
+     * @param <T> the type of the boundary values.
+     * @param lowerBound the lower bound value to check.
+     * @param upperBound the upper bound value to check.
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
+     * @throws BoundsComparisonException if the {@code lowerBound} value greater
+     * or equal than the {@code upperBound} value.
+     */
+    public static <T extends Number & Comparable<T>> void checkLowerLessOrNotEqualUpper(
+            @NotNull final T lowerBound, @NotNull final T upperBound) {
+        Objects.requireNonNull(lowerBound, LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, UPPER_BOUND_IS_NULL);
+        if (compare(lowerBound, upperBound) >= 0) {
+            throw new BoundsComparisonException(
+                    LOWER_BOUND_GREATER_OR_EQUAL_UPPER_BOUND);
+        }
+    }
+
+    /**
+     * Check that the {@code lowerBound} value greater or not equal than the
+     * {@code upperBound} value.
+     *
+     * @param <T> the type of the boundary values.
+     * @param lowerBound the lower bound value to check.
+     * @param upperBound the upper bound value to check.
+     * @return result of checking.
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
+     */
+    public static <T extends Number & Comparable<T>> boolean isLowerGreaterOrNotEqualUpper(
+            @NotNull final T lowerBound, @NotNull final T upperBound) {
+        Objects.requireNonNull(lowerBound, LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, UPPER_BOUND_IS_NULL);
+        return compare(lowerBound, upperBound) > 0;
+    }
+
+    /**
+     * Check that the {@code lowerBound} value greater or not equal than the
+     * {@code upperBound} value.
+     *
+     * @param <T> the type of the boundary values.
+     * @param lowerBound the lower bound value to check.
+     * @param upperBound the upper bound value to check.
+     * @throws NullPointerException if any of the boundary values is {@code
+     * null}.
+     * @throws BoundsComparisonException if the {@code lowerBound} value less or
+     * equal than the {@code upperBound} value.
+     */
+    public static <T extends Number & Comparable<T>> void checkLowerGreaterOrNotEqualUpper(
+            @NotNull final T lowerBound, @NotNull final T upperBound) {
+        Objects.requireNonNull(lowerBound, LOWER_BOUND_IS_NULL);
+        Objects.requireNonNull(upperBound, UPPER_BOUND_IS_NULL);
+        if (compare(lowerBound, upperBound) <= 0) {
+            throw new BoundsComparisonException(
+                    LOWER_BOUND_LESS_OR_EQUAL_UPPER_BOUND);
         }
     }
 
