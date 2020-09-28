@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 4.5
+ * @version 4.6
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -51,7 +51,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     public Array(final T... array) {
         super();
         CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
-        this.array = Arrays.copyOf(array, array.length);
+        this.array = SerializationUtils.clone(array);
         super.setSize(this.array.length);
     }
 
@@ -88,7 +88,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     public Array(final Array<T> array) {
         super();
         CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
-        this.array = Arrays.copyOf(array.toArray(), array.size());
+        this.array = SerializationUtils.clone(array.toArray());
         this.setSize(this.array.length);
     }
 
@@ -150,7 +150,7 @@ public class Array<T> extends AbstractArray implements List<T> {
         Array<T> cloneArray;
         try {
             cloneArray = (Array<T>) super.clone();
-            cloneArray.setArray((T[]) Arrays.copyOf(this.array, super.size()));
+            cloneArray.setArray((T) SerializationUtils.clone(this.toArray()));
         } catch (CloneNotSupportedException ex) {
             throw new UnsupportedOperationException(ex);
         }
