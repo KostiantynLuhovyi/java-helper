@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 4.4
+ * @version 4.5
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -167,9 +167,10 @@ public class Array<T> extends AbstractArray implements List<T> {
         return new IteratorArray();
     }
 
-    private class IteratorArray implements Iterator<T> {
+    private final class IteratorArray implements Iterator<T> {
 
         private int cursorIterator = 0;
+        private int lastReturned = -1;
         private int expectedModCount = Array.super.getModCount();
 
         private IteratorArray() {
@@ -191,17 +192,21 @@ public class Array<T> extends AbstractArray implements List<T> {
             if (this.cursorIterator >= Array.this.array.length) {
                 throw new ConcurrentModificationException();
             }
-            return (T) Array.this.array[this.cursorIterator++];
+            this.lastReturned = this.cursorIterator;
+            this.cursorIterator++;
+            return (T) Array.this.array[this.lastReturned];
         }
 
         @Override
         public void remove() {
-            if (this.cursorIterator < 0) {
+            if (this.lastReturned < 0) {
                 throw new IllegalStateException();
             }
             this.checkModification();
             try {
-                Array.this.remove(--this.cursorIterator);
+                Array.this.remove(this.lastReturned);
+                this.cursorIterator = this.lastReturned;
+                this.lastReturned = -1;
                 this.expectedModCount = Array.super.getModCount();
             } catch (IndexOutOfBoundsException ex) {
                 throw new ConcurrentModificationException();
@@ -210,7 +215,6 @@ public class Array<T> extends AbstractArray implements List<T> {
 
         @Override
         public void forEachRemaining(final Consumer<? super T> action) {
-            //TODO not realize
             throw new UnsupportedOperationException("Not realize.");
         }
 
