@@ -17,7 +17,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @since 2.0
  */
 public abstract class AbstractArray implements Model, RandomAccess {
@@ -139,6 +139,44 @@ public abstract class AbstractArray implements Model, RandomAccess {
             throw new IllegalArgumentException(
                     "The new modification count value must be positive.");
         }
+    }
+
+    //TODO documentation
+    protected void increaseSize() {
+        CheckerArray.checkLength(this.size + 1);
+        this.setSize(this.size + 1);
+    }
+
+    //TODO documentation
+    protected void increaseSize(final int increment) {
+        try {
+            CheckerArray.checkLength(this.size + increment);
+            this.setSize(this.size + increment);
+        } catch (LengthOutOfRangeException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+    }
+
+    //TODO documentation
+    protected void decreaseSize() {
+        CheckerArray.checkLength(this.size - 1);
+        this.setSize(this.size - 1);
+    }
+
+    //TODO documentation
+    protected void decreaseSize(final int decrement) {
+        try {
+            CheckerArray.checkLength(this.size - decrement);
+            this.setSize(this.size - decrement);
+        } catch (LengthOutOfRangeException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+    }
+
+    //TODO documentation
+    protected void increaseModCount() {
+        CheckerBoundNumber.isInRange(this.modCount + 1, 0, UPPER_CAPACITY);
+        this.setModCount(this.modCount + 1);
     }
 
 }
