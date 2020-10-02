@@ -17,7 +17,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @since 2.0
  */
 public abstract class AbstractArray implements Model, RandomAccess {
@@ -89,6 +89,12 @@ public abstract class AbstractArray implements Model, RandomAccess {
     public int hashCode() {
         return Objects.hash(size, getModCount());
     }
+
+    //TODO documentation
+    protected abstract void ensureCapacity();
+
+    //TODO documentation
+    protected abstract void trimToSize();
 
     /**
      * Gets the size of an array.
