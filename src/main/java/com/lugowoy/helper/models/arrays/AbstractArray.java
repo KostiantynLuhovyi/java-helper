@@ -17,7 +17,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.0
+ * @version 2.1
  * @since 2.0
  */
 public abstract class AbstractArray implements Model, RandomAccess {
@@ -40,6 +40,11 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * @since 1.0
      */
     public static final int DEFAULT_CAPACITY = 10;
+
+    //TODO documentation
+    protected static final int START_SIZE = 0;
+    //TODO documentation
+    protected static final int START_MOD_COUNT = 0;
 
     private int size;
     private int modCount = 0;
