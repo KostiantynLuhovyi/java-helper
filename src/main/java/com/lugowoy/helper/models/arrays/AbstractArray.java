@@ -1,6 +1,7 @@
 package com.lugowoy.helper.models.arrays;
 
 import com.lugowoy.helper.checkers.CheckerArray;
+import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.models.Model;
 import com.lugowoy.helper.utils.LengthOutOfRangeException;
 
@@ -17,7 +18,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.1
+ * @version 2.2
  * @since 2.0
  */
 public abstract class AbstractArray implements Model, RandomAccess {
@@ -28,7 +29,6 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * The lower boundary value of the capacity of an array.
      */
     public static final int LOWER_CAPACITY = 0;
-
     /**
      * The upper boundary value of the capacity of an array.
      */
@@ -46,13 +46,13 @@ public abstract class AbstractArray implements Model, RandomAccess {
     //TODO documentation
     protected static final int START_MOD_COUNT = 0;
 
-    private int size;
-    private int modCount = 0;
+    private int size = START_SIZE;
+    private int modCount = START_MOD_COUNT;
 
     /**
      * Constructs an object of an array (for the heir class).
      */
-    AbstractArray() {
+    protected AbstractArray() {
     }
 
     //TODO change documentation
@@ -68,8 +68,12 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * range from {@link AbstractArray#LOWER_CAPACITY} to {@link
      * AbstractArray#UPPER_CAPACITY}.
      */
-    AbstractArray(final int capacity) {
-        CheckerArray.checkLength(capacity, AbstractArray.UPPER_CAPACITY);
+    protected AbstractArray(final int capacity) {
+        try {
+            CheckerArray.checkLength(capacity, AbstractArray.UPPER_CAPACITY);
+        } catch (LengthOutOfRangeException ex) {
+            throw new IllegalArgumentException(ex);
+        }
     }
 
     /**
@@ -92,7 +96,7 @@ public abstract class AbstractArray implements Model, RandomAccess {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(size, getModCount());
+        return Objects.hash(this.size, this.modCount);
     }
 
     //TODO documentation
