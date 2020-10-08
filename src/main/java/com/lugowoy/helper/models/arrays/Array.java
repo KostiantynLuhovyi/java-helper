@@ -16,7 +16,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 4.6
+ * @version 4.7
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -912,16 +912,19 @@ public class Array<T> extends AbstractArray implements List<T> {
         return (List<T>) new ArrayList<>(new Array<>(this.array)).subList(fromIndex, toIndex);
     }
 
-    //todo add constructor (see in ArrayList class) : Array(Collection<?> c);
-    //todo add methods (see in ArrayList class) :
-    // trimToSize();
-    // ensureCapacity(int minCapacity);
-    // replaceAll(UnaryOperator<E>);
-    // sort(Comparator<? super E>);
-    // spliterator();
-    // toArray(IntFunction<T[]>);
-    // removeIf(Predicate);
-    // stream();
-    // parallelStream();
+    //TODO documentation
+    public void ensureCapacity() {
+        if (super.size() == this.array.length) {
+            this.array = Arrays.copyOf(this.array, this.array.length << 1);
+        }
+    }
+
+    //TODO documentation
+    public void trimToSize() {
+        if (super.size() < this.array.length) {
+            this.array = Arrays.copyOf(this.array, super.size());
+            this.increaseModCount();
+        }
+    }
 
 }
