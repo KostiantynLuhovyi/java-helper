@@ -1,12 +1,14 @@
 package com.lugowoy.helper.models.arrays;
 
-import com.lugowoy.helper.utils.checking.CheckerArray;
-import com.lugowoy.helper.utils.checking.CheckerIndex;
+import com.lugowoy.helper.checkers.CheckerArray;
+import com.lugowoy.helper.checkers.CheckerBoundNumber;
+import com.lugowoy.helper.checkers.CheckerIndex;
+import com.lugowoy.helper.utils.LengthOutOfRangeException;
+import org.apache.commons.lang3.SerializationUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.function.Consumer;
-
-import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
 
 /**
  * The class represents a description of a dynamic array data structure. Array
@@ -16,7 +18,7 @@ import static com.lugowoy.helper.utils.checking.CheckerIndex.checkIndex;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 4.7
+ * @version 4.8
  * @since 1.0
  */
 public class Array<T> extends AbstractArray implements List<T> {
@@ -66,7 +68,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      * AbstractArray#UPPER_CAPACITY}.
      */
     public Array(final int capacity) {
-        super();
+        super(capacity);
         this.array = new Object[capacity];
     }
 
@@ -91,6 +93,8 @@ public class Array<T> extends AbstractArray implements List<T> {
         this.array = SerializationUtils.clone(array.toArray());
         this.setSize(this.array.length);
     }
+
+    //TODO add constructor with Collection object parameter.
 
     /**
      * {@inheritDoc}
@@ -288,13 +292,7 @@ public class Array<T> extends AbstractArray implements List<T> {
 
     @SuppressWarnings("unchecked")
     public <E> E[] toDeepArray(E[] a) {
-        CheckerArray.check(a, AbstractArray.UPPER_CAPACITY);
-        if (a.length < super.size()) {
-            a = (E[]) SerializationUtils.clone(
-                    Arrays.copyOf(this.array, super.size(), a.getClass()));
-        }
-        System.arraycopy(this.array, 0, a, 0, super.size());
-        return SerializationUtils.clone(a);
+        return SerializationUtils.clone(this.toArray(a));
     }
 
     public void setArray(final int size) {
@@ -400,14 +398,14 @@ public class Array<T> extends AbstractArray implements List<T> {
     @Override
     public boolean add(final T t) {
         if (super.size() >= this.array.length) {
-            this.expandArray();
+            this.ensureCapacity();
         }
         this.array[super.size()] = t;
         boolean additionResult = false;
         if (this.isExactlyAdded(t)) {
             additionResult = true;
-            super.setSize(super.size() + 1);
-            super.setModCount(super.getModCount() + 1);
+            super.increaseSize();
+            super.increaseModCount();
         }
         return additionResult;
     }
@@ -441,18 +439,13 @@ public class Array<T> extends AbstractArray implements List<T> {
         CheckerBoundNumber.checkInRange(index, AbstractArray.UPPER_CAPACITY);
         CheckerIndex.checkInRange(index, super.size() + 1);
         if (super.size() >= this.array.length) {
-            this.expandArray();
+            this.ensureCapacity();
         }
         System.arraycopy(this.array, index, this.array, index + 1,
                          super.size() - index);
         this.array[index] = element;
-        super.setSize(super.size() + 1);
-        super.setModCount(super.getModCount() + 1);
-    }
-
-    private void expandArray() {
-        this.array = Arrays.copyOf(this.array, this.array.length << 1);
-        super.setSize(super.size());
+        super.increaseSize();
+        super.increaseModCount();
     }
 
     /**
@@ -481,19 +474,16 @@ public class Array<T> extends AbstractArray implements List<T> {
     @Override
     public boolean addAll(final Collection<? extends T> c) {
         boolean resultAddAll = false;
-        if (Objects.nonNull(c)) {
-            if (!c.isEmpty()) {
-                if (c.size() > (this.array.length - super.size())) {
-                    this.array = Arrays.copyOf(this.array,
-                                               (this.array.length << 1) + c.size());
-                }
-                System.arraycopy(c.toArray(), 0, this.array, this.size(), c.size());
-                super.setSize(super.size() + c.size());
-                super.setModCount(super.getModCount() + 1);
-                resultAddAll = true;
+        Objects.requireNonNull(c, "Collection argument is null.");
+        if (!c.isEmpty()) {
+            if (c.size() > (this.array.length - super.size())) {
+                this.array = Arrays.copyOf(this.array,
+                                           (this.array.length << 1) + c.size());
             }
-        } else {
-            throw new NullPointerException("Collection argument is null.");
+            System.arraycopy(c.toArray(), 0, this.array, this.size(), c.size());
+            super.increaseSize(c.size());
+            super.increaseModCount();
+            resultAddAll = true;
         }
         return resultAddAll;
     }
@@ -531,25 +521,21 @@ public class Array<T> extends AbstractArray implements List<T> {
     public boolean addAll(final int index, final Collection<? extends T> c) {
         CheckerIndex.checkInRange(index, super.size() + 1);
         boolean resultAddAll = false;
-        if (Objects.nonNull(c)) {
-            if (!c.isEmpty()) {
-                if (c.size() > (this.array.length - super.size())) {
-                    this.array = Arrays.copyOf(this.array,
-                                               (this.array.length * 2) + c
-                                                       .size());
-                }
-                int numMoved = super.size() - index;
-                if (numMoved > 0) {
-                    System.arraycopy(this.array, index, this.array,
-                                     index + c.size(), numMoved);
-                }
-                System.arraycopy(c.toArray(), 0, this.array, index, c.size());
-                super.setSize(super.size() + c.size());
-                super.setModCount(super.getModCount() + 1);
-                resultAddAll = true;
+        Objects.requireNonNull(c, "Collection argument is null.");
+        if (!c.isEmpty()) {
+            if (c.size() > (this.array.length - super.size())) {
+                this.array = Arrays.copyOf(this.array,
+                                           (this.array.length * 2) + c.size());
             }
-        } else {
-            throw new NullPointerException("Collection argument is null");
+            int numMoved = super.size() - index;
+            if (numMoved > 0) {
+                System.arraycopy(this.array, index, this.array,
+                                 index + c.size(), numMoved);
+            }
+            System.arraycopy(c.toArray(), 0, this.array, index, c.size());
+            super.increaseSize(c.size());
+            super.increaseModCount();
+            resultAddAll = true;
         }
         return resultAddAll;
     }
@@ -576,19 +562,17 @@ public class Array<T> extends AbstractArray implements List<T> {
      *                                       is not supported by this list
      */
     @Override
-    public boolean remove(Object o) {
-        boolean resultRemove = false;
-        if (Objects.nonNull(o)) {
-            int size = super.size();
-            for (int i = 0; i < size; i++) {
-                if (Objects.equals(o, this.array[i])) {
-                    this.remove(i);
-                    resultRemove = true;
-                    break;
-                }
+    public boolean remove(final Object o) {
+        boolean resultOfRemoving = false;
+        Objects.requireNonNull(o, "Object is null.");
+        for (int i = 0; i < super.size(); i++) {
+            if (Objects.equals(o, this.get(i))) {
+                this.remove(i);
+                resultOfRemoving = true;
+                break;
             }
         }
-        return resultRemove;
+        return resultOfRemoving;
     }
 
     /**
@@ -605,27 +589,30 @@ public class Array<T> extends AbstractArray implements List<T> {
      *                                       ({@code index < 0 || index >= size()})
      */
     @Override
-    public T remove(int index) {
+    public T remove(final int index) {
         Objects.checkIndex(index, super.size());
-        Object[] newArray = new Object[super.size() - 1];
+        Object[] newArray = new Object[this.array.length - 1];
         T resultRemove = this.get(index);
         System.arraycopy(this.array, 0, newArray, 0, index);
-        System.arraycopy(this.array, index + 1, newArray, index, super.size() - (index + 1));
+        System.arraycopy(this.array, index + 1, newArray, index,
+                         super.size() - (index + 1));
         this.array = newArray;
-        super.setSize(super.size() - 1);
+        super.decreaseSize();
+        super.increaseModCount();
         return resultRemove;
     }
 
-    public boolean removeAll(Object o) {
+    public boolean removeAll(final Object o) {
         boolean resultRemove = false;
-        if (Objects.nonNull(o)) {
-            Iterator<T> iterator = this.iterator();
-            while (iterator.hasNext()) {
-                T tmpObj = iterator.next();
-                if (Objects.equals(tmpObj, o)) {
-                    iterator.remove();
-                    resultRemove = true;
-                }
+        Objects.requireNonNull(o, "Object is null.");
+        int indexToRemove;
+        while (true) {
+            indexToRemove = this.indexOf(o);
+            if (indexToRemove == -1) {
+                break;
+            } else {
+                this.remove(indexToRemove);
+                resultRemove = true;
             }
         }
         return resultRemove;
@@ -650,25 +637,17 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @see #contains(Object)
      */
     @Override
-    public boolean removeAll(Collection<?> c) {
-        boolean resultRemoveAll = false;
-        if (Objects.nonNull(c)) {
-            if (!c.isEmpty()) {
-                Object[] tmpArray = c.toArray();
-                int sizeCollection = c.size();
-                for (int i = 0; i < sizeCollection; i++) {
-                    for (int j = 0; j < super.size(); j++) {
-                        if (Objects.equals(tmpArray[i], this.array[j])) {
-                            this.remove(j);
-                            resultRemoveAll = true;
-                        }
-                    }
-                }
+    public boolean removeAll(@NotNull final Collection<?> c) {
+        int sizeToCheckResult = super.size();
+        Objects.requireNonNull(c, "Collection is null.");
+        if (!c.isEmpty()) {
+            Object[] tmpArray = c.toArray();
+            for (int i = 0; i < c.size(); i++) {
+                this.removeAll(tmpArray[i]);
+                sizeToCheckResult--;
             }
-        } else {
-            throw new NullPointerException("Collection argument is null.");
         }
-        return resultRemoveAll;
+        return super.size() != sizeToCheckResult;
     }
 
     /**
@@ -696,17 +675,8 @@ public class Array<T> extends AbstractArray implements List<T> {
      *                            (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     @Override
-    public boolean contains(Object o) {
-        boolean resultContains = false;
-        int i = 0;
-        while (i < super.size()) {
-            if (Objects.equals(o, this.array[i])) {
-                resultContains = true;
-                break;
-            }
-            i++;
-        }
-        return resultContains;
+    public boolean contains(final Object o) {
+        return this.indexOf(o) >= 0;
     }
 
     /**
@@ -728,19 +698,15 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @see #contains(Object)
      */
     @Override
-    public boolean containsAll(Collection<?> c) {
+    public boolean containsAll(@NotNull final Collection<?> c) {
         boolean resultContainsAll = true;
-        if (Objects.nonNull(c)) {
-            if (!c.isEmpty()) {
-                Object[] tmpArrayOfCollection = c.toArray();
-                for (Object o : tmpArrayOfCollection) {
-                    if (!this.contains(o)) {
-                        resultContainsAll = false;
-                    }
+        Objects.requireNonNull(c, "Collection is null.");
+        if (!c.isEmpty()) {
+            for (Object o : c) {
+                if (!this.contains(o)) {
+                    resultContainsAll = false;
                 }
             }
-        } else {
-            throw new NullPointerException("Collection argument is null.");
         }
         return resultContainsAll;
     }
@@ -766,21 +732,17 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @see #contains(Object)
      */
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(@NotNull final Collection<?> c) {
         boolean resultRetainAll = false;
-        if (Objects.nonNull(c)) {
-            if (!c.isEmpty()) {
-                for (Object o : c) {
-                    for (int i = 0; i < super.size(); i++) {
-                        if (!Objects.equals(o, this.array[i])) {
-                            this.remove(o);
-                            resultRetainAll = true;
-                        }
-                    }
+        Objects.requireNonNull(c, "Collection is null.");
+        if (!c.isEmpty()) {
+            for (int i = super.size() - 1; i >= 0; i--) {
+                Object obj = this.get(i);
+                if (!c.contains(obj)) {
+                    this.remove(i);
+                    resultRetainAll = true;
                 }
             }
-        } else {
-            throw new NullPointerException("Collection argument is null.");
         }
         return resultRetainAll;
     }
@@ -803,11 +765,19 @@ public class Array<T> extends AbstractArray implements List<T> {
      *                              (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     @Override
-    public int indexOf(Object o) {
+    public int indexOf(final Object o) {
         int resultIndexOf = -1;
-        for (int i = 0; i < super.size(); i++) {
-            if (Objects.equals(o, this.get(i))) {
-                resultIndexOf = i;
+        if (o == null) {
+            for (int i = 0; i < super.size(); i++) {
+                if (this.get(i) == null) {
+                    resultIndexOf = i;
+                }
+            }
+        } else {
+            for (int i = 0; i < super.size(); i++) {
+                if (o.equals(this.get(i))) {
+                    resultIndexOf = i;
+                }
             }
         }
         return resultIndexOf;
@@ -831,11 +801,19 @@ public class Array<T> extends AbstractArray implements List<T> {
      *                              (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     @Override
-    public int lastIndexOf(Object o) {
+    public int lastIndexOf(final Object o) {
         int resultLastIndexOf = -1;
-        for (int i = super.size() - 1; i > 0; i--) {
-            if (Objects.equals(o, this.get(i))) {
-                resultLastIndexOf = i;
+        if (o == null) {
+            for (int i = super.size() - 1; i >= 0; i--) {
+                if (this.get(i) == null) {
+                    resultLastIndexOf = i;
+                }
+            }
+        } else {
+            for (int i = super.size() - 1; i >= 0; i--) {
+                if (this.get(i).equals(o)) {
+                    resultLastIndexOf = i;
+                }
             }
         }
         return resultLastIndexOf;
@@ -850,7 +828,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      */
     @Override
     public ListIterator<T> listIterator() {
-        return new ArrayList<>(new Array<>((T[]) this.array)).listIterator();
+        return new ArrayList<T>(new Array<>((T[]) this.array)).listIterator();
     }
 
     /**
@@ -869,47 +847,25 @@ public class Array<T> extends AbstractArray implements List<T> {
      *                                   ({@code index < 0 || index > size()})
      */
     @Override
-    public ListIterator<T> listIterator(int index) {
-        return new ArrayList<>(new Array<>((T[]) this.array)).listIterator(index);
+    public ListIterator<T> listIterator(final int index) {
+        return new ArrayList<T>(new Array<>((T[]) this.array)).listIterator(
+                index);
     }
 
-    /**
-     * Returns a view of the portion of this list between the specified
-     * {@code fromIndex}, inclusive, and {@code toIndex}, exclusive.  (If
-     * {@code fromIndex} and {@code toIndex} are equal, the returned list is
-     * empty.)  The returned list is backed by this list, so non-structural
-     * changes in the returned list are reflected in this list, and vice-versa.
-     * The returned list supports all of the optional list operations supported
-     * by this list.<p>
-     * <p>
-     * This method eliminates the need for explicit range operations (of
-     * the sort that commonly exist for arrays).  Any operation that expects
-     * a list can be used as a range operation by passing a subList view
-     * instead of a whole list.  For example, the following idiom
-     * removes a range of elements from a list:
-     * <pre>{@code
-     *      list.subList(from, to).clear();
-     * }</pre>
-     * Similar idioms may be constructed for {@code indexOf} and
-     * {@code lastIndexOf}, and all of the algorithms in the
-     * {@code Collections} class can be applied to a subList.<p>
-     * <p>
-     * The semantics of the list returned by this method become undefined if
-     * the backing list (i.e., this list) is <i>structurally modified</i> in
-     * any way other than via the returned list.  (Structural modifications are
-     * those that change the size of this list, or otherwise perturb it in such
-     * a fashion that iterations in progress may yield incorrect results.)
-     *
-     * @param fromIndex low endpoint (inclusive) of the subList
-     * @param toIndex   high endpoint (exclusive) of the subList
-     * @return a view of the specified range within this list
-     * @throws IndexOutOfBoundsException for an illegal endpoint index value
-     *                                   ({@code fromIndex < 0 || toIndex > size ||
-     *                                   fromIndex > toIndex})
-     */
+    //TODO: documentation
     @Override
-    public List<T> subList(int fromIndex, int toIndex) {
-        return (List<T>) new ArrayList<>(new Array<>(this.array)).subList(fromIndex, toIndex);
+    public List<T> subList(final int fromIndex, final int toIndex) {
+        CheckerIndex.checkInRange(fromIndex, AbstractArray.START_SIZE,
+                                  super.size());
+        CheckerIndex.checkInRange(toIndex, AbstractArray.START_SIZE,
+                                  super.size());
+        Array<T> list = new Array<>();
+        if (CheckerBoundNumber.isLowerLessUpper(fromIndex, toIndex)) {
+            for (int i = fromIndex, j = 0; i < toIndex; i++, j++) {
+                list.add(this.get(i));
+            }
+        }
+        return list;
     }
 
     //TODO documentation
@@ -925,6 +881,10 @@ public class Array<T> extends AbstractArray implements List<T> {
             this.array = Arrays.copyOf(this.array, super.size());
             this.increaseModCount();
         }
+    }
+
+    private boolean isExactlyAdded(final T t) {
+        return this.array[super.size()].equals(t);
     }
 
 }
