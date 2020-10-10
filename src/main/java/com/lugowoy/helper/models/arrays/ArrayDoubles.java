@@ -15,7 +15,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @since 2.0
  */
 //todo write doc's
@@ -167,6 +167,10 @@ public final class ArrayDoubles extends AbstractArray {
         return Arrays.copyOf(this.array, super.size());
     }
 
+    public double[] toDeepArray() {
+        return SerializationUtils.clone(this.array);
+    }
+
     public double[] toArray(double[] array) {
         CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
         if (array.length < super.size()) {
@@ -174,6 +178,10 @@ public final class ArrayDoubles extends AbstractArray {
         }
         System.arraycopy(this.array, 0, array, 0, super.size());
         return array;
+    }
+
+    public double[] toDeepArray(final double[] array) {
+        return SerializationUtils.clone(toArray(array));
     }
 
     public void setArray(final int capacity) {
@@ -186,6 +194,13 @@ public final class ArrayDoubles extends AbstractArray {
     public void setArray(final double... array) {
         CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
         this.array = Arrays.copyOf(array, array.length);
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
+    }
+
+    public void setDeepArray(final double... array) {
+        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
+        this.array = SerializationUtils.clone(array);
         super.setSize(this.array.length);
         super.setModCount(AbstractArray.START_MOD_COUNT);
     }
