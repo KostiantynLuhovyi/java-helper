@@ -15,7 +15,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.0
+ * @version 2.1
  * @since 2.0
  */
 //TODO write doc's
@@ -401,6 +401,25 @@ public final class ArrayDoubles extends AbstractArray {
             }
         }
         return resultLastIndexOf;
+    }
+
+    @Override
+    protected void ensureCapacity() {
+        if (super.size() == this.array.length) {
+            this.array = Arrays.copyOf(this.array, this.array.length << 1);
+        }
+    }
+
+    @Override
+    protected void trimToSize() {
+        if (super.size() < this.array.length) {
+            this.array = Arrays.copyOf(this.array, super.size());
+            super.increaseModCount();
+        }
+    }
+
+    private boolean isExactlyAdded(final double element) {
+        return this.array[super.size()] == element;
     }
 
 }
