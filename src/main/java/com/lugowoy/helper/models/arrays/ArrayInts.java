@@ -16,10 +16,12 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @since 2.0
  */
-//todo write doc's
+//TODO write doc's
+//TODO add methods for working with an object of this class,
+// and not with primitive arrays
 public final class ArrayInts extends AbstractArray {
 
     private int[] array;
@@ -75,10 +77,12 @@ public final class ArrayInts extends AbstractArray {
         if (this.isEmpty()) {
             return "[]";
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append('[');
+        StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < super.size(); i++) {
-            sb.append(this.get(i)).append(',').append(' ');
+            sb.append(this.get(i));
+            if (super.size() - i != 1) {
+                sb.append(", ");
+            }
         }
         return sb.append("]").toString();
     }
@@ -318,103 +322,84 @@ public final class ArrayInts extends AbstractArray {
         return resultRemove;
     }
 
-    public boolean removeAll(int element) {
+    public boolean removeAll(final int element) {
         boolean resultRemove = false;
-        for (int i = 0; i < super.size(); i++) {
-            if (element == this.arrayInts[i]) {
-                this.removeByIndex(i);
+        int indexToRemove;
+        while (true) {
+            indexToRemove = this.indexOf(element);
+            if (indexToRemove == -1) {
+                break;
+            } else {
+                this.removeByIndex(indexToRemove);
                 resultRemove = true;
             }
         }
         return resultRemove;
     }
 
-    public boolean removeAll(int[] arrayInts) {
+    public boolean removeAll(final int... array) {
+        Objects.requireNonNull(array, "Array is null.");
         boolean resultRemoveAll = false;
-        if (Objects.nonNull(arrayInts)) {
-            if (arrayInts.length != 0) {
-                for (int i = 0; i < arrayInts.length; i++) {
-                    for (int j = 0; j < super.size(); j++) {
-                        if (arrayInts[i] == this.arrayInts[j]) {
-                            this.remove(j);
-                            resultRemoveAll = true;
-                        }
-                    }
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < super.size(); j++) {
+                if (array[i] == this.get(j)) {
+                    this.removeByIndex(j);
+                    resultRemoveAll = true;
                 }
             }
-        } else {
-            throw new NullPointerException("Argument array of integer numbers is null.");
         }
         return resultRemoveAll;
     }
 
     public void clear() {
-        this.arrayInts = new int[0];
+        this.array = new int[0];
     }
 
-    public boolean contains(int element) {
-        boolean resultContains = false;
-        int i = 0;
-        while (i < super.size()) {
-            if (element == this.arrayInts[i]) {
-                resultContains = true;
-                break;
-            }
-            i++;
-        }
-        return resultContains;
+    public boolean contains(final int element) {
+        return this.indexOf(element) >= 0;
     }
 
-    public boolean containsAll(int[] arrayInts) {
+    public boolean containsAll(final int... array) {
+        Objects.requireNonNull(array, "Array is null.");
         boolean resultContainsAll = true;
-        if (Objects.nonNull(arrayInts)) {
-            if (arrayInts.length != 0) {
-                for (int i = 0; i < arrayInts.length; i++) {
-                    if (!this.contains(arrayInts[i])) {
-                        resultContainsAll = false;
-                    }
-                }
+        for (int i : array) {
+            if (!this.contains(i)) {
+                resultContainsAll = false;
             }
-        } else {
-            throw new NullPointerException("Argument array of integer numbers is null.");
         }
         return resultContainsAll;
     }
 
-    public boolean retainAll(int[] arrayInts) {
+    public boolean retainAll(final int... array) {
+        Objects.requireNonNull(array, "Array is null.");
         boolean resultRetainAll = false;
-        if (Objects.nonNull(arrayInts)) {
-            if (arrayInts.length != 0) {
-                for (int i = 0; i < arrayInts.length; i++) {
-                    for (int j = 0; j < super.size(); j++) {
-                        if (arrayInts[i] != this.arrayInts[j]) {
-                            this.removeByIndex(j);
-                            resultRetainAll = true;
-                        }
-                    }
-                }
+        for (int i = super.size() - 1; i >= 0; i--) {
+            int val = this.get(i);
+            if (!this.contains(val)) {
+                this.removeByIndex(i);
+                resultRetainAll = true;
             }
-        } else {
-            throw new NullPointerException("Argument array of integer numbers is null.");
         }
         return resultRetainAll;
     }
 
-    public int indexOf(int element) {
+    public int indexOf(final int element) {
         int resultIndexOf = -1;
         for (int i = 0; i < super.size(); i++) {
-            if (element == this.arrayInts[i]) {
+            if (element == this.get(i)) {
                 resultIndexOf = i;
+                break;
             }
         }
         return resultIndexOf;
     }
 
-    public int lastIndexOf(int element) {
+    public int lastIndexOf(final int element) {
         int resultLastIndexOf = -1;
-        for (int i = super.size() - 1; i > 0; i--) {
-            if (element == this.arrayInts[i]) {
+        for (int i = super.size() - 1; i >= 0; i--) {
+            if (element == this.get(i)) {
                 resultLastIndexOf = i;
+                break;
             }
         }
         return resultLastIndexOf;
