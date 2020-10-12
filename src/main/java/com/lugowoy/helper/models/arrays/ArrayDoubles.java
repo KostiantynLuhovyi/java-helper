@@ -15,10 +15,12 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @since 2.0
  */
-//todo write doc's
+//TODO write doc's
+//TODO add methods for working with an object of this class,
+// and not with primitive arrays
 public final class ArrayDoubles extends AbstractArray {
 
     private double[] array;
@@ -74,10 +76,12 @@ public final class ArrayDoubles extends AbstractArray {
         if (this.isEmpty()) {
             return "[]";
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append('[');
+        StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < super.size(); i++) {
-            sb.append(this.get(i)).append(',').append(' ');
+            sb.append(this.get(i));
+            if (super.size() - i != 1) {
+                sb.append(", ");
+            }
         }
         return sb.append("]").toString();
     }
@@ -316,103 +320,84 @@ public final class ArrayDoubles extends AbstractArray {
         return resultRemove;
     }
 
-    public boolean removeAll(double element) {
+    public boolean removeAll(final double element) {
         boolean resultRemove = false;
-        for (int i = 0; i < super.size(); i++) {
-            if (element == this.arrayDoubles[i]) {
-                this.removeByIndex(i);
+        int indexToRemove;
+        while (true) {
+            indexToRemove = this.indexOf(element);
+            if (indexToRemove == -1) {
+                break;
+            } else {
+                this.removeByIndex(indexToRemove);
                 resultRemove = true;
             }
         }
         return resultRemove;
     }
 
-    public boolean removeAll(double[] arrayDoubles) {
+    public boolean removeAll(final double... array) {
+        Objects.requireNonNull(array, "Array is null.");
         boolean resultRemoveAll = false;
-        if (Objects.nonNull(arrayDoubles)) {
-            if (arrayDoubles.length != 0) {
-                for (int i = 0; i < arrayDoubles.length; i++) {
-                    for (int j = 0; j < super.size(); j++) {
-                        if (arrayDoubles[i] == this.arrayDoubles[j]) {
-                            this.remove(j);
-                            resultRemoveAll = true;
-                        }
-                    }
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < super.size(); j++) {
+                if (array[i] == this.get(j)) {
+                    this.removeByIndex(j);
+                    resultRemoveAll = true;
                 }
             }
-        } else {
-            throw new NullPointerException("Argument array of double numbers is null.");
         }
         return resultRemoveAll;
     }
 
     public void clear() {
-        this.arrayDoubles = new double[0];
+        this.array = new double[0];
     }
 
-    public boolean contains(double element) {
-        boolean resultContains = false;
-        int i = 0;
-        while (i < super.size()) {
-            if (element == this.arrayDoubles[i]) {
-                resultContains = true;
-                break;
-            }
-            i++;
-        }
-        return resultContains;
+    public boolean contains(final double element) {
+        return this.indexOf(element) >= 0;
     }
 
-    public boolean containsAll(double[] arrayDoubles) {
+    public boolean containsAll(final double... array) {
+        Objects.requireNonNull(array, "Array is null.");
         boolean resultContainsAll = true;
-        if (Objects.nonNull(arrayDoubles)) {
-            if (arrayDoubles.length != 0) {
-                for (int i = 0; i < arrayDoubles.length; i++) {
-                    if (!this.contains(arrayDoubles[i])) {
-                        resultContainsAll = false;
-                    }
-                }
+        for (double i : array) {
+            if (!this.contains(i)) {
+                resultContainsAll = false;
             }
-        } else {
-            throw new NullPointerException("Argument array of double numbers is null.");
         }
         return resultContainsAll;
     }
 
-    public boolean retainAll(double[] arrayDoubles) {
+    public boolean retainAll(final double... array) {
+        Objects.requireNonNull(array, "Array is null.");
         boolean resultRetainAll = false;
-        if (Objects.nonNull(arrayDoubles)) {
-            if (arrayDoubles.length != 0) {
-                for (int i = 0; i < arrayDoubles.length; i++) {
-                    for (int j = 0; j < super.size(); j++) {
-                        if (arrayDoubles[i] != this.arrayDoubles[j]) {
-                            this.removeByIndex(j);
-                            resultRetainAll = true;
-                        }
-                    }
-                }
+        for (int i = super.size() - 1; i >= 0; i--) {
+            double val = this.get(i);
+            if (!this.contains(val)) {
+                this.removeByIndex(i);
+                resultRetainAll = true;
             }
-        } else {
-            throw new NullPointerException("Argument array of double numbers is null.");
         }
         return resultRetainAll;
     }
 
-    public int indexOf(double element) {
+    public int indexOf(final double element) {
         int resultIndexOf = -1;
         for (int i = 0; i < super.size(); i++) {
-            if (element == this.arrayDoubles[i]) {
+            if (element == this.get(i)) {
                 resultIndexOf = i;
+                break;
             }
         }
         return resultIndexOf;
     }
 
-    public int lastIndexOf(double element) {
+    public int lastIndexOf(final double element) {
         int resultLastIndexOf = -1;
-        for (int i = super.size() - 1; i > 0; i--) {
-            if (element == this.arrayDoubles[i]) {
+        for (int i = super.size() - 1; i >= 0; i--) {
+            if (element == this.get(i)) {
                 resultLastIndexOf = i;
+                break;
             }
         }
         return resultLastIndexOf;
