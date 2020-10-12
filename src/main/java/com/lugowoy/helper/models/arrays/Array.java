@@ -766,12 +766,14 @@ public class Array<T> extends AbstractArray implements List<T> {
             for (int i = 0; i < super.size(); i++) {
                 if (this.get(i) == null) {
                     resultIndexOf = i;
+                    break;
                 }
             }
         } else {
             for (int i = 0; i < super.size(); i++) {
                 if (o.equals(this.get(i))) {
                     resultIndexOf = i;
+                    break;
                 }
             }
         }
@@ -802,12 +804,14 @@ public class Array<T> extends AbstractArray implements List<T> {
             for (int i = super.size() - 1; i >= 0; i--) {
                 if (this.get(i) == null) {
                     resultLastIndexOf = i;
+                    break;
                 }
             }
         } else {
             for (int i = super.size() - 1; i >= 0; i--) {
                 if (this.get(i).equals(o)) {
                     resultLastIndexOf = i;
+                    break;
                 }
             }
         }
