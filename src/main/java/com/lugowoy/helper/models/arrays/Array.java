@@ -21,6 +21,7 @@ import java.util.function.Consumer;
  * @version 4.9
  * @since 1.0
  */
+//TODO revision of documentation
 public class Array<T> extends AbstractArray implements List<T> {
 
     private Object[] array;
@@ -43,7 +44,6 @@ public class Array<T> extends AbstractArray implements List<T> {
      *
      * @param array an array containing elements to initialize the
      * generated array.
-     *
      * @throws NullPointerException if the {@code array} is null.
      * @throws LengthOutOfRangeException if the size(length) of the array out of
      * range ​​from {@link AbstractArray#LOWER_CAPACITY} to {@link
@@ -62,7 +62,6 @@ public class Array<T> extends AbstractArray implements List<T> {
      * the {@code capacity} value.
      *
      * @param capacity an array capacity value.
-     *
      * @throws LengthOutOfRangeException if the {@code capacity} value out of
      * range from {@link AbstractArray#LOWER_CAPACITY} to {@link
      * AbstractArray#UPPER_CAPACITY}.
@@ -81,7 +80,6 @@ public class Array<T> extends AbstractArray implements List<T> {
      *
      * @param array an array containing elements to initialize the
      * generated array.
-     *
      * @throws NullPointerException if the {@code array} is null.
      * @throws LengthOutOfRangeException if the size(length) value of the array
      * out of range ​​from {@link AbstractArray#LOWER_CAPACITY} to {@link
@@ -242,7 +240,6 @@ public class Array<T> extends AbstractArray implements List<T> {
      * overriding class has specified a concurrent modification policy.
      *
      * @param action the action to be performed for each element.
-     *
      * @throws NullPointerException if the specified action is null.
      * @throws NullPointerException if the element is null.
      * @since 1.8
@@ -330,9 +327,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      * Returns the element at the specified position in this list.
      *
      * @param index index of the element to return
-     *
      * @return the element at the specified position in this list
-     *
      * @throws IndexOutOfBoundsException if the index is out of range
      * ({@code index < 0 || index >= size()})
      */
@@ -349,9 +344,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      *
      * @param index index of the element to replace
      * @param element element to be stored at the specified position
-     *
      * @return the element previously at the specified position
-     *
      * @throws UnsupportedOperationException if the {@code set} operation
      * is not supported by this list
      * @throws ClassCastException if the class of the specified element
@@ -383,9 +376,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      * on what elements may be added.
      *
      * @param t element to be appended to this list
-     *
      * @return {@code true} (as specified by {@link Collection#add})
-     *
      * @throws UnsupportedOperationException if the {@code add} operation
      * is not supported by this list
      * @throws ClassCastException if the class of the specified element
@@ -418,7 +409,6 @@ public class Array<T> extends AbstractArray implements List<T> {
      *
      * @param index index at which the specified element is to be inserted
      * @param element element to be inserted
-     *
      * @throws UnsupportedOperationException if the {@code add} operation
      * is not supported by this list
      * @throws ClassCastException if the class of the specified element
@@ -452,9 +442,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      * specified collection is this list, and it's nonempty.)
      *
      * @param c collection containing elements to be added to this list
-     *
      * @return {@code true} if this list changed as a result of the call
-     *
      * @throws UnsupportedOperationException if the {@code addAll} operation
      * is not supported by this list
      * @throws ClassCastException if the class of an element of the specified
@@ -497,9 +485,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @param index index at which to insert the first element from the
      * specified collection
      * @param c collection containing elements to be added to this list
-     *
      * @return {@code true} if this list changed as a result of the call
-     *
      * @throws UnsupportedOperationException if the {@code addAll} operation
      * is not supported by this list
      * @throws ClassCastException if the class of an element of the specified
@@ -547,14 +533,14 @@ public class Array<T> extends AbstractArray implements List<T> {
      *
      * @param o element to be removed from this list, if present
      * @return {@code true} if this list contained the specified element
-     * @throws ClassCastException            if the type of the specified element
-     *                                       is incompatible with this list
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException          if the specified element is null and this
-     *                                       list does not permit null elements
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @throws ClassCastException if the type of the specified element
+     * is incompatible with this list
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @throws NullPointerException if the specified element is null and this
+     * list does not permit null elements
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
      * @throws UnsupportedOperationException if the {@code remove} operation
-     *                                       is not supported by this list
+     * is not supported by this list
      */
     @Override
     public boolean remove(final Object o) {
@@ -579,9 +565,9 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @param index the index of the element to be removed
      * @return the element previously at the specified position
      * @throws UnsupportedOperationException if the {@code remove} operation
-     *                                       is not supported by this list
-     * @throws IndexOutOfBoundsException     if the index is out of range
-     *                                       ({@code index < 0 || index >= size()})
+     * is not supported by this list
+     * @throws IndexOutOfBoundsException if the index is out of range
+     * ({@code index < 0 || index >= size()})
      */
     @Override
     public T remove(final int index) {
@@ -620,14 +606,14 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @param c collection containing elements to be removed from this list
      * @return {@code true} if this list changed as a result of the call
      * @throws UnsupportedOperationException if the {@code removeAll} operation
-     *                                       is not supported by this list
-     * @throws ClassCastException            if the class of an element of this list
-     *                                       is incompatible with the specified collection
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException          if this list contains a null element and the
-     *                                       specified collection does not permit null elements
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>),
-     *                                       or if the specified collection is null
+     * is not supported by this list
+     * @throws ClassCastException if the class of an element of this list
+     * is incompatible with the specified collection
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @throws NullPointerException if this list contains a null element and the
+     * specified collection does not permit null elements
+     * (<a href="Collection.html#optional-restrictions">optional</a>),
+     * or if the specified collection is null
      * @see #remove(Object)
      * @see #contains(Object)
      */
@@ -650,7 +636,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      * The list will be empty after this call returns.
      *
      * @throws UnsupportedOperationException if the {@code clear} operation
-     *                                       is not supported by this list
+     * is not supported by this list
      */
     @Override
     public void clear() {
@@ -666,8 +652,8 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @param o element whose presence in this list is to be tested
      * @return {@code true} if this list contains the specified element
      * @throws ClassCastException if the type of the specified element
-     *                            is incompatible with this list
-     *                            (<a href="Collection.html#optional-restrictions">optional</a>)
+     * is incompatible with this list
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     @Override
     public boolean contains(final Object o) {
@@ -681,15 +667,15 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @param c collection to be checked for containment in this list
      * @return {@code true} if this list contains all of the elements of the
      * specified collection
-     * @throws ClassCastException   if the types of one or more elements
-     *                              in the specified collection are incompatible with this
-     *                              list
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @throws ClassCastException if the types of one or more elements
+     * in the specified collection are incompatible with this
+     * list
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
      * @throws NullPointerException if the specified collection contains one
-     *                              or more null elements and this list does not permit null
-     *                              elements
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>),
-     *                              or if the specified collection is null
+     * or more null elements and this list does not permit null
+     * elements
+     * (<a href="Collection.html#optional-restrictions">optional</a>),
+     * or if the specified collection is null
      * @see #contains(Object)
      */
     @Override
@@ -715,14 +701,14 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @param c collection containing elements to be retained in this list
      * @return {@code true} if this list changed as a result of the call
      * @throws UnsupportedOperationException if the {@code retainAll} operation
-     *                                       is not supported by this list
-     * @throws ClassCastException            if the class of an element of this list
-     *                                       is incompatible with the specified collection
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>)
-     * @throws NullPointerException          if this list contains a null element and the
-     *                                       specified collection does not permit null elements
-     *                                       (<a href="Collection.html#optional-restrictions">optional</a>),
-     *                                       or if the specified collection is null
+     * is not supported by this list
+     * @throws ClassCastException if the class of an element of this list
+     * is incompatible with the specified collection
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @throws NullPointerException if this list contains a null element and the
+     * specified collection does not permit null elements
+     * (<a href="Collection.html#optional-restrictions">optional</a>),
+     * or if the specified collection is null
      * @see #remove(Object)
      * @see #contains(Object)
      */
@@ -752,12 +738,12 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @param o element to search for
      * @return the index of the first occurrence of the specified element in
      * this list, or -1 if this list does not contain the element
-     * @throws ClassCastException   if the type of the specified element
-     *                              is incompatible with this list
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @throws ClassCastException if the type of the specified element
+     * is incompatible with this list
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
      * @throws NullPointerException if the specified element is null and this
-     *                              list does not permit null elements
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>)
+     * list does not permit null elements
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     @Override
     public int indexOf(final Object o) {
@@ -790,12 +776,12 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @param o element to search for
      * @return the index of the last occurrence of the specified element in
      * this list, or -1 if this list does not contain the element
-     * @throws ClassCastException   if the type of the specified element
-     *                              is incompatible with this list
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>)
+     * @throws ClassCastException if the type of the specified element
+     * is incompatible with this list
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
      * @throws NullPointerException if the specified element is null and this
-     *                              list does not permit null elements
-     *                              (<a href="Collection.html#optional-restrictions">optional</a>)
+     * list does not permit null elements
+     * (<a href="Collection.html#optional-restrictions">optional</a>)
      */
     @Override
     public int lastIndexOf(final Object o) {
@@ -839,11 +825,11 @@ public class Array<T> extends AbstractArray implements List<T> {
      * return the element with the specified index minus one.
      *
      * @param index index of the first element to be returned from the
-     *              list iterator (by a call to {@link ListIterator#next next})
+     * list iterator (by a call to {@link ListIterator#next next})
      * @return a list iterator over the elements in this list (in proper
      * sequence), starting at the specified position in the list
      * @throws IndexOutOfBoundsException if the index is out of range
-     *                                   ({@code index < 0 || index > size()})
+     * ({@code index < 0 || index > size()})
      */
     @Override
     public ListIterator<T> listIterator(final int index) {
