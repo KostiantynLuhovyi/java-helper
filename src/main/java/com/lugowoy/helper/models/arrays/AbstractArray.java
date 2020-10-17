@@ -11,9 +11,9 @@ import java.util.RandomAccess;
 /**
  * The abstract class describing the root for the hierarchy of classes
  * representing dynamic arrays for storing various objects.<br>The class
- * contains a size attribute that is used to determine the length of a
- * dynamic array. There are also accessor methods (public getter and
- * protected setter) to this attribute.
+ * contains a size attribute that is used to determine the actual size of the
+ * dynamic array, not the total capacity of the array itself. This attribute
+ * also has accessor methods (public getter and protected setter).
  * <p>
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
@@ -21,6 +21,7 @@ import java.util.RandomAccess;
  * @version 2.2
  * @since 2.0
  */
+//TODO revision of documentation
 public abstract class AbstractArray implements Model, RandomAccess {
 
     private static final int ARRAY_HEADER = 8;
@@ -55,7 +56,6 @@ public abstract class AbstractArray implements Model, RandomAccess {
     protected AbstractArray() {
     }
 
-    //TODO change documentation
     /**
      * Constructs an object of an array (for the heir class) by initializing it
      * with the capacity of the {@code capacity} argument. The argument {@code
@@ -63,7 +63,6 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * AbstractArray#LOWER_CAPACITY} to {@link AbstractArray#UPPER_CAPACITY}.
      *
      * @param capacity the capacity of the created array.
-     *
      * @throws LengthOutOfRangeException if the {@code capacity} value out of
      * range from {@link AbstractArray#LOWER_CAPACITY} to {@link
      * AbstractArray#UPPER_CAPACITY}.
@@ -116,13 +115,12 @@ public abstract class AbstractArray implements Model, RandomAccess {
 
     /**
      * Sets the size of an array.<br>The argument {@code size} must range
-     * (inclusive, respectively) from {@link AbstractArray#LOWER_SIZE} to {@link
-     * AbstractArray#UPPER_SIZE}.
+     * (inclusive, respectively) from {@link AbstractArray#LOWER_CAPACITY} to {@link
+     * AbstractArray#UPPER_CAPACITY}.
      *
      * @param size the size of an array.
-     *
      * @throws LengthOutOfRangeException if the {@code size} value out of range
-     * from {@link AbstractArray#LOWER_SIZE} to {@link AbstractArray#UPPER_SIZE}.
+     * from {@link AbstractArray#LOWER_CAPACITY} to {@link AbstractArray#UPPER_CAPACITY}.
      */
     protected void setSize(final int size) {
         CheckerArray.checkLength(size);
@@ -143,7 +141,6 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * must be positive.
      *
      * @param newModCount the value of the new modification count.
-     *
      * @throws IllegalArgumentException if the {@code newModCount} argument
      * is negative.
      */
