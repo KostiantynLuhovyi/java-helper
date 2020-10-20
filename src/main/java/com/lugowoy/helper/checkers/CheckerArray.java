@@ -2,6 +2,7 @@ package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.models.arrays.AbstractArray;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.Capacity;
 import com.lugowoy.helper.utils.LengthOutOfRangeException;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,27 +15,12 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 2.1
+ * @version 2.2
  * @since 1.6.6
  */
 public final class CheckerArray {
 
-    /**
-     * The lower boundary value of the length of the array.
-     */
-    public static final int LOWER_BOUND_LENGTH = 0;
-
-    /**
-     * The upper boundary value of the length of the array.
-     */
-    public static final int UPPER_BOUND_LENGTH;
-
-    private static final int ARRAY_HEADER = 8;
-    private static final String MSG_EXC_ARRAY_IS_NULL = "Array is null.";
-
-    static {
-        UPPER_BOUND_LENGTH = Integer.MAX_VALUE - ARRAY_HEADER;
-    }
+    private static final String MSG_ARRAY_IS_NULL = "Array is null.";
 
     private CheckerArray() {
     }
@@ -56,13 +42,13 @@ public final class CheckerArray {
      */
     public static void check(@NotNull final AbstractArray array,
                              final int upperBoundLength) {
-        Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                                        UPPER_BOUND_LENGTH);
+        Objects.requireNonNull(array, MSG_ARRAY_IS_NULL);
+        CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
         if (array.size() > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range from "
-                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
+                    + Capacity.LOWER.get() + " to " + upperBoundLength);
         }
     }
 
@@ -84,13 +70,13 @@ public final class CheckerArray {
      */
     public static <T> void check(@NotNull final T[] array,
                                  final int upperBoundLength) {
-        Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                                        UPPER_BOUND_LENGTH);
+        Objects.requireNonNull(array, MSG_ARRAY_IS_NULL);
+        CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range from "
-                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
+                    + Capacity.LOWER.get() + " to " + upperBoundLength);
         }
     }
 
@@ -111,13 +97,13 @@ public final class CheckerArray {
      */
     public static void check(@NotNull final int[] array,
                              final int upperBoundLength) {
-        Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                                        UPPER_BOUND_LENGTH);
+        Objects.requireNonNull(array, MSG_ARRAY_IS_NULL);
+        CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range from "
-                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
+                    + Capacity.LOWER.get() + " to " + upperBoundLength);
         }
     }
 
@@ -138,13 +124,13 @@ public final class CheckerArray {
      */
     public static void check(@NotNull final double[] array,
                              final int upperBoundLength) {
-        Objects.requireNonNull(array, MSG_EXC_ARRAY_IS_NULL);
-        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                                        UPPER_BOUND_LENGTH);
+        Objects.requireNonNull(array, MSG_ARRAY_IS_NULL);
+        CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length of the array out of range from "
-                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
+                    + Capacity.LOWER.get() + " to " + upperBoundLength);
         }
     }
 
@@ -159,11 +145,12 @@ public final class CheckerArray {
      * CheckerArray#UPPER_BOUND_LENGTH}.
      */
     public static void checkLength(final int lengthArray) {
-        if (lengthArray < LOWER_BOUND_LENGTH
-            || lengthArray > UPPER_BOUND_LENGTH) {
+        if (lengthArray < Capacity.LOWER.get()
+            || lengthArray > Capacity.UPPER.get()) {
             throw new LengthOutOfRangeException(
                     "Length value " + lengthArray + " out of range from "
-                    + LOWER_BOUND_LENGTH + " to " + UPPER_BOUND_LENGTH);
+                    + Capacity.LOWER.get() + " to "
+                    + Capacity.UPPER.get());
         }
     }
 
@@ -183,13 +170,13 @@ public final class CheckerArray {
      */
     public static void checkLength(final int lengthArray,
                                    final int upperBoundLength) {
-        CheckerBoundNumber.checkInRange(upperBoundLength, LOWER_BOUND_LENGTH,
-                                        UPPER_BOUND_LENGTH);
-        if (lengthArray < LOWER_BOUND_LENGTH
+        CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
+        if (lengthArray < Capacity.LOWER.get()
             || lengthArray > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length value " + lengthArray + " out of range from "
-                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
+                    + Capacity.LOWER.get() + " to " + upperBoundLength);
         }
     }
 
