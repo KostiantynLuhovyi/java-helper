@@ -27,18 +27,16 @@ public final class CheckerArray {
 
     /**
      * Checks the {@code array} is not {@code null} and that the length value of
-     * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * (inclusive) to {@code upperBoundLength}(inclusive).
+     * the {@code array} in range from {@link Capacity#LOWER}(inclusive)
+     * to {@code upperBoundLength}(inclusive).
      *
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
      * @throws NullPointerException if the {@code array} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
-     * out range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * out range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      * @throws LengthOutOfRangeException if the length value of the {@code
-     * array} out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to
-     * {@code upperBoundLength}.
+     * array} out of range from {@link Capacity#LOWER} to {@code upperBoundLength}.
      */
     public static void check(@NotNull final AbstractArray array,
                              final int upperBoundLength) {
@@ -54,19 +52,17 @@ public final class CheckerArray {
 
     /**
      * Checks the {@code array} is not {@code null} and that the length value of
-     * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * (inclusive) to {@code upperBoundLength}(inclusive).
+     * the {@code array} in range from {@link Capacity#LOWER}(inclusive)
+     * to {@code upperBoundLength}(inclusive).
      *
      * @param <T> the type of the {@code array} to check.
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
      * @throws NullPointerException if the {@code array} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
-     * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      * @throws LengthOutOfRangeException if the length value of the {@code
-     * array} out of range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to
-     * {@code upperBoundLength}.
+     * array} out of range ​​from {@link Capacity#LOWER} to {@code upperBoundLength}.
      */
     public static <T> void check(@NotNull final T[] array,
                                  final int upperBoundLength) {
@@ -82,18 +78,16 @@ public final class CheckerArray {
 
     /**
      * Checks the {@code array} is not {@code null} and that the length value of
-     * the {@code array} in range from {@link CheckerArray#LOWER_BOUND_LENGTH}
-     * (inclusive) to {@code upperBoundLength}(inclusive).
+     * the {@code array} in range from {@link Capacity#LOWER}(inclusive)
+     * to {@code upperBoundLength}(inclusive).
      *
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
      * @throws NullPointerException if the {@code array} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
-     * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      * @throws LengthOutOfRangeException if the length value of the {@code
-     * array} out of range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to
-     * {@code upperBoundLength}.
+     * array} out of range ​​from {@link Capacity#LOWER} to {@code upperBoundLength}.
      */
     public static void check(@NotNull final int[] array,
                              final int upperBoundLength) {
@@ -109,18 +103,17 @@ public final class CheckerArray {
 
     /**
      * Checks the {@code array} is not {@code null} and that the length value of
-     * the array in range from {@link CheckerArray#LOWER_BOUND_LENGTH}(inlusive)
+     * the array in range from {@link Capacity#LOWER}(inclusive)
      * to {@code upperBoundLength}(inclusive).
      *
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
      * @throws NullPointerException if the {@code array} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
-     * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      * @throws LengthOutOfRangeException if the length value of the {@code
-     * array} out of range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to
-     * {@code upperBoundLength}.
+     * array} out of range ​​from {@link Capacity#LOWER}
+     * to {@code upperBoundLength}.
      */
     public static void check(@NotNull final double[] array,
                              final int upperBoundLength) {
@@ -136,13 +129,11 @@ public final class CheckerArray {
 
     /**
      * Checks the {@code lengthArray} value in range from {@link
-     * CheckerArray#LOWER_BOUND_LENGTH}(inclusive) to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}(inclusive).
+     * Capacity#LOWER}(inclusive) to {@link Capacity#UPPER}(inclusive).
      *
      * @param lengthArray the {@code lengthArray} value to check.
      * @throws LengthOutOfRangeException if the {@code lengthArray} value out of
-     * range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * range ​​from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     public static void checkLength(final int lengthArray) {
         if (lengthArray < Capacity.LOWER.get()
@@ -156,16 +147,16 @@ public final class CheckerArray {
 
     /**
      * Checks the {@code lengthArray} value in range from {@link
-     * CheckerArray#LOWER_BOUND_LENGTH}(inclusive) to {@code
+     * Capacity#LOWER}(inclusive) to {@code
      * upperBoundLength}(inclusive).
      *
      * @param lengthArray the {@code lengthArray} value to check.
      * @param upperBoundLength the upper bound value of the length to check.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
-     * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * out of range from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
      * @throws LengthOutOfRangeException if the {@code lengthArray} value out of
-     * range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@code
+     * range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
      */
     public static void checkLength(final int lengthArray,
