@@ -1,6 +1,7 @@
 package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.models.matrices.AbstractMatrix;
+import com.lugowoy.helper.utils.Capacity;
 import com.lugowoy.helper.utils.MatrixColumnOutOfRangeException;
 import com.lugowoy.helper.utils.MatrixRowOutOfRangeException;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
@@ -16,22 +17,10 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 21.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.4
+ * @version 1.5
  * @since 2.0
  */
 public final class CheckerMatrix {
-
-    /**
-     * The lower value of the rows and columns in the matrix.
-     */
-    public static final int LOWER_VALUE = 0;
-
-    private static final int ARRAY_HEADER = 8;
-
-    /**
-     * The upper value of the rows and columns in the matrix.
-     */
-    public static final int UPPER_VALUE = Integer.MAX_VALUE - ARRAY_HEADER;
 
     private static final String MSG_MATRIX_IS_NULL = "Matrix is null.";
 
@@ -74,17 +63,17 @@ public final class CheckerMatrix {
         CheckerMatrix.checkUpperMatrixBounds(upperBoundRows, upperBoundColumns);
         int matrixRows = matrix.getRows();
         int matrixColumns = matrix.getColumns();
-        if (matrixRows < LOWER_VALUE || matrixRows > upperBoundRows) {
-            if (matrixColumns < LOWER_VALUE
-                    || matrixColumns > upperBoundColumns) {
+        if (matrixRows < Capacity.LOWER.get() || matrixRows > upperBoundRows) {
+            if (matrixColumns < Capacity.UPPER.get()
+                || matrixColumns > upperBoundColumns) {
                 throw new MatrixColumnOutOfRangeException(
-                        "Matrix columns out of range (" + LOWER_VALUE + " - "
-                                + upperBoundColumns + ").");
+                        "Matrix columns out of range from "
+                        + Capacity.LOWER.get() + " to " + upperBoundColumns);
             }
         } else {
             throw new MatrixRowOutOfRangeException(
-                    "Matrix rows out of range (" + LOWER_VALUE + " - "
-                            + upperBoundRows + ").");
+                    "Matrix rows out of range from" + Capacity.LOWER.get()
+                    + " to " + upperBoundRows);
         }
     }
 
@@ -126,15 +115,15 @@ public final class CheckerMatrix {
         int matrixRows = matrix.length;
         if (matrixRows > upperBoundRows) {
             throw new MatrixRowOutOfRangeException(
-                    "Matrix rows out of range (" + LOWER_VALUE + " - "
-                            + upperBoundRows + ").");
+                    "Matrix rows out of range from " + Capacity.LOWER.get()
+                    + " to " + upperBoundRows);
         }
         for (final T[] tArr : matrix) {
             int matrixColumns = tArr.length;
             if (matrixColumns > upperBoundColumns) {
                 throw new MatrixColumnOutOfRangeException(
-                        "Matrix columns out of range (" + LOWER_VALUE + " - "
-                                + upperBoundColumns + ").");
+                        "Matrix columns out of range from " + Capacity.LOWER.get()
+                        + " to " + upperBoundColumns);
             }
         }
     }
@@ -172,22 +161,22 @@ public final class CheckerMatrix {
                                    final int upperBoundRows,
                                    final int upperBoundColumns) {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
-        CheckerBoundNumber.checkInRange(upperBoundRows, LOWER_VALUE,
-                                        UPPER_VALUE);
-        CheckerBoundNumber.checkInRange(upperBoundColumns, LOWER_VALUE,
-                                        UPPER_VALUE);
+        CheckerBoundNumber.checkInRange(upperBoundRows, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(upperBoundColumns, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
         int matrixRows = matrix.length;
-        if (matrixRows > UPPER_VALUE) {
+        if (matrixRows > Capacity.LOWER.get()) {
             throw new MatrixRowOutOfRangeException(
-                    "Matrix rows out of range (" + LOWER_VALUE + " - "
-                            + upperBoundRows + ").");
+                    "Matrix rows out of range from " + Capacity.LOWER.get()
+                    + " to " + upperBoundRows);
         }
         for (final int[] ints : matrix) {
             int matrixColumns = ints.length;
-            if (matrixColumns > UPPER_VALUE) {
+            if (matrixColumns > Capacity.UPPER.get()) {
                 throw new MatrixColumnOutOfRangeException(
-                        "Matrix columns out of range (" + LOWER_VALUE + " - "
-                                + upperBoundColumns + ").");
+                        "Matrix columns out of range from " + Capacity.LOWER.get()
+                        + " to " + upperBoundColumns);
             }
         }
     }
@@ -227,17 +216,17 @@ public final class CheckerMatrix {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
         CheckerMatrix.checkUpperMatrixBounds(upperBoundRows, upperBoundColumns);
         int matrixRows = matrix.length;
-        if (matrixRows > UPPER_VALUE) {
+        if (matrixRows > Capacity.UPPER.get()) {
             throw new MatrixRowOutOfRangeException(
-                    "Matrix rows out of range (" + LOWER_VALUE + " - "
-                            + upperBoundRows + ").");
+                    "Matrix rows out of range from " + Capacity.LOWER.get()
+                    + " to " + upperBoundRows);
         }
         for (final double[] doubles : matrix) {
             int matrixColumns = doubles.length;
-            if (matrixColumns > UPPER_VALUE) {
+            if (matrixColumns > Capacity.UPPER.get()) {
                 throw new MatrixColumnOutOfRangeException(
-                        "Matrix columns out of range (" + LOWER_VALUE + " - "
-                                + upperBoundColumns + ").");
+                        "Matrix columns out of range from " + Capacity.LOWER.get()
+                        + " to " + upperBoundColumns);
             }
         }
     }
@@ -265,8 +254,8 @@ public final class CheckerMatrix {
         CheckerMatrix.checkBounds(lowerBoundRows, upperBoundRows);
         if (rows < lowerBoundRows || rows > upperBoundRows) {
             throw new MatrixRowOutOfRangeException(
-                    "Matrix rows out of range (" + lowerBoundRows + " - "
-                            + upperBoundRows + ").");
+                    "Matrix rows out of range from " + lowerBoundRows
+                    + " to " + upperBoundRows);
         }
     }
 
@@ -294,22 +283,27 @@ public final class CheckerMatrix {
         CheckerMatrix.checkBounds(lowerBoundColumns, upperBoundColumns);
         if (columns < lowerBoundColumns || columns > upperBoundColumns) {
             throw new MatrixColumnOutOfRangeException(
-                    "Matrix columns out of range (" + lowerBoundColumns + " - "
-                            + upperBoundColumns + ").");
+                    "Matrix columns out of range from " + lowerBoundColumns
+                    + " to " + upperBoundColumns);
         }
     }
 
     private static void checkUpperMatrixBounds(final int upperRows,
                                                final int upperColumns) {
-        CheckerBoundNumber.checkInRange(upperRows, LOWER_VALUE, UPPER_VALUE);
-        CheckerBoundNumber.checkInRange(upperColumns, LOWER_VALUE, UPPER_VALUE);
+        CheckerBoundNumber.checkInRange(upperRows, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(upperColumns, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
     }
 
     private static void checkBounds(final int lowerBound,
-                                          final int upperBound) {
-        CheckerBoundNumber.checkInRange(lowerBound, LOWER_VALUE, UPPER_VALUE);
-        CheckerBoundNumber.checkInRange(upperBound, LOWER_VALUE, UPPER_VALUE);
-        CheckerBoundNumber.checkLowerGreaterOrEqualUpper(lowerBound, upperBound);
+                                    final int upperBound) {
+        CheckerBoundNumber.checkInRange(lowerBound, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(upperBound, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
+        CheckerBoundNumber.checkLowerGreaterOrEqualUpper(lowerBound,
+                                                         upperBound);
     }
 
 }
