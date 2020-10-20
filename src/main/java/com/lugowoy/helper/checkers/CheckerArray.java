@@ -14,7 +14,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 2.0
+ * @version 2.1
  * @since 1.6.6
  */
 public final class CheckerArray {
@@ -62,8 +62,8 @@ public final class CheckerArray {
                                         UPPER_BOUND_LENGTH);
         if (array.size() > upperBoundLength) {
             throw new LengthOutOfRangeException(
-                    "Length of the array out of range(" + LOWER_BOUND_LENGTH
-                    + "-" + upperBoundLength + ").");
+                    "Length of the array out of range from "
+                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
         }
     }
 
@@ -91,8 +91,8 @@ public final class CheckerArray {
                                         UPPER_BOUND_LENGTH);
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
-                    "Length of the array out of range(" + LOWER_BOUND_LENGTH
-                    + "-" + upperBoundLength + ").");
+                    "Length of the array out of range from "
+                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
         }
     }
 
@@ -119,8 +119,8 @@ public final class CheckerArray {
                                         UPPER_BOUND_LENGTH);
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
-                    "Length of the array out of range(" + LOWER_BOUND_LENGTH
-                    + "-" + upperBoundLength + ").");
+                    "Length of the array out of range from "
+                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
         }
     }
 
@@ -147,8 +147,8 @@ public final class CheckerArray {
                                         UPPER_BOUND_LENGTH);
         if (array.length > upperBoundLength) {
             throw new LengthOutOfRangeException(
-                    "Length of the array out of range(" + LOWER_BOUND_LENGTH
-                    + "-" + upperBoundLength + ").");
+                    "Length of the array out of range from "
+                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
         }
     }
 
@@ -167,8 +167,8 @@ public final class CheckerArray {
         if (lengthArray < LOWER_BOUND_LENGTH
             || lengthArray > UPPER_BOUND_LENGTH) {
             throw new LengthOutOfRangeException(
-                    "Length value out of range(" + LOWER_BOUND_LENGTH + "-"
-                    + UPPER_BOUND_LENGTH + ").");
+                    "Length value " + lengthArray + " out of range from "
+                    + LOWER_BOUND_LENGTH + " to " + UPPER_BOUND_LENGTH);
         }
     }
 
@@ -194,8 +194,8 @@ public final class CheckerArray {
         if (lengthArray < LOWER_BOUND_LENGTH
             || lengthArray > upperBoundLength) {
             throw new LengthOutOfRangeException(
-                    "Length value out of range(" + LOWER_BOUND_LENGTH + "-"
-                    + upperBoundLength + ").");
+                    "Length value " + lengthArray + " out of range from "
+                    + LOWER_BOUND_LENGTH + " to " + upperBoundLength);
         }
     }
 
