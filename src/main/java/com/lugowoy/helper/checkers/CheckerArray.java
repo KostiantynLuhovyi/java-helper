@@ -46,7 +46,6 @@ public final class CheckerArray {
      *
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
-     *
      * @throws NullPointerException if the {@code array} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
@@ -75,7 +74,6 @@ public final class CheckerArray {
      * @param <T> the type of the {@code array} to check.
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
-     *
      * @throws NullPointerException if the {@code array} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
@@ -103,7 +101,6 @@ public final class CheckerArray {
      *
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
-     *
      * @throws NullPointerException if the {@code array} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
@@ -131,7 +128,6 @@ public final class CheckerArray {
      *
      * @param array the {@code array} to check.
      * @param upperBoundLength the upper bound value of the length to check.
-     *
      * @throws NullPointerException if the {@code array} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
@@ -158,7 +154,6 @@ public final class CheckerArray {
      * CheckerArray#UPPER_BOUND_LENGTH}(inclusive).
      *
      * @param lengthArray the {@code lengthArray} value to check.
-     *
      * @throws LengthOutOfRangeException if the {@code lengthArray} value out of
      * range ​​from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
      * CheckerArray#UPPER_BOUND_LENGTH}.
@@ -179,7 +174,6 @@ public final class CheckerArray {
      *
      * @param lengthArray the {@code lengthArray} value to check.
      * @param upperBoundLength the upper bound value of the length to check.
-     *
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
      * CheckerArray#UPPER_BOUND_LENGTH}.
