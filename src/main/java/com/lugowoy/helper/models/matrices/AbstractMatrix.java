@@ -1,7 +1,8 @@
 package com.lugowoy.helper.models.matrices;
 
 import com.lugowoy.helper.models.Model;
-import com.lugowoy.helper.utils.checking.CheckerMatrix;
+import com.lugowoy.helper.checkers.CheckerMatrix;
+import com.lugowoy.helper.utils.Capacity;
 
 import java.util.Objects;
 
@@ -9,17 +10,16 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 22.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 2.0
  */
-//todo write doc's
+//TODO revision of documentation
 public class AbstractMatrix implements Model {
 
     /**
      * Default rows of the matrix.
      */
     public static final int DEFAULT_ROWS = 10;
-
     /**
      * Default columns of the matrix.
      */
@@ -33,43 +33,46 @@ public class AbstractMatrix implements Model {
         this.columns = DEFAULT_COLUMNS;
     }
 
-    public AbstractMatrix(int rows, int columns) {
-        if (CheckerMatrix.checkRows(rows) && CheckerMatrix.checkColumns(columns)) {
-            this.rows = rows;
-            this.columns = columns;
-        }
+    public AbstractMatrix(final int rows, final int columns) {
+        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(), Capacity.UPPER.get());
+        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(), Capacity.UPPER.get());
+        this.rows = rows;
+        this.columns = columns;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof AbstractMatrix)) return false;
-        AbstractMatrix that = (AbstractMatrix) o;
-        return rows == that.rows &&
-                columns == that.columns;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof AbstractMatrix)) {
+            return false;
+        }
+        final AbstractMatrix that = (AbstractMatrix) o;
+        return getRows() == that.getRows() && getColumns() == that.getColumns();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rows, columns);
+        return Objects.hash(this.rows, this.columns);
     }
 
-    public void setRows(int rows) {
-        if (CheckerMatrix.checkRows(rows)) {
-            this.rows = rows;
-        }
-    }public int getRows() {
+    public int getRows() {
         return this.rows;
     }
 
-    public void setColumns(int columns) {
-        if (CheckerMatrix.checkColumns(columns)) {
-            this.columns = columns;
-        }
+    public void setRows(final int rows) {
+        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(), Capacity.UPPER.get());
+        this.rows = rows;
     }
 
     public int getColumns() {
         return this.columns;
+    }
+
+    public void setColumns(final int columns) {
+        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(), Capacity.UPPER.get());
+        this.columns = columns;
     }
 
 }
