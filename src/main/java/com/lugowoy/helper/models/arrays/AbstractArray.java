@@ -50,12 +50,11 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * Constructs an object of an array (for the heir class) by initializing it
      * with the capacity of the {@code capacity} argument. The argument {@code
      * capacity} must range (inclusive, respectively) from {@link
-     * AbstractArray#LOWER_CAPACITY} to {@link AbstractArray#UPPER_CAPACITY}.
+     * Capacity#LOWER} to {@link Capacity#UPPER}.
      *
      * @param capacity the capacity of the created array.
      * @throws LengthOutOfRangeException if the {@code capacity} value out of
-     * range from {@link AbstractArray#LOWER_CAPACITY} to {@link
-     * AbstractArray#UPPER_CAPACITY}.
+     * range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     protected AbstractArray(final int capacity) {
         try {
@@ -105,12 +104,12 @@ public abstract class AbstractArray implements Model, RandomAccess {
 
     /**
      * Sets the size of an array.<br>The argument {@code size} must range
-     * (inclusive, respectively) from {@link AbstractArray#LOWER_CAPACITY} to {@link
-     * AbstractArray#UPPER_CAPACITY}.
+     * (inclusive, respectively) from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
      *
      * @param size the size of an array.
      * @throws LengthOutOfRangeException if the {@code size} value out of range
-     * from {@link AbstractArray#LOWER_CAPACITY} to {@link AbstractArray#UPPER_CAPACITY}.
+     * from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     protected void setSize(final int size) {
         CheckerArray.checkLength(size);

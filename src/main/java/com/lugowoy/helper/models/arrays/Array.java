@@ -47,8 +47,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      * generated array.
      * @throws NullPointerException if the {@code array} is null.
      * @throws LengthOutOfRangeException if the size(length) of the array out of
-     * range ​​from {@link AbstractArray#LOWER_CAPACITY} to {@link
-     * AbstractArray#UPPER_CAPACITY}.
+     * range ​​from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     @SafeVarargs
     public Array(final T... array) {
@@ -64,8 +63,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      *
      * @param capacity an array capacity value.
      * @throws LengthOutOfRangeException if the {@code capacity} value out of
-     * range from {@link AbstractArray#LOWER_CAPACITY} to {@link
-     * AbstractArray#UPPER_CAPACITY}.
+     * range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     public Array(final int capacity) {
         super(capacity);
@@ -83,8 +81,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      * generated array.
      * @throws NullPointerException if the {@code array} is null.
      * @throws LengthOutOfRangeException if the size(length) value of the array
-     * out of range ​​from {@link AbstractArray#LOWER_CAPACITY} to {@link
-     * AbstractArray#UPPER_CAPACITY}.
+     * out of range ​​from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     public Array(final Array<T> array) {
         super();
