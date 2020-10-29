@@ -3,6 +3,7 @@ package com.lugowoy.helper.models.arrays;
 import com.lugowoy.helper.checkers.CheckerArray;
 import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.models.Model;
+import com.lugowoy.helper.utils.Capacity;
 import com.lugowoy.helper.utils.LengthOutOfRangeException;
 
 import java.util.Objects;
@@ -18,22 +19,11 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.2
+ * @version 2.3
  * @since 2.0
  */
 //TODO revision of documentation
 public abstract class AbstractArray implements Model, RandomAccess {
-
-    private static final int ARRAY_HEADER = 8;
-
-    /**
-     * The lower boundary value of the capacity of an array.
-     */
-    public static final int LOWER_CAPACITY = 0;
-    /**
-     * The upper boundary value of the capacity of an array.
-     */
-    public static final int UPPER_CAPACITY = Integer.MAX_VALUE - ARRAY_HEADER;
 
     /**
      * The default size of an array.
@@ -69,7 +59,7 @@ public abstract class AbstractArray implements Model, RandomAccess {
      */
     protected AbstractArray(final int capacity) {
         try {
-            CheckerArray.checkLength(capacity, AbstractArray.UPPER_CAPACITY);
+            CheckerArray.checkLength(capacity, Capacity.UPPER.get());
         } catch (LengthOutOfRangeException ex) {
             throw new IllegalArgumentException(ex);
         }
@@ -87,7 +77,7 @@ public abstract class AbstractArray implements Model, RandomAccess {
             return false;
         }
         final AbstractArray that = (AbstractArray) o;
-        return size == that.size && getModCount() == that.getModCount();
+        return size == that.size && this.modCount == that.modCount;
     }
 
     /**
@@ -187,7 +177,7 @@ public abstract class AbstractArray implements Model, RandomAccess {
 
     //TODO documentation
     protected void increaseModCount() {
-        CheckerBoundNumber.isInRange(this.modCount + 1, 0, UPPER_CAPACITY);
+        CheckerBoundNumber.isInRange(this.modCount + 1, 0, Capacity.UPPER.get());
         this.setModCount(this.modCount + 1);
     }
 

@@ -2,6 +2,7 @@ package com.lugowoy.helper.models.arrays;
 
 import com.lugowoy.helper.checkers.CheckerArray;
 import com.lugowoy.helper.checkers.CheckerIndex;
+import com.lugowoy.helper.utils.Capacity;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.Arrays;
@@ -15,7 +16,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.1
+ * @version 2.2
  * @since 2.0
  */
 //TODO write doc's
@@ -32,7 +33,7 @@ public final class ArrayDoubles extends AbstractArray {
 
     public ArrayDoubles(final double... array) {
         super();
-        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
+        CheckerArray.check(array, Capacity.UPPER.get());
         this.array = SerializationUtils.clone(array);
         super.setSize(this.array.length);
     }
@@ -44,7 +45,7 @@ public final class ArrayDoubles extends AbstractArray {
 
     public ArrayDoubles(final ArrayDoubles array) {
         super();
-        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
+        CheckerArray.check(array, Capacity.UPPER.get());
         this.array = SerializationUtils.clone(array.array);
         super.setSize(this.array.length);
     }
@@ -176,7 +177,7 @@ public final class ArrayDoubles extends AbstractArray {
     }
 
     public double[] toArray(double[] array) {
-        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
+        CheckerArray.check(array, Capacity.UPPER.get());
         if (array.length < super.size()) {
             array = Arrays.copyOf(this.array, super.size());
         }
@@ -189,21 +190,21 @@ public final class ArrayDoubles extends AbstractArray {
     }
 
     public void setArray(final int capacity) {
-        CheckerArray.checkLength(capacity, AbstractArray.UPPER_CAPACITY);
+        CheckerArray.checkLength(capacity, Capacity.UPPER.get());
         this.array = new double[capacity];
         super.setSize(capacity);
         super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     public void setArray(final double... array) {
-        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
+        CheckerArray.check(array, Capacity.UPPER.get());
         this.array = Arrays.copyOf(array, array.length);
         super.setSize(this.array.length);
         super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     public void setDeepArray(final double... array) {
-        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
+        CheckerArray.check(array, Capacity.UPPER.get());
         this.array = SerializationUtils.clone(array);
         super.setSize(this.array.length);
         super.setModCount(AbstractArray.START_MOD_COUNT);
@@ -219,7 +220,7 @@ public final class ArrayDoubles extends AbstractArray {
     }
 
     public double set(final int index, final double element) {
-        CheckerIndex.checkInRange(index, AbstractArray.UPPER_CAPACITY);
+        CheckerIndex.checkInRange(index, Capacity.UPPER.get());
         double oldValue = this.get(index);
         this.array[index] = element;
         return oldValue;
@@ -252,7 +253,7 @@ public final class ArrayDoubles extends AbstractArray {
     }
 
     public boolean addAll(final double[] array) {
-        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
+        CheckerArray.check(array, Capacity.UPPER.get());
         boolean resultAddAll = false;
         //TODO refactoring this. delete this 'if'
         if (array.length > 0) {
@@ -270,7 +271,7 @@ public final class ArrayDoubles extends AbstractArray {
 
     public boolean addAll(final int index, final double[] array) {
         CheckerIndex.checkInRange(index, super.size() + 1);
-        CheckerArray.check(array, AbstractArray.UPPER_CAPACITY);
+        CheckerArray.check(array, Capacity.UPPER.get());
         boolean resultAddAll = false;
         //TODO refactoring this. delete this 'if'
         if (array.length > 0) {

@@ -3,6 +3,7 @@ package com.lugowoy.helper.models.arrays;
 import com.lugowoy.helper.checkers.CheckerArray;
 import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.checkers.CheckerIndex;
+import com.lugowoy.helper.utils.Capacity;
 import com.lugowoy.helper.utils.LengthOutOfRangeException;
 import org.apache.commons.lang3.SerializationUtils;
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +19,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 4.9
+ * @version 5.0
  * @since 1.0
  */
 //TODO revision of documentation
@@ -52,7 +53,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     @SafeVarargs
     public Array(final T... array) {
         super();
-        CheckerArray.check(array, UPPER_CAPACITY);
+        CheckerArray.check(array, Capacity.UPPER.get());
         this.array = SerializationUtils.clone(array);
         super.setSize(this.array.length);
     }
@@ -87,7 +88,7 @@ public class Array<T> extends AbstractArray implements List<T> {
      */
     public Array(final Array<T> array) {
         super();
-        CheckerArray.check(array, UPPER_CAPACITY);
+        CheckerArray.check(array, Capacity.UPPER.get());
         this.array = SerializationUtils.clone(array.array);
         this.setSize(this.array.length);
     }
@@ -279,7 +280,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     @SuppressWarnings("unchecked")
     @Override
     public <E> E[] toArray(E[] a) {
-        CheckerArray.check(a, UPPER_CAPACITY);
+        CheckerArray.check(a, Capacity.UPPER.get());
         if (a.length < super.size()) {
             a = (E[]) Arrays.copyOf(this.array, super.size(), a.getClass());
         }
@@ -293,21 +294,21 @@ public class Array<T> extends AbstractArray implements List<T> {
     }
 
     public void setArray(final int capacity) {
-        CheckerArray.checkLength(capacity, UPPER_CAPACITY);
+        CheckerArray.checkLength(capacity, Capacity.UPPER.get());
         this.array = new Object[capacity];
         super.setSize(capacity);
         super.setModCount(START_MOD_COUNT);
     }
 
     public void setArray(final T... t) {
-        CheckerArray.check(t, UPPER_CAPACITY);
+        CheckerArray.check(t, Capacity.UPPER.get());
         this.array = Arrays.copyOf(t, t.length);
         super.setSize(this.array.length);
         super.setModCount(START_MOD_COUNT);
     }
 
     public void setDeepArray(final T... t) {
-        CheckerArray.check(t, UPPER_CAPACITY);
+        CheckerArray.check(t, Capacity.UPPER.get());
         this.array = SerializationUtils.clone(t);
         super.setSize(this.array.length);
         super.setModCount(START_MOD_COUNT);
