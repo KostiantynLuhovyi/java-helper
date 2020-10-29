@@ -34,8 +34,7 @@ public final class ReaderLengthArray {
      *
      * @throws NullPointerException if the {@code reader} is {@code null}.
      * @throws ValueOutOfRangeException if the read length(size) value for an
-     * array out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * array out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     public static int read(@NotNull final Reading reader) {
         Objects.requireNonNull(reader, MSG_EXC_READER_IS_NULL);
@@ -55,10 +54,9 @@ public final class ReaderLengthArray {
      *
      * @throws NullPointerException if the {@code reader} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
-     * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      * @throws ValueOutOfRangeException if the read length(size) value for an
-     * array out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@code
+     * array out of range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
      */
     public static int read(@NotNull final Reading reader,
@@ -85,8 +83,7 @@ public final class ReaderLengthArray {
      * @throws NullPointerException if at least one of the arguments is {@code
      * null}.
      * @throws ValueOutOfRangeException if the read length(size) value for an
-     * array out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * array out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     public static int read(@NotNull final Reading reader,
                            @NotNull final OutputStream outputStream,
@@ -125,10 +122,9 @@ public final class ReaderLengthArray {
      * @throws NullPointerException if at least one of the arguments is {@code
      * null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
-     * out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@link
-     * CheckerArray#UPPER_BOUND_LENGTH}.
+     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      * @throws ValueOutOfRangeException if the read length(size) value for an
-     * array out of range from {@link CheckerArray#LOWER_BOUND_LENGTH} to {@code
+     * array out of range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
      */
     public static int read(@NotNull final Reading reader,
