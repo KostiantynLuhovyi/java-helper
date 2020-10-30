@@ -204,9 +204,23 @@ public final class ArrayInts extends AbstractArray {
         super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
+    public void setArray(final ArrayInts array) {
+        CheckerArray.check(array, Capacity.UPPER.get());
+        this.array = Arrays.copyOf(array.array, array.size());
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
+    }
+
     public void setDeepArray(final int... array) {
         CheckerArray.check(array, Capacity.UPPER.get());
         this.array = SerializationUtils.clone(array);
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
+    }
+
+    public void setDeepArray(final ArrayInts array) {
+        CheckerArray.check(array, Capacity.UPPER.get());
+        this.array = SerializationUtils.clone(array.toArray());
         super.setSize(this.array.length);
         super.setModCount(AbstractArray.START_MOD_COUNT);
     }

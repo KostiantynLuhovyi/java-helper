@@ -304,11 +304,25 @@ public class Array<T> extends AbstractArray implements List<T> {
         super.setModCount(START_MOD_COUNT);
     }
 
+    public void setArray(final Array<T> array) {
+        CheckerArray.check(array, Capacity.UPPER.get());
+        this.array = Arrays.copyOf(array.array, array.size());
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
+    }
+
     public void setDeepArray(final T... t) {
         CheckerArray.check(t, Capacity.UPPER.get());
         this.array = SerializationUtils.clone(t);
         super.setSize(this.array.length);
         super.setModCount(START_MOD_COUNT);
+    }
+
+    public void setDeepArray(final Array<T> array) {
+        CheckerArray.check(array, Capacity.UPPER.get());
+        this.array = SerializationUtils.clone(array.toArray());
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     /**
