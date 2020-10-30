@@ -16,7 +16,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.2
+ * @version 2.3
  * @since 2.0
  */
 //TODO write doc's
@@ -27,27 +27,27 @@ public final class ArrayDoubles extends AbstractArray {
     private double[] array;
 
     public ArrayDoubles() {
-        super();
         this.array = new double[AbstractArray.DEFAULT_CAPACITY];
-    }
-
-    public ArrayDoubles(final double... array) {
-        super();
-        CheckerArray.check(array, Capacity.UPPER.get());
-        this.array = SerializationUtils.clone(array);
-        super.setSize(this.array.length);
     }
 
     public ArrayDoubles(final int capacity) {
         super(capacity);
         this.array = new double[capacity];
+        super.setSize(this.array.length);
+    }
+
+    public ArrayDoubles(final double... array) {
+        CheckerArray.check(array, Capacity.UPPER.get());
+        this.array = Arrays.copyOf(array, array.length);
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     public ArrayDoubles(final ArrayDoubles array) {
-        super();
         CheckerArray.check(array, Capacity.UPPER.get());
-        this.array = SerializationUtils.clone(array.array);
+        this.array = Arrays.copyOf(array.array, array.size());
         super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     @Override

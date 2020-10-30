@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 5.0
+ * @version 5.1
  * @since 1.0
  */
 //TODO revision of documentation
@@ -32,8 +32,21 @@ public class Array<T> extends AbstractArray implements List<T> {
      * capacity {@link AbstractArray#DEFAULT_CAPACITY}.
      */
     public Array() {
-        super();
         this.array = new Object[DEFAULT_CAPACITY];
+    }
+
+    /**
+     * Constructs an object of this class, thereby creating a dynamic array of
+     * the {@code capacity} value.
+     *
+     * @param capacity an array capacity value.
+     * @throws LengthOutOfRangeException if the {@code capacity} value out of
+     * range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
+     */
+    public Array(final int capacity) {
+        super(capacity);
+        this.array = new Object[capacity];
+        super.setSize(this.array.length);
     }
 
     /**
@@ -51,23 +64,10 @@ public class Array<T> extends AbstractArray implements List<T> {
      */
     @SafeVarargs
     public Array(final T... array) {
-        super();
         CheckerArray.check(array, Capacity.UPPER.get());
-        this.array = SerializationUtils.clone(array);
+        this.array = Arrays.copyOf(array, array.length);
         super.setSize(this.array.length);
-    }
-
-    /**
-     * Constructs an object of this class, thereby creating a dynamic array of
-     * the {@code capacity} value.
-     *
-     * @param capacity an array capacity value.
-     * @throws LengthOutOfRangeException if the {@code capacity} value out of
-     * range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
-     */
-    public Array(final int capacity) {
-        super(capacity);
-        this.array = new Object[capacity];
+        super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     /**
@@ -84,10 +84,10 @@ public class Array<T> extends AbstractArray implements List<T> {
      * out of range ​​from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     public Array(final Array<T> array) {
-        super();
         CheckerArray.check(array, Capacity.UPPER.get());
-        this.array = SerializationUtils.clone(array.array);
-        this.setSize(this.array.length);
+        this.array = Arrays.copyOf(array.array, array.size());
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     //TODO add constructor with Collection object parameter.

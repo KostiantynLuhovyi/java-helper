@@ -17,7 +17,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.2
+ * @version 2.3
  * @since 2.0
  */
 //TODO write doc's
@@ -28,27 +28,27 @@ public final class ArrayInts extends AbstractArray {
     private int[] array;
 
     public ArrayInts() {
-        super();
         this.array = new int[AbstractArray.DEFAULT_CAPACITY];
-    }
-
-    public ArrayInts(final int... array) {
-        super();
-        CheckerArray.check(array, Capacity.UPPER.get());
-        this.array = SerializationUtils.clone(array);
-        super.setSize(this.array.length);
     }
 
     public ArrayInts(final int capacity) {
         super(capacity);
         this.array = new int[capacity];
+        super.setSize(this.array.length);
+    }
+
+    public ArrayInts(final int... array) {
+        CheckerArray.check(array, Capacity.UPPER.get());
+        this.array = Arrays.copyOf(array, array.length);
+        super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     public ArrayInts(final ArrayInts array) {
-        super();
         CheckerArray.check(array, Capacity.UPPER.get());
-        this.array = SerializationUtils.clone(array.array);
+        this.array = Arrays.copyOf(array.array, array.size());
         super.setSize(this.array.length);
+        super.setModCount(AbstractArray.START_MOD_COUNT);
     }
 
     @Override

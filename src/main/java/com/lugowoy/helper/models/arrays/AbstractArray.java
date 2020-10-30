@@ -19,7 +19,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.3
+ * @version 2.4
  * @since 2.0
  */
 //TODO revision of documentation
@@ -44,6 +44,8 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * Constructs an object of an array (for the heir class).
      */
     protected AbstractArray() {
+        this.size = DEFAULT_CAPACITY;
+        this.modCount = START_MOD_COUNT;
     }
 
     /**
@@ -59,6 +61,7 @@ public abstract class AbstractArray implements Model, RandomAccess {
     protected AbstractArray(final int capacity) {
         try {
             CheckerArray.checkLength(capacity, Capacity.UPPER.get());
+            this.modCount = START_MOD_COUNT;
         } catch (LengthOutOfRangeException ex) {
             throw new IllegalArgumentException(ex);
         }
