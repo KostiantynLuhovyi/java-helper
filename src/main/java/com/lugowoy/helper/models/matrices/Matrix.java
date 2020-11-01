@@ -1,27 +1,30 @@
 package com.lugowoy.helper.models.matrices;
 
-import com.lugowoy.helper.models.storages.arrays.Array;
-import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
+import com.lugowoy.helper.checkers.CheckerIndex;
+import com.lugowoy.helper.checkers.CheckerMatrix;
+import com.lugowoy.helper.models.arrays.Array;
+import com.lugowoy.helper.utils.Capacity;
+import com.lugowoy.helper.utils.LengthOutOfRangeException;
 import com.lugowoy.helper.utils.MatrixColumnOutOfRangeException;
 import com.lugowoy.helper.utils.MatrixRowOutOfRangeException;
-import com.lugowoy.helper.utils.checking.CheckerArray;
-import com.lugowoy.helper.utils.checking.CheckerIndex;
-import com.lugowoy.helper.utils.checking.CheckerMatrix;
+import org.apache.commons.lang3.SerializationUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * This class implements a dynamic matrix model.
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 2.5
+ * @version 2.6
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  * @since 1.5
  */
-//todo edit doc's
+//TODO documentation
 public class Matrix<T> extends AbstractMatrix {
 
     private Object[][] matrix;
@@ -30,18 +33,18 @@ public class Matrix<T> extends AbstractMatrix {
      * Constructs a new matrix of the getRows and getColumns.
      */
     public Matrix() {
-        this.matrix = new Object[DEFAULT_ROWS][AbstractMatrix.DEFAULT_COLUMNS];
+        this.matrix = new Object[DEFAULT_ROWS][DEFAULT_COLUMNS];
     }
 
     /**
      * Constructs a new matrix of getRows and getColumns argument.
      *
-     * @param rows    Rows of matrix.
+     * @param rows Rows of matrix.
      * @param columns Columns of matrix.
-     * @throws MatrixRowOutOfRangeException    the argument {@code getRows} value is out of range.
+     * @throws MatrixRowOutOfRangeException the argument {@code getRows} value is out of range.
      * @throws MatrixColumnOutOfRangeException the argument {@code getColumns} value is out of range.
      */
-    public Matrix(int rows, int columns) {
+    public Matrix(final int rows, final int columns) {
         super(rows, columns);
         this.matrix = new Object[super.getRows()][super.getColumns()];
     }
@@ -52,12 +55,12 @@ public class Matrix<T> extends AbstractMatrix {
      * @param matrix Two-dimensional array to initialize the matrix.
      * @throws NullPointerException If argument matrix is null.
      */
-    public Matrix(T[][] matrix) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            super.setRows(matrix.length);
-            super.setColumns(matrix[0].length);
-            this.matrix = matrix;
-        }
+    public Matrix(@NotNull final T[][] matrix) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        this.checkEqualMatrixLength(matrix);
+        this.copyMatrix(matrix);
+        super.setRows(this.matrix.length);
+        super.setColumns(this.matrix[0].length);
     }
 
     /**
@@ -68,27 +71,35 @@ public class Matrix<T> extends AbstractMatrix {
      * @param matrix Matrix to copy state.
      * @throws NullPointerException If argument matrix is null.
      */
-    public Matrix(Matrix<T> matrix) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            super.setRows(matrix.getRows());
-            super.setColumns(matrix.getColumns());
-            this.matrix = matrix.getMatrix();
-        }
+    @SuppressWarnings("unchecked")
+    public Matrix(@NotNull final Matrix<T> matrix) {
+        CheckerMatrix.check(matrix, Capacity.LOWER.get(), Capacity.UPPER.get());
+        //this check has no logic
+        this.checkEqualMatrixLength((T[][]) matrix.matrix);
+        this.copyMatrix((T[][]) matrix.matrix);
+        super.setRows(this.matrix.length);
+        super.setColumns(this.matrix[0].length);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Matrix)) return false;
-        if (!super.equals(o)) return false;
-        Matrix<?> matrix1 = (Matrix<?>) o;
-        return Arrays.equals(getMatrix(), matrix1.getMatrix());
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Matrix)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        final Matrix<?> matrix1 = (Matrix<?>) o;
+        return Arrays.equals(matrix, matrix1.matrix);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + Arrays.hashCode(getMatrix());
+        result = 31 * result + Arrays.hashCode(matrix);
         return result;
     }
 
@@ -115,7 +126,8 @@ public class Matrix<T> extends AbstractMatrix {
      */
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(this.getClass().getSimpleName() + " [ ");
+        StringBuilder stringBuilder = new StringBuilder(
+                this.getClass().getSimpleName() + " [ ");
         for (int i = 0; i < this.matrix.length; i++) {
             stringBuilder.append("[ ");
             for (int j = 0; j < this.matrix[i].length; j++) {
@@ -123,7 +135,8 @@ public class Matrix<T> extends AbstractMatrix {
             }
             stringBuilder.append("]\n\t\t ");
         }
-        stringBuilder.append("rows:").append(this.getRows()).append(", columns:").append(this.getColumns()).append(" ]");
+        stringBuilder.append(" rows:").append(this.getRows()).append(
+                ", columns:").append(this.getColumns()).append(" ]");
         return stringBuilder.toString();
     }
 
@@ -141,15 +154,24 @@ public class Matrix<T> extends AbstractMatrix {
      * Sets the elements of the matrix are the same as the two-dimensional array passed to the argument.
      *
      * @param matrix Two-dimensional array for matrix initialization.
-     * @throws NullPointerException           If argument two-dimensional array is null.
-     * @throws LengthArrayOutOfRangeException If argument matrix has incorrect getRows or getColumns length value.
+     * @throws NullPointerException If argument two-dimensional array is null.
+     * @throws LengthOutOfRangeException If argument matrix has incorrect getRows or getColumns length value.
      */
-    public void setMatrix(T[][] matrix) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            this.setRows(matrix.length);
-            this.setColumns(matrix[0].length);
-            this.matrix = matrix;
-        }
+    public void setMatrix(@NotNull final T[][] matrix) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        this.checkEqualMatrixLength(matrix);
+        this.copyMatrix(matrix);
+        super.setRows(this.matrix.length);
+        super.setColumns(this.matrix[0].length);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void setMatrix(@NotNull final Matrix<T> matrix) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        this.checkEqualMatrixLength((T[][]) matrix.matrix);
+        this.copyMatrix((T[][]) matrix.matrix);
+        super.setRows(matrix.getRows());
+        super.setColumns(matrix.getColumns());
     }
 
     public void setDeepMatrix(@NotNull final T[][] matrix) {
@@ -180,12 +202,15 @@ public class Matrix<T> extends AbstractMatrix {
      * @return Matrix (two-dimensional array) filled with elements of a matrix.
      * @throws NullPointerException If argument matrix is null.
      */
-    public T[][] toMatrix(T[][] matrix) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            if (super.getRows() == matrix.length && super.getColumns() == matrix[0].length) {
-                for (int i = 0; i < super.getRows(); i++) {
-                    matrix[i] = (T[]) Arrays.copyOf(this.matrix[i], this.matrix[i].length);
-                }
+    @SuppressWarnings("unchecked")
+    public T[][] toMatrix(@NotNull final T[][] matrix) {
+        Objects.requireNonNull(matrix, "Matrix is null.");
+        for (int i = 0; i < matrix.length; i++) {
+            if (i == super.getRows()) {
+                break;
+            } else {
+                matrix[i] = (T[]) Arrays.copyOf(this.matrix[i],
+                                                this.matrix[i].length);
             }
         }
         return matrix;
@@ -216,47 +241,45 @@ public class Matrix<T> extends AbstractMatrix {
      * @return The object of the {@link Array} class filled with elements from the matrix row.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      */
-    public Array<T> getRowToArray(int indexRow) {
-        Array<T> array = new Array<>(0);
-        if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-            array.setArray((T[]) Arrays.copyOf(this.matrix[indexRow], this.matrix[indexRow].length));
-        }
-        return array;
+    @SuppressWarnings("unchecked")
+    public T[] getRowToArray(final int indexRow) {
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        return (T[]) Arrays.copyOf(this.matrix[indexRow], super.getColumns());
     }
 
     /**
      * Gets the row of the matrix at the index passed by the argument.
      *
-     * @param array    One-dimensional array to fill with elements from the matrix row.
+     * @param array One-dimensional array to fill with elements from the matrix row.
      * @param indexRow Index row to get.
      * @return One-dimensional array filled with elements from the matrix row.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
-     * @throws NullPointerException      If argument array is null.
+     * @throws NullPointerException If argument array is null.
      */
-    public T[] getRowToArray(T[] array, int indexRow) {
-        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
-            if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-                array = (T[]) Arrays.copyOf(this.matrix[indexRow], this.matrix[indexRow].length);
-            }
-        }
+    @SuppressWarnings("unchecked")
+    public T[] getRowToArray(@NotNull T[] array, final int indexRow) {
+        Objects.requireNonNull(array, "Array is null.");
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        array = (T[]) Arrays.copyOf(this.matrix[indexRow], super.getColumns());
         return array;
     }
 
     /**
      * Gets the row of the matrix at the index passed by the argument.
      *
-     * @param array    Object of the {@link Array} class to fill with elements from the matrix row.
+     * @param array Object of the {@link Array} class to fill with elements from the matrix row.
      * @param indexRow Index row to get.
      * @return Object of the {@link Array} class filled with elements from the matrix row.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
-     * @throws NullPointerException      If argument array is null.
+     * @throws NullPointerException If argument array is null.
      */
-    public Array<T> getRowToArray(Array<T> array, int indexRow) {
-        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
-            if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-                array.setArray((T[]) Arrays.copyOf(this.matrix[indexRow], this.matrix[indexRow].length));
-            }
-        }
+    @SuppressWarnings("unchecked")
+    public Array<T> getRowToArray(@NotNull final Array<T> array,
+                                  final int indexRow) {
+        Objects.requireNonNull(array, "Array is null.");
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        array.setArray(
+                (T[]) Arrays.copyOf(this.matrix[indexRow], super.getColumns()));
         return array;
     }
 
@@ -267,36 +290,32 @@ public class Matrix<T> extends AbstractMatrix {
      * @return Object of the {@link Array} class filled with elements from the matrix column.
      * @throws IndexOutOfBoundsException If the argument indexColumn is out of range.
      */
-    public Array<T> getColumnToArray(int indexColumn) {
-        Array<T> array = new Array<>(0);
-        if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-            for (int i = 0; i < super.getRows(); i++) {
-                if (indexColumn <= this.matrix[i].length) {
-                    array.add((T) this.matrix[i][indexColumn]);
-                }
-            }
+    @SuppressWarnings("unchecked")
+    public T[] getColumnToArray(final int indexColumn) {
+        CheckerIndex.checkInRange(indexColumn, super.getColumns());
+        Object[] array = new Object[super.getRows()];
+        for (int i = 0; i < super.getRows(); i++) {
+            array[i] = this.matrix[i][indexColumn];
         }
-        return array;
+        return (T[]) array;
     }
 
     /**
      * Gets the column of the matrix at the index passed by the argument.
      *
-     * @param array       One-dimensional array to fill with elements from the matrix column.
+     * @param array One-dimensional array to fill with elements from the matrix column.
      * @param indexColumn Index column to get.
      * @return One-dimensional array filled with elements from the matrix column.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
-     * @throws NullPointerException      If argument array is null.
+     * @throws NullPointerException If argument array is null.
      */
-    public T[] getColumnToArray(T[] array, int indexColumn) {
-        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-                for (int i = 0; i < super.getRows(); i++) {
-                    if (indexColumn <= this.matrix[i].length) {
-                        array[i] = (T) this.matrix[i][indexColumn];
-                    }
-                }
-            }
+    @SuppressWarnings("unchecked")
+    public T[] getColumnToArray(@NotNull T[] array, final int indexColumn) {
+        Objects.requireNonNull(array, "Array is null.");
+        CheckerIndex.checkInRange(indexColumn, super.getColumns());
+        array = (T[]) new Object[super.getRows()];
+        for (int i = 0; i < super.getRows(); i++) {
+            array[i] = (T) this.matrix[i][indexColumn];
         }
         return array;
     }
@@ -304,21 +323,19 @@ public class Matrix<T> extends AbstractMatrix {
     /**
      * Gets the column of the matrix at the index passed by the argument.
      *
-     * @param array       Object of the {@link Array} class to fill with elements from the matrix column.
+     * @param array Object of the {@link Array} class to fill with elements from the matrix column.
      * @param indexColumn Index column to get.
      * @return Object of the {@link Array} class filled with elements from the matrix column.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
-     * @throws NullPointerException      If argument array is null.
+     * @throws NullPointerException If argument array is null.
      */
-    public Array<T> getColumnToArray(Array<T> array, int indexColumn) {
-        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-                for (int i = 0; i < super.getRows(); i++) {
-                    if (indexColumn <= this.matrix[i].length) {
-                        array.add((T) this.matrix[i][indexColumn]);
-                    }
-                }
-            }
+    @SuppressWarnings("unchecked")
+    public Array<T> getColumnToArray(@NotNull final Array<T> array,
+                                     final int indexColumn) {
+        Objects.requireNonNull(array, "Array is null.");
+        CheckerIndex.checkInRange(indexColumn, super.getColumns());
+        for (int i = 0; i < super.getRows(); i++) {
+            array.add((T) this.matrix[i][indexColumn]);
         }
         return array;
     }
@@ -327,51 +344,52 @@ public class Matrix<T> extends AbstractMatrix {
      * Set (initialize) the matrix row by index, which is passed by the argument
      * to the elements that are stored in the one-dimensional array passed by the argument.
      *
-     * @param array    One-dimensional array that are stored elements to set elements of row of the matrix.
+     * @param array One-dimensional array that are stored elements to set elements of row of the matrix.
      * @param indexRow Index row to get.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
-     * @throws NullPointerException      If argument array is null.
+     * @throws NullPointerException If argument array is null.
      */
-    public void setRowFromArray(T[] array, int indexRow) {
-        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
-            if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-                this.matrix[indexRow] = Arrays.copyOf(array, array.length);
-            }
-        }
+    public void setRowFromArray(@NotNull final T[] array, final int indexRow) {
+        Objects.requireNonNull(array, "Array is null.");
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        this.matrix[indexRow] = Arrays.copyOf(array, super.getColumns());
     }
 
     /**
      * Set (initialize) the matrix row by index, which is passed by the argument
      * to the elements that are stored in the object of the {@link Array} class passed by the argument.
      *
-     * @param array    Object of the {@link Array} class that are stored elements to set elements of row of the matrix.
+     * @param array Object of the {@link Array} class that are stored elements to set elements of row of the matrix.
      * @param indexRow Index row to get.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
-     * @throws NullPointerException      If argument array is null.
+     * @throws NullPointerException If argument array is null.
      */
-    public void setRowFromArray(Array<T> array, int indexRow) {
-        if (CheckerArray.checkLengthInArray(array, super.getRows())) {
-            if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-                this.matrix[indexRow] = Arrays.copyOf(array.toArray(new Object[0]), array.size());
-            }
-        }
+    public void setRowFromArray(@NotNull final Array<T> array,
+                                final int indexRow) {
+        Objects.requireNonNull(array, "Array is null.");
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        this.matrix[indexRow] = Arrays.copyOf(array.toArray(),
+                                              super.getColumns());
     }
 
     /**
      * Set (initialize) the matrix column by index, which is passed by the argument
      * to the elements that are stored in the one-dimensional array passed by the argument.
      *
-     * @param array       One-dimensional array that are stored elements to set elements of row of the matrix.
+     * @param array One-dimensional array that are stored elements to set elements of row of the matrix.
      * @param indexColumn Index column to get.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
-     * @throws NullPointerException      If argument array is null.
+     * @throws NullPointerException If argument array is null.
      */
-    public void setColumnFromArray(T[] array, int indexColumn) {
-        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-                for (int i = 0; i < super.getRows(); i++) {
-                    this.matrix[i][indexColumn] = array[i];
-                }
+    public void setColumnFromArray(@NotNull final T[] array,
+                                   final int indexColumn) {
+        Objects.requireNonNull(array, "Array is null.");
+        CheckerIndex.checkInRange(indexColumn, this.getColumns());
+        for (int i = 0; i < super.getRows(); i++) {
+            if (i < array.length) {
+                this.matrix[i][indexColumn] = array[i];
+            } else {
+                break;
             }
         }
     }
@@ -380,19 +398,16 @@ public class Matrix<T> extends AbstractMatrix {
      * Set (initialize) the matrix column by index, which is passed by the argument
      * to the elements that are stored in the object of the {@link Array} class passed by the argument.
      *
-     * @param array       Object of the {@link Array} class that are stored elements to set elements of column of the matrix.
+     * @param array Object of the {@link Array} class that are stored elements to set elements of column of the matrix.
      * @param indexColumn Index column to get.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
-     * @throws NullPointerException      If argument array is null.
+     * @throws NullPointerException If argument array is null.
      */
-    public void setColumnFromArray(Array<T> array, int indexColumn) {
-        if (CheckerArray.checkLengthInArray(array, super.getColumns())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-                for (int i = 0; i < super.getColumns(); i++) {
-                    this.matrix[i][indexColumn] = array.get(i);
-                }
-            }
-        }
+    @SuppressWarnings("unchecked")
+    public void setColumnFromArray(@NotNull final Array<T> array,
+                                   final int indexColumn) {
+        Objects.requireNonNull(array, "Array is null.");
+        this.setColumnFromArray((T[]) array.toArray(), indexColumn);
     }
 
     /**
@@ -401,11 +416,10 @@ public class Matrix<T> extends AbstractMatrix {
      * @param indexRow Index to delete the matrix row.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      */
-    public void deleteRow(int indexRow) {
-        if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-            for (int i = 0; i < super.getColumns(); i++) {
-                this.matrix[indexRow][i] = null;
-            }
+    public void deleteRow(final int indexRow) {
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        for (int i = 0; i < super.getColumns(); i++) {
+            this.matrix[indexRow][i] = null;
         }
     }
 
@@ -415,11 +429,10 @@ public class Matrix<T> extends AbstractMatrix {
      * @param indexColumn Index to delete the matrix column.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
      */
-    public void deleteColumn(int indexColumn) {
-        if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-            for (int i = 0; i < super.getRows(); i++) {
-                this.matrix[i][indexColumn] = null;
-            }
+    public void deleteColumn(final int indexColumn) {
+        CheckerIndex.checkInRange(indexColumn, super.getColumns());
+        for (int i = 0; i < super.getRows(); i++) {
+            this.matrix[i][indexColumn] = null;
         }
     }
 
@@ -429,22 +442,24 @@ public class Matrix<T> extends AbstractMatrix {
      * @param indexRow Index row to be deleted during compression.
      * @throws IndexOutOfBoundsException If argument indexRow is out of range.
      */
-    public void compressRow(int indexRow) {
-        if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-            Object[][] objects = new Object[super.getRows() - 1][super.getColumns()];
-            int tmpIndexRow = 0;
-            for (int i = 0; i < super.getRows(); i++) {
-                for (int j = 0; j < super.getColumns(); j++) {
-                    if (i == indexRow) {
-                        tmpIndexRow = 1;
-                        break;
-                    } else {
-                        objects[i - tmpIndexRow][j] = this.matrix[i][j];
-                    }
+    public void compressRow(final int indexRow) {
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        Object[][] tmpMatrix =
+                new Object[super.getRows() - 1][super.getColumns()];
+        int tmpIndexRow = 0;
+        for (int i = 0; i < super.getRows(); i++) {
+            for (int j = 0; j < super.getColumns(); j++) {
+                if (i == indexRow) {
+                    tmpIndexRow = 1;
+                    break;
+                } else {
+                    tmpMatrix[i - tmpIndexRow][j] = this.matrix[i][j];
                 }
             }
-            this.setMatrix((T[][]) objects);
         }
+        this.matrix = tmpMatrix;
+        super.setRows(this.matrix.length);
+        super.setColumns(this.matrix[0].length);
     }
 
     /**
@@ -453,70 +468,84 @@ public class Matrix<T> extends AbstractMatrix {
      * @param indexColumn Index row to be deleted during compression.
      * @throws IndexOutOfBoundsException If argument indexColumn is out of range.
      */
-    public void compressColumn(int indexColumn) {
-        if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-            Object[][] objects = new Object[super.getRows()][super.getColumns() - 1];
-            int tmpIndexColumn = 0;
-            for (int i = 0; i < super.getRows(); i++) {
-                for (int j = 0; j < super.getColumns(); j++) {
-                    if (j == indexColumn) {
-                        tmpIndexColumn = 1;
-                    } else {
-                        objects[i][j - tmpIndexColumn] = this.matrix[i][j];
-                    }
+    public void compressColumn(final int indexColumn) {
+        CheckerIndex.checkInRange(indexColumn, super.getColumns());
+        Object[][] tmpMatrix =
+                new Object[super.getRows()][super.getColumns() - 1];
+        int tmpIndexColumn = 0;
+        for (int i = 0; i < super.getRows(); i++) {
+            for (int j = 0; j < super.getColumns(); j++) {
+                if (j == indexColumn) {
+                    tmpIndexColumn = 1;
+                } else {
+                    tmpMatrix[i][j - tmpIndexColumn] = this.matrix[i][j];
                 }
-                tmpIndexColumn = 0;
             }
-            this.setMatrix((T[][]) objects);
+            tmpIndexColumn = 0;
         }
+        this.matrix = tmpMatrix;
+        super.setRows(this.matrix.length);
+        super.setColumns(this.matrix[0].length);
     }
 
     /**
      * Gets the matrix element by row index and column index.
      *
-     * @param indexRow    Index matrix row.
+     * @param indexRow Index matrix row.
      * @param indexColumn Index matrix column.
      * @return Element of the matrix indexes passed by the argument.
      * @throws IndexOutOfBoundsException Argument indexRow or indexColumn is out of range.
      */
-    public T getElement(int indexRow, int indexColumn) {
-        T obj = null;
-        if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-                obj = (T) this.matrix[indexRow][indexColumn];
-            }
-        }
-        return obj;
+    @SuppressWarnings("unchecked")
+    public T getElement(final int indexRow, final int indexColumn) {
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        CheckerIndex.checkInRange(indexColumn, super.getColumns());
+        return (T) this.matrix[indexRow][indexColumn];
     }
 
     /**
      * Sets the matrix element by row index and column index.
      *
-     * @param indexRow    Index matrix row.
+     * @param indexRow Index matrix row.
      * @param indexColumn Index matrix column.
-     * @param element     Element to set.
+     * @param element Element to set.
      * @throws IndexOutOfBoundsException Argument indexRow or indexColumn is out of range.
      */
-    public void setElement(int indexRow, int indexColumn, T element) {
-        if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-                this.matrix[indexRow][indexColumn] = element;
-            }
-        }
+    public void setElement(final T element, final int indexRow,
+                           final int indexColumn) {
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        CheckerIndex.checkInRange(indexColumn, super.getColumns());
+        this.matrix[indexRow][indexColumn] = element;
     }
 
     /**
      * Deletes matrix element by row and column index.
      * Element stored in the indices is null.
      *
-     * @param indexRow    Index matrix row.
+     * @param indexRow Index matrix row.
      * @param indexColumn Index matrix column.
      * @throws IndexOutOfBoundsException Argument indexRow or indexColumn is out of range.
      */
-    public void deleteElement(int indexRow, int indexColumn) {
-        if (CheckerIndex.checkIndex(indexRow, super.getRows())) {
-            if (CheckerIndex.checkIndex(indexColumn, super.getColumns())) {
-                this.matrix[indexRow][indexColumn] = null;
+    public void deleteElement(final int indexRow, final int indexColumn) {
+        CheckerIndex.checkInRange(indexRow, super.getRows());
+        CheckerIndex.checkInRange(indexColumn, super.getColumns());
+        this.matrix[indexRow][indexColumn] = null;
+    }
+
+    private void copyMatrix(final T[][] matrix) {
+        this.matrix = new Object[matrix.length][];
+        for (int i = 0; i < matrix.length; i++) {
+            this.matrix[i] = Arrays.copyOf(matrix[i], matrix[i].length);
+        }
+    }
+
+    private void checkEqualMatrixLength(@NotNull final T[][] matrix) {
+        int firstRow = matrix[0].length;
+        int bound = matrix.length;
+        for (int i = 0; i < bound; i++) {
+            if (firstRow != matrix[i].length) {
+                throw new IllegalArgumentException(
+                        "Matrix columns have different lengths.");
             }
         }
     }
