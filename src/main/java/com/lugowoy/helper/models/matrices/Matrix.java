@@ -15,7 +15,7 @@ import java.util.Arrays;
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 2.4
+ * @version 2.5
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -127,6 +127,16 @@ public class Matrix<T> extends AbstractMatrix {
         return stringBuilder.toString();
     }
 
+    public void setMatrix(final int rows, final int columns) {
+        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
+                                Capacity.UPPER.get());
+        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(),
+                                   Capacity.UPPER.get());
+        this.matrix = new Object[rows][columns];
+        super.setRows(rows);
+        super.setColumns(columns);
+    }
+
     /**
      * Sets the elements of the matrix are the same as the two-dimensional array passed to the argument.
      *
@@ -142,7 +152,24 @@ public class Matrix<T> extends AbstractMatrix {
         }
     }
 
-    public Object[][] getMatrix() {
+    public void setDeepMatrix(@NotNull final T[][] matrix) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        this.checkEqualMatrixLength(matrix);
+        this.matrix = SerializationUtils.clone(matrix);
+        super.setRows(this.matrix.length);
+        super.setColumns(this.matrix[0].length);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void setDeepMatrix(@NotNull final Matrix<T> matrix) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        this.checkEqualMatrixLength((T[][]) matrix.matrix);
+        this.matrix = SerializationUtils.clone(matrix.matrix);
+        super.setRows(matrix.getRows());
+        super.setColumns(matrix.getColumns());
+    }
+
+    public Object[][] toMatrix() {
         return this.matrix;
     }
 
@@ -164,10 +191,19 @@ public class Matrix<T> extends AbstractMatrix {
         return matrix;
     }
 
-    public T[][] toAnyMatrix(T[][] matrix) {
-        if (CheckerMatrix.checkMatrix(matrix)) {
-            for (int i = 0; i < matrix.length; i++) {
-                matrix[i] = (T[]) Arrays.copyOf(this.matrix[i], matrix[i].length);
+    @SuppressWarnings("unchecked")
+    public Object[][] toDeepMatrix() {
+        return SerializationUtils.clone(this.matrix);
+    }
+
+    @SuppressWarnings("unchecked")
+    public T[][] toDeepMatrix(@NotNull T[][] matrix) {
+        Objects.requireNonNull(matrix, "Matrix is null.");
+        for (int i = 0; i < matrix.length; i++) {
+            if (i == super.getRows()) {
+                break;
+            } else {
+                matrix[i] = (T[]) SerializationUtils.clone(this.matrix[i]);
             }
         }
         return matrix;
