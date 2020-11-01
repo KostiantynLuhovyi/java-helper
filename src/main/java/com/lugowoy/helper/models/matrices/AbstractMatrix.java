@@ -10,7 +10,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 22.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 2.0
  */
 //TODO revision of documentation
@@ -53,7 +53,7 @@ public class AbstractMatrix implements Model {
             return false;
         }
         final AbstractMatrix that = (AbstractMatrix) o;
-        return getRows() == that.getRows() && getColumns() == that.getColumns();
+        return this.rows == that.rows && this.columns == that.columns;
     }
 
     @Override
