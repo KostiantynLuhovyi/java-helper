@@ -10,7 +10,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 22.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 2.0
  */
 //TODO revision of documentation
@@ -38,6 +38,10 @@ public class AbstractMatrix implements Model {
         CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(), Capacity.UPPER.get());
         this.rows = rows;
         this.columns = columns;
+    }
+
+    public AbstractMatrix(final AbstractMatrix matrix) {
+        Objects.requireNonNull(matrix, "Matrix is null.");
     }
 
     @Override
