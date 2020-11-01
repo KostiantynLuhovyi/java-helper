@@ -17,7 +17,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 21.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @since 2.0
  */
 public final class CheckerMatrix {
@@ -57,16 +57,15 @@ public final class CheckerMatrix {
         int matrixRows = matrix.getRows();
         int matrixColumns = matrix.getColumns();
         if (matrixRows < Capacity.LOWER.get() || matrixRows > upperBoundRows) {
-            if (matrixColumns < Capacity.UPPER.get()
-                || matrixColumns > upperBoundColumns) {
-                throw new MatrixColumnOutOfRangeException(
-                        "Matrix columns out of range from "
-                        + Capacity.LOWER.get() + " to " + upperBoundColumns);
-            }
-        } else {
             throw new MatrixRowOutOfRangeException(
                     "Matrix rows out of range from" + Capacity.LOWER.get()
                     + " to " + upperBoundRows);
+        }
+        if (matrixColumns < Capacity.LOWER.get()
+            || matrixColumns > upperBoundColumns) {
+            throw new MatrixColumnOutOfRangeException(
+                    "Matrix columns out of range from " + Capacity.LOWER.get()
+                    + " to " + upperBoundColumns);
         }
     }
 
@@ -275,8 +274,7 @@ public final class CheckerMatrix {
                                         Capacity.UPPER.get());
         CheckerBoundNumber.checkInRange(upperBound, Capacity.LOWER.get(),
                                         Capacity.UPPER.get());
-        CheckerBoundNumber.checkLowerGreaterOrEqualUpper(lowerBound,
-                                                         upperBound);
+        CheckerBoundNumber.checkLowerLessOrNotEqualUpper(lowerBound, upperBound);
     }
 
 }
