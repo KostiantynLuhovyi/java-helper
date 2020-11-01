@@ -1,7 +1,7 @@
 package com.lugowoy.helper.models.matrices;
 
-import com.lugowoy.helper.models.Model;
 import com.lugowoy.helper.checkers.CheckerMatrix;
+import com.lugowoy.helper.models.Model;
 import com.lugowoy.helper.utils.Capacity;
 
 import java.util.Objects;
@@ -34,8 +34,10 @@ public class AbstractMatrix implements Model {
     }
 
     public AbstractMatrix(final int rows, final int columns) {
-        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(), Capacity.UPPER.get());
-        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(), Capacity.UPPER.get());
+        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
+                                Capacity.UPPER.get());
+        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(),
+                                   Capacity.UPPER.get());
         this.rows = rows;
         this.columns = columns;
     }
@@ -66,7 +68,8 @@ public class AbstractMatrix implements Model {
     }
 
     public void setRows(final int rows) {
-        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(), Capacity.UPPER.get());
+        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
+                                Capacity.UPPER.get());
         this.rows = rows;
     }
 
@@ -75,7 +78,8 @@ public class AbstractMatrix implements Model {
     }
 
     public void setColumns(final int columns) {
-        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(), Capacity.UPPER.get());
+        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(),
+                                   Capacity.UPPER.get());
         this.columns = columns;
     }
 
