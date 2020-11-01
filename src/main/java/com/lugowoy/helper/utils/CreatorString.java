@@ -58,7 +58,7 @@ public final class CreatorString {
     }
 
     /**
-     * Creates an object of the {@link String} calss with a length as a
+     * Creates an object of the {@link String} class with a length as a
      * pseudo-random number ranging from {@code lowerLengthString}(inclusive) to
      * {@code upperLengthString}(inclusive) and containing pseudo-random
      * characters contained in the {@code characters} array. The maximum length
