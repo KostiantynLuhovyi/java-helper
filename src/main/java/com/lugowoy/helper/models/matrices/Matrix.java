@@ -18,8 +18,9 @@ import java.util.Objects;
  * <p>Created by Konstantin Lugowoy on 01.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 2.6
+ * @version 2.7
  * @see com.lugowoy.helper.models.Model
+ * @see com.lugowoy.helper.models.matrices.AbstractMatrix
  * @see java.io.Serializable
  * @see java.lang.Cloneable
  * @since 1.5
@@ -33,7 +34,7 @@ public class Matrix<T> extends AbstractMatrix {
      * Constructs a new matrix of the getRows and getColumns.
      */
     public Matrix() {
-        this.matrix = new Object[DEFAULT_ROWS][DEFAULT_COLUMNS];
+        this.matrix = new Object[super.getRows()][super.getColumns()];
     }
 
     /**
@@ -92,8 +93,8 @@ public class Matrix<T> extends AbstractMatrix {
         if (!super.equals(o)) {
             return false;
         }
-        final Matrix<?> matrix1 = (Matrix<?>) o;
-        return Arrays.equals(matrix, matrix1.matrix);
+        final Matrix<?> that = (Matrix<?>) o;
+        return Arrays.equals(matrix, that.matrix);
     }
 
     @Override
@@ -222,7 +223,7 @@ public class Matrix<T> extends AbstractMatrix {
     }
 
     @SuppressWarnings("unchecked")
-    public T[][] toDeepMatrix(@NotNull T[][] matrix) {
+    public T[][] toDeepMatrix(@NotNull final T[][] matrix) {
         Objects.requireNonNull(matrix, "Matrix is null.");
         for (int i = 0; i < matrix.length; i++) {
             if (i == super.getRows()) {
@@ -532,7 +533,7 @@ public class Matrix<T> extends AbstractMatrix {
         this.matrix[indexRow][indexColumn] = null;
     }
 
-    private void copyMatrix(final T[][] matrix) {
+    private void copyMatrix(@NotNull final T[][] matrix) {
         this.matrix = new Object[matrix.length][];
         for (int i = 0; i < matrix.length; i++) {
             this.matrix[i] = Arrays.copyOf(matrix[i], matrix[i].length);
