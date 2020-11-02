@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @param <T> The type of coordinates that initialize the coordinates of a point.
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @see com.lugowoy.helper.models.Model
  * @see java.io.Serializable
  * @see java.lang.Cloneable
@@ -20,17 +20,25 @@ public abstract class Point<T extends Number> implements Model {
 
     private T x;
 
+    public Point(final T x) {
+        this.x = x;
+    }
+
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Point)) return false;
-        Point<?> point = (Point<?>) o;
-        return Objects.equals(getX(), point.getX());
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Point)) {
+            return false;
+        }
+        final Point<?> point = (Point<?>) o;
+        return Objects.equals(this.x, point.x);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getX());
+        return Objects.hash(this.x);
     }
 
     /**
@@ -47,7 +55,7 @@ public abstract class Point<T extends Number> implements Model {
      *
      * @param x Value to set the X coordinate..
      */
-    public void setX(T x) {
+    public void setX(final T x) {
         this.x = x;
     }
 

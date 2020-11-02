@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  * @param <T> The type of coordinates that initialize the coordinates of a 3D point.
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @see com.lugowoy.helper.models.Model
  * @see com.lugowoy.helper.models.points.Point
  * @see java.io.Serializable
@@ -26,32 +26,35 @@ public class Point3D<T extends Number> extends Point2D<T> {
      * @param y Value to initialize Y coordinate.
      * @param z Value to initialize Z coordinate.
      */
-    public Point3D(T x, T y, T z) {
+    public Point3D(final T x, final T y, final T z) {
         super(x, y);
         this.z = z;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Point3D)) return false;
-        if (!super.equals(o)) return false;
-        Point3D<?> point3D = (Point3D<?>) o;
-        return Objects.equals(z, point3D.z);
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Point3D)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        final Point3D<?> point3D = (Point3D<?>) o;
+        return Objects.equals(getZ(), point3D.getZ());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), z);
+        return Objects.hash(super.hashCode(), getZ());
     }
 
     @Override
     public String toString() {
-        return "Point3D[ " +
-                "x=" + super.getX() +
-                " y=" + super.getY() +
-                " z=" + this.getZ() +
-                " ]";
+        return "Point3D[ " + "x=" + super.getX() + " y=" + super.getY() + " z="
+               + this.z + " ]";
     }
 
     /**
@@ -60,7 +63,7 @@ public class Point3D<T extends Number> extends Point2D<T> {
      * @return Z coordinate value.
      */
     public T getZ() {
-        return z;
+        return this.z;
     }
 
     /**
@@ -68,7 +71,7 @@ public class Point3D<T extends Number> extends Point2D<T> {
      *
      * @param z Value to set the Y coordinate.
      */
-    public void setZ(T z) {
+    public void setZ(final T z) {
         this.z = z;
     }
 

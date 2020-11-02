@@ -8,7 +8,7 @@ import java.util.Objects;
  *
  * @param <T> The type of coordinates that initialize the coordinates of a 2D point.
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @see com.lugowoy.helper.models.Model
  * @see com.lugowoy.helper.models.points.Point
  * @see java.io.Serializable
@@ -25,31 +25,34 @@ public class Point2D<T extends Number> extends Point<T> {
      * @param x Value to initialize X coordinate.
      * @param y Value to initialize Y coordinate.
      */
-    public Point2D(T x, T y) {
-        super.setX(x);
+    public Point2D(final T x, final T y) {
+        super(x);
         this.y = y;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Point2D)) return false;
-        if (!super.equals(o)) return false;
-        Point2D<?> point2D = (Point2D<?>) o;
-        return Objects.equals(y, point2D.y);
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Point2D)) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        final Point2D<?> point2D = (Point2D<?>) o;
+        return Objects.equals(this.y, point2D.y);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), y);
+        return Objects.hash(super.hashCode(), this.y);
     }
 
     @Override
     public String toString() {
-        return "Point2D[ " +
-                "x=" + super.getX() +
-                " y=" + this.getY() +
-                " ]";
+        return "Point2D[ " + "x=" + super.getX() + " y=" + this.y + " ]";
     }
 
     /**
@@ -58,7 +61,7 @@ public class Point2D<T extends Number> extends Point<T> {
      * @return Y coordinate value.
      */
     public T getY() {
-        return y;
+        return this.y;
     }
 
     /**
@@ -66,7 +69,7 @@ public class Point2D<T extends Number> extends Point<T> {
      *
      * @param y Value to set the Y coordinate.
      */
-    public void setY(T y) {
+    public void setY(final T y) {
         this.y = y;
     }
 
