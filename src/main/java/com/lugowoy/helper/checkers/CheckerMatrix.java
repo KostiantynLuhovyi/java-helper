@@ -17,7 +17,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 21.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.7
+ * @version 1.8
  * @since 2.0
  */
 public final class CheckerMatrix {
@@ -141,7 +141,7 @@ public final class CheckerMatrix {
      * @throws MatrixColumnOutOfRangeException if the columns(length) value of
      * the matrix out of range from {@link Capacity#LOWER} to {@code upperBoundColumns}.
      */
-    public static void checkMatrix(@NotNull final int[][] matrix,
+    public static void check(@NotNull final int[][] matrix,
                                    final int upperBoundRows,
                                    final int upperBoundColumns) {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
@@ -186,7 +186,7 @@ public final class CheckerMatrix {
      * @throws MatrixColumnOutOfRangeException if the columns(length) value of
      * the matrix out of range from {@link Capacity#LOWER} to {@code upperBoundColumns}.
      */
-    public static void checkMatrix(@NotNull final double[][] matrix,
+    public static void check(@NotNull final double[][] matrix,
                                    final int upperBoundRows,
                                    final int upperBoundColumns) {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
