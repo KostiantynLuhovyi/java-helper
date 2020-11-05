@@ -28,9 +28,7 @@ public final class ReaderLengthArray {
      * Reads the length(size) value ({@code int}) for an array.
      *
      * @param reader the {@code reader} to read the length(size) value.
-     *
      * @return the read length(size) value ({@code int}) for an array.
-     *
      * @throws NullPointerException if the {@code reader} is {@code null}.
      * @throws ValueOutOfRangeException if the read length(size) value for an
      * array out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
@@ -56,9 +54,7 @@ public final class ReaderLengthArray {
      * @param reader the {@code reader} to read the length(size) value.
      * @param upperBoundLength the upper bound length(size) value to check the
      * read value.
-     *
      * @return the read length(size) value ({@code int}) for an array.
-     *
      * @throws NullPointerException if the {@code reader} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
@@ -88,13 +84,11 @@ public final class ReaderLengthArray {
      * Reads the length(size) value ({@code int}) for an array.
      *
      * @param reader the {@code reader} to read the length(size) value.
-     * @param outputStream the stream for outputting a message prior to read the
+     * @param writer the stream for outputting a message prior to read the
      * length(size) value.
-     * @param msgOutputStream the text message to output by {@code outputStream}
+     * @param msgWriter the text message to output by {@code outputStream}
      * stream.
-     *
      * @return the read length(size) value ({@code int}) for an array.
-     *
      * @throws NullPointerException if at least one of the arguments is {@code
      * null}.
      * @throws ValueOutOfRangeException if the read length(size) value for an
@@ -127,13 +121,11 @@ public final class ReaderLengthArray {
      * @param reader the {@code reader} to read the length(size) value.
      * @param upperBoundLength the upper bound length(size) value to check the
      * read value.
-     * @param outputStream the stream for outputting a message prior to read the
+     * @param writer the stream for outputting a message prior to read the
      * length(size) value.
-     * @param msgOutputStream the text message to output by {@code outputStream}
+     * @param msgWriter the text message to output by {@code outputStream}
      * stream.
-     *
      * @return the read length(size) value ({@code int)} for an array.
-     *
      * @throws NullPointerException if at least one of the arguments is {@code
      * null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
