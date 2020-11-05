@@ -2,11 +2,11 @@ package com.lugowoy.helper.utils;
 
 import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.checkers.CheckerNumber;
-import com.lugowoy.helper.io.reading.Reading;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.Objects;
 
 /**
@@ -15,15 +15,14 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 02.08.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @since 1.0
  */
+//TODO revision of documentation
 public final class ReaderLengthArray {
 
-    private static final String MSG_EXC_READER_IS_NULL =
-            "Input not possible. Reader is null.";
-    private static final String MSG_EXC_OUTPUT_STREAM_IS_NULL =
-            "OutputStream is null.";
+    private static final String MSG_READER_IS_NULL = "Reader is null.";
+    private static final String MSG_WRITER_IS_NULL = "Writer is null.";
 
     /**
      * Reads the length(size) value ({@code int}) for an array.
@@ -36,10 +35,18 @@ public final class ReaderLengthArray {
      * @throws ValueOutOfRangeException if the read length(size) value for an
      * array out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
-    public static int read(@NotNull final Reading reader) {
-        Objects.requireNonNull(reader, MSG_EXC_READER_IS_NULL);
-        int resultLengthArray = reader.readInt();
-        CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(), Capacity.UPPER.get());
+    public static int read(@NotNull final Reader reader) {
+        Objects.requireNonNull(reader, MSG_READER_IS_NULL);
+        int resultLengthArray = 0;
+        try {
+            resultLengthArray = reader.read();
+            CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(),
+                                Capacity.UPPER.get());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            close(reader);
+        }
         return resultLengthArray;
     }
 
@@ -59,13 +66,21 @@ public final class ReaderLengthArray {
      * array out of range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
      */
-    public static int read(@NotNull final Reading reader,
+    public static int read(@NotNull final Reader reader,
                            final int upperBoundLength) {
-        Objects.requireNonNull(reader, MSG_EXC_READER_IS_NULL);
+        Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
                                         Capacity.UPPER.get());
-        int resultLengthArray = reader.readInt();
-        CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(), upperBoundLength);
+        int resultLengthArray = 0;
+        try {
+            resultLengthArray = reader.read();
+            CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(),
+                                upperBoundLength);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            close(reader);
+        }
         return resultLengthArray;
     }
 
@@ -85,24 +100,24 @@ public final class ReaderLengthArray {
      * @throws ValueOutOfRangeException if the read length(size) value for an
      * array out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
-    public static int read(@NotNull final Reading reader,
-                           @NotNull final OutputStream outputStream,
-                           final String msgOutputStream) {
-        Objects.requireNonNull(reader, MSG_EXC_READER_IS_NULL);
-        Objects.requireNonNull(outputStream, MSG_EXC_OUTPUT_STREAM_IS_NULL);
+    public static int read(@NotNull final Reader reader,
+                           @NotNull final Writer writer,
+                           @NotNull final String msgWriter) {
+        Objects.requireNonNull(reader, MSG_READER_IS_NULL);
+        Objects.requireNonNull(writer, MSG_WRITER_IS_NULL);
+        Objects.requireNonNull(msgWriter, "Message is null.");
+        int resultLengthArray = 0;
         try {
-            outputStream.write(msgOutputStream.getBytes());
+            writer.write(msgWriter);
+            resultLengthArray = reader.read();
+            CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(),
+                                Capacity.UPPER.get());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            try {
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            close(writer);
+            close(reader);
         }
-        int resultLengthArray = reader.readInt();
-        CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(), Capacity.UPPER.get());
         return resultLengthArray;
     }
 
@@ -127,28 +142,45 @@ public final class ReaderLengthArray {
      * array out of range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
      */
-    public static int read(@NotNull final Reading reader,
+    public static int read(@NotNull final Reader reader,
                            final int upperBoundLength,
-                           @NotNull final OutputStream outputStream,
-                           final String msgOutputStream) {
-        Objects.requireNonNull(reader, MSG_EXC_READER_IS_NULL);
-        Objects.requireNonNull(outputStream, MSG_EXC_OUTPUT_STREAM_IS_NULL);
+                           @NotNull final Writer writer,
+                           @NotNull final String msgWriter) {
+        Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
                                         Capacity.UPPER.get());
+        Objects.requireNonNull(writer, MSG_WRITER_IS_NULL);
+        Objects.requireNonNull(msgWriter, "Message is null");
+
+        int resultLengthArray = 0;
         try {
-            outputStream.write(msgOutputStream.getBytes());
+            writer.write(msgWriter);
+            resultLengthArray = reader.read();
+            CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(),
+                                upperBoundLength);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            try {
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            close(writer);
+            close(reader);
         }
-        int resultLengthArray = reader.readInt();
-        CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(), upperBoundLength);
         return resultLengthArray;
+    }
+
+    private static void close(@NotNull final Reader reader) {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void close(@NotNull final Writer writer) {
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
