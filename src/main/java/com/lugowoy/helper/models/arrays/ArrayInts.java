@@ -17,7 +17,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.3
+ * @version 2.4
  * @since 2.0
  */
 //TODO write doc's
@@ -191,7 +191,7 @@ public final class ArrayInts extends AbstractArray {
     }
 
     public void setArray(final int capacity) {
-        CheckerArray.checkLength(capacity, Capacity.UPPER.get());
+        CheckerArray.check(capacity, Capacity.UPPER.get());
         this.array = new int[capacity];
         super.setSize(capacity);
         super.setModCount(AbstractArray.START_MOD_COUNT);

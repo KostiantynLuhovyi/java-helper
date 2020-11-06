@@ -19,7 +19,7 @@ import java.util.RandomAccess;
  * Created by Konstantin Lugowoy on 16.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.4
+ * @version 2.5
  * @since 2.0
  */
 //TODO revision of documentation
@@ -60,7 +60,7 @@ public abstract class AbstractArray implements Model, RandomAccess {
      */
     protected AbstractArray(final int capacity) {
         try {
-            CheckerArray.checkLength(capacity, Capacity.UPPER.get());
+            CheckerArray.check(capacity, Capacity.UPPER.get());
             this.modCount = START_MOD_COUNT;
         } catch (LengthOutOfRangeException ex) {
             throw new IllegalArgumentException(ex);
@@ -115,7 +115,7 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
     protected void setSize(final int size) {
-        CheckerArray.checkLength(size);
+        CheckerArray.check(size);
         this.size = size;
     }
 
@@ -147,14 +147,14 @@ public abstract class AbstractArray implements Model, RandomAccess {
 
     //TODO documentation
     protected void increaseSize() {
-        CheckerArray.checkLength(this.size + 1);
+        CheckerArray.check(this.size + 1);
         this.setSize(this.size + 1);
     }
 
     //TODO documentation
     protected void increaseSize(final int increment) {
         try {
-            CheckerArray.checkLength(this.size + increment);
+            CheckerArray.check(this.size + increment);
             this.setSize(this.size + increment);
         } catch (LengthOutOfRangeException ex) {
             throw new IllegalArgumentException(ex);
@@ -163,14 +163,14 @@ public abstract class AbstractArray implements Model, RandomAccess {
 
     //TODO documentation
     protected void decreaseSize() {
-        CheckerArray.checkLength(this.size - 1);
+        CheckerArray.check(this.size - 1);
         this.setSize(this.size - 1);
     }
 
     //TODO documentation
     protected void decreaseSize(final int decrement) {
         try {
-            CheckerArray.checkLength(this.size - decrement);
+            CheckerArray.check(this.size - decrement);
             this.setSize(this.size - decrement);
         } catch (LengthOutOfRangeException ex) {
             throw new IllegalArgumentException(ex);
@@ -179,7 +179,8 @@ public abstract class AbstractArray implements Model, RandomAccess {
 
     //TODO documentation
     protected void increaseModCount() {
-        CheckerBoundNumber.isInRange(this.modCount + 1, 0, Capacity.UPPER.get());
+        CheckerBoundNumber.isInRange(this.modCount + 1, 0,
+                                     Capacity.UPPER.get());
         this.setModCount(this.modCount + 1);
     }
 

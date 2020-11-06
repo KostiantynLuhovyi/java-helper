@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * Created by Konstantin Lugowoy on 31.05.2017.
  *
  * @author Konstantin Lugowoy
- * @version 5.1
+ * @version 5.2
  * @since 1.0
  */
 //TODO revision of documentation
@@ -291,7 +291,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     }
 
     public void setArray(final int capacity) {
-        CheckerArray.checkLength(capacity, Capacity.UPPER.get());
+        CheckerArray.check(capacity, Capacity.UPPER.get());
         this.array = new Object[capacity];
         super.setSize(capacity);
         super.setModCount(START_MOD_COUNT);
