@@ -15,9 +15,10 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 08.06.2019
  *
  * @author Konstantin Lugowoy
- * @version 2.2
+ * @version 2.3
  * @since 1.6.6
  */
+//TODO revision of documentation
 public final class CheckerArray {
 
     private static final String MSG_ARRAY_IS_NULL = "Array is null.";
@@ -135,7 +136,7 @@ public final class CheckerArray {
      * @throws LengthOutOfRangeException if the {@code lengthArray} value out of
      * range ​​from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
      */
-    public static void checkLength(final int lengthArray) {
+    public static void check(final int lengthArray) {
         if (lengthArray < Capacity.LOWER.get()
             || lengthArray > Capacity.UPPER.get()) {
             throw new LengthOutOfRangeException(
@@ -159,7 +160,7 @@ public final class CheckerArray {
      * range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
      */
-    public static void checkLength(final int lengthArray,
+    public static void check(final int lengthArray,
                                    final int upperBoundLength) {
         CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
                                         Capacity.UPPER.get());
