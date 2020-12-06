@@ -18,10 +18,10 @@ import java.util.Objects;
  * @version 2.3
  * @since 1.6.6
  */
-//TODO revision of documentation
+//TODO review documentation
 public final class CheckerArray {
 
-    private static final String MSG_ARRAY_IS_NULL = "Array is null.";
+    private static final String MSG_ARRAY_IS_NULL = "Array is null";
 
     private CheckerArray() {
     }
