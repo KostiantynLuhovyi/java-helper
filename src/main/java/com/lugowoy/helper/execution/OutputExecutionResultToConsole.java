@@ -12,10 +12,12 @@ package com.lugowoy.helper.execution;
  * @see com.lugowoy.helper.execution.OutputExecutionResult
  * @since 2.7
  */
+//TODO review documentation
 public class OutputExecutionResultToConsole implements OutputExecutionResult {
 
     /**
-     * The pattern appearance of the output if the result of execution a string.
+     * The pattern appearance of the output if the result of execution a
+     * string.
      */
     public static final String PATTERN_RESULT_STRING = "Result : %s";
 
@@ -26,13 +28,14 @@ public class OutputExecutionResultToConsole implements OutputExecutionResult {
     public static final String PATTERN_RESULT_INTEGER = "Result : %d";
 
     /**
-     * The pattern appearance of the output if the result of execution a double.
+     * The pattern appearance of the output if the result of execution a
+     * double.
      */
     public static final String PATTERN_RESULT_DOUBLE = "Result : %f";
 
     /**
-     * The pattern appearance of the output if the result of
-     * execution a boolean.
+     * The pattern appearance of the output if the result of execution a
+     * boolean.
      */
     public static final String PATTERN_RESULT_BOOLEAN = "Result : %b";
 
@@ -45,7 +48,8 @@ public class OutputExecutionResultToConsole implements OutputExecutionResult {
     /**
      * Outputs the result {@code resultValue} of the execution, formatting its
      * appearance as a default string. The output uses the {@link
-     * OutputExecutionResultToConsole#PATTERN_RESULT_STRING} appearance pattern.
+     * OutputExecutionResultToConsole#PATTERN_RESULT_STRING} appearance
+     * pattern.
      *
      * @param <T> the type of the result of the execution.
      * @param resultValue the result to output.
@@ -56,8 +60,8 @@ public class OutputExecutionResultToConsole implements OutputExecutionResult {
     }
 
     /**
-     * Outputs the result values of execution, formatting its appearance as
-     * a {@code patternResult} string.
+     * Outputs the result values of execution, formatting its appearance as a
+     * {@code patternResult} string.
      *
      * @param <T> the type of the result values of the execution.
      * @param patternResult the pattern appearance of the result.
