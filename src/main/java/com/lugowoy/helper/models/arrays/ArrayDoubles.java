@@ -19,7 +19,7 @@ import java.util.function.Consumer;
  * @version 2.4
  * @since 2.0
  */
-//TODO write doc's
+//TODO write documentation
 //TODO add methods for working with an object of this class,
 // and not with primitive arrays
 public final class ArrayDoubles extends AbstractArray {

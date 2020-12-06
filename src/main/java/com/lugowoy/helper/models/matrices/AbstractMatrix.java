@@ -13,7 +13,7 @@ import java.util.Objects;
  * @version 1.3
  * @since 2.0
  */
-//TODO revision of documentation
+//TODO review documentation
 public class AbstractMatrix implements Model {
 
     /**

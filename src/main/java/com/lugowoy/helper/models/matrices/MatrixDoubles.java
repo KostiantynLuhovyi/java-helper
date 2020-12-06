@@ -21,7 +21,7 @@ import java.util.Objects;
  * @see java.lang.Cloneable
  * @since 2.0
  */
-//TODO documentation
+//TODO review documentation
 public class MatrixDoubles extends AbstractMatrix {
 
     private double[][] matrix;
@@ -136,7 +136,7 @@ public class MatrixDoubles extends AbstractMatrix {
     }
 
     public double[][] toMatrix(@NotNull final double[][] matrix) {
-        Objects.requireNonNull(matrix, "Matrix is null.");
+        Objects.requireNonNull(matrix, "Matrix is null");
         for (int i = 0; i < matrix.length; i++) {
             if (i == super.getRows()) {
                 break;
@@ -153,7 +153,7 @@ public class MatrixDoubles extends AbstractMatrix {
     }
 
     public double[][] toDeepMatrix(@NotNull final double[][] matrix) {
-        Objects.requireNonNull(matrix, "Matrix is null.");
+        Objects.requireNonNull(matrix, "Matrix is null");
         for (int i = 0; i < matrix.length; i++) {
             if (i == super.getRows()) {
                 break;
@@ -170,7 +170,7 @@ public class MatrixDoubles extends AbstractMatrix {
     }
 
     public double[] getRowToArray(@NotNull double[] array, final int indexRow) {
-        Objects.requireNonNull(array, "Array is null.");
+        Objects.requireNonNull(array, "Array is null");
         CheckerIndex.checkInRange(indexRow, super.getRows());
         array = Arrays.copyOf(this.matrix[indexRow], super.getColumns());
         return array;
@@ -178,7 +178,7 @@ public class MatrixDoubles extends AbstractMatrix {
 
     public ArrayDoubles getRowToArray(@NotNull final ArrayDoubles array,
                                       final int indexRow) {
-        Objects.requireNonNull(array, "Array is null.");
+        Objects.requireNonNull(array, "Array is null");
         CheckerIndex.checkInRange(indexRow, super.getRows());
         array.setArray(
                 Arrays.copyOf(this.matrix[indexRow], super.getColumns()));
@@ -196,7 +196,7 @@ public class MatrixDoubles extends AbstractMatrix {
 
     public double[] getColumnToArray(@NotNull double[] array,
                                      final int indexColumn) {
-        Objects.requireNonNull(array, "Array is null.");
+        Objects.requireNonNull(array, "Array is null");
         CheckerIndex.checkInRange(indexColumn, super.getColumns());
         array = new double[super.getRows()];
         for (int i = 0; i < super.getRows(); i++) {
@@ -207,7 +207,7 @@ public class MatrixDoubles extends AbstractMatrix {
 
     public ArrayDoubles getColumnToArray(@NotNull final ArrayDoubles array,
                                          final int indexColumn) {
-        Objects.requireNonNull(array, "Array is null.");
+        Objects.requireNonNull(array, "Array is null");
         CheckerIndex.checkInRange(indexColumn, super.getColumns());
         for (int i = 0; i < super.getRows(); i++) {
             array.add(this.matrix[i][indexColumn]);
@@ -217,14 +217,14 @@ public class MatrixDoubles extends AbstractMatrix {
 
     public void setRowFromArray(@NotNull final double[] array,
                                 final int indexRow) {
-        Objects.requireNonNull(array, "Array is null.");
+        Objects.requireNonNull(array, "Array is null");
         CheckerIndex.checkInRange(indexRow, super.getRows());
         this.matrix[indexRow] = Arrays.copyOf(array, super.getColumns());
     }
 
     public void setRowFromArray(@NotNull final ArrayDoubles array,
                                 final int indexRow) {
-        Objects.requireNonNull(array, "Array is null.");
+        Objects.requireNonNull(array, "Array is null");
         CheckerIndex.checkInRange(indexRow, super.getRows());
         this.matrix[indexRow] = Arrays.copyOf(array.toArray(),
                                               super.getColumns());
@@ -232,7 +232,7 @@ public class MatrixDoubles extends AbstractMatrix {
 
     public void setColumnFromArray(@NotNull final double[] array,
                                    final int indexColumn) {
-        Objects.requireNonNull(array, "Array is null.");
+        Objects.requireNonNull(array, "Array is null");
         CheckerIndex.checkInRange(indexColumn, this.getColumns());
         for (int i = 0; i < super.getRows(); i++) {
             if (i < array.length) {
@@ -245,7 +245,7 @@ public class MatrixDoubles extends AbstractMatrix {
 
     public void setColumnFromArray(@NotNull final ArrayDoubles array,
                                    final int indexColumn) {
-        Objects.requireNonNull(array, "Array is null.");
+        Objects.requireNonNull(array, "Array is null");
         this.setColumnFromArray(array.toArray(), indexColumn);
     }
 
@@ -315,7 +315,7 @@ public class MatrixDoubles extends AbstractMatrix {
         for (int i = 0; i < bound; i++) {
             if (firstRow != matrix[i].length) {
                 throw new IllegalArgumentException(
-                        "Matrix columns have different lengths.");
+                        "Matrix columns have different lengths");
             }
         }
     }

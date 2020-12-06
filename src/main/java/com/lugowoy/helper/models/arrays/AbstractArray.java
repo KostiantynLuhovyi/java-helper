@@ -22,7 +22,7 @@ import java.util.RandomAccess;
  * @version 2.5
  * @since 2.0
  */
-//TODO revision of documentation
+//TODO review documentation
 public abstract class AbstractArray implements Model, RandomAccess {
 
     /**
@@ -32,9 +32,8 @@ public abstract class AbstractArray implements Model, RandomAccess {
      */
     public static final int DEFAULT_CAPACITY = 10;
 
-    //TODO documentation
     protected static final int START_SIZE = 0;
-    //TODO documentation
+
     protected static final int START_MOD_COUNT = 0;
 
     private int size = START_SIZE;
@@ -90,10 +89,8 @@ public abstract class AbstractArray implements Model, RandomAccess {
         return Objects.hash(this.size, this.modCount);
     }
 
-    //TODO documentation
     protected abstract void ensureCapacity();
 
-    //TODO documentation
     protected abstract void trimToSize();
 
     /**
@@ -133,8 +130,8 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * must be positive.
      *
      * @param newModCount the value of the new modification count.
-     * @throws IllegalArgumentException if the {@code newModCount} argument
-     * is negative.
+     * @throws IllegalArgumentException if the {@code newModCount} argument is
+     * negative.
      */
     protected void setModCount(final int newModCount) {
         if (newModCount >= 0) {
@@ -145,13 +142,11 @@ public abstract class AbstractArray implements Model, RandomAccess {
         }
     }
 
-    //TODO documentation
     protected void increaseSize() {
         CheckerArray.check(this.size + 1);
         this.setSize(this.size + 1);
     }
 
-    //TODO documentation
     protected void increaseSize(final int increment) {
         try {
             CheckerArray.check(this.size + increment);
@@ -161,13 +156,11 @@ public abstract class AbstractArray implements Model, RandomAccess {
         }
     }
 
-    //TODO documentation
     protected void decreaseSize() {
         CheckerArray.check(this.size - 1);
         this.setSize(this.size - 1);
     }
 
-    //TODO documentation
     protected void decreaseSize(final int decrement) {
         try {
             CheckerArray.check(this.size - decrement);
@@ -177,7 +170,6 @@ public abstract class AbstractArray implements Model, RandomAccess {
         }
     }
 
-    //TODO documentation
     protected void increaseModCount() {
         CheckerBoundNumber.isInRange(this.modCount + 1, 0,
                                      Capacity.UPPER.get());

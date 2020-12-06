@@ -6,7 +6,8 @@ import java.util.Objects;
  * The class implements the 3D point model.
  * <p>Created by Konstantin Lugowoy on 27.12.2018.
  *
- * @param <T> The type of coordinates that initialize the coordinates of a 3D point.
+ * @param <T> The type of coordinates that initialize the coordinates of a 3D
+ * point.
  * @author Konstantin Lugowoy
  * @version 1.3
  * @see com.lugowoy.helper.models.Model
@@ -15,6 +16,7 @@ import java.util.Objects;
  * @see java.lang.Cloneable
  * @since 1.6
  */
+//TODO review documentation
 public class Point3D<T extends Number> extends Point2D<T> {
 
     private T z;

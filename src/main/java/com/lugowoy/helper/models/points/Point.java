@@ -8,7 +8,8 @@ import java.util.Objects;
  * The class implements the point model.
  * <p>Created by Konstantin Lugowoy on 02.07.2017.
  *
- * @param <T> The type of coordinates that initialize the coordinates of a point.
+ * @param <T> The type of coordinates that initialize the coordinates of a
+ * point.
  * @author Konstantin Lugowoy
  * @version 1.3
  * @see com.lugowoy.helper.models.Model
@@ -16,6 +17,7 @@ import java.util.Objects;
  * @see java.lang.Cloneable
  * @since 1.0
  */
+//TODO review documentation
 public abstract class Point<T extends Number> implements Model {
 
     private T x;
