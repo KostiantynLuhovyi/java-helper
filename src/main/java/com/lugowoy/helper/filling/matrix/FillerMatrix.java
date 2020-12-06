@@ -2,34 +2,27 @@ package com.lugowoy.helper.filling.matrix;
 
 import com.lugowoy.helper.filling.Filler;
 import com.lugowoy.helper.models.matrices.Matrix;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Created by Konstantin Lugowoy on 05.10.2018.
+ * <p>Created by Konstantin Lugowoy on 05.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 1.2
  */
-//todo edit doc's
+//TODO write documentation
 public class FillerMatrix<T> extends Filler<Matrix<T>> {
 
-    public FillerMatrix() {
-    }
-
-    public FillerMatrix(FillingMatrix<T> filling) {
+    public FillerMatrix(@NotNull final FillingMatrix<T> filling) {
         super(filling);
     }
 
-    @Override
-    public void fill(Matrix<T> matrix) {
-        super.fill(matrix);
-    }
-
-    public void fill(T[][] matrix) {
+    public void fill(@NotNull final T[][] matrix) {
         ((FillingMatrix<T>) super.getFilling()).fill(matrix);
     }
 
-    public T[][] fill(int rows, int columns) {
+    public T[][] fill(final int rows, final int columns) {
         return ((FillingMatrix<T>) super.getFilling()).fill(rows, columns);
     }
 

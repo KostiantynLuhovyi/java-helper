@@ -1,35 +1,23 @@
 package com.lugowoy.helper.filling.matrix;
 
 import com.lugowoy.helper.filling.FillingReadValues;
-import com.lugowoy.helper.io.reading.Reader;
-import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.matrices.Matrix;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.Reader;
 
 /**
- * Created by Konstantin Lugowoy on 05.10.2018.
+ * <p>Created by Konstantin Lugowoy on 05.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
+ * @see com.lugowoy.helper.filling.FillingReadValues
  * @since 1.2
  */
-//todo edit doc's
-public abstract class FillingMatrixReadValues<T> extends FillingReadValues implements FillingMatrix<T> {
+//todo write documentation
+public abstract class FillingMatrixReadValues extends FillingReadValues {
 
-    public FillingMatrixReadValues(Reader reader) {
+    public FillingMatrixReadValues(@NotNull final Reader reader) {
         super(reader);
     }
-
-    public FillingMatrixReadValues(Reading reading) {
-        super(reading);
-    }
-
-    @Override
-    public abstract void fill(Matrix<T> matrix);
-
-    @Override
-    public abstract void fill(T[][] matrix);
-
-    @Override
-    public abstract T[][] fill(int rows, int columns);
 
 }

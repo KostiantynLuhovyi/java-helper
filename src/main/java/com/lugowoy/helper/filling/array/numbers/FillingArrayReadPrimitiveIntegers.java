@@ -1,70 +1,67 @@
 package com.lugowoy.helper.filling.array.numbers;
 
-import com.lugowoy.helper.filling.FillingReadValues;
-import com.lugowoy.helper.filling.ValuesToFilling;
-import com.lugowoy.helper.io.reading.Reader;
-import com.lugowoy.helper.io.reading.Reading;
-import com.lugowoy.helper.models.storages.arrays.ArrayInts;
+import com.lugowoy.helper.checkers.CheckerArray;
+import com.lugowoy.helper.checkers.CheckerBoundNumber;
+import com.lugowoy.helper.checkers.CheckerNumber;
+import com.lugowoy.helper.filling.array.FillingArrayReadValues;
+import com.lugowoy.helper.models.arrays.ArrayInts;
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
-import com.lugowoy.helper.utils.BoundsCompareException;
-import com.lugowoy.helper.utils.LengthArrayOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsComparisonException;
+import com.lugowoy.helper.utils.Capacity;
+import com.lugowoy.helper.utils.LengthOutOfRangeException;
 import com.lugowoy.helper.utils.ValueOutOfRangeException;
-import com.lugowoy.helper.utils.checking.CheckerArray;
-import com.lugowoy.helper.utils.checking.CheckerBound;
-import com.lugowoy.helper.utils.checking.CheckerValue;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.Reader;
+import java.math.BigDecimal;
 
 /**
- * The class provides the functionality to fill the class objects {@link ArrayInts} and
- * arrays of the int type with the read numeric data of the int type.
- * <p> To see the functionality of read numeric data can in the class {@link Reader} and the interface {@link Reading}.
- * <p> Created by Konstantin Lugowoy on 23.03.2020.
+ * The class provides the functionality to fill the class objects {@link
+ * ArrayInts} and arrays of the int type with the read numeric data of the int
+ * type.
+ * <p>To see the functionality of read numeric data can in the class {@link
+ * Reader}.
+ * <p>Created by Konstantin Lugowoy on 23.03.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @see com.lugowoy.helper.filling.FillingReadValues
+ * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @since 3.0
  */
-public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
+//TODO review documentation
+public class FillingArrayReadPrimitiveIntegers extends FillingArrayReadValues {
 
     /**
-     * Constructs a new object, initializing the implementation of reading numeric data of the int type to fill
-     * the class objects {@link ArrayInts} and arrays of the int type.
-     * The implementation of data reading provided by class objects {@link Reader} or its subclasses.
+     * Constructs a new object, initializing the implementation of reading
+     * numeric data of the int type to fill the class objects {@link ArrayInts}
+     * and arrays of the int type. The implementation of data reading provided
+     * by class objects {@link Reader} or its subclasses.
      *
      * @param reader the object implementation of reading data to fill.
      */
-    public FillingArrayReadPrimitiveIntegers(Reader reader) {
+    public FillingArrayReadPrimitiveIntegers(@NotNull final Reader reader) {
         super(reader);
     }
 
     /**
-     * Constructs a new object, initializing the implementation of reading numeric data of the int type to fill
-     * the class objects {@link ArrayInts} and arrays of the int type.
-     * The implementation of reading data provided by classes objects that implementation the {@link Reading} interface.
-     *
-     * @param reading the object implementation of reading data to fill.
-     */
-    public FillingArrayReadPrimitiveIntegers(Reading reading) {
-        super(reading);
-    }
-
-    /**
-     * Fills the {@code array} object with the read numeric data of the int type.
-     * <p> For reading the data used to fill the functional encapsulated in the class.
-     * The functionality for reading data provided by objects of the {@link Reader} class or
-     * by objects of classes implementing the {@link Reading} interface.
-     * The read numeric values must in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * Fills the {@code array} object with the read numeric data of the int
+     * type.
+     * <p>For reading the data used to fill the functional encapsulated in the
+     * class. The functionality for reading data provided by objects of the
+     * {@link Reader} class. The read numeric values must in the range from
+     * {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param array the object of the {@link ArrayInts} class to fill.
-     *
      * @throws NullPointerException if the {@code array} object is null.
      * @throws ValueOutOfRangeException if the read {@code value} out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
-     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws LengthOutOfRangeException if the {@code array} object attribute
+     * length(size) out of range ​from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
      */
-    public void fill(ArrayInts array) {
-        CheckerArray.checkLengthInArray(array);
+    public void fill(@NotNull final ArrayInts array) {
+        CheckerArray.check(array, Capacity.UPPER.get());
         int[] ints = new int[array.size()];
         this.fillArray(ints);
         array.setArray(ints);
@@ -72,228 +69,245 @@ public class FillingArrayReadPrimitiveIntegers extends FillingReadValues {
 
     /**
      * Fills the {@code ints} array with the read numeric data of the int type.
-     * <p> For reading the data used to fill the functional encapsulated in the class.
-     * The functionality for reading data provided by objects of the {@link Reader} class or
-     * by objects of classes implementing the {@link Reading} interface.
-     * The read numeric values must in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * <p>For reading the data used to fill the functional encapsulated in the
+     * class. The functionality for reading data provided by objects of the
+     * {@link Reader} class. The read numeric values must in the range from
+     * {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param ints the array to fill.
-     *
      * @throws NullPointerException if the {@code ints} array is null.
      * @throws ValueOutOfRangeException if the read {@code value} out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws LengthArrayOutOfRangeException if the {@code ints} array attribute length(size) out of range
-     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws LengthOutOfRangeException if the {@code array} object attribute
+     * length(size) out of range ​from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
      */
-    public void fill(int[] ints) {
-        CheckerArray.checkLengthInArray(ints);
+    public void fill(@NotNull final int[] ints) {
+        CheckerArray.check(ints, Capacity.UPPER.get());
         this.fillArray(ints);
     }
 
     /**
-     * Creates an array of the {@code lengthArray} length(size) of the int type and
-     * fills it with the read numeric data of int type.
-     * <p> For reading the data used to fill the functional encapsulated in the class.
-     * The functionality for reading data provided by objects of the {@link Reader} class or
-     * by objects of classes implementing the {@link Reading} interface.
-     * The read numeric values must in the range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * Creates an array of the {@code lengthArray} length(size) of the int type
+     * and fills it with the read numeric data of int type.
+     * <p>For reading the data used to fill the functional encapsulated in the
+     * class. The functionality for reading data provided by objects of the
+     * {@link Reader} class. The read numeric values must in the range from
+     * {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      *
      * @param lengthArray the length(size) of the created array to fill.
-     *
      * @return the array created and filled with data.
-     *
      * @throws ValueOutOfRangeException if the read {@code value} out of range
      * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
-     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
+     * @throws LengthOutOfRangeException if the {@code array} object attribute
+     * length(size) out of range ​from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
      */
-    public int[] fill(int lengthArray) {
-        CheckerArray.checkLengthArray(lengthArray);
+    public int[] fill(final int lengthArray) {
+        CheckerArray.check(lengthArray);
         int[] ints = new int[lengthArray];
         this.fillArray(ints);
         return ints;
     }
 
     /**
-     * Fills the {@code array} object with the read numeric data of the int type.
-     * <p> For reading the data used to fill the functional encapsulated in the class.
-     * The functionality for reading data provided by objects of the {@link Reader} class or
-     * by objects of classes implementing the {@link Reading} interface.
-     * The read numeric values must in the range from {@link ValuesToFilling#INT_ZERO} to {@code boundValue}.
+     * Fills the {@code array} object with the read numeric data of the int
+     * type.
+     * <p>For reading the data used to fill the functional encapsulated in the
+     * class. The functionality for reading data provided by objects of the
+     * {@link Reader} class. The read numeric values must in the range from
+     * {@link BigDecimal#ZERO} to {@code bound}.
      *
      * @param array the object of the {@link ArrayInts} class to fill.
-     * @param boundValue the positive upper bound numeric value to fill.
-     *
+     * @param bound the positive upper bound numeric value to fill.
      * @throws NullPointerException if the {@code array} object is null.
      * @throws ValueOutOfRangeException if the read {@code value} out of range
-     * from {@link ValuesToFilling#INT_ZERO} to {@code boundValue}.
-     * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
-     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code boundValue} value out of range
-     * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
+     * from {@link BigDecimal#ZERO} to {@code bound}.
+     * @throws LengthOutOfRangeException if the {@code array} object attribute
+     * length(size) out of range ​from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
+     * @throws BoundOutOfRangeException if the {@code bound} value out of range
+     * from {@link BigDecimal#ZERO} to {@link Integer#MAX_VALUE}.
      */
-    public void fill(ArrayInts array, int boundValue) {
-        CheckerArray.checkLengthInArray(array);
-        CheckerBound.isCorrectBound(boundValue, Integer.MAX_VALUE);
+    public void fill(@NotNull final ArrayInts array, final int bound) {
+        CheckerArray.check(array, Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(bound, Integer.MAX_VALUE);
         int[] ints = new int[array.size()];
-        this.fillArrayFromZeroToBound(ints, boundValue);
+        this.fillArrayFromZeroToBound(ints, bound);
         array.setArray(ints);
     }
 
     /**
      * Fills the {@code ints} array with the read numeric data of the int type.
-     * <p> For reading the data used to fill the functional encapsulated in the class.
-     * The functionality for reading data provided by objects of the {@link Reader} class or
-     * by objects of classes implementing the {@link Reading} interface.
-     * The read numeric values must in the range from {@link ValuesToFilling#INT_ZERO} to {@code boundValue}.
+     * <p>For reading the data used to fill the functional encapsulated in the
+     * class. The functionality for reading data provided by objects of the
+     * {@link Reader} class. The read numeric values must in the range from
+     * {@link BigDecimal#ZERO} to {@code bound}.
      *
      * @param ints the array to fill.
-     * @param boundValue the positive upper bound numeric value to fill.
-     *
+     * @param bound the positive upper bound numeric value to fill.
      * @throws NullPointerException if the {@code ints} array is null.
      * @throws ValueOutOfRangeException if the read {@code value} out of range
-     * from {@link ValuesToFilling#INT_ZERO} to {@code boundValue}.
-     * @throws LengthArrayOutOfRangeException if the {@code ints} array attribute length(size) out of range
-     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code boundValue} value out of range
-     * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
+     * from {@link BigDecimal#ZERO} to {@code bound}.
+     * @throws LengthOutOfRangeException if the {@code array} object attribute
+     * length(size) out of range ​from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
+     * @throws BoundOutOfRangeException if the {@code bound} value out of range
+     * from {@link BigDecimal#ZERO} to {@link Integer#MAX_VALUE}.
      */
-    public void fill(int[] ints, int boundValue) {
-        CheckerArray.checkLengthInArray(ints);
-        CheckerBound.isCorrectBound(boundValue, Integer.MAX_VALUE);
-        this.fillArrayFromZeroToBound(ints, boundValue);
+    public void fill(@NotNull final int[] ints, final int bound) {
+        CheckerArray.check(ints, Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(bound, Integer.MAX_VALUE);
+        this.fillArrayFromZeroToBound(ints, bound);
     }
 
     /**
-     * Creates an array of the {@code lengthArray} length(size) of the int type and
-     * fills it with the read numeric data of int type.
-     * <p> For reading the data used to fill the functional encapsulated in the class.
-     * The functionality for reading data provided by objects of the {@link Reader} class or
-     * by objects of classes implementing the {@link Reading} interface.
-     * The read numeric values must in the range from {@link ValuesToFilling#INT_ZERO} to {@code boundValue}.
+     * Creates an array of the {@code lengthArray} length(size) of the int type
+     * and fills it with the read numeric data of int type.
+     * <p>For reading the data used to fill the functional encapsulated in the
+     * class. The functionality for reading data provided by objects of the
+     * {@link Reader} class. The read numeric values must in the range from
+     * {@link BigDecimal#ZERO} to {@code bound}.
      *
      * @param lengthArray the length(size) of the created array to fill.
-     * @param boundValue the positive upper bound numeric value to fill.
-     *
+     * @param bound the positive upper bound numeric value to fill.
      * @return the array created and filled with data.
-     *
      * @throws ValueOutOfRangeException if the read {@code value} out of range
-     * from {@link ValuesToFilling#INT_ZERO} to {@code boundValue}.
-     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
-     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if the {@code boundValue} value out of range
-     * from {@link ValuesToFilling#INT_ZERO} to {@link Integer#MAX_VALUE}.
+     * from {@link BigDecimal#ZERO} to {@code bound}.
+     * @throws LengthOutOfRangeException if the {@code array} object attribute
+     * length(size) out of range ​from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
+     * @throws BoundOutOfRangeException if the {@code bound} value out of range
+     * from {@link BigDecimal#ZERO} to {@link Integer#MAX_VALUE}.
      */
-    public int[] fill(int lengthArray, int boundValue) {
-        CheckerArray.checkLengthArray(lengthArray);
-        CheckerBound.isCorrectBound(boundValue, Integer.MAX_VALUE);
+    public int[] fill(final int lengthArray, final int bound) {
+        CheckerArray.check(lengthArray);
+        CheckerBoundNumber.checkInRange(bound, Integer.MAX_VALUE);
         int[] ints = new int[lengthArray];
-        this.fillArrayFromZeroToBound(ints, boundValue);
+        this.fillArrayFromZeroToBound(ints, bound);
         return ints;
     }
 
     /**
-     * Fills the {@code array} object with the read numeric data of the int type.
-     * <p> For reading the data used to fill the functional encapsulated in the class.
-     * The functionality for reading data provided by objects of the {@link Reader} class or
-     * by objects of classes implementing the {@link Reading} interface.
-     * The read numeric values must in the range from {@code lowerBoundValue} to {@code upperBoundValue}.
+     * Fills the {@code array} object with the read numeric data of the int
+     * type.
+     * <p>For reading the data used to fill the functional encapsulated in the
+     * class. The functionality for reading data provided by objects of the
+     * {@link Reader} class. The read numeric values must in the range from
+     * {@code lowerBound} to {@code upperBound}.
      *
      * @param array the object of the {@link ArrayInts} class to fill.
-     * @param lowerBoundValue the lower bound numeric value to fill.
-     * @param upperBoundValue the upper bound numeric value to fill.
-     *
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
      * @throws NullPointerException if the {@code array} object is null.
      * @throws ValueOutOfRangeException if the read {@code value} out of range
-     * from {@code lowerBoundValue} to {@code upperBoundValue}.
-     * @throws LengthArrayOutOfRangeException if the {@code array} object attribute length(size) out of range
-     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if any of the boundary values out of range
-     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsCompareException if {@code lowerBoundValue} value greater or equal than {@code upperBoundValue} value.
+     * from {@code lowerBound} to {@code upperBound}.
+     * @throws LengthOutOfRangeException if the {@code array} object attribute
+     * length(size) out of range ​from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
+     * @throws BoundOutOfRangeException if any of the boundary values out of
+     * range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * @throws BoundsComparisonException if {@code lowerBound} value greater or
+     * equal than {@code upperBound} value.
      */
-    public void fill(ArrayInts array, int lowerBoundValue, int upperBoundValue) {
-        CheckerArray.checkLengthInArray(array);
-        CheckerBound.isCorrectBound(lowerBoundValue, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBoundValue, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundValue, upperBoundValue);
+    public void fill(@NotNull final ArrayInts array, final int lowerBound,
+                     final int upperBound) {
+        CheckerArray.check(array, Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(lowerBound, Integer.MIN_VALUE,
+                                        Integer.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBound, Integer.MIN_VALUE,
+                                        Integer.MAX_VALUE);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
         int[] ints = new int[array.size()];
-        this.fillArrayFromLowerToUpper(ints, lowerBoundValue, upperBoundValue);
+        this.fillArrayFromLowerToUpper(ints, lowerBound, upperBound);
         array.setArray(ints);
     }
 
     /**
      * Fills the {@code ints} array with the read numeric data of the int type.
-     * <p> For reading the data used to fill the functional encapsulated in the class.
-     * The functionality for reading data provided by objects of the {@link Reader} class or
-     * by objects of classes implementing the {@link Reading} interface.
-     * The read numeric values must in the range from {@code lowerBoundValue} to {@code upperBoundValue}.
+     * <p>For reading the data used to fill the functional encapsulated in the
+     * class. The functionality for reading data provided by objects of the
+     * {@link Reader} class. The read numeric values must in the range from
+     * {@code lowerBound} to {@code upperBound}.
      *
      * @param ints the array to fill.
-     * @param lowerBoundValue the lower bound numeric value to fill.
-     * @param upperBoundValue the upper bound numeric value to fill.
-     *
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
      * @throws NullPointerException if the {@code ints} array is null.
      * @throws ValueOutOfRangeException if the read {@code value} out of range
-     * from {@code lowerBoundValue} to {@code upperBoundValue}.
-     * @throws LengthArrayOutOfRangeException if the {@code ints} array attribute length(size) out of range
-     * ​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if any of the boundary values out of range
-     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsCompareException if {@code lowerBoundValue} value greater or equal than {@code upperBoundValue} value.
+     * from {@code lowerBound} to {@code upperBound}.
+     * @throws LengthOutOfRangeException if the {@code array} object attribute
+     * length(size) out of range ​from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
+     * @throws BoundOutOfRangeException if any of the boundary values out of
+     * range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * @throws BoundsComparisonException if {@code lowerBound} value greater or
+     * equal than {@code upperBound} value.
      */
-    public void fill(int[] ints, int lowerBoundValue, int upperBoundValue) {
-        CheckerArray.checkLengthInArray(ints);
-        CheckerBound.isCorrectBound(lowerBoundValue, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBoundValue, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundValue, upperBoundValue);
-        this.fillArrayFromLowerToUpper(ints, lowerBoundValue, upperBoundValue);
+    public void fill(@NotNull final int[] ints, final int lowerBound,
+                     final int upperBound) {
+        CheckerArray.check(ints, Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(lowerBound, Integer.MIN_VALUE,
+                                        Integer.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBound, Integer.MIN_VALUE,
+                                        Integer.MAX_VALUE);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
+        this.fillArrayFromLowerToUpper(ints, lowerBound, upperBound);
     }
 
     /**
-     * Creates an array of the {@code lengthArray} length(size) of the int type and
-     * fills it with the read numeric data of int type.
-     * <p> For reading the data used to fill the functional encapsulated in the class.
-     * The functionality for reading data provided by objects of the {@link Reader} class or
-     * by objects of classes implementing the {@link Reading} interface.
-     * The read numeric values must in the range from {@code lowerBoundValue} to {@code upperBoundValue}.
+     * Creates an array of the {@code lengthArray} length(size) of the int type
+     * and fills it with the read numeric data of int type.
+     * <p>For reading the data used to fill the functional encapsulated in the
+     * class. The functionality for reading data provided by objects of the
+     * {@link Reader} class. The read numeric values must in the range from
+     * {@code lowerBound} to {@code upperBound}.
      *
      * @param lengthArray the length(size) of the created array to fill.
-     * @param lowerBoundValue the lower bound numeric value to fill.
-     * @param upperBoundValue the upper bound numeric value to fill.
-     *
+     * @param lowerBound the lower bound numeric value to fill.
+     * @param upperBound the upper bound numeric value to fill.
      * @return the array created and filled with data.
-     *
      * @throws ValueOutOfRangeException if the read {@code value} out of range
-     * from {@code lowerBoundValue} to {@code upperBoundValue}.
-     * @throws LengthArrayOutOfRangeException if the {@code lengthArray} value out of range
-     * ​​from {@link CheckerArray#LOWER_BOUND_LENGTH_ARRAY} to {@link CheckerArray#UPPER_BOUND_LENGTH_ARRAY}.
-     * @throws BoundOutOfRangeException if any of the boundary values out of range
-     * from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
-     * @throws BoundsCompareException if {@code lowerBoundValue} value greater or equal than {@code upperBoundValue} value.
+     * from {@code lowerBound} to {@code upperBound}.
+     * @throws LengthOutOfRangeException if the {@code array} object attribute
+     * length(size) out of range ​from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
+     * @throws BoundOutOfRangeException if any of the boundary values out of
+     * range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
+     * @throws BoundsComparisonException if {@code lowerBound} value greater or
+     * equal than {@code upperBound} value.
      */
-    public int[] fill(int lengthArray, int lowerBoundValue, int upperBoundValue) {
-        CheckerArray.checkLengthArray(lengthArray);
-        CheckerBound.isCorrectBound(lowerBoundValue, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBoundValue, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        CheckerBound.isLowerBoundLessOrEqualUpperBound(lowerBoundValue, upperBoundValue);
+    public int[] fill(final int lengthArray, final int lowerBound,
+                      final int upperBound) {
+        CheckerArray.check(lengthArray);
+        CheckerBoundNumber.checkInRange(lowerBound, Integer.MIN_VALUE,
+                                        Integer.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBound, Integer.MIN_VALUE,
+                                        Integer.MAX_VALUE);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
         int[] ints = new int[lengthArray];
-        this.fillArrayFromLowerToUpper(ints, lowerBoundValue, upperBoundValue);
+        this.fillArrayFromLowerToUpper(ints, lowerBound, upperBound);
         return ints;
     }
 
-    private void fillArray(int[] ints) {
-        this.fillArrayFromLowerToUpper(ints, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    private void fillArray(final int[] ints) {
+        this.fillArrayFromLowerToUpper(ints, Integer.MIN_VALUE,
+                                       Integer.MAX_VALUE);
     }
 
-    private void fillArrayFromZeroToBound(int[] ints, int boundValue) {
-        this.fillArrayFromLowerToUpper(ints, ValuesToFilling.INT_ZERO, boundValue);
+    private void fillArrayFromZeroToBound(final int[] ints, final int bound) {
+        this.fillArrayFromLowerToUpper(ints, BigDecimal.ZERO.intValue(), bound);
     }
 
-    private void fillArrayFromLowerToUpper(int[] ints, int lowerBoundValue, int upperBoundValue) {
+    private void fillArrayFromLowerToUpper(final int[] ints,
+                                           final int lowerBound,
+                                           final int upperBound) {
+        int valueRead = 0;
         for (int i = 0; i < ints.length; i++) {
-            int valueRead = super.getReader().readInt();
-            CheckerValue.checkValue(valueRead, lowerBoundValue, upperBoundValue);
+            while (super.getReader().hasNextInt()) {
+                valueRead = super.getReader().nextInt();
+                CheckerNumber.check(valueRead, lowerBound, upperBound);
+            }
             ints[i] = valueRead;
         }
     }

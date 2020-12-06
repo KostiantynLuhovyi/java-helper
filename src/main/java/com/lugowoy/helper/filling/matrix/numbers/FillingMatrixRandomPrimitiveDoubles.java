@@ -1,108 +1,135 @@
 package com.lugowoy.helper.filling.matrix.numbers;
 
+import com.lugowoy.helper.checkers.CheckerBoundNumber;
+import com.lugowoy.helper.checkers.CheckerMatrix;
 import com.lugowoy.helper.filling.Filling;
-import com.lugowoy.helper.filling.ValuesToFilling;
 import com.lugowoy.helper.models.matrices.MatrixDoubles;
+import com.lugowoy.helper.utils.Capacity;
 import com.lugowoy.helper.utils.RandomNumber;
-import com.lugowoy.helper.utils.checking.CheckerBound;
-import com.lugowoy.helper.utils.checking.CheckerMatrix;
+import org.jetbrains.annotations.NotNull;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 /**
- * Created by Konstantin Lugowoy on 26.11.2019.
+ * <p>Created by Konstantin Lugowoy on 26.11.2019.
  *
- * @version 1.3
+ * @version 1.4
  * @since 2.0
  */
-//TODO write the doc's
-public class FillingMatrixRandomPrimitiveDoubles implements Filling<MatrixDoubles> {
+//TODO write documentation
+public class FillingMatrixRandomPrimitiveDoubles
+        implements Filling<MatrixDoubles> {
 
     @Override
-    public void fill(MatrixDoubles matrixDoubles) {
-        CheckerMatrix.checkMatrix(matrixDoubles);
-        double[][] doubles = new double[matrixDoubles.getRows()][matrixDoubles.getColumns()];
-        this.fillMatrixRandomPrimitiveDoubles(doubles);
-        matrixDoubles.setMatrix(doubles);
+    public void fill(@NotNull final MatrixDoubles matrix) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        double[][] doubles = new double[matrix.getRows()][matrix.getColumns()];
+        this.fillMatrix(doubles);
+        matrix.setMatrix(doubles);
     }
 
-    public void fill(double[][] matrixDouble) {
-        CheckerMatrix.checkMatrix(matrixDouble);
-        this.fillMatrixRandomPrimitiveDoubles(matrixDouble);
+    public void fill(@NotNull final double[][] matrix) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        this.fillMatrix(matrix);
     }
 
-    public double[][] fill(int rows, int columns) {
-        CheckerMatrix.checkRows(rows);
-        CheckerMatrix.checkColumns(columns);
+    public double[][] fill(final int rows, final int columns) {
+        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
+                                Capacity.UPPER.get());
+        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(),
+                                   Capacity.UPPER.get());
         double[][] doubles = new double[rows][columns];
-        this.fillMatrixRandomPrimitiveDoubles(doubles);
+        this.fillMatrix(doubles);
         return doubles;
     }
 
-    public void fill(MatrixDoubles matrixDoubles, double bound) {
-        CheckerMatrix.checkMatrix(matrixDoubles);
-        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
-        double[][] doubles = new double[matrixDoubles.getRows()][matrixDoubles.getColumns()];
-        this.fillMatrixRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
-        matrixDoubles.setMatrix(doubles);
+    public void fill(@NotNull final MatrixDoubles matrix, final double bound) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(bound, Double.MAX_VALUE);
+        double[][] doubles = new double[matrix.getRows()][matrix.getColumns()];
+        this.fillMatrixFromZeroToBound(doubles, bound);
+        matrix.setMatrix(doubles);
     }
 
-    public void fill(double[][] matrixDouble, double bound) {
-        CheckerMatrix.checkMatrix(matrixDouble);
-        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
-        this.fillMatrixRandomPrimitiveDoublesFromZeroToBound(matrixDouble, bound);
+    public void fill(@NotNull final double[][] matrix, final double bound) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(bound, Double.MAX_VALUE);
+        this.fillMatrixFromZeroToBound(matrix, bound);
     }
 
-    public double[][] fill(int rows, int columns, double bound) {
-        CheckerMatrix.checkRows(rows);
-        CheckerMatrix.checkColumns(columns);
-        CheckerBound.isCorrectBound(bound, Long.MAX_VALUE);
+    public double[][] fill(final int rows, final int columns,
+                           final double bound) {
+        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
+                                Capacity.UPPER.get());
+        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(),
+                                   Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(bound, Double.MAX_VALUE);
         double[][] doubles = new double[rows][columns];
-        this.fillMatrixRandomPrimitiveDoublesFromZeroToBound(doubles, bound);
+        this.fillMatrixFromZeroToBound(doubles, bound);
         return doubles;
     }
 
-    public void fill(MatrixDoubles matrixDoubles, double lowerBound, double upperBound) {
-        CheckerMatrix.checkMatrix(matrixDoubles);
-        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
-        double[][] doubles = new double[matrixDoubles.getRows()][matrixDoubles.getColumns()];
-        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
-        matrixDoubles.setMatrix(doubles);
+    public void fill(@NotNull final MatrixDoubles matrix,
+                     final double lowerBound, final double upperBound) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(lowerBound, Double.MIN_VALUE,
+                                        Double.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBound, Double.MIN_VALUE,
+                                        Double.MAX_VALUE);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
+        double[][] doubles = new double[matrix.getRows()][matrix.getColumns()];
+        this.fillMatrixFromLowerToUpper(doubles, lowerBound, upperBound);
+        matrix.setMatrix(doubles);
     }
 
-    public void fill(double[][] matrixDouble, double lowerBound, double upperBound) {
-        CheckerMatrix.checkMatrix(matrixDouble);
-        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
-        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(matrixDouble, lowerBound, upperBound);
+    public void fill(@NotNull final double[][] matrix, final double lowerBound,
+                     final double upperBound) {
+        CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(lowerBound, Double.MIN_VALUE,
+                                        Double.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBound, Double.MIN_VALUE,
+                                        Double.MAX_VALUE);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
+        this.fillMatrixFromLowerToUpper(matrix, lowerBound, upperBound);
     }
 
-    public double[][] fill(int rows, int columns, double lowerBound, double upperBound) {
-        CheckerMatrix.checkRows(rows);
-        CheckerMatrix.checkColumns(columns);
-        CheckerBound.isCorrectBound(lowerBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isCorrectBound(upperBound, Long.MIN_VALUE, Long.MAX_VALUE);
-        CheckerBound.isLowerBoundLessUpperBound(lowerBound, upperBound);
+    public double[][] fill(final int rows, final int columns,
+                           final double lowerBound, final double upperBound) {
+        CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
+                                Capacity.UPPER.get());
+        CheckerMatrix.checkColumns(columns, Capacity.LOWER.get(),
+                                   Capacity.UPPER.get());
+        CheckerBoundNumber.checkInRange(lowerBound, Double.MIN_VALUE,
+                                        Double.MAX_VALUE);
+        CheckerBoundNumber.checkInRange(upperBound, Double.MIN_VALUE,
+                                        Double.MAX_VALUE);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
         double[][] doubles = new double[rows][columns];
-        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(doubles, lowerBound, upperBound);
+        this.fillMatrixFromLowerToUpper(doubles, lowerBound, upperBound);
         return doubles;
     }
 
-    private void fillMatrixRandomPrimitiveDoubles(double[][] matrix) {
-        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(matrix, Long.MIN_VALUE, Long.MAX_VALUE);
+    private void fillMatrix(final double[][] matrix) {
+        this.fillMatrixFromLowerToUpper(matrix, Double.MIN_VALUE,
+                                        Double.MAX_VALUE);
     }
 
-    private void fillMatrixRandomPrimitiveDoublesFromZeroToBound(double[][] matrix, double bound) {
-        this.fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(matrix, ValuesToFilling.DOUBLE_ZERO, bound);
+    private void fillMatrixFromZeroToBound(final double[][] matrix,
+                                           final double bound) {
+        this.fillMatrixFromLowerToUpper(matrix, BigDecimal.ZERO.doubleValue(),
+                                        bound);
     }
 
-    private void fillMatrixRandomPrimitiveDoublesFromLowerToUpperBounds(double[][] matrix, double lowerBound, double upperBound) {
+    private void fillMatrixFromLowerToUpper(final double[][] matrix,
+                                            final double lowerBound,
+                                            final double upperBound) {
         RandomNumber randomNumber = new RandomNumber();
         for (double[] doubles : matrix) {
-            Arrays.parallelSetAll(doubles, j -> randomNumber.generateDouble(lowerBound, upperBound));
+            // @formatter:off
+            Arrays.setAll(doubles, j -> randomNumber.generateDouble(lowerBound,
+                                                                    upperBound));
+            // @formatter:on
         }
     }
 

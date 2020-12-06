@@ -2,36 +2,32 @@ package com.lugowoy.helper.filling.matrix.numbers;
 
 import com.lugowoy.helper.filling.matrix.FillingMatrix;
 import com.lugowoy.helper.models.matrices.Matrix;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Created by Konstantin Lugowoy on 05.10.2018.
+ * <p>Created by Konstantin Lugowoy on 05.10.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 1.2
  */
-//todo edit doc's
-public interface FillingMatrixNumbers<T extends Number> extends FillingMatrix<T> {
+//TODO write documentation
+public interface FillingMatrixNumbers<T extends Number>
+        extends FillingMatrix<T> {
 
-    @Override
-    void fill(Matrix<T> matrix);
+    void fill(@NotNull Matrix<T> matrix, @NotNull T bound);
 
-    @Override
-    void fill(T[][] matrix);
+    void fill(@NotNull T[][] matrix, @NotNull T bound);
 
-    @Override
-    T[][] fill(int rows, int columns);
+    T[][] fill(int rows, int columns, @NotNull T bound);
 
-    void fill(Matrix<T> matrix, T bound);
+    void fill(@NotNull Matrix<T> matrix, @NotNull T lowerBound,
+              @NotNull T upperBound);
 
-    void fill(T[][] matrix, T bound);
+    void fill(@NotNull T[][] matrix, @NotNull T lowerBound,
+              @NotNull T upperBound);
 
-    T[][] fill(int rows, int columns, T bound);
-
-    void fill(Matrix<T> matrix, T lowerBound, T upperBound);
-
-    void fill(T[][] matrix, T lowerBound, T upperBound);
-
-    T[][] fill(int rows, int columns, T lowerBound, T upperBound);
+    T[][] fill(int rows, int columns, @NotNull T lowerBound,
+               @NotNull T upperBound);
 
 }
