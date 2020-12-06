@@ -24,6 +24,7 @@ import java.util.concurrent.Callable;
  * @version 2.2
  * @since 1.7.4
  */
+//TODO review documentation
 public class Executor {
 
     /**
@@ -56,7 +57,7 @@ public class Executor {
                             @NotNull final OutputExecutionTime outputTime) {
         Objects.requireNonNull(callable, "The thread to execute is null");
         Objects.requireNonNull(outputResult, "The output of the result is null");
-        Objects.requireNonNull(outputTime, "The output of the time is null.");
+        Objects.requireNonNull(outputTime, "The output of the time is null");
         ExecutionTime executionTime = new ExecutionTime();
         executionTime.setStartTime();
         T result;
@@ -87,8 +88,8 @@ public class Executor {
      */
     public void execute(@NotNull final Runnable runnable,
                         @NotNull final OutputExecutionTime outputTime) {
-        Objects.requireNonNull(runnable, "The thread to execute is null.");
-        Objects.requireNonNull(outputTime, "The output of the time is null.");
+        Objects.requireNonNull(runnable, "The thread to execute is null");
+        Objects.requireNonNull(outputTime, "The output of the time is null");
         ExecutionTime executionTime = new ExecutionTime();
         executionTime.setStartTime();
         Thread execution = new Thread(runnable, "Execution");
