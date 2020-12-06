@@ -8,10 +8,10 @@ import java.util.concurrent.Callable;
 /**
  * The class provides the ability to wrap (as a stream) the execution of the
  * functional for calculating the execution time and decor of the output
- * result.<p>The class contains two overloaded methods. Their difference that the
- * execution of the functionality wrapped in different stream objects ({@link
- * Callable} and {@link Runnable}). In the method where the parameter an object
- * of type {@link Callable}, output of the execution result makes out the
+ * result.<p>The class contains two overloaded methods. Their difference that
+ * the execution of the functionality wrapped in different stream objects
+ * ({@link Callable} and {@link Runnable}). In the method where the parameter an
+ * object of type {@link Callable}, output of the execution result makes out the
  * appearance using the class object that implements the contract interface
  * {@link OutputExecutionResult}. In a method that declares a parameter of the
  * type {@link Runnable}, output of the execution result makes out the
@@ -37,15 +37,14 @@ public class Executor {
      * Executes functionality by wrapping it as an implementation of the {@link
      * Callable} interface. It determines the appearance of the output of the
      * result using a class object that implements the contract interface {@link
-     * OutputExecutionResult}. It also calculated and output execution time
-     * by using a class object that implements the interface {@link
+     * OutputExecutionResult}. It also calculated and output execution time by
+     * using a class object that implements the interface {@link
      * OutputExecutionTime} contract.
      *
      * @param <T> the type of the execution result.
      * @param callable the stream object that executes the functional.
      * @param outputResult the object to output execution result.
      * @param outputTime the object to output execution time.
-     *
      * @throws NullPointerException if the {@code callable} is {@code null}.
      * @throws NullPointerException if the {@code outputResult} is {@code
      * null}.
@@ -73,13 +72,12 @@ public class Executor {
 
     /**
      * Executes functionality by wrapping it as an implementation of the {@link
-     * Runnable} interface. It also calculated and output execution time
-     * by using a class object that implements the interface {@link
+     * Runnable} interface. It also calculated and output execution time by
+     * using a class object that implements the interface {@link
      * OutputExecutionTime} contract.
      *
      * @param runnable the stream object that executes the functional.
      * @param outputTime the object to output execution time.
-     *
      * @throws NullPointerException if the {@code runnable} is {@code null}.
      * @throws NullPointerException if the {@code outputTime} is null.
      * @throws IllegalThreadStateException if the thread was already started.
