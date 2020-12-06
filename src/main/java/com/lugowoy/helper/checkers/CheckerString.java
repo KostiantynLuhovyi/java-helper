@@ -2,6 +2,7 @@ package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.utils.BoundOutOfRangeException;
 import com.lugowoy.helper.utils.BoundsComparisonException;
+import com.lugowoy.helper.utils.Capacity;
 import com.lugowoy.helper.utils.LengthOutOfRangeException;
 
 /**
@@ -10,9 +11,10 @@ import com.lugowoy.helper.utils.LengthOutOfRangeException;
  * Created by Konstantin Lugowoy on 01.04.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.1
+ * @version 1.2
  * @since 3.0
  */
+//TODO review documentation
 public class CheckerString {
 
     /**
@@ -34,18 +36,24 @@ public class CheckerString {
      * @throws LengthOutOfRangeException if the {@code lengthString} value out
      * of range from {@code lowerBoundLength} to {@code upperBoundLength}.
      */
-    public static void checkLength(final int lengthString,
-                                   final int lowerBoundLength,
-                                   final int upperBoundLength) {
-        CheckerBoundNumber.checkInRange(lowerBoundLength, 0, Integer.MAX_VALUE);
-        CheckerBoundNumber.checkInRange(upperBoundLength, 0, Integer.MAX_VALUE);
-        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBoundLength,
-                                                      upperBoundLength);
-        if (lengthString < lowerBoundLength
-                || lengthString > upperBoundLength) {
+    public static void check(final int lengthString,
+                             final int boundLengthString) {
+        CheckerBoundNumber.checkInRange(boundLengthString, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
+        if (lengthString > boundLengthString) {
             throw new LengthOutOfRangeException(
-                    "Value length of the string out of range ("
-                    + lowerBoundLength + " - " + upperBoundLength + ")");
+                    "Value length of the string out of range from "
+                    + Capacity.LOWER.get() + " to " + boundLengthString);
+        }
+    }
+
+    public static void check(final String string, final int boundLengthString) {
+        CheckerBoundNumber.checkInRange(boundLengthString, Capacity.LOWER.get(),
+                                        Capacity.UPPER.get());
+        if (string.length() > boundLengthString) {
+            throw new LengthOutOfRangeException(
+                    "Length of the string out of range from "
+                    + Capacity.LOWER.get() + " to " + boundLengthString);
         }
     }
 
