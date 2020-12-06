@@ -7,12 +7,12 @@ import java.util.Objects;
 /**
  * The functional interface provides a functional for comparing numbers greater
  * than, less than, or equal to. Compares the number of types that inherit from
- * the {@link Number} class and implement the {@link Comparable} interface.
- * To use the function, you must declare a reference variable of the {@link
+ * the {@link Number} class and implement the {@link Comparable} interface. To
+ * use the function, you must declare a reference variable of the {@link
  * ComparatorNumber} type and initialize it with a reference to the static
  * {@link ComparatorNumber#compareNumber(Number, Number)} method of this class.
- * Then, to compare numbers, you must call the {@link
- * ComparatorNumber#compare(Number, Number)} method.
+ * Then, to compare numbers, you must call the {@link ComparatorNumber#compare(Number,
+ * Number)} method.
  * <p>
  * Created by Konstantin Lugowoy on 08.07.2020.
  *
@@ -21,47 +21,43 @@ import java.util.Objects;
  * @see Comparable
  * @since 3.0
  */
+//TODO review documentation
 @FunctionalInterface
 public interface ComparatorNumber {
 
     /**
      * Compares two numbers. Returns a negative integer, zero, or a positive
-     * integer as the first argument is less than, equal to, or greater than
-     * the second.
+     * integer as the first argument is less than, equal to, or greater than the
+     * second.
      *
      * @param <T> the type of numbers to compare.
      * @param <V> the type of numbers to compare.
      * @param o1 the first number to be compared.
      * @param o2 the second number to be compared.
-     *
-     * @return a negative integer, zero, or a positive integer as the
-     * first argument is less than, equal to, or greater than the
-     * second.
+     * @return a negative integer, zero, or a positive integer as the first
+     * argument is less than, equal to, or greater than the second.
      */
     <T extends Number & Comparable<T>, V extends Number & Comparable<V>> int compare(
             T o1, V o2);
 
     /**
-     * Compares its two arguments for order.  Returns a negative integer,
-     * zero, or a positive integer as the first argument is less than, equal
-     * to, or greater than the second.
+     * Compares its two arguments for order.  Returns a negative integer, zero,
+     * or a positive integer as the first argument is less than, equal to, or
+     * greater than the second.
      *
      * @param <T> the type of numbers to be compared.
      * @param o1 the first number to be compared.
      * @param o2 the second number to be compared.
-     *
-     * @return a negative integer, zero, or a positive integer as the
-     * first argument is less than, equal to, or greater than the
-     * second.
-     *
+     * @return a negative integer, zero, or a positive integer as the first
+     * argument is less than, equal to, or greater than the second.
      * @throws NullPointerException if any of the arguments is null.
      * @throws NumberFormatException if any of the arguments does not have a
      * parsable string representation.
      */
     static <T extends Number & Comparable<T>, V extends Number & Comparable<V>> int compareNumber(
             final T o1, final V o2) {
-        Objects.requireNonNull(o1, "Number \\'o1\\' is null.");
-        Objects.requireNonNull(o2, "Number \\'o2\\' is null.");
+        Objects.requireNonNull(o1, "Number \\'o1\\' is null");
+        Objects.requireNonNull(o2, "Number \\'o2\\' is null");
         int result;
         if (isSpecialValue(o1) || isSpecialValue(o2)) {
             result = Double.compare(o1.doubleValue(), o2.doubleValue());
@@ -73,8 +69,9 @@ public interface ComparatorNumber {
 
     private static <T extends Number & Comparable<T>> boolean isSpecialValue(
             final T value) {
-        return (isDouble(value) && isSpecialDouble(value))
-                || (isFloat(value) && isSpecialFloat(value));
+        return (isDouble(value) && isSpecialDouble(value)) || (isFloat(value)
+                                                               && isSpecialFloat(
+                value));
     }
 
     private static <T extends Number & Comparable<T>> BigDecimal toBigDecimal(

@@ -18,11 +18,11 @@ import java.util.Objects;
  * @version 1.9
  * @since 1.0
  */
-//TODO revision of documentation
+//TODO review documentation
 public final class ReaderLengthArray {
 
-    private static final String MSG_READER_IS_NULL = "Reader is null.";
-    private static final String MSG_WRITER_IS_NULL = "Writer is null.";
+    private static final String MSG_READER_IS_NULL = "Reader is null";
+    private static final String MSG_WRITER_IS_NULL = "Writer is null";
 
     /**
      * Reads the length(size) value ({@code int}) for an array.
@@ -31,7 +31,8 @@ public final class ReaderLengthArray {
      * @return the read length(size) value ({@code int}) for an array.
      * @throws NullPointerException if the {@code reader} is {@code null}.
      * @throws ValueOutOfRangeException if the read length(size) value for an
-     * array out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
+     * array out of range from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
      */
     public static int read(@NotNull final Reader reader) {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
@@ -92,14 +93,15 @@ public final class ReaderLengthArray {
      * @throws NullPointerException if at least one of the arguments is {@code
      * null}.
      * @throws ValueOutOfRangeException if the read length(size) value for an
-     * array out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
+     * array out of range from {@link Capacity#LOWER} to {@link
+     * Capacity#UPPER}.
      */
     public static int read(@NotNull final Reader reader,
                            @NotNull final Writer writer,
                            @NotNull final String msgWriter) {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         Objects.requireNonNull(writer, MSG_WRITER_IS_NULL);
-        Objects.requireNonNull(msgWriter, "Message is null.");
+        Objects.requireNonNull(msgWriter, "Message is null");
         int resultLengthArray = 0;
         try {
             writer.write(msgWriter);

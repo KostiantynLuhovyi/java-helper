@@ -35,7 +35,6 @@ public class BoundsComparisonException extends RuntimeException {
      * @param cause the cause (which is saved for later retrieval by the {@link
      * #getCause()} method).  (A {@code null} value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
-     *
      * @since 1.4
      */
     public BoundsComparisonException(final String message,
@@ -53,7 +52,6 @@ public class BoundsComparisonException extends RuntimeException {
      * @param cause the cause (which is saved for later retrieval by the {@link
      * #getCause()} method).  (A {@code null} value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
-     *
      * @since 1.4
      */
     public BoundsComparisonException(final Throwable cause) {
@@ -72,7 +70,6 @@ public class BoundsComparisonException extends RuntimeException {
      * disabled
      * @param writableStackTrace whether or not the stack trace should be
      * writable
-     *
      * @since 1.7
      */
     public BoundsComparisonException(final String message,

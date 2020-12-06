@@ -7,7 +7,7 @@ package com.lugowoy.helper.utils;
  * @version 1.0
  * @since 3.0
  */
-//TODO documentation
+//TODO write documentation
 public enum Capacity {
     LOWER(0), UPPER(2147483639);
 

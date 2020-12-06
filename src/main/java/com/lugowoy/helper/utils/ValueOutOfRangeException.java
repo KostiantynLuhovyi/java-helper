@@ -34,7 +34,6 @@ public class ValueOutOfRangeException extends OutOfRangeException {
      * @param cause the cause (which is saved for later retrieval by the {@link
      * #getCause()} method).  (A {@code null} value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
-     *
      * @since 1.4
      */
     public ValueOutOfRangeException(final String message,
@@ -52,7 +51,6 @@ public class ValueOutOfRangeException extends OutOfRangeException {
      * @param cause the cause (which is saved for later retrieval by the {@link
      * #getCause()} method).  (A {@code null} value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
-     *
      * @since 1.4
      */
     public ValueOutOfRangeException(final Throwable cause) {
@@ -71,7 +69,6 @@ public class ValueOutOfRangeException extends OutOfRangeException {
      * disabled
      * @param writableStackTrace whether or not the stack trace should be
      * writable
-     *
      * @since 1.7
      */
     public ValueOutOfRangeException(final String message, final Throwable cause,

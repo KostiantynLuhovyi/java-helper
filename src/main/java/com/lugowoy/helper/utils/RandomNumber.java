@@ -16,6 +16,7 @@ import java.util.Random;
  * @version 1.1
  * @since 3.0
  */
+//TODO review documentation
 public class RandomNumber {
 
     /**
@@ -42,7 +43,6 @@ public class RandomNumber {
      * Byte#MIN_VALUE} (inclusive) to {@link Byte#MAX_VALUE} (inclusive).
      *
      * @return the generated pseudo-random number of type byte.
-     *
      * @see RandomNumber#generateInt(int, int)
      */
     public byte generateByte() {
@@ -54,9 +54,7 @@ public class RandomNumber {
      * BigDecimal#ZERO} (inclusive) to {@code upperBound} value (inclusive).
      *
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type byte.
-     *
      * @throws BoundOutOfRangeException if the {@code upperBound} value out of
      * range from {@link RandomNumber#ZERO} to {@code upperBound} value.
      * @see RandomNumber#generateInt(int, int)
@@ -71,9 +69,7 @@ public class RandomNumber {
      *
      * @param lowerBound the lower bound value to generate number.
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type byte.
-     *
      * @throws BoundOutOfRangeException if any of the boundary values out of
      * range from {@link Byte#MIN_VALUE} to {@link Byte#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
@@ -85,7 +81,7 @@ public class RandomNumber {
                                         Byte.MAX_VALUE);
         CheckerBoundNumber.checkInRange(upperBound, Byte.MIN_VALUE,
                                         Byte.MAX_VALUE);
-        CheckerBoundNumber.checkLowerLessUpper(lowerBound, upperBound);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
         return (byte) this.generateInt(lowerBound, upperBound);
     }
 
@@ -94,7 +90,6 @@ public class RandomNumber {
      * Short#MIN_VALUE} (inclusive) to {@link Short#MAX_VALUE} (inclusive).
      *
      * @return the generated pseudo-random number of type short.
-     *
      * @see RandomNumber#generateInt(int, int)
      */
     public short generateShort() {
@@ -106,9 +101,7 @@ public class RandomNumber {
      * BigDecimal#ZERO} (inclusive) to {@code upperBound} (inclusive).
      *
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type short.
-     *
      * @throws BoundOutOfRangeException if the {@code upperBound} value out of
      * range from {@link RandomNumber#ZERO} to {@code upperBound} value.
      * @see RandomNumber#generateInt(int, int)
@@ -123,9 +116,7 @@ public class RandomNumber {
      *
      * @param lowerBound the lower bound value to generate number.
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type short.
-     *
      * @throws BoundOutOfRangeException if any of the boundary values out of
      * range from {@link Short#MIN_VALUE} to {@link Short#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
@@ -137,7 +128,7 @@ public class RandomNumber {
                                         Short.MAX_VALUE);
         CheckerBoundNumber.checkInRange(upperBound, Short.MIN_VALUE,
                                         Short.MAX_VALUE);
-        CheckerBoundNumber.checkLowerLessUpper(lowerBound, upperBound);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
         return (short) this.generateInt(lowerBound, upperBound);
     }
 
@@ -156,9 +147,7 @@ public class RandomNumber {
      * BigDecimal#ZERO} (inclusive) to {@code upperBound} (inclusive).
      *
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type int.
-     *
      * @throws BoundOutOfRangeException if the {@code upperBound} value out of
      * range from {@link RandomNumber#ZERO} to {@code upperBound}.
      */
@@ -172,9 +161,7 @@ public class RandomNumber {
      *
      * @param lowerBound the lower bound value to generate number.
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type int.
-     *
      * @throws BoundOutOfRangeException if any of the boundary values out of
      * range from {@link Integer#MIN_VALUE} to {@link Integer#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
@@ -185,7 +172,7 @@ public class RandomNumber {
                                         Integer.MAX_VALUE);
         CheckerBoundNumber.checkInRange(upperBound, Integer.MIN_VALUE,
                                         Integer.MAX_VALUE);
-        CheckerBoundNumber.checkLowerLessUpper(lowerBound, upperBound);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
         return this.randomGenerator.nextInt(lowerBound, upperBound);
     }
 
@@ -204,9 +191,7 @@ public class RandomNumber {
      * BigDecimal#ZERO} (inclusive) to {@code upperBound} (inclusive).
      *
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type long.
-     *
      * @throws BoundOutOfRangeException if the {@code upperBound} out of range
      * from {@link RandomNumber#ZERO} to {@code upperBound}.
      */
@@ -220,9 +205,7 @@ public class RandomNumber {
      *
      * @param lowerBound the lower bound value to generate number.
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type long.
-     *
      * @throws BoundOutOfRangeException if any of the boundary values out of
      * range from {@link Long#MIN_VALUE} to {@link Long#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
@@ -233,7 +216,7 @@ public class RandomNumber {
                                         Long.MAX_VALUE);
         CheckerBoundNumber.checkInRange(upperBound, Long.MIN_VALUE,
                                         Long.MAX_VALUE);
-        CheckerBoundNumber.checkLowerLessUpper(lowerBound, upperBound);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
         return this.randomGenerator.nextLong(lowerBound, upperBound);
     }
 
@@ -252,9 +235,7 @@ public class RandomNumber {
      * BigDecimal#ZERO} (inclusive) to {@code upperBound} (inclusive).
      *
      * @param upperBound the upper upperBound value to generate number.
-     *
      * @return the generated pseudo-random number of type float.
-     *
      * @throws BoundOutOfRangeException if the {@code upperBound} out of range
      * from {@link RandomNumber#ZERO} to {@code upperBound}.
      */
@@ -268,9 +249,7 @@ public class RandomNumber {
      *
      * @param lowerBound the lower bound value to generate number.
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type float.
-     *
      * @throws BoundOutOfRangeException if any of the boundary values out of
      * range from {@link Float#MIN_VALUE} to {@link Float#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
@@ -281,7 +260,7 @@ public class RandomNumber {
                                         Float.MAX_VALUE);
         CheckerBoundNumber.checkInRange(upperBound, Float.MIN_VALUE,
                                         Float.MAX_VALUE);
-        CheckerBoundNumber.checkLowerLessUpper(lowerBound, upperBound);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
         return this.random.nextFloat() * (upperBound - lowerBound) + lowerBound;
     }
 
@@ -300,9 +279,7 @@ public class RandomNumber {
      * BigDecimal#ZERO} (inclusive) to {@code upperBound} (inclusive).
      *
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type double.
-     *
      * @throws BoundOutOfRangeException if the {@code upperBound} out of range
      * from {@link RandomNumber#ZERO} to {@code upperBound}.
      */
@@ -316,9 +293,7 @@ public class RandomNumber {
      *
      * @param lowerBound the lower bound value to generate number.
      * @param upperBound the upper bound value to generate number.
-     *
      * @return the generated pseudo-random number of type double.
-     *
      * @throws BoundOutOfRangeException if any of the boundary values out of
      * range from {@link Double#MIN_VALUE} to {@link Double#MAX_VALUE}.
      * @throws BoundsComparisonException if {@code lowerBound} greater or equal
@@ -330,9 +305,9 @@ public class RandomNumber {
                                         Double.MAX_VALUE);
         CheckerBoundNumber.checkInRange(upperBound, Double.MIN_VALUE,
                                         Double.MAX_VALUE);
-        CheckerBoundNumber.checkLowerLessUpper(lowerBound, upperBound);
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(lowerBound, upperBound);
         return this.random.nextDouble() * (upperBound - lowerBound)
-                + lowerBound;
+               + lowerBound;
     }
 
 }

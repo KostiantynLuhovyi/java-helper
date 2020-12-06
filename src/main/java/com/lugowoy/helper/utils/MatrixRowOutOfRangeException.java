@@ -33,7 +33,6 @@ public class MatrixRowOutOfRangeException extends OutOfRangeException {
      * @param cause the cause (which is saved for later retrieval by the {@link
      * #getCause()} method).  (A {@code null} value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
-     *
      * @since 1.4
      */
     public MatrixRowOutOfRangeException(final String message,
@@ -51,7 +50,6 @@ public class MatrixRowOutOfRangeException extends OutOfRangeException {
      * @param cause the cause (which is saved for later retrieval by the {@link
      * #getCause()} method).  (A {@code null} value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
-     *
      * @since 1.4
      */
     public MatrixRowOutOfRangeException(final Throwable cause) {
@@ -70,7 +68,6 @@ public class MatrixRowOutOfRangeException extends OutOfRangeException {
      * disabled
      * @param writableStackTrace whether or not the stack trace should be
      * writable
-     *
      * @since 1.7
      */
     public MatrixRowOutOfRangeException(final String message,

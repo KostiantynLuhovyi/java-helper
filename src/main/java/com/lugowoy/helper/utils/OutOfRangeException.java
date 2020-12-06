@@ -34,7 +34,6 @@ public class OutOfRangeException extends RuntimeException {
      * @param cause the cause (which is saved for later retrieval by the {@link
      * #getCause()} method).  (A {@code null} value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
-     *
      * @since 1.4
      */
     public OutOfRangeException(final String message, final Throwable cause) {
@@ -51,7 +50,6 @@ public class OutOfRangeException extends RuntimeException {
      * @param cause the cause (which is saved for later retrieval by the {@link
      * #getCause()} method).  (A {@code null} value is permitted, and indicates
      * that the cause is nonexistent or unknown.)
-     *
      * @since 1.4
      */
     public OutOfRangeException(final Throwable cause) {
@@ -70,7 +68,6 @@ public class OutOfRangeException extends RuntimeException {
      * disabled
      * @param writableStackTrace whether or not the stack trace should be
      * writable
-     *
      * @since 1.7
      */
     public OutOfRangeException(final String message, final Throwable cause,
