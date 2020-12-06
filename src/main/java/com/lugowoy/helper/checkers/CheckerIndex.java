@@ -13,6 +13,7 @@ import com.lugowoy.helper.utils.BoundsComparisonException;
  * @version 1.6
  * @since 1.6.6
  */
+//TODO review documentation
 public final class CheckerIndex {
 
     private static final long LOWER_INDEX = 0;
@@ -26,11 +27,10 @@ public final class CheckerIndex {
      *
      * @param index the index value to check.
      * @param upperBoundIndex the upper bound value to check index.
-     *
      * @return result of checking.
-     *
      * @throws BoundOutOfRangeException if the {@code upperBoundIndex} value out
-     * of range from {@link CheckerIndex#LOWER_INDEX} to {@link Long#MAX_VALUE}.
+     * of range from {@link CheckerIndex#LOWER_INDEX} to {@link
+     * Long#MAX_VALUE}.
      */
     public static boolean isInRange(final long index,
                                     final long upperBoundIndex) {
@@ -46,9 +46,7 @@ public final class CheckerIndex {
      * @param index the index value to check.
      * @param lowerBoundIndex the lower bound value to check index.
      * @param upperBoundIndex the upper bound value to check index.
-     *
      * @return result of checking.
-     *
      * @throws BoundOutOfRangeException if the any of boundary values out of
      * range from {@link CheckerIndex#LOWER_INDEX} to {@link Long#MAX_VALUE}.
      * @throws BoundsComparisonException if the {@code lowerBoundIndex} value
@@ -72,7 +70,6 @@ public final class CheckerIndex {
      *
      * @param index the index value to check.
      * @param upperBoundIndex the upper bound value to check index.
-     *
      * @throws BoundOutOfRangeException if the {@code upperBoundIndex} value out
      * of range from {@link CheckerIndex#LOWER_INDEX} to {@link
      * Long#MAX_VALUE}.
@@ -97,7 +94,6 @@ public final class CheckerIndex {
      * @param index the index value to check.
      * @param lowerBoundIndex the lower bound value to check index.
      * @param upperBoundIndex the upper bound value to check index.
-     *
      * @throws BoundOutOfRangeException if the any of boundary values out of
      * range from {@link CheckerIndex#LOWER_INDEX} to {@link Long#MAX_VALUE}.
      * @throws BoundsComparisonException if the {@code lowerBoundIndex} value
