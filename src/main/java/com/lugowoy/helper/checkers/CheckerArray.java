@@ -138,11 +138,10 @@ public final class CheckerArray {
      */
     public static void check(final int lengthArray) {
         if (lengthArray < Capacity.LOWER.get()
-            || lengthArray > Capacity.UPPER.get()) {
+                || lengthArray > Capacity.UPPER.get()) {
             throw new LengthOutOfRangeException(
                     "Length value " + lengthArray + " out of range from "
-                    + Capacity.LOWER.get() + " to "
-                    + Capacity.UPPER.get());
+                    + Capacity.LOWER.get() + " to " + Capacity.UPPER.get());
         }
     }
 
@@ -160,12 +159,11 @@ public final class CheckerArray {
      * range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
      */
-    public static void check(final int lengthArray,
-                                   final int upperBoundLength) {
+    public static void check(final int lengthArray, final int upperBoundLength) {
         CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
                                         Capacity.UPPER.get());
         if (lengthArray < Capacity.LOWER.get()
-            || lengthArray > upperBoundLength) {
+                || lengthArray > upperBoundLength) {
             throw new LengthOutOfRangeException(
                     "Length value " + lengthArray + " out of range from "
                     + Capacity.LOWER.get() + " to " + upperBoundLength);
