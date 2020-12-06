@@ -64,7 +64,7 @@ public final class CheckerMatrix {
                     + " to " + upperBoundRows);
         }
         if (matrixColumns < Capacity.LOWER.get()
-            || matrixColumns > upperBoundColumns) {
+                || matrixColumns > upperBoundColumns) {
             throw new MatrixColumnOutOfRangeException(
                     "Matrix columns out of range from " + Capacity.LOWER.get()
                     + " to " + upperBoundColumns);
@@ -143,8 +143,8 @@ public final class CheckerMatrix {
      * the matrix out of range from {@link Capacity#LOWER} to {@code upperBoundColumns}.
      */
     public static void check(@NotNull final int[][] matrix,
-                                   final int upperBoundRows,
-                                   final int upperBoundColumns) {
+                             final int upperBoundRows,
+                             final int upperBoundColumns) {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
         CheckerMatrix.checkUpperMatrixBoundsInRange(upperBoundRows,
                                                     upperBoundColumns);
@@ -188,8 +188,8 @@ public final class CheckerMatrix {
      * the matrix out of range from {@link Capacity#LOWER} to {@code upperBoundColumns}.
      */
     public static void check(@NotNull final double[][] matrix,
-                                   final int upperBoundRows,
-                                   final int upperBoundColumns) {
+                             final int upperBoundRows,
+                             final int upperBoundColumns) {
         Objects.requireNonNull(matrix, MSG_MATRIX_IS_NULL);
         CheckerMatrix.checkUpperMatrixBoundsInRange(upperBoundRows,
                                                     upperBoundColumns);
