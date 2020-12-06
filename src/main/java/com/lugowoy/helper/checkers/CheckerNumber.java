@@ -34,9 +34,7 @@ public final class CheckerNumber {
      *
      * @param <T> the type of the value to check.
      * @param value the value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if the {@code value} is {@code null}.
      */
     public static <T extends Number & Comparable<T>> boolean isPositive(
@@ -50,9 +48,7 @@ public final class CheckerNumber {
      *
      * @param <T> the type of the value to check.
      * @param value the value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if the {@code value} is {@code null}.
      */
     public static <T extends Number & Comparable<T>> boolean isNegative(
@@ -66,9 +62,7 @@ public final class CheckerNumber {
      *
      * @param <T> the type of the value to check.
      * @param value the value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if the {@code value} is {@code null}.
      */
     public static <T extends Number & Comparable<T>> boolean isZero(
@@ -82,9 +76,7 @@ public final class CheckerNumber {
      *
      * @param <T> the type of the value to check.
      * @param value the value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if the {@code value} is {@code null}.
      */
     public static <T extends Number & Comparable<T>> boolean isNonZero(
@@ -102,9 +94,7 @@ public final class CheckerNumber {
      * @param value the value to check.
      * @param lowerValue the lower bound value to check.
      * @param upperValue the upper bound value to check.
-     *
      * @return result of checking.
-     *
      * @throws NullPointerException if the {@code value} is {@code null}.
      * @throws NullPointerException if any of boundary values is {@code null}.
      * @throws BoundsComparisonException if the {@code lowerValue} greater or
