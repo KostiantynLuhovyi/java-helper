@@ -9,6 +9,7 @@ package com.lugowoy.helper.execution;
  * @version 1.9
  * @since 1.7.6
  */
+//TODO review documentation
 public interface OutputExecutionTime {
 
     /**
