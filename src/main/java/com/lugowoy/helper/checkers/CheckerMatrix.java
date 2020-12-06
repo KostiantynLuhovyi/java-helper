@@ -1,11 +1,11 @@
 package com.lugowoy.helper.checkers;
 
 import com.lugowoy.helper.models.matrices.AbstractMatrix;
+import com.lugowoy.helper.utils.BoundOutOfRangeException;
+import com.lugowoy.helper.utils.BoundsComparisonException;
 import com.lugowoy.helper.utils.Capacity;
 import com.lugowoy.helper.utils.MatrixColumnOutOfRangeException;
 import com.lugowoy.helper.utils.MatrixRowOutOfRangeException;
-import com.lugowoy.helper.utils.BoundOutOfRangeException;
-import com.lugowoy.helper.utils.BoundsComparisonException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -17,12 +17,13 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 21.10.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.8
+ * @version 1.9
  * @since 2.0
  */
+//TODO review documentation
 public final class CheckerMatrix {
 
-    private static final String MSG_MATRIX_IS_NULL = "Matrix is null.";
+    private static final String MSG_MATRIX_IS_NULL = "Matrix is null";
 
     private CheckerMatrix() {
     }
