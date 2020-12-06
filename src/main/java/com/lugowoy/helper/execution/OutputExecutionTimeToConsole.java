@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @version 1.3
  * @since 2.7
  */
+//TODO review documentation
 public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
 
     private static final int MILLIS_IN_SECOND = 1000;
@@ -71,7 +72,6 @@ public final class OutputExecutionTimeToConsole implements OutputExecutionTime {
      * and outputs.
      *
      * @param milliseconds the time to output.
-     *
      * @throws IllegalArgumentException if the {@code milliseconds} argument
      * value is negative.
      */
