@@ -19,9 +19,10 @@ import java.math.MathContext;
  * Created by Konstantin Lugowoy on 13.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 1.7
+ * @version 1.8
  * @since 1.7.8
  */
+//TODO review documentation
 public class ExecutionTime {
 
     private long startMillis = 0L;
@@ -50,7 +51,7 @@ public class ExecutionTime {
             this.startMillis = milliseconds;
         } else {
             throw new IllegalArgumentException(
-                    "Negative value of the argument in milliseconds.");
+                    "Negative value of the argument in milliseconds");
         }
     }
 
@@ -77,7 +78,7 @@ public class ExecutionTime {
             this.endMillis = milliseconds;
         } else {
             throw new IllegalArgumentException(
-                    "Negative value of the argument in milliseconds.");
+                    "Negative value of the argument in milliseconds");
         }
     }
 
