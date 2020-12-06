@@ -8,7 +8,6 @@ Description of project packages :
 + converters - The class hierarchy for the implementation of performing various conversions.
 + execution - Interfaces and classes that provide functionality for calculating the execution time and getting the execution result from a separate thread.
 + filling - The class hierarchy for filling data structures and various objects with various data.
-+ io - The class hierarchy of input and output system (high level).
 + models - Classes representing different models for the object domain.
 + utils - Set of classes providing various supporting functionality.
 
