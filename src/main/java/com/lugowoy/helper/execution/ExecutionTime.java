@@ -29,19 +29,18 @@ public class ExecutionTime {
     private long endMillis = 0L;
 
     /**
-     * Set the start time in milliseconds. The start value in milliseconds
-     * taken from the method {@link System#currentTimeMillis()} call.
+     * Set the start time in milliseconds. The start value in milliseconds taken
+     * from the method {@link System#currentTimeMillis()} call.
      */
     public void setStartTime() {
         this.startMillis = System.currentTimeMillis();
     }
 
     /**
-     * Set the start time in milliseconds. The start value in milliseconds
-     * taken from the {@code milliseconds} argument.
+     * Set the start time in milliseconds. The start value in milliseconds taken
+     * from the {@code milliseconds} argument.
      *
      * @param milliseconds the start time in milliseconds.
-     *
      * @throws IllegalArgumentException if the {@code milliseconds} argument
      * value is negative.
      */
@@ -68,7 +67,6 @@ public class ExecutionTime {
      * from the {@code milliseconds} argument.
      *
      * @param milliseconds the end time in milliseconds.
-     *
      * @throws IllegalArgumentException if the {@code milliseconds} argument
      * value is negative.
      */
