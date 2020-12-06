@@ -31,11 +31,11 @@ public final class CheckerMatrix {
     /**
      * Checks the {@code matrix} for null and that the {@code matrix} attributes
      * rows and columns in range. Valid values range for matrix rows from {@link
-     * Capacity#LOWER}(inclusive) to {@link Capacity#UPPER} (inclusive).
-     * Valid values range for matrix columns from {@link Capacity#LOWER}(inclusive)
-     * to {@link Capacity#UPPER}(inclusive). But for verification, the
-     * parameters {@code upperBoundRows} and {@code upperBoundColumns} used as
-     * the upper boundary values ​​for the rows and columns of the matrix, respectively.
+     * Capacity#LOWER}(inclusive) to {@link Capacity#UPPER} (inclusive). Valid
+     * values range for matrix columns from {@link Capacity#LOWER}(inclusive) to
+     * {@link Capacity#UPPER}(inclusive). But for verification, the parameters
+     * {@code upperBoundRows} and {@code upperBoundColumns} used as the upper
+     * boundary values ​​for the rows and columns of the matrix, respectively.
      *
      * @param matrix the {@code matrix} to check.
      * @param upperBoundRows the upper bound value of rows of the matrix.
@@ -44,11 +44,13 @@ public final class CheckerMatrix {
      * @throws BoundOutOfRangeException if the {@code upperBoundRows} value out
      * of range from {@link Capacity#LOWER} to {@link Capacity#UPPER} value.
      * @throws BoundOutOfRangeException if the {@code upperBoundColumns} value
-     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER} value.
+     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}
+     * value.
      * @throws MatrixRowOutOfRangeException if the rows value of the matrix out
      * of range from {@link Capacity#LOWER} to {@code upperBoundRows}.
      * @throws MatrixColumnOutOfRangeException if the columns value of the
-     * matrix out of range from {@link Capacity#LOWER} to {@code upperBoundColumns}.
+     * matrix out of range from {@link Capacity#LOWER} to {@code
+     * upperBoundColumns}.
      */
     public static void check(@NotNull final AbstractMatrix matrix,
                              final int upperBoundRows,
@@ -75,12 +77,11 @@ public final class CheckerMatrix {
      * Checks the {@code matrix} for null and that the {@code matrix} attributes
      * length(size) ("rows" and "columns") in range. Valid values range for
      * matrix rows from {@link Capacity#LOWER}(inclusive) to {@link
-     * Capacity#UPPER}(inclusive). Valid values range for matrix
-     * columns from {@link Capacity#LOWER}(inclusive) to {@link
-     * Capacity#UPPER}(inclusive). But for verification, the parameters
-     * {@code upperBoundRows} and {@code upperBoundColumns} used as
-     * the upper boundary values ​​for the rows and columns of the matrix,
-     * respectively.
+     * Capacity#UPPER}(inclusive). Valid values range for matrix columns from
+     * {@link Capacity#LOWER}(inclusive) to {@link Capacity#UPPER}(inclusive).
+     * But for verification, the parameters {@code upperBoundRows} and {@code
+     * upperBoundColumns} used as the upper boundary values ​​for the rows and
+     * columns of the matrix, respectively.
      *
      * @param <T> the type of the matrix.
      * @param matrix the {@code matrix} to check.
@@ -90,11 +91,14 @@ public final class CheckerMatrix {
      * @throws BoundOutOfRangeException if the {@code upperBoundRows} value out
      * of range from {@link Capacity#LOWER} to {@link Capacity#UPPER} value.
      * @throws BoundOutOfRangeException if the {@code upperBoundColumns} value
-     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER} value.
+     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}
+     * value.
      * @throws MatrixRowOutOfRangeException if the rows(length) value of the
-     * matrix out of range from {@link Capacity#LOWER} to {@code upperBoundRows}.
+     * matrix out of range from {@link Capacity#LOWER} to {@code
+     * upperBoundRows}.
      * @throws MatrixColumnOutOfRangeException if the columns(length) value of
-     * the matrix out of range from {@link Capacity#LOWER} to {@code upperBoundColumns}.
+     * the matrix out of range from {@link Capacity#LOWER} to {@code
+     * upperBoundColumns}.
      */
     public static <T> void check(@NotNull final T[][] matrix,
                                  final int upperBoundRows,
@@ -122,12 +126,11 @@ public final class CheckerMatrix {
      * Checks the {@code matrix} for null and that the {@code matrix} attributes
      * length(size) ("rows" and "columns") in range. Valid values range for
      * matrix rows from {@link Capacity#LOWER}(inclusive) to {@link
-     * Capacity#UPPER}(inclusive). Valid values range for matrix
-     * columns from {@link Capacity#LOWER}(inclusive) to {@link
-     * Capacity#UPPER}(inclusive). But for verification, the
-     * parameters {@code upperBoundRows} and {@code upperBoundColumns} used as
-     * the upper boundary values ​​for the rows and columns of the matrix,
-     * respectively.
+     * Capacity#UPPER}(inclusive). Valid values range for matrix columns from
+     * {@link Capacity#LOWER}(inclusive) to {@link Capacity#UPPER}(inclusive).
+     * But for verification, the parameters {@code upperBoundRows} and {@code
+     * upperBoundColumns} used as the upper boundary values ​​for the rows and
+     * columns of the matrix, respectively.
      *
      * @param matrix the {@code matrix} to check.
      * @param upperBoundRows the upper bound value of rows of the matrix.
@@ -136,11 +139,14 @@ public final class CheckerMatrix {
      * @throws BoundOutOfRangeException if the {@code upperBoundRows} value out
      * of range from {@link Capacity#LOWER} to {@link Capacity#UPPER} value.
      * @throws BoundOutOfRangeException if the {@code upperBoundColumns} value
-     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER} value.
+     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}
+     * value.
      * @throws MatrixRowOutOfRangeException if the rows(length) value of the
-     * matrix out of range from {@link Capacity#LOWER} to {@code upperBoundRows}.
+     * matrix out of range from {@link Capacity#LOWER} to {@code
+     * upperBoundRows}.
      * @throws MatrixColumnOutOfRangeException if the columns(length) value of
-     * the matrix out of range from {@link Capacity#LOWER} to {@code upperBoundColumns}.
+     * the matrix out of range from {@link Capacity#LOWER} to {@code
+     * upperBoundColumns}.
      */
     public static void check(@NotNull final int[][] matrix,
                              final int upperBoundRows,
@@ -170,9 +176,9 @@ public final class CheckerMatrix {
      * matrix rows from {@link Capacity#LOWER}(inclusive) to {@link
      * Capacity#UPPER}(inclusive). Valid values range for matrix columns from
      * {@link Capacity#LOWER}(inclusive) to {@link Capacity#UPPER}(inclusive).
-     * But for verification, the parameters {@code upperBoundRows} and
-     * {@code upperBoundColumns} used as the upper boundary values ​​for the rows
-     * and columns of the matrix, respectively.
+     * But for verification, the parameters {@code upperBoundRows} and {@code
+     * upperBoundColumns} used as the upper boundary values ​​for the rows and
+     * columns of the matrix, respectively.
      *
      * @param matrix the {@code matrix} to check.
      * @param upperBoundRows the upper bound value of rows of the matrix.
@@ -181,11 +187,14 @@ public final class CheckerMatrix {
      * @throws BoundOutOfRangeException if the {@code upperBoundRows} value out
      * of range from {@link Capacity#LOWER} to {@link Capacity#UPPER} value.
      * @throws BoundOutOfRangeException if the {@code upperBoundColumns} value
-     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER} value.
+     * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}
+     * value.
      * @throws MatrixRowOutOfRangeException if the rows(length) value of the
-     * matrix out of range from {@link Capacity#LOWER} to {@code upperBoundRows}.
+     * matrix out of range from {@link Capacity#LOWER} to {@code
+     * upperBoundRows}.
      * @throws MatrixColumnOutOfRangeException if the columns(length) value of
-     * the matrix out of range from {@link Capacity#LOWER} to {@code upperBoundColumns}.
+     * the matrix out of range from {@link Capacity#LOWER} to {@code
+     * upperBoundColumns}.
      */
     public static void check(@NotNull final double[][] matrix,
                              final int upperBoundRows,
