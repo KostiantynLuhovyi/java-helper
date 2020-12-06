@@ -19,22 +19,20 @@ public class CheckerString {
 
     /**
      * Checks the {@code lengthString} value in range from {@code
-     * lowerBoundLength}(inclusive) to {@code upperBoundLength}(inclusive).
+     * lowerLengthString}(inclusive) to {@code boundLengthString}(inclusive).
      * <p>
      * Boundary values must be in the range from 0(inclusive) to {@link
      * Integer#MAX_VALUE}(inclusive). Lower bound value must be less than or
      * equal to upper bound value.
      *
      * @param lengthString the length value of the string to check.
-     * @param lowerBoundLength the lower bound length of the string to check.
-     * @param upperBoundLength the upper bound length of the string to check.
-     *
+     * @param boundLengthString the upper bound length of the string to check.
      * @throws BoundOutOfRangeException if the any of boundary values out of
      * range from 0 to {@link Integer#MAX_VALUE}.
-     * @throws BoundsComparisonException if the {@code lowerBoundLength} value
-     * greater than the {@code upperBoundLength} value.
+     * @throws BoundsComparisonException if the {@code lowerLengthString} value
+     * greater than the {@code boundLengthString} value.
      * @throws LengthOutOfRangeException if the {@code lengthString} value out
-     * of range from {@code lowerBoundLength} to {@code upperBoundLength}.
+     * of range from {@code lowerLengthString} to {@code boundLengthString}.
      */
     public static void check(final int lengthString,
                              final int boundLengthString) {
