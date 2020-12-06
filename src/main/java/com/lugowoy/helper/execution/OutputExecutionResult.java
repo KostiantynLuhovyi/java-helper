@@ -9,11 +9,12 @@ package com.lugowoy.helper.execution;
  * @version 2.0
  * @since 1.7.8
  */
+//TODO review documentation
 public interface OutputExecutionResult {
 
     /**
-     * Outputs the result of the execution, formalizing its appearance as
-     * a default string.
+     * Outputs the result of the execution, formalizing its appearance as a
+     * default string.
      *
      * @param <T> the type of the result of the execution.
      * @param resultValue the result to output.
