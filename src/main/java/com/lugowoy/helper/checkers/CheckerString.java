@@ -5,13 +5,15 @@ import com.lugowoy.helper.utils.BoundsComparisonException;
 import com.lugowoy.helper.utils.Capacity;
 import com.lugowoy.helper.utils.LengthOutOfRangeException;
 
+import java.util.Objects;
+
 /**
  * The class provides functionality for checking strings and their attributes.
  * <p>
  * Created by Konstantin Lugowoy on 01.04.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.2
+ * @version 1.3
  * @since 3.0
  */
 //TODO review documentation
@@ -46,6 +48,7 @@ public class CheckerString {
     }
 
     public static void check(final String string, final int boundLengthString) {
+        Objects.requireNonNull(string, "String is null");
         CheckerBoundNumber.checkInRange(boundLengthString, Capacity.LOWER.get(),
                                         Capacity.UPPER.get());
         if (string.length() > boundLengthString) {
