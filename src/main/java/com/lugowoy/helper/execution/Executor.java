@@ -1,5 +1,6 @@
 package com.lugowoy.helper.execution;
 
+import com.lugowoy.helper.checkers.CheckerString;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -21,7 +22,7 @@ import java.util.concurrent.Callable;
  * Created by Konstantin Lugowoy on 01.09.2019.
  *
  * @author Konstantin Lugowoy
- * @version 2.2
+ * @version 2.3
  * @since 1.7.4
  */
 //TODO review documentation
@@ -67,6 +68,30 @@ public class Executor {
         }
         executionTime.setEndTime();
         outputResult.output(result);
+        outputTime.output(executionTime.calculateExecutionTime());
+    }
+
+    @SuppressWarnings("unchecked")
+    //Possible heap pollution from parameterized vararg type
+    public <T> void execute(@NotNull final Callable<T> callable,
+                            @NotNull final OutputExecutionResult outputResult,
+                            final String patternResult,
+                            @NotNull final OutputExecutionTime outputTime) {
+        Objects.requireNonNull(callable, "The thread to execute is null");
+        Objects.requireNonNull(outputResult, "The output of the result is null");
+        CheckerString.check(patternResult, Integer.MAX_VALUE);
+        Objects.requireNonNull(outputTime, "The output of the time is null");
+        ExecutionTime executionTime = new ExecutionTime();
+        executionTime.setStartTime();
+        T result;
+        try {
+            result = callable.call();
+        } catch (Exception e) {
+            throw new RuntimeException("Could not get the execution result");
+        }
+        executionTime.setEndTime();
+
+        outputResult.output(patternResult, result);
         outputTime.output(executionTime.calculateExecutionTime());
     }
 
