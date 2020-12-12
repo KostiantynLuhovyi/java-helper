@@ -1,5 +1,7 @@
 package com.lugowoy.helper.utils;
 
+import com.lugowoy.helper.checkers.CheckerNumber;
+
 import java.nio.charset.Charset;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -10,7 +12,7 @@ import java.util.Scanner;
  * <p>Created by Konstantin Lugowoy on 07.11.2020.
  *
  * @author Konstantin Lugowoy
- * @version 1.0
+ * @version 1.1
  * @since 3.0
  */
 //TODO review documentation
@@ -29,14 +31,12 @@ public class ReaderConsole {
      * out of range.
      */
     public byte readByte() {
-        byte resultByteRead = 0;
-        try {
-            resultByteRead = this.scanner.nextByte();
-        } catch (InputMismatchException ex) {
-            throw new ValueOutOfRangeException(
-                    "The value is not a valid byte type number from "
-                    + Byte.MIN_VALUE + " to " + Byte.MAX_VALUE, ex);
-        }
+        return this.readByte(Byte.MIN_VALUE, Byte.MAX_VALUE);
+    }
+
+    public byte readByte(final byte lowerBound, final byte upperBound) {
+        byte resultByteRead = this.scanner.nextByte();
+        CheckerNumber.check(resultByteRead, lowerBound, upperBound);
         return resultByteRead;
     }
 
@@ -50,15 +50,13 @@ public class ReaderConsole {
      * out of range.
      */
     public short readShort() {
-        short resultShortRead;
-        try {
-            resultShortRead = this.scanner.nextShort();
-        } catch (InputMismatchException ex) {
-            throw new ValueOutOfRangeException(
-                    "The value is not a valid byte type number from "
-                    + Short.MIN_VALUE + " to " + Short.MAX_VALUE, ex);
-        }
-        return resultShortRead;
+        return this.readShort(Short.MIN_VALUE, Short.MAX_VALUE);
+    }
+
+    public short readShort(final short lowerBound, final short upperBound) {
+        short resultIntRead = this.scanner.nextShort();
+        CheckerNumber.check(resultIntRead, lowerBound, upperBound);
+        return resultIntRead;
     }
 
     /**
@@ -71,14 +69,12 @@ public class ReaderConsole {
      * out of range.
      */
     public int readInt() {
-        int resultIntRead;
-        try {
-            resultIntRead = this.scanner.nextInt();
-        } catch (InputMismatchException ex) {
-            throw new ValueOutOfRangeException(
-                    "The value is not a valid byte type number from "
-                    + Integer.MIN_VALUE + " to " + Integer.MAX_VALUE, ex);
-        }
+        return this.readInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    public int readInt(final int lowerBound, final int upperBound) {
+        int resultIntRead = this.scanner.nextInt();
+        CheckerNumber.check(resultIntRead, lowerBound, upperBound);
         return resultIntRead;
     }
 
@@ -92,14 +88,12 @@ public class ReaderConsole {
      * out of range.
      */
     public long readLong() {
-        long resultLongRead;
-        try {
-            resultLongRead = this.scanner.nextLong();
-        } catch (InputMismatchException ex) {
-            throw new ValueOutOfRangeException(
-                    "The value is not a valid byte type number from "
-                    + Long.MIN_VALUE + " to " + Long.MAX_VALUE, ex);
-        }
+        return this.readLong(Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    public long readLong(final long lowerBound, final long upperBound) {
+        long resultLongRead = this.scanner.nextLong();
+        CheckerNumber.check(resultLongRead, lowerBound, upperBound);
         return resultLongRead;
     }
 
@@ -134,14 +128,12 @@ public class ReaderConsole {
      * out of range.
      */
     public float readFloat() {
-        float resultFloatRead;
-        try {
-            resultFloatRead = this.scanner.nextFloat();
-        } catch (InputMismatchException ex) {
-            throw new ValueOutOfRangeException(
-                    "Value is not a float number or is out of range (from "
-                    + Float.MIN_VALUE + " to " + Float.MAX_VALUE + ").");
-        }
+        return this.readFloat(Float.MIN_VALUE, Float.MAX_VALUE);
+    }
+
+    public float readFloat(final float lowerBound, final float upperBound) {
+        float resultFloatRead = this.scanner.nextFloat();
+        CheckerNumber.check(resultFloatRead, lowerBound, upperBound);
         return resultFloatRead;
     }
 
@@ -155,16 +147,15 @@ public class ReaderConsole {
      * out of range.
      */
     public double readDouble() {
-        double resultDoubleRead;
-        try {
-            resultDoubleRead = this.scanner.nextDouble();
-        } catch (InputMismatchException ex) {
-            throw new ValueOutOfRangeException(
-                    "Value is not a double or is out of range (from "
-                    + Double.MIN_VALUE + " to " + Double.MAX_VALUE + ").");
-        }
+        return this.readDouble(Double.MIN_VALUE, Double.MAX_VALUE);
+    }
+
+    public double readDouble(final double lowerBound, final double upperBound) {
+        double resultDoubleRead = this.scanner.nextDouble();
+        CheckerNumber.check(resultDoubleRead, lowerBound, upperBound);
         return resultDoubleRead;
     }
+
 
     /**
      * Reads a {@link String} type value from the console.
