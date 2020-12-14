@@ -18,7 +18,7 @@ import java.io.Reader;
  * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @see com.lugowoy.helper.filling.FillingReadValues
  * @see com.lugowoy.helper.filling.array.FillingArrayReadValues
  * @see com.lugowoy.helper.filling.Filling
@@ -27,7 +27,7 @@ import java.io.Reader;
  */
 //TODO review documentation
 public class FillingArrayReadStrings extends FillingArrayReadValues
-        implements FillingArrayStrings<Integer> {
+        implements FillingArrayStrings {
 
     public FillingArrayReadStrings(final @NotNull Reader reader) {
         super(reader);

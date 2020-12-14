@@ -12,28 +12,27 @@ import org.jetbrains.annotations.NotNull;
  * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.3
+ * @version 1.4
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @since 1.2
  */
 //TODO review documentation
-public interface FillingArrayStrings<L extends Number>
-        extends FillingArray<String> {
+public interface FillingArrayStrings extends FillingArray<String> {
 
-    void fill(@NotNull Array<String> array, @NotNull L lengthString);
+    void fill(@NotNull Array<String> array, @NotNull Integer lengthString);
 
-    void fill(@NotNull String[] array, @NotNull L lengthString);
+    void fill(@NotNull String[] array, @NotNull Integer lengthString);
 
-    String[] fill(int lengthArray, @NotNull L lengthString);
+    String[] fill(int lengthArray, @NotNull Integer lengthString);
 
-    void fill(@NotNull Array<String> array, @NotNull L lowerLengthString,
-              @NotNull L upperLengthString);
+    void fill(@NotNull Array<String> array, @NotNull Integer lowerLengthString,
+              @NotNull Integer upperLengthString);
 
-    void fill(@NotNull String[] array, @NotNull L lowerLengthString,
-              @NotNull L upperLengthString);
+    void fill(@NotNull String[] array, @NotNull Integer lowerLengthString,
+              @NotNull Integer upperLengthString);
 
-    String[] fill(int lengthArray, @NotNull L lowerLengthString,
-                  @NotNull L upperLengthString);
+    String[] fill(int lengthArray, @NotNull Integer lowerLengthString,
+                  @NotNull Integer upperLengthString);
 
 }

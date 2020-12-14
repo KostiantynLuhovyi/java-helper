@@ -18,14 +18,14 @@ import java.util.Objects;
  * <p>Created by Konstantin Lugowoy on 18.07.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.6
+ * @version 1.7
  * @see com.lugowoy.helper.filling.Filling
  * @see com.lugowoy.helper.filling.array.FillingArray
  * @see com.lugowoy.helper.filling.array.strings.FillingArrayStrings
  * @since 1.3
  */
 //TODO review documentation
-public class FillingArrayRandomStrings implements FillingArrayStrings<Integer> {
+public class FillingArrayRandomStrings implements FillingArrayStrings {
 
     private static final int DEFAULT_STRING_LENGTH = 10;
 
