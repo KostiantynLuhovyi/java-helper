@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>Created by Konstantin Lugowoy on 10.06.2018.
  *
  * @author Konstantin Lugowoy
- * @version 1.5
+ * @version 1.6
  * @see com.lugowoy.helper.filling.Filler
  * @see com.lugowoy.helper.filling.array.FillerArray
  * @since 1.2
@@ -50,9 +50,9 @@ public class FillerArrayStrings extends FillerArray<String> {
                 lengthArray, lengthString);
     }
 
-    final void fill(@NotNull final Array<String> array,
-                    @NotNull final Integer lowerLengthString,
-                    @NotNull final Integer upperLengthString) {
+    public void fill(@NotNull final Array<String> array,
+                     @NotNull final Integer lowerLengthString,
+                     @NotNull final Integer upperLengthString) {
         ((FillingArrayStrings) super.getFilling()).fill(array,
                                                                  lowerLengthString,
                                                                  upperLengthString);
@@ -66,9 +66,9 @@ public class FillerArrayStrings extends FillerArray<String> {
                                                                  upperLengthString);
     }
 
-    String[] fill(final int lengthArray,
-                  @NotNull final Integer lowerLengthString,
-                  @NotNull final Integer upperLengthString) {
+    public String[] fill(final int lengthArray,
+                         @NotNull final Integer lowerLengthString,
+                         @NotNull final Integer upperLengthString) {
         return ((FillingArrayStrings) super.getFilling()).fill(
                 lengthArray, lowerLengthString, upperLengthString);
     }
