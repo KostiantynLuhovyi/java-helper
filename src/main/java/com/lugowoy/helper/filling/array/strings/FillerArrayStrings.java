@@ -27,50 +27,48 @@ public class FillerArrayStrings extends FillerArray<String> {
      * @param filling The object that implements the {@link FillingArray}
      * interface contract to fill an array.
      */
-    public FillerArrayStrings(
-            @NotNull final FillingArrayStrings filling) {
+    public FillerArrayStrings(@NotNull final FillingArrayStrings filling) {
         super(filling);
     }
 
     public void fill(@NotNull final Array<String> array,
                      @NotNull final Integer lengthString) {
-        ((FillingArrayStrings) super.getFilling()).fill(array,
-                                                                 lengthString);
+        ((FillingArrayStrings) super.getFilling()).fill(array, lengthString);
     }
 
     public void fill(@NotNull final String[] array,
                      @NotNull final Integer lengthString) {
-        ((FillingArrayStrings) super.getFilling()).fill(array,
-                                                                 lengthString);
+        ((FillingArrayStrings) super.getFilling()).fill(array, lengthString);
     }
 
     public String[] fill(final int lengthArray,
                          @NotNull final Integer lengthString) {
-        return ((FillingArrayStrings) super.getFilling()).fill(
-                lengthArray, lengthString);
+        return ((FillingArrayStrings) super.getFilling()).fill(lengthArray,
+                                                               lengthString);
     }
 
     public void fill(@NotNull final Array<String> array,
                      @NotNull final Integer lowerLengthString,
                      @NotNull final Integer upperLengthString) {
         ((FillingArrayStrings) super.getFilling()).fill(array,
-                                                                 lowerLengthString,
-                                                                 upperLengthString);
+                                                        lowerLengthString,
+                                                        upperLengthString);
     }
 
     public void fill(@NotNull final String[] array,
                      @NotNull final Integer lowerLengthString,
                      @NotNull final Integer upperLengthString) {
         ((FillingArrayStrings) super.getFilling()).fill(array,
-                                                                 lowerLengthString,
-                                                                 upperLengthString);
+                                                        lowerLengthString,
+                                                        upperLengthString);
     }
 
     public String[] fill(final int lengthArray,
                          @NotNull final Integer lowerLengthString,
                          @NotNull final Integer upperLengthString) {
-        return ((FillingArrayStrings) super.getFilling()).fill(
-                lengthArray, lowerLengthString, upperLengthString);
+        return ((FillingArrayStrings) super.getFilling()).fill(lengthArray,
+                                                               lowerLengthString,
+                                                               upperLengthString);
     }
 
 }
