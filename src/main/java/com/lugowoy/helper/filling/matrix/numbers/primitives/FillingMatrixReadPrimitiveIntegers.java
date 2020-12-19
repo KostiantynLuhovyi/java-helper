@@ -1,9 +1,10 @@
-package com.lugowoy.helper.filling.matrix.numbers;
+package com.lugowoy.helper.filling.matrix.numbers.primitives;
 
 import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.checkers.CheckerMatrix;
 import com.lugowoy.helper.checkers.CheckerNumber;
 import com.lugowoy.helper.filling.matrix.FillingMatrixReadValues;
+import com.lugowoy.helper.filling.matrix.numbers.primitives.FillingMatrixIntegerPrimitives;
 import com.lugowoy.helper.models.matrices.MatrixInts;
 import com.lugowoy.helper.utils.Capacity;
 import org.jetbrains.annotations.NotNull;
@@ -21,13 +22,14 @@ import java.math.BigDecimal;
  * @since 3.0
  */
 //TODO write documentation
-public class FillingMatrixReadPrimitiveIntegers
-        extends FillingMatrixReadValues {
+public class FillingMatrixReadPrimitiveIntegers extends FillingMatrixReadValues
+        implements FillingMatrixIntegerPrimitives {
 
     public FillingMatrixReadPrimitiveIntegers(final @NotNull Reader reader) {
         super(reader);
     }
 
+    @Override
     public void fill(@NotNull final MatrixInts matrix) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
         int[][] ints = new int[matrix.getRows()][matrix.getColumns()];
@@ -35,11 +37,13 @@ public class FillingMatrixReadPrimitiveIntegers
         matrix.setMatrix(ints);
     }
 
+    @Override
     public void fill(@NotNull final int[][] matrix) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
         this.fillMatrix(matrix);
     }
 
+    @Override
     public int[][] fill(final int rows, final int columns) {
         CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
                                 Capacity.UPPER.get());
@@ -50,6 +54,7 @@ public class FillingMatrixReadPrimitiveIntegers
         return matrix;
     }
 
+    @Override
     public void fill(@NotNull final MatrixInts matrix, final int bound) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
         CheckerBoundNumber.checkInRange(bound, Integer.MAX_VALUE);
@@ -58,12 +63,14 @@ public class FillingMatrixReadPrimitiveIntegers
         matrix.setMatrix(ints);
     }
 
+    @Override
     public void fill(@NotNull final int[][] matrix, final int bound) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
         CheckerBoundNumber.checkInRange(bound, Integer.MAX_VALUE);
         this.fillMatrixFromZeroToBound(matrix, bound);
     }
 
+    @Override
     public int[][] fill(final int rows, final int columns, final int bound) {
         CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
                                 Capacity.UPPER.get());
@@ -75,6 +82,7 @@ public class FillingMatrixReadPrimitiveIntegers
         return matrix;
     }
 
+    @Override
     public void fill(@NotNull final MatrixInts matrix, final int lowerBound,
                      final int upperBound) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
@@ -88,6 +96,7 @@ public class FillingMatrixReadPrimitiveIntegers
         matrix.setMatrix(ints);
     }
 
+    @Override
     public void fill(@NotNull final int[][] matrix, final int lowerBound,
                      final int upperBound) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
@@ -99,6 +108,7 @@ public class FillingMatrixReadPrimitiveIntegers
         this.fillMatrixFromLowerToUpper(matrix, lowerBound, upperBound);
     }
 
+    @Override
     public int[][] fill(final int rows, final int columns, final int lowerBound,
                         final int upperBound) {
         CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),

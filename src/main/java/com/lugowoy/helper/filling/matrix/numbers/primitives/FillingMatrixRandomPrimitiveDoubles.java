@@ -1,8 +1,8 @@
-package com.lugowoy.helper.filling.matrix.numbers;
+package com.lugowoy.helper.filling.matrix.numbers.primitives;
 
 import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.checkers.CheckerMatrix;
-import com.lugowoy.helper.filling.Filling;
+import com.lugowoy.helper.filling.matrix.numbers.primitives.FillingMatrixDoublePrimitives;
 import com.lugowoy.helper.models.matrices.MatrixDoubles;
 import com.lugowoy.helper.utils.Capacity;
 import com.lugowoy.helper.utils.RandomNumber;
@@ -14,12 +14,13 @@ import java.util.Arrays;
 /**
  * <p>Created by Konstantin Lugowoy on 26.11.2019.
  *
- * @version 1.4
+ * @version 1.5
+ * @see com.lugowoy.helper.filling.matrix.numbers.primitives.FillingMatrixDoublePrimitives
  * @since 2.0
  */
 //TODO write documentation
 public class FillingMatrixRandomPrimitiveDoubles
-        implements Filling<MatrixDoubles> {
+        implements FillingMatrixDoublePrimitives {
 
     @Override
     public void fill(@NotNull final MatrixDoubles matrix) {
@@ -29,11 +30,13 @@ public class FillingMatrixRandomPrimitiveDoubles
         matrix.setMatrix(doubles);
     }
 
+    @Override
     public void fill(@NotNull final double[][] matrix) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
         this.fillMatrix(matrix);
     }
 
+    @Override
     public double[][] fill(final int rows, final int columns) {
         CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
                                 Capacity.UPPER.get());
@@ -44,6 +47,7 @@ public class FillingMatrixRandomPrimitiveDoubles
         return doubles;
     }
 
+    @Override
     public void fill(@NotNull final MatrixDoubles matrix, final double bound) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
         CheckerBoundNumber.checkInRange(bound, Double.MAX_VALUE);
@@ -52,12 +56,14 @@ public class FillingMatrixRandomPrimitiveDoubles
         matrix.setMatrix(doubles);
     }
 
+    @Override
     public void fill(@NotNull final double[][] matrix, final double bound) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
         CheckerBoundNumber.checkInRange(bound, Double.MAX_VALUE);
         this.fillMatrixFromZeroToBound(matrix, bound);
     }
 
+    @Override
     public double[][] fill(final int rows, final int columns,
                            final double bound) {
         CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
@@ -70,6 +76,7 @@ public class FillingMatrixRandomPrimitiveDoubles
         return doubles;
     }
 
+    @Override
     public void fill(@NotNull final MatrixDoubles matrix,
                      final double lowerBound, final double upperBound) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
@@ -83,6 +90,7 @@ public class FillingMatrixRandomPrimitiveDoubles
         matrix.setMatrix(doubles);
     }
 
+    @Override
     public void fill(@NotNull final double[][] matrix, final double lowerBound,
                      final double upperBound) {
         CheckerMatrix.check(matrix, Capacity.UPPER.get(), Capacity.UPPER.get());
@@ -94,6 +102,7 @@ public class FillingMatrixRandomPrimitiveDoubles
         this.fillMatrixFromLowerToUpper(matrix, lowerBound, upperBound);
     }
 
+    @Override
     public double[][] fill(final int rows, final int columns,
                            final double lowerBound, final double upperBound) {
         CheckerMatrix.checkRows(rows, Capacity.LOWER.get(),
