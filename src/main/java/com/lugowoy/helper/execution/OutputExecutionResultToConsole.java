@@ -40,6 +40,21 @@ public class OutputExecutionResultToConsole implements OutputExecutionResult {
     public static final String PATTERN_RESULT_BOOLEAN = "Result : %b";
 
     /**
+     * The pattern appearance of the output if the result of execution a matrix.
+     */
+    public static final String RESULT_MATRIX = "Result matrix : \n%s";
+
+    /**
+     * The pattern appearance of the output if the result of execution a array.
+     */
+    public static final String RESULT_ARRAY = "Result array : \n%s";
+
+    /**
+     * The pattern appearance of the output if the result of execution a sequence.
+     */
+    public static final String RESULT_SEQUENCE = "Result sequence : \n%s";
+
+    /**
      * Constructs an object of this class.
      */
     public OutputExecutionResultToConsole() {
