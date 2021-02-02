@@ -13,7 +13,7 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 02.08.2017.
  *
  * @author Konstantin Lugowoy
- * @version 2.0
+ * @version 2.1
  * @since 1.0
  */
 //TODO review documentation
@@ -28,6 +28,7 @@ public final class ReaderArrayLength {
             "inputStream is null";
     private static final String MSG_OUTPUT_STREAM_IS_NULL =
             "outputStream is null";
+    private static final String MSG_MESSAGE_IS_NULL = "message is null";
 
     /**
      * Reads the length(size) value ({@code int}) for an array.
@@ -111,7 +112,7 @@ public final class ReaderArrayLength {
                     @NotNull final String msgWriter) {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         Objects.requireNonNull(writer, MSG_WRITER_IS_NULL);
-        Objects.requireNonNull(msgWriter, "Message is null");
+        Objects.requireNonNull(msgWriter, MSG_MESSAGE_IS_NULL);
         int resultLengthArray = 0;
         try {
             writer.write(msgWriter);
@@ -159,8 +160,7 @@ public final class ReaderArrayLength {
         CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
                                         Capacity.UPPER.get());
         Objects.requireNonNull(writer, MSG_WRITER_IS_NULL);
-        Objects.requireNonNull(msgWriter, "Message is null");
-
+        Objects.requireNonNull(msgWriter, MSG_MESSAGE_IS_NULL);
         int resultLengthArray = 0;
         try {
             writer.write(msgWriter);
