@@ -4,9 +4,7 @@ import com.lugowoy.helper.checkers.CheckerBoundNumber;
 import com.lugowoy.helper.checkers.CheckerNumber;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.util.Objects;
 
 /**
@@ -15,14 +13,21 @@ import java.util.Objects;
  * Created by Konstantin Lugowoy on 02.08.2017.
  *
  * @author Konstantin Lugowoy
- * @version 1.9
+ * @version 2.0
  * @since 1.0
  */
 //TODO review documentation
-public final class ReaderLengthArray {
+public final class ReaderArrayLength {
 
-    private static final String MSG_READER_IS_NULL = "Reader is null";
-    private static final String MSG_WRITER_IS_NULL = "Writer is null";
+    public static final String MSG_ENTER_ARRAY_LENGTH =
+            "Enter length of the array : ";
+
+    private static final String MSG_READER_IS_NULL = "reader is null";
+    private static final String MSG_WRITER_IS_NULL = "writer is null";
+    private static final String MSG_INPUT_STREAM_IS_NULL =
+            "inputStream is null";
+    private static final String MSG_OUTPUT_STREAM_IS_NULL =
+            "outputStream is null";
 
     /**
      * Reads the length(size) value ({@code int}) for an array.
@@ -34,7 +39,7 @@ public final class ReaderLengthArray {
      * array out of range from {@link Capacity#LOWER} to {@link
      * Capacity#UPPER}.
      */
-    public static int read(@NotNull final Reader reader) {
+    public int read(@NotNull final Reader reader) {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         int resultLengthArray = 0;
         try {
@@ -43,10 +48,13 @@ public final class ReaderLengthArray {
                                 Capacity.UPPER.get());
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            close(reader);
         }
         return resultLengthArray;
+    }
+
+    public int read(@NotNull final InputStream inputStream) {
+        Objects.requireNonNull(inputStream, MSG_INPUT_STREAM_IS_NULL);
+        return this.read(new InputStreamReader(inputStream));
     }
 
     /**
@@ -63,8 +71,7 @@ public final class ReaderLengthArray {
      * array out of range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
      */
-    public static int read(@NotNull final Reader reader,
-                           final int upperBoundLength) {
+    public int read(@NotNull final Reader reader, final int upperBoundLength) {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
                                         Capacity.UPPER.get());
@@ -75,10 +82,14 @@ public final class ReaderLengthArray {
                                 upperBoundLength);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            close(reader);
         }
         return resultLengthArray;
+    }
+
+    public int read(@NotNull final InputStream inputStream,
+                    final int upperBoundLength) {
+        Objects.requireNonNull(inputStream, MSG_INPUT_STREAM_IS_NULL);
+        return this.read(new InputStreamReader(inputStream), upperBoundLength);
     }
 
     /**
@@ -96,9 +107,8 @@ public final class ReaderLengthArray {
      * array out of range from {@link Capacity#LOWER} to {@link
      * Capacity#UPPER}.
      */
-    public static int read(@NotNull final Reader reader,
-                           @NotNull final Writer writer,
-                           @NotNull final String msgWriter) {
+    public int read(@NotNull final Reader reader, @NotNull final Writer writer,
+                    @NotNull final String msgWriter) {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         Objects.requireNonNull(writer, MSG_WRITER_IS_NULL);
         Objects.requireNonNull(msgWriter, "Message is null");
@@ -110,11 +120,17 @@ public final class ReaderLengthArray {
                                 Capacity.UPPER.get());
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            close(writer);
-            close(reader);
         }
         return resultLengthArray;
+    }
+
+    public int read(@NotNull final InputStream inputStream,
+                    @NotNull final OutputStream outputStream,
+                    @NotNull final String msgOutputStream) {
+        Objects.requireNonNull(inputStream, MSG_INPUT_STREAM_IS_NULL);
+        Objects.requireNonNull(outputStream, MSG_OUTPUT_STREAM_IS_NULL);
+        return this.read(new InputStreamReader(inputStream),
+                         new OutputStreamWriter(outputStream), msgOutputStream);
     }
 
     /**
@@ -136,10 +152,9 @@ public final class ReaderLengthArray {
      * array out of range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
      */
-    public static int read(@NotNull final Reader reader,
-                           final int upperBoundLength,
-                           @NotNull final Writer writer,
-                           @NotNull final String msgWriter) {
+    public int read(@NotNull final Reader reader, final int upperBoundLength,
+                    @NotNull final Writer writer,
+                    @NotNull final String msgWriter) {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         CheckerBoundNumber.checkInRange(upperBoundLength, Capacity.LOWER.get(),
                                         Capacity.UPPER.get());
@@ -154,27 +169,18 @@ public final class ReaderLengthArray {
                                 upperBoundLength);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            close(writer);
-            close(reader);
         }
         return resultLengthArray;
     }
 
-    private static void close(@NotNull final Reader reader) {
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void close(@NotNull final Writer writer) {
-        try {
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public int read(@NotNull final InputStream inputStream,
+                    final int upperBoundLength,
+                    @NotNull final OutputStream outputStream,
+                    @NotNull final String msgOutputStream) {
+        Objects.requireNonNull(inputStream, MSG_INPUT_STREAM_IS_NULL);
+        Objects.requireNonNull(outputStream, MSG_OUTPUT_STREAM_IS_NULL);
+        return this.read(new InputStreamReader(inputStream), upperBoundLength,
+                         new OutputStreamWriter(outputStream), msgOutputStream);
     }
 
 }
