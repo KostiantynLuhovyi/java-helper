@@ -27,9 +27,9 @@ public class HelperArrayFiller {
 
     private static final String MSG_FILLING_IS_NULL = "filling is null";
 
-    public int[] getArray(
-            @NotNull final FillingArrayIntegerPrimitives filling,
-            final int lengthArray, final int lowerBound, final int upperBound) {
+    public int[] getArray(@NotNull final FillingArrayIntegerPrimitives filling,
+                          final int lengthArray, final int lowerBound,
+                          final int upperBound) {
         Objects.requireNonNull(filling, MSG_FILLING_IS_NULL);
         return new FillerArrayIntegerPrimitives(filling).fill(lengthArray,
                                                               lowerBound,
@@ -55,30 +55,28 @@ public class HelperArrayFiller {
                                                       upperBound);
     }
 
-    public Double[] getArray(
-            @NotNull final FillingArrayNumbers<Double> filling,
-            final int lengthArray, @NotNull final Double lowerBound,
-            @NotNull final Double upperBound) {
+    public Double[] getArray(@NotNull final FillingArrayNumbers<Double> filling,
+                             final int lengthArray,
+                             @NotNull final Double lowerBound,
+                             @NotNull final Double upperBound) {
         Objects.requireNonNull(filling, MSG_FILLING_IS_NULL);
         return new FillerArrayNumbers<>(filling).fill(lengthArray, lowerBound,
                                                       upperBound);
     }
 
     public String[] getArray(@NotNull final FillingArrayStrings filling,
-                                    final Integer lengthArray,
-                                    @NotNull final Integer lowerBound,
-                                    @NotNull final Integer upperBound) {
+                             final Integer lengthArray,
+                             @NotNull final Integer lowerBound,
+                             @NotNull final Integer upperBound) {
         Objects.requireNonNull(filling, MSG_FILLING_IS_NULL);
         return new FillerArrayStrings(filling).fill(lengthArray, lowerBound,
                                                     upperBound);
     }
 
-    public Point2D<Integer>[] getArray(@NotNull
-                                              final FillingArrayPoints<Point2D<Integer>, Integer> filling,
-                                              final int lengthArray,
-                                              @NotNull final Integer lowerBound,
-                                              @NotNull
-                                              final Integer upperBound) {
+    public Point2D<Integer>[] getArray(@NotNull final FillingArrayPoints<Point2D<Integer>, Integer> filling,
+                                       final int lengthArray,
+                                       @NotNull final Integer lowerBound,
+                                       @NotNull final Integer upperBound) {
         Objects.requireNonNull(filling, MSG_FILLING_IS_NULL);
         return new FillerArrayPoints<>(filling).fill(lengthArray, lowerBound,
                                                      upperBound);
