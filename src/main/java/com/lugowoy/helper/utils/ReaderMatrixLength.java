@@ -30,11 +30,15 @@ public final class ReaderMatrixLength {
             "outputStream is null";
     private static final String MSG_MESSAGE_IS_NULL = "message is null";
 
+    //TODO Streams are not closed in methods after use.
+    // Decide how to describe it or how to close them.
+
     public int readRows(@NotNull final Reader reader) {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         int resultRowsMatrix = 0;
         try {
-            resultRowsMatrix = reader.read();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultRowsMatrix = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultRowsMatrix, Capacity.LOWER.get(),
                                 Capacity.UPPER.get());
         } catch (IOException e) {
@@ -55,7 +59,8 @@ public final class ReaderMatrixLength {
                                         Capacity.UPPER.get());
         int resultRowsMatrix = 0;
         try {
-            resultRowsMatrix = reader.read();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultRowsMatrix = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultRowsMatrix, Capacity.LOWER.get(),
                                 upperBoundRows);
         } catch (IOException e) {
@@ -80,7 +85,9 @@ public final class ReaderMatrixLength {
         int resultRowsMatrix = 0;
         try {
             writer.write(msgWriter);
-            resultRowsMatrix = reader.read();
+            writer.flush();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultRowsMatrix = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultRowsMatrix, Capacity.LOWER.get(),
                                 Capacity.UPPER.get());
         } catch (IOException e) {
@@ -110,7 +117,9 @@ public final class ReaderMatrixLength {
         int resultRowsMatrix = 0;
         try {
             writer.write(msgWriter);
-            resultRowsMatrix = reader.read();
+            writer.flush();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultRowsMatrix = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultRowsMatrix, Capacity.LOWER.get(),
                                 upperBoundRows);
         } catch (IOException e) {
@@ -134,7 +143,8 @@ public final class ReaderMatrixLength {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         int resultColumnsMatrix = 0;
         try {
-            resultColumnsMatrix = reader.read();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultColumnsMatrix = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultColumnsMatrix, Capacity.LOWER.get(),
                                 Capacity.UPPER.get());
         } catch (IOException e) {
@@ -155,7 +165,8 @@ public final class ReaderMatrixLength {
                                         Capacity.UPPER.get());
         int resultColumnsMatrix = 0;
         try {
-            resultColumnsMatrix = reader.read();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultColumnsMatrix = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultColumnsMatrix, Capacity.LOWER.get(),
                                 upperBoundColumns);
         } catch (IOException e) {
@@ -180,7 +191,9 @@ public final class ReaderMatrixLength {
         int resultColumnsMatrix = 0;
         try {
             writer.write(msgWriter);
-            resultColumnsMatrix = reader.read();
+            writer.flush();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultColumnsMatrix = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultColumnsMatrix, Capacity.LOWER.get(),
                                 Capacity.UPPER.get());
         } catch (IOException e) {
@@ -211,7 +224,9 @@ public final class ReaderMatrixLength {
         int resultColumnsMatrix = 0;
         try {
             writer.write(msgWriter);
-            resultColumnsMatrix = reader.read();
+            writer.flush();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultColumnsMatrix = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultColumnsMatrix, Capacity.LOWER.get(),
                                 upperBoundColumns);
         } catch (IOException e) {
