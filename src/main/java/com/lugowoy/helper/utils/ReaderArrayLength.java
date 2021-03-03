@@ -30,12 +30,16 @@ public final class ReaderArrayLength {
             "outputStream is null";
     private static final String MSG_MESSAGE_IS_NULL = "message is null";
 
+    //TODO Streams are not closed in methods after use.
+    // Decide how to describe it or how to close them.
+
     /**
      * Reads the length(size) value ({@code int}) for an array.
      *
      * @param reader the {@code reader} to read the length(size) value.
      * @return the read length(size) value ({@code int}) for an array.
      * @throws NullPointerException if the {@code reader} is {@code null}.
+     * @throws NumberFormatException if the read value is not a number.
      * @throws ValueOutOfRangeException if the read length(size) value for an
      * array out of range from {@link Capacity#LOWER} to {@link
      * Capacity#UPPER}.
@@ -44,7 +48,8 @@ public final class ReaderArrayLength {
         Objects.requireNonNull(reader, MSG_READER_IS_NULL);
         int resultLengthArray = 0;
         try {
-            resultLengthArray = reader.read();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultLengthArray = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(),
                                 Capacity.UPPER.get());
         } catch (IOException e) {
@@ -68,6 +73,7 @@ public final class ReaderArrayLength {
      * @throws NullPointerException if the {@code reader} is {@code null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
+     * @throws NumberFormatException if the read value is not a number.
      * @throws ValueOutOfRangeException if the read length(size) value for an
      * array out of range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
@@ -78,7 +84,8 @@ public final class ReaderArrayLength {
                                         Capacity.UPPER.get());
         int resultLengthArray = 0;
         try {
-            resultLengthArray = reader.read();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultLengthArray = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(),
                                 upperBoundLength);
         } catch (IOException e) {
@@ -104,6 +111,7 @@ public final class ReaderArrayLength {
      * @return the read length(size) value ({@code int}) for an array.
      * @throws NullPointerException if at least one of the arguments is {@code
      * null}.
+     * @throws NumberFormatException if the read value is not a number.
      * @throws ValueOutOfRangeException if the read length(size) value for an
      * array out of range from {@link Capacity#LOWER} to {@link
      * Capacity#UPPER}.
@@ -116,7 +124,9 @@ public final class ReaderArrayLength {
         int resultLengthArray = 0;
         try {
             writer.write(msgWriter);
-            resultLengthArray = reader.read();
+            writer.flush();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultLengthArray = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(),
                                 Capacity.UPPER.get());
         } catch (IOException e) {
@@ -149,6 +159,7 @@ public final class ReaderArrayLength {
      * null}.
      * @throws BoundOutOfRangeException if the {@code upperBoundLength} value
      * out of range from {@link Capacity#LOWER} to {@link Capacity#UPPER}.
+     * @throws NumberFormatException if the read value is not a number.
      * @throws ValueOutOfRangeException if the read length(size) value for an
      * array out of range from {@link Capacity#LOWER} to {@code
      * upperBoundLength}.
@@ -164,7 +175,9 @@ public final class ReaderArrayLength {
         int resultLengthArray = 0;
         try {
             writer.write(msgWriter);
-            resultLengthArray = reader.read();
+            writer.flush();
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            resultLengthArray = Integer.parseInt(bufferedReader.readLine());
             CheckerNumber.check(resultLengthArray, Capacity.LOWER.get(),
                                 upperBoundLength);
         } catch (IOException e) {
