@@ -42,7 +42,7 @@ public final class CreatorString {
      * @throws NullPointerException if the {@code characters} array is {@code
      * null}.
      * @throws LengthOutOfRangeException if the {@code lengthString} value out
-     * of range from 0 to {@link Integer#MAX_VALUE}.
+     * of range from 0 to {@link Capacity#UPPER}.
      */
     public synchronized String create(final int lengthString,
                                       @NotNull final char... characters) {
