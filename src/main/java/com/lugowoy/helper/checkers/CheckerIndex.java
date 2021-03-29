@@ -84,7 +84,8 @@ public final class CheckerIndex {
         if (index < LOWER_INDEX || index >= upperBoundIndex) {
             throw new IndexOutOfBoundsException(
                     "Index value " + index + " out of range from "
-                    + CheckerIndex.LOWER_INDEX + " to " + upperBoundIndex);
+                    + CheckerIndex.LOWER_INDEX + "(inclusive) to "
+                    + upperBoundIndex + "(exclusive)");
         }
     }
 
@@ -114,7 +115,8 @@ public final class CheckerIndex {
         if (index < lowerBoundIndex || index >= upperBoundIndex) {
             throw new IndexOutOfBoundsException(
                     "Index value " + index + " out of range from "
-                    + lowerBoundIndex + " to " + upperBoundIndex);
+                    + lowerBoundIndex + "(inclusive) to " + upperBoundIndex
+                    + "(exclusive)");
         }
     }
 
