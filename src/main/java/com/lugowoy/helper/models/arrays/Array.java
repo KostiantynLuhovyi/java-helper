@@ -812,7 +812,9 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @return a list iterator over the elements in this list (in proper
      * sequence)
      */
+    @SuppressWarnings("unchecked")
     @Override
+    @NotNull
     public ListIterator<T> listIterator() {
         return new ArrayList<T>(new Array<>((T[]) this.array)).listIterator();
     }
@@ -832,13 +834,16 @@ public class Array<T> extends AbstractArray implements List<T> {
      * @throws IndexOutOfBoundsException if the index is out of range ({@code
      * index < 0 || index > size()})
      */
+    @SuppressWarnings("unchecked")
     @Override
+    @NotNull
     public ListIterator<T> listIterator(final int index) {
         return new ArrayList<T>(new Array<>((T[]) this.array)).listIterator(
                 index);
     }
 
     @Override
+    @NotNull
     public List<T> subList(final int fromIndex, final int toIndex) {
         CheckerIndex.checkInRange(fromIndex, START_SIZE, super.size());
         CheckerIndex.checkInRange(toIndex, START_SIZE, super.size());
