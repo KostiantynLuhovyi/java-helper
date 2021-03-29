@@ -816,7 +816,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     @Override
     @NotNull
     public ListIterator<T> listIterator() {
-        return new ArrayList<T>(new Array<>((T[]) this.array)).listIterator();
+        return new ArrayList<>(new Array<>((T[]) this.array)).listIterator();
     }
 
     /**
@@ -838,8 +838,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     @Override
     @NotNull
     public ListIterator<T> listIterator(final int index) {
-        return new ArrayList<T>(new Array<>((T[]) this.array)).listIterator(
-                index);
+        return new ArrayList<>(new Array<>((T[]) this.array)).listIterator(index);
     }
 
     @Override
@@ -849,10 +848,8 @@ public class Array<T> extends AbstractArray implements List<T> {
         CheckerIndex.checkInRange(toIndex, START_SIZE, super.size());
         CheckerBoundNumber.checkLowerLessOrEqualUpper(fromIndex, toIndex);
         Array<T> list = new Array<>();
-        if (CheckerBoundNumber.isLowerLessUpper(fromIndex, toIndex)) {
-            for (int i = fromIndex, j = 0; i < toIndex; i++, j++) {
-                list.add(this.get(i));
-            }
+        for (int i = fromIndex; i <= toIndex; i++) {
+            list.add(this.get(i));
         }
         return list;
     }
