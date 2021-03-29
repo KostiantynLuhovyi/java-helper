@@ -43,7 +43,7 @@ public abstract class AbstractArray implements Model, RandomAccess {
      * Constructs an object of an array (for the heir class).
      */
     protected AbstractArray() {
-        this.size = DEFAULT_CAPACITY;
+        this.size = START_SIZE;
         this.modCount = START_MOD_COUNT;
     }
 
