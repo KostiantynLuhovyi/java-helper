@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.function.Consumer;
-
+import java.util.function.UnaryOperator;
 /**
  * The class represents a description of a dynamic array data structure. Array
  * elements can be of any reference data type. Inherits from class {@link
@@ -799,6 +799,12 @@ public class Array<T> extends AbstractArray implements List<T> {
         return resultLastIndexOf;
     }
 
+    @SuppressWarnings("unchecked")
+    public void sort(@NotNull final Comparator<? super T> comparator) {
+        Objects.requireNonNull(comparator, "Comparator is null");
+        Arrays.sort(this.array, (Comparator<? super Object>) comparator);
+    }
+
     /**
      * Returns a list iterator over the elements in this list (in proper
      * sequence).
@@ -843,6 +849,20 @@ public class Array<T> extends AbstractArray implements List<T> {
             }
         }
         return list;
+    }
+
+    @Override
+    public void replaceAll(@NotNull final UnaryOperator<T> operator) {
+        Objects.requireNonNull(operator, "UnaryOperator is null");
+        final int expectedModCount = super.getModCount();
+        final int size = super.size();
+        for (int i = 0; super.getModCount() == expectedModCount && i < size; i++) {
+            this.array[i] = operator.apply((T) this.array[i]);
+        }
+        if (super.getModCount() != expectedModCount) {
+            throw new ConcurrentModificationException();
+        }
+        super.setModCount(super.getModCount() + 1);
     }
 
     public void ensureCapacity() {
