@@ -47,7 +47,7 @@ public final class CreatorString {
     public synchronized String create(final int lengthString,
                                       @NotNull final char... characters) {
         Objects.requireNonNull(characters, "Array of characters is null.");
-        CheckerString.check(lengthString, Integer.MAX_VALUE);
+        CheckerString.check(lengthString, Capacity.UPPER.get());
         char tmpChar;
         for (int i = 0; i < lengthString; i++) {
             tmpChar = characters[this.rand.generateInt(characters.length - 1)];
