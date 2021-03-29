@@ -842,6 +842,7 @@ public class Array<T> extends AbstractArray implements List<T> {
     public List<T> subList(final int fromIndex, final int toIndex) {
         CheckerIndex.checkInRange(fromIndex, START_SIZE, super.size());
         CheckerIndex.checkInRange(toIndex, START_SIZE, super.size());
+        CheckerBoundNumber.checkLowerLessOrEqualUpper(fromIndex, toIndex);
         Array<T> list = new Array<>();
         if (CheckerBoundNumber.isLowerLessUpper(fromIndex, toIndex)) {
             for (int i = fromIndex, j = 0; i < toIndex; i++, j++) {
